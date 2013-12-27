@@ -1,0 +1,33 @@
+<!--{template "header"}-->
+	<div data-role="content">
+    	<div class="search_block">
+        	<form action="index.php" method="get">
+            	<input type="hidden" name="mod" value="search" />
+                <div class="search_toolbar">
+                	
+                    <div class="search_input">
+                    	<div class="search_toolbar_left"></div>
+                        <div class="search_toolbar_middle">
+                        	<input type="text" name="q" class="g_q" />
+                        </div>
+                        <div class="search_toolbar_right">
+                        	<button class="g_search_btn" type="submit"></button>
+                        </div>
+                    </div>
+                    <div class="search_radio">
+                    	<span>
+                    		<input name="code" type="radio" value="topic" checked="checked" id="r_topic" /><label for="r_topic">搜索微博</label>
+                       	</span>
+                       	<span style="margin-left:20px;">
+                        	<input name="code" type="radio" value="user" id="r_user" /><label for="r_user">找人</label>
+                     	</span>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+        <div>
+        	<!--{template "square_view"}-->
+        </div>
+    </div>
+<!--{template "footer"}-->

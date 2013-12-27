@@ -1,0 +1,26 @@
+<form id="need_info_form" name="need_info_form" method="post" action="" onsubmit="return false;">
+  <table style="margin:10px;">
+    {$html}
+    <tr>
+	 <td>&nbsp;</td>
+      <td><input type="button" id="Submit" name="Submit" value="提交" onclick="add();" class="shareI"></td>
+    </tr>
+  </table>
+</form>
+<script type="text/javascript">
+function add() {
+	var post_data = $('#need_info_form').serialize();
+	$.post(
+		"ajax.php?mod=event&code=need_info&id=$id",
+		{post_data},
+		function(r){
+			if(r.done){
+				closeDialog('need_info');
+				simpleTalk();
+			}else{
+				MessageBox('warning', r.msg);
+			}
+			},'json'
+	);
+}
+</script>

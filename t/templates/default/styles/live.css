@@ -1,0 +1,76 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename live.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 795730453 822680214 4392 $
+ *******************************************************************/
+
+
+/*###########################
+   @Name:记事狗微博客直播附样式表 
+   @Link:www.jishigou.net
+   @Date:2010.08.12
+   @Author:@itom
+#############################*/
+* html .clearfix{height:1%;}
+.clearfix{display:inline-block;}
+.clearFix{display:block;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.liveShowList li{background:url(../images/item/dot_sh.gif) repeat-x scroll 100% 100%;padding-bottom:12px;margin:20px 0px;height:80px;}
+.liveShowList li.end{background:none;}
+.liveShowList li .feed_ls{float:left;width:325px;padding-top:3px;}
+.liveShowList li .pic_ls{float:right;text-align:right;}
+.liveShowList li .f_content{font-size:14px;line-height:20px;margin-bottom:5px;overflow:hidden;}
+.liveShowList li .f_content{font-size:14px;line-height:20px;margin-bottom:5px;overflow:hidden;}
+.liveShowList li .f_content .ico_shlive{vertical-align:middle;margin-top:-2px;}
+.liveShowList li .f_content .ico_status{margin:0 0 0 5px;vertical-align:middle;}
+.liveShowList li .f_time{color:#999;padding-bottom:7px;}
+.liveShowList li .f_name{color:#666;height:20px;overflow:hidden;}
+.liveShowList li .f_name a{color:#666;}
+.liveShowList li .f_name span{padding-right:10px;}
+.ico_shlive{background:url(../images/item/live_shico.gif) no-repeat scroll 0 0;width:16px;height:16px;margin-right:5px;vertical-align:middle;}
+.liveShowList li .guest_lst{width:54px;height:82px;overflow:hidden;text-align:center;padding-left:15px;float:left;}
+.liveShowList li .guest_lst .photo{display:block;height:48px;width:48px; border:1px solid #ccc;margin-bottom:5px;}
+.ico_times{background-position:0 -40px;}
+.ico_liveshow{background-position:0 0;margin-top:-2px;}
+.ico_talk{background-position:0 -80px;}
+a.ico_recommed{background:url(../images/item/live_shico.gif) no-repeat scroll 0 -136px;color:#d30000;padding-left:22px;display:inline-block;}
+.address_r{text-align:right;display:block;}
+.address_r strong{font-weight:bold;}
+.ico_clock_normal,.ico_clock_gray,.ico_clock_on{background:url(../images/item/ico_clock.gif) no-repeat scroll 0 0;width:44px;height:42px;display:inline-block;margin-bottom:6px;}
+.ico_clock_gray{background-position:0 -50px;}
+.ico_clock_on{background:url(../images/item/ico_clock_on.gif) no-repeat scroll 0 0;}
+.ico_status{display:inline-block;background:url(../images/item/liveni01.gif) no-repeat scroll 0 -150px;width:50px;height:18px;margin-top:16px;*margin-top:11px;overflow:hidden;text-indent:-9999px;}
+.ico_complete{background-position:0 -210px;}
+.ico_ongoing{background-position:0 -180px;}
+.ico_notyet{background-position:0 -150px;}
+.live_line{ color:#666; font-size:14px; font-weight:600; border-bottom:1px dotted #ccc; padding:5px 0;}
+.live_line span a{float:right;font-size:12px;font-weight:normal;}
+.live_top{ margin-top:20px;}
+.time_liveShowWrap{padding-top:10px;}
+.time_liveShowWrap .status_lf{float:left;width:50px;text-align:center;}
+.time_liveShowWrap .time_rt{float:right;width:120px;}
+.time_liveShowWrap .time_rt .date_ls{font-size:14px;color:#d30000;}
+.time_liveShowWrap .time_rt .time_ls{font-size:20px;color:#d30000;padding-bottom:8px;}
+.btn_tm_show{background:url(../images/item/live_btndz.gif) no-repeat scroll 0 0;width:116px;height:33px;overflow:hidden;text-indent:-9999px;display:block;}
+.btn_wydz{background-position:0 0;}
+.btn_wycy{background-position:0 -40px;}
+.btn_dzwc{background-position:0 -80px;cursor:default;}
+.btn_wyfx{background-position:0 -120px;}
+.user_aboutme{clear:both;margin:0px;padding:0px;line-height:16px;color:#666;padding-top:10px;}
+.ico_clock_normal,.ico_clock_gray{background:url(../images/item/ico_clock.gif) no-repeat scroll 0 0;width:44px;height:42px;display:inline-block;margin-bottom:6px;}
+.ico_clock_gray{background-position:0 -50px;}
+.ico_clock_on{background:url(../images/item/ico_clock_on.gif) no-repeat scroll 0 0;}
+.live_list_side li{padding:10px 0px;border-bottom:1px dashed #ccc;}
+.livehost,.liveguest,.livemedia{background:url(../images/item/ic01.gif) no-repeat scroll 0 0; border:none;display:inline-block;}
+.livehost{width:50px;height:20px;background-position:0 -80px;}
+.liveguest{width:80px;height:20px;background-position:0 -104px;margin-left:-5px;}
+.livemedia{width:50px;height:20px;background-position:0 -128px;}
+.btn_normal{color:#666;cursor:pointer;border:1px solid #c4c4c4;background-color:#f1f1f1;padding:5px 10px;line-height:27px;}

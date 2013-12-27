@@ -1,0 +1,33 @@
+<div class="dialog_inner">
+<form onsubmit="return false;" onkeydown="if(event.keyCode==13) seccodeLogin();">
+
+<div class="dili">
+验证码：<input id="d_seccode_input" type="text" class="regP" style="width:80px;"/>
+<span class="ml10"><a href="javascript:updateSeccode('d_seccode_input');">换一换</a></span>
+<span id="check_seccode_tips" class="ml11"></span>
+</div>
+
+<div id="sec_wp" class="dili2"></div>
+
+<div class="dili2"><button type="button" class="shareI" onclick="seccodeLogin();">登 录</button></div>
+</form>
+</div>
+
+<script language="javascript">
+	$(document).ready(function(){
+		seccode({"id":"d_seccode_input","wp":"sec_wp"});
+		$("#d_seccode_input").blur(function(){
+			checkSeccode($("#d_seccode_input").val());
+		});
+		$("#d_seccode_input").focus();
+	});
+	
+	function seccodeLogin()
+	{
+		var success = function () {
+			$('#seccode_input').val($("#d_seccode_input").val());
+			$('#guest_login').submit();
+		};
+		checkSeccode($("#d_seccode_input").val(), {"success":success});
+	}
+</script>

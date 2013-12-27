@@ -1,0 +1,51 @@
+<success></success>
+
+<!--{if $replys}-->
+<p> 共有<font class="fontRed">{$replys}</font>条{$m_tl}<!--{if $replys>$limit}-->，<span style="float:right"><a href="{$replyurl}" target="_blank">点此查看全部&gt;&gt;</a></span><!--{/if}--></p>
+<!--{/if}-->
+<script type="text/javascript">
+function item_ajax_longtext(tidval){
+	var full_id = 'topic_content_' + tidval + '_full';
+	var short_id = 'topic_content_' + tidval + '_short';
+	var link_id = 'itemtext_' + tidval;
+	if (document.getElementById(full_id).style.display == 'none'){
+		document.getElementById(full_id).style.display = 'block';
+		document.getElementById(short_id).style.display = 'none';
+		document.getElementById(link_id).innerHTML = '收起全文';
+	}else{
+		document.getElementById(full_id).style.display = 'none';
+		document.getElementById(short_id).style.display = 'block';
+		document.getElementById(link_id).innerHTML = '查看全文';
+	}
+}
+</script>
+<div id="topic_view_comment_msg_area_{$topic_info[tid]}"></div>
+<!--{loop $reply_list $val}-->
+	<div id="view_comment_{$val[tid]}"class="comment_p">
+		<!--{if $val[uid]}-->
+		<a href="index.php?mod={$val[username]}" onmouseover="get_user_choose({$val[uid]},'_reply_user',{$val[tid]});" onmouseout="clear_user_choose();">
+			<img class="comment_p_img" src="{$val[face]}" onerror="javascript:faceError(this);" />
+		</a>
+		<!--{else}-->
+		<img title="未在微博登录的网站用户" class="comment_p_img" src="{$val[face]}" onerror="javascript:faceError(this);" />
+		<!--{/if}-->
+		<!--评论中 悬浮头像 显示用户名片-->
+		<div id="user_{$val[tid]}_reply_user"></div>
+		<!--评论中 悬浮头像 显示用户名片-->
+		<!--微博内容中 @用户 悬浮提示-->
+		<div id="at_{$val[tid]}_user" class="at_style"></div>
+		<!--微博内容中 @用户 悬浮提示-->
+		<div class="ttxt">
+			<div class="ttxtinfo">
+				<a href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}&nbsp;<font class="fontGray">({$val[dateline]})</font>：
+				<span id="topic_content_{$val[tid]}_short">{$val[content]}</span>
+				<span id="topic_content_{$val[tid]}_full" style="display:none;">{$val[content_full]}</span>
+				<!--{if $val[longtext]}-->
+				<span>
+				<a id="itemtext_{$val[tid]}" href="javascript:;" onclick="item_ajax_longtext('{$val[tid]}');return false;">查看全文</a>
+				</span>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+<!--{/loop}-->

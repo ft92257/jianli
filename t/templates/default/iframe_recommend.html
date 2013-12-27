@@ -1,0 +1,105 @@
+<script type="text/javascript" src="{$site_url}/templates/default/js/min.js"></script> 
+<style type="text/css">
+.jsg_mcenter{ width:320px; height:500px; background:#ffffff; border:1px solid #ebebeb; padding:1px; text-align:left}
+.iframe_share_title{ width:100%; height:25px; line-height:30px; overflow:hidden; background:#ffffff; color:#626262; font-size:14px; text-indent:7px;}
+.jsg_mcenter .comBox{ display:none;margin:10px 0; overflow:hidden; padding:10px; z-index:200}
+.jsg_mcenter .indexrow{ font-size:12px; border-bottom:1px dotted #ccc;}
+.jsg_mcenter .feedCell{ overflow:hidden;}
+.jsg_mcenter .msg_left_img{ width:47px; height:47px; float:left;display:inline;margin-right:10px;}
+.jsg_mcenter .msg_left_con{ float:left; display:inline; white-space:normal; *height:100%;width:200px; overflow:hidden;}
+.jsg_mcenter .feedCell {padding:6px; line-height:18px; *width:100%; *height:100%; overflow:hidden;}
+.jsg_mcenter .feedCell .avatar {display:inline;float:left;height:48px;width:48px; border:1px solid #ccc; overflow:hidden; margin-bottom:-15px;margin-top:4px;text-align:center;}
+.jsg_mcenter .feedCell .avatar img {height:48px;width:48px;}
+.jsg_mcenter .feedCell .feedUservideo {overflow:hidden;position:relative;}
+.jsg_mcenter .feedCell .feedUservideo img {border:1px solid #dcdcdc;padding:2px; cursor:pointer; width:120px; height:80px;}
+.jsg_mcenter .feedCell .feedUservideo .vP{position:absolute; margin:27px 46px;}
+.jsg_mcenter .feedCell .feedUservideo .vP img{border:none; filter:alpha(opacity=70);-moz-opacity:0.7; opacity:0.7; width:25px; height:25px;}
+.jsg_mcenter .bg_arrow{background:#e6e6e6 url({$site_url}/images/ico_tblog_arrow.png);background-repeat:repeat-x;height:7px;text-align:center;margin:0}
+.jsg_mcenter .bg_arrow img{ margin:0 auto; width:8px; height:4px; background:url({$site_url}/images/ico_tblog_arrow.png) no-repeat}
+.jsg_mcenter a.arrow_up img {background-position: 0 -20px;}
+.jsg_mcenter a.arrow_down {background-position: 0 -32px;}
+.jsg_mcenter .mBlog_linedot {background:url({$site_url}/templates/default/images/linedot.gif) repeat-x;clear:both;height:1px;overflow:hidden;margin-top:5px;}
+.jsg_mcenter .list_warp{overflow:scroll;overflow-x:hidden;width: 100%; position:relative; height:480px;overflow:hidden;}
+.jsg_mcenter .iframe_tt{ width:100%; height:7px; background:#e4e4e4; margin:0; overflow:hidden;}
+.jsg_mcenter .iframe_tt .bg_arrow{ background-position:0 2px; margin-left:47%;} 
+.jsg_mcenter .iframe_ft{ width:100%; height:7px; background:#e4e4e4; margin:0; overflow:hidden; margin-top:7px;}
+.jsg_mcenter .iframe_ft .bg_arrow{ background-position:0 -12px; margin-left:47%;} 
+</style>
+<div class="jsg_mcenter"> 
+<!--调用标题-->
+    <div class="iframe_share_title">微博调用</div>
+<!--调用标题-->
+
+    <div class="comBox" id="ajaxcontent">
+        <!--{$_loop $_arrlist $_val}-->
+        <div class="indexrow">
+            <div class="feedCell">
+                <div style="color:#626262;">
+                    <!--微博头像显示区域-->
+                    <div class="msg_left_img">
+                        <span class="avatar">
+                            <a href="{$site_url}/index.php?mod={{$_val}[username]}" target="_blank"><img border="0" onerror="javascript:faceError(this);" src="{{$_val}[face_original]}"></a>
+                        </span>
+                    </div>
+                    <!--微博头像显示区域-->
+                    
+                    <!--微博主体显示区域  Stare -->
+                    <div class="msg_left_con" style="margin-top:3px;">
+                    
+                        <a href="{$site_url}/index.php?mod={{$_val}[username]}" target="_blank" style="color:{$link_color};">
+                       	 {{$_val}[nickname]}
+                        </a>:
+        				<a href="{$site_url}/index.php?mod=topic&code={{$_val}[tid]}" target="_blank" style="color:{$link_color};">
+                       	 {{$_val}[content]} 
+                        </a>
+            			[{{$_val}[dateline]}]
+                        <!--微博图片显示区域-->
+                         <!--{{$_if} {$_val}[imageid] and {$_val}[image_list]}-->
+                        <div class="img_avatar">
+                        {$_loop {$_val}[image_list] $_iv}
+                            <a href="{$site_url}/index.php?mod=topic&code={{$_val}[tid]}" target="_blank"><img src="{{$_iv}[image_small]}" border="0" title="图片"></a>
+                        <!--{{$_loop2}}-->
+                        </div>
+                        <!--{{$_if2}}-->
+                        <!--微博图片显示区域-->
+            
+                        <!--微博视频显示区域-->
+                        <!--{{$_if} {$_val}[videoid]}-->
+                        <div class="feedUservideo">
+                        <a href="{$site_url}/index.php?mod=topic&code={{$_val}[tid]}" target="_blank" style="color:{$link_color};">
+                        <div class="vP"><img src="{$site_url}/images/feedvideoplay.gif" title="点击跳转播放视频"/></div>
+                        <img src="{{$_val}[VideoImg]}" style="border:none" title="点击跳转播放视频"/> </a>
+                        </div>
+                        <!--{{$_if2}}-->
+                        <!--微博视频显示区域-->
+            
+                        <!--微博音乐显示区域-->
+                         <!--{{$_if} {$_val}[musicid]}-->
+                        <div class="feedUserImg">
+                        <div id="play_{{$_val}[MusicID]}"></div>
+                        <a href="{$site_url}/index.php?mod=topic&code={{$_val}[tid]}" target="_blank">
+                        <img src="{$site_url}/images/music.gif" title="点击跳转播放音乐" style="cursor:pointer; border:none;" /> 
+                        </a>
+                        </div>
+                        <!--{{$_if2}}-->
+                        <!--微博音乐显示区域-->
+            
+                        <!--微博统计显示区域-->
+                        <div>
+                        <span>[转发:{{$_val}[forwards]}]</span>
+                        <span>[评论:{{$_val}[replys]}]</span>
+                        </div>
+                        <!--微博统计显示区域-->
+                    </div>
+                   <!--微博主体显示区域  End -->
+                </div>
+            </div>
+			<div class="mBlog_linedot" style="width:285px; overflow:hidden"></div>
+        </div>
+        <!--{{$_loop2}}-->
+    </div>
+    <div id="Pcontent" style="z-index:100;height:460px; overflow:auto; position:relative; margin-left:5px;"></div>
+    
+</div>
+
+<script language="javascript" src="{$site_url}/templates/default/js/recommend.js"></script> 

@@ -1,0 +1,12 @@
+<!--{if MEMBER_ID != $member[uid]}-->
+	<!--{if $member[open_extra] && $params['code']}-->
+		{template "topic_member_validate_left.inc"}
+	<!--{else}-->
+		{template "topic_member_left.inc"}
+	<!--{/if}-->
+<!--{else}-->
+	{template "topic_member_left.inc"}
+<!--{/if}-->
+
+
+

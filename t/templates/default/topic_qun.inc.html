@@ -1,0 +1,108 @@
+<!--我的微群右侧 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list"></div>
+
+<!--{hook/global_usernav_extra2}-->
+
+   <script language="javascript">
+		$(document).ready(function(){
+		
+		/*
+		* ajax 右侧显示数据
+		* 这里的函数可以随便更改位置，加载的顺序也会不同。
+		*/
+		
+		//热门微群
+		//get_hotweiqun();
+		
+		//同城微群
+		<!--{if $member['city']}-->
+		    get_city_qun();
+		<!--{/if}-->
+		//微群分类
+		get_qun_category();
+				
+		});
+		
+		//热门微群
+		function get_hotweiqun(){			
+			right_show_ajax('{$member[uid]}','hotweiqun','hotweiqun');
+		}
+		
+		//同城微群
+		function get_city_qun(){			
+			right_show_ajax('{$member[uid]}','city_qun','city_qun');
+		}
+		
+		//群分类
+		function get_qun_category(){			
+			right_show_ajax('{$member[uid]}','qun_category','qun_category');
+		}
+		
+	</script>
+	
+
+  
+   <div class="side">
+	<h3>
+	微群分类<a class="btn SC_rementuijian_box" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','qun_category','qun_category'); return false;"></a>
+	</h3>
+	<div class="FTL SC_rementuijian_box">
+		<div id="{$member[uid]}_qun_category"></div>
+	</div>
+  </div>
+
+<!--{if $hot_qun}-->
+  <div class="side">
+  <script type="text/javascript" src="js/qun.js"></script>
+	<h3>
+	推荐微群<a class="btn SC_rementuijian_box" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','hotweiqun','hotweiqun'); return false;"></a>
+	</h3>
+	<div class="FTL SC_rementuijian_box">
+		<div id="1_hotweiqun">
+			<div id="interestUid">
+			  <ul class="followList" style="overflow:hidden">
+				<!--{loop $hot_qun $val}-->
+				<li class="pane" id="follow_user_{$val[uid]}">
+				  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[icon]}"/> </div>
+				  <div class="fBox_R "> <p><span class="name"><a href="index.php?mod=qun&qid={$val[qid]}" >{$val['name']}</a></span> </p>
+				  <p>{$val['member_num']}人&nbsp;&nbsp;|&nbsp;&nbsp;{$val['thread_num']}条微博</p>
+				  <span> <a href="javascript:;" onclick="joinQun({$val[qid]})">加入群</a>	</span> 
+				  </div>
+				</li>
+				<!--{/loop}-->
+			  </ul>
+			</div>
+		</div>
+	</div>
+  </div>
+  <!--{/if}-->
+  
+  <!--{if $member['city']}-->
+  <div class="side" id="city_qun_div">
+	<h3>
+	<!--{eval $member_city = str_replace('市','',$member['city']);}-->
+	{$member_city}微群<a class="btn SC_rementuijian_box" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','city_qun','city_qun'); return false;"></a>
+	</h3>
+	<div class="FTL SC_rementuijian_box">
+		<div id="{$member[uid]}_city_qun"></div>
+	</div>
+  </div>
+  <!--{/if}-->
+  
+<!--{template 'topic_right_common.ini'}-->
+
+</div>
+</div>

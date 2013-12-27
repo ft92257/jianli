@@ -1,0 +1,39 @@
+<!--{template admin/header}-->
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=sign&code=dosetting" method="post" name="search">
+  <table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">基本设置</td>
+	</tr>
+	<tr>
+	  <td class="altbg1" width="300">
+	    <b>是否开始签到</b>
+	  </td>
+	  <td class="altbg2">
+		<input type="radio" name="sign_enable" value="1" $sign[1]>是
+		<input type="radio" name="sign_enable" value="0" $sign[0]>否
+	  </td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="300">
+		  <b>签到话题</b>
+		  <br>
+		  <span>每行一个话题</span>
+		</td>
+		<td class="altbg2">
+		  <textarea rows="3" cols="6" name="sign_tag" style="width: 180px; height: 65px;">{$sign_tag}</textarea>
+		</td>
+	</tr>
+  </table>
+<center><input class="button" type="submit" name="setting_submit" id="setting_submit" value="提 交" title="CTRL+ENTER提交"></center>
+</form>
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#setting_submit").click();
+    }
+}
+</script>

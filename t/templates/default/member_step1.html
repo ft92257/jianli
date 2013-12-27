@@ -1,0 +1,147 @@
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" /> 
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >  
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<link href="styles/r_setp.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="Rlogo"><h1 class="logo"><a title="{conf site_name}" href="index.php"></a></h1></div>
+<div class="main_2" style="padding-bottom:170px;">
+  <div class="main_t"></div>
+  <div class="bdy colf"> 
+	<div class="c0"> 
+		<div class="c1"> 
+			<div class="mn init">
+				<!--S 步骤--> 
+				<ol class="step3"> 
+					<li class="t1"><b><i class="ii"></i></b><em>注册本站帐号</em></li>
+					<!-- 
+					<li class="t2"><b><i class="ii"></i></b><em>填写资料</em></li>
+					-->
+					<li class="t2 on"><b><i class="ii"></i></b><em>关注感兴趣的人</em></li> 
+				</ol> 
+				<!--E 步骤--> 
+
+				<div class="aps recom_best"> 
+				<div class="ap recom_nav"> 
+					<ul id="left_nav">
+						<li class='on' id='nav_recommend'><a href="javascript:void(0);" onclick="reg_follow_user('recommend'); return false;"><b>人气用户</b></a></li>
+						<li id='nav_huoyue'><a href="javascript:void(0);" onclick="reg_follow_user('huoyue'); return false;"><b>一周活跃榜</b></a></li>
+						<li id='nav_renqi'><a href="javascript:void(0);" onclick="reg_follow_user('renqi'); return false;"><b>一周人气榜</b></a></li>
+						<li id='nav_yingxiang'><a href="javascript:void(0);" onclick="reg_follow_user('yingxiang'); return false;"><b>一周影响榜</b></a></li>
+						<li id='nav_tag'><a href="javascript:void(0);" onclick="reg_follow_user('tag'); return false;"><b>推荐话题</b></a></li>
+					</ul> 
+				</div> 
+				<div id="cbox" class="ap recom_sel"> 
+					{template "reg_follow_user_ajax"}
+				</div>
+				</div> 
+			</div> 
+		</div> 
+			
+	</div> 
+</div> 
+
+<script>
+
+/*
+* selectCount  	=  '每个关注类别的 记录总数 ，用于计算已选择了多少个。';
+* checkType 	=  '判断 是全选 还是 单个勾选 ， 全选就将 已选择统计数 设为传过来的数值，取消全选则设为0。';
+* checkedid 	=  '勾选的 复选框ID , 判断复选框是否被勾选。';
+* countType		=  '已选择总数 显示类别 ，user表示统计的是关注用户 。tag表示统计的是关注话题.';
+*/
+function check_user_mun(selectCount,checkType,checkedid,countType)
+{	
+	var checkType = 'undefined' == typeof(checkType) ? '' : checkType;	
+	
+	if(checkType)
+	{
+		if($("#btn_all").attr("checked"))
+		{	
+		
+			if(countType == 'user'){	
+				parent.document.getElementById('user_count').value=selectCount;
+				parent.document.getElementById('follow_user_count').innerHTML=selectCount;
+			}
+			else{
+				parent.document.getElementById('tag_count').value=selectCount;
+				parent.document.getElementById('follow_tag_count').innerHTML=selectCount;
+			}
+
+		}
+		else
+		{
+			
+			if(countType == 'user'){	
+				parent.document.getElementById('user_count').value='0';
+				parent.document.getElementById('follow_user_count').innerHTML='0';
+			}
+			else{
+				parent.document.getElementById('tag_count').value='0';
+				parent.document.getElementById('follow_tag_count').innerHTML='0';
+			}
+
+		}
+	}
+	else
+	{
+			var selectCount = $('#'+selectCount).val();
+			
+			var follow_count = 0;
+		
+			if($("#checked_"+checkedid).attr("checked"))
+			{	
+				follow_count = Number(selectCount) + 1;
+			}
+			else
+			{
+				 follow_count = Number(selectCount) - 1;
+			}
+			
+			if(countType == 'user'){	
+				parent.document.getElementById('user_count').value=follow_count;
+				parent.document.getElementById('follow_user_count').innerHTML=follow_count;
+			}
+			else{
+				parent.document.getElementById('tag_count').value=follow_count;
+				parent.document.getElementById('follow_tag_count').innerHTML=follow_count;
+			}
+
+	}
+	
+}
+</script>
+</div>
+<!--{template "topic_footer"}-->

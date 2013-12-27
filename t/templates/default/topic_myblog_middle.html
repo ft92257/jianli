@@ -1,0 +1,181 @@
+<div class="mainL">
+    <!--{eval $__my_link_='index.php?mod='.$member[username];$__my_link_=get_invite_url($__my_link_,$this->Config['site_url']);}-->
+	<div class="member_list_top">
+	   <div class="left_user_info">
+		  <div class="avatar2_info">
+          <style type="text/css">
+          .member_list_top p.left_t_nick_name{ width:540px;}
+		  .member_list_top p.left_t2{ width:540px;}
+		  .add_mail, .blacklist, .dialogue{ padding:30px 0 5px;}
+          </style>
+			 <p class="left_t_nick_name">
+			 <strong title="{$member[nickname]}">{$member['nickname']}{$member['validate_html']} </strong>
+			 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','at','');">(@{$member['nickname']})</a>
+			  <!--备注-->
+			  <span id="remarklist_{$member[uid]}">{$buddys['remark']}</span>
+			  <!--备注-->
+			 
+			   <!--{if $member['gender'] == 1}-->
+			  <img src="images/user.gif"  title="男"/>
+			  <!--{else}-->
+			  <img src="images/user_female.gif"  title="女"/>
+			  <!--{/if}--> 
+			  </p>
+			 <p class="left_t2"><a href="index.php?mod={$member[username]}">{$__my_link_}</a></p>
+			 <!--{if $this->Config[company_enable] && $member[company]}-->
+			 <p class="left_t2">所在{$d_c_name}：{$member[company]}</p>
+			 <!--{if $this->Config[department_enable] && $member[department]}--><p class="left_t2">所属{$d_d_name}：{$member[department]}</p><!--{/if}-->
+			 <!--{/if}-->
+			{if $member['invite_uid']}
+			<p class="left_t2">推荐人：<!--{eval $_invite_member=jsg_member_info($member['invite_uid']);}--><a href="index.php?mod={$_invite_member['username']}"><span title="推荐人：{$_invite_member[nickname]}">{$_invite_member[nickname]}</span></a></p>
+			{/if}
+			<!-- 关注 拉黑 等操作选项-->
+                <!--{if MEMBER_ID && MEMBER_ID!=$member[uid]}-->
+				<div id="topic_index_blacklist_{$member[uid]}">
+					<!--{if $member[uid] == $list_blacklist[touid]}-->
+						<div class="blacklist">
+							他在你的黑名单里 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','del','topic_black_ajax');"> [取消拉黑] </a>
+						</div>
+					<!--{else}-->
+						<div class="dialogue">
+						 {$member[follow_html]}
+						 <span>
+							 | <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'','lahei','topic_black_ajax');">拉黑</a> |
+						 <!--判断是否是好友-->
+						 <!--{if $buddys}-->
+							 <a href="javascript:void(0)" onclick="get_group_choose({$member[uid]});">分组</a> |
+							 <a href="javascript:void(0)" onclick="get_remark({$member[uid]});return false;">备注</a> |
+							 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','buddys','');">推荐给朋友</a> |
+							 <!--{/if}--> 	
+							 <a href="javascript:void(0)" onclick="PmSend({$member[uid]},'{$member[nickname]}');return false;" >私信</a>
+						 <!--判断是否是好友-->
+						 </span>
+                         			<!--{if MEMBER_ID>0 && 'admin'==MEMBER_ROLE_TYPE && MEMBER_ID!=$member[uid]}-->
+				<div style="float:right;">
+				  <!--<a href="index.php?mod=member&code=delete&id={$member[uid]}" onclick="return confirm('确认删除该用户？');"><font color="red">删除该用户</font></a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+				  <a href="admin.php?mod=member&code=dosearch&uid={$member[uid]}" target="_blank"><font color="red">删除该用户</font></a>&nbsp;|&nbsp;
+				  <a href="javascript:void(0);" onclick="force_out({$member[uid]});"><font color="red">封杀</font></a>&nbsp;|&nbsp;
+				  <a href="javascript:void(0);" onclick="force_ip('{$member[lastip]}');"><font color="red">封IP</font></a>
+				</div>
+			<!--{/if}-->
+                         
+						</div>
+					
+						<div id="Pmsend_to_user_area"></div>
+						<div id="alert_follower_menu_{$member[uid]}"></div>
+						<span id="button_{$member[uid]}" onclick="get_group_choose({$member[uid]});"></span>
+						<div id="global_select_{$member[uid]}" class="alertBox" style="display:none"></div>
+						<div id="get_remark_{$member[uid]}" ></div>
+					<!--{/if}-->
+				</div> 
+				<!--{/if}--> 
+
+			<!--{hook/global_usernav_extra1}-->
+			</div>
+	   </div>
+	</div>
+
+<div style="width:540px; margin:0 auto 8px; overflow:hidden">
+<script language="Javascript">
+function listTopic( s , lh ) {	
+	var s = 'undefined' == typeof(s) ? 0 : s;
+	var lh = 'undefined' == typeof(lh) ? 1 : lh;
+	if(lh) {
+		window.location.hash="#listTopicArea";
+	}
+    $("#listTopicMsgArea").html("<div><center><span class='loading'>内容正在加载中，请稍候……</span></center></div>");
+	var myAjax = $.post(
+		"ajax.php?mod=topic&code=list",
+		{
+			<!--{loop $params $k $v}-->
+			{$k}:"{$v}",
+			<!--{/loop}-->
+			start:s
+		},
+		function (d) {
+			$("#listTopicMsgArea").html('');
+			$("#listTopicArea").html(d);			
+		}
+	); 
+}
+</script>
+</div>
+
+ <div class="listBox">
+	<!--{if $img_arr}-->
+	<div class="listBoxNav">
+	  <li style="float:left; font-weight:600; color:#333;">&nbsp;个人最新图片</li>
+	  <ul class="imglist" style="width:540px; overflow:hidden;">
+	    <!--{loop $img_arr $val}-->
+	    <li id="$val['id']"><a href="index.php?mod=topic&code=$val['tid']"><img src="$val['image_small']" width="76px" height="76px"></a></li>
+	    <!--{/loop}-->
+	  </ul>
+	</div>
+	<!--{/if}-->
+	  <div class="listBoxNav">
+	   <div class="nleftL3">
+	   <!--{eval if(MEMBER_ID == $member[uid]) $_my = '我'; elseif(1==$member[gender]) $_my = '他';else $_my = '她';}-->
+	    <!--{if 'my_reply' == $type}-->
+	    <li>
+	    <!--{if MEMBER_ID == $member['uid']}--><span><a href="index.php?mod=topic&code=mycomment">评论我的</a></span><!--{/if}-->
+	    <span class="current"><a href="index.php?mod={$member[username]}&type=my_reply">{$_my}评论的</a></span></li> 
+	    <!--{elseif 'pic' == $type}-->
+		<!--{elseif 'video' == $type}-->
+		<!--<li style="float:left;">
+		<span class="{$video}"><a href="index.php?mod={$member[username]}&type=video">{$_my}的视频 </a></span>&nbsp;|&nbsp;
+		<span class="{$follow_video}"><a href="index.php?mod={$member[username]}&type=video&follow=1">{$_my}关注人的视频</a></span></li>-->
+		<!--{elseif 'music' == $type}-->
+	   	<!--{eval if($this->Get['follow']) $follow_music = "current2"; else $music = "current"}-->
+		<li>
+		<span class="{$music}"><a href="index.php?mod={$member[username]}&type=music">{$_my}的音乐 </a></span>
+		<span class="{$follow_music}"><a href="index.php?mod={$member[username]}&type=music&follow=1">{$_my}关注人的音乐</a></span></li> 
+		<!--{elseif 'attach' == $type}-->
+	   	<!--{eval if($this->Get['follow']) $follow_attach = "current2"; else $attach = "current"}-->
+		<li>
+	    <span class="{$attach}"><a href="index.php?mod={$member[username]}&type=attach">{$_my}的附件 </a></span>
+		<span class="{$follow_attach}"><a href="index.php?mod={$member[username]}&type=attach&follow=1">{$_my}关注人的附件</a></span></li> 
+		<!--{else}-->
+		<li>
+		<!--{eval if('my_reply' == $this->Get[type]) $reply = 'current';
+		elseif('my_verify' == $this->Get[type]) $verify = 'current';
+		elseif('hot_reply' == $this->Get[type]) $hot_reply = 'current';
+		elseif('hot_forward' == $this->Get[type]) $hot_forward = 'current';
+		else $main_class = 'current';}-->
+		<span class="{$main_class}"><a href="index.php?mod={$member[username]}">{$_my}的微博</a></span>
+		<span class="{$hot_reply}"><a href="index.php?mod={$member[username]}&type=hot_reply">本月热评</a></span>
+		<span class="{$hot_forward}"><a href="index.php?mod={$member[username]}&type=hot_forward">本月热转</a></span>
+		<span class="{$verify}"><a href="index.php?mod={$member[username]}&type=my_verify">等待审核</a></span>
+		</li>
+		<!--{/if}-->
+		<!--{hook/global_index_extra2}-->
+	   </div>
+	   </div>
+		
+	 <div id="ajax_reminded"></div>
+	
+	 <div id="listTopicMsgArea"></div>
+      <div id="listTopicArea">
+	  	<!--微博列表 Begin-->
+		<!--{eval $pagehtml_not = true;}-->
+		<!--{subtemplate topic_list_ajax}-->
+		<!--微博列表 End-->
+		<div id="ajaxtopic"></div>
+		  <div id="pageinfo"></div>
+		  <div id="pagehtml">
+		  <!--{if $page_arr[html]}-->
+          <div class="pageStyle">
+            <li>{$page_arr[html]}</li>
+          </div>
+          <!--{/if}-->
+		  </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  <!--{if $isloading}-->var isLoading = true;<!--{else}-->var isLoading = false;<!--{/if}-->
+  if(isLoading){$('#pageinfo').html('');$("#pagehtml").hide();}var ajaxkeys = new Array();var onloading = false;var ajaxnum = 0;
+  <!--{loop $ajaxkey $key $val}-->
+  ajaxkeys[{$key}] = '{$val}';
+  <!--{/loop}-->
+  $(window).bind('scroll resize',function(event){if(isLoading && !onloading){var bodyTop = document.documentElement.scrollTop + document.body.scrollTop;if(bodyTop+$(window).height() >= ($('#listTopicArea').height()+300)){loadtopic(ajaxkeys[ajaxnum]);}}});
+  </script>

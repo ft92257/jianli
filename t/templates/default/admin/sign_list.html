@@ -1,0 +1,123 @@
+{template admin/header}
+
+
+<div>
+  <form action="admin.php?mod=sign&code=setfiled" method="post" name="creditsfiled">
+    <table cellspacing="1" width="100%" align="center" class="tableborder">
+      <tr class="header">
+        <td colspan="2">积分排行</td>
+      </tr>
+      <tr>
+        <td class="altbg1" width="200"><b>设置积分排行类型</b><br><span>在达人榜可显示此积分的排行榜</span></td>
+	    <td class="altbg2">
+	      <select name="extcredits">
+	        <option value="">请选择</option>
+	      <!--{loop $credits_list[ext] $key $val}-->
+	        <option value="{$key}" {$val[select]}>$val[name]</option>
+	      <!--{/loop}-->
+	      </select>
+	    </td>	
+      </tr>
+      <tr>
+        <td class="altbg1"></td>
+        <td class="altbg2"><input class="button" type="submit" name="set_filed" id="set_filed" value="提 交"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=sign&code={$this->Code}" method="post" name="search">
+  <table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+	  <td colspan="2">积分搜索</td>
+	</tr>
+	<tr>
+	  <td class="altbg1" width="200">积分排行字段</td>
+	  <td class="altbg2">
+	    <select name="credits_rule">
+	    <!--{loop $credits_list[ext] $key $val}-->
+	      <option value="{$key}" {$val[che]}>$val[name]</option>
+	    <!--{/loop}-->
+	    </select>
+	  </td>	
+	</tr>
+	<tr>
+	  <td class="altbg1">用户昵称</td>
+	  <td class="altbg2">
+		<input type="text" name="nickname" value="{$nickname}"></input>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="altbg1">积分（大于）</td>
+	  <td class="altbg2">
+		<input type="text" name="credits" value="{$credits}"></input>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="altbg1">排除获得奖励</td>
+	  <td class="altbg2">
+		<select name="earned">
+		  <option value="">请选择</option>
+          <!--{loop $sign_medal $key $val}-->
+          <option value="{$key}" $medal_arr[$key]>{$val}</option>
+          <!--{/loop}-->
+		</select>
+	  </td>
+	</tr>
+	<tr>
+	  <td class="altbg1"></td>
+	  <td class="altbg2">
+	    <input class="button" type="submit" name="setting_submit" id="setting_submit" value="查询" title="CTRL+ENTER查询">&nbsp;
+	    <button class="button" type="button" onclick="window.location.href='admin.php?mod=sign&code=$this->Code';return false;">全部</button>
+	  </td>
+	</tr>
+  </table>
+</form>
+</div>
+<div>
+<form method="post" action="admin.php?mod=sign&code=doact">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+  <tr class="header">
+    <td width=20%><label><input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'uids')" >全选</label></td>
+    <td width=50%>昵称</td>
+    <td width="30%">积分</td>
+  </tr>
+<!--{loop $members $key $val}-->
+  <tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+    <td style="border-bottom:1px dotted #EDEDED"><input class="checkbox" type="checkbox" name="uids[]" value="$val[uid]" ></td>
+    <td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$val[uid]}">{$val[nickname]}</a></td>
+    <td style="border-bottom:1px dotted #EDEDED">{$val[$field]}</td>
+  </tr>
+<!--{/loop}-->
+    <!--{if $page_arr[html]}-->
+    <tr align="center">
+      <td colspan="3">$page_arr[html]</td>
+    </tr>
+    <!--{/if}-->
+    <tr align="center">
+      <td colspan="3" class="altbg1"> 操作：<br>
+        <label><input type="radio" name="act" id="act_sendmsg" value="sendmsg" />私信内容：</label>
+        <textarea rows="3" cols="10" name="msg" style="width: 285px; height: 65px;">{$msg}</textarea>
+        <br>
+        <label><input type="radio" name="act" id="act_medal" value="setmedal" />选择发放的勋章</label>
+        <select name="medal_id">
+          <option value="" selected>-请选择-</option>
+          <!--{loop $sign_medal $key $val}-->
+          <option value="{$key}">{$val}</option>
+          <!--{/loop}-->
+        </select>
+	  </td>
+    </tr>
+</table>
+<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+</form>
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#setting_submit").click();
+    }
+}
+</script>

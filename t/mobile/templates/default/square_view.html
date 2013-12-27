@@ -1,0 +1,28 @@
+<script>
+	<!--{if !$this->Config['is_mobile_client']}-->
+		var myScroll;
+		function loaded() {
+			myScroll = new iScroll('square_view_wp');
+		}
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	<!--{/if}-->
+</script>
+<div class="square_view" id="square_view_wp">
+    <table cellpadding="0" width="100%" cellspace="0" class="square_app_view" >
+        <tr>
+            <td onclick="goToLookAround();">
+                <div><img src="./images/app/lookaround.png" alt="随便看看"/></div>
+                <div>随便看看</div>
+            </td>
+            <td onclick="goToHotComment();">
+                <div><img src="./images/app/hotcomment.png" alt="热门评论"/></div>
+                <div>热门评论</div>
+            </td>
+            <td onclick="goToHotForward();">
+                <div><img src="./images/app/hotforward.png" alt="热门转发"/></div>
+                <div>热门转发</div>
+            </td>
+        </tr>
+    </table>
+</div>

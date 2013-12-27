@@ -1,0 +1,163 @@
+<!--我的首页 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list">
+ 	<!--{if MEMBER_STYLE_THREE_TOL != 1}-->
+	 {template "topic_right_ajax.inc"}
+	<!--{/if}-->
+</div>
+
+<!--{hook/global_usernav_extra2}-->
+
+		<script language="javascript">
+			$(document).ready(function(){
+			
+			/*
+			* ajax 右侧显示数据
+			* 这里的函数可以随便更改位置，加载的顺序也会不同。
+			*/
+			
+			//可能感兴趣
+			get_refresh();
+			
+			//热门话题推荐
+			get_hot_tag();
+			
+			//人气用户推荐
+			//get_recommend_user();			
+			});		
+			function get_refresh(){
+				//可能感兴趣
+				right_show_ajax('{$member[uid]}','refresh','refresh');
+			}
+			function get_hot_tag(){
+				//热门话题
+				right_show_ajax('{MEMBER_ID}','hot_tag','hot_tag');
+			}
+			function get_recommend_user(){
+				//人气用户推荐
+				right_show_ajax('{MEMBER_ID}','recommend_user','recommend_user');
+			}
+		</script>
+		
+		  <script type="text/javascript">
+			$(document).ready(function(){
+			$(".SC_guanxingqu").click(function(){$(this).parent().toggleClass("fold_guanxingqu");$(".SC_guanxingqu_box").toggle();});
+			});
+		  </script>
+		  <div class="side">
+			<h3>可能感兴趣的人<a class="btn SC_guanxingqu" href="javascript:void(0);"></a></h3>
+			<div class="FTL SC_guanxingqu_box">
+				<div id="{$member[uid]}_refresh"></div>
+			</div>
+		 </div>
+
+
+		  <script type="text/javascript">
+			$(document).ready(function(){
+			$(".SC_rementuijian").click(function(){$(this).parent().toggleClass("fold_rementuijian");$(".SC_rementuijian_box").toggle();});
+			});
+		  </script>
+			<div class="side" id="hot_tag_div">
+			<h3>热门话题推荐<a class="btn SC_rementuijian" href="javascript:void(0);"></a></h3>
+			<ul class="FTL SC_rementuijian_box">
+				<div id="{MEMBER_ID}_hot_tag" style="padding:0 2px"></div>
+			</ul>
+		  </div>
+
+		
+		<!--{if false!=($recommend_topic_user=Load::model('data_block')->recommend_topic_user(10))}-->
+		  <script type="text/javascript">
+			$(document).ready(function(){
+			$(".SC_renqituijian").click(function(){$(this).parent().toggleClass("fold_renqituijian");$(".SC_renqituijian_box").toggle();});
+			});
+		  </script>
+		  <div class="side">
+		  <h3>人气用户推荐<a class="btn SC_renqituijian" href="javascript:void(0);"></a></h3>
+			<ul class="FTL FTL3 SC_renqituijian_box">
+				<div id="{MEMBER_ID}_recommend_user">
+				<!--{loop $recommend_topic_user $val}-->
+				<li> 
+				<a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></a> 
+				<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b> 
+				{template "alert_menu"} 
+				</li>
+				<!--{/loop}-->
+				</div>
+			</ul>
+		  </div>
+		<!--{/if}-->
+
+		<!--{if $fans_list}-->
+		  <script type="text/javascript">
+			$(document).ready(function(){
+			$(".SC_guanzhuta").click(function(){$(this).parent().toggleClass("fold_guanzhuta");$(".SC_guanzhuta_box").toggle();});
+			});
+		  </script>
+		<div class="side">
+		<h3>关注{$member[nickname]}的人<a class="btn SC_guanzhuta" href="javascript:void(0)"></a></h3>
+		<ul class="FTL FTL2 SC_guanzhuta_box">
+		  <!--{loop $fans_list $val}-->
+		  <li class="h_h2"> 
+		  <a href="index.php?mod={$val[username]}" target="_blank">
+		  <img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface"/></a><span><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></span>
+		  </li>
+		  <!--{/loop}-->
+		  <li><a href="index.php?mod={$member[username]}&code=fans">更多</a></li>
+		</ul>
+	  </div>
+	  <!--{/if}-->
+
+<script type="text/javascript">
+function tabChange(obj,id)
+{
+var arrayli = obj.parentNode.getElementsByTagName("li"); //获取li数组
+var arrayul = document.getElementById(id).getElementsByTagName("ul"); //获取ul数组
+for(i=0;i<arrayul.length;i++)
+{
+if(obj==arrayli[i])
+{
+arrayli[i].className = "cli";
+arrayul[i].className = "";
+}
+else
+{
+arrayli[i].className = "";
+arrayul[i].className = "hidden";
+}
+}
+}
+</script>  
+<div class="side">
+<h3>手机访问{$this->Config[site_name]}</h3>
+<div class="tabmenu">
+<ul>
+<li onmouseover="tabChange(this,'tabcontent')" class="cli" ><img src="images/transparents.gif" class="icon_pf icpf_mclient" title="手机客户端"></li>
+<li onmouseover="tabChange(this,'tabcontent')" ><img src="images/transparents.gif" class="icon_pf icpf_3g" title="3G访问"></li>
+<li onmouseover="tabChange(this,'tabcontent')" ><img src="images/transparents.gif" class="icon_pf icpf_mphone" title="WAP访问"></li>
+<li onmouseover="tabChange(this,'tabcontent')"><img src="images/transparents.gif" class="icon_pf icpf_message" title="短信微博"></li>
+</ul>
+</div>
+<div id="tabcontent">
+<ul name="tabul"><b>客户端</b>：更好的用户体验，支持<a href="index.php?mod=other&code=android" target="_blank">Android<a/>、<a href="index.php?mod=other&code=iphone" target="_blank">iPhone</a>手机即拍即传</ul>
+<ul class="hidden"><b>3G版</b>：智能手机访问<a href="index.php?mod=other&code=mobile" target="_blank">{$this->Config[site_url]}/mobile</a>，享受类客户端的体验</ul>
+<ul class="hidden"><b>WAP版</b>：手机WAP访问地址<b><a href="index.php?mod=other&code=wap" target="_blank">{$this->Config[wap_url]}</a></b></ul>
+<ul class="hidden"><b>短信版</b>：<a href="index.php?mod=other&code=sms" rel="nofollow" target="_blank">手机短信</a><!--{if $this->Config[sms_enable] && sms_init($this->Config)}--><br />页绑定手机后，就可以发短信到<b>{SMS_ID}</b>发微博啦！<!--{/if}--></ul>
+</div>
+</div>  
+
+<!--{template 'topic_right_common.ini'}-->
+
+</div>
+</div>

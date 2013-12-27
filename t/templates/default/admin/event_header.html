@@ -1,0 +1,25 @@
+<!--{eval if($this->Code == '') $main_class='current'}-->
+<!--{eval if($this->Code == 'info') $info_class='current'}-->
+<!--{eval if($this->Code == 'manage') $manage_class='current'}-->
+<!--{eval if($this->Code == 'setting') $setting_class='current'}-->
+<!--{eval if($this->Code == 'verify') $verify_class='current'}-->
+<div class="nav3">
+  <ul class="cc">
+  	<li class="{$setting_class}">
+	  <a href="admin.php?mod=event&code=setting">基本设置</a>
+	</li>
+    <li class="{$main_class}">
+      <a href="admin.php?mod=event">活动主题</a>
+    </li>
+    <li class="{$info_class}">
+      <a href="admin.php?mod=event&code=info">可选必填项</a>
+    </li>
+	<li class="{$manage_class}">
+	  <a href="admin.php?mod=event&code=manage">活动管理</a>
+	</li>
+	<li class="{$verify_class}">
+	  <a href="admin.php?mod=event&code=verify">活动审核</a>
+	</li>
+  </ul>
+</div>
+<br />

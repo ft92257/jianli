@@ -1,0 +1,47 @@
+{template admin/header}
+
+<div class="mt10">
+  <form method="post" action="admin.php?mod=verify&code=doverify&act=yes">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+      <tr class="header">
+		<td width="60">
+		<label><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'uids')" >通过</label></td>	
+		<td width="120">用户昵称</td>
+		<td width="120">审核头像</td>
+		<td>审核签名</td>
+		<td width="120">操作</td>
+	  </tr>
+	  <!--{loop $members_verify $val}-->
+	  <tr align="center">
+		<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+		  <input class="checkbox" type="checkbox" name="uids[]" value="$val[uid]" ></td>
+		<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$val[uid]}" target="_blank">$val['nickname']</a></td>
+		<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><!--{if $val['face']}--><img src="{$val['face']}"><!--{/if}--></td>
+		<td class="altbg2" style="border-bottom:1px dotted #EDEDED">$val['signature']</td>
+		<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+		  <a href="admin.php?mod=verify&code=doverify&act=yes&uid=$val[uid]">通过</a>&nbsp;|&nbsp;
+		  <a href="admin.php?mod=verify&code=edit&uid=$val[uid]">编辑</a>&nbsp;|&nbsp;
+		  <a href="admin.php?mod=verify&code=doverify&act=no&uid=$val[uid]">删除</a>
+		</td>
+	  </tr>
+	  <!--{/loop}-->
+
+	  <!--{if $page_arr['html']}-->
+	  <tr align="center">
+		<td colspan="4" class="altbg1">
+		{$page_arr['html']}
+		</td>
+	  </tr>
+	  <!--{/if}-->
+	</table>
+    <center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+  </form>
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#cronssubmit").click();
+    }
+}
+</script>

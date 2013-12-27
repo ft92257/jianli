@@ -1,0 +1,73 @@
+<script>
+
+ //私信 选择好友
+ function select_follow_user(username,uid)
+ {	
+ 	//获取input框里的值
+ 	var tag_name = $('#txtMsgTo').val();
+	
+	//打钩
+ 	if($("#checked_"+username).attr("checked"))
+	{
+		//判断已选个数
+		var stringArray = tag_name.split(",");
+	 
+		if(stringArray.length > 10)
+		{
+			alert('暂时只能给10位好友发送');	
+			$("#checked_"+username).attr("checked",'');
+			return false;
+		 }
+
+		var input_value = tag_name + username + ',';
+		parent.document.getElementById('txtMsgTo').value=input_value;
+		
+		
+	}
+	else
+	{	
+		//取消打钩  //消除input框内已添加的用户  
+		var userNickname = new RegExp(username+',',"g"); 
+		var input_value=tag_name.replace(userNickname,"");   
+
+	   parent.document.getElementById('txtMsgTo').value=input_value;
+	}
+ }
+
+</script>
+
+<!--{if $member_list}-->
+<div id="_user_list" class="pm_bbox">
+	<div class="ulist6"> 
+		<!--{loop $member_list $val}-->
+			<div class="pf2 selected crPer">
+				<p class="status">
+					<input type="checkbox"  id="checked_{$val[nickname]}" name="ids[]" value="{$val[uid]}"  
+					 onclick="select_follow_user('{$val[nickname]}','{$val[uid]}');" value=""/>
+				</p> 
+				<p class="mark"></p>
+				<p class="avt"><b><label for="checked_{$val[nickname]}" style="cursor:pointer;"><img src="{$val[face]}" onerror="javascript:faceError(this);" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/></label></b></p> 
+				<b class="nm"><b><label for="checked_{$val[nickname]}" style="cursor:pointer;">{$val[nickname]}</label>{$val[validate_html]}</b></b> 
+				<p class="ps">{$val[aboutme]}</p>
+                
+                
+			</div> <div id="user_$val[uid]_user"></div>
+		<!--{/loop}-->
+	</div>
+		<div class="">
+		<!--{if $page_html}-->
+			{$page_html} 
+		<!--{/if}-->
+		</div>
+</div>	
+
+<!--{/if}-->
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+<!--{template admin/header}-->
+<style type="text/css">
+hr{border-bottom:1px solid #BBDCF1;border-top:0px;height:1px}
+</style>
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+		<tr class="header">
+		<td><div style="float:left; margin-left:0px; padding-top:8px">
+			<a href="###" onclick="collapse_change('tip')">技巧提示</a></div>
+		<div style="float:right; margin-right:4px; padding-bottom:9px">
+</div>
+		</td>
+		</tr>
+		<tbody id="menu_tip" style="display:">
+			<tr>
+			<td><ul>
+				<li>显示最新 {$limit}条计划任务执行记录，所有的记录都可以被删除。</li>
+			</ul>
+			</td>
+			</tr>
+	</table>
+	<br />
+	<form method="post" action="admin.php?mod=task&code=log_delete">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+			<td width="8%"><input class="checkbox" type="checkbox" name="chkall" class="header" onclick="checkall(this.form,'delete')">全删</td>
+			<td>名称</td>
+			<td>信息</td>
+			<td width="20%">触发者</td>
+			</tr>
+			<!--{loop $log_list $task_log}-->
+			<tr align="center">
+			
+					<td class="altbg1"><input type="checkbox" name="delete[]" value="{$task_log[id]}">删除</td>
+					<td class="altbg2"><b><a href="admin.php?mod=task&code=modify&id={$task_log[task_id]}">{$task_log[task_name]}</a> </b></td>
+					<td class="altbg1">
+					执行结果:{$task_log[error_string]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;耗时:<span style="color:red">$task_log[exec_time]</span>(秒)<hr>
+					
+					<span style="display:block;width:400px;height:50px;overflow:auto">{$task_log[message]}</span></td>
+					<td class="altbg2">
+					<img src="./templates/default/images/icon/member.gif">用户:<a href="index.php?mod=member&code=view&id={$task_log[uid]}" target="_blank" title="{$task_log[agent]}">{$task_log[username]}</a>
+					IP:$task_log[ip]
+					<hr>
+					时间:$task_log[dateline]
+					</td>
+			</tr>
+			<!--{/loop}-->
+			<tr align="center" class="altbg1">
+			<td>显示:</td>
+			<td colspan="4">最新 {$limit}　条记录</td>
+			</tr>
+		</table>
+		<br>
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+	
+<br />
+	<form method="post" action="admin.php?mod=task&code=log_list">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+			<td colspan="2">查看LOG记录</td>
+			</tr>
+
+			<tr align="center">
+			
+					<td class="altbg1" width="50%">任务名称</td>
+					<td class="altbg2">{$task_select}</td>
+			</tr>
+
+			<tr align="center">
+			
+					<td class="altbg1">显示条数</td>
+					<td class="altbg2"><input type="text" name="limit" value="{$limit}"></td>
+			</tr>
+
+		</table>
+		<br>
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+	
+<br />
+	<form method="post" action="admin.php?mod=task&code=log_delete">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+			<td colspan="2">删除LOG记录</td>
+			</tr>
+
+			<tr align="center">
+			
+					<td class="altbg1" width="50%">任务名称</td>
+					<td class="altbg2">{$task_select}</td>
+			</tr>
+
+			<tr align="center">
+			
+					<td class="altbg1">删除多少天以前的</td>
+					<td class="altbg2"><input type="text" name="day" value="{$limit}"></td>
+			</tr>
+
+		</table>
+		<br>
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+	
+	{template admin/footer}

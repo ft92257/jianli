@@ -1,0 +1,62 @@
+	<script type="text/javascript">
+	function TCV_resizeImage(imgObj, width, imgID) {	
+		var imageTimeID = window.setTimeout(function(){
+			if(imgObj.width > width) {
+				var p = width / imgObj.width;
+				imgObj.height = p * imgObj.height;
+				imgObj.width = width;
+			};
+			
+			$('#TCV_{$sid}_img_a_' + imgID).click();
+			
+			window.clearTimeout(imageTimeID);
+		}, 100);
+	}
+	</script>
+      <li>
+      	<span id="topic_content_TCV_{$topic_info[tid]}_short">{$topic_info[content]}</span>
+	    <span id="topic_content_TCV_{$topic_info[tid]}_full"></span>
+	    <!--{if $topic_info[longtextid] > 0}-->
+	    	<span><a id="TCV_longtext_a_{$topic_info[tid]}" href="javascript:;" onclick="view_longtext('{$topic_info[longtextid]}', '{$topic_info[tid]}', this, 'TCV_');return false;">查看全文</a></span>
+	    	<script type="text/javascript">$(document).ready(function(){ $('#TCV_longtext_a_{$topic_info[tid]}').click(); });</script>
+	    <!--{/if}-->
+        <br />
+          <!--{if $topic_info[imageid] && $topic_info[image_list]}-->
+          <div class="feedUserImg fuimg" style="width:auto; padding:0; border:none;">
+          	<ul>
+			<!--{loop $topic_info[image_list] $iv}-->
+			<li><a id="TCV_{$sid}_img_a_{$iv[id]}" href="{$iv[image_original]}" class="artZoom3" rel="{$iv[image_small]}" rev="{$topic_info[tid]}"{if $sid} sid="{$sid}"{/if}{if $TPT_} TPT_="{$TPT_}"{/if}><img id="TCV_{$sid}_img_{$iv[id]}" src="{$iv[image_original]}" onload="TCV_resizeImage(this, 460, '{$iv[id]}')" /></a></li>
+			<!--{/loop}-->
+			</ul>
+		  </div>
+          <br />
+          <!--{/if}-->
+          <!--{if $topic_info[videoid]}-->
+          <div class="feedUservideo" > 
+		  <a onclick="javascript:showFlash('{$topic_info[VideoHosts]}', '{$topic_info[VideoLink]}', this, '{$topic_info[VideoID]}');">
+          <div id="play_{$topic_info[VideoID]}" class="vP"><img src="images/feedvideoplay.gif"  /></div>
+          <img src="{$topic_info[VideoImg]}" style="border:none"/> </a> 
+		  </div>
+          <!--{/if}-->
+          <!--{if $topic_info[musicid]}-->
+			<!--{if $topic_info[xiami_id]}-->
+			<div class="feedUserImg"><embed width="257" height="33" wmode="transparent" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_{$topic_info[xiami_id]}/singlePlayer.swf"></embed></div>
+			<!--{else}-->
+          <div class="feedUserImg">
+		  <div id="play_{$topic_info[MusicID]}"></div>
+		   <img src="images/music.gif" title="点击播放音乐" onclick="javascript:showFlash('music', '{$topic_info[MusicUrl]}', this, '{$topic_info['MusicID']}');" style="cursor:pointer; border:none;" /> 
+		   </div>
+          <!--{/if}-->
+          <!--{/if}-->
+      </li>
+	 <!--{if $topic_info[top_parent_id]>0 && !$topic_view}-->
+	 <!--{eval $val = $topic_info;}-->
+	 <!--{eval $TPT_ = 'TCV_TPT_';}-->
+      <li>
+		<!--{subtemplate topic_share_2}-->        
+      </li>
+      <!--{/if}-->
+      
+      <!--{if $together_view}-->
+      <li style="float:right;"><a href="javascript:;" onclick="view_topic_content('{$topic_info[tid]}');return false;">收起</a></li>
+      <!--{/if}-->

@@ -1,0 +1,46 @@
+{template "topic_header"}
+<div class="setframe">
+
+<!--此处三栏-->
+<!--{template 'channel_left.ini'}-->
+<!--此处三栏-->
+	  
+  <div class="main3Box_m HotW">
+  <div class="list_title">
+  <span id="channel_name">{$channel_name}</span><span id="follow_channel" class="follow_c_{$this->Channel}">{$channel_buddy}</span>
+  <a class="listmod "href="index.php?mod=channel&id={$this->Channel}"><b>列表</b></a>
+  <a class="picmod" href="index.php?mod=channel&id={$this->Channel}&filter_type=pic">瀑布流</a>
+  </div>
+    <div id="topNews_1" class="Hotwarp">
+      <div id="listTopicArea">
+        <div class="Listmain">
+          <!--{if $topics}-->
+          <!--{loop $topics $val}-->
+		  <!--{eval $counts++;}-->
+          <div class="feedCell">
+			<!--{subtemplate topic_item_ajax}-->
+            <div class="mBlog_linedot"></div>
+          </div>
+          <!--{/loop}-->
+          <!--{if $page_arr[html]}-->
+          <div class="pageStyle">
+            <li>{$page_arr[html]}</li>
+          </div>
+          <!--{/if}-->
+		  <!--{else}-->
+		  <br>没有相关微博
+          <!--{/if}-->
+        </div>
+      </div>
+	</div>
+	<div class="Hotright">
+	  <div class="HboxR" style="margin-top:10px;">
+		<div class="rightBox_t">{$this->Config[site_name]}意见反馈 <span class="set_tag"></span></div>
+		<ul>
+		  众人拾柴火焰高，如您有任何建议欢迎点<a href="index.php?mod=tag&code=意见反馈" target="_blank">意见反馈</a>告诉我们。
+		</ul>
+	  </div>
+  </div>
+</div>
+</div>
+{template "topic_footer"}

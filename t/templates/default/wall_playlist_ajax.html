@@ -1,0 +1,41 @@
+{if $topic_list_count < 1}
+<P class=empty>从左边点选“<SPAN class="icon AW"></SPAN>”<BR>将微博添加到播放列表</P>
+{else}
+<div class="toolsBar clearfix">
+	<a onclick="wall_del_playlist_all();return false;" class="delAll" href="javascript:;">清空播放列表</a>
+	<p class="exist">已有{$topic_list_count}条微博在排队</p>
+</div>
+<ul>
+	{loop $wall_playlist_tids $tid}
+	{if $topic_list[$tid]}
+	{eval $curr=($v?"":" current"); $v=$topic_list[$tid];}
+	<li class="clearfix{$curr}" id="play_{$tid}">
+		<div class="pubCon">
+           	<div class="msgBox">
+               	<span class="userName">{$v[nickname]}：&nbsp;</span>{$v[content]}
+               	{if $v[imageid] && $v[image_list]}                                                                        
+					{loop $v[image_list] $iv}
+						<img src="{$iv[image_small]}" />
+					{/loop}
+               	{/if}
+               	{if ($p=$parent_list[$v[top_parent_id]]) }
+               	<div class="replyBox">
+                   	<div class="msgBox">
+                       	<span class="userName">{$p[nickname]}：&nbsp;</span>{$p[content]}
+                       	{if $p[imageid] && $p[image_list]}
+							{loop $p[image_list] $iv}
+		                       	<img src="{$iv[image_small]}">
+							{/loop}
+                       	{/if}
+                   	</div>
+                </div>
+                {/if}
+				<div class="pubInfo"><p class="left"><span class="time">{$v[dateline]}</span> &nbsp;{$v[from_string]}{if $v[forwards]}&nbsp;转发数({$v[forwards]}){/if}</p></div>
+           </div>
+        </div>
+		<a onclick="wall_del_playlist('{$tid}');return false;" title="删除" class="del" href="javascript:;">×</a>
+	</li>
+	{/if}
+	{/loop}
+</ul>
+{/if}

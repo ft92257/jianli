@@ -1,0 +1,119 @@
+<!--{template admin/header}-->
+
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>启用腾讯微博，可以使用腾讯微博帐户登录{$this->Config['site_name']}({$this->Config['site_url']})、不再担心忘记密码；</li>
+			<li>还可以在{$this->Config['site_name']}发微博同步发到腾讯微博上，吸引更多人关注；</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings"
+	action="admin.php?mod=setting&code=do_modify_qqwb"><a
+	name="腾讯微博设置"></a>
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">腾讯微博设置</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>是否启用？</b><br>
+		</td>
+		<td>{$qqwb_enable_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>App Key</b><br>
+		默认 “8c84c76e55d6491a991d8b568ad15209”，可以使用；<BR>
+		如需全新申请，请访问<A HREF="http://open.t.qq.com" target=_blank>http://open.t.qq.com</A><br />
+		注意：切换App Key会解除原先的用户绑定关系，需要重新绑定</td>
+		<td><input type="text" name="qqwb[app_key]"
+			value="{$qqwb[app_key]}" size="60" /></td>
+	</tr>
+	<tr>
+		<td width="45%"><b>App Secret</b><br>
+		默认 “949d659ce5e89230c5bac10e17bc2ba8”，使用同上</td>
+		<td><input type="text" name="qqwb[app_secret]"
+			value="{$qqwb[app_secret]}" size="60" /></td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许腾讯微博帐号绑定和登录本站？</b><br>
+		建议选是，吸引腾讯微博用户</td>
+		<td>{$qqwb_is_account_binding_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>使用腾讯微博帐号登录后，是否向用户显示本站昵称/密码注册页面？</b><br>
+		建议选是，因为腾讯微博API提供的信息不包括QQ号码和email信息</td>
+		<td>{$qqwb_reg_pwd_display_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>使用腾讯微博帐号登录注册后，是否同步调用腾讯微博的头像？</b><br>
+		建议选是，方便用户登录后就直接有头像了</td>
+		<td>{$qqwb_is_sync_face_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许同步微博到发布者的腾讯微博上？</b><br>
+		建议选是，可将内容推广到腾讯腾讯微博平台</td>
+		<td>{$qqwb_is_synctopic_toweibo_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>同步内容到腾讯腾讯微博时，是否包括图片？</b><br>
+		建议选是，假如此功能导致服务器反应缓慢，则可以将其关闭。</td>
+		<td>{$qqwb_is_upload_image_radio}</td>
+	</tr>
+	<!--
+        <tr>
+			<td width="45%"><b>允许绑定帐号的腾讯微博读取到记事狗？</b><br>
+            默认 “关闭”
+            </td>
+			<td>{$qqwb_is_synctopic_tojishigou_radio}</td>
+		</tr>
+        <tr>
+			<td width="45%"><b>允许同步微博的评论内容读取到记事狗？</b><br>
+            该功能要求评论者已经绑定了微博，默认 “关闭”
+            </td>
+			<td>{$qqwb_is_syncreply_tojishigou_radio}</td>
+		</tr>
+        <tr>
+			<td width="45%"><b>允许同步微博内容时读取图片到记事狗？</b><br>
+            默认 “关闭”
+            </td>
+			<td>{$qqwb_is_syncimage_tojishigou_radio}</td>
+		</tr>
+        <tr>
+			<td width="45%"><b>从QQ读取微博时间限制</b><br>
+			单位为秒，默认为 “180”</td>
+			<td><input type="text" name="qqwb[syncweibo_tojishigou_time]" value="{$qqwb[syncweibo_tojishigou_time]}" /> 秒</td>
+		</tr>
+        -->
+	<tr>
+		<td width="45%"><b>允许回复微博时，推送回复内容到相关联的腾讯微博中？</b><br>
+		该功能要求回复者已经绑定了腾讯微博，并且要求被回复的微博已经推送到腾讯微博中。默认 “允许”</td>
+		<td>{$qqwb_is_syncreply_toweibo_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许微博详情页显示转发到腾讯微博按钮？</b><br>
+		建议选择是，不会增加网站负担；</td>
+		<td>{$qqwb_is_rebutton_display_radio}</td>
+	</tr>
+	<!--
+		<tr>
+			<td width="45%"><b>腾讯微博转发时间限制</b><br>
+			单位为秒，默认为 “15”</td>
+			<td><input type="text" name="qqwb[wbx_share_time]" value="{$qqwb[wbx_share_time]}" size="10" /> 秒</td>
+		</tr>
+		-->
+</table>
+<br>
+<center><input type="submit" class="button"
+	name="settingsubmit" value="提 交"></center>
+<br>
+</form>
+<br>

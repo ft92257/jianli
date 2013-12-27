@@ -1,0 +1,61 @@
+<include file="public:header" />
+
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',3,1);">样板房设置</li>
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+<form action="__URL__/addexa"  method="post" >
+<table>
+<tr>
+<th>组名</th>
+<td><input name='name' width="200px" type="text" value="{$info.name}" /></td>
+</tr>
+<tr><td>风格</td>
+<td>
+<select name="style">
+<volist name='style' id='val'>
+<option  value="{$val.name}">{$val.name}</option>
+</volist>
+</select>
+</tr>
+<tr>
+<th>地区</th>
+<td><select name="area">
+<volist name='area' id='val'>
+<option  value="{$val.area_name}">{$val.area_name}</option>
+</volist>
+</select></td>
+</tr>
+<tr>
+<th>地址</th>
+<td><input type="text" name="address" value="{$val.address}" /></td>
+</tr>
+<tr>
+<th>封面</th>
+<td><input type="file" name="file" /><input id="img" type="hidden"name="img" /></td>
+</tr>
+<tr>
+<th>项目介绍</th>
+<td><textarea style="height:100px; width:200px"  name="intro">{$info.intro}</textarea></td>
+</tr>
+
+<tr>
+<th>参观</th>
+<td>可参观<input type="radio" name="is_look" value="1" 
+<if condition="$info.is_look eq 1 " >checked="checked"</if> /> 不可<input type="radio" name="is_look" value="0"  checked="checked"/></td>
+</tr>
+
+
+
+</table>
+
+		
+      </div>
+      
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+</form>
+

@@ -1,0 +1,45 @@
+<!--{template "topic_header"}-->
+<!-- <a href="javascript:void(0)" onclick="groupdelete({$group_name[id]},'grouplist');return false;">删除分组</a>-->
+<div class="main">
+	<div class="mainL">
+	<div class="mblogTitle">管理分组</div>
+		<ul class="followList">
+		<li class="fBox_l ">
+			<span style="float:left; width:80px;"><strong>分组名称</strong></span>
+			
+			<span style="float:left; width:100px;margin:0 0 0 20px;"><strong>人数</strong></span>
+			<span style="float:left; width:100px;margin:0 0 0 20px;"><strong>操作</strong></span>
+
+			</li>
+		<!--{loop $grouplist $val}-->
+			<li class="fBox_l ">
+			<span style="float:left; width:80px;">{$val[group_name]}</span>
+			
+			<span style="float:left; width:40px;margin:0 0 0 20px;">{$val[group_count]}</span>
+			
+			<span style="float:left; width:40px;margin:0 0 0 80px;">				 
+			 <a href="javascript:void(0)" onclick="showFollowGroupModifyDialog();"><img src="images/dot_edit.gif" class="chgz_ico">修改</a>
+			</span>
+			
+			<span style="float:left; width:40px;margin:0 0 0 40px;"> 
+				<a href="javascript:deleteFollowGroup({$val[id]});" ><img src="images/imgdel.gif" class="chgz_ico">删除</a>
+			</span>
+			
+			<span style="float:left; width:65px;margin:0 0 0 40px;">
+				<a href="index.php?mod=topic&code=follow&gid={$val[id]}" target="_blank"><img src="images/user.gif" class="chgz_ico">浏览用户</a>
+			</span>
+			
+			<span style="float:left; width:65px;margin:0 0 0 30px;">  
+				<a href="index.php?mod=topic&code=myhome&gid={$val[id]}"><img src="images/dot_bro.gif" class="chgz_ico">浏览微博</a>
+			</span>
+
+
+			</li>
+		<!--{/loop}-->	
+		</ul>
+		<li><!--{if $page_arr[html]}-->{$page_arr[html]}<!--{/if}--></li>
+	</div>
+	
+	
+	<!--{template "topic_right.inc"}-->
+</div>

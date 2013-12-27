@@ -1,0 +1,91 @@
+<!--{template 'topic_header'}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+ <div class="main3Box_m HotW "> 
+    <div id="topNews_1" class="Hotwarp">
+      <div class="Menubox2" style="width:540px;">
+		<ul>
+		  <li>
+		    <div  class="{$mainreward}">
+			  <a href="index.php?mod=reward"><span>有奖转发</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="{$myreward}">
+			  <a href="index.php?mod=reward&code=myreward"><span>我的有奖转发</span></a>
+		    </div>
+		  </li>
+		  <li>
+			<div class="{$joinedreward}">
+			  <a href="index.php?mod=reward&code=joinedreward"><span>我参与的有奖转发</span></a>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="{$freward}">
+			  <a href="index.php?mod=reward&code=freward"><span>我关注的人的有奖转发</span></a>
+		    </div>
+		  </li>
+		</ul>
+	  </div>
+    
+	<!--{template 'reward_list_ajax'}-->
+  </div>
+<!--右边栏目1 Begin-->
+<div class="Hotright">
+  <div class="HboxR">
+    <!--{if MEMBER_ID<1}-->
+    <span>还没有微博客帐号？<a href="index.php?mod=member">注册</a></span>
+    <br>
+    <span>已有帐号，<a href="index.php?mod=login">请点此登录</a></span>
+    <!--{else}-->
+	<div class="create_qun_b">
+	 <a class="create_button" href="index.php?mod=reward&code=add">发起活动</a>
+	</div>
+	<!--{/if}-->
+  </div>
+  
+	<!--热点推荐 Begin-->
+	{if $recd_reweard}
+	<div class="HboxR">
+	  <div class="vote_line">活动推荐</div>
+	  <ul class="followList act_ul">
+	  <!--{eval $i = 0}-->
+      <!--{loop $recd_reweard['reward_list'] $key $val}-->
+      <!--{eval $i++}-->
+      <!--{if $i<4}-->
+  	    <li class="pane">
+  	      <div class="fBox_l">
+  	        <a href="index.php?mod=reward&code=detail&id=$val['id']" title="{$val['title']}">
+  	          <img src="{$val['image']}" width="60" height="60">
+  	        </a>
+  	      </div>
+  	      <div class="fBox_r">
+  	        <p class="ff_1 w_num"><a href="index.php?mod=event&code=detail&id=$val[id]" title="{$val['title']}">{$val['title']}</a></p>
+  	        <p class="ff_1">{$val['f_num']}人参与</p>
+  	      </div>
+  	    </li>
+	  <!--{else}-->
+	  <li>
+	    <span class="boxRl"><a href="index.php?mod=reward&code=detail&id=$val['id']" title="{$val['title']}">{$val['title']}</a></span>
+	    <span style="float:right;">({$val['f_num']}人参与)</span>
+	  </li>
+	  <!--{/if}-->
+  	  <!--{/loop}-->
+	  </ul>
+	</div>
+	{/if}
+	<!--热点推荐 End-->
+	
+</div>
+</div>
+</div>
+<!--{template 'topic_footer'}-->

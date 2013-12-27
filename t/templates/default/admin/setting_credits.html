@@ -1,0 +1,60 @@
+<!--{template admin/header}-->
+
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>1、下面的积分名称不为空且勾选启用时，积分项目才启用。</li>
+			<li>2、积分启用后，<a href="admin.php?mod=setting&code=list_credits_rule"><b>具体的积分规则请点此进行设置</b></a>。</li>
+			<li>3、用户的总积分决定了其微博等级，<a href="admin.php?mod=setting&code=experience"><b>请点此设置等级阶梯</b></a>。</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_modify_credits">
+	<a name="积分设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">1、总积分计算公式</td>
+		</tr>
+		<tr>
+			<td>topic_count 代表发的微博数；extcredits1～extcredits8 分别代表下面的8个自定义积分<BR>
+			<textarea style="width:300px;height:20px;" name="credits[formula]">{$credits[formula]}</textarea><br>
+			公式中可使用包括 + - * / () 在内的运算符号
+			<input type="submit" class="button" name="settingsubmit" value="提 交">
+			</td>
+		</tr>
+	</table>
+
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="6">2、自定义积分项目</td>
+		</tr>
+		<tr>
+			<td><b>启用</b><br></td>
+			<td><b>积分代号</b><br></td>
+			<td><b>积分名称</b><br></td>
+			<td><b>积分单位（可留空）</b><br></td>
+			<td><b>注册初始积分</b><br></td>
+			<td><b>积分图标（可留空）</b></td>
+		</tr>
+		<!--{loop $_extcredits $_k $_v}-->
+		<tr>
+			<td><input type="checkbox" name="credits[ext][{$_k}][enable]" value="1" {if $credits[ext][$_k][enable]} checked {/if} /></td>
+			<td>{$_k}</td>
+			<td><input type="text" name="credits[ext][{$_k}][name]" size="10" value="{$credits[ext][$_k][name]}" /></td>
+			<td><input type="text" name="credits[ext][{$_k}][unit]" size="10" value="{$credits[ext][$_k][unit]}" /></td>
+			<td><input type="text" name="credits[ext][{$_k}][default]" size="10" value="{$credits[ext][$_k][default]}" /></td>
+			<td><input type="text" name="credits[ext][{$_k}][ico]" size="16" value="{$credits[ext][$_k][ico]}" /></td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+
+</form>
+<br>

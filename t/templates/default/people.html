@@ -1,0 +1,127 @@
+{template "topic_header"}
+  <style type="text/css">
+  .setframe .left_nav .tago{background-color: #4D9CD4;}
+  .setframe .left_nav .tagn:hover{ background-color:#e3eef2;}
+  .setframe .left_nav .tago a{ color:#fff;}
+  </style>
+<script type="text/javascript">
+/**
+ * 名人堂  ajax 
+ * ajax 切换显示 名人堂查看方式
+ * 
+ * 查看类别
+ * category == 按类别分类
+ * province == 按地区分类
+ *
+ * var  list_type == 查看类别
+*/
+function ajax_category(list_type,id)
+{	
+	
+	var ajax_url = '';
+
+	ajax_url = "ajax.php?mod=validate&code=category";
+
+	var post = {
+		list_type:list_type,
+		id:id
+	};
+	
+	var myAjax=$.post(
+	ajax_url,
+	post,
+	function(d){
+		if(d){
+			//alert(d);
+			$('#validate_list').html(d);
+		}
+	});
+	return false;
+}
+</script>
+
+<div class="setframe">
+
+<!--此处三栏-->
+<!--{template 'topic_new_left.ini'}-->
+<!--此处三栏-->
+
+<div class="main3Box_m HotW ">
+  <div class="Hotwarp eventB">
+    <!--{if $member_list}-->
+    <div class="people_l">
+    <div class="main_t"><span>名人堂推荐用户</span></div>
+	<div class="people_l_b"> 
+		<!--{loop $member_list $val}-->
+			<li alt="{$val[vip_info]}" title="{$val[vip_info]}">
+			  <div id="user_{$val['uid']}_user"></div>
+				<!--{if $val[uid] != MEMBER_ID}-->
+				<img src="{$val[face]}" onerror="javascript:faceError(this);" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/>
+				<!--{else}-->
+				<img src="{$val[face]}" onerror="javascript:faceError(this);"/>
+				<!--{/if}-->										
+				<span class="nm">{$val['nickname']}</span>
+				<!--{if $val[follow_html]}--><span class="nm">{$val[follow_html]}</span><!--{/if}-->
+			</li>
+		<!--{/loop}-->
+	</div>
+    </div>
+	<!--{/if}-->
+
+	<div id="ajaxcontent" class="people_l">
+	<div class="main_t"><span><img src="images/vip.gif" /> 认证用户微博</span></div>
+	
+	  <div id="listTopicArea">
+	  	<!--微博列表 Begin-->
+		<!--{subtemplate topic_simple_list_ajax}-->
+		<!--微博列表 End-->
+      </div>
+	</div>
+	
+</div>
+
+<!--右侧-->
+
+<div class="Hotright">
+ <div class="peopleSide">
+ <div class="eventBVip"><a title="取得认证，获得推荐" href="index.php?mod=other&code=vip_intro"><img src="templates/default/images/quare/btn_rf.gif"></a></div>
+    <!--{if $category_list}-->
+      <!--{loop $category_list $clist}-->
+      <div class="rightBox_t"><a class="peopleSidea" href="javascript:viod(0);" onclick="ajax_category('category',$clist['id']); return false;" >{$clist['category_name']}</a><span class="set_tag"></span></div>
+      <!--{/loop}-->
+    <!--{/if}-->
+	<div class="rightBox_t"><a class="peopleSidea" href="javascript:viod(0);" onclick="ajax_category('province'); return false;"  >按地区分类</a><span class="set_tag"></span></div>
+	<div id="validate_list"></div>
+  </div>
+</div>
+
+	{if $hot_members_list}
+	 <div class="HboxR">
+	   <div class="rightBox_t">人气排行榜</div>
+       <div class="FTL FTL3 SC_renqituijian_box">
+	     <div id="interestUid">
+	       <ul class="followList" style="overflow:hidden">
+		     <!--{loop $hot_members_list $val}-->
+		       <li> 
+		       <div id="user_{$val[uid]}_r_users"></div>
+				<div class="fBox_l">
+				  <a href="index.php?mod={$val[username]}" target="_blank">
+				    <img onerror="javascript:faceError(this);" src="{$val['face']}" class="manface" onmouseover="get_user_choose({$val[uid]},'_r_users',{$val[uid]})" onmouseout="clear_user_choose();"/>
+				  </a> 
+				</div>
+				<div class="fBox_R ">
+				  <span><a href="index.php?mod={$val[username]}" target="_blank" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a></span> 
+				  <span>{$val['province']}&nbsp;{$val['city']}</span>
+				  <!--{if $val[follow_html]}--><span>{$val[follow_html]}</span><!--{/if}-->
+				</div>
+				</li>
+		     <!--{/loop}-->
+	       </ul>
+	     </div>
+	   </div>
+     </div>
+     {/if}
+
+</div>
+</div>
+{template "topic_footer"}

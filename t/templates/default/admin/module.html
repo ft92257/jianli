@@ -1,0 +1,65 @@
+{template admin/header}
+<!--{eval if($this->Get['mod'] == 'fenlei') $fenlei='current'}-->
+<!--{eval if($this->Get['mod'] == 'module') $module='current'}-->
+<!--{eval if($this->Code == 'newmodule') $newmodule='current'}-->
+<!--{eval if($this->Code == 'setting') $setting='current'}-->
+<!--{eval if($this->Code == 'manage') $manage='current'}-->
+<div class="nav3">
+  <ul class="cc">
+    <li class="{$fenlei}">
+      <a href="admin.php?mod=fenlei" class='{$fenlei}'>栏目管理</a>
+    </li>
+    <li class="$module">
+      <a href="admin.php?mod=module" class='{$module}'>模块管理</a>
+    </li>
+    <li class="$newmodule">
+      <a href="admin.php?mod=module&code=newmodule" class='{$module}'>创建模块</a>
+    </li>
+	<li class="{$setting}">
+	  <a href="admin.php?mod=fenlei&code=setting">基本设置</a>
+	</li>
+	<li class="{$manage}">
+	  <a href="admin.php?mod=fenlei&code=manage">分类管理</a>
+	</li>
+  </ul>
+</div>
+
+<div id="main_wp" class="mt10">
+<form name="formlist" method="post" action="admin.php?mod=module&code=newmodule">
+  <table width="98%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header"> 
+      <td colspan=6>编辑模型</td>
+    </tr>
+    <tr class="header"> 
+      <td width="5%">FID</td>
+      <td width="40%">模型名称</td>
+      <td width="6%">排序</td>
+      <td width="9%">字段设置</td>
+      <td width="8%">应用栏目</td>
+      <td width="5%">删除</td>
+    </tr>
+       
+    <!--{loop $sort_list $key $val}-->
+    <tr> 
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">$key</td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">【<a href="admin.php?mod=module&code=newmodule&id={$key}">{$val[name]}</a>】</td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"> 
+        <input type='text' name='list[{$key}]' value={$val[list]} size='5'>
+      </td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">[<a href="admin.php?mod=module&code=newmodule&id={$key}"><font color="red">字段修改</font></a>]</td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val[num]}个</td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">[<a href="admin.php?mod=module&code=deletesort&id={$key}" onclick="return confirm('你确实要删除吗?不可恢复');">删除</a>]</td>
+    </tr>
+    <!--{/loop}-->
+  </table>
+  <script type="text/javascript">
+  function postlist(t){
+  	document.formlist.action="admin.php?mod=module&code=editlist";
+  	document.formlist.submit();
+  }
+  </script>
+  <div align="center"><br>
+    <input type="button" name="Submit2" value="修改以上排序" onclick="postlist('list')" class="button">
+  </div>
+</form>
+</div>

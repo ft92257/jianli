@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" /> 
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="templates/default/styles/main.css" rel="stylesheet" type="text/css" />
+<link href="templates/default/styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="templates/default/js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+
+<!--{if $this->Code == 'share' || $this->Code == 'doshare'}-->
+	<!--{if MEMBER_ID}-->
+		<!--分享发布框-->
+		<div class="Rlogo"><h1 class="logo"><a title="{$this->Config[site_name]}" href="index.php"></a></h1></div>
+		<div class="main_2">
+			<div style="background-color:#E6FBD8; height:30px; font-size:18px; font-weight:600; padding:5px;"><span>分享到我的微博，顺便说点什么吧</span></div>
+			<div class="mainL">
+				<form action="{$action}" method="post" enctype="multipart/form-data" name="share_from" id="share_from">
+				<div class="issueBox">
+					<div class="fbqCount">
+						<div class="fLeft">发送新鲜事到微博</div>
+							<ul class="mycon">
+							<!--{if $this->Config[topic_input_length]>0}-->
+								<li>还可以输入</li>
+								<li style="width:auto"><span id="wordCheck" style='font-family:Georgia;font-size:24px;'>{conf topic_input_length}</span></li>
+								<li style="width:14px;">字</li>
+							<!--{/if}-->
+							</ul>
+						</div>
+						<div class="box_1" style="display:block">
+							<textarea name="content" id="i_already"  onkeyup="javascript:checkWord('{conf topic_input_length}',event,'wordCheck')">{$content}</textarea>
+						</div>   
+						<div class="box_3"><!--{if $error}-->{$error} 改改内容吧！<!--{/if}--></div>
+						<div class="box_4">
+							<input type="submit" class="indexBtn" id="publishSubmit"  title="按Ctrl+Enter快捷发布" value=""/>
+							<input name="sbuject" type="hidden" id="sbuject" value="{$sbuject}" />
+							<input name="return_content" type="hidden" id="sbuject" value="{$content}" />
+						</div>
+					</div>
+				</form>
+				</div>
+				<div class="mainR R3_hor">
+					<div class="sideBox">
+						<div class="sTitle">
+							<span class="font14px left">温馨提示</span>
+						</div>
+						<ul class="sideul">
+							<li style="color:#333333">在“我的首页”中，可随时发布、删除我分享的新鲜事；也可自由收藏、评论TA人的分享的新鲜事。</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<script>
+		function checkWord(len,evt,wordCheckNumID){ 
+		   if(evt==null) 
+		   evt = window.event; 
+		   var src = evt.srcElement? evt.srcElement : evt.target; 
+		   var str = src.value.trim();
+		   myLen =0;
+		   i=0;
+		   for(;(i<str.length)&&(myLen<=len*2);i++){
+		   if(str.charCodeAt(i)>0&&str.charCodeAt(i)<128)
+		   myLen++;
+		   else
+		   myLen+=2;
+		   }
+		   
+		   if(myLen>len*2){
+		   src.value=str.substring(0,i-1);
+		   }
+		   else{ 
+		   document.getElementById(wordCheckNumID).innerHTML = Math.floor((len*2-myLen)/2);
+		   }
+		}
+		String.prototype.trim = function() 
+		{ 
+		return this.replace(/(^\s*)|(\s*$)/g, ""); 
+		}
+		document.getElementById("i_already").onfocus = function(){
+		   var tigBox = document.getElementById("tigBox_2");
+		   tigBox.style.visibility = "visible";
+		   var i=0;
+		   setTimeout(function(){i+=1; tigBox.style.visibility= "hidden";},5000);
+		}
+
+		$("#i_already").bind('keydown',function(event){
+		
+			event = event || window.event;
+			if (event.keyCode == 13 && event.ctrlKey) {
+				$("#publishSubmit").click();
+			}
+		});
+		</script>
+		<!--分享发布框-->
+	<!--{else}-->
+		<div class="Rlogo"><h1 class="logo"><a title="{$this->Config[site_name]}" href="index.php"></a></h1></div>
+		<div class="main_2">
+		<div class="main_t"><span></span></div>
+		<div class="set_warp Nlogin">
+		<div class="Nll">
+		<form method="POST" action="index.php?mod=login&code=dologin">
+			<table width="100%" border="0">
+			  <tr>
+				<td width="30%" align="right" valign="top">帐号昵称：</td>
+				<td width="70%">
+				<input name="username" type="text"  class="regP"/>
+				<br />
+				<span class="retip">也可用注册Email登录</span>
+				</td>
+			  </tr>
+			  <tr>
+				<td align="right" valign="top">登录密码：</td>
+				<td><input name="password" type="password" class="regP" /></td>
+			  </tr>
+			   <tr>
+				<td align="right" valign="middle">&nbsp;</td>
+				<td class="retip"><input type="checkbox" class="checkb" checked title="请不要在公共电脑上使用自动登录功能">
+				下次自动登录 &nbsp;&nbsp; <a href="javascript:void(0)" title="点此可通过2种方式重设密码" target="_blank" onclick="window.location.href='index.php?mod=get_password';return false;">忘记密码？</a></td>
+			  </tr>
+			  <tr>
+				<td align="right" valign="middle">&nbsp;</td>
+				<td>	
+				<input name="" type="submit" value="" class="Nbtn_login" />
+				<input name="loginType" type="hidden" id="loginType" value="share" />
+				<input name="return_url" type="hidden" id="return_url" value="index.php?{$return_url}" />
+				</td>
+			  </tr>
+			</table>
+		</form>
+		</div>
+		<div class="Nlr">
+		<span class="font14px">还没注册过本站帐户？</span>
+		<a title="点此免费注册" onclick="window.open('{$this->Config[site_url]}/index.php?mod=member');return false;" class="Nbtn_reg" target="_blank">注册{conf site_name}</a>
+	注册后，可以方便地分享新鲜事，关注用户分享；
+	并可通过<b>手机</b>随时随地参与互动。
+		</div>
+		</div>
+		</div>
+	<!--{/if}-->
+<!--{/if}-->
+
+<!--{if $this->Code == 'endshare'}-->
+<div class="Rlogo"><h1 class="logo"><a title="{$this->Config[site_name]}" href="index.php"></a></h1></div>
+<div class="main_2">
+<div class="main_t main_t23"><span></span></div>
+  
+<div>
+  <table width="400" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:50px;">
+    <tr>
+      <td height="40" align="center"><h1>分享成功</h1></td>
+    </tr>
+    <tr>
+      <td height="40" align="center">
+	  <div style="font-size:16px;">
+	  	去<a href="index.php?mod=topic&code=myhome" target="_blank">我的首页</a>看看，或<a href='javascript:void(0);' onclick="javascript:window.close();">点击这里</a>立即关闭
+	  </div>
+	  </td>
+    </tr>
+    <tr>
+      <td height="40" align="center"><span id="later">5</span> 秒后窗口自动关闭</td>
+    </tr>
+  </table>
+</div>
+
+<script>
+function a(){
+if(later.innerText=="-1"){oTimer=null;window.close();}
+}
+var oTimer=setInterval("later.innerText=parseInt(later.innerText)-1;a();",1000);
+
+</script>
+<!--{/if}-->
+

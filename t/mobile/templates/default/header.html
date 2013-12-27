@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=0.67,maximum-scale=0.67,minimum-scale=0.67" />
+        <title><!--{eval echo Mobile::convert($this->Config[site_name])}--></title>
+        <!--
+        <link href="styles/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
+        <link href="styles/jquery.mobile.i.css" rel="stylesheet" type="text/css" />-->
+        <link href="styles/common.css" rel="stylesheet" type="text/css" />
+        <script src="js/jquery-1.6.2.min.js"></script>
+        <!--
+		<script>
+            $(document).bind("mobileinit", function(){
+                $.mobile.ajaxLinksEnabled(false);
+            });
+        </script>
+        <script src="js/jquery.mobile.min.js"></script>-->
+        <script src="js/iscroll.js"></script>
+		<script src="js/common.js"></script>
+    </head>
+<body>
+<script>
+	//一些初始化操作
+	var PerPage_MBlog = parseInt("{$this->Config['perpage_mblog']}");
+	var PerPage_Pm = parseInt("{$this->Config['perpage_pm']}");
+	var PerPage_Member = parseInt("{$this->Config['perpage_member']}");
+	var PerPage_Def = parseInt("{$this->Config['perpage_def']}");
+	var Code = "{$this->Code}";
+	var Module = "{$this->Module}";
+	var Uid = "{MEMBER_ID}";
+	<!--{if $this->Config['is_mobile_client']}-->
+		var MobileClient = true;
+	<!--{else}-->
+		var MobileClient = false;
+	<!--{/if}-->
+	
+	<!--{if !$this->Config['is_mobile_client'] && !in_array($_GET['code'], array('3g', 'publish', 'login'))}-->
+		var myScroll;
+		function loaded() {
+			var scrollName = "g_isrcollWrapper";
+			if (Module == "topic" && Code == "detail") {
+				//scrollName = "";
+			}
+			if (scrollName != "") {
+				myScroll = new iScroll(scrollName, {checkDOMChanges:true});
+			}
+		}
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+	<!--{/if}-->
+</script>
+
+
+<div data-role="page" data-theme="f" class="page">
+
+<!--{if !$this->Config['is_mobile_client']}-->
+	<!--{template "header_nav"}-->
+<!--{/if}-->

@@ -1,0 +1,34 @@
+<!--{eval $talkanswerid = '';}-->
+{template "user_face_menu"}
+<div class="Contant">
+	<div id="topic_lists_{$val[tid]}" style="_overflow:hidden">
+		<div class="oriTxt">
+			<!--{if 'myfavorite'==$this->Code && $val[favorite_time]}-->
+				<p style="color:#666; font-size:12px;">收藏于：{$val[favorite_time]}</p>
+			<!--{/if}-->			  
+			<p class="utitle">
+				<!--个人签名文件-->
+				{template "user_signature"}
+				<!--个人签名文件-->
+				<span class="ut"><a href="index.php?mod=topic&code={$val[tid]}" target="_blank">{$val[dateline]} </a></span>
+			</p>
+			<span id="topic_content_{$val[tid]}_short">{$val[content]}</span>
+			<span id="topic_content_{$val[tid]}_full"></span>
+			<!--{if $val[longtextid] > 0}-->
+				<span>
+				<a href="javascript:;" onclick="view_longtext('{$val[longtextid]}', '{$val[tid]}', this);return false;">查看全文</a>
+				</span>
+			<!--{/if}-->
+			{template "topic_share_1"}
+			{template "topic_share_2"}
+			<!--{if $this->Module=='qun'}-->              
+				{template "qun/topic_list_manage"}
+			<!--{else}-->
+				{template "topic_list_manage"}
+			<!--{/if}-->
+		</div>
+	</div>
+	<div id="reply_area_{$val[tid]}"></div>
+	<div id="modify_topic_{$val[tid]}"></div>
+	<div id="forward_menu_{$val[tid]}" class="Fbox"></div>
+</div>

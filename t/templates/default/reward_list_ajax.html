@@ -1,0 +1,25 @@
+    <div class="e_count">找到相关有奖转发 <b class="fontRed">{$count}</b> 条</div>
+    <!--{loop $reward_list $key $val}-->
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a href="index.php?mod=reward&code=detail&id=$key">
+	        <img src="{$val[image]}" height="128" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info">
+	      <p class="left_t_nick_name">
+	        <a href="index.php?mod=reward&code=detail&id=$key"><strong>{$val['title']}</strong></a>
+	      </p>
+	      <p class="left_t2">时间：{$val['from_time']}-{$val['to_time']}</p>
+	      <p class="left_t2">
+			发起人：<a href="index.php?mod=$val['username']" target="_blank">{$val['nickname']}</a>{$val['validate_html']}
+	      </p>
+	      <p class="left_t2">简介：{$val['content_cut']}</p>
+	    </div>
+	  </div>
+	</div>
+	<!--{/loop}-->
+	<!--{if $page_arr['html']}-->	
+	<div><ul><li>{$page_arr['html']}</li> </ul></div>
+	<!--{/if}--> 

@@ -1,0 +1,209 @@
+{template "topic_header"}
+<link href="styles/vote.css" rel="stylesheet" type="text/css" />
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+
+  <div class="main3Box_m HotW HotW_vote">	
+    <div id="topNews_1" class="Hotwarp">
+      <div>
+        <div class="Listmain">
+		
+		<!--投票介绍 Begin--> 
+		<div id="vote_desc_wp" class="vote_viewT">
+			<div class="vote_viewL">
+			<a href="index.php?mod={$member[username]}" title="{$member[username]}"><img onerror="javascript:faceError(this);" src="{$member[face]}" title="{$member[nickname]}" /></a>
+			</div>
+			<div class="vote_viewR">
+			<p class="vote_cre_name">
+			<span class="spanimg"><a href="index.php?mod=vote&uid=$member[uid]" title="{$member[nickname]} 的投票"><b>{$member[nickname]}</b></a>{$member[validate_html]}</span>
+			<!--{if MEMBER_ID > 0}-->{$follow_html} <!--{/if}-->
+			</p>
+
+			<p class="vote_validity">
+			<span class="vote_date">有效期：<!--{eval echo my_date_format($vote['dateline'], 'Y年m月d日 H:i')}-->&nbsp;--&nbsp;<!--{eval echo my_date_format($vote['expiration'], 'Y年m月d日 H:i')}--></span>
+			</p>
+            
+            <div class="vote_num2"><b>$vote['voter_num']</b></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!--投票介绍 End-->
+			
+		<!--投票主体 Begin-->
+				<div  style="text-align:right; width:100%; margin-top:2spx;">
+					<!--{if $vote[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+						<a href="javascript:;" onclick="deleteVote({$vote[vid]});">删除这个投票</a> |
+						<a href="javascript:;" onclick="showModifyVoteExpirationDialog({$vote[vid]});">修改截止时间</a> |
+						<a href="javascript:;" onclick="showEditVoteDialog({$vote[vid]});">编辑投票</a> | 
+					<!--{/if}-->
+						<a href="javascript:;" onclick="showRecommendVoteDialog({$vote[vid]},{'subject_wp':'vote_subject_wp'});">分享到微博</a> 
+				</div>
+			<div id="vote_main_wp" style="margin-top:20px;">
+				<div class="title" style="text-align:center; font-size:14px;">
+					<strong id="vote_subject_wp">{$vote['subject']}</strong>
+					<span style="color:#999999; font-size:12px;">
+					<!--{if $vote['multiple']}-->
+						(最多可选{$vote['maxchoice']}项)
+					<!--{else}-->
+						(单选)
+					<!--{/if}-->
+					</span>
+					<!--{if !$vote['is_view'] && !$hasvoted}-->
+						<span>(投票后可见)</span>
+					<!--{/if}-->
+					<!--{if $vote[from_html]}--><br>
+					<span style="color:#999999; font-size:12px;">
+					  {$vote[from_html]}
+					</span>
+					<!--{/if}-->
+				</div>
+				<!--{if $vote['message']}--><p class="poll_depiction">$vote['message']</p><!--{/if}-->
+				<form name="vote_form" method="post" action="ajax.php?mod=vote&code=vote&vid=$vote['vid']&from=topic" id="vote_form">
+				
+				<!--投票选项 Begin-->
+					<!--{template "vote_options"}-->
+				<!--投票选项 End-->
+				
+
+					<div class="poll_submit" style=" width:540px; text-align:right; padding:0">
+						<!--{if $allowedvote && !$hasvoted}-->
+						<input type="hidden" name="votesubmit" value="true" />
+						<span style="width:100px;">
+							<input type="checkbox" name="toweibo" id="toweibo_view" value="1" style="vertical-align:middle; margin:-1px 0 0 0;" checked="checked">
+							<label for="toweibo_view">分享到微博</label>
+						</span> 
+						<span style="width:100px;">
+							<input type="checkbox" name="anonymous" id="anonymous_view" value="1" style="vertical-align:middle;margin:-1px 0 0 0;">
+							<label for="anonymous_view">匿名</label>
+						</span> 
+						<input type="button" class="vote_btn" id="save" value="" onclick="vote();"/>
+						<input type="hidden" id="check_PublishBox_uid" name="check_PublishBox_uid" value="{$uid}">
+						<!--{else}-->
+						<input type="submit" class="shareI" id="save" value="已投票"  disabled="disabled"/>
+						<!--{/if}-->
+					</div>
+
+				</form>
+			</div>
+			
+		<!--投票主体 End-->
+		
+		<!--其他人的投票 Begin-->
+		<script type="text/javascript">
+		function setTab(name,cursel,n){
+	    for(i=1;i<=n;i++){
+	    var menu=document.getElementById(name+i);
+	    var con=document.getElementById("con_"+name+"_"+i);
+	    menu.className=i==cursel?"selected":"";
+	    con.style.display=i==cursel?"block":"none";
+        }}
+		</script>
+		<div id="other_vote_wp">
+			<div class="set_warp" style="width:540px; margin:0 auto; padding:20px 0">
+				<div class="voteMenu">
+					<ul>
+						<li id="one1" class="selected" onclick="setTab('one',1,2)">大家的最新投票</li>
+						<!--{if MEMBER_ID>0}-->
+							<li id="one2" onclick="setTab('one',2,2);getVoteJoined(1,{c:2});">关注人的最新投票</li>
+						<!--{/if}-->
+					</ul>
+				</div>
+				<div id="con_one_1" class="vote_con"></div>
+				<div id="con_one_2" class="vote_con" style="display:none;"></div>
+			  </div>
+		 </div>
+		<script language="javascript">
+			function getVoteJoined(page, options)
+			{
+				if (!page) {
+					page = 1;
+				}
+				if ( typeof options == 'undefined') {
+					options = {};
+				}
+				type = '';
+				if (options.c) {
+					if (options.c == 2) {
+						wp = 'con_one_2';
+						type = 'follow';
+					} else {
+						wp = 'con_one_1';
+						type = '';
+					}
+				}
+				$('#'+wp).html("<div><center><span class='loading'>正在载入……</span></center></div>");
+				var url = "ajax.php?mod=vote&code=joined&vid={$vid}&type="+type+"&page="+page;
+				$.get(
+					url,
+					{},
+					function (r) {
+						if (is_json(r)) {
+							var json = eval('('+r+')');
+							$('#'+wp).html(json.msg);
+						} else {
+							$('#'+wp).html(r);
+						}
+					}
+				);
+			}
+			$(document).ready(function(){getVoteJoined(1, {c:1});});
+		</script>
+		<!--其他人的投票 End-->
+		
+		<script language="Javascript">
+			$(document).ready(function(){
+				//初始化智能输入框
+				initAiInput('app_content');
+			});
+			function listTopic( s,lh ) {	
+				var s = 'undefined' == typeof(s) ? 0 : s;
+				var lh = 'undefined' == typeof(lh) ? 1 : lh;
+				if(lh) {
+					window.location.hash="#listTopicArea";
+				}
+				var myAjax = $.post(
+					"ajax.php?mod=app&code=list_topic",
+					{
+						<!--{loop $params $k $v}-->
+						{$k}:"{$v}",
+						<!--{/loop}-->
+						start:s
+					},
+					function (d) {
+						$("#listTopicArea").html(d);			
+					}
+				); 
+			}
+		</script>
+        </div>
+		<!--{if MEMBER_ID>0}-->
+			<!--评论发布框 Begin-->
+			<div class="topic_new_add">
+				<!--{template "topic_publish"}--> 
+			</div>
+			<!--评论发布框 End-->
+		<!--{/if}-->
+		<div class="Listmain">
+		<div id="listTopicMsgArea"></div>
+		<div id="listTopicArea">
+			{template "topic_list_ajax"}
+		</div>
+		</div>
+      </div>
+</div>
+
+<!--{subtemplate 'vote_right'}-->
+
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][vote][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

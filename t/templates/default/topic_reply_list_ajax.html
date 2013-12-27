@@ -1,0 +1,25 @@
+
+<success></success>
+
+<!--{eval $topic_view = 1;}-->
+
+<div id="replyListMsgArea"></div>
+<div id="listTopicArea">
+    <div class="Listmain">
+	<!--{loop $reply_list $val}-->
+	    <div class="feedCell" id="topic_list_{$val[tid]}">
+	      {template "topic_item_ajax"}
+          <div class="mBlog_linedot"></div> 
+	    </div>
+    <!--{/loop}-->
+	<div id="ajaxtopic"></div>
+	<div id="pageinfo"></div>
+	<div id="pagehtml">
+    <!--{if $page_arr[html]}-->
+    	<div>{$page_arr[html]}</div>
+    <!--{/if}-->
+	</div>
+	</div>
+</div>
+
+<!--{eval echo $this->js_show_msg();}-->

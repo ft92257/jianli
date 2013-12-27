@@ -1,0 +1,122 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+<div class="mainL">
+<div class="mblogTitle2">
+<div class="left_s">
+<!--{if !$pageOnOff}-->
+<b>当前{$member[fans_count]}人在关注{$member[nickname]} </b><!--{if MEMBER_ID}-->（<span><a href="index.php?mod=profile&code=invite" target="_blank">邀请好友</a>来关注</span>）<!--{/if}-->
+<!--{else}-->
+<div>
+<a href="index.php?mod=admin&code=fans">返回关注我的人</a><em> &gt; </em>昵称含"{$nickname}"的人（{$followcount}）
+</div>
+<!--{/if}-->
+</div>
+
+	<!--搜索关注 start -->
+	<!--{if $member[uid]}-->
+	  <div class="right_s">
+	  <form method="get" action="#" name="headSearchForm" id="headSearchForm" onsubmit="return ProfileSearch();">
+	   <input id="ProfileSearchType" name="searchType" type="hidden" value="fansSearch">
+	   <!--{eval $serachValue = $keyword ? $keyword : "请输入关键字";}-->
+	   <input class="sc_r_t_a" id="keywarod" name="headSearchValue" type="text" value="{$serachValue}" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入关键字';}"/>
+	   <a href="#" onclick="javascript:return ProfileSearch();" class="c_b2">&nbsp;</span></a>
+	   </form>
+	  </div>
+	<!--{/if}-->
+	<!-- 搜索关注 end -->
+</div>
+
+<!--粉丝筛选 Begin-->
+<div class="nfBox" style="margin:0 auto">
+  <div class="left">排序方式：
+  <!--{eval if(empty($this->Get[type])) $_follow_time = "current";}-->
+  <!--{eval if($this->Get[type] == 'lastpost') 	$lastpost = "current";}-->
+  <!--{eval if($this->Get[type] == 'fans_count') $fans_count = "current";}-->
+	<a href="index.php?mod={$this->Get[mod_original]}&code={$this->Code}" class="{$_follow_time}">关注时间</a>
+	<a href="index.php?mod={$this->Get[mod_original]}&code={$this->Code}&type=lastpost" class="{$lastpost}">最近活跃</a>
+	<a href="index.php?mod={$this->Get[mod_original]}&code={$this->Code}&type=fans_count" class="{$fans_count}">粉丝数</a>
+ 
+  </div>
+  <div class="clear"></div>
+</div>
+<!--粉丝筛选 End-->
+
+<ul class="followList">
+<!--{loop $member_list $val}-->
+<li class="pane" id="fans_user_{$val[uid]}">
+<div class="fBox_l ">
+<a href="index.php?mod={$val[username]}"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)"/></a>
+</div>
+<div id="user_{$val[uid]}_user" class="layS"></div>
+<div class="fBox_R ">
+		 <p style="width:330px; float:left;">        
+         <span class="name" style="float:left; display:inline;"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a></span>
+		 <!--{if $val[validate_html]}-->
+		 {$val[validate_html]}
+	     <!--{else}-->
+		 <!--{if $this->Config[topic_level_radio]}-->
+		 <span class="wb_l_level">
+		 <a class="ico_level wbL{$val[level]}" title="点击查看微博等级" href="index.php?mod=settings&code=exp" target="_blank">{$val[level]}</a>
+		 </span>
+		 <!--{/if}-->
+		 <!--{/if}-->	
+		
+         <!--{if $val[gender] == 1}-->
+         <img src="images/user.gif"  title="{$val[nickname]}"/>
+         <!--{elseif $val[gender] == 2}-->
+         <img src="images/user_female.gif"  title="{$val[nickname]}"/>
+         <!--{/if}-->
+          
+		 <!--{hook/global_fans_extra1}-->
+		 
+		 <!--{if MEMBER_ID==$member[uid]}-->
+		 <span class="fBox_R_remarklist">
+         <a href="javascript:void(0)" onclick="getElementById('add_remark_{$val[uid]}').style.display='';getElementById('remark_{$val[uid]}').value='{$val[remark]}';">
+         <i id="remarklist_{$val[uid]}">{if $val[remark]}({$val[remark]}){/if}</i>
+         </a>
+         </span>
+        <!--{/if}-->
+        
+        </p>
+		<p><span>{$val[from_area]}</span></p>
+		<p><span>粉丝{$val[fans_count]}人 | {$val[topic_count]}条微博</span></p>
+
+		<!--{hook/global_fans_extra2}-->
+		</div>
+		<div class="fBox_R2" style="width:auto">
+		<!--{if $val[follow_html]}-->
+		{$val[follow_html]}
+		<!--{/if}--><br />
+		<!--{if MEMBER_ID==$member[uid]}-->
+		<a href="javascript:void(0)" onclick="follower_choose({$val[uid]},'{$val[uid]}','del_fans','');">移除粉丝</a>
+		<!--{/if}-->
+		</div>
+        <div id="alert_follower_menu_{$val[uid]}"></div>
+        <div id="Pmsend_to_user_area"></div>
+        <div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+        <span id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></span>
+</li>
+<!--{/loop}-->
+<!--{if $member[fans_count]<7}-->
+<li>所有关注{$member[username]}的人，都能在其个人首页中第一时间看到其发布的信息。<BR>
+通过发布或者转发他人的微博，将会吸引更多的人关注<!--{if MEMBER_ID > 0}-->，马上进入<a href="index.php?mod=topic&code=myhome">我的首页</a>分享新鲜事吧<!--{/if}-->。</li>
+<!--{/if}-->
+
+<!--{if $page_arr[html]}-->
+<li>{$page_arr[html]}</li>
+<!--{/if}-->
+</ul>
+</div>
+<!--{template "follow_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->

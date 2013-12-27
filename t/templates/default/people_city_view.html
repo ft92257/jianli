@@ -1,0 +1,131 @@
+{template "topic_header"}
+<script>
+function follow_add_type(addtype)
+{
+	document.getElementById('follow_type_'+addtype).value=addtype;
+}
+
+function highlight_row(obj)
+{
+	var bool = obj.checked;
+	
+	if(obj.parentElement.tagName == 'TD')
+	{
+		if(bool)
+		{
+			obj.parentElement.parentElement.className = 'highlight_row';
+		}
+		else obj.parentElement.parentElement.className = 'list_content';
+	}
+}
+function reverseCheck(obj)
+{
+	if(!obj) return;
+	
+	if(!obj.length)
+	{
+		if(obj.disabled) return false;
+		obj.checked = !obj.checked;
+		
+		highlight_row(obj);
+	}
+	else
+	{
+		for(i = 0; i < obj.length; i++)
+		{
+			if(obj[i].disabled) continue;
+			if(obj[i].checked) obj[i].checked = false;
+			else obj[i].checked = true;
+
+			highlight_row(obj[i]);
+		}
+	}
+}
+
+</script>
+<div class="setframe">
+
+<!--此处三栏-->
+<!--{template 'topic_new_left.ini'}-->
+<!--此处三栏-->
+<div class="main_2b">
+
+  <div class="main_t26">
+    <div class="main_t261">名人堂 > <b><a href="index.php?mod=people&code=province&pid={$province_id}">{$province_name}</a></b></div>
+    <a href="index.php?mod=other&code=vip_intro" title="取得认证，获得推荐"><img src="images/quare/btn_rf.gif" /></a>
+ </div>
+	
+	
+	
+	<div class="ulist6"  style="width:740px;"> 
+	  <!--{loop $cat_member_list $val}--> 
+	 	
+				<div class="pf2 selected crPer" alt="{$val[vip_info]}" title="{$val[vip_info]}">
+					<p class="mark"></p>
+					<p class="avt">
+				  	  <!--{if $val[uid] != MEMBER_ID}-->
+					  <img src="{$val[face]}" onerror="javascript:faceError(this);" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/>
+					  <!--{else}-->
+					  <img src="{$val[face]}" onerror="javascript:faceError(this);"/>
+					  <!--{/if}-->
+					</p> 
+					<b class="nm"><b><a href="index.php?mod={$val[uid]}" target="_blank">{$val[nickname]}</a></b></b> 
+				</div> 
+				<div id="user_$val[uid]_user"></div>
+			
+	  <!--{/loop}-->
+	</div>
+
+	 
+ 	 <div class="catcity_menulist" style="padding:10px;">
+	 	<!--{loop $city_ary $val}-->
+    	<a href="index.php?mod=people&code=city&pid={$val[upid]}&cid={$val[id]}">{$val[name]}</a> 
+		<!--{/loop}-->
+ 	 </div>
+
+	  
+  <div class="mediaBox">
+      <div class="famTabletop"></div>
+
+        <div class="famTablecen">
+          <div class="titleBar">
+            <div class="lf"></div>
+            <div class="rt">
+			 <input type="checkbox"  onClick="reverseCheck(follow_form);" />
+			  <label for="btn_all" style="cursor:pointer;">全选 </label> |
+			  <span {if MEMBER_ID <1 } onclick="ShowLoginDialog(); return false;" {/if}>  
+			  <input type="submit" class="shareI" name="follow_Submit"  value="加关注" onclick="document.getElementById('follow_form').submit();"/>
+			  </span>
+            </div>
+          </div>
+		  <iframe id="user_follow_frame" name="user_follow_frame" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+			<form method="POST" action="ajax.php?mod=topic&code=add_user_follow&__to=iframe" id="follow_form" name="follow_form" target="user_follow_frame">
+			
+			<div class="ulist6" style="width:740px;"> 
+            <!--{loop $member_list $val}-->
+					<div class="pf2 selected crPer">
+						<p class="status">
+						<input type="checkbox" id="uids_$val[uid]" name="uids[]" value="{$val[uid]}"/>
+						</p> 
+						<p class="mark"></p>
+						<p class="avt"><b><label for="uids_{$val[uid]}" style="cursor:pointer;"><img src="{$val[face]}" onerror="javascript:faceError(this);"/></label></b></p> 
+						<b class="nm">{$val[nickname]}</b> 
+			  		</div> 
+                    <!--{/loop}-->
+			</div>
+			<input type="hidden" id="type" name="type" value="add"/>
+			</form>	
+        </div>
+   
+      <div class="famTablebott"></div>
+	  {$page_html}
+    </div>
+</div>
+<style type="text/css">
+.ulist6 .pf2 .nm{ float:left; width:50px; height:20px; overflow:hidden;}
+.ulist6 .pf2{ height:75px;}
+.ulist6 .status, .ulist6 .mark{ top:48px;}
+.famTablecen .media_user_list{ margin:1px 0 0 -7px;*margin:2px 0 0 -79px;}
+</style>
+</div>
+{template "topic_footer"} 

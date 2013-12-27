@@ -1,0 +1,88 @@
+<!--{template admin/header}-->
+
+<div class="nav3">
+  <ul class="cc">
+    <li class="current">
+      <a href="admin.php?mod=medal">勋章管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=medal&code=user">勋章会员</a>
+    </li>
+	<li>
+	  <a href="admin.php?mod=medal&code=verify">勋章审核</a>
+	</li>
+  </ul>
+</div>
+
+<div class="mt10">
+
+<div id="add_medal_type_zidong">
+<form action="admin.php?mod=medal&amp;code=add" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="5"> 快速设置用户勋章 </td>
+    </tr>
+	<tr >
+      <td width="13%"><span class="altbg2">
+        <select name="type" id="type"  onchange="check_topic_type(this.value);">
+          <option value="">----- 请选择要增加的规则 ------ </option>
+		  <option value="shoudong">添加手动发放勋章</option>
+          <option value="topic">连续发原创微博</option>
+          <option value="reply">连续评论微博</option>
+          <option value="tag">发布指定话题</option>
+		  <option value="invite">邀请好友</option>
+		  <option value="fans">粉丝数</option>
+		  <option value="sign">积分勋章</option>
+        </select>
+      </span></td>
+      <td width="87%" height="40"><button name="do" value='' type="submit" class="button">添加勋章</button></td>
+    </tr>
+  </table>
+  
+</form>
+</div>
+
+<form method="post" action="admin.php?mod=medal&code=delete">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+<tr class="header">
+		
+	<td>图标</td>
+	<td>勋章名称</td>
+	<td>完成条件</td>
+	<td>勋章获得人数</td>
+	<td>是否启用</td>
+	<td>管理操作</td>
+</tr>
+<!--{loop $medal_list $medal}-->
+<tr align="center">
+	
+	<td  style="border-bottom:1px dotted #EDEDED"  width="10%">
+	<img src="{$medal[medal_img]}" />	</td>
+	<td align="left" style="border-bottom:1px dotted #EDEDED" width="16%">
+	{$medal[medal_name]}	</td>
+	<td width="14%" align="left"  style="border-bottom:1px dotted #EDEDED">
+	{$medal[medal_depict]}	</td>
+	<td width="13%" align="left"  style="border-bottom:1px dotted #EDEDED">{$medal[medal_count]}</td>
+	<td width="11%" align="left"  style="border-bottom:1px dotted #EDEDED">
+		<a href="admin.php?mod=medal&code=isopen&ids={$medal[id]}"><!--{if $medal[is_open] == 1}-->点此关闭<!--{else}-->点此开启<!--{/if}--></a>	</td>
+	<td  style="border-bottom:1px dotted #EDEDED" width="17%">
+		<a href="admin.php?mod=medal&code=modify&ids={$medal[id]}">编辑</a>&nbsp;|&nbsp;
+		<A href="admin.php?mod=medal&code=delete&ids={$medal[id]}">删除</A>&nbsp;	</td>
+</tr>
+<!--{/loop}-->
+
+
+<!--{if $page_arr[html]}-->
+<tr align="center">
+	<td colspan="8">
+	{$page_arr[html]}				</td>
+</tr>
+<!--{/if}-->
+<tr align="center">
+	<td colspan="8" >&nbsp;	</td>
+</tr>
+</table>
+</form>
+</div>
+
+

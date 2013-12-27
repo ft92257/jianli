@@ -1,0 +1,43 @@
+<!--{template admin/header}-->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+  <tr class="header">
+    <td><div style="float:left; ">技巧提示 </div>
+	<span style="float:right;"><a href="#" onclick="collapse_change('tip')">收缩/展开</a></span>
+     </td>
+  </tr>
+  <tbody id="menu_tip" style="display:">
+    <tr>
+      <td><ul>
+          <li>下面专题是基于已有的话题来建立的，所以添加专题前请确认话题已存在；</li>
+          <li>专题，用来引导用户更详细的了解某话题的相关情况以及人物推荐等。</li>
+        </ul></td>
+    </tr>
+</table>
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header">
+      <td>已有的话题专题</td>
+      <td width="80%">相关操作</td>
+    </tr>
+    <!--{loop $tag_extra_list $v}-->
+    <tr>
+      <td class="altbg2">{$v[name]}</td>
+      <td class="altbg2"><a href="admin.php?mod=tag&code=modify_extra&id={$v[id]}">编辑</a> &nbsp; 
+      <a onclick="return confirm('确认删除？');" href="admin.php?mod=tag&code=delete_extra&id={$v[id]}">删除</a> &nbsp; 
+      <a href="index.php?mod=tag&code={$v[name]}" target="_blank">前台查看</a> &nbsp; 
+      </td>
+    </tr>
+    <!--{/loop}-->
+    <tr>
+    	<td class="altbg1" colspan="2">
+    		<form method="post" action="admin.php?mod=tag&code=add_extra">
+    		<input type="text" name="name" value="" size="20" />
+    		<input type="submit" value="新增专题" />
+    		</form>
+    	</td>
+    </tr>
+  </table>
+<br />
+ 

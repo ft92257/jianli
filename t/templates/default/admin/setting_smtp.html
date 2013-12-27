@@ -1,0 +1,68 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td>技巧提示</td>
+  </tr>
+  <tr class="altbg1">
+    <td><ul>
+        <li>如果您的服务器自身不支持邮件发送功能，请使用smtp方式。</li>
+      </ul></td>
+  </tr>
+</table>
+<form method="post" name="smtp" action="{$action}">
+  <a name="邮件设置"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">邮件设置</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>是否通过SMTP方式发送邮件？</b><br>
+      <span class="smalltxt">
+        选择“是”，需要填写下面的SMTP配置信息（一般来说发送速度较慢）；<br />
+		选择“否”，将通过 PHP 函数的 sendmail 发送(需要你的服务器支持，推荐此方式)
+      </span>
+      </td>
+      <td class="altbg2">{$smtp_enable_radio}</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>SMTP服务器:</b><br>
+        <span class="smalltxt">如：smtp.qq.com（某些邮箱需要手动开启SMTP服务才可以使用，QQ邮箱在设置-帐户中开启）</span></td>
+      <td class="altbg2"><input type="text" size="30" name="smtp[host]" value="{$smtp[host]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>SMTP服务器端口:</b><br>
+        <span class="smalltxt">一般为25</span></td>
+      <td class="altbg2"><input type="text" size="30" name="smtp[port]" value="{$smtp[port]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>SMTP服务器的用户邮箱:</b><br>
+        <span class="smalltxt">发送邮件时使用，如 10000@qq.com</span></td>
+      <td class="altbg2"><input type="text" size="30" name="smtp[mail]" value="{$smtp[mail]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>SMTP服务器的用户帐号:</b><br>
+        <span class="smalltxt">登录SMTP邮箱服务器的帐号，如 10000</span></td>
+      <td class="altbg2"><input type="text" size="30" name="smtp[username]" value="{$smtp[username]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>SMTP服务器的用户密码:</b><br>
+        <span class="smalltxt">帐号对应的密码</span></td>
+      <td class="altbg2"><input type="password" size="30" name="smtp[password]" value="请输入SMTP服务器的用户密码">
+      </td>
+    </tr>
+  </table>
+  <br>
+  <center>
+    <input class="button" type="submit" name="settingsubmit" value="提 交">
+    &nbsp;
+    <input type="submit" class="button" name="settingsubmitandtesting" value="提交并发送测试邮件">
+  </center>
+  <br>
+</form>
+<br>

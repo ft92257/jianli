@@ -1,0 +1,116 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+<form action="" method="post" name="myform" id="myform"   enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',6,1);">基本信息</li>
+   	   	<li id="tab_setting_2" class="" onclick="SwapTab('setting','on','',6,2);">特色</li>
+		<li id="tab_setting_3" class="" onclick="SwapTab('setting','on','',6,3);">价格</li>
+	    <li id="tab_setting_4" class="" onclick="SwapTab('setting','on','',6,4);">流程</li>
+		<li id="tab_setting_5" class="" onclick="SwapTab('setting','on','',6,5);">案例</li>
+		<li id="tab_setting_6" class="" onclick="SwapTab('setting','on','',6,6);">联系我们 </li>
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          <tr>
+            <th></th>
+            <td></td>
+          </tr>
+        <tr>
+          <th width="100">公司名称 :</th>
+          	<td>
+            	<input type="text" name="name" id="name" rel="title_color" class="input-text iColorPicker" size="53" value="{$data.name}" />
+			</td>
+		</tr>
+		<tr>
+          <th width="100">公司LOGO :</th>
+          	<td>
+				<img src='{$IMAGE_ROOT}{$data.logo}' width="120" height="120" />
+            	<input type="file" name="logo" id="logo" rel="title_color" class="input-text iColorPicker" />
+			</td>
+		</tr>
+		<tr>
+            <th width="100">公司简介 :</th>
+            <td><textarea class="input-text iColorPicker"  style=" width:400px; height:100px" name="info">{$data.info}</textarea>
+					</td>
+        </tr> 
+		<tr>
+          <th width="100">服务区域 :</th>
+          	<td>
+            	<input type="text" name="region" id="region" rel="title_color" class="input-text iColorPicker" value="{$data.region}" />
+			</td>
+		</tr> 
+		<tr>
+          <th width="100">联系人 :</th>
+          	<td>
+            	<input type="text" name="contact" id="contact" rel="title_color" class="input-text iColorPicker" value="{$data.contact}" />
+			</td>
+		</tr> 
+		<tr>
+          <th width="100">联系电话 :</th>
+          	<td>
+            	<input type="text" name="telephone" id="telephone" rel="title_color" class="input-text iColorPicker" value="{$data.telephone}" />
+			</td>
+		</tr>          
+		<tr>
+		  <th>状态</th>
+		  <td>启用:<input type="radio" name="status" value="1" <if condition="$data.status eq 1">checked="checked"</if> />禁用:<input type="radio" name="status" value="0" <if condition="$data.status eq 0">checked="checked"</if> /></td>
+		</tr>
+        </table>
+      </div>
+	
+	<div id="div_setting_2" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_2" name="feature_info" style="width:700px;height:300px;">{$data.feature_info}</textarea>
+	</div>
+
+	<div id="div_setting_3" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_3" name="price_info" style="width:700px;height:300px;">{$data.price_info}</textarea>
+	</div>
+
+	<div id="div_setting_4" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_4" name="process_info" style="width:700px;height:300px;">{$data.process_info}</textarea>
+	</div>
+
+	<div id="div_setting_5" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_5" name="case_info" style="width:700px;height:300px;">{$data.case_info}</textarea>
+	</div>
+
+	<div id="div_setting_6" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_6" name="contact_info" style="width:700px;height:300px;">{$data.contact_info}</textarea>
+	</div>
+      
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			$('#div_'+name+'_'+i).show();
+			$('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			$('#div_'+name+'_'+i).hide();
+			$('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+function KE_show(id) {
+	KE.show({
+		id : id,
+		imageUploadJson : "{:U('company/KE_upload')}",
+	});
+}
+
+KE_show('KE_2');
+KE_show('KE_3');
+KE_show('KE_4');
+KE_show('KE_5');
+KE_show('KE_6');
+</script>
+</body></html>

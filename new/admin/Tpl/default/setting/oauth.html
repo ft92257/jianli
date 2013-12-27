@@ -1,0 +1,55 @@
+<include file="public:header" />
+<form id="myform" name="myform" action="{:u('setting/edit')}" method="post">
+  <div class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">新浪微博</li>
+        <li id="tab_setting_2" onclick="SwapTab('setting','on','',2,2);">腾讯QQ</li>
+
+      </ul>
+      
+      <div id="div_setting_1" class="contentList pad-10">
+          <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[sina_app_key]" value="{$set.sina_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[sina_app_Secret]" value="{$set.sina_app_Secret}"></td>
+            </tr>            
+        </table>
+      </div>
+      
+      <div id="div_setting_2" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="100">App key :</th>
+              <td><input type="text" size="80" name="site[qq_app_key]" value="{$set.qq_app_key}" ></td>
+            </tr>
+            <tr>
+              <th width="100">App Secret :</th>
+              <td><input type="text" size="80" name="site[qq_app_Secret]" value="{$set.qq_app_Secret}"></td>
+            </tr>            
+        </table>    
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();" name="dosubmit" class="button" id="dosubmit"></div>
+    </div>
+  </div>
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			 $('#div_'+name+'_'+i).show();
+			 $('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			 $('#div_'+name+'_'+i).hide();
+			 $('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+</script>
+
+</body></html>

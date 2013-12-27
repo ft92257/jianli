@@ -1,0 +1,114 @@
+<!--{template admin/header}-->
+<!--{if $action == 'add' && $cep}-->
+<form method="post" action="{$formpost}" enctype="multipart/form-data" autocomplete="off">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">添加部门</td>
+		</tr>
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">所属单位</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$cep}</td>
+		</tr>
+		<!--{if $dep}-->
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">上级部门</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$dep}</td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">部门名称</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">
+		  <input type="hidden" name="pid" value="{$pid}"><input type="hidden" name="cid" value="{$cid}"><input type="text" name="name">（必须填写）</td>
+		</tr>
+		<tr>
+		<td width="24%" bgcolor="#F8F8F8">显示别名</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<input type="text" name="nickname">（类似于个人昵称，用于前台显示，可以不填写）</td>
+	</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">部门简介</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<textarea name="description" cols="50" rows="5"></textarea>（用于前台显示，可以不填写）
+		</td>
+	</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">备注信息</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<textarea name="info" cols="50" rows="3"></textarea>（用于前台显示，可以不填写）
+		</td>
+	</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">形象图</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<input type="file" name="image">(大小：100*100象素)
+		</td>
+	</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="addsubmit" value="提 交"></center>
+</form>
+<!--{elseif $action == 'mod' && $did}-->
+<form method="post" action="{$formpost}" enctype="multipart/form-data" autocomplete="off">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">部门修改</td>
+		</tr>
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">所属单位</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$cep}</td>
+		</tr>
+		<!--{if $dep}-->
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">上级部门</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$dep}</td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">部门名称</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">
+		  <input type="hidden" name="id" value="{$did}"><input type="text" name="name" value="{$department[name]}"></td>
+		</tr>
+		<tr>
+		<td width="24%" bgcolor="#F8F8F8">显示别名</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<input type="text" name="nickname" value="$department[nickname]"></td>
+	</tr>
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">负责人</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$mname}
+		  显示姓名：<input type="text" name="managername" value="{$department[managername]}"></td>
+		</tr>
+		<tr>
+			<td width="24%" bgcolor="#F8F8F8">部门领导</td>
+			<td width="76%" align="right" bgcolor="#FFFFFF">{$lname}
+		  显示姓名：<input type="text" name="leadername" value="{$department[leadername]}"></td>
+		</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">部门简介</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<textarea name="description" cols="50" rows="5">{$department[description]}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">备注信息</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<textarea name="info" cols="50" rows="3">{$department[info]}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td width="24%" bgcolor="#F8F8F8">形象图</td>
+		<td width="76%" align="right" bgcolor="#FFFFFF">
+		<input type="file" name="image">(大小：100*100象素)
+		<!--{if $department[image]}--><br><img src="$department[image]" border="0" height="100"><!--{/if}-->
+		</td>
+	</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="addsubmit" value="保 存"></center>
+</form>
+<!--{else}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+<tr class="header"><td>直属单位</td><td>部门名称</td><td>本部门人数</td><td>本部门微博数</td><td>负责人</td><td>部门领导</td><td>管理(<a href="admin.php?mod=department&code=cache">更新统计</a>)</td></tr>
+{$lists}
+</table>
+<!--{/if}-->

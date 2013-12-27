@@ -1,0 +1,155 @@
+<!--{template admin/header}-->
+
+
+<!--{if 'list_credits_rule'==$this->Code}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>各项积分增减允许的范围为 -99～+99。</li>
+			<li>如果为更多的操作设置积分策略，系统就需要更频繁的更新用户积分，同时意味着消耗更多的系统资源，因此请根据实际情况酌情设置。<a target="_blank" href="index.php?mod=settings&code=extcredits&op=rule">查看积分规则</a></li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_modify_credits_rule">
+	<a name="积分策略"></a>
+	<!--{eval $_colspan = $_extcredits_count+4;}-->
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="{$_colspan}">积分策略</td>
+		</tr>
+		<tr>
+			<td><b>策略名称</b><br></td>
+			<td><b>周期</b><br></td>
+			<td><b>奖励次数</b><br></td>
+			<!--{loop $_extcredits $__v}-->
+			<td><b>{$__v[name]}</b><br></td>
+			<!--{/loop}-->
+			<td>&nbsp;</td>
+		</tr>
+		<!--{loop $rules $_v}-->
+		<tr>
+			<td>{$_v[rulename]}<b>{$_v[related]}</b></td>
+			<td>{$_v[cycletype]}</td>
+			<td>{$_v[rewardnum]}</td>
+			<!--{loop $_extcredits $__k $__v}-->
+			<td><input type="text" name="rule[{$_v[rid]}][{$__k}]" size="10" value="{$_v[$__k]}" /></td>
+			<!--{/loop}-->
+			<td><a href="admin.php?mod=setting&code=modify_credits_rule&rid={$_v[rid]}">编辑</a>
+            <!--{if '_'==$_v[action][0]}-->
+                <a href="admin.php?mod=setting&code=do_modify_credits_rule&rid={$_v[rid]}&act=del">删除</a>
+            <!--{/if}-->
+            </td>
+		</tr>
+		<!--{/loop}-->
+        <tr>
+            <td colspan="{$_colspan}">
+                <select name="new_rule_var">
+                    <option value="0">请选择一个你要增加的新规则</option>
+                    <option value="_T">发布指定话题</option>
+                    <option value="_U">关注指定用户</option>
+                    <option value="_S">签到祝福</option>
+                </select> &nbsp; 
+                <input type="submit" name="newrulesubmit" class="button" value="提 交" /> &nbsp; 
+            </td>
+        </tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="listsubmit" value="提 交"> &nbsp; <input type="button" class="button" value="返 回" onclick="window.location.href='admin.php?mod=setting&code=modify_credits';"></center><br>
+</form>
+<br>
+
+
+<!--{elseif 'modify_credits_rule'==$this->Code}-->
+
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_modify_credits_rule">
+	<input type="hidden" name="rid" value="{$rule_info[rid]}" />
+	<a name="积分策略"></a>	
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">编辑积分 - {$rule_info[rulename]}</td>
+		</tr>
+		<tr>
+			<td width="25%">
+				<b>周期<br>
+				间隔时间<br>
+				奖励次数</b><br></td>
+			<td>
+			<input onclick="rule_cycletype_click();" type="radio" id="rule_cycletype_0" name="rule[cycletype]" value="0" {$rule_info[cycletype_0_checked]} /> <label for="rule_cycletype_0">一次</label><br>
+			<input onclick="rule_cycletype_click();" type="radio" id="rule_cycletype_1" name="rule[cycletype]" value="1" {$rule_info[cycletype_1_checked]} /> <label for="rule_cycletype_1">每天</label><br>
+			<input onclick="rule_cycletype_click();" type="radio" id="rule_cycletype_2" name="rule[cycletype]" value="2" {$rule_info[cycletype_2_checked]} /> <label for="rule_cycletype_2">整点</label><br>
+			<input onclick="rule_cycletype_click();" type="radio" id="rule_cycletype_3" name="rule[cycletype]" value="3" {$rule_info[cycletype_3_checked]} /> <label for="rule_cycletype_3">间隔分钟</label><br>
+			<input onclick="rule_cycletype_click();" type="radio" id="rule_cycletype_4" name="rule[cycletype]" value="4" {$rule_info[cycletype_4_checked]} /> <label for="rule_cycletype_4">不限</label><br>
+			<div id="rule_cycletime_area"> <b>间隔时间：</b> <input type="text" name="rule[cycletime]" size="10" value="{$rule_info[cycletime]}" /></div>
+			<div id="rule_rewardnum_area"> <b>奖励次数：</b> <input type="text" name="rule[rewardnum]" size="10" value="{$rule_info[rewardnum]}" /> 0 为不限次数</div>
+			</td>
+		</tr>
+		<!--{loop $_extcredits $__k $__v}-->
+		<tr>
+			<td width="25%"><b>{$__k} {$__v[name]}</b><br></td>
+			<td><input type="text" name="rule[{$__k}]" size="10" value="{$rule_info[$__k]}" /></td>
+		</tr>
+		<!--{/loop}-->
+        
+		<!--{if '_T'==$_related}-->
+		<tr>
+			<td width="25%"><b>指定一个话题</b><br></td>
+			<td><input type="text" name="rule[related]" size="10" value="{$rule_info[related]}" /><br>请输入一个系统中已经存在的话题</td>
+		</tr>
+		<!--{elseif '_U'==$_related}-->
+		<tr>
+			<td width="25%"><b>指定一个用户</b><br></td>
+			<td><input type="text" name="rule[related]" size="10" value="{$rule_info[related]}" /><br>请输入一个系统中已经存在的用户昵称</td>
+		</tr>
+		<!--{/if}-->
+		
+	</table>
+	<script language="Javascript">
+		function rule_cycletype_click()
+		{
+			var r1 = document.getElementById('rule_cycletime_area');
+			var r2 = document.getElementById('rule_rewardnum_area');
+			
+			if(document.getElementById('rule_cycletype_0').checked)
+			{
+				r1.style.display = 'none';
+				r2.style.display = 'none';
+			}
+			else if(document.getElementById('rule_cycletype_1').checked)
+			{
+				r1.style.display = 'none';
+				r2.style.display = 'block';
+			}
+			else if(document.getElementById('rule_cycletype_2').checked)
+			{
+				r1.style.display = 'block';
+				r2.style.display = 'block';
+			}
+			else if(document.getElementById('rule_cycletype_3').checked)
+			{
+				r1.style.display = 'block';
+				r2.style.display = 'block';
+			}
+			else if(document.getElementById('rule_cycletype_4').checked)
+			{
+				r1.style.display = 'none';
+				r2.style.display = 'block';
+			}
+		}
+		rule_cycletype_click();
+	</script>
+	<br>
+	<center>
+    <input type="submit" class="button" name="rulesubmit" value="提 交" /> &nbsp; 
+    <!--{if '_'==$_related[0]}-->
+    <!-- <input type="button" class="button" value="删 除" onclick="window.location.href='admin.php?mod=setting&code=';" /> &nbsp; -->
+    <!--{/if}-->
+    <input type="button" class="button" value="返 回" onclick="window.location.href='admin.php?mod=setting&code=list_credits_rule';"></center><br>
+</form>
+<br>
+<!--{/if}-->

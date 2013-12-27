@@ -1,0 +1,153 @@
+/* CSS Document */
+
+#pbody .main_left{ width:700px;padding:10px 0 30px; float:left;}
+.broadcast{margin-bottom:15px;}
+.broadcast td{padding:0 0 8px 0;}
+.broadcast textarea{ width:648px;height:48px;border-color:#e6e6e6;}
+.broadcast .submit{float:right;}
+.broadcast .spdin{float:left;height:24px; line-height:24px;margin-top:-32px;}
+.broadcast .spdin a{ display:inline-block;color:#666;margin-right:10px;}
+.broadcast .spdin a span{float:left;}
+
+#pbody .main_right{ width:250px;float:right;padding-bottom:30px;}
+.box2{border:1px solid #e6e6e6; background-color:#fff;margin-top:10px;}
+.box2 h2{font-size:14px;padding:15px;}
+.box2 h2 a{float:right;font-size:12px; font-weight:normal;}
+.count{height:38px;margin:20px 0 20px 15px;}
+.count a{display:inline-block;height:38px;padding:0 27px;border-right:1px solid #ececec; text-align:center;color:#333; line-height:18px;}
+.count a b{color:#FF6B24; font-size:16px;}
+.box2 h3{height:42px; font-size:12px; font-weight:normal; line-height:42px;background-color:#F1F1F1;padding:0 15px;}
+.box2 h3 a{color:#333; text-decoration:underline; float:right;}
+.spr_consul{margin:0 0 15px 10px;}
+.spr_consul .ico25{float:left;margin-top:5px;}
+
+.list_comment{padding:15px 0;}
+.list_comment li{ clear:both;margin-bottom:10px; display:inline-block; width:655px;}
+.list_comment .left{width:50px;}
+.list_comment .left img{width:50px;height:50px;}
+.list_comment .right{width:590px;border-bottom:1px dotted #e6e6e6;padding-bottom:20px;}
+.list_comment .right h3{ font-weight:normal;font-size:14px; line-height:24px;margin-top:-5px;}
+.list_comment .right p{ line-height:22px;color:#999;}
+p.other span{float:right;}
+.list_comment .right p a{margin-left:10px;}
+.list_comment .right img{width:80px; height:80px;margin:10px 10px 10px 0;}
+*html .list_comment .right img{margin:10px 10px 8px 0;}
+.list_comment .active{border:1px solid #e6e6e6; background-color:#f9f9f9;padding:15px;margin:-1px 0 10px;}
+.list_comment .active_bg{padding-top:8px; background:url(../images/comment_tpbg.gif) 45px top no-repeat;position:relative; z-index:1;margin-top:15px;}
+.list_comment .active h3{font-size:12px; line-height:22px;color:#666;}
+.list_comment .m_sp1{ text-align:center;height:16px; line-height:16px; background-color:#2097DD;color:#fff;}
+
+.pic_text{margin:15px 10px 15px 15px;}
+.pic_text img{float:left;margin-right:15px; width:50px; height:50px;}
+.pic_text p{line-height:20px;color:#666;}
+.pic_text p.memb{line-height:12px;margin-bottom:6px;}
+.pic_text p.memb a{margin-right:10px;}
+.pic_text p span{color:#999; float:left;}
+
+.list_maybe{margin:5px 10px 15px 17px;}
+.list_maybe li{margin-top:15px;clear:both; display:inline-block;color:#999;width:100%;}
+.list_maybe li img{float:left;margin-right:10px; width:80px; height:80px;}
+.list_maybe li p{line-height:22px;height:56px;}
+.list_maybe li p a{color:#333;line-height:normal;}
+.bt_ltblue a{display:inline-block; background:url(../images/button.jpg) left -259px; width:60px; height:24px; text-align:center;color:#fff; line-height:24px;margin-right:5px;}
+.bt_ltblue a:hover{ background-position:right -259px;}
+
+.friend{margin-top:5px;padding-bottom:20px;}
+.friend li{margin:15px 16px 0; float:left; width:50px; line-height:16px; text-align:center}
+.friend li a{color:#333;}
+.friend li img{widht:50px; height:50px;}
+
+.list_visit{margin:20px 0 0 20px; width:250px;}
+.list_visit li{float:left;width:98px;margin-right:15px;color:#999;line-height:20px;padding-bottom:20px;}
+.list_visit li img{width:80px; height:80px;margin-bottom:5px;}
+.list_visit li em{display:block;width:22px;height:15px; background:url(../images/schedule.gif) no-repeat; float:right; position:relative; z-index:1;margin:-21px 19px 0 0;}
+*html .list_visit li em{margin-top:-23px;}
+*+html .list_visit li em{margin-top:-23px;}
+.list_visit li em.percent0{ background-position:left -65px;}
+.list_visit li em.percent1{ background-position:left top;}
+.list_visit li em.percent2{ background-position:left -22px;}
+.list_visit li em.percent3{ background-position:left -45px;}
+.list_visit li em.percent4{ background-position:right top;}
+.list_visit li em.percent5{ background-position:right -22px;}
+.list_visit li em.percent6{ background-position:right -45px;}
+.list_visit li .attent{ display:inline-block;padding:0 5px;color:#fff; background-color:#999;margin-left:5px;height:16px; line-height:16px;}
+
+h3.tit{font-size:14px;padding:15px 10px;}
+h3.tit a{font-size:14px;float:right;font-size:12px;font-weight:normal;}
+.list_dynamic{margin-bottom:30px;}
+.list_dynamic li{border-bottom:1px solid #ddd; line-height:40px;padding:0 10px;}
+.list_dynamic li a{margin:0 5px;}
+.list_dynamic .flt_rt{color:#ccc;height:40px;width:241px; text-align:right;}
+.list_dynamic .flt_rt a{width:11px; height:11px; background:url(../images/list_style02.gif) center no-repeat;float:right;margin-top:15px;visibility:hidden;}
+.list_dynamic .flt_rt a span{cursor:pointer;}
+.list_dynamic .hover .flt_rt a{visibility:visible;}
+
+.pr_cont{ margin-top:15px;}
+.pr_cont p{border-bottom:1px solid #dddddd;height:30px;line-height:30px;font-size:14px;}
+.pr_cont p span{float:right;font-size:12px;color:#2097DD;}
+.pr_cont p span a{margin:0 10px;}
+.pr_cont .progress{float:right;height:62px;line-height:62px;margin-top:-62px;color:#999;width:150px;text-align:right;margin-right:10px;}
+* html .pr_cont .progress{margin-top:-69px;}
+*+ html .pr_cont .progress{margin-top:-63px;}
+.pr_cont .progress strong,.prog .progress strong{ font-style:italic;font-size:24px;color:#86B4CA; font-family:Georgia, "Times New Roman", Times, serif;margin-left:20px;}
+.pr_tit{margin-top:20px;height:62px;}
+.pr_tit a{display:inline-block;width:62px; height:52px; background:url(../images/pr_tabbg.png) no-repeat; text-align:center;line-height:20px;padding-top:10px;color:#333; cursor:pointer;padding-bottom:7px;}
+.pr_tit a span{width:24px;}
+.pr_tit a.current{ background-image:url(../images/pr_currentbg.png);height:59px;position:relative; z-index:1;padding-bottom:0;}
+.pr_tit .hide{color:#e6e6e6;}
+.pr_tit .hide .ico13{background-position:left -68px;}
+.pr_tit .hide .ico14{background-position:-29px -68px;}
+.pr_tit .hide .ico15{background-position:-54px -68px;}
+.pr_tit .hide .ico16{background-position:-80px -68px;}
+.pr_tit .hide .ico17{background-position:-108px -68px;}
+.pr_tit .hide .ico18{background-position:-136px -68px;}
+.pr_pic{border:1px solid #e6e6e6;padding:18px 0;height:80px; line-height:80px;margin-top:6px; background-color:#fff;}
+*html .pr_pic{margin-top:-1px;}
+.prev,.next{ cursor:pointer;float:left;widht:11px;height:18px;margin:32px 10px 0; background-position:-96px -21px;}
+.next{ background-position:-116px -21px;}
+.items a,.items div{margin-right:25px;}
+.items div{width:710px;}
+.scrollable {width:614px;height:80px;}
+
+.box3{border:1px solid #e6e6e6; background-color:#fff;padding:0 15px;}
+
+.vge_nav{ height:36px;line-height:36px;margin-top:10px;}
+.vge_nav a{ display:inline-block;padding:0 20px;color:#999;}
+.vge_nav a.current{ background-color:#fff;border:1px solid #e6e6e6; border-bottom:none;color:#333; position:relative; z-index:1;}
+.vge_inf{border:1px solid #e6e6e6;background-color:#fff; min-height:823px;padding:0 20px;}
+
+.state{color:#999;height:50px; line-height:50px;padding-bottom:5px;clear:both;}
+.state a{font-size:12px;margin:0 10px;color:#999;}
+.state a.current{color:#333;}
+
+.owner{padding-bottom:30px;}
+.owner .pic_text{margin-top:30px;}
+.owner p{ line-height:20px;color:#333;padding:0 15px;}
+.owner .eadit{ float:right;margin-right:15px;}
+
+.list_lkact{margin-top:0;}
+.list_lkact li{ display:inline-block; width:100%;padding:15px 0; border-bottom:1px dotted #ddd;}
+.list_lkact li a{color:#333;}
+
+.list_proj li{ width:220px; position:relative;}
+.list_proj li img{float:left;margin-right:15px;}
+.list_proj li em{ position:absolute;left:57px;top:85px;}
+*html .list_proj li em{top:87px;}
+*+ html .list_proj li em{top:87px;}
+
+.margtop{ margin-top:45px;}
+.margtop .count {margin: 20px 0 15px 15px;}
+.owner_btn{margin:0 15px;padding-top:5px;}
+.owner_btn a{ margin-right:5px;}
+
+.prog{border-bottom:1px solid #e6e6e6;height:59px; text-align:center;color:#999;}
+.prog div{ width:123px;height:54px;float:left;padding-top:5px;}
+.prog div span{margin:3px 0 5px; width:25px;}
+.prog .progress{border-left:1px solid #e6e6e6;}
+
+.prog_pic{padding:15px 0;}
+.prog_pic .prev,.prog_pic .next{margin:32px 8px 0;}
+.prog_pic .scrollable{ width:170px;}
+.prog_pic .scrollable .items div{ width:auto;}
+.prog_pic .items a{margin-right:5px;}
+.prog_pic .items img{margin-right:0;}

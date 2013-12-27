@@ -1,0 +1,36 @@
+<!--{template admin/header}-->
+<form method="post"  action="admin.php?mod=media&code=del_media">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+  <tr class="header">
+    <td width="80"><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')">
+      全选</td>
+    <td width="231" align="left">取消媒体汇用户</td>
+    <td width="1020"></td>
+    <td width="60">&nbsp;</td>
+  </tr>
+  <tr align="center">
+    <td colspan="4" class="altbg1" style="border-bottom:1px dotted #EDEDED">
+	<!--{if $media_user}-->
+	 <!--{loop $media_user $_user}-->
+	  <div style="float:left; width:120px;">
+	  <img onerror="javascript:faceError(this);" src="{$_user[face]}" style="margin:0 0 0 15px;"/><br />
+	  <input class="checkbox" type="checkbox" name="ids[]" value="$_user[uid]">      
+	  <a href="index.php?mod={$_user[username]}" target="_blank">{$_user[nickname]}</a>	</div>
+	 <!--{/loop}-->
+	 <!--{else}-->
+	  没有选择媒体汇用户
+	 <!--{/if}-->
+	 </td>
+  </tr>
+  <!--{if $page_arr[html]}-->
+  <tr align="center">
+    <td colspan="4" class="altbg1"> {$page_arr[html]} </td>
+  </tr>
+  <!--{/if}-->
+</table>
+<center>
+  <input type="submit" class="button" name="editsubmit" value="提 交" /> &nbsp;&nbsp;<input name="reset" type="reset"class="button" onclick="history.go(-1)" value="返 回" />
+
+
+</center>
+</form>

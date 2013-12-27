@@ -1,0 +1,92 @@
+{template "topic_header"}
+<link href="templates/default/styles/photo.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.topnew_pic_bg{ padding:10px;}
+.item_wrap{ margin-right:7px;}
+.main3Box_m{ padding-bottom:0;}
+.item_list li,.item_list li .favorite{ width:220px;}
+.item_list li{ margin-bottom:15px;}
+.item_list li .ws_bd h5{ width:175px;}
+.item_list li .item_photo{ width:220px;}
+</style>
+<script>
+function loadtopic_pic()
+{
+	$('.boutique_load').html('<span>正在加载，请稍后...</span>');
+	onloading = true;
+	var myAjax = $.post(
+	"ajax.php?mod=topic&code=channel",
+	{
+		id:"{$params['id']}",
+		page:topicpagenum
+	},
+	function (d){
+		if('' != d){
+			listpic(d,3);
+		}
+		topicpagenum++;
+		$('.boutique_load').html('');
+		onloading = false;
+	});
+}
+function listpic(html,m)
+{
+	var s=html.split('<jishigou>');	var n=s.length;
+	if(n==1){s=html.split('<JISHIGOU>');n=s.length;}//此处为兼容IE内核浏览器
+	for(var i=0;i<n;i++){
+		var h = $('#topic_pic_0').height();var hj = 0;
+		for(var j=1;j<m;j++){
+			if(h > $('#topic_pic_'+j).height()){
+				h = $('#topic_pic_'+j).height();
+				hj = j;
+			}
+		}
+		$('#topic_pic_'+hj).append(s[i]);
+	}
+}
+<!--{if $ajax_num}-->var ajax_num = {$ajax_num};<!--{else}-->var ajax_num = 0;<!--{/if}-->
+var onloading = false;var topicpagenum = 2;
+$(window).bind('scroll resize',function(event){
+	if(!onloading && (ajax_num >= topicpagenum)){
+		var ulheight = $('#topic_pic_0').height();
+		for(var i=1;i<3;i++){
+			if(ulheight > $('#topic_pic_'+i).height()){
+				ulheight = $('#topic_pic_'+i).height();
+			}
+		}
+		var bodyTop = document.documentElement.scrollTop + document.body.scrollTop;
+		if(bodyTop+$(window).height()-200 >= ulheight){
+			loadtopic_pic();
+		}
+	}
+});
+$(document).ready(function() {
+var defhtml = $('#deftopic').html();
+listpic(defhtml,3);
+});
+</script>
+<div class="setframe">
+<!--此处三栏-->
+<!--{template 'channel_left.ini'}-->
+<!--此处三栏-->
+<div class="main3Box_m">
+  <div class="list_title" style="background-color:#fff;">
+  <span id="channel_name">{$channel_name}</span><span id="follow_channel" class="follow_c_{$this->Channel}">{$channel_buddy}</span>
+  <a class="picmod" href="index.php?mod=channel&id={$this->Channel}&filter_type=pic"><b>瀑布流</b></a>
+  <a class="listmod "href="index.php?mod=channel&id={$this->Channel}">列表</a>
+  </div>
+  <div class="topic_pic topnew_pic_bg">
+  <!--{loop $topic_pic_keys $key $val}-->
+	<div class="item_wrap"><ul class="item_list" id="topic_pic_{$key}"></ul></div>
+	<!--{/loop}-->
+	<div id="deftopic" style="display:none;">
+	<!--{loop $topics $val}-->
+	{template "topic_new_pic_item"}
+	<jishigou>
+	<!--{/loop}-->
+	</div>
+  <div class="boutique_load"></div>
+  </div>
+</div>
+</div>
+{template "topic_footer"}

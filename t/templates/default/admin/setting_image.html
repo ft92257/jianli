@@ -1,0 +1,71 @@
+<!--{template admin/header}-->
+
+
+<form method="post" name="config[settings]" action="admin.php?mod=setting&code=domodify_normal" enctype="multipart/form-data">
+	
+	<a name="图片选项"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">图片上传相关设置</td>
+		</tr>		
+		<tr class="altbg2">
+			<td width="45%"><b>一次上传多图数量限制:</b><br>
+			<span class="smalltxt">多图上传时，一次性最多只能上传多少张？默认为3张</span></td>
+			<td><input type="text" name="config[image_uploadify_queue_size_limit]" value="{conf image_uploadify_queue_size_limit}" size="4" /></td>
+		</tr>
+		
+		<tr class="altbg1">
+			<td width="45%"><b>指定图片缩略图像素大小:</b><br>
+			<span class="smalltxt">微博中上传图片按比例生成缩略图；<BR>
+			比如设置为宽：120px，高：120px，但都不能小于60px</span></td>
+			<td>
+			宽<input type="text" name="config[thumbwidth]" value="{conf thumbwidth}" size="4" />px，高<input type="text" name="config[thumbheight]" value="{conf thumbheight}" size="4" />px			</td>
+		</tr>		
+		<tr class="altbg2">
+			<td width="45%"><b>指定缩略图截取方法:</b><br>
+			<span class="smalltxt">微博中上传图片按比例生成缩略图，宽高不会超过本设定；<BR>
+			</span></td>
+			<td>{$thumb_cut_type_radio}</td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%"><b>保存图片的最大像素尺寸:</b><br>
+			<span class="smalltxt">原始数码图片像素和文件都很大，则系统会按照本设置进行缩小后再保存到服务器；<br>
+			比如可以设置为 宽：600px，高：1600px，但都不能小于300px。</span></td>
+			<td>
+			宽<input type="text" name="config[maxthumbwidth]" value="{conf maxthumbwidth}" size="4" />px，高<input type="text" name="config[maxthumbheight]" value="{conf maxthumbheight}" size="4" />px			</td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%"><b>对上传图片打水印:</b><br>
+			<span class="smalltxt">选择“是”将开启图片水印功能，如需支持中文水印，<a target="_blank" href="http://www.jishigou.net/images/jsg.ttf">请点此下载中文字体</a><br>
+			或从C:/windows/fonts拷贝一种字体文件改名为jsg.ttf，再通过FTP上传为 ./images/jsg.ttf </span></td>
+			<td>
+			$watermark_enable_radio			</td>
+		</tr>		
+		<tr class="altbg1">
+			<td width="45%"><b>图片水印内容:</b><br>
+			<span class="smalltxt">选择用户昵称，必须上传字体到./images/jsg.ttf</span></td>
+			<td>$watermark_contents_radio</td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%"><b>水印字体大小:</b><br>
+			<span class="smalltxt">字体大小仅对truetype字体有效<br>默认为12</span></td>
+			<td><input type="text" name="config[watermark_contents_size]" value="{conf watermark_contents_size}" size="2" /></td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%"><b>水印字体颜色:</b><br>
+			<span class="smalltxt">默认为白色(#ffffff)</span></td>
+			<td><input type="text" name="config[watermark_contents_color]" value="{conf watermark_contents_color}" size="8" /></td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%"><b>图片水印位置:</b><br>
+			<span class="smalltxt">即水印文字显示在图片上的方位</span></td>
+			<td>
+			$watermark_position_radio			</td>
+		</tr>		
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+		
+	
+</form>
+<br>

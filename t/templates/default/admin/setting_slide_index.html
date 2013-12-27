@@ -1,0 +1,67 @@
+<!--{template admin/header}-->
+
+<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_modify_slide_index" enctype="multipart/form-data">
+
+    <a name="幻灯设置"></a>
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+        <tr class="header">
+    		<td colspan="2">首页幻灯广告设置</td>
+    	</tr>
+    	<tr>
+    		<td width="45%"><b>是否启用？</b><br />
+            启用幻灯广告后，在网站首页会显示幻灯图片内容，以吸引游客访问网站；
+            </td>
+    		<td>{$slide_enable_radio}</td>
+    	</tr>
+    </table>
+    <center><input type="submit" class="button" name="settingsubmit" value="提交设置" /></center><br />
+
+	<a name="幻灯列表"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header"> 
+            <td>启用</td>
+            <td>图片地址和链接地址</td>
+			<td>排序</td>          
+		</tr>
+        {loop $slide_list $k $slide}
+		<tr>
+            {eval $_checked = $slide[enable] ? ' checked checked="true" ' : '';}
+			<td valign="top"><input type="checkbox" name="slide[list][{$k}][enable]" value="1" {$_checked} /></td>
+            <td valign="top">1）请输入图片地址：<input type="text" name="slide[list][{$k}][src]" value="{$slide[src]}" size="50" />图片大小以680x220为最佳；
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或上传图片：<input type="file" name="slide_pic_$k"><br />
+			2）完整链接url地址：<input type="text" name="slide[list][{$k}][href]" value="{$slide[href]}" size="50" />
+			</td>
+            <td valign="top"><input type="text" name="slide[list][{$k}][order]" value="{$slide[order]}" size="5" /></td> 
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;</td>
+            <td valign="top"><a href="{$slide[href]}" target=_blank><img src="{$slide[src]}" height="220" border="0" /></a></td>
+            <td valign="top">&nbsp;</td> 
+		</tr>
+		<tr> 
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+			<td>&nbsp;</td>          
+		</tr>
+        {/loop}
+        <tr>
+			<td><input type="checkbox" name="slide_new[0][enable]" value="1" checked checked="true" /></td>
+            <td>1）请输入图片地址：<input type="text" name="slide_new[0][src]" value="" size="50" />
+            <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或上传图片：<input type="file" name="slide_new_pic_0"><br />
+			2）完整链接url地址：<input type="text" name="slide_new[0][href]" value="" size="50" /></td>
+            <td><input type="text" name="slide_new[0][order]" value="" size="5" /></td> 
+		</tr>
+        <tr>
+			<td><input type="checkbox" name="slide_new[1][enable]" value="1" checked checked="true" /></td>
+            <td>1）请输入图片地址：<input type="text" name="slide_new[1][src]" value="" size="50" />
+			图片大小以680x220为最佳；<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或上传图片：<input type="file" name="slide_new_pic_1"><br />
+			2）完整链接url地址：<input type="text" name="slide_new[1][href]" value="" size="50" />
+			</td>
+            <td><input type="text" name="slide_new[1][order]" value="" size="5" /></td> 
+		</tr>
+	</table>
+	<center><input type="submit" class="button" name="settingsubmit" value="提交设置" /></center><br />
+    
+</form>
+<br />

@@ -1,0 +1,48 @@
+<!--{template admin/header}-->
+<!-- <br />
+
+
+<form method="get" name="settings" action="admin.php">
+<input type="hidden" name="mod" value="search" />
+<input type="hidden" name="code" value="menu" />
+
+    <a name="后台功能搜索"></a>
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+        <tr class="header">
+    		<td colspan="2">后台功能搜索</td>
+    	</tr>
+    	<tr>
+    		<td width="40%"><b>关键字</b><br />
+            	请输入您要搜索的关键字
+            </td>
+    		<td><input type="text" name="keyword" value="{$this->keyword}" style="width:300px;" /></td>
+    	</tr>
+	</table>
+	<center>
+	<input type="submit" class="button" name="settingsubmit" value="提交搜索" /> &nbsp; 
+	<input type="button" class="button" value="返回" onclick="window.location.href='admin.php?mod=search&code=menu';return false;" />
+	</center><br />
+    
+</form>
+<br />
+ -->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+   		<td>后台功能搜索结果（{$search}）</td>
+   	</tr>
+   	<!--{if $search_result}-->
+   	<!--{loop $search_result $v}-->
+   	<tr>
+   		<td>
+   		<h3><a href="{$v[url]}">{$v[title]}</a></h3>
+   		<p>{$v[text]}</p>
+   		</td>
+   	</tr>
+   	<!--{/loop}-->
+   	<!--{else}-->
+   	<tr>
+   		<td>没有搜索到任何内容，您可以换一个关键词试一下。</td>
+   	</tr>
+   	<!--{/if}-->
+</table>

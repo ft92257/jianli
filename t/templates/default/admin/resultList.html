@@ -1,0 +1,61 @@
+<!--{if $is_tag}-->
+<script type="text/javascript">
+$(".menu_hts_c1").click(function(){$(".menu_hts").hide();});
+</script>
+<div class="menu_hts_a"><span style="float:left; padding-left:5px;">选择你要签到的话题</span><sub class="menu_hts_c1"></sub></div>
+<div class="menu_hts_b">
+  <select name="sign_tag" id="sign_tag" onchange="setSignTag();">
+  	<option value="">请选择</option>
+  	<!--{loop $tag_arr $val}-->
+  	<option value="{$val}">{$val}</option>
+  	<!--{/loop}-->
+  </select>
+</div>
+<!--{else}-->
+<form name="form2" method="post" action="admin.php?mod=city&code=$code&area=$area&city=$city&zone=$zone">
+  <table width="98%" border="0" cellspacing="0" cellpadding="0" class="tableorder">
+    <tr class="header"> 
+      <td width="40%">名称</td>
+      <td width="30%">排序</td>
+      <td width="30%">删除</td>
+    </tr>
+    
+    <!--{loop $rs $key $val}-->
+    <!--{if $act == 'city'}-->
+    <tr> 
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=city&code=zone&area=$area&city=$val[id]">{$val['name']}</a></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><input type='text' name='order[{$val[id]}]' value='$val[list]' size='5'/></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+        <a href="admin.php?mod=city&code=city&area=$area&id=$val[id]">编辑</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="admin.php?mod=city&code=delcity&area=$area&fid=$val[id]"  onclick="return confirm('将一并删除该城市下的所有区、街道信息，你确实要删除吗?不可恢复');">删除</a>
+      </td>
+    </tr>
+    <!--{elseif $act == 'zone'}-->
+    <tr> 
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=city&code=street&area=$area&city=$city&zone=$val[id]">{$val['name']}</a></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><input type='text' name='order[{$val[id]}]' value='$val[list]' size='5'/></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+        <a href="admin.php?mod=city&code=zone&area=$area&city=$city&id=$val[id]">编辑</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="admin.php?mod=city&code=delzone&area=$area&city=$city&fid=$val[id]"  onclick="return confirm('将一并删除该区域下的所有街道信息，你确实要删除吗?不可恢复');">删除</a>
+      </td>
+    </tr>
+    <!--{elseif $act == 'street'}-->
+    <tr> 
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val['name']}</td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><input type='text' name='order[{$val[id]}]' value='$val[list]' size='5'/></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+        <a href="admin.php?mod=city&code=street&area=$area&city=$city&zone=$zone&id=$val[id]">编辑</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="admin.php?mod=city&code=delstreet&area=$area&city=$city&zone=$zone&fid=$val[id]"  onclick="return confirm('你确实要删除吗?不可恢复');">删除</a>
+      </td>
+    </tr>
+    <!--{/if}-->
+    <!--{/loop}-->
+    <tr>
+      <td><input type="submit" name="submit11" value="修改排序" class="button"></td>
+    </tr>
+  </table>
+</form>
+<!--{/if}-->

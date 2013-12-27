@@ -1,0 +1,67 @@
+{template "topic_header"}
+<div style="padding:2px;">
+	<span><a href="index.php?mod=topic&code=new">微博广场</a></span>
+    <span><a href="index.php?mod=topic&code=new&type=recd">官方推荐</a></span>
+	<span class="{$tag_hb}"><a href="index.php?mod=tag">话题</a></span>
+</div>
+
+<!--最热门话题-->
+<div class="set_warp">
+<div>在发微博的时候，系统会自动将两个#之间的文字作为本条微博的话题，可通过此话题查看相关微博.<a href="index.php?mod=topic&code=add">发微博</a><BR />
+</div>
+
+<!--推荐话题-->  
+<div class="t_list_b">
+<div class="line">1、推荐话题</div>
+<!--{loop $tag_tuijian $tuijian}-->
+<a href="index.php?mod=tag&code={$tuijian[name]}">{$tuijian[name]}</a> | 
+<!--{/loop}-->
+</div>
+<!--推荐话题--> 
+
+<!--{if $tag_list}-->
+<div class="t_list_b">
+<div class="line">2、最热门话题</div>
+<!--{if $tag_list && is_array($tag_list) && count($tag_list)}-->        
+<!--{eval $tag_list = array_chunk($tag_list,4);}-->
+<!--{loop $tag_list $tags}-->
+<!--{loop $tags $v}-->
+<a href="index.php?mod=tag&code={$v[name]}">{$v[name]}</a> | 
+<!--{/loop}-->
+<!--{/loop}-->
+<!--{/if}-->
+</div>
+<!--最热门话题-->
+<!--{/if}-->
+	
+<!--最受关注话题-->  
+<div class="t_list_b">
+<div class="line">3、最受关注话题</div>
+<!--{loop $tag_guanzu $guanzu}-->
+<a href="index.php?mod=tag&code={$guanzu[name]}">{$guanzu[name]}</a> | 
+<!--{/loop}-->
+</div>
+<!--最受关注话题-->  
+
+	
+<!--一周热门话题-->  
+<div class="t_list_b">
+<div class="line">4、一周热门话题</div>
+<!--{loop $tag_r_day7 $tag7}-->
+<a href="index.php?mod=tag&code={$tag7[name]}">{$tag7[name]}</a> | 
+<!--{/loop}-->
+</div>
+<!--一周热门话题-->
+
+
+<!--一周关注话题-->
+<div class="t_list_b">
+<div class="line">5、一周关注话题</div>
+<!--{loop $day7_guanzhu $tag7_gz}-->
+<a href="index.php?mod=tag&code={$tag7_gz[name]}">{$tag7_gz[name]}</a> | 
+<!--{/loop}-->
+</div>
+<!--一周关注话题-->
+
+
+{template "topic_footer"}

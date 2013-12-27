@@ -1,0 +1,14 @@
+<!--{loop $group_list $group}-->
+
+<dl class="ml_dl" id="del_group_ajax_{$group[id]}">
+<dd>
+<!--{if $touid}-->
+<input id="select_{$val[uid]}_{$group[id]}" name="group" type="checkbox" onclick="groupState({$group[id]},'{$touid}',this);return false;"/>
+<!--{/if}-->
+<!--{eval if($this->Code == 'follow') $urlcode = 'follow'; else $urlcode = 'myhome';}--> 
+<a href="index.php?mod=topic&code={$urlcode}&gid={$group[id]}" title="成员人数：{$group[group_count]}">{$group[group_name]}</a> 
+</dd>
+<dt>({$group[group_count]})<a onclick="del_group('{$group[id]}','{$touid}');return false;" href="javascript:;" title="删除分组" style="float:none;">×</a></dt>
+</dl>
+
+<!--{/loop}-->

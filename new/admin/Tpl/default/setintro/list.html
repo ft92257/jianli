@@ -1,0 +1,63 @@
+<include file="public:header" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/calendar/calendar-blue.css"/>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="__ROOT__/statics/js/calendar/calendar.js"></script>
+<script type="text/javascript" src="__ROOT__/statics/js/jquery/plugins/jquery.imagePreview.js"></script>
+<script src="__ROOT__/statics/js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/statics/js/cate.js"></script>
+
+<div class="pad-10" >
+   <table style="text-align:center" >
+   <tr>
+   <th width="20%">名称</th><th  width="15%">地区</th><th width="20%">地址</th><th width="20%">电话</th><th width="20%">邮箱</th><th width="5%">操作</th>
+   </tr>
+   <volist name='company' id='val'>
+   <tr><td>{$val.name}</td><td>{$val.area}</td><td>{$val.address}</td><td>{$val.phone}</td><td>{$val.email}</td><td><a href="__URL__/edit?id={$val.id}">编辑</a></td></tr>
+   </volist>
+   </table>
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="dosubmit" value="{$Think.lang.delete}" onclick="return confirm('{$Think.lang.sure_delete}')" style="float:left;margin:0 10px 0 10px;"/>
+        <input type="submit" class="button" name="dosubmit" onclick="document.myform.action='{:u(MODULE_NAME."/sort_order")}'" value="{$Think.lang.sort_order}"/>
+    	<input type="submit" class="button" name="dosubmit" onclick="document.myform.action='{:u(MODULE_NAME."/update")}'" value="更新"/>
+    	<div  style="float:right" id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script language="javascript">
+$(function(){
+	$(".preview").preview();
+});
+
+var lang_cate_name = "商品名称";
+function check(){
+	if($("#myform").attr('action') == '{:u("shops/delete")}') {
+		var ids='';
+		$("input[name='id[]']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+
+		if(ids=='') {
+			window.top.art.dialog({content:lang_please_select+lang_cate_name,lock:true,width:'200',height:'50',time:1.5},function(){});
+			return false;
+		}
+	}
+	return true;
+}
+function status(id,type){
+    $.get("{:u('shops/status')}", { id: id, type: type }, function(jsondata){
+		var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+return_data.data+'.gif')
+	}); 
+}
+function likes(id){
+	var likes	= $('#likes_'+id).val();
+	$.get("{:u('shops/likes')}", { id: id, likes: likes }, function(json){
+		//alert(likes);
+	}); 
+}
+</script>
+</body>
+</html>

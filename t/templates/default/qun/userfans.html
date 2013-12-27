@@ -1,0 +1,23 @@
+<div class="ulist6"> 
+	<script language="javascript">
+		var CHECKED = Array();
+	</script>
+ <!--{if !empty($members)}-->
+	<!--{loop $members $value}-->
+	<div class="pf2 selected crPer">
+		<p class="status">
+			<input type="checkbox" value="{$value['uid']}" name="uids[]" id="checked_{$value[uid]}" onclick="checkedFollower(this);"/>
+			<input type="hidden" id="userfans_nickname_{$value[uid]}" value="{$value['nickname']}" />
+		</p> 
+		<p class="mark"></p>
+		<p class="avt"><b><label style="cursor:pointer;" for="checked_{$value[uid]}"><img src="{$value['face']}" onerror="javascript:faceError(this);"></label></b></p> 
+		<b class="nm"><b><label style="cursor:pointer; font-weight:500;" for="checked_{$value[uid]}"> <span id="nickname_wp_{$value[uid]}">{$value['nickname']}</span></label></b></b> 
+		<p class="ps"></p>
+	</div> 
+	<!--{/loop}-->
+</div>
+	<div style="clear:both;"></div>
+	<div style="text-align:right; padding-right:20px;">
+		{$multi}
+	</div>
+ <!--{/if}-->

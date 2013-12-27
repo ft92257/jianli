@@ -1,0 +1,31 @@
+<include file='public:header'/>
+<script type="text/javascript" src="__ROOT__/statics/js/setavatar/new/jquery.form.js"></script>
+<script type="text/javascript">
+$(document).ready(
+    function(){
+		$('#img').change(function(){
+
+		$('#form').ajaxSubmit({
+		type:'post',
+		url:'__APP__/img/getimg',
+			success:function(data){
+			alert(data);
+			$( "#form").resetForm();   
+			},
+			error: function(XmlHttpRequest, textStatus, errorThrown){   
+            alert( "error");   
+            }   
+
+		})
+		
+		})
+
+    }
+
+)
+
+</script>
+<div style="display:none"></div>
+<form id="form" action="__APP__/img/getimg" method="post" enctype="multipart/form-data">
+<input  type="file" id="img" name="img" />
+</form> 

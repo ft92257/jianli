@@ -1,0 +1,204 @@
+<!--{template 'topic_header'}-->
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+  <div class="main_t main_t23">
+    <span class="t_l">发起有奖转发</span>
+    <span class="t_r"><a href="javascript:history.go(-1);">返回</a></span>
+  </div>
+<div class="themepwarp" style="padding:0 20px 20px; overflow:hidden;">
+
+<div class="event_pbox reward_pbox">
+<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+  <form name="FORM" id="FORM" method="post" action="index.php?mod=reward&code=doadd" enctype="multipart/form-data" target="uploadframe">
+      <table id="step1" align="left" width="100%">
+        <tr>
+          <td width="100"><span style="color:red">*</span>标题：</td>
+          <td><input type="text"  size="30" maxlength="50" id="title" name="title" value="{$reward['title']}" class="inputs">
+          <sup id="title_tips" style="display:none; color:#FF0000;"></sup></td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>开始：</td>
+          <td>
+            <sup class="vote_endtime input">
+		  	  <input id="fromt" name="fromt" value="{$reward['from_time']}" onclick="WdatePicker({minDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  type="text" readonly="readonly" class="inputs2">
+		    </sup>
+		    <sup id="fromt_tips" style="display:none; color:#FF0000;"></sup>
+		  </td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>结束：</td>
+          <td>
+            <sup class="vote_endtime input">
+		  	  <input id="tot" name="tot" value="{$reward['to_time']}" onclick="WdatePicker({minDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  type="text" readonly="readonly" class="inputs2">
+		    </sup>
+		    <sup id="tot_tips" style="display:none; color:#FF0000;"></sup>
+		  </td>
+        </tr>
+        <tr>
+          <td colspan="2"><span style="color:red">*</span>活动具体描述：（最多2000个字）<br>
+		  <textarea name="content1" id="content1">{$reward['content']}</textarea>
+		  <sup id="content1_tips" style="display:none; color:#FF0000;"></sup>
+		  </td>
+		</tr>
+		<tr>
+		  <td valign="top"><span style="color:red">*</span>奖品：</td>
+		  <td>
+		    <div id="prize_list">
+		      {if $reward['prize']}
+		      {loop $reward['prize'] $key $val}
+		      <div id="prize_detail_{$key}" class="prize_list_li">
+              	{if $val['prize_image_url']}
+				<div class="prize_list_li_img"><img id="show_image_{$key}" src="{$val['prize_image_url']}">
+                <span onclick="del_prize($key)" title="删除" style="cursor:pointer">删除</span>
+                </div>
+				{/if}
+                <input id="image_{$key}" type="hidden" name="prize_image[$key]" value="{$val['prize_image']}">
+                <div class="prize_list_li_p">
+		        <p>等级：<input type="text" size="10" name="prize_name[$key]" value="$val['prize_name']"></p>
+				<p>奖品：<input type="text" size="10" name="prize[$key]" value="$val['prize']"></p>
+				<p>数量：<input type="text" size="4" name="prize_num[$key]" value="$val['prize_num']"></p>
+				<p>图片：<input type="file" onchange="loadPic($key);" size="3" name="image_{$key}"></p>
+                </div>
+			  </div>
+		      {/loop}
+		      {/if}
+              <span id="message" style="display:none">正在上传,请稍等...</span>
+		    </div>
+             <a href="javascript:void(0);" onclick="addPrize();" class="prize_top"><b>添加奖品</b></a>
+		  </td>
+		</tr>
+		<tr>
+		  <td valign="top">转发规则：</td>
+		  <td>
+          <div class="prize_rule">
+		    <p>关注用户：<input type="text" name="rules[user]" value="{$nickname}">&nbsp;&nbsp;<span>多个话题用“|”隔开</span></p>
+		    <p>转发话题：<input type="text" name="rules[tag]" value="{$tag}">&nbsp;&nbsp;<span>多个话题用“|”隔开</span></p>
+		    <p>@好友数：<input type="text" name="rules[at_num]" value="{$at_num}"> 人</p>
+            </div>
+		  </td>
+		</tr>
+		<tr>
+		  <td valign="top" colspan="2"><span style="color:red">*</span>转发微博：<br>
+		    {if $reward['topic_content']}
+		    <div style="background:#efefef; padding:5px; color:#666;">$reward['topic_content']</div>
+            <span style="color:#0073B2; margin:3px 0; float:left;">如需重新编辑请输入要发的微博</span>
+		    {/if}
+		    <textarea rows="5" cols="70" id="topic" name="topic"></textarea>
+		  </td>
+		</tr>
+        <tr>
+          <td align="center" colspan="2">
+            <input type="button" name="SUBMIT" value="发布" onclick="formSubmit();" class="shareI">
+            <input type="hidden" id="id" name="id" value="{$id}">
+            <input type="hidden" id="num" name="num" value="{$num}">
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div id="publish_share"></div>
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.init({
+	id : 'content1',
+	width : '100%',
+	height : '200px',
+	resizeMode : 1,
+	filterMode : true,
+	skinsPath : '{conf site_url}/templates/default/js/kind/skins/',
+	items : [
+'justifyleft', 'justifycenter', 'justifyright','insertorderedlist', 'insertunorderedlist','title', 'fontname','textcolor','bold','italic', 'underline',
+	]
+});
+setTimeout("KE.create('content1');",100);
+</script>
+<script type="text/javascript">
+function addPrize(){
+	var i = Number($("#num").val()) + 1;
+	var html = '<div id="prize_detail_'+i+'" class="prize_list_li2">' 
+			  +'<span>等级:</span><input type="text" name="prize_name['+i+']" size="10">&nbsp;'
+			  +'<span>奖品:</span><input type="text" name="prize['+i+']" size="10">&nbsp;'
+			  +'<span>数量:</span><input type="text" name="prize_num['+i+']" size="4">&nbsp;'
+			  +'<span>图片:</span><input type="file" name="image_'+i+'" size="3" onchange="loadPic('+i+');">&nbsp;<span onclick="del_prize('+i+')" title="删除" style="cursor:pointer">删除</span><br><img src="" id="show_image_'+i+'" style="display:none"><input type="hidden" id="hid_image_'+i+'" name="prize_image['+i+']"></div>';
+	$("#num").val(i);
+	$("#prize_list").append(html);
+}
+function submit_check(){
+	var title = $("#title").val();
+	if(strlen(title) < 2){
+		$("#title_tips").html("标题必须有哦");
+		$("#title_tips").show();
+		return false;
+	}else if(strlen(title) > 50){
+		$("#title_tips").html("标题太长了哦");
+		$("#title_tips").show();
+		return false;
+	}else{
+		$("#title_tips").hide();
+	}
+
+	var fromt = $("#fromt").val();
+	var tot = $("#tot").val();
+	if(!fromt || !tot){
+		$("#tot_tips").html("时间区间必须有哦");
+		$("#tot_tips").show();
+		return false;
+	}else{
+		$("#tot_tips").hide();
+	}
+
+	var content = $("#content1").val();
+	if(!content){
+		$("#content1_tips").html("标题必须有哦");
+		$("#content1_tips").show();
+		return false;
+	}else{
+		$("#content1_tips").hide();
+	}
+	return true;
+}
+
+function loadPic(i){
+	document.FORM.target="uploadframe";
+	document.FORM.action="ajax.php?mod=reward&code=addPrize&id="+i;
+	$("#message").show();
+	$("#FORM").submit();
+}
+
+function del_prize(i){
+	var image_id = $("#image_"+i).val();
+	if (image_id > 0) {
+		$.post(
+				'ajax.php?mod=reward&code=delprize&iid='+image_id,
+				'',
+				function (d) {
+					
+				});
+	}
+	$("#prize_detail_"+i).remove();
+	show_message('删除奖品成功');
+}
+
+function formSubmit(){
+	if(!submit_check()){return false;}
+	document.FORM.target="";
+	document.FORM.action="index.php?mod=reward&code=doadd";
+	$("#FORM").submit();
+}
+</script>
+<script src="js/date/WdatePicker.js" type="text/javascript"></script>
+</div>
+</div>
+</div>
+</div>
+<!--{template 'topic_footer'}-->

@@ -1,0 +1,144 @@
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/reg.js"></script>
+<script type="text/javascript" src="js/validate.js"></script>
+<style type="text/css">
+a.artZoom{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+a.artZoom2{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+a.artZoom3{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink3 { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+a.artZoomAll{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLinkAll { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+.regU{ margin:0 0 20px}
+.main_t{ background:#F6F6F6; height:35px;}
+.regP{ float:none;}
+</style>
+<div class="Rlogo"><h1 class="logo"><a title="{$this->Config[site_name]}" href="index.php"></a></h1></div>
+<div class="main_2">
+<div class="main_t"><span style="padding-left:20px;">已注册会员请登录</span></div>
+<div class="set_warp Nlogin">
+<div class="Nll">
+<!--{eval $login_extract=jsg_member_login_extract();}-->
+	<!--{if $login_extract}--><!--{eval $login_extract_forms=$login_extract[login_forms];}-->
+	<form method="{$login_extract_forms[method]}" action="{$login_extract_forms[action]}">
+	  <!--{loop $login_extract_forms[hidden_inputs] $v}-->
+	  <input type="hidden" name="{$v[name]}" value="{$v[value]}" />
+	  <!--{/loop}-->
+	  <table width="100%" border="0">
+	  <tr>
+	    <td width="30%" align="right" valign="top">帐户/昵称：</td>
+	    <td width="70%"><input name="{$login_extract_forms[username_input][name]}" type="text"  class="regP"/>
+</td>
+	  </tr>
+	  <tr>
+	    <td align="right" valign="top">登录密码：</td>
+	    <td><input name="{$login_extract_forms[password_input][name]}" type="password" class="regP" /></td>
+	  </tr>
+
+	  <tr>
+	    <td align="right" valign="middle">&nbsp;</td>
+	    <td>	
+			
+		<input name="{$login_extract_forms[submit_input][name]}" type="submit" value="{$login_extract_forms[submit_input][value]}" class="Nbtn_login" />
+		<div class="th_login">
+		</div>
+		</td>
+	  </tr>
+	</table>
+</form>
+<!--{else}-->
+<form method="POST" action="{$action}">
+	<table width="100%" border="0">
+	  <tr>
+	    <td width="30%" align="right" valign="top">帐户/昵称：</td>
+	    <td width="70%"><input name="username" type="text"  class="regP"/><span class="retip">可用“帐号昵称”或注册Email登录</span>
+</td>
+	  </tr>
+	  <tr>
+	    <td align="right" valign="top">登录密码：</td>
+	    <td><input name="password" type="password" class="regP" /></td>
+	  </tr>
+	  <!--{if $this->Config['seccode_login']}-->
+		  <tr>
+			<td align="right" valign="top">验证码：</td>
+			<td>
+				<div class="ml10">
+					<input name="seccode" id="seccode_input" type="text" class="regP" style="width:80px;"/>
+				</div>
+				<div class="ml11">
+				    <script language="javascript">seccode({"id":"seccode_input"});</script>
+					<a href="javascript:updateSeccode('seccode_input');">换一换</a>
+				</div>
+
+
+			</td>
+		  </tr>
+	  <!--{/if}-->
+			  <tr>
+	    <td align="right" valign="middle">&nbsp;</td>
+	    <td class="retip"><input type="checkbox" class="checkb" checked title="请不要在公共电脑上使用自动登录功能">
+		下次自动登录&nbsp;&nbsp; <a onclick="window.location.href='{conf site_url}/index.php?mod=get_password';return false;" href="javascript:void(0)" title="点此可通过2种方式重设密码">忘记密码？</a></td>
+	  </tr>
+	  <tr>
+	    <td align="right" valign="middle"></td>
+	    <td>	
+		<input name="" type="submit" value="" class="Nbtn_login" />
+		
+		<div class="th_login">或用如下帐号登录：<br>	
+		{if $this->Config[sina_enable] && sina_weibo_init()} &nbsp;{eval echo sina_weibo_login('b');} {/if}
+		{if $this->Config[qqwb_enable] && qqwb_init()} &nbsp; {eval echo qqwb_login('b');} {/if}
+		{if $this->Config[yy_enable] && yy_init()} &nbsp; {eval echo yy_login('b');} {/if}
+		{if $this->Config[renren_enable] && renren_init()} &nbsp; {eval echo renren_login('b');} {/if}
+		{if $this->Config[kaixin_enable] && kaixin_init()} &nbsp;{eval echo kaixin_login('b');} {/if}
+		{if $this->Config[fjau_enable] && fjau_init()} &nbsp;{eval echo fjau_login('b');} {/if}
+		</div>
+		</td>
+	  </tr>
+	</table>
+</form>
+<!--{/if}-->
+</div>
+<div class="Nlr">
+<span class="font14px">还没注册过本站帐户？</span>
+<a title="注册{conf site_name}" onclick="window.location.href='{conf site_url}/index.php?mod=member';return false;" class="Nbtn_reg">注册{conf site_name}</a>
+	注册后，可以方便地分享新鲜事，关注用户分享；
+	并可通过<b>手机</b>随时随地参与互动。
+</div>
+</div>
+</div>
+<!--{template "topic_footer"}-->

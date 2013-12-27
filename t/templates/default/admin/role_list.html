@@ -1,0 +1,78 @@
+<!--{template admin/header}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>帮助提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<!--{if $admin_users}-->
+			<li>为了防止私自提权现象，只有<b>网站创始人</b>才可编辑管理员角色的权限</a>。</li>
+			<li><b>网站创始人</b>在编辑角色权限过程中，可点击权限名称对所有角色进行批量操作</a>。</li>
+			<!--{else}-->
+			<li>从记事狗V3.5开始，积分等级（LV1~10）与角色权限挂钩了，达到相应积分后自动升级用户角色，对应如下等级1~10会员。</li>
+			<li>如果您没权限进行相关的操作，请换用<b>网站创始人</b>身份登录。</li>
+			<!--{/if}-->
+			<li>关于“<b>网站创始人</b>”，请参阅readme.txt文件中的第三条说明，<a title="点此在新窗口中打开查看关于“网站创始人”的说明及设置方法" href="{conf site_url}/readme.txt" target="_blank">点击查看&gt;&gt;</a></li>
+
+			<!--{if true===DEBUG && true===JISHIGOU_FOUNDER}-->
+			<li><input type="button" class="button" value="记事狗在本地开发模式下的权限动作批量管理(发布时此按钮不可见)" onclick="window.location='admin.php?mod=role&code=admin&id=2';return false;" /></li>
+			<!--{/if}-->
+		</ul>
+		</td>
+	</tr>
+</table>
+<br />
+<!--{if $founder_users}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>当前系统中的网站创始人：用户id、昵称（点击可以查看具体信息）</td>
+	</tr>
+	<tr class="altbg1">
+		<td>{loop $founder_users $v} <a href="admin.php?mod=member&code=modify&id={$v[uid]}">{$v[uid]}、{$v[nickname]}</a>； &nbsp; {/loop}</td>
+	</tr>
+</table>
+<br />
+<!--{/if}-->
+<!--{if $admin_users}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>当前系统中的管理员：用户id、昵称（点击可以查看具体信息）</td>
+	</tr>
+	<tr class="altbg1">
+		<td>{loop $admin_users $v} <a href="admin.php?mod=member&code=modify&id={$v[uid]}">{$v[uid]}、{$v[nickname]}</a>； &nbsp; {/loop}</td>
+	</tr>
+</table>
+<br />
+<!--{/if}-->
+<form method="post" action="admin.php?mod=role&code=do_modify_batch">
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header" align="center">
+		<td width="30px">&nbsp;</td>
+		<td>角色名称</td>
+		<!--{if $role_type=='normal'}-->
+		<td>所需积分范围</td>
+		<!--{/if}-->
+		<td>管理权限</td>
+	</tr>
+	<!--{loop $role_list $role}-->
+	<!--{eval $iii++;$tr_class = $iii %2 ? 'altbg1' : 'altbg2';}-->
+	<tr align="center" class="{$tr_class}">
+		<td><!--{if $role[icon]}<img src="{$role[icon]}" />{/if}-->&nbsp;</td>
+		<td>{$role[name]}</td>
+		<!--{if $role_type=='normal' AND ($role[creditslower] OR $role[creditshigher])}-->
+		<td>{$role[creditshigher]} ~ {$role[creditslower]}</td>
+		<!--{elseif $role_type=='normal'}-->
+		<td>不参与积分等级</td>
+		<!--{/if}-->
+		<td><a href="admin.php?mod=role&code=modify&id={$role[id]}">[编辑]</a>
+		&nbsp; <a onclick="return confirm('确认新建一个同类型的用户角色？');"
+			href="admin.php?mod=role&code=copy&id={$role[id]}">[新建同类角色]</a></td>
+	</tr>
+	<!--{/loop}-->
+</table>
+</form>

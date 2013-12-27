@@ -1,0 +1,32 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /jianli
+
+RewriteRule ^photo-(.+)\.html$ photo.php?rg=$1
+
+RewriteRule ^active-(.+)\.html$ active.php?rg=$1
+RewriteRule ^activeimg-(.+)\.html$ active_img.php?rg=$1
+
+RewriteRule ^square-(.+)\.html$ square.php?rg=$1
+
+RewriteRule ^einfo-(.+)\.html$ einfo.php?rg=$1
+
+RewriteRule ^mblog-([0-9]+)-([0-9]+)\.html$ mblog.php?id=$1&tid=$2
+
+RewriteRule ^user-(.+)\.html$ user.php?rg=$1
+
+RewriteRule ^faq-(.+)\.html$ faq.php?rg=$1
+
+RewriteRule ^estate-(.+)\.html$ estate.php?rg=$1
+
+RewriteRule ^about-(.+)\.html$ about.php?t=$1
+
+RewriteCond %{HTTP_REFERER} !^$ [NC]
+RewriteCond %{HTTP_REFERER} !127.0.0.1 [NC]
+RewriteCond %{HTTP_REFERER} !yijianli.cn [NC]
+RewriteCond %{HTTP_REFERER} !yijianli.com [NC]
+RewriteCond %{HTTP_REFERER} !local.com [NC]
+RewriteCond %{HTTP_REFERER} !google.com [NC]
+RewriteCond %{HTTP_REFERER} !baidu.com [NC]
+RewriteRule .*\.(gif|jpg)$ http://www.yijianli.cn/no.png [R,NC,L]
+</IfModule>

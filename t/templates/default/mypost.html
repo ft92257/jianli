@@ -1,0 +1,74 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>	
+  </div>
+</div>
+<!--此处三栏-->
+ <div class="main3Box_m HotW ">
+    <div id="topNews_1">
+	  <div class="Menubox2" style="width:750px;">
+		<ul>
+		  <li>
+		    <div class="tagn">
+			  <a href="index.php?mod=fenlei"><span>分类主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tago">
+			  <a href="index.php?mod=fenlei&code=mypost"><span>{$name}的分类</span></a>
+		    </div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=fenlei&code=followpost"><span>我关注的人的分类</span></a>
+		    </div>
+		  </li>
+		</ul>
+	  </div>
+<div style="width:700px;float:left;margin:10px 40px;">
+<!--{if $rs}-->
+  <table width=100%>
+    <tr>
+      <td align="center">标题</td>
+      <td align="center" width="10%">分类名</td>
+      <td align="center" width="20%">最后修改时间</td>
+      <td align="center" width="10%">有效期</td>
+      <!--{if $uid == MEMBER_ID}-->
+      <td align="center" width="20%">操作</td>
+      <!--{/if}-->
+    </tr>
+    <!--{loop $rs $key $val}-->
+    <tr>
+    <td align="left"><a href="index.php?mod=fenlei&code=detail&fid=$val[fid]&id=$val[id]" target="_blank">$val[title]</a></td>
+    <td align="center">$val[fname]</td>
+    <td align="center">$val[edittime]</td>
+    <td align="center">$val[showday]</td>
+    <!--{if $uid == MEMBER_ID}-->
+    <td align="center">
+      <a href="index.php?mod=fenlei&code=edit&fid=$val[fid]&id=$val[id]">编辑</a>
+      <span>&nbsp;|&nbsp;</span>
+      <a href="index.php?mod=fenlei&code=del&id=$val[id]" onclick="return confirm('你确实要删除吗?不可恢复');">删除</a>
+    </td>
+    <!--{/if}-->
+    </tr>
+    <!--{/loop}-->
+  </table>
+	<!--{if $page_arr[html]}-->	
+	<div><ul><li>{$page_arr[html]}</li> </ul></div>
+	<!--{/if}--> 
+<!--{else}-->
+	<div><span>还没有发布分类信息</span></div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+<!--{template "topic_footer"}-->
+

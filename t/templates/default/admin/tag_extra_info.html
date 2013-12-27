@@ -1,0 +1,190 @@
+<!--{template admin/header}-->
+
+
+
+<form method="post" action="admin.php?mod=tag&code=modify_extra">
+  <input type="hidden" name="id" value="{$extra[id]}" />
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header">
+      <td colspan="2">编辑话题专题 - {$extra[name]}</td>
+    </tr>
+    <tr align="center">
+      <td class="altbg1" width="50%" valign="top">
+      	<table>
+      		<tr>
+	      		<td><b>1、左侧顶部：横幅图片</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$left_top_image_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>图片地址：</td>
+	      					<td><input type="text" name="data[left_top_image][src]" value="{$data[left_top_image][src]}" size="50" /><br />
+	      					图片最佳宽度 590px
+	      					</td>
+	      				</tr>
+	      				<tr>
+	      					<td>链接到url：</td>
+	      					<td><input type="text" name="data[left_top_image][link]" value="{$data[left_top_image][link]}" size="50" /></td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      		<tr>
+	      		<td><b>2、左侧顶部：专题描述</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$left_top_text_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>文章标题：</td>
+	      					<td><input type="text" name="data[left_top_text][title]" value="{$data[left_top_text][title]}" size="50" /></td>
+	      				</tr>
+	      				<tr>
+	      					<td>文章内容：</td>
+	      					<td><textarea name="data[left_top_text][content]" rows="8" cols="52">{$data[left_top_text][content]}</textarea></td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      	</table>
+      </td>
+      <td class="altbg2" valign="top">
+      	<table>
+      		<tr>
+	      		<td><b>3、右侧顶部：文章设置</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$right_top_text_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>文章标题：</td>
+	      					<td><input type="text" name="data[right_top_text][title]" value="{$data[right_top_text][title]}" size="50" /></td>
+	      				</tr>
+	      				<tr>
+	      					<td>文章内容：</td>
+	      					<td><textarea name="data[right_top_text][content]" rows="4" cols="52">{$data[right_top_text][content]}</textarea></td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      		<tr>
+	      		<td><b>4、右侧：图片设置</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$right_top_image_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>区块标题：</td>
+	      					<td><input type="text" name="data[right_top_image][title]" value="{$data[right_top_image][title]}" size="50" /></td>
+	      				</tr>
+	      				<tr valign="top">
+	      					<td>图片地址：</td>
+	      					<td>
+	      					<!--{loop $data[right_top_image][list] $v}-->
+	      					<input type="text" name="data[right_top_image][list][]" value="{$v}" size="50" /><br />
+	      					<!--{/loop}-->
+	      					<input type="text" name="data[right_top_image][list][]" value="" size="50" /><br />
+	      					</td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      		<tr>
+	      		<td><b>5、右侧：视频设置</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$right_top_video_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>区块标题：</td>
+	      					<td><input type="text" name="data[right_top_video][title]" value="{$data[right_top_video][title]}" size="50" /></td>
+	      				</tr>
+	      				<tr valign="top">
+	      					<td>视频地址：</td>
+	      					<td>
+	      					<!--{loop $data[right_top_video][list] $v}-->
+	      					<input type="text" name="data[right_top_video][list][]" value="{$v}" size="50" /><br />
+	      					<!--{/loop}-->
+	      					<input type="text" name="data[right_top_video][list][]" value="" size="50" /><br />
+	      					</td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      		<tr>
+	      		<td><b>6、右侧：用户推荐</b></td>	      		
+      		</tr>
+      		<tr>
+	      		<td>
+	      			<table>
+	      				<tr>
+	      					<td>是否启用？</td>
+	      					<td>{$right_top_user_enable_radio}</td>
+	      				</tr>
+	      				<tr>
+	      					<td>区块标题：</td>
+	      					<td><input type="text" name="data[right_top_user][title]" value="{$data[right_top_user][title]}" size="50" /></td>
+	      				</tr>
+	      				<tr valign="top">
+	      					<td>设置用户：</td>
+	      					<td>
+	      					<!--{loop $data[right_top_user][list] $v}-->
+	      					<input type="text" name="data[right_top_user][list][]" value="{$v}" size="50" /><br />
+	      					<!--{/loop}-->
+	      					<input type="text" name="data[right_top_user][list][]" value="" size="50" /><br />
+	      					<input type="text" name="data[right_top_user][list][]" value="" size="50" /><br />
+	      					<input type="text" name="data[right_top_user][list][]" value="" size="50" /><br />
+							</td>
+	      				</tr>
+	      			</table>
+	      		</td>
+      		</tr>
+      		<tr>
+      			<td>&nbsp;</td>
+      		</tr>
+      	</table>
+      </td>
+    </tr>
+  </table>
+  <center>
+    <input class="button" type="submit" name="modifysubmit" value="提 交">
+  </center>
+</form>
+<br />
+ 

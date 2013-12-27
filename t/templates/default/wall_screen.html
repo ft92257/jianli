@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<title>{conf site_name}上墙</title>
+<link href="styles/style_w2.css"  type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" />
+<script type="text/javascript" src="templates/default/js/min.js"></script>
+<script type="text/javascript" src="templates/default/js/common.js"></script>
+<script type="text/javascript" src="templates/default/js/wall.js"></script>
+</head>
+<body>
+
+<div class="wrapperSize1280">
+
+{if $wall_info[screen_ad_left]}
+<!--左侧展示位-->
+<div class="leftDD">{$wall_info[screen_ad_left]}</div>
+{/if}
+{if $wall_info[screen_ad_right]}
+<!--右侧展示位-->
+<div class="rightDD">{$wall_info[screen_ad_right]}</div>
+{/if}
+
+<div class="microblog">
+    <div id="topbox" class="topbox">
+        <div class="jishigouLogo">记事狗微博</div>
+                <div class="custom" id="picText"><p>{$wall_info[screen_ad_top]}</p></div>
+            </div>
+    <div class="talkBg">
+        <div class="talkList">
+
+            <ul id="talkList" class="LC">
+            	           	    			    
+            </ul>
+            
+        </div>
+    </div>
+        <div class="control_area undis" id="control_area">
+        <a href="javascript:void(0);" class="next" id="toNext" >下一条</a>
+        <a href="javascript:void(0);" class="pre" id="toPrev" >上一条</a>
+        <a href="javascript:void(0);" class="start" id="pause" >暂停</a>
+
+        <div class="bg"></div>
+    </div>
+    </div>
+    </div>
+
+<div class="imgPopup" id="imgPopup" style="display:none;">
+<div class="blockLayer"></div>
+<div class="bigPicBox" id="bigPic"></div>
+</div>
+
+<script type="text/javascript">
+
+{if $wall_info[wall_reload_time] > 0}
+	WallReloadTime = {$wall_info[wall_reload_time]} * 1000;
+{/if}
+
+jQuery(document).ready(function() {
+    wall_newly("{$wall_id}");
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<include file="public:header" />
+<div class="pad-lr-10">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=60>编号</th>
+                <th width=100>公司</th>
+                <th width=60>监理师</th>
+                <th width=60>联系人</th>
+                <th width=60>电话</th>
+				<th width=80>期望见面时间</th>
+				<th width=80>所属区域</th>
+				<th>详细内容</th>
+				<th width=80>下单时间</th>
+				<th width=60>状态</th>
+                <th width=80>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center">{$val.id}</td>
+            <td align="center">{$val.company}</td>
+            <td align="center">{$val.supervisor}</td>
+            <td align="center">{$val.name}</td>
+			<td align="left">{$val.telephone}</td>
+			<td align="center">{$val.expect_time}</td>
+			<td align="center">{$val.region_area}</td>
+			<td align="center">{$val.message}</td>
+			<td align="left">{$val.addtime}</td>
+            <td align="center" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /><if condition="$val.status eq 1">已处理<else />未处理</if></td>
+            <td align="left">
+            	<a href="{:U('reserve/status?status=0&id=')}{$val.id}" style=" text-decoration:underline;">取消</a> &nbsp;&nbsp;
+				<a href="{:U('reserve/status?status=1&id=')}{$val.id}" style=" text-decoration:underline;">处理完成</a>&nbsp;&nbsp;
+				<a href="{:U('reserve/status?status=-2&id=')}{$val.id}" onclick="return confirm('确定要删除该记录吗？');" style=" text-decoration:underline;">删除</a>
+			</td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+		<div id="pages">{$page}</div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

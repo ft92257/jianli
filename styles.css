@@ -1,0 +1,65 @@
+.content-center {
+	background: #fff;
+}
+a:hover {
+	text-decoration: none;
+}
+#top, #logo, #main, #bottom {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+#top {
+	text-align: right;
+}
+#main {
+	text-align: left;
+}
+#bottom {
+	padding: 20px;
+	text-align: center;
+}
+.lc_a {
+	padding: 3px;
+}
+.photo_v {
+	width: 100px;
+	text-align: center;
+	margin: 2px;
+}
+.lightbox_c, .lightbox_c a {
+	color: #333;
+}
+.side_v {
+	width: 130px;
+	padding: 5px;
+	float: left;
+}
+.mid_v {
+	width: 650px;
+	padding: 5px;
+	float: left;
+}
+.sidel_v {
+	width: 240px;
+	padding: 5px;
+	float: left;
+}
+.sidew_v {
+	width: 680px;
+	padding: 5px;
+	float: left;
+}
+.menu {
+	text-align: center;
+	padding: 5px;
+	clear: both;
+}
+#sf_v {
+	padding: 10px;
+	border: 1px solid #eee;
+	position: absolute;
+	top: 0;
+	left: 0;
+}

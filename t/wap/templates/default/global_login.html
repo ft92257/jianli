@@ -1,0 +1,21 @@
+<!--{template "topic_header"}-->
+<div class="set_warp">
+<!--{eval $login_extract=jsg_member_login_extract();}-->
+<!--{if $login_extract}--><!--{eval $login_extract_forms=$login_extract[wap_login_forms];}-->
+	<form method="{$login_extract_forms[method]}" action="{$login_extract_forms[action]}">
+	<!--{loop $login_extract_forms[hidden_inputs] $v}-->
+	<input type="hidden" name="{$v[name]}" value="{$v[value]}" />
+	<!--{/loop}-->
+	<span>名称：<br /><input name="{$login_extract_forms[username_input][name]}" type="text" id="username" style="width:180px;"/></span>
+	<span>密码：<br /><input name="{$login_extract_forms[password_input][name]}"  type="password" id="password " style="width:180px;"/></span>
+	<span><input type="submit" name="{$login_extract_forms[submit_input][name]}" value="{$login_extract_forms[submit_input][value]}" /></span>
+	</form>
+<!--{else}-->
+	<form id="form1" name="form1" method="post" action="index.php?mod=login&amp;code=dologin">
+	<span>名称：<br /><input name="username" type="text" id="username" style="width:180px;"/></span>
+	<span>密码：<br /><input name="password"  type="password" id="password " style="width:180px;"/></span>
+	<span><input type="submit" name="Submit" value="登录" /></span>
+	</form>
+<!--{/if}-->
+</div>
+<!--{template "topic_footer"}-->

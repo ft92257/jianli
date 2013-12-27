@@ -1,0 +1,48 @@
+{if $wall_info && $wall_playlist_tids && $topic_list}
+{loop $wall_playlist_tids $tid}
+{eval $v=$topic_list[$tid];}
+{if $v}
+<li id="wl_{$v[tid]}">
+	<div class="user_con cl">
+		<success></success>
+		<img class="userPic" title="{$v[nickname]}" width="120" src="{$v[face_original]}" onerror="javascript:faceError(this);">
+       	<div class="msgBox">
+       		{eval $v[content]=strip_tags($v[content]);}
+           	<div class="userName"><strong>{$v[nickname]}:</strong></div>
+           	<div class="msgCnt">{$v[content]}</div>
+           	{if $v[imageid] && $v[image_list]}                                                                        
+           	<div class="picBox">
+				{loop $v[image_list] $iv}
+				<img src="{$iv[image_small]}">
+				{/loop}
+			</div>
+           	{/if}
+           	{if ($p=$parent_list[$v[top_parent_id]]) }
+           	<div class="replyBox">
+               	<div class="msgBox">
+               		{eval $p[content]=strip_tags($p[content]);}
+                   	<div class="userName"><strong>{$p[nickname]}:</strong></div>
+                   	<div class="msgCnt">{$p[content]}</div>
+                   	{if $p[imageid] && $p[image_list]}
+                   	<div class="picBox">
+						{loop $p[image_list] $iv}
+						<img src="{$iv[image_small]}">
+						{/loop}
+					</div>
+                   	{/if}
+               	</div>
+			</div>
+			{/if}
+       	</div>
+	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+	$("#wl_{$v[tid]}").click(function(){$(this).toggleClass("click_w1");});
+	
+	})
+	</script>
+</li>
+{/if}
+{/loop}
+{/if}

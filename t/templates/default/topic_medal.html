@@ -1,0 +1,218 @@
+{template "topic_header"}
+<link href="styles/medal.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/medal.js"></script>
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+	 {template "topic_left.inc"}
+	<!--{/if}-->
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+
+<div class="main_2b">
+  <div class="main_t main_t23"><span>{conf site_name}勋章</span></div>
+	<div class="Menubox2">
+	  <ul>
+	  <!--{loop $act_list $key $val}-->
+	    <!--{eval $_hoverCLS = ($key==$act ? ' class="tago" ' : 'class="tagn"');}-->
+	    <!--{if !is_array($val)}-->
+	    <li><div {$_hoverCLS}><A HREF="index.php?mod=tools&code={$key}"><span>{$val}</span></A></div></li>
+	    <!--{else}-->
+	    <li><div {$_hoverCLS}><A HREF="index.php?mod={$val[link_mod]}&code={$val[link_code]}"><span>{$val[name]}</span></A></div></li>
+	    <!--{/if}-->
+	  <!--{/loop}-->
+	  </ul>
+	</div>	
+	
+    <div class="show_title">
+	  <!--{eval if($view=='all'||$view=='') $all="style='color: red'"}-->
+	  <!--{eval if($view=='my') $my="style='color: red'"}-->
+	    <a href="index.php?mod=other&code=medal&view=all"><span {$all}>全部勋章</span></a>
+	    <span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+	    <a href="index.php?mod=other&code=medal&view=my"><span {$my}>我的勋章</span></a>
+	</div>
+	
+    <div class="show_title">共有勋章{$count}枚</div>
+	
+    <div class="main3Box_m">
+      <div class="medalBox">       
+      <div class="hormain">
+        <ul class="icon_list">
+    <script type="text/javascript">
+     $(document).ready(function(){
+	 var clearTimer = null;
+     var SleepTime = 3000;   
+     $("#focus_img").jCarouselLite({
+       btnNext: "#btn_focus_next",
+       btnPrev: "#btn_focus_prev",
+	   visible: 1,
+	   scroll:1,
+	   speed: 300,
+	   auto:5000,
+	   mouseOver:true
+     });
+	 
+	 <!--{loop $all_medal $v}-->
+	 	$(".yc_$v[medal_id]").mouseover(function(){$(".yc_c_$v[medal_id]").show();});
+		$(".yc_$v[medal_id]").mouseout(function(){$(".yc_c_$v[medal_id]").hide();});
+	 <!--{/loop}-->
+	 
+	 $(".sina").mouseover(function(){$(".sina_c").show();});
+     $(".sina").mouseout(function(){$(".sina_c").hide();});
+	 $(".qq").mouseover(function(){$(".qq_c").show();});
+	 $(".qq").mouseout(function(){$(".qq_c").hide();});
+	 $(".tel").mouseover(function(){$(".tel_c").show();});
+	 $(".tel").mouseout(function(){$(".tel_c").hide();});
+     });
+ </script>
+ 
+ 		<!--{loop $all_medal $val}-->
+		
+
+		  
+          <li class="yc yc_$val[medal_id]"> 
+          
+		  <!--{if $view == 'my'}-->
+          <div class="honorview">
+          	<input type="checkbox" id="show_$val[medal_id]" name="show_$val[medal_id]" $val[show] onclick="open_medal_index($val[medal_id]);">显示
+          </div>
+          <!--{/if}-->
+		  <a class="honorlink" href="javascript:void(0);">
+		  <img src="{$val[medal_img]}"/>
+		  </a>
+		  <span class="honortitle">{$val[medal_name]}</span>
+		  <span class="honorrece" id="img_$val[medal_id]">
+		    <!--{if $val[dateline]}-->
+		    <img src="./images/img_receive.gif">
+		    <!--{elseif ($val[conditions][type] == 'shoudong' && !$val[apply_id])}-->
+		    <img src="./images/img_apply.gif">
+		    <!--{/if}-->
+		 </span>
+		  
+            <div class="yc_c yc_c_$val[medal_id]">
+              <div class="M_box">
+                <div class="M_top">
+                  <div class="med_img"><img src="{$val[medal_img]}" /></div>
+                  <div class="med_intro">
+                    <p>
+                    {$val[medal_name]}
+                    </p>
+                    {$val[medal_depict]} 
+					<br>
+				      <!--{if $val[dateline]}-->
+					   恭喜获得{$val[medal_name]}勋章
+					  <br>
+					 (<!--{eval echo my_date_format($val[dateline],'Y-m-d')}-->)
+				     <!--{else}-->
+					   <!--{if in_array($val[conditions][type],array('topic','reply','invite','tag','fans'))}-->
+					   <a href="index.php?mod=other&code=checkmedal&medal_id={$val[medal_id]}">点亮图标</a>
+					   <br />
+					   <!--{/if}-->
+					   <!--{if $val[conditions][type] == 'topic'}-->
+					   <a href="index.php?mod=topic&code=myhome" target="_blank">我要发微博</a>
+					   <!--{elseif $val[conditions][type] == 'reply'}-->
+					   <a href="index.php?mod=topic&code=new" target="_blank">我要发评论</a>
+					   <!--{elseif $val[conditions][type] == 'tag'}-->
+					   <a href="index.php?mod=tag&code=$val[tagname]" target="_blank">我要发话题</a>
+					   <!--{elseif $val[conditions][type] == 'invite'}-->
+					   <a href="index.php?mod=profile&code=invite" target="_blank">马上去邀请好友</a>
+					   <!--{elseif $val[conditions][type] == 'shoudong'}-->
+					   <span id="app_$val[medal_id]">
+					     <!--{if $val[apply_id]}-->
+					   已申请
+					     <!--{else}-->
+                   	     <a href="javascript:void(0)" onclick="app_medal($val[medal_id],$uid);">申请勋章</a>
+                   	     <!--{/if}-->
+                   	   </span>
+					   <!--{/if}-->
+					 <!--{/if}-->
+			      </div>
+                </div>
+              </div>
+            </div>
+          </li>
+		  <!--{/loop}-->
+        </ul>
+		
+        <!--{if $view == 'my'}-->
+		<div class="medal_li">
+			<!--{if $sina}-->
+		    <div style="width:120px; height:120px; float:left; margin-right:15px;">
+		    <img src="images/medal/M_sina.gif" />
+		    <p>绑定新浪</p>
+			<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+		    </div>
+		    <!--{/if}-->
+		    
+		    <!--{if $qqwb}-->
+		    <div style="width:120px; height:120px; float:left; margin-right:15px;">
+		    <img src="./templates/default/images/medal/qqwb.png" />
+		    <p>绑定腾讯</p>
+			<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+		    </div>
+		    <!--{/if}-->
+			
+			 <!--{if $imjiqiren}-->
+		    <div style="width:120px; height:120px; float:left; margin-right:15px;">
+		    <img src="images/medal/M_qq.gif" />
+		    <p>绑定QQ</p>
+			<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+		    </div>
+		    <!--{/if}-->
+			
+		    <!--{if $sms}-->
+		    <div style="width:120px; height:120px; float:left; margin-right:15px;">
+		    <img src="images/medal/Tel.gif" />
+			<p>绑定手机</p>
+			<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+		    </div>
+		    <!--{/if}-->
+		  </div>
+		  <!--{/if}-->
+        
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+function app_medal(medal_id,uid){
+	var url = "ajax.php?mod=class&code=app_medal&medal_id="+medal_id+"&uid="+uid;
+	$.post(
+		url,
+		function(d){
+			var json = eval('('+d.toString()+')');
+			if(json.done){
+				$('#img_'+medal_id).html("");
+				$('#app_'+medal_id).html("已申请");
+				MessageBox('notice',"申请成功，耐心等待管理员审核哦");
+			}else{
+				MessageBox('notice',json.msg);
+			}
+		}
+	);
+}
+
+//勋章首页显示
+function open_medal_index(medalid){
+	var medalid = 'undefined' == typeof(medalid) ? 0 : medalid;
+	var myAjax = $.post(
+		"ajax.php?mod=topic&code=open_mdeal",
+		{
+			medalid:medalid
+		},
+		function (d) {
+			if(''!=d) {
+				show_message('设置成功',1);
+			}
+		}
+	);
+}
+</script>
+{template "topic_footer"}

@@ -1,0 +1,370 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".mclose").click(function(){$(this).parents(".alert_follower_menu").animate({ opacity: 'hide' }, "fast");});
+    $(".shareI").click(function(){$(this).parents(".alert_follower_menu").animate({ opacity: 'hide' }, "fast");});
+});
+$("#at_content").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#at_publishSubmit").click();
+    }
+});
+
+$("#signature_content").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#members_signature_val").click();
+    }
+});
+
+ //关闭后 在点击 显示表情 
+ $(document).ready(function(){
+ $(".menu_bqb_c").click(function(){$("#user_follower_menu").show();});
+ });
+	 
+</script>
+<!--点击对话、拉黑显示操作选项-->
+<style type="text/css">
+.alert_follower_menu ul.manBox li {
+    background: none;
+    border: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	_width:400px;
+}
+</style>
+<div class="dialog_inner">
+
+	<!--{if 'at' == $types}-->
+	<!--给谁发送 @ 信息-->
+		<div class="mWarp">
+			<textarea name="at_content" id="at_content" cols="30" rows="3" class="textarea" >@{$members[nickname]} </textarea>
+			<div class="tool_bar">
+			<input type="button" class="shareI" value="确 定" id="at_publishSubmit" onclick="publishSubmit('at_content',0,'myhome','first');closeDialog('{$this->Get['handle_key']}');return false;" title="按Ctrl+Enter直接创建"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div>
+		</div>
+		<script language="javascript">
+			setDialogTitle('$this->Get[handle_key]', "对 ‘{$members[nickname]}’说：");
+		</script>
+	<!--给谁发送 @ 信息-->
+
+	<!--拉入黑名单-->
+		<!--{elseif 'lahei' == $types}-->
+		<div class="mWarp">
+			拉黑之后...<br />
+			你们之间的收听关系将被解除，对方无法再收听你，而且你也不再收到来自他的任何消息与通知。
+			<div class="tool_bar">
+			<input type="button" class="shareI" value="确 定" id="publishSubmit" onclick="do_blacklist('{MEMBER_ID}','{$touid}','add','{$template}');return false;"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div>	</div>
+		<script language="javascript">
+			setDialogTitle('$this->Get[handle_key]', "确定将‘{$members[nickname]}’拉入黑名单？");
+		</script>
+		<!--{elseif 'del' == $types}-->
+		<div class="mWarp">
+		   取消之后...<br />
+		  你会重新收到来自他的私信和其它通知
+			<div class="tool_bar">
+			<input type="button" class="shareI" value="确 定"  id="publishSubmit" onclick="do_blacklist('{MEMBER_ID}','{$touid}','del','{$template}');return false;"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div></div>
+	<!--拉入黑名单-->
+
+	<!--推荐给朋友-->
+		<!--{elseif 'buddys' == $types}-->
+		<div>你的推荐理由是:</div>
+		<div class="mWarp">
+			<textarea name="at_content" id="at_content" cols="30" rows="3" class="textarea" >#推荐收听#  @{$members[nickname]} 快来关注他的微博吧！ </textarea>
+			
+			<!-- 插入表情-->
+			 <script type="text/javascript">
+			 //关闭后 在点击 显示表情 
+			 $(document).ready(function(){
+			 $(".modify_menu_bqb_c").click(function(){$("#user_follower_menu").show();});
+			 });
+			 </script>
+			<div class="menuf">
+				<div class="menuf_bq">
+					<b class="modify_menu_bqb_c">
+						<a href="javascript:void(0);" onclick="topic_face('user_follower_menu','at_content');return false;">表情</a>
+					</b>
+				</div>
+			</div>
+			<!-- 插入表情-->
+			
+			<div class="tool_bar">
+			<input type="button" class="shareI" value="发 布" id="at_publishSubmit" onclick="publishSubmit('at_content',0,'myhome','first');closeDialog('{$this->Get['handle_key']}');return false;" title="按Ctrl+Enter快捷发布"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div>
+			 <!--表情显示层--><div id="user_follower_menu" class="modify_face"></div> <!--表情显示层-->
+		</div>
+		<script language="javascript">
+			setDialogTitle('$this->Get[handle_key]', "把 \"{$members[nickname]}\" 推荐给朋友");
+		</script>
+	<!--推荐给朋友-->
+	
+	
+	
+	
+	<!--修改注册地址-->
+		<!--{elseif 'editarea' == $types}-->
+		<div class="mWarp">
+		  <ul>
+		    <li>{$province_list}</li>
+		    <li><select id="city" name="city" onchange="changeCity();"></select><sup id="city_tips" style="display:none; color:#FF0000;">请选择城市</sup></li>
+		    <li><select id="area" name="area" onchange="changeArea();"></select></li>
+		    <li><select id="street" name="street"></select></li>
+		  </ul>
+		  <div class="tool_bar">
+			<input type="button" class="shareI" value="确 定"  id="editarea" onclick="edit_area();return false;"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+		  </div>
+		</div>
+		<script language="Javascript">
+		function edit_area(){
+			var province = document.getElementById("province").value;
+			var city = document.getElementById("city").value;
+			if(!city){
+				document.getElementById("city_tips").style.display = 'block';return false;
+			}else{document.getElementById("city_tips").style.display = 'none';}
+			var area = document.getElementById("area").value;
+			var street = document.getElementById("street").value;
+			var url = "ajax.php?mod=topic&code=editarea&province="+province+"&city="+city+"&area="+area+"&street="+street;
+			$.get(
+				url,
+				function(d){
+					$('#userarea').html(d);
+					closeDialog('{$this->Get['handle_key']}');
+					
+				}
+			);
+		};
+		function changeProvince(){
+			  document.getElementById("city_tips").style.display = 'none';
+			  var province = document.getElementById("province").value;
+			  var url = "ajax.php?mod=member&code=sel&province="+province;
+			  var myAjax=$.post(
+					  	url,
+					  	function(d){
+				  		    $('#' + "city").html(d);
+							document.getElementById("street").length = 1;
+							document.getElementById("area").length = 1;
+							document.getElementById("street").style.display = "none";
+							document.getElementById("area").style.display = "none";
+
+					  	}
+			  );
+			}
+			changeProvince();
+			function changeCity(){
+		      document.getElementById("city_tips").style.display = 'none';
+			  var city = document.getElementById("city").value;
+			  var url = "ajax.php?mod=member&code=sel&city="+city;
+			  var myAjax=$.post(
+					  	url,
+					  	function(d){
+							if(d){
+								document.getElementById("area").style.display = "block";
+					  		    $('#' + "area").html(d);
+							}else{
+								document.getElementById("area").length = 1;
+								document.getElementById("area").style.display = "none";
+							}
+							document.getElementById("street").style.display = "none";
+							document.getElementById("street").length = 1;
+					  	}
+			  );
+			}
+			function changeArea(){
+			  var area = document.getElementById("area").value;
+			  var url = "ajax.php?mod=member&code=sel&area="+area;
+			  var myAjax=$.post(
+					  	url,
+					  	function(d){
+							if(d){
+								document.getElementById("street").style.display = "block";
+							    $('#' + "street").html(d);
+							}else{
+								document.getElementById("street").length = 1;
+								document.getElementById("street").style.display = "none";
+							}
+					  	}
+			  );
+			}
+		</script>
+	<!--修改注册地址-->
+	
+	
+	<!--移除粉丝-->
+	<!--{elseif 'del_fans' == $types}-->
+	<div class="fans_group_inner" style="padding:0;">
+					<div>
+						确定要移出<strong> {$members[nickname]} </strong> ? <p>移出之后TA将可以对你进行关注、@你、发私信等操作。<p>
+						<input name="is_black" type="checkbox" id="is_black" value="1" />
+						同时拉入黑名单
+						<div class="tool_bar">
+							<input type="button" class="shareI" value="确 定" onclick="DoDelMyFans();return false;"/>
+							<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+							<input name="touid" type="hidden" id="touid" value="{$members[uid]}" />
+						</div>
+					</div>
+			</div>
+	<!--移除粉丝-->	
+	
+	
+
+<!--微博修改个人签名-->
+	<!--{elseif 'topic_signature' == $types }-->
+		<div class="mWarp" style="width:360px;">
+		<ul class="mycon">
+			<li>还可以输入</li>
+			<li style="width:auto"><span id="signature_wordCheck">16</span></li>
+			<li style="width:auto;"> 字</li>
+		</ul>
+			<input name="signature_content" type="text" class="inpus" id="signature_content" style="width:350px;" value="{$members[signature]}" onkeyup="javascript:checkWord(16,event)"/>
+			<div class="tool_bar">
+			<input type="button" class="shareI" value="确 定" id="members_signature_val" onclick="modify_user_signature('{$members[uid]}','signature_content','topic');closeDialog('{$this->Get['handle_key']}');return false;" title="按Ctrl+Enter修改签名"/>
+			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div>
+		</div>
+		  <script language="Javascript">
+			//字数统计 STR
+			function checkWord(len,evt){ 
+			   if(evt==null) 
+			   evt = window.event; 
+			   var src = evt.srcElement? evt.srcElement : evt.target; 
+			   var str = src.value.trim();//
+			   myLen =0;
+			   i=0;
+			   for(;(i<str.length)&&(myLen<=len*2);i++){
+			   if(str.charCodeAt(i)>0&&str.charCodeAt(i)<128)
+			   myLen++;
+			   else
+			   myLen+=2;
+			   }
+			   var mydiv=document.getElementById("signature_wordCheck");
+			   if(myLen>len*2){
+			   src.value=str.substring(0,i-1);
+			   }
+			   else{ 
+			   document.getElementById("signature_wordCheck").innerHTML = "<span style='color:#FF0000;'>"+Math.floor((len*2-myLen)/2)+"<span>";
+			   }
+			}
+			String.prototype.trim = function() 
+			{ 
+			return this.replace(/(^\s*)|(\s*$)/g, ""); 
+			}
+			//字数统计 END
+		
+			setDialogTitle('$this->Get[handle_key]', "修改个人签名 (16汉字以内)");
+		</script>
+	<!--修改个人签名-->
+	
+	
+	
+	
+	
+	<!--{/if}--> 
+
+
+
+	<!--移出黑名单对话框 Begin-->
+	<!--{if $this->Code=='follower_choose' && $this->Get[uid]}-->
+			<div class="fans_group_inner">
+				<form method="post" action="" onsubmit="DoDelMyBlackList();return false;">
+					<div>
+						确定要移出<strong> {$members[nickname]} </strong> ? <p>移出之后TA将可以对你进行关注、@你、发私信等操作。<p>
+						<input name="is_follow" type="checkbox" id="is_follow" value="1" />
+						同时关注此用户
+						<div class="tool_bar">
+							<button type="submit" class="shareI">确定</button>
+							&nbsp;&nbsp;<button type="button" class="shareI" onclick="closeDialog('del_my_blacklist');">取消</button>
+							<input name="uid" type="hidden" id="uid" value="{MEMBER_ID}" />
+							<input name="touid" type="hidden" id="touid" value="{$members[uid]}" />
+						</div>
+					</div>
+				</form>
+			</div>
+	<!--{/if}-->
+	<!--移出黑名单对话框 End-->
+	
+	
+   <!--{if 'user_type_medal' == $types }-->
+	
+	<!--{if $medal_type == 'qqim' && $this->Config[imjiqiren_enable] && imjiqiren_init($this->Config)}-->
+		<div class="VM_box">
+			<div class="VM_top">
+				<div class="med_img"><img src="./templates/default/images/medal/M_qq.gif"></div>
+				<div class="med_intro">
+				<p>QQ机器人</p>
+				用自己的QQ发微博、通过QQ签名发微博，如果有人@你、评论你、关注你、给你发私信，你都可以第一时间收到QQ机器人的通知<br />
+				{eval $imjiqiren_return  = imjiqiren_has_bind($member[uid]);}
+				<!--{if !$imjiqiren_return}-->
+				<a href="index.php?mod=tools&code=imjiqiren">绑定QQ机器人</a> |
+				<!--{/if}-->
+				<a target="_blank" href="index.php?mod=other&code=medal&view=my">查看我的勋章</a>
+				</div>
+			</div>
+		</div>
+	<!--{/if}-->
+	
+	
+	<!--{if $medal_type == 'sina_weibo' && $this->Config[sina_enable] && sina_weibo_init($this->Config)}-->
+	<div class="VM_box">
+		<div class="VM_top">
+			<div class="med_img"><img src="./templates/default/images/medal/M_sina.gif"></div>
+			<div class="med_intro">
+				<p>新浪微博</p>
+				 绑定后，可以使用新浪微博帐号进行登录，在本站发的微博可以同步发到新浪微博<br />
+				{eval $sina_return  = sina_weibo_has_bind($member[uid]);}
+				<!--{if !$sina_return}-->
+				<a href="index.php?mod=account&code=sina">绑定新浪微博</a> |
+				<!--{/if}-->
+				<a target="_blank" href="index.php?mod=other&code=medal&view=my">查看我的勋章</a>
+			</div>
+		</div>
+	</div>
+    <!--{/if}-->
+	
+	
+	<!--{if $medal_type == 'qqwb' && $this->Config[qqwb_enable] && qqwb_init($this->Config)}-->
+	<div class="VM_box">
+		<div class="VM_top">
+			<div class="med_img"><img src="./templates/default/images/medal/qqwb.png"></div>
+			<div class="med_intro">
+				<p>腾讯微博</p>
+				 绑定后，可以使用腾讯微博帐号进行登录，在本站发的微博可以同步发到腾讯微博<br />
+				{eval $qqwb_return  = qqwb_bind_icon($member[uid]);}
+				<!--{if !$qqwb_return}-->
+				<a href="index.php?mod=account&code=qqwb">绑定腾讯微博</a> |
+				<!--{/if}-->
+				<a target="_blank" href="index.php?mod=other&code=medal&view=my">查看我的勋章</a>
+			</div>
+		</div>
+	</div>
+	<!--{/if}-->
+	
+	
+	<!--{if $medal_type == 'tel' && $this->Config[sms_enable] && sms_init($this->Config)}-->
+		<div class="VM_box">
+			<div class="VM_top">
+				<div class="med_img"><img src="./templates/default/images/medal/Tel.gif"></div>
+				<div class="med_intro">
+				<p>手机短信</p>
+				用自己的手机发微博、通过手机签名发微博，如果有人@你、评论你、关注你、给你发私信，你都可以第一时间收到手机短信的通知<br />
+				{eval $sms_return  = sms_has_bind($_mymember[uid]);}
+				<!--{if !$sms_return}-->
+				<a href="index.php?mod=other&code=sms">绑定手机短信</a> |
+				<!--{/if}-->
+				<a target="_blank" href="index.php?mod=other&code=medal&view=my">查看我的勋章</a>
+				</div>
+			</div>
+		</div>
+	<!--{/if}-->
+
+	
+   <!--{/if}-->
+	

@@ -1,0 +1,86 @@
+/*###########################
+   @Name:色彩 
+#############################*/
+body{ background-color:#fcc000; background-image:url(images/themebg.jpg);background-position:center bottom;background-repeat:repeat;background-attachment:fixed;}
+a:link{color:#6C6351;text-decoration:none;}
+a:visited{color:#6C6351;text-decoration:none;}
+a:hover{color:#6C6351;text-decoration:underline;}
+ul#tabnav2 a,.menu_vsbox p.stitle b,.menu_spb a:link, .menu_spb a:hover, .menu_spb a:visited,.menu_hdbox p.stitle b{color:#5C2C27;}
+.headerBg { background:#207A00;}
+.top_nav2 .home_1{color:#FFD050;}
+.top_nav2 .home_1 a{color:#FFD050;}
+.headerNav{ color:#516000;}
+.headerNav a:link {color:#2965B1;text-decoration:none;}
+.headerNav a:hover {color:#2965B1;text-decoration:underline;}
+.headerNav a:visited {color:#2965B1;text-decoration:none;}
+.main{ background:url(images/rightbg.png) repeat-y right center;}
+.top_nav2 { background:#516000;}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.sideBox .sTitle{ background:url(images/side_bg.gif) no-repeat 0 0 }
+/*.boxRNav2 li,.boxRNav2 li a{background-image:url(images/sideLb.png);_background-image:url(images/sideLb.gif);}
+.boxRNav2 li.current{background-image:url(images/sideLb.png);_background-image:url(images/sideLb.gif);}*/
+.boxRNav2 li.current a:hover{ color:#fff;}
+.boxRNav2 li a:hover{text-decoration:none;color:#6C6351} 
+.ts_menu_2{background:url(../images/theme/t5/hotb_1.gif) repeat-x bottom;}
+.ts3_mbtn1{border:1px solid #b86b72; border-bottom:none}
+.ts3_mbtn2{border:1px solid #b86b72; border-bottom:none;background:#ffaac7;}
+.bottomLinks{ background:url(images/foot_bg.png); color:#fff;}
+.bottomLinks a:link,.bottomLinks a:visited,.bottomLinks a:hover{color:#fff;}
+.nfBox .left a{ color:#6C6351;}
+
+.sideBox a:link,.sideBox a:visited,.sideBox a:hover{color:#5F372F;}
+.layS2{color:#6C6351;}
+.layS2 a:link,.layS2 a:visited,.layS2 a:hover{color:#fff;}
+.searchTool .btnSearch .lbl{ color:#FFD050;}
+.searchTool .selOption a:hover{color:#b72222;}
+.num {color:#80625D;}
+.alert_follower_menu{ color:#333;}
+.alertBox{ color:#333;}
+.alertBox a:link,.alertBox a:visited,.alertBox a:hover{color:#207A00;}
+.vDateBox{background:#ECF5F9; border:1px solid #B0C9D8;}
+.rbt_2{ background:url(images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.sideBox .rbt_2 a{ color:#fff;}
+.boxRNav3 li.current{background-color:#70CCE2;}
+ul.t_c1_box{box-shadow:none;}
+ul.t_c2_box{box-shadow:none;}
+.feedCell .from a:link, .feedCell .from a:hover, .feedCell .from a:visited{ color:#6C6351;}
+.option ul li a span.more{ border-color: #6C6351 transparent transparent;}
+/*三栏部分*/
+.mainL{ border-right:#f2f0e4 1px solid;}
+.t_col_main{background:url(images/rightbg2.png) repeat-y;}
+.SC,.FTL{color:#999;}
+.FTL li{color:#999;}
+.FTL li a:link,.FTL li a:visited,.FTL li a:hover{color:#6C6351;}
+.FTL li ul.tipsBox .tips_nn .tips_nn14 a{ color:#6C6351;}
+.FTL li ul.tipsBox{ color:#333;}
+.FTL li ul.tipsBox a:link,.FTL li ul.tipsBox a:visited,.FTL li ul.tipsBox a:hover{ color:#6C6351;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li,.boxRNav2 li a{background:none;color:#5F372F;}
+.t_col_main_fl .sendMail{background-image:url(images/ico_01.png);}
+.FTL .thread_add a{color:#6C6351;}
+.SC_taguanzhu_box p.m_m2 a{color:#6C6351;}
+.followList li .fBox_R .ff_1{ color:#6C6351;}
+.sideBox .f14B a{ color:#444;}
+/*110913模板更换*/
+ul.tipsBox a:link,ul.tipsBox a:visited,ul.tipsBox a:hover{color:#6C6351;}
+.SC_taguanzhu_box .media_user_list{ margin:0px 0 0 -4px;*margin:69px 0 0 -4px;}
+.person_atten_l{border-right-color:#999;}
+.t_col_main_fl .boxRNav2 li.current a{color:#FFF}
+.main3Box_m .FTL li{color:#333;}
+.main3Box_m .FTL li a:link, .main3Box_m .FTL li a:visited,.main3Box_m .FTL li a:hover{ color:#6C6351;}
+/*我的粉丝部分*/
+ul.boxRNav3 li:hover,ul.boxRNav3 li.hover{ z-index:1;background-color:#CAC39C;}
+ul.boxRNav3 li.index:hover,ul.boxRNav3 #x1.hover{ background-color:#CAC39C;}
+ul.boxRNav3 li.current{ height:26px;z-index:2;background-color:#A49576;}
+/*新增侧栏部分*/
+.r_replace a:link,.r_replace a:visited,.r_replace a:hover{ color:#6C6351;}
+.side h3{background:#EEEDE3;border-bottom:#DCD9C9 1px solid;color:#6C6351;}
+.rught_tj_box{}
+.rught_tj_box span{}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#CAC39C;}
+.t_col_main_fl .boxRNav2 li a:hover{text-decoration:none;background-color:#CAC39C;} 
+.t_col_main_fl .boxRNav2 li:hover{z-index:1;background-color:#CAC39C;}
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#CAC39C;}
+.t_col_main_fl .boxRNav2 li.current,.t_col_main_fl .boxRNav2 li.current:hover{background-color:#CAC39C;}
+.t_col_main_fl .boxRNav2 li.current a{background-color:#A49576;}

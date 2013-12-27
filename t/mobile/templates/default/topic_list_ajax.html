@@ -1,0 +1,95 @@
+<!--{if !empty($topic_list)}-->
+	<div class="" id="weibo_list_wp">
+	<!--{loop $topic_list $key $topic}-->
+	<div class="" id="weibo_itmes_{$topic['tid']}">
+		<div class="weibo" data-tid="{$topic['tid']}" <!--{if MEMBER_ID < 1}-->data-login="0"<!--{else}-->data-login="1"<!--{/if}--> data-uid="{$topic['uid']}" data-huifu="">
+			<div class="wb_l">
+				<div>
+					<img class="author" src="{$topic['face']}" onclick="goToUserInfo($topic['uid']);"/>
+				</div>
+			</div>
+			<div class="wb_r">
+				<div class="user_info">
+					<span class="fl p_u">{$topic['nickname']}</span>
+					<span class="fr p_t"><!--{if $topic['image_list']}--><img src="./images/pic.png"/><!--{/if}--><span>{$topic['dateline']}</span></span>
+				</div>
+				
+				<!--微博正文内容 Begin-->
+				<div class="wb_c_wp">
+					<div class="wb_c">
+						{$topic['content']}
+					</div>
+					<!--{if $topic['image_list']}-->
+					<div class="share">
+						<!--{loop $topic['image_list'] $image}-->
+							<img class="author" src="{$image['image_small']}" style="width:100px; height:100px;" />
+							<br />
+						<!--{/loop}-->
+					</div>
+					<!--{/if}-->
+					
+					<!--父级模块 Begin-->    
+					<!--{if $topic[roottid] > 0}-->
+						<!--{eval $parent=$parent_list[$topic[roottid]];}-->
+						<div class="tips_ico"></div>
+						<div class="wbf">
+                        	<!--{if !empty($parent)}-->
+                                <div><a href="">{$parent['nickname']}</a> : {$parent['content']}</div>
+                                <!--{if $parent['image_list']}-->
+                                    <div class="share">
+                                        <!--{loop $parent['image_list'] $image}-->
+                                            <img class="author" src="{$image['image_small']}" style="width:100px; height:100px;" />
+                                            <br />
+                                        <!--{/loop}-->
+                                    </div>
+                                <!--{/if}-->
+                        	<!--{else}-->
+                            	原始微博已删除
+                            <!--{/if}-->
+						</div>
+					<!--{/if}-->
+					<!--父级模块 End-->
+					
+					<div class="from">
+						<span class="fl">{$topic['from_string']}</span>
+						<span class="fr num">
+							<!--{if $topic['forwards'] > 0}-->
+								<span class="forward_num">
+									<img src="./images/redirect_icon.png" /><span>{$topic['forwards']}</span>
+								</span>
+							<!--{/if}-->
+							 <!--{if $topic['replys'] > 0}-->
+								<span class="comment_num">
+									<img src="./images/comment_icon.png" /><span>{$topic['replys']}</span>
+								</span>
+							<!--{/if}-->
+						</span>
+				   </div>
+				</div>
+				<!--微博正文内容 End-->
+				
+			</div>
+		</div>
+		<div class="wb_line"></div>
+		</div>
+	<!--{/loop}-->
+	</div>
+	<!--{if $list_count == Mobile::config('perpage_mblog')}-->
+    	<!--{if $this->Module == 'topic'}-->
+        	<!--{if $this->Code=='tag'}-->
+            	<div class="wb_more" onclick='getMoreMBlogList({"max_tid":{$max_tid}, "next_page":{$next_page}, "code":"tag", "tag_key":"{$tag_key}"});return false;' id="btn_more">更多...</div>
+            <!--{else}-->
+				<div class="wb_more" onclick='getMoreMBlogList({"max_tid":{$max_tid}, "next_page":{$next_page}, "code":"{$this->Code}", "uid":"{$param_uid}"});return false;' id="btn_more">更多...</div>
+        	<!--{/if}-->
+		<!--{elseif $this->Module == 'search'}-->
+       		<div class="wb_more" onclick='getMoreMBlogList({"max_tid":{$max_tid}, "next_page":{$next_page}, mod:"search", "code":"{$this->Code}", q:"{$keyword}"});return false;' id="btn_more">更多...</div>
+        <!--{/if}-->
+	<!--{/if}-->
+	<div style="margin-bottom:80px;"></div>
+	<script language="javascript">
+		$(document).ready(function(){
+			setMBlogListEvent();
+		});
+	</script>
+<!--{/if}-->
+

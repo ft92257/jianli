@@ -1,0 +1,59 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+	<form method="post" action="admin.php?mod=vote&code=dosetting">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">投票配置</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">
+			开启投票应用:
+			</td>
+			<td class="altbg2">
+			<input name="config[vote_open]" value="1" id="vote_open_1" class="radio" type="radio" {$checked['vote_open'][1]}>
+			<label for="vote_open_1">是</label>
+			&nbsp;&nbsp;
+			<input name="config[vote_open]" value="0" id="vote_open_0" class="radio" type="radio" {$checked['vote_open'][0]}>
+			<label for="vote_open_0">否</label>	
+			&nbsp;&nbsp;<br>
+			选择是，用户在前台可发起、查看、参与投票，选择否即关闭;
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">
+			开启投票审核:
+			</td>
+			<td class="altbg2">
+			<input name="config[vote_verify]" value="1" id="vote_verify_1" class="radio" type="radio" {$checked['vote_verify'][1]}>
+			<label for="vote_verify_1">是</label>
+			&nbsp;&nbsp;
+			<input name="config[vote_verify]" value="0" id="vote_verify_0" class="radio" type="radio" {$checked['vote_verify'][0]}>
+			<label for="vote_verify_0">否</label>	
+			&nbsp;&nbsp;<br>选择是，前台发起的投票，需要在管理员在后台<a href="admin.php?mod=vote&code=verify">审核投票</a>后才能显示、操作;<br>
+			开启审核，有助于保证投票的质量。
+			</td>
+		</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		投票仅限V认证用户
+		</td>
+		<td class="altbg2">
+			<label><input name='config[vote_vip]' type='radio' value='1' class="radio" {$checked['vote_vip'][1]} >
+			是</label>&nbsp;&nbsp;&nbsp;
+			<label><input name='config[vote_vip]' type='radio' value='0' class="radio" {$checked['vote_vip'][0]} >
+			否</label>&nbsp;&nbsp;（选择是，只有<a href="admin.php?mod=vipintro&type=1">V认证用户</a>可以发起投票，选择否则不做限制）
+		</td>
+	</tr>
+		<tr>
+			<td class="altbg1" width="150">&nbsp;
+			
+			</td>
+			<td class="altbg2">
+			<button name="do" value='' type="submit" class="button">提交</button>
+			</td>
+		</tr>
+		
+	</table>
+	</form>
+</div>

@@ -1,0 +1,35 @@
+<div>
+  <select id="top_fenlei" name="top_fenlei" onchange="changeTop();">
+  	$top_fenlei
+  </select>
+</div>
+<div>
+  <select id="son_fenlei" name="son_fenlei" onchange="changeSon();">
+  	<option>请选择</option>
+  </select>
+</div>
+<div id="post_new"></div>
+<script type="text/javascript">
+  function changeTop(){
+	var fid = document.getElementById("top_fenlei").value;
+	$.post(
+	  "ajax.php?mod=fenlei&code=son&fid="+fid,
+	  function(d){
+		$('#' + "son_fenlei").html(d);
+		$('#' + "post_new").hide();
+	  },'json'
+	)
+  }
+
+  function changeSon(){
+		var fid = document.getElementById("son_fenlei").value;
+		$.post(
+		  "ajax.php?mod=fenlei&code=post_new&fid="+fid,
+		  function(d){
+			$('#' + "post_new").show();
+			$('#' + "post_new").html(d);
+		  },'json'
+		)
+  }
+  changeTop();
+</script>

@@ -1,0 +1,43 @@
+<!--{if MEMBER_ID ==0}-->
+<div class="inventLine2"> 
+  <div class="atxt">
+	<p class="p_2">微博是现在最酷、最火的沟通交流工具，可以随时随地分享新鲜事，与朋友保持联络。</p> 
+	<p class="p_3">10秒注册微博就可通过网页、手机、客户端随时随地分享新鲜事、关注所需的最新消息！</p>
+  </div>
+  <div class="abtn">
+	<a href="index.php?mod=member&code&uid={$member[uid]}"><img src="images/regbtn.gif"></a>
+	<p>已有帐号，<a href="javascript:void(0);" onclick="ShowLoginDialog(); return false;">请点此登录</a></p>
+  </div> 
+</div>
+<!--{/if}-->
+<script>function jiajian(obj,id){var shtml = $(obj).html();if(shtml=='+'){$(obj).html('-');$('#children_'+id).show();}else{$(obj).html('+');$('#children_'+id).hide();}}</script>
+<div class="W_main_l">
+
+  <div class="left_nav mypindao">
+    <h4>我的频道</h4>
+	<ul class="topic_New" id="my_channels">
+	<!--{if $my_channels}-->
+	<!--{loop $my_channels $val}-->
+	<li class="mychannel" id="ch_{$val['ch_id']}"><a href="index.php?mod=channel&id={$val['ch_id']}">{$val['ch_name']}</a></li>
+	<!--{/loop}-->
+	 <!--{/if}-->
+	</ul>
+  </div> 
+  <div class="left_nav">
+    <h4>全部频道</h4>
+	<!--{if $channel_list}-->
+	<ul class="topic_New">
+	<!--{loop $channel_list $val}-->
+	<li class="channel {$val['css']}"><em onclick="jiajian(this,'{$val['ch_id']}');">{$val['str']}</em><a href="index.php?mod=channel&id={$val['ch_id']}{$filter_url}">{$val['ch_name']}({$val['child_num']})</a></li>
+	<!--{if $val['child_num']}-->
+	<div style="display:{$val['display']}" id="children_{$val['ch_id']}">
+	<!--{loop $val['child'] $v}-->
+	<li class="channel_child {$v['css']}"><a href="index.php?mod=channel&id={$v['ch_id']}{$filter_url}">{$v['ch_name']}</a></li>
+	<!--{/loop}-->
+	</div>
+	<!--{/if}-->
+	<!--{/loop}-->
+  </ul>
+  <!--{/if}-->
+  </div>
+</div>

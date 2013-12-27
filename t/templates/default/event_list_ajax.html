@@ -1,0 +1,33 @@
+    <div class="e_count">找到相关活动 <b class="fontRed">{$count}</b> 条</div>
+    <!--{loop $event $key $val}-->
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a href="index.php?mod=event&code=detail&id=$key">
+	        <img src="{$val[image]}" height="128" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info">
+	      <p class="left_t_nick_name">
+	        <a href="index.php?mod=event&code=detail&id=$key"><strong>{$val[title]}</strong></a>
+	      </p>
+	      <p class="left_t2">
+	        时间：{$val[fromt]}-{$val[tot]}
+	      </p>
+	      <p class="left_t2">
+	        地点：{$val[address]}
+	      </p>
+	      <p class="left_t2">
+			发起人：<a href="index.php?mod=$val[username]" target="_blank">{$val[nickname]}</a><a href="index.php?mod=event&code=myevent&uid=$val[uid]" target="_blank">(查看他的活动)</a>
+	      </p>
+	      <p class="left_t2">
+	     {$val[event_type]}<br/>
+			报名人数：{$val[app_num]} | 参与人数：{$val[play_num]}
+	      </p>
+	    </div>
+	  </div>
+	</div>
+	<!--{/loop}-->
+	<!--{if $page_arr[html]}-->	
+	<div><ul><li>{$page_arr[html]}</li> </ul></div>
+	<!--{/if}--> 

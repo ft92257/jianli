@@ -1,0 +1,56 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript" src="__ROOT__/statics/js/ckeditor/ckeditor.js" ></script> 
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+<form action="?s=/Websize/edit" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',6,1);">家装监理师</li>
+   	   	<li id="tab_setting_2" class="" onclick="SwapTab('setting','on','',6,2);">工装监理师</li>
+		<li id="tab_setting_3" class="" onclick="SwapTab('setting','on','',6,3);">为什么选择监理师傅</li>
+      </ul>
+	  
+     <div id="div_setting_1" class="contentList pad-10">
+		<textarea id="KE_2" name="houser" style="width:700px;height:300px;">{$info.houser}</textarea>
+     </div>
+	
+	<div id="div_setting_2" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_3" name="worker" style="width:700px;height:300px;">{$info.worker}</textarea>
+	</div>
+
+	<div id="div_setting_3" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_4" name="why" style="width:700px;height:300px;">{$info.why}</textarea>
+	</div>
+
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			$('#div_'+name+'_'+i).show();
+			$('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			$('#div_'+name+'_'+i).hide();
+			$('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+function KE_show(id) {
+	KE.show({
+		id : id,
+		imageUploadJson : "{:U('company/KE_upload')}"
+	});
+}
+
+KE_show('KE_2');
+KE_show('KE_3');
+KE_show('KE_4');
+</script>
+</body></html>

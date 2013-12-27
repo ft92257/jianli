@@ -1,0 +1,110 @@
+<!--{template admin/header}-->
+
+<form method="post" action="admin.php?mod=dedecms&code=dedecms_save">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="3">使用说明</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="altbg1">功能介绍：在Jishigou微博内显示DedeCMS文章系统的文章内容及对该文章的评论内容！</td>
+		</tr>
+		<tr class="header">
+			<td colspan="3">DedeCMS文章系统调用</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>开启DedeCMS文章系统调用:</b>
+			</td>
+            <td class="altbg1" width="20%">{$dedecms_enable}			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">开启后站内可同步显示DedeCMS文章系统的数据</span><br />             
+			</td>
+		</tr>
+		<tr class="header">
+			<td colspan="3">参数设置</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>DedeCMS文章系统数据库地址:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_host]" value="{$dedecms[db_host]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">如果文章系统与微博在同一服务器上填：localhost，否则请填写IP地址</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>DedeCMS文章系统数据库编码类型:</b>
+            </td>
+            <td class="altbg1" width="20%">{$dedecms_charset}		
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库字符集编码类型（gbk或utf-8）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库名:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_name]" value="{$dedecms[db_name]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库名称</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库用户名:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_user]" value="{$dedecms[db_user]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库用户名称</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库密码:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="password" name="dedecms[db_pass]" value="{$dedecms[db_pass]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库用户密码</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库端口:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_port]" value="{$dedecms[db_port]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库连接端口号（默认3306，无需修改）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库表前缀:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_pre]" value="{$dedecms[db_pre]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统数据库表前缀符号，（DedeCMS系列默认是:dede_）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>文章系统访问地址:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dedecms[db_url]" value="{$dedecms[db_url]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">DedeCMS文章系统URL访问地址（结尾不要加“/”，例如：http://www.dedecms.com）</span><br />
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交" /></center>
+</form>

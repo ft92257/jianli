@@ -1,0 +1,61 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename wap_style.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 1040009918 239292838 2123 $
+ *******************************************************************/
+
+
+/* 手机版样式  */
+body{background:#fff;padding:1px;margin:1px;font-size:12px; line-height:140%; font-family:Arial, Helvetica, sans-serif}
+p{ clear:both; padding:0; margin:0;}
+img{border:0 none;}
+i{ font-style:normal;}
+textarea{ border:1px solid #CBD6DA; font-size:12px;}
+.logo{ width:100%; height:21px; margin:0; padding:0;background:#2873c2; overflow:hidden;}
+.topbg{ width:100%; height:21px;line-height:21px; margin:0; padding:0;background:#f2f2f2; overflow:hidden;  color:#333;}
+.topbg a{ color:#fff; padding:0 2px; text-decoration:none}
+.topbg a:link {color: #333;}
+.topbg a:visited {color: #333;}
+.topbg a:hover {color: #333;}
+.line{width:100%; height:26px; margin-bottom:5px;background:#fafafa; overflow:hidden; line-height:26px;}
+.set_warp{ padding:3px 0;}
+.set_warp span{ display:block; margin:3px 0;}
+.u{border: 1px solid #CBD6DA; margin:0; padding:5px 2px; overflow:hidden; background:#fafafa;}
+.u span{ display:inline;}
+.u span img{ margin:2px 10px 2px 2px; float:left;}
+
+.base_u{ margin:0; padding:5px 2px; overflow:hidden;}
+.base_u span{ display:inline;}
+.base_u span img{ margin:2px 10px 2px 2px; float:left;}
+
+.m{margin: 2px 0;}
+.hb{ font-weight:600; color:#444;}
+.textS{padding:3px;}
+.Im{ padding:5px 0;}
+.transpond{background-color:#fafafa; padding:5px 4px; word-wrap: break-word; word-break: normal; word-break:break-all;}
+.lineDot{border-top:1px dotted #888;height: 1px;overflow:hidden; margin-top:5px;}
+
+.tbox{ margin:0;}
+.facestyle{ height:48px;width:48px; border:1px solid #ccc;}
+.regp{ margin:3px 0;}
+.u2{ margin:0; padding:2px 0; overflow:hidden;}
+.u2 span{ display:inline;}
+.u2 span img{ margin:2px 10px 2px 2px; float:left;}
+.t_manger{ display:block; margin-top:3px;}
+.t_manger .p_time{ color:#666;}
+.t_manger span a{ margin-right:2px; padding-right:3px;}
+.t_list_b{ width:100%;margin:5px 0 0 0;word-wrap: break-word; word-break: normal; }
+.t_list_c{ background:#fafafa; padding:5px 4px;}
+.t_tips{background:#fff; color:#ff0000; padding:3px;}
+.t_ttip{ padding:2px;}
+.t_ttip a{ margin-right:5px;}
+.t_ttip span{ color:#ff0000; font-style:normal;}
+

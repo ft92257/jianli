@@ -1,0 +1,458 @@
+<!--{eval $__my=$this->
+MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/validate.js"></script>  
+<style type="text/css">
+.regU{ margin:0 0 20px}
+.set_warp select{ margin-right:6px; margin-bottom:6px; float:left; display:inline;}
+</style>
+<script type="text/javascript"> 
+$(function(){ 
+    $("#inviter_nickname_input").focus(function(){$(this).css("background","#CBFE9F");$(".R_tt0").show();}).blur(function(){$(this).css("background","#FFF");$(".R_tt0").hide();});
+    $("#email_input").focus(function(){$(this).css("background","#CBFE9F");$(".R_tt1").show();}).blur(function(){$(this).css("background","#FFF");$(".R_tt1").hide();});
+	$("#password").focus(function(){$(this).css("background","#CBFE9F");$(".R_tt2").show();}).blur(function(){$(this).css("background","#FFF");$(".R_tt2").hide();});
+    $("#nickname_input").focus(function(){$(this).css("background","#CBFE9F");$(".R_tt4").show();}).blur(function(){$(this).css("background","#FFF");$(".R_tt4").hide();});
+}); 
+</script>
+</head>
+<body>
+<!--{if $this->Config[company_enable]}-->
+<!--{eval $d_c_name = $this->Config[default_company] ? $this->Config[default_company] : '单位'; $d_d_name = $this->Config[default_department] ? $this->Config[default_department] : '部门'; }-->
+<!--{/if}-->
+<div class="Rlogo"><h1 class="logo"><a title="{conf site_name}" href="index.php"></a></h1></div>
+<div class="main_2">
+  <div class="main_t"></div>
+  <div class="set_warp">
+    <div class="R_L">
+      <form method="post" action="{$action}" name='reg' id="member_register" onSubmit="return check_submit(this, 3);">
+        <input type="hidden" name="referer" value="{$referer}">
+        <table width="100%" border="0">
+          <!--{if $inviter_member[nickname]}-->
+          <tr>
+            <td align="center"><img onerror="javascript:faceError(this);" src="{$inviter_member[face]}" width="54px" height="54px;"/></td>
+            <td align="left" valign="middle"><span class="fontGreen">{$inviter_member[nickname]}</span> 正邀请您加入{conf site_name}，<br />
+              注册成功后，你们将自动相互关注，并在个人首页中看到对方分享的信息。</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <!--{elseif $this->Config[register_invite_input]}-->
+          <tr>
+            <td align="right" valign="top" width="90">邀请人：</td>
+            <td><input type="text" name="inviter_nickname" id="inviter_nickname_input" value="" class="regP" />
+              <div class="R_tt0">可以为空，填写邀请人昵称注册成功后，你们将自动相互关注。</div></td>
+          </tr>
+          <!--{/if}-->
+		  {if $this->_sms_register()}
+		  <tr>
+            <td align="right" valign="top" width="90">手机验证：</td>
+            <td>
+				<div id="sms_bind_area">
+					第一步：请输入您的手机号，并点击“获取验证码”按钮<br>
+					验证码将通过免费短信发到您手机上(节假日期间短信稍有延迟，请耐心等待)<br>
+					<input type="text" value="" name="sms_bind_num" id="sms_bind_num" class="regP" onBlur="Validator.Validate(this.form,3,this.name)" />&nbsp;<input type="button" value="获取验证码" class="save" onclick="Validator.Validate(this.form,3,'sms_bind_num')&&sms_bind()" id="sms_bind_button" />
+				</div>
+			</td>
+          </tr>
+		  <tr>
+			<td></td>
+			<td>				
+				<div style="display:none;" id="sms_bind_verify_area">
+					第二步：请输入发到您手机的验证码<br>
+					<input type="text" value="" name="sms_bind_key" id="sms_bind_key" class="regP" onBlur="Validator.Validate(this.form,3,this.name)" />
+				</div>
+				<div id="sms_bind_msg"></div>
+				<script language="javascript">        
+					function sms_bind()
+					{
+						var sms_num = $('#sms_bind_num').val();
+
+						if(11!=sms_num.length)
+						{
+							MessageBox('notice', '请输入11位的手机号码');
+							$('#sms_bind_num').focus();
+
+							return false;
+						}
+						
+						var myAjax = $.post
+						(
+							'ajax.php?mod=sms&code=register_verify',
+							{
+								sms_num:sms_num                        
+							},
+							function (d) 
+							{
+								if(d)
+								{
+									$('#sms_bind_msg').html(d);
+									$('#sms_bind_num').focus();
+								}
+								else
+								{
+									$('#sms_bind_button').attr('disabled','true');
+									$('#sms_bind_verify_area').css('display','block');
+								}
+							}
+						);
+					}
+					function check_sms_bind_key()
+					{
+						var sms_num = $('#sms_bind_num').val();
+						var bind_key = $('#sms_bind_key').val();
+                
+						if(11!=sms_num.length)
+						{
+							MessageBox('notice', '请输入11位的手机号码');
+							$('#sms_bind_num').focus();
+
+							return false;
+						}
+						if(6!=bind_key.length)
+						{
+							MessageBox('notice', '请输入6位的验证码');
+							$('#sms_bind_key').focus();
+
+							return false;
+						}
+
+						var myAjax = $.post(
+							'ajax.php?mod=sms&code=check_register_verify',
+							{
+								sms_num:sms_num,
+								bind_key:bind_key
+							},
+							function (d)
+							{
+								if(d)
+								{
+									$('#sms_bind_msg').html(d);
+									$('#sms_bind_key').focus();
+								}
+							}
+						);
+					}
+				</script>
+			</td>
+		  </tr>
+		  {/if}
+		  <!--{if $this->Config[company_enable]}-->
+		  <tr>
+            <td align="right" valign="top" width="90">所属{$d_c_name}：</td>
+            <td><div style="float:left;">{$companyselect}</div>
+              <div id="check_company_result" class="error" style="display:none"></div>
+          </tr>
+		  <!--{if $this->Config[department_enable]}-->
+		  <tr>
+            <td align="right" valign="top" width="90">所在{$d_d_name}：</td>
+            <td><div style="float:left;" id="departmentselect">{$departmentselect}</div>
+              <div id="check_department_result" class="error" style="display:none"></div>
+          </tr>
+		  <!--{/if}-->
+		  <!--{/if}-->
+		  {if !$noemail}
+          <tr>
+            <td align="right" valign="top" width="90">常用Email：</td>
+            <td><input type="text" name="email" id="email_input" value="{$email}" class="regP" tabindex="1" />
+              <div id="check_email_result" class="error" style="display:none"></div>
+              <div class="R_tt1">需要验证Email，用于登录和取回密码等.</div></td>
+          </tr>
+		  {/if}
+          <tr>
+            <td align="right" valign="top">登录密码：</td>
+            <td><input type="password" name="password" id="password" maxlength="32" class="regP" onBlur="Validator.Validate(this.form,3,this.name)" tabindex="2"/>
+              <div class="R_tt2">密码至少5位</div></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top">确认密码：</td>
+            <td><input type="password" name="password2" id="password2" maxlength="32" class="regP" onBlur="Validator.Validate(this.form,3,this.name)" tabindex="3"/></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top">帐户昵称：</td>
+            <td><input name="nickname" type="text" id="nickname_input" maxlength="15"  class="regP" tabindex="5"/>
+              <div id="check_nickname_result" class="error" style="display:none;"></div>
+              <div class="R_tt4">中英文均可，用于显示、@通知和发私信等</div></td>
+          </tr>
+          <!--{if $this->
+          Config[city_status]}-->
+          <tr>
+            <td align="right" valign="top">所在地区：</td>
+            <td><div style="float:left;">
+                {$province}
+              </div>
+              <div style="float:left;">
+                <select id="city" name="city" onchange="changeCity();Validator.Validate(this.form,3,this.name)">
+				<option value=''>请选择</option>
+				</select>
+              </div>
+              <div style="float:left;">
+                <select id="area" name="area" onchange="changeArea();" style="display:none">
+				<option value=''>请选择</option>
+				</select>
+              </div>
+              <div style="float:left;">
+                <select id="street" name="street" style="display:none">
+				<option value=''>请选择</option>
+				</select>
+              </div>
+              <span class="fontC" style="display:block; float:left; *float:none; *display:inline; width:400px;">（可查看同城用户、内容等）</span> 
+			  </td>
+          </tr>
+          <!--{/if}-->
+		  <!--{if $this->Config['seccode_register']}-->
+			  <tr>
+				<td align="right" valign="top">验证码：</td>
+				<td>
+				  <div class="ml10">
+					<input type="text" name="seccode" id="seccode_input" style="width:80px;" class="regP" tabindex="10"/>
+					<div id="check_seccode_result" class="error_2" style="display:none;"></div>
+				  </div>
+
+
+				  
+				  <div class="ml11">
+					<script language="javascript">seccode({"id":"seccode_input"});</script>
+					<a href="javascript:updateSeccode('seccode_input');">换一换</a>
+				  </div>
+				  
+				  </td>
+			  </tr>
+		  <!--{/if}-->
+          <tr>
+            <td align="right" valign="middle">&nbsp;</td>
+            <td>
+              <input name="copyrightInput" type="checkbox" id="copyrightInput" onclick="regCopyrightSubmit();" value="1" checked="checked" />
+              <label for="copyrightInput"> <span class="font12px"><a href="index.php?mod=other&code=regagreement" target="_blank">我已看过并同意《使用协议》</a></span></label>
+            </td>
+          </tr>
+          <tr>
+            <td align="right" valign="middle">&nbsp;</td>
+            <td>
+              <input id="regSubmit" class="Reg_b" type="submit" disabled value="确定注册"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="R_R">
+      <div class="r_tit">已有本站帐号？</div>
+      <a class="r_loginbtn" href="{conf site_url}/index.php?mod=login" rel="nofollow" title="快捷登录" onclick="ShowLoginDialog();return false;">请点此登录</a>
+      <div class="R_linedot"></div>
+      <div class="r_tit">或使用其他帐户登录：</div>
+      <div class="R_logoList"> 
+		{if $this->Config[sina_enable] && sina_weibo_init()} &nbsp; {eval echo sina_weibo_login('b');} {/if}
+		{if $this->Config[qqwb_enable] && qqwb_init()} &nbsp; {eval echo qqwb_login('b');} {/if}
+		{if $this->Config[yy_enable] && yy_init()} &nbsp; {eval echo yy_login('b');} {/if}
+		{if $this->Config[renren_enable] && renren_init()} &nbsp; {eval echo renren_login('b');} {/if}
+		{if $this->Config[kaixin_enable] && kaixin_init()} &nbsp; {eval echo kaixin_login('b');} {/if}
+		{if $this->Config[fjau_enable] && fjau_init()} &nbsp; {eval echo fjau_login('b');} {/if}
+	  </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+function regCopyrightSubmit() {
+	document.getElementById('regSubmit').disabled = !document.getElementById('copyrightInput').checked;
+}
+regCopyrightSubmit();
+
+$(document).ready(function(){
+var selectOption={eval load::functions('area');echo area_config_to_json();};
+
+
+});
+
+</script>
+<script language="JavaScript" type="text/javascript">
+var validateRegularList={
+	nickname:{dataType:"LimitB",min:'3',max:'15',msg:"帐户/昵称必须在3至15个字节以内"},
+	password:{dataType:"LimitB",min:"5",msg:"密码过短，请设成5位以上。"},
+	password2:{dataType:"Repeat",to:"password",msg:"两次输入的密码不一致"},
+	{if $this->_sms_register()}
+	sms_bind_num:{require:true,dataType:"Mobile",min:"10",max:'12',msg:"请输入11位的手机号码"},
+	sms_bind_key:{require:true,dataType:"Number",min:"5",max:'7',msg:"请输入6位的验证码"},
+	{/if}
+	{if !$noemail}
+	email:{require:true,dataType:"Email",msg:"Email邮箱格式不正确"},
+	{/if}
+	province:{dataType:"LimitB",min:'1',msg:"请选择省/直辖市"},
+	city:{dataType:"LimitB",min:'1',msg:"请选择城市/地区"},
+	truename:{require:false,dataType:"Truename",msg:"请填写真实姓名"},
+	seccode:{dataType:"LimitB",min:"4",msg:"验证码不正确，重新输入下吧。"}
+}
+Validator.SetRegular("member_register",validateRegularList);
+</script>
+<script type="text/javascript">
+
+function addEvent(eventHandler)
+    {
+        var tags = document.getElementsByTagName('input');
+        for(var i=0;i<tags.length;i++)
+        {
+            if(tags[i].getAttribute('url') == 'true')
+            {
+                if(tags[i].addEventListener)
+                {
+                    tags[i].addEventListener('keyup',eventHandler,true);
+                }
+                else
+                {
+                    tags[i].attachEvent('onkeyup',eventHandler);
+                }
+            }
+        }
+    }
+function addInput(e)
+    {
+        var obj = e.target ? e.target : e.srcElement;
+        var tags = document.getElementsByTagName('input');
+        for(var i=0;i<tags.length;i++)
+        {
+            if(tags[i].getAttribute('url') == 'true'&&tags[i]!=obj)
+            {
+                tags[i].value = obj.value;
+            }
+        }
+    }
+    window.onload = function()
+    {
+        addEvent(addInput);
+    }
+</script>
+<SCRIPT LANGUAGE="JavaScript">
+{if $this->_sms_register()}
+$("#sms_bind_key").bind("blur", function(){check_sms_bind_key()});
+{/if}
+{if !$noemail}
+$("#email_input").bind("blur",function (){check('email')});
+{/if}
+$("#nickname_input").bind("blur",function (){check('nickname')});
+$("#seccode_input").bind("blur",function (){check('seccode')});
+function check(obj)
+{
+	var _objList={email:'E-MAIL地址',nickname:'帐户/昵称'};
+	var _objValue=$('#'+obj+'_input').val();	
+	if(_objValue.length==0 || Validator.Validate(document.getElementById('member_register'),3,obj)!=true) {
+		$("#check_"+obj+"_result").hide();
+		return false;
+	}
+
+	$("#check_"+obj+"_result").html('正在检查'+_objList[obj]+'是否可注册...');
+	var myAjax = $.post(
+		'ajax.php?mod=member',
+		{
+			code:'check_'+obj,
+			check_value:_objValue
+		},
+		function (r) {
+			if(''!=r) {
+				$("#check_"+obj+"_result").html(r);
+				$("#check_"+obj+"_result").show();
+				$("#check_"+obj+"_result").addClass('error');
+				$('#'+obj+'_input').val('');
+				$('#'+obj+'_input').focus();
+				//对验证码的特殊处理
+				if (obj == 'seccode') {
+					updateSeccode();
+				}
+			} else {
+				$("#check_"+obj+"_result").hide();
+			}
+		}
+	);
+}
+function changeProvince(){
+  var province = document.getElementById("province").value;
+  var url = "ajax.php?mod=member&code=sel&province="+province;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+	  		    $('#' + "city").html(d);
+				document.getElementById("street").length = 1;
+				document.getElementById("area").length = 1;
+				document.getElementById("street").style.display = "none";
+				document.getElementById("area").style.display = "none";
+
+		  	}
+  );
+}
+changeProvince();
+function changeCity(){
+  var city = document.getElementById("city").value;
+  var url = "ajax.php?mod=member&code=sel&city="+city;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+				if(d){
+					document.getElementById("area").style.display = "block";
+		  		    $('#' + "area").html(d);
+				}else{
+					document.getElementById("area").length = 1;
+					document.getElementById("area").style.display = "none";
+				}
+				document.getElementById("street").style.display = "none";
+				document.getElementById("street").length = 1;
+		  	}
+  );
+}
+function changeArea(){
+  var area = document.getElementById("area").value;
+  var url = "ajax.php?mod=member&code=sel&area="+area;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+				if(d){
+					document.getElementById("street").style.display = "block";
+				    $('#' + "street").html(d);
+				}else{
+					document.getElementById("street").length = 1;
+					document.getElementById("street").style.display = "none";
+				}
+		  	}
+  );
+}
+function check_submit(vobj, vtype)
+{
+	return Validator.Validate(vobj, vtype)&&check('seccode'){if $this->_sms_register()}&&check_sms_bind_key(){/if};
+}
+function changedepartment(id){
+  var cid = 'undefined' == typeof(id) ? 0 : id;
+  var myAjax=$.post("ajax.php?mod=member&code=cp",{cid:cid},function(d){if(d){$('#' + "departmentselect").html(d);}});
+}
+</SCRIPT>
+<!--{template "topic_footer"}-->

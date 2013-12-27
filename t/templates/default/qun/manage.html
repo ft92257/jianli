@@ -1,0 +1,564 @@
+{template "topic_header"}
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+<div class="main_t main_t23">
+<span style=" float:left;">微群管理</span>
+<span style="float:right; margin-right:10px;"><a href="index.php?mod=qun&qid={$qun_info['qid']}"><em><<</em>返回 {$qun_info['name']}</a></span>
+</div>
+<div class="qun_warp qun_sub">
+<script type="text/javascript">
+		function checkall(form, prefix, checkall) {
+			var checkall = checkall ? checkall : 'chkall';
+			for(var i = 0; i < form.elements.length; i++) {
+				var e = form.elements[i];
+				if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+					e.checked = form.elements[checkall].checked;
+				}
+			}
+		}
+</script>
+<div class="Menubox2">
+	<ul>
+		<li>
+			<div  class="<!--{if $active['setting']}-->tago<!--{else}-->tagn<!--{/if}-->" >
+			<A HREF="index.php?mod=qun&code=manage&op=setting&qid={$qun_info['qid']}"><span>基本信息</span></A>
+			</div>
+		</li>
+		<li>
+			<div class="<!--{if $active['icon']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=icon&qid={$qun_info['qid']}"><span>微群头像</span></A>
+			</div>
+		</li>
+		<li>
+			<div class="<!--{if $active['privacy']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=privacy&qid={$qun_info['qid']}"><span>隐私保护</span></A>
+			</div>
+		</li>
+		<li>
+			<div class="<!--{if $active['members']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=members&qid={$qun_info['qid']}"><span>成员管理</span></A>
+			</div>
+		</li>
+		<li>
+			<div class="<!--{if $active['check_member']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=check_member&qid={$qun_info['qid']}"><span>成员审核</span></A>
+			</div>
+		</li>
+		<li>
+			<div class="<!--{if $active['announcement']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=announcement&qid={$qun_info['qid']}"><span>微群公告</span></A>
+			</div>
+		</li>
+		<!--{if $this->Config['qun_attach_enable']}-->
+		<li>
+			<div class="<!--{if $active['attach']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=attach&qid={$qun_info['qid']}"><span>群附件</span></A>
+			</div>
+		</li>
+		<!--{/if}-->
+		<!--{if $this->Config['event_open']}-->
+		<li>
+			<div class="<!--{if $active['event']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=event&qid={$qun_info['qid']}"><span>群活动</span></A>
+			</div>
+		</li>
+		<!--{/if}-->
+		<!--{if $this->Config['vote_open']}-->
+		<li>
+			<div class="<!--{if $active['vote']}-->tago<!--{else}-->tagn<!--{/if}-->">
+			<A HREF="index.php?mod=qun&code=manage&op=vote&qid={$qun_info['qid']}"><span>群投票</span></A>
+			</div>
+		</li>
+		<!--{/if}-->
+	</ul>
+	<div style="float:right;"><a href="javascript:;" onclick="dismissQun({$qun_info['qid']})">解散群</a></div>
+</div>
+	
+	
+ <div class="qun_box">
+ <!--{if $op == 'setting'}-->
+ <div class="qun_s_box">
+ 	 <form action="index.php?mod=qun&code=domanage&op=setting&qid={$qun_info['qid']}" method="post">
+	<table style="width:100%">
+		<tr>
+			<td width="12%" align="right"><label for="color-background"><i>*</i> 微群名称：</label></td>
+			<td>
+				<input id="qun_name" name="qun_name" value="{$qun_info['name']}" type="text" class="inputs">
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="right"><label for="color-background"><i>*</i> 微群分类：</label></td>
+			<td>
+				<div style="float:left;">
+					<select id="top_cat" name="top_cat" onchange="get_catselect(this)">
+						{$catselect['first']}
+					</select>
+				</div>
+				<div style="float:left; ">
+					<select id="sub_cat" name="sub_cat">
+						{$catselect['second']}
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="right"><label for="color-background"><i>*</i> 微群所在地：</label></td>
+			<td>
+				<div style="float:left;">
+				{$province_list}
+				</div>
+				<div style="float:left; ">
+					<select id="city" name="city"></select>
+					<input type="hidden" id="hid_city" name="hid_city" value="{$hid_city}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="right" valign="top"><label for="color-background">微群标签：</label></td>
+			<td>
+				<input id="tag" name="tag" value="{$tag}" type="text" class="inputs">
+				<p style=" float:left;">可以使用空格或英文逗号分隔，最多可填写5个标签</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="right" valign="top"><label for="color-background">微群简介：</label></td>
+			<td><textarea id="desc" class="inputs" style="padding:3px 5px;width:450px;height:50px; font-size:12px;" name="desc">{$qun_info['desc']}</textarea></td>
+		</tr>
+	    <tr>
+	      <td width="10%" align="right" valign="top"><label for="color-background" class="td10">微群风格：</label></td>
+	      <td>
+	      <div class="ulist6 td11">
+	      <!--{loop $themelist $val}-->
+	        <div class="pf2 selected crPer">
+	          <p class="status">
+	          	<!--{if ($val[theme_id] == $qun_info[qun_theme_id])}-->
+				<input type="radio" id="$val[theme_id]" name="theme_rad" checked onclick="quntheme('$val[element]')">
+				<!--{else}-->
+				<input type="radio" id="$val[theme_id]" name="theme_rad" onclick="quntheme('$val[element]')">
+				<!--{/if}-->
+	          </p>
+	          <p class="mark"></p>
+	          <p class="avt">
+	            <b>
+	              <label for="checked_2" style="cursor:pointer;">
+	                <a href="javascript:void(0)" onclick="quntheme('$val[element]')">
+				    <img alt="" src="templates/default/images/quntheme/{$val[theme_id]}/themebg_preview.jpg"/></a>
+	              </label>
+	            </b>
+	          </p>
+	        </div>
+			<!--{/loop}-->
+		  </div>
+		</td>
+	  </tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" class="shareI" value="保 存"/>
+			    <input id="qun_theme_id" name="qun_theme_id" value="{$qun_info[qun_theme_id]}" type="hidden"></td>
+		</tr>
+	</table>
+	</form>
+	</div>
+ <!--{elseif $op=='icon'}-->
+ <div class="qun_s_box">
+ <form action="index.php?mod=qun&code=domanage&op=icon&qid={$qun_info['qid']}" method="post" enctype="multipart/form-data">
+ <div class="qun_p"><img src="{$qun_info['icon']}" /></div>
+ <div class="qun_p">
+		<input id="icon" name="icon" type="file"/> 
+		<input type="submit" class="shareI" id="save" value="保存"/>
+	</div>
+	<div class="qun_p">{$u_tips}</div>
+	</form>
+	</div>
+ <!--{elseif $op=='privacy'}-->
+ <div class="qun_s_box">
+ 	<form action="index.php?mod=qun&code=domanage&op=privacy&qid={$qun_info['qid']}" method="post">
+	<table>
+		<tr>
+			<td width="10%" valign="top"><label for="color-background"><i>*</i> 微群类型：</label></td>
+			<td>
+				<input type="radio" value="0" name="gview_perm" id="privacy_open" {$checked['gview_perm'][0]} />
+				<label for="privacy_open">公开群组</label>
+				<br />
+				<input type="radio" value="1" name="gview_perm" id="privacy_closed" {$checked['gview_perm'][1]} onclick="privacy_radio_force(1);"/>
+				<label for="privacy_closed">私密群组</label>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" valign="top"><label for="color-background"><i>*</i> 加入方式：</label></td>
+			<td>
+				<input type="radio" value="0" name="join_type" id="join_free" {$checked['join_type'][0]} onclick="privacy_radio_force(2)"/>
+				<label for="join_free">任何人可自由加入</label>
+				<br />
+				<input type="radio" value="1" name="join_type" id="join_ratify" {$checked['join_type'][1]}/>
+				<label for="join_ratify">需群主批准后才能加入</label>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%"></td>
+			<td><br />
+				<input type="submit" class="shareI" value="保 存"/>
+			</td>
+		</tr>
+	</table>
+	</form>
+	</div>
+ <!--{elseif $op=='members'}-->
+	<div class="qun_p_b">
+		<a href="index.php?mod=qun&code=manage&op=members&view=all&qid={$qun_info['qid']}" {$active['all']} >全部成员</a>
+		<span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+		<a href="index.php?mod=qun&code=manage&op=members&view=followed&qid={$qun_info['qid']}" {$active['followed']} >我关注的成员</a>
+	</div>
+	<div style="color:#666;">
+		<!--{if $view == 'followed'}-->
+		<!--{elseif $view == 'audit'}-->
+		<!--{else}-->
+			共有{$count}名成员，管理员{$admin_nums}名(上限{$level['admin_num']}名)
+		<!--{/if}-->
+	</div>
+	<div id="mb_list_wp" style="margin-top:20px;">
+		<form action="index.php?mod=qun&code=domanage&op=members&qid={$qun_info['qid']}" method="post">
+		<table cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="5%"><input type="checkbox" name="chkall" onclick="checkall(this.form, 'ids')"></th>
+				<th width="25%">成员</th>
+				<th width="15%">群身份</th>
+				<th width="20%">加入本群时间</th>
+				<th width="35%">操作</th>
+			</tr>
+			<!--{if $count}-->
+			<!--{loop $members $value}-->
+			<tr>
+				<td>
+					<!--{if $value['level'] != 1}-->
+						<!--{if ( $value['level']!=2 || ($value['level']==2 && $perm==1))}-->
+							<input type="checkbox"  name="ids[]" value="$value['uid']"/>
+						<!--{/if}-->
+					<!--{/if}-->
+					&nbsp;	
+				</td>
+				<td>
+					<div style="float:left"><a href="index.php?mod={$value['username']}"><img src="{$value['face']}" width="30" height="30" onerror="javascript:faceError(this);" /></a></div>
+					<div style="float:left; margin-left:5px;">
+						<a href="index.php?mod={$value['username']}">{$value['nickname']}</a>
+					</div>
+					<div style="clear:both;"></div>
+				</td>
+				<td>
+					<!--{if $value['level'] == 1}-->
+						创始人
+					<!--{elseif $value['level'] == 2}-->
+						管理员
+					<!--{elseif $value['level'] == 4}-->
+						普通用户
+					<!--{/if}-->
+				</td>
+				<td><!--{eval echo my_date_format($value['join_time'], 'Y-m-d H:i')}--></td>
+				<td>
+					<!--{if $value['level'] == 1}-->
+					-
+					<!--{elseif $value['level'] == 2}-->
+						<!--{if $perm == 1 || MEMBER_ROLE_TYPE == 'admin'}-->
+							<a href="index.php?mod=qun&code=domanage&op=degrade&qid={$qun_info['qid']}&uid={$value['uid']}">取消其管理员身份</a>
+						<!--{else}-->
+						-
+						<!--{/if}-->
+					<!--{elseif $value['level'] == 4}-->
+						<!--{if $perm == 1  || MEMBER_ROLE_TYPE == 'admin'}-->
+							<a href="index.php?mod=qun&code=domanage&op=upgrade2admin&qid={$qun_info['qid']}&uid={$value['uid']}">提升为管理员</a>
+						<!--{/if}-->
+						&nbsp;
+						<a href="index.php?mod=qun&code=domanage&op=del_member&qid={$qun_info['qid']}&uid={$value['uid']}">踢出该群</a>		
+					<!--{/if}-->
+				</td>
+			</tr>
+			<!--{/loop}-->
+			<!--{else}-->
+			<tr>
+				<td colspan="7" style="border-bottom:0px;">没有相关成员</td>
+			</tr>
+			<!--{/if}-->
+		</table>
+		<div style="text-align:right; margin-top:15px; margin-bottom:15px;">{$page_arr['html']}</div>
+		<!--{if $count}-->
+			<div class="qun_p_b2"><input type="submit" class="shareI" id="publish" value="删 除"/></div>
+		<!--{/if}-->
+		</form>
+	</div>
+ <!--{elseif $op=='announcement'}-->
+ <div class="qun_s_box">
+	<form action="index.php?mod=qun&code=domanage&op=announcement&qid={$qun_info['qid']}" method="post">
+	<div class="qun_p"> 
+		<div><textarea name="message" id="message" class="inputs" style="width:730px; height:100px;"></textarea></div>
+		<div class="qun_p_b2"><input type="submit" class="shareI" id="publish" value="发 布"/></div>
+	</div>
+	<div class="qun_p"> 
+		<table border="0" cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="15%">发布时间</th>
+				<th width="55%">内容</th>
+				<th width="15%">发布人</th>
+				<th width="15%">操作</th>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $announcements $value}-->
+					<tr>
+						<td><!--{eval echo my_date_format($value['dateline'], 'Y-m-d')}--></td>
+						<td><!--{$value['message']}--></td>
+						<td><a href="index.php?mod={$value['author']}"><!--{$value['nickname']}--></a></td>
+						<td><a href="index.php?mod=qun&code=domanage&op=del_announcement&qid={$qun_info['qid']}&id={$value['id']}">删除</a></td>
+					</tr>
+				<!--{/loop}-->
+			<!--{else}-->
+				<tr><td colspan="4">没有公告记录</td></tr>	
+			<!--{/if}-->
+		</table>
+		<div>{$multi}</div>
+	</div>
+	</form>
+	</div>
+ <!--{elseif $op=='event'}-->
+ <div class="qun_s_box">
+  <form action="index.php?mod=qun&code=domanage&op=event&qid={$qun_info['qid']}" method="post">
+	<div class="qun_p"> 
+		<table border="0" cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="5%">推荐</th>
+				<th width="50%">活动名称</th>
+				<th width="15%">发布人</th>
+				<th width="15%">报名/参与人数</th>
+				<th width="15%">活动时间</th>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $event_list $val}-->
+					<tr>
+						<td><input type="checkbox" name="event_{$val[eid]}" id="event_{$val[eid]}" $val[che] onclick="setEventRecd($val[qid],$val[eid]);"></td>
+						<td><a href="index.php?mod=event&code=detail&id=$val[eid]" target="_blank">$val['title']</a></td>
+						<td><a href="index.php?mod={$val[postman]}" target="_blank">$val['nickname']</a></td>
+						<td>$val[app_num]/$val[play_num]</td>
+						<td>
+						  <!--{eval echo my_date_format($val['fromt'], 'Y-m-d H:i')}-->
+						  <!--{eval echo my_date_format($val['tot'], 'Y-m-d H:i')}-->
+						</td>
+					</tr>
+				<!--{/loop}-->
+			<!--{else}-->
+				<tr><td colspan="5">没有群内活动</td></tr>	
+			<!--{/if}-->
+		</table>
+	</div>
+  </form>
+</div>
+<script language="javascript">
+  function setEventRecd(qid,eid){
+	$.post(
+		"ajax.php?mod=qun&code=seteventrecd",
+		{'qid':qid,
+		 'eid':eid},
+		function(d){
+			show_message(d.msg,3);
+		},'json'
+	)
+  }
+</script>
+
+ <!--{elseif $op=='attach'}-->
+ <script type="text/javascript">
+ function qaDelete(obj,qaid){
+	var del = confirm("您确定要删除这个文件吗？");
+	var qaid = ('undefined'==typeof(qaid) ? 0 : qaid);
+	var o = obj.parentNode.parentNode;
+	if(del == true && qaid > 0){
+	$.post(
+			'ajax.php?mod=uploadattach&code=delete_attach',
+			{'id':qaid},
+			function(d){
+				if(d.done){
+					o.parentNode.removeChild(o);
+				}else{
+					if(d.msg){MessageBox('warning', d.msg);}
+				}
+			},
+			'json'
+		);
+	}else{
+		return false;
+	}
+}
+</script>
+ <div class="qun_s_box">
+  <form action="index.php?mod=qun&code=domanage&op=attach&qid={$qun_info['qid']}" method="post">
+	<div class="qun_p"> 
+		<table border="0" cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="10%">文件类型</th>
+				<th width="30%">文件名称</th>
+				<th width="14%">上传者</th>
+				<th width="20%">上传时间</th>
+				<th width="8%">下载次数</th>
+				<th width="8%">附件积分</th>
+				<th width="10%">管理</th>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $attach_list $val}-->
+					<tr>
+						<td><img src="{$val['filetype']}" width="32" height="32"></td>
+						<td><a href="index.php?mod=topic&code={$val['tid']}" title="查看所属微博" target="_blank">{$val['name']}</a>({$val['size']})</td>						
+						<td><a href="index.php?mod={$val['username']}" title="浏览该用户微博" target="_blank">{$val['nickname']}</a></td>
+						<td>{$val['dateline']}</td>
+						<td>{$val[download]}</td>
+						<td>{$val[score]}</td>
+						<td><a href="{$val['file']}" title="下载该文件">下载</a>&nbsp;<a href="javascript:;" onclick="qaDelete(this,{$val[id]}); return false;">删除</a></td>
+					</tr>
+				<!--{/loop}-->
+			<!--{else}-->
+				<tr><td colspan="7">没有群内附件</td></tr>	
+			<!--{/if}-->
+		</table>
+	</div>
+  </form>
+</div>
+
+ <!--{elseif $op=='vote'}-->
+ <div class="qun_s_box">
+  <form action="index.php?mod=qun&code=domanage&op=vote&qid={$qun_info['qid']}" method="post">
+	<div class="qun_p"> 
+		<table border="0" cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="5%">推荐</th>
+				<th width="50%">投票名称</th>
+				<th width="15%">发布人</th>
+				<th width="15%">投票人数</th>
+				<th width="15%">投票截止时间</th>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $vote_list $val}-->
+					<tr>
+						<td><input type="checkbox" name="vote_{$val[vid]}" id="vote_{$val[vid]}" $val[che] onclick="setVoteRecd($val[qid],$val[vid]);"></td>
+						<td><a href="index.php?mod=vote&code=view&vid=$val[vid]" target="_blank">$val['subject']</a></td>
+						<td><a href="index.php?mod={$val[uid]}" target="_blank">$val['nickname']</a></td>
+						<td>$val[voter_num]</td>
+						<td>
+						  <!--{eval echo my_date_format($val['expiration'], 'Y-m-d H:i')}-->
+						</td>
+					</tr>
+				<!--{/loop}-->
+			<!--{else}-->
+				<tr><td colspan="5">没有群内投票</td></tr>	
+			<!--{/if}-->
+		</table>
+	</div>
+  </form>
+</div>
+<script language="javascript">
+  function setVoteRecd(qid,vid){
+	$.post(
+		"ajax.php?mod=qun&code=setvoterecd",
+		{'qid':qid,
+		 'vid':vid},
+		function(d){
+			show_message(d.msg,3);
+		},'json'
+	)
+  }
+</script>
+
+ <!--{elseif $op=='check_member'}-->
+ 
+	<div id="mb_list_wp" style="margin-top:20px;">
+		<form action="index.php?mod=qun&code=domanage&op=check_member&qid={$qun_info[qid]}" method="post" id="check_member_form">
+		<input type="hidden" name="check_type" id="check_type" value="1" />
+		<table cellpadding="0" cellspacing="0" class="tb" style="width:100%">
+			<tr>
+				<th width="5%"><input type="checkbox" name="chkall" onclick="checkall(this.form, 'ids')" style="border:none"></th>
+				<th width="15%">用户</th>
+				<th width="10%">附言</th>
+				<th width="15%">申请时间</th>
+				<th width="25%">操作</th>
+			</tr>
+			<!--{if $count}-->
+			<!--{loop $members $value}-->
+			<tr>
+				<td>
+					<input type="checkbox"  name="ids[]" value="$value['uid']"/>
+					&nbsp;	
+				</td>
+				<td>
+					<div style="float:left"><a href="index.php?mod={$value['username']}"><img src="{$value['face']}" width="30" height="30" onerror="javascript:faceError(this);"/></a></div>
+					<div style="float:left; margin-left:5px;">
+						<a href="index.php?mod={$value['username']}">{$value['nickname']}</a>
+					</div>
+					<div style="clear:both;"></div>
+				</td>
+				<td>{$value['message']}&nbsp;</td>
+				<td><!--{eval echo my_date_format($value['apply_time'], 'Y-m-d H:i')}--></td>
+				<td>
+					<a href="index.php?mod=qun&code=domanage&op=check_member&check_type=1&qid={$value[qid]}&ids={$value[uid]}">通过</a>
+					&nbsp;
+					<a href="index.php?mod=qun&code=domanage&op=check_member&check_type=2&qid={$value[qid]}&ids={$value[uid]}">忽略</a>
+				</td>
+			</tr>
+			<!--{/loop}-->
+			<!--{else}-->
+			<tr>
+				<td colspan="7" style="border-bottom:0px;">没有相关成员</td>
+			</tr>
+			<!--{/if}-->
+		</table>
+		<div style="text-align:right; margin-top:15px; margin-bottom:15px;">{$page_arr['html']}</div>
+		<!--{if $count}-->
+			<div style="margin-top:10px;">
+				<input type="button" class="shareI" id="publish" onclick="check_member_submit(1)" value="通 过"/>
+				&nbsp;
+				<input type="button" class="shareI" id="publish" onclick="check_member_submit(2)" value="忽 略"/>
+			</div>
+		<!--{/if}-->
+		</form>
+	</div>
+	<script language="javascript">
+		function check_member_submit(check_type)
+		{
+			$('#check_type').val(check_type);
+			$('#check_member_form').submit();
+		}
+	</script>
+<!--{/if}-->
+</div>
+</div>	      
+</div>
+</div>
+<!--{if $op=='setting'}-->
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	var selectOption={eval load::functions('area');echo area_config_to_json();};
+	});
+
+	function changeProvince(){
+		  var province = document.getElementById("province").value;
+		  var hid_city = document.getElementById("hid_city").value;
+		  var url = "ajax.php?mod=member&code=sel&province="+province + "&hid_city="+hid_city;
+
+		  var myAjax=$.post(
+				  	url,
+				  	function(d){
+			  		    $('#' + "city").html(d);
+				  	}
+		  );
+		}
+		changeProvince();
+
+</script>
+<!--{/if}-->
+{template "topic_footer"}

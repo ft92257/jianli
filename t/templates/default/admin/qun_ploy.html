@@ -1,0 +1,86 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=qun&code=doploy" method="post" name="ploy_form">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="6">基本策略</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="300">
+			是否只有上传了头像的成员才能创建组群
+		</td>
+		<td class="altbg2">
+			<input name='config[qun_ploy][avatar]' id='qun_ploy_avatar_1' type='radio' value='1' class="radio" {$checked['avatar'][1]} >
+			<label for='qun_ploy_avatar_1'>是</label>
+			<input name='config[qun_ploy][avatar]' id='qun_ploy_avatar_0' type='radio' value='0' class="radio" {$checked['avatar'][0]} >
+			<label for='qun_ploy_avatar_0'>否</label>	
+		</td>
+		<td class="altbg2">
+			
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+			是否只有V认证用户才能创建组群
+		</td>
+		<td class="altbg2">
+			<input name='config[qun_ploy][vip]' id='qun_ploy_vip_1' type='radio' value='1' class="radio" {$checked['vip'][1]} >
+			<label for='qun_ploy_vip_1'>是</label>
+			<input name='config[qun_ploy][vip]' id='qun_ploy_vip_0' type='radio' value='0' class="radio" {$checked['vip'][0]} >
+			<label for='qun_ploy_vip_0'>否</label>	
+		</td>
+		<td class="altbg2">
+			
+		</td>
+	</tr>
+</table>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="6">详细策略</td>
+	</tr>
+	<tr class="list_h_2">
+		<td width="5%">删?</td>
+		<td width="25%">粉丝数介于</td>
+		<td width="25%">微博数介于</td>
+		<td width="25%">可建微群数</td>
+		<td width="20%"></td>
+	</tr>
+	<!--{loop $ploy_list $value}-->
+		<tr>
+			<td class="td2"><input class="checkbox" type="checkbox" name="del_ids[]" value="{$value['id']}"></td>
+			<td class="td2">
+				<input type="text" name="qun_ploy[{$value['id']}][fans_num_min]"  value="{$value['fans_num_min']}" size="8"/>
+				<span style="vertical-align:middle; margin-left:5px; margin-right:5px;">~</span>
+				<input type="text" name="qun_ploy[{$value['id']}][fans_num_max]"  value="{$value['fans_num_max']}" size="8" readonly="readonly" style="background:#eee;"/>
+			</td>
+			<td class="td2">
+				<input type="text" name="qun_ploy[{$value['id']}][topics_lower]"  value="{$value['topics_lower']}" size="8"/>
+				<span style="vertical-align:middle; margin-left:5px; margin-right:5px;">~</span>
+				<input type="text" name="qun_ploy[{$value['id']}][topics_higher]"  value="{$value['topics_higher']}" size="8" readonly="readonly" style="background:#eee;"/>
+			</td>
+			<td class="td2"><input type="text" name="qun_ploy[{$value['id']}][qun_num]"  value="{$value['qun_num']}" size="8" maxlength="9" /></td>
+			<td class="td2"></td>
+		</tr>
+	<!--{/loop}-->
+	<tbody id="new_ploy_body"></tbody>
+	<tr class="list_h_2">
+		<td></td>
+		<td colspan="5"><a href="javascript:" onclick="add_tbody('new_ploy','new_ploy_body')" class="addtr">添加策略</a></td>
+	</tr>
+</table>
+<center><input class="button" type="submit" name="level_submit" value="提 交"></center>
+</form>
+<table  style="display:none;">
+<tbody id="new_ploy">
+	<tr class="list_h_2">
+		<td></td>
+		<td><input type="text" name="new_qun_ploy[fans_num_min][]"  value="" size="8"/></td>
+		<td><input type="text" name="new_qun_ploy[topics_lower][]"  value="" size="8"/></td>
+		<td><input type="text" name="new_qun_ploy[qun_num][]"  value=""/></td>
+		<td><a href="javascript:;" onclick="del_tbody(this);">删除</a></td>
+	</tr>
+</tbody>
+</table>
+</div>

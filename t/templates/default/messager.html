@@ -1,0 +1,49 @@
+<!--{template "topic_header"}-->
+{$url_redirect}
+<div class="main_2 {$t_col_logo}" style="width:950px;">
+<div class="main_t" style="width:850px"><span>{conf site_name}提示信息</span></div>
+<!--{if $this->Config[ad][ad_list][messager][middle]}-->
+<div class="T_AD">{$this->Config[ad][ad_list][messager][middle]}</div>
+<!--{/if}-->
+<ul style="font-size:14px;list-style-type:none; padding:20px 50px 0;">
+    <!--{if is_array($message)==false}-->
+				<li><span class="opreate_span">{$message}</span></li>
+				<!--{else}-->
+				<!--{loop $message $one_message}-->
+				<li><span class="opreate_span">{$one_message}</span></li>
+				<!--{/loop}-->
+				<!--{/if}-->
+    <li class="li_nostyle" style="margin:5px 0">
+				<span class="opreate_span">
+				<!--{if $return_msg==""}-->
+					<!--{if $time!==null}-->
+						<a href="{$redirectto}">
+						<!--{if $time!==0}-->
+						<span id='redirect_status'><span id='msg_time'>{$time}</span>秒后{$to_title}</span>，
+                        <script language="JavaScript" type="text/javascript">
+						function showTimeStatus()
+						{
+							var timeObj=document.getElementById('msg_time');
+							if(timeObj.innerHTML==1)
+							{
+								document.getElementById('redirect_status').innerHTML="正在{$to_title}";
+								return false;
+							}
+							timeObj.innerHTML-=1;
+
+							setTimeout(showTimeStatus,1000);
+						}
+						showTimeStatus();
+						</script>
+						<!--{/if}-->
+					如果您的浏览器没有自动跳转，请点这里继续</a>
+					<!--{else}-->
+					<a href="{$redirectto}">{$to_title}</a>
+					<!--{/if}-->
+				<!--{else}-->
+				{$return_msg}
+				<!--{/if}-->
+				</span></li>
+			</ul>
+</div>
+<!--{template "topic_footer"}-->

@@ -1,0 +1,12 @@
+<include file="Public:header" />
+<title>用户注册</title>
+</head><body>
+
+<form method="post">
+	帐号：<input type="text" name="account" id="account" onblur="ajaxValidate(this.id)" /> <span id="_prompt_account"></span><br>
+	密码：<input type="password" name="password" id="password" onblur="ajaxValidate(this.id)" /> <span id="_prompt_password"></span><br>
+	确认：<input type="password" name="repassword" id="repassword" /> <br>
+	<br><input type="submit" value="提交" />
+</form>
+
+<include file="Public:bottom" />

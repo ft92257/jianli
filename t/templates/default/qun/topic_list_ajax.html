@@ -1,0 +1,38 @@
+<!--
+	这边使用独立的list文件主要是减少系统内部的耦合
+	这里不用每次都到公用目录的topic_list_ajax上加判断条件，因为有可能应用的list样式会和公用部分不一样
+	@Create By	~ZZ~ $Date:2011-05-03
+-->
+<div class="Listmain">
+	<!--{if $topic_list}-->
+         <!--{loop $topic_list $val}-->
+		 	<!--{eval $counts++;}-->
+            <div class="feedCell" id="topic_list_{$val[tid]}">
+				<!--{if $this->Config[ad_enable]}-->
+				<!--{if $counts == 5}-->
+					<div class="L_AD">{$this->Config[ad][ad_list][topic_][middle_center]} </div>
+					<!--{/if}-->				
+					<!--{if $counts == 15}-->
+				   <div class="L_AD">{$this->Config[ad][ad_list][topic_][middle_center1]} </div>
+					<!--{/if}-->				
+				<!--{/if}-->
+				<!--{subtemplate topic_item_ajax}-->
+                <div class="mBlog_linedot"></div>
+          	</div> 
+          <!--{/loop}-->
+          <!--{if $page_arr[html]}-->
+          <div class="pageStyle">
+            <li>{$page_arr[html]}</li>
+          </div>
+          <!--{/if}-->
+          <!--{/if}-->
+		  
+		  <!--简单的提示 Begin-->
+          <!--{if $counts <=5}-->
+			  <div id="topic_list_{$counts}">
+			  </div>
+          <!--{/if}-->
+		  <!--简单的提示 End-->
+		  
+        </div>
+{eval echo $this->js_show_msg();}

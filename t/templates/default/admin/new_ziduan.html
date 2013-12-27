@@ -1,0 +1,136 @@
+{template admin/header}
+<div id="main_wp" class="mt10">
+<form name="addfiledform" id="addfiledform" method="post" action="admin.php?mod=module&code=addziduan">
+  <table width="98%" border="0" cellspacing="1" cellpadding="3">
+    <tr class="header"> 
+      <td colspan="2">字段管理</td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">字段名称:<font color="#FF0000">(*)</font></td>
+      <td width="63%" class="altbg2"> 
+        <input type="text" name="name" value="$_rs[name]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">数据库字段ID:<font color="#FF0000">(*)</font></td>
+      <td width="63%" class="altbg2"> 
+        <input type="text" name="field_name" value="$_rs[field_name]" {$readonly}>
+        (必须为3个字母以上,字母后面可以跟数字) 
+      </td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">数据库字段存放数据类型:<font color="#FF0000">(*)</font></td>
+      <td width="63%" class="altbg2"> 
+        <select id="field_type" name="field_type"  onChange="field_choose();">
+          <option value="varchar" {$field_type[varchar]}>255个字符串以内</option>
+          <option value="int" {$field_type[int]}>10位以内纯数字</option>
+          <option value="mediumtext" {$field_type[mediumtext]}>文本文档</option>
+        </select>
+      </td>
+    </tr>
+    <tr id="field_leng_tr"> 
+      <td width="37%" class="altbg1">数据库字段长度:<font color="#FF0000">(*)</font></td>
+      <td width="63%" class="altbg2"> 
+        <input type="text" name="field_leng" value="$_rs[field_leng]">
+      </td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">用户填写的表单类型:<font color="#FF0000">(*)</font></td>
+      <td width="63%" class="altbg2"> 
+        <select id="form_type" name="form_type"  onChange="form_choose();">
+          <option value="text" {$form_type[text]}>单行文本框</option>
+          <option value="textarea" {$form_type[textarea]}>多行文本框</option>
+          <option value="select" {$form_type[select]}>下拉菜单</option>
+          <option value="radio" {$form_type[radio]}>单选框</option>
+          <option value="checkbox" {$form_type[checkbox]}>复选框</option>
+        </select>
+      </td>
+    </tr>
+    <tr id="field_inputleng_tr"> 
+      <td width="37%" class="altbg1">表单输入框长度:</td>
+      <td width="63%" class="altbg2"> 
+        <input type="text" name="field_inputleng" value="$_rs[field_inputleng]" size="5">
+        个字 </td>
+    </tr>
+    <tr id="form_set_tr"> 
+      <td width="37%" class="altbg1">表单参数选项:<br>
+        (适用下拉菜单/单选框/复选框,每个值换一行) </td>
+      <td width="63%" class="altbg2"> 
+        <textarea name="form_set" cols="50" rows="5">$_rs[form_set]</textarea>
+      </td>
+    </tr>
+    <tr id="form_mod_tr"> 
+      <td width="37%" class="altbg1">表单字段单位名称：<br>
+        (一般为空) </td>
+      <td width="63%" class="altbg2"> 
+        <input type="text" name="form_units" size=5 value="{$_rs[form_units]}">
+      </td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">是否为必填选项:<br>
+      </td>
+      <td width="63%" class="altbg2"> 
+        <input type="radio" name="mustfill" value="0" $mustfill[0]>
+        不限制 
+        <input type="radio" name="mustfill" value="1" $mustfill[1]>
+        必填 
+        <input type="radio" name="mustfill" value="2" $mustfill[2]>
+        隐藏(不提供给用户填写) </td>
+    </tr>
+    <tr> 
+      <td width="37%" class="altbg1">是否在列表页显示</td>
+      <td width="63%" class="altbg2"> 
+        <input type="radio" name="IfListShow" value="1" $IfListShow[1]>
+        是 
+        <input type="radio" name="IfListShow" value="0" $IfListShow[0]>
+        否 </td>
+    </tr>
+    <tr id="IfListSearch_tr"> 
+      <td width="37%" class="altbg1">是否作为列表页的筛选搜索字段:</td>
+      <td width="63%" class="altbg2"> 
+        <input type="radio" name="IfListSearch" value="1" $IfListSearch[1]>
+        是 
+        <input type="radio" name="IfListSearch" value="0" $IfListSearch[0]>
+        否</td>
+    </tr>
+    <tr align="center"> 
+      <td colspan="2"> 
+        <input type="submit" name="Submit" value="提交" class="button">
+        <input type="hidden" name="hid_field_name" value="$_rs[field_name]">
+        <input type="hidden" name="action" value="$action">
+        <input type="hidden" name="id" value="$id">
+        <input type="hidden" name="hid_id" value="$hid_id">
+      </td>
+    </tr>
+  </table>
+</form>
+<SCRIPT LANGUAGE="JavaScript">
+
+	function field_choose(){
+		var type = document.getElementById("field_type").value;
+		if(type=='mediumtext'){
+			document.getElementById("field_leng_tr").style.display='none';
+		}else{
+			document.getElementById("field_leng_tr").style.display='';
+		}
+	}
+	field_choose();
+
+	function form_choose(){
+		var type = document.getElementById("form_type").value;
+		if(type=='select'||type=='radio'||type=='checkbox'){
+			document.getElementById("form_set_tr").style.display='';
+			document.getElementById("IfListSearch_tr").style.display='';
+		}else{
+			document.getElementById("form_set_tr").style.display='none';
+			document.getElementById("IfListSearch_tr").style.display='none';
+		}
+		if(type=='text'||type==''){
+			document.getElementById("field_inputleng_tr").style.display='';
+		}else {
+			document.getElementById("field_inputleng_tr").style.display='none';
+		}
+	}
+	form_choose();
+</SCRIPT>
+</div>

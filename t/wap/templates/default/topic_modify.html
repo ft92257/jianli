@@ -1,0 +1,54 @@
+<!--{template "topic_header"}-->
+<div style="padding:2px;">
+	<span class="">微博原文</span>
+</div>
+<div class="u2">
+		<span><a href="index.php?mod={$topiclist[username]}">{$topiclist[nickname]}</a>：{$topiclist[content]}
+		<!--{if $topiclist[longtextid]}--> <a href="index.php?mod=topic&amp;code={$topiclist[tid]}">[查看全文]</a><!--{/if}-->
+		</span>
+		<!--{if $topiclist[videoid]}-->
+		[视频]
+		<!--{/if}--> 
+		<!--{if $topiclist[imageid] && $topiclist[image_list]}-->
+		<div>
+			{loop $topiclist[image_list] $iv}
+			<p><img src="{$iv[image_small]}"/></p>
+			{/loop}
+		</div>
+		<!--{/if}-->
+		
+		<div class="t_manger">
+			<span class="p_time">{$topiclist[dateline]}   {$topiclist[from_string]}</span> 
+		</div>
+		<div>
+		 <!--{if $topiclist[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+		 <a href="index.php?mod=topic&amp;code=del&amp;tid={$topiclist[tid]}">[删除微博]</a> 
+		 <!--{/if}-->
+		</div>
+</div>
+		<div class="lineDot"></div>
+
+<div style="padding:2px;">
+	<span class="">编辑微博 <!--{if $this->Config[topic_input_length]>0}-->({conf topic_input_length}字以内)<!--{/if}--></span>
+</div>
+<div class="u2">
+	<!--{if $return_messager}--><div class="t_tips">微博内容不能为空，请重新编辑</div><!--{/if}-->
+	<div>
+	<p>
+	<form id="form1" name="form1" method="post" action="{$action}">
+	 <span>
+	 <textarea name="content" id="content" style="width:99%;" rows="3" cols="" />{$topiclist[content]}</textarea>
+	 </span>
+	<p>
+	 <span>
+		 <input type="submit" name="Submit" value="编辑" />
+		 <input name="tid" type="hidden" id="tid" value="{$topiclist[tid]}" />
+		 <input name="imageid" type="hidden" id="imageid" value="{$topiclist[imageid]}" />
+	 </span>
+	</p>
+	</form>
+	</p>
+	</div>
+</div>
+
+<!--{template "topic_footer"}-->

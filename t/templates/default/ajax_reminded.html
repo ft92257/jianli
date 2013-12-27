@@ -1,0 +1,60 @@
+<success></success>
+<!--{if $total_record > 0}-->
+<div class="newTig" onclick="ajax_reminded('{$uid}',1); return false;"><a href="#">有<b>{$total_record}</b>条新的内容更新，点此查看</a></div>
+<!--{/if}-->
+
+<!--{if $__my[comment_new]>0 || $__my[fans_new]>0 || $__my[at_new]>0 || $__my[newpm]>0 || $__my[favoritemy_new]>0 || $__my['vote_new']>0 || $__my['qun_new']>0 || $__my['event_new']>0 || $__my['event_post_new']>0 || $__my['fenlei_post_new']>0 || $__my['topic_new']>0}-->
+    <script language="javascript">
+        var tagBoxContentHTML = '';
+        <!--{if $__my[newpm]>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod=pm&code=list">{$__my[newpm]}条新私信，查看</a></li>';
+        <!--{/if}-->
+        <!--{if $__my[comment_new]>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=mycomment">{$__my[comment_new]}条新评论，查看</a></li>';
+        <!--{/if}-->
+        <!--{if $__my[fans_new]>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod={$__my[username]}&code=fans">{$__my[fans_new]}人关注了我，查看</a></li>';
+        <!--{/if}-->
+        <!--{if $__my[at_new]>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=myat">{$__my[at_new]}人@提到我，查看</a></li>';
+        <!--{/if}-->
+        <!--{if $__my[favoritemy_new]>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=favoritemy">{$__my[favoritemy_new]}人收藏我的内容，查看</a></li>';
+        <!--{/if}-->
+		
+		<!--{if $__my['vote_new']>0}-->
+		tagBoxContentHTML += '<li><a href="index.php?mod=vote&view=me&filter=new_update&uid={$uid}">投票新增{$__my[vote_new]}人参与，查看</a></li>';
+		<!--{/if}-->
+		
+		<!--{if $__my['qun_new']>0}-->
+		tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=qun">微群新增{$__my[qun_new]}条内容，查看</a></li>';
+		<!--{/if}-->
+		
+        <!--{if $__my['event_new']>0}-->
+        tagBoxContentHTML += '<li><a href="index.php?mod=event&code=myevent&type=new">活动新增{$__my[event_new]}人报名，查看</a></li>';
+        <!--{/if}-->
+        
+		<!--{if $__my[topic_new]>0}-->
+          tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=tag">新增{$__my[topic_new]}条话题内容，查看</a></li>';
+       	<!--{/if}-->
+           	
+        <!--{if $__my[event_post_new]>0}-->
+          tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=other&view=event">新增{$__my[event_post_new]}个关注的活动，查看</a></li>';
+        <!--{/if}-->
+
+        <!--{if $__my[fenlei_post_new]>0}-->
+          tagBoxContentHTML += '<li><a href="index.php?mod=topic&code=other&view=fenlei">新增{$__my[fenlei_post_new]}条分类信息，查看</a></li>';
+        <!--{/if}-->
+            
+        if(''!=tagBoxContentHTML)
+        {
+            tagBoxContentHTML = '<ul>' + tagBoxContentHTML + '</ul>';
+            
+            $('#tagBoxContent_{$uid}').html(tagBoxContentHTML);
+            $('#tagBox_{$uid}').css({
+                display: 'block',
+                visibility: 'visible'
+            });
+        }
+    </script>
+<!--{/if}-->

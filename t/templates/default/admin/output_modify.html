@@ -1,0 +1,68 @@
+<!--{template admin/header}-->
+
+
+<form method="post" action="admin.php?mod=output&code=do_modify">
+<input type="hidden" name="id" value="{$info[id]}" />
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2"><a
+			href="admin.php?mod=output&code=modify&id={$info[id]}">编辑微博评论站外调用项目 - ID
+		{$info[id]}</a></td>
+	</tr>
+	<tr class="altbg2">
+		<td><b>模块创建时间</b><br />
+		</td>
+		<td>{eval echo my_date_format($info[dateline]);}</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%"><b>JS代码已经被调用次数</b><br />
+		</td>
+		<td>{$info[open_times]}</td>
+	</tr>
+	<tr class="altbg1">
+		<td><b>评论模块名称</b><br />
+		（用于后台列表管理时的识别）</td>
+		<td><input type="text" name="data[name]" value="{$info[name]}"
+			size="40" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td><b>调用域名限定</b> <br />
+		（如要限定域名则一行一个，默认为空允许所有的网站调用）</td>
+		<td><textarea name="data[lock_host]"
+			style="width: 228px; height: 50px;">{$info[lock_host]}</textarea></td>
+	</tr>
+	<tr class="altbg1">
+		<td><b>每页评论显示数量</b><br />
+		（在被调用页面每页显示的微博条数，默认为20条）</td>
+		<td><input type="text" name="data[per_page_num]"
+			value="{$info[per_page_num]}" size="40" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td><b>默认话题</b><br />
+		（是否在微博发布框中默认显示的内容？默认为空）</td>
+		<td><input type="text" name="data[content_default]"
+			value="{$info[content_default]}" size="40" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td><b>默认勾选转发微博</b><br />
+		（是否默认沟选发布到我的微博选项？默认为是）</td>
+		<td>{$type_first_radio}</td>
+	</tr>
+	<tr class="altbg2">
+		<td><b>调用代码</b><br />
+		（请完整复制并放置在您想要的页面位置中即可）</td>
+		<td><textarea name="textarea" rows="3" style="width: 60%">{$info[output_code]}</textarea></td>
+	</tr>
+	<tr class="altbg1">
+		<td>&nbsp;</td>
+		<td><br />
+		<button class="button" type="submit">提交修改</button>
+		&nbsp;
+		<button class="button" type="button"
+			onclick="window.location.href='admin.php?mod=output&code=output_setting';return false;">点此返回</button>
+		<br />
+		</td>
+	</tr>
+</table>
+</form>

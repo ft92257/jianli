@@ -1,0 +1,62 @@
+<include file="public:header" />
+<div class="pad-10" >
+    <form id="myform" name="myform" action="{:u('shops_cate/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+	<table style=" text-align:center">
+<tr>
+<td>平台</td><td>图片</td><td>操作</td>
+</tr>
+<volist  name='img' id='val'>
+<tr>
+<td>{$val.type}</td><td><img height="100px" width="100px" src="__ROOT__{$val.img}" /></td><td><a href="__URL__/change?type={$val.type}">修改</a></td>
+</tr>
+</volist>
+</table>
+      <div class="btn">
+    <label for="check_box">全选/取消</label>
+    <input type="submit" class="button" name="dosubmit" value="{$Think.lang.delete}" onclick="return confirm('{$Think.lang.sure_delete}')"/>
+    <input type="submit" class="button" name="dosubmit" onclick="document.myform.action='{:u("shops_cate/sort_order")}'" value="{$Think.lang.sort_order}"/>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.expandable').toggle(
+		function(){
+			var id=
+			$('.sub_'+$(this).attr('id')).hide();		
+			$(this).attr('src',ROOT_PATH+'/statics/admin/images/tv-expandable.gif');
+		},
+		function(){
+			$('.sub_'+$(this).attr('id')).show();
+			$(this).attr('src',ROOT_PATH+'/statics/admin/images/tv-collapsable.gif');
+		}
+	);
+});
+
+var lang_shops_cate_name = "商品分类";
+function check(){
+	if($("#myform").attr('action') == '{:u("shops_cate/delete")}') {
+		var ids='';
+		$("input[name='id[]']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+
+		if(ids=='') {
+			window.top.art.dialog({content:lang_please_select+lang_shops_cate_name,lock:true,width:'200',height:'50',time:1.5},function(){});
+			return false;
+		}
+	}
+	return true;
+}
+function status(id,type){
+    $.get("{:u('shops_cate/status')}", { id: id, type: type }, function(jsondata){
+		var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+return_data.data+'.gif')
+	}); 
+}
+</script>
+</body>
+</html>

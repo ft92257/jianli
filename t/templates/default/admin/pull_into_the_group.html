@@ -1,0 +1,67 @@
+{template admin/header}
+<div id="main_wp" class="mt10">
+<form action="admin.php" method="get" name="search">
+<input type="hidden" name="mod" value="qun" />
+<input type="hidden" name="code" value="joinqun" />
+<input type="hidden" name="qid" value="{$qid}" />
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">搜索</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">昵称</td>
+		<td class="altbg2">
+		<input type="text" name="nickname" id="nickname" value="{$nickname}" size="40">
+		<span style="margin-left:10px;"></span>	
+		</td>
+	</tr>
+</table>
+<center>
+	<button class="button" type="submit" name="search_submit" value="">搜索一下</button>
+	&nbsp;
+	<button class="button" type="button" onclick="window.location.href='admin.php?mod=qun&code=joinqun&qid={$qid}';return false;">全部</button>
+</center>
+</form>
+
+<!--拉人入群 Begin-->
+<form action="admin.php?mod=qun&code=dojoinqun" method="post">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl" style="margin-top:10px;">
+	<tr class="header">
+		<td colspan="4">拉人入群---<a href="index.php?mod=qun&qid={$qid}" target="_blank">{$qun_info['name']}</a></td>
+	</tr>
+	<tr class="list_h_2">
+		<td width="5%"><label><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'ids')" >选</label></td>
+		<td width="30%">昵称</td>
+		<td width="15%"></td>
+		<td width="15%"></td>
+	</tr>
+		<!--{loop $member_list $key $value}-->
+			<tr>
+				<td class="td2">
+					<input class="checkbox" type="checkbox" name="ids[]" value="$value['uid']" >
+				</td>
+				<td class="td2">
+				  <a href="index.php?mod={$value['username']}" target="_blank">{$value['nickname']}</a>
+				</td>
+				<td class="td2"></td>
+				<td class="td2"></td>
+			</tr>
+		<!--{/loop}-->
+		<!--{if $page_arr['html']}-->
+		<tr align="center">
+			<td colspan="4" class="td2">
+			{$page_arr['html']}
+			</td>
+		</tr>
+		<!--{/if}-->
+		<tr>
+		  <td colspan="4">
+		    <center><input class="button" type="submit" name="submit" value="提 交"></center>
+		    <input type="hidden" name="qid" value="{$qid}">
+		  </td>
+		</tr>
+</table>
+<!--拉人入群 End-->
+
+</form>
+</div>

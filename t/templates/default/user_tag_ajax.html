@@ -1,0 +1,10 @@
+<div class="setupTag_list02" style="padding:0;">
+  <ul class="tagList">
+  <!--{loop $user_tag_fields $val}-->
+    <li onmouseout="this.className='';" onmouseover="this.className='bg';" class="" id="del_id_{$val[tag_id]}">
+	<a class="a1" href="index.php?mod=search&code=usertag&usertag={$val[tag_name]}">{$val[tag_name]}</a>
+	<a class="a2" onclick="del_tag('{$val[tag_id]}');return false;" href="javascript:;"><img src="templates/default/images/transparent.gif" title="删除标签"></a>
+	</li>
+	<!--{/loop}-->
+  </ul>
+</div>

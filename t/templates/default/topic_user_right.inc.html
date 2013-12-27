@@ -1,0 +1,45 @@
+<!--属于TA的标签-->
+	<!--{if $this->Get[mod] !='tag'}-->
+	  <!--{if MEMBER_ID > 0}-->
+	   <!--{if MEMBER_ID != $member[uid]}-->
+		  <script type="text/javascript">
+			$(document).ready(function(){
+			$(".SC_biaoqian").click(function(){$(this).parent().toggleClass("fold_biaoqian");$(".SC_biaoqian_box").toggle();});
+			});
+		  </script>
+		  <div class="side">
+			<h3>属于TA的标签
+			<a class="btn SC_biaoqian" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','user_tag'); return false;"></a>
+			</h3>
+			  <ul class="FTL SC_biaoqian_box">
+				<div id="{$member[uid]}_user_tag"></div>
+			  </ul>
+	  	   </div>
+	    <!--{/if}-->  
+	  <!--{/if}-->  
+	<!--{/if}-->  
+   <!--属于TA的标签-->
+   
+   
+	
+  <!--{if $follow_list}-->
+      <script type="text/javascript">
+		$(document).ready(function(){
+		$(".SC_taguanzhu").click(function(){$(this).parent().toggleClass("fold_taguanzhu");$(".SC_taguanzhu_box").toggle();});
+	    });
+	  </script>
+    <div class="side">
+    <h3>TA关注的人 ({$member[follow_count]})<a class="btn SC_taguanzhu" href="javascript:void(0)"></a></h3>
+    <ul class="FTL FTL2 SC_taguanzhu_box">
+      <!--{loop $follow_list $val}-->
+      <li style=" height:100px;">
+	  <img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/>
+	  <b>{$val[nickname]}</b>
+	  <b>{$val[follow_html]}</b>
+	  </li>
+	   {template "alert_menu"}
+      <!--{/loop}-->
+	  <li><a class="cWhite" href="index.php?mod={$member[username]}&code=follow">更多</a></li>
+    </ul>
+  </div>
+  <!--{/if}-->

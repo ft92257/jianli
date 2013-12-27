@@ -1,0 +1,154 @@
+<!--{template admin/header}-->
+
+<!--{if $this->Code == 'edit_theme'}-->
+<table class="tableborder" align="center" cellspacing="1" cellpadding="4" width="100%">
+  <tr>
+    <td>
+      <ul>
+        <li>注意：更改图片后，原图片会被覆盖(不可恢复)；请先备份原有图片，以免图片丢失。</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+<form action="admin.php?mod=show&code=doedittheme" method="post" name="search" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">更改主题</td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">编号</td>
+      <td>{$id}
+        <input type="hidden" name="id" value="{$id}">
+      </td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">背景图片</td>
+      <td><input type="file" name="changePic" ></td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">背景颜色</td>
+      <td>
+        <input type="text" name="theme_bg_color" value="{$theme_bg_color}">
+      </td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">文字颜色</td>
+      <td>
+        <input type="text" name="theme_text_color" value="{$theme_text_color}">
+      </td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">链接颜色</td>
+      <td>
+        <input type="text" name="theme_link_color" value="{$theme_link_color}">
+      </td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1">对齐方式</td>
+      <td>
+        <select name="theme_bg_image_type">
+          <option value="left" {$theme_bg_image_type_s['left']}>左对齐</option>
+		  <option value="center" {$theme_bg_image_type_s['center']}>居中</option>
+		  <option value="right" {$theme_bg_image_type_s['right']}>右对齐</option>
+		  <option value="bottom" {$theme_bg_image_type_s['bottom']}>居下</option>
+        </select>
+      </td>
+    </tr>
+    <!--{if $open}-->
+    <tr>
+      <td width="10%" class="altbg1">设置成默认主题</td>
+      <td>
+        <label><input type="radio" name="set_system_theme" value="1">设置</label>
+        <label><input type="radio" name="set_system_theme" value="0" checked>不设置</label>
+      </td>
+    </tr>
+    <!--{/if}-->
+  </table>
+  <center><button class="button" type="submit" value="" name="doedit">提交</button></center>
+</form>
+<!--{elseif $this->Code == 'editlogo'}-->
+<table class="tableborder" align="center" cellspacing="1" cellpadding="4" width="100%">
+  <tr>
+    <td>
+      <ul>
+        <li>注意：更改LOGO后，原LOGO会被覆盖(不可恢复)；请先备份原有LOGO，以免LOGO丢失。<br></li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+<form action="admin.php?mod=show&code=editlogo" method="post" name="editlogo" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="3">更改LOGO</td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1"><b>游客首页LOGO</b><br><span class="smalltxt">尺寸:232px*166px</span></td>
+      <td width="20%"><input type="file" name="logo" ></td>
+      <td><a href="../images/logo.png" target="_blank"><img src='{conf site_url}/images/logo.png'></a></td>
+    </tr>
+    <tr>
+      <td width="10%" class="altbg1"><b>网站首页LOGO</b><br><span class="smalltxt">尺寸:160px*59px</span></td>
+      <td width="20%"><input type="file" name="logo2" ></td>
+      <td><a href="../images/logo2.png" target="_blank"><img src='{conf site_url}/images/logo2.png'></a></td>
+    </tr>
+  </table>
+  <center><button class="button" type="submit" value="" name="doedit">提交</button></center>
+  <input type="hidden" name="flag" value="{$flag}"></input>
+</form>
+<!--{else}-->
+<table class="tableborder" align="center" cellspacing="1" cellpadding="4" width="100%">
+  <tr class="header">
+    <td>皮肤风格设置技巧</td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        <li>1、所有的皮肤风格都保存/theme/目录下，每套皮肤一个独立目录下，方便方便分享（<a href="http://cnrdn.com/x4f4" target=_blank>查找新的皮肤</a>）。</li>
+        <li>2、<font color=red>添加新皮肤的方法，将完整的皮肤目录上传到/theme/目录下，然后在下面启用即可</font>。</li>
+        <li>3、排序数值大的优先显示在前台，供用户选择在前，<a href="index.php?mod=skin" target=_blank>点此查看前台设置页面</a>。</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<form action="admin.php?mod=show&code=domodifytheme" method="post" name="search">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="7">皮肤风格设置</td>
+    </tr>
+    <tr class="altbg1">
+      <td width="10%">目录名</td>
+      <td width="5%">排序</td>
+      <td width="10%">皮肤名称</td>
+      <td>备注（仅用于管理员查看）</td>
+      <td width="10%">预览图</td>
+      <td width="20%">启用状态</td>
+      <td width="10%">编辑操作</td>
+    </tr>
+    <!--{loop $theme_list $key $val}-->
+    <tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+      <td>$val['theme_id']</td>
+      <td><input type="text" name="{$val[theme_id]}[sort]" value="{$val[sort]}" size="1"></td>
+      <td><input type="text" name="{$val[theme_id]}[title]" value="{$val[title]}" size="10"></td>
+      <td><input type="text" name="{$val[theme_id]}[desc]" value="{$val[desc]}" size="30"></td>
+      <td><!--{if $val['themebg_preview']}--><img src="$val['themebg_preview']" height="50" width="50"><!--{/if}--></td>
+      <td>
+        <!--{if $val['open']}-->已启用<!--{if $val[theme_id] != $system_theme_id}-->，<a href="admin.php?mod=show&code=setopen&state=0&id={$val[theme_id]}">点击禁用</a><!--{/if}-->
+        <!--{else}-->已禁用，<a href="admin.php?mod=show&code=setopen&state=1&id={$val[theme_id]}">点击启用</a>
+        <!--{/if}-->
+      </td>
+      <td>
+        <!--{if $val[theme_id] == 't1'}-->
+        不允许修改
+        <!--{else}-->
+        <a href="admin.php?mod=show&code=edit_theme&id={$val[theme_id]}">编辑</a>
+        <!--{/if}-->
+      </td>
+    </tr>
+    <!--{/loop}-->
+  </table>
+  <center><button class="button" type="submit" value="" name="do">提交</button></center>
+</form>
+<br>
+<!--{/if}-->

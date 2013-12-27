@@ -1,0 +1,252 @@
+<!--{subtemplate common_header}-->
+
+<!--{if MEMBER_ID}-->
+
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+		<!--{eval $t_col_header ='t_col_header';  $t_col_logo ='t_col_logo'; $t_col_main='t_col_main'; $t_col_main_side='t_col_main_side'; $t_col_foot='t_col_foot'; $t_col_backTop='t_col_backTop'; $t_col_main_rn='t_col_main_rn'; $t_col_main_lb='t_col_main_lb'; $t_col_tagBox='t_col_tagBox';$bL_info_three='bL_info_three'; }-->
+	<!--{/if}-->	
+	
+	<!--{if $member[open_extra] and MEMBER_ID != $member[uid]}-->
+				<!--{eval $t_col_header ='t_col_header';  $t_col_logo ='t_col_logo'; $t_col_main='t_col_main'; $t_col_main_side='t_col_main_side'; $t_col_foot='t_col_foot'; $t_col_backTop='t_col_backTop'; $t_col_main_rn='t_col_main_rn'; $t_col_main_lb='t_col_main_lb'; $t_col_tagBox='t_col_tagBox';$bL_info_three='bL_info_three'; }-->
+	<!--{/if}-->	
+
+<!--{/if}-->
+<!--{if $this->Config[company_enable]}-->
+<!--{eval $d_c_name = $this->Config[default_company] ? $this->Config[default_company] : '单位'; $d_d_name = $this->Config[default_department] ? $this->Config[default_department] : '部门'; }-->
+<!--{/if}-->
+<div class="header">
+<div class="headerNav {$t_col_header}">
+	<ul class="hleft">
+	
+	<!--{if defined('NEDU_MOYO')}-->
+	<li class="logo2_nedu"><a href="index.php" title="{$this->Config[site_name]}"></a></li>
+	<!--{else}-->
+	<li class="logo2"><a href="index.php" title="{$this->Config[site_name]}"></a></li>
+	<!--{/if}-->
+
+	{eval $navigation_config=ConfigHandler::get('navigation');global $rewriteHandler;}
+	<!--{loop $navigation_config[list] $_v}-->
+	<!--{if $_v['avaliable'] == 1}-->
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$(".t_c{$_v[code]}").mouseover(function(){$(".t_c{$_v[code]}_box").show();$(".t_c{$_v[code]}").addClass("on");});
+			$(".t_c{$_v[code]}").mouseout(function(){$(".t_c{$_v[code]}_box").hide();$(".t_c{$_v[code]}").removeClass("on");});
+			$(".t_c2").mouseover(function(){$(".t_c2_box").show();$(".t_c2").addClass("on");});
+			$(".t_c2").mouseout(function(){$(".t_c2_box").hide();$(".t_c2").removeClass("on");});
+			$(".t_c4").mouseover(function(){$(".t_c4_box").show();$(".t_c4").addClass("on");});
+			$(".t_c4").mouseout(function(){$(".t_c4_box").hide();$(".t_c4").removeClass("on");});
+			$(".t_c5").mouseover(function(){$(".t_c5_box").show();$(".t_c5").addClass("on");});
+			$(".t_c5").mouseout(function(){$(".t_c5_box").hide();$(".t_c5").removeClass("on");});
+			$(".t_c6").mouseover(function(){$(".t_c6_box").show();$(".t_c6").addClass("on");});
+			$(".t_c6").mouseout(function(){$(".t_c6_box").hide();$(".t_c6").removeClass("on");});
+		});
+		</script>
+	
+	<!--{eval if($rewriteHandler)$_v[url]=$rewriteHandler->formatURL($_v[url]);}-->
+	<li class="t_c{$_v[code]}"><a href="{$_v[url]}" target="{$_v[target]}" title="{$_v[name]}">{$_v[name]}</a>
+	<!--{if !empty($_v[type_list])  && $_v['avaliable'] == 1}-->
+		<ul class="t_c1_box t_c{$_v[code]}_box" style="display:none;">
+		 <!--{loop $_v[type_list]  $val}-->
+		 <!--{if $val[name]  && $val['avaliable'] == 1}-->
+		 <!--{eval if($rewriteHandler)$val[url]=$rewriteHandler->formatURL($val[url]);}-->
+		 <li><a href="{$val[url]}" target="{$val[target]}">{$val[name]}</a></li>
+		 <!--{/if}-->	
+		 <!--{/loop}-->
+		 <!--{if !empty($navigation_config[pluginmenu]) && $_v[code] == 'app'}-->
+		 <!--{loop $navigation_config[pluginmenu] $pmenus}-->
+		 <!--{loop $pmenus $pmenu}-->
+		 <!--{if $pmenu[type] == 1}-->
+		 <!--{eval if($rewriteHandler)$pmenu[url]=$rewriteHandler->formatURL($pmenu[url]);}-->
+		 <li><a href="{$pmenu[url]}" target="{$pmenu[target]}">{$pmenu[name]}</a></li>
+		 <!--{/if}-->	
+		 <!--{/loop}-->
+		 <!--{/loop}-->
+		 <!--{/if}-->
+		 </ul>
+	 <!--{/if}-->
+	</li>
+	<!--{/if}-->
+	<!--{/loop}-->
+	<li class="sweibo">
+		<div class="searchTool">
+		  <form method="get" action="#" name="headSearchForm" id="headSearchForm" onsubmit="return headDoSearch();">
+			<input id="headSearchType" name="searchType" type="hidden" value="topicSearch">
+			<div class="selSearch">
+			  <div class="nowSearch" id="headSlected" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');">微博</div>
+			  <div class="btnSel"><a href="#" onclick="if(document.getElementById('headSel').style.display=='none'){document.getElementById('headSel').style.display='block';}else {document.getElementById('headSel').style.display='none';};return false;" onmouseout="drop_mouseout('head');"></a></div>
+			  <div class="clear"></div>
+			  <ul class="selOption" id="headSel" style="display:none;">
+				<li><a href="#" onclick="return search_show('head','userSearch',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">用户</a></li>
+				<li><a href="#" onclick="return search_show('head','tagSearch',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">话题</a></li>
+				<li><a href="#" onclick="return search_show('head','topicSearch',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">微博</a></li>
+				
+				<!--{eval $vote_setting = ConfigHandler::get('vote');}-->
+				<!--{if $vote_setting['vote_open']}-->
+				<li><a href="#" onclick="return search_show('head','voteSearch',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">投票</a></li>
+				<!--{/if}-->
+				
+				<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+				<!--{if $qun_setting['qun_open']}-->
+				<li><a href="#" onclick="return search_show('head','qunSearch',this)" onmouseover="drop_mouseover('head');" onmouseout="drop_mouseout('head');">微群</a></li>
+				<!--{/if}-->
+			  </ul>
+			</div>
+			<input class="txtSearch" id="headq" name="headSearchValue" type="text" value="请输入关键字" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入关键字';}"/>
+			<div class="btnSearch"> <a href="#" onclick="javascript:return headDoSearch();"><span class="lbl"></span></a></div>
+		  </form>
+		</div>
+		</li>
+		
+	</ul>
+	<ul class="hright">
+	  <li class="pweibo" style="cursor:pointer;" onclick="showMainPublishBox();" title="发微博">发博
+	  <input type="hidden" name="check_PublishBox_uid" id="check_PublishBox_uid"  value="{MEMBER_ID}"/>
+	  <input type="hidden" id="verify" name="verify" value="$this->Config[verify]">
+	  </li>
+	  <!--{if MEMBER_ID > 0}-->
+	  <li class="t_c4"><a href="index.php" title="{$this->Config[site_name]}">我的首页</a>
+		<ul class="t_c4_box">
+		  <!--{if $this->Config['qun_setting']['qun_open']}-->
+		  <li><a href="index.php?mod=topic&code=qun">我的微群<!--{if $__my['qun_new']>0}--><span>+{$__my['qun_new']}</span><!--{/if}--></a></li>
+		  <!--{/if}-->
+		  <li><a href="index.php?mod=topic&code=tag">关注话题<!--{if $__my[topic_new]>0}--><span>+{$__my['topic_new']}</span><!--{/if}--></a></li>
+		  <!--{if $this->Config[dzbbs_enable] || ($this->Config[phpwind_enable] && $this->Config[pwbbs_enable])}-->
+		  <li><a href="index.php?mod=topic&code=bbs">我的论坛</a></li>
+		  <!--{/if}-->
+		  <!--{if ($this->Config['dedecms_enable'] == 1)}-->
+		  <li><a href="index.php?mod=topic&code=cms">我的资讯</a></li>
+		  <!--{/if}-->
+		  <li><a href="index.php?mod=topic&code=recd">官方推荐</a></li>
+		  <li><a href="index.php?mod=topic&code=myfavorite">我的收藏</a></li>
+		</ul>
+	  </li>
+
+	  <li class="t_c2"><a title="{MEMBER_NICKNAME}" href="index.php?mod={MEMBER_NAME}">{MEMBER_NICKNAME}</a>
+		<ul class="t_c2_box">
+		  <li><a href="index.php?mod={MEMBER_NAME}&type=hot_reply">被热评的</a></li>
+		  <li><a href="index.php?mod={MEMBER_NAME}&type=hot_forward">被热转的</a></li>
+		  <li><a href="index.php?mod=topic&code=myfavorite">我收藏的</a></li>
+		  <li><a href="index.php?mod={MEMBER_NAME}&type=my_verify">待审核的</a></li>
+		</ul>
+	  </li>
+
+	  <li class="t_c6">消息
+		<ul class="t_c6_box">
+		  <li><a href="index.php?mod=topic&code=mycomment">评论我的<!--{if $__my[comment_new]>0}--><span>+$__my[comment_new]</span><!--{/if}--></a></li>
+		  <li><a href="index.php?mod=topic&code=myat">@我的<!--{if $__my[at_new]>0}--><span>+$__my[at_new]</span><!--{/if}--></a></li>
+		  <li><a href="index.php?mod=pm&code=list">私信我的<!--{if $__my[newpm]>0}--><span>+$__my[newpm]</span><!--{/if}--></a></li>
+		  <li><a href="index.php?mod={$__my[username]}&code=fans">关注我的<!--{if $__my[fans_new]>0}--><span>+$__my[fans_new]</span><!--{/if}--></a></li>
+		  <li><a href="index.php?mod=topic&code=favoritemy">收藏我的<!--{if $__my[favoritemy_new]>0}--><span>+$__my[favoritemy_new]</span><!--{/if}--></a></li>
+		</ul>
+	  </li>
+	  
+	  <li class="t_c5">帐号
+	  <ul class="t_c5_box">
+	  <li><a href="index.php?mod=settings">资料设置</a></li>
+	  <li><a href="index.php?mod=settings&code=face">修改头像</a></li>
+	  <li><a href="index.php?mod=settings&code=secret">修改密码</a></li>
+	  <li><a href="index.php?mod=account">帐户绑定</a></li>
+	  <li><a href="index.php?mod=other&code=wap">手机</a></li>
+	  <li><a href="index.php?mod=skin">换肤</a></li>
+	  <li><a href="index.php?mod=profile&code=invite">邀请关注</a></li>
+	  <!--{if $params['code'] == 'myhome'}-->
+	  <li>
+	  <span id="web_list_type_{MEMBER_ID}">
+	  <input type="hidden" id="web_style" name="web_style" value="{MEMBER_STYLE_THREE_TOL}"/>
+	  <!--{eval if (MEMBER_STYLE_THREE_TOL == 1) $ajax_list = 'right'; else $ajax_list = 'left';}-->
+	  <a href="javascript:void(0);" title="推荐三栏，导航更清晰" onclick="web_list_type({MEMBER_ID},'web_style','{$params[code]}','{$ajax_list}','{$member[uid]}'); return false;">
+	  <!--{if MEMBER_STYLE_THREE_TOL == 1}-->换为两栏<!--{else}-->换为三栏<!--{/if}--></a> 
+	  <input type="hidden" name='hid_type' id='hid_type' value='{$type}'>
+	  </span>
+	  </li>	 
+      <!--{/if}--> 
+	  <!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+	  <li><a href="admin.php" target=_blank>后台管理</a></li>
+	  <!--{/if}-->
+	  <li><a href="{conf site_url}/index.php?mod=login&code=logout" rel="nofollow">退出</a> </li>
+      
+	  </ul>
+	  </li>
+
+	  <!--{else}-->
+	  <li><a href="javascript:viod(0)" rel="nofollow" title="登录即可分享新鲜事" onclick="ShowLoginDialog(); return false;">快捷登录</a></li>
+	  <!--{/if}-->
+	</ul>
+  </div>
+
+</div>
+
+
+<div class="logow {$t_col_logo}">
+	<!--{if MEMBER_ID>0}-->
+	<!--{if $__my[comment_new]>0 || $__my[fans_new]>0 || $__my[at_new]>0 || $__my[newpm]>0 || $__my[favoritemy_new]>0 || $__my['vote_new']>0 || $__my['qun_new']>0 || $__my['event_new']>0 || $__my['topic_new']>0 || $__my['event_post_new']>0 || $__my['fenlei_post_new']>0}-->
+		<!--{eval $__tagBoxStyle='display:block;visibility:visible;';}-->
+	<!--{else}-->
+		<!--{eval $__tagBoxStyle='display:none;visibility:hidden;';}-->
+	<!--{/if}-->
+	<!--#if NEDU#-->
+	<!--{if defined('NEDU_MOYO')}-->
+		<!--{if nlogic('notify')->ups_haved()}-->
+			<!--{eval $__tagBoxStyle='display:block;visibility:visible;';}-->
+		<!--{/if}-->
+	<!--{/if}-->
+	<!--#endif#-->
+	<script type="text/javascript">
+		function tagBox_close()
+		{
+			var obj = document.getElementById("tagBox_{MEMBER_ID}");
+			obj.style.visibility = "hidden";
+		}
+	</script>
+	<div class="tagBox {$t_col_tagBox}" id="tagBox_{MEMBER_ID}" style="{$__tagBoxStyle}">
+		<div id="tagBoxContent_{MEMBER_ID}">
+		<ul>
+		  <!--{if $__my[newpm]>0}-->
+		  <li><a href="index.php?mod=pm&code=list">{$__my[newpm]}条新私信，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[comment_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=mycomment">{$__my[comment_new]}条新评论，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[fans_new]>0}-->
+		  <li><a href="index.php?mod={$__my[username]}&code=fans">{$__my[fans_new]}人关注了我，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[at_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=myat">{$__my[at_new]}人@提到我，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[favoritemy_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=favoritemy">{$__my[favoritemy_new]}人收藏了我的，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my['vote_new']>0}-->
+		  <li><a href="index.php?mod={$__my[uid]}&type=vote&filter=new_update">投票新增{$__my[vote_new]}人参与，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my['qun_new']>0}-->
+		  <li><a href="index.php?mod=topic&code=qun">微群新增{$__my[qun_new]}条内容，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[event_new]>0}-->
+		  <li><a href="index.php?mod={$__my[uid]}&type=event&filter=new_update">活动新增{$__my[event_new]}人报名，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[topic_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=tag">话题新增{$__my[topic_new]}条微博，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[event_post_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=other&view=event">新增{$__my[event_post_new]}个关注的活动，查看</a></li>
+		  <!--{/if}-->
+		  <!--{if $__my[fenlei_post_new]>0}-->
+		  <li><a href="index.php?mod=topic&code=other&view=fenlei">新增{$__my[fenlei_post_new]}个关注的分类信息，查看</a></li>
+		  <!--{/if}-->
+		  <!--#if NEDU#-->
+		  <!--{if defined('NEDU_MOYO')}-->
+			 <!--{echo nlogic('notify')->ups_tips_html();}-->
+		  <!--{/if}-->
+		  <!--#endif#-->
+		</ul>
+		</div>
+		<div class="tagBox_del"><a href="javascript:tagBox_close();" title="关闭" javascript:void(0)><img src="images/imgdel.gif" /></a></div>
+	</div>
+	<!--{/if}-->
+</div>
+
+<div class="changeTheme"><a href="index.php?mod=skin" title="更换皮肤" javascript:void(0)></a></div>
+
+
+

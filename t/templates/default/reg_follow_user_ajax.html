@@ -1,0 +1,135 @@
+<div  id="reg_follow_user">
+	<!--注册完成 关注用户选项 Start-->
+	<!--{if in_array($follow_type,array('recommend','huoyue','renqi','yingxiang')) }-->
+		<!--{if $list}-->
+		<iframe id="user_follow_frame" name="user_follow_frame" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+		<form method="POST" action="index.php?mod=member&code=do_step1" id="follow_form" name="follow_form">
+			<div class="apt"> 
+				<p class="t1">
+					<span id="p_num">已经选择了<b class="num"><span id="follow_user_count">{$user_count}</span></b>个人</span>
+				</p> 
+			</div> 
+			<p class="t2">
+				<input type="checkbox" id="btn_all" name="mmAll" checked  onclick="checkAll(this, 'ids[]');" onchange="check_user_mun({$user_count},'all','','user');"/>全选 
+			</p> 
+			<div class="ulist6"> 
+				<!--{loop $list $val}-->
+					<div class="pf2 selected crPer" alt="{$val[vip_info]}" title="{$val[vip_info]}">
+						<p class="status">
+							<input checked type="checkbox"  id="checked_{$val[uid]}" name="ids[]" value="{$val[uid]}"  onclick="checkItem(this, 'mmAll');"  onchange="check_user_mun('user_count','','{$val[uid]}','user');"/>
+						</p> 
+						<p class="mark"></p>
+						<p class="avt"><b><img src="{$val[face]}" onerror="javascript:faceError(this);"/></b></p> 
+						<b class="nm"><b>{$val[nickname]}{$val[validate_html]}</b></b> 
+						<!--<p class="ps">{$val[aboutme]}</p>-->
+				</div> 
+				<!--{/loop}-->
+			</div>
+			<div class="apt"> 
+				<p class="t1">
+				<!--<a class="recom_att" href="javascript:void(0);" title="关注他们，进入首页" onmousedown="CA.q('reg_recommend_followall');"></a>-->
+					<input type="button" class="shareI" name="follow_Submit"  value="加关注" onclick="follow_people(this.form); return false;"/>
+					<input type="hidden" id="user_count" name="user_count" value="{$user_count}"/>
+					<input type="hidden" id="type" name="type" value="add"/>
+				</p> 
+			</div> 
+		</form>	
+		<div class="apb"> 
+			<p class="t1">
+				<input type="button" class="flo_b" name="Submit"  value="关注并进入最后一步"  onclick="document.getElementById('follow_form').submit(); return false;" />
+			</p> 
+		</div> 
+		
+		<!--{else}-->
+		暂时没有可关注的用户，请看看其他选项。
+		<div class="apb"> 
+			<p class="t1">
+				<input type="button" class="flo_b" name="Submit"  value="进入最后一步"  onclick="location.href='index.php';" />
+			</p> 
+		</div> 
+		<!--{/if}-->
+	<!--注册完成 关注用户选项 End-->
+
+	<!-- 推荐话题 Start-->
+	<!--{elseif $follow_type == 'tag'}-->
+		<!--{if $tag_list}-->
+		<iframe id="user_tag_frame" name="user_tag_frame" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+		<form method="POST" action="index.php?mod=member&code=do_step1" id="tag_form" name="tag_form" target="user_tag_frame">
+		<div  id="reg_follow_user">
+			<div class="apt"> 
+				<p class="t1">
+				<span id="p_num">已经选择了<b class="num"><span id="follow_tag_count">{$tag_count}</span></b>个话题</span>
+					<input type="hidden" id="tag_count" name="tag_count" value="{$tag_count}"/>
+				</p> 
+			</div> 
+			<p class="t2">
+				<input type="checkbox" id="btn_all" name="mmAll" checked  onclick="checkAll(this, 'tag[]');" onchange="check_user_mun({$tag_count},'all','','tag');"/>全选 
+			</p> 
+			<div class="ulist6"> 
+				<!--{loop $tag_list $val}-->
+					<div class="pf2 selected crPer">
+						<p class="avt">
+							<input name="tag[]" type="checkbox"  id="checked_{$val[id]}"  value="{$val[id]}" onchange="check_user_mun('tag_count','','{$val[id]}','tag');"  onclick="checkItem(this, 'mmAll');"  checked/>
+						{$val[name]}
+						</p> 
+					</div> 
+				<!--{/loop}-->
+			</div>
+		</div> 
+		<div class="apt"> 
+			<p class="t1">
+			<!--<a class="recom_att" href="javascript:void(0);" title="关注他们，进入首页" onmousedown="CA.q('reg_recommend_followall');"></a>-->
+				<input type="button" class="shareI" name="follow_Submit"  value="关注话题" onclick="add_favor_tag();"/>
+			</p> 
+		</div>
+		</form>	
+		<div class="apb"> 
+			<p class="t1">
+				<input type="button" class="flo_b" name="Submit"  value="关注并进入最后一步"  onclick="document.getElementById('tag_form').submit(); return false;" />
+			</p> 
+		</div> 
+		
+		<!--{else}-->
+		暂时没有推荐关注的话题，请选择其他内容。
+		<div class="apb"> 
+			<p class="t1">
+				<input type="button" class="flo_b" name="Submit"  value="进入最后一步"  onclick="location.href='index.php';" />
+			</p> 
+		</div> 
+		<!--{/if}-->
+	<!--{/if}-->
+	<!-- 推荐话题 End-->
+	
+</div>	
+<script type="text/javascript">
+  function follow_people(){
+	var post_data = $('#follow_form').serialize();
+	$.post(
+		'ajax.php?mod=topic&code=add_user_follow&__to=json',
+		post_data,
+		function(d){
+			//alert(d);
+			show_message(d.msg);
+		},'json'
+	)
+  }
+
+  function add_favor_tag(){
+	var post_data = $('#tag_form').serialize();
+	$.post(
+		'ajax.php?mod=topic&code=add_favor_tag',
+		post_data,
+		function(d){
+				d = d.replace("<script language='javascript'>alert('","");
+				d = d.replace("');</sc"+"ript>","");
+				alert(d);
+		}
+	)
+  }
+</script>
+	
+
+
+
+
+

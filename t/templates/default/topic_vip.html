@@ -1,0 +1,202 @@
+{template "topic_header"}
+<style type="text/css">
+img{vertical-align:middle;}
+</style>
+<script type="text/javascript">
+function category(category_fid)
+{
+	if('undefined' == typeof(category_fid) || category_fid < 1){
+		document.getElementById('subclass_list').innerHTML='<option value="" selected="selected">选择类别</option>';
+		return false;
+	}
+	var category_fid = 'undefined' == typeof(category_fid) ? 0 : category_fid;
+
+	var myAjax = $.post(
+		"index.php?mod=other&code=vip_intro",
+		{
+			category_fid:category_fid
+		},
+		function (d)
+		{
+		 	 //document.getElementById('subclass_list').innerHTML=d;
+			 $('#subclass_list').html(d);
+		}
+	);
+}
+
+function changeProvince(){
+  var province = document.getElementById("province").value;
+  var hid_city = document.getElementById("hid_city").value;
+  var url = "ajax.php?mod=member&code=sel&province="+province + "&hid_city="+hid_city;
+
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+	  		    $('#' + "city").html(d);
+		  	}
+  );
+}
+</script>
+
+<div class="setframe">
+  <!--{template 'settings_main_left.inc'}-->
+  
+<div class="W_main_r" style="width:800px; float:left; overflow:hidden;"> 
+<div class="list_title" style="text-align:left;">
+<b>在本站申请 <img src="images/vip.gif" /> 认证</span></b>（通过后会展示于<a href="index.php?mod=people">名人堂</a>）
+</div>
+<div class="main3Box_m" style="padding-top:20px;">
+ <div class="vip_warp">
+ 
+  <!--{if $validate_info && $validate_info[is_audit] != -1}-->
+  <dl class="vippass">
+  <dd>申请时间：{$dateline}</dd>
+  <dt>证件类型：{$memberfields[validate_card_type]}</dt>
+  <dd>认证内容：{$memberfields[validate_remark]}</dd>
+  <dt>审核状态：
+    <!--{if $validate_info[is_audit] == 1}-->
+    <em>审核通过</em>
+    <!--{elseif $validate_info[is_audit] == -1}-->
+    <em>审核未通过</em>
+    <!--{else}-->
+    <em>待审核</em>
+  </dt>
+  
+  <!--{if $validate_info[audit_info]}-->
+  <dd>拒绝理由：{$validate_info[audit_info]}</dd>
+  <!--{/if}-->
+  </dl>
+  <!--{/if}-->
+
+
+  <!--{else}-->
+  <form action="index.php?mod=other&amp;code=vip_intro" method="post" enctype="multipart/form-data" id="formInfo">
+   <!--{if $validate_info[is_audit] == -1}-->
+   <dl class="nopass">
+	  <dd>申请时间：({$dateline})</dd>
+	  <dt>证件类型：{$memberfields[validate_card_type]}</dt>
+	  <dd>认证内容：{$memberfields[validate_remark]}</dd>
+	  <dt>审核状态：<em>还未通过  	  <!--{if $validate_info[audit_info]}-->
+      拒绝理由：{$validate_info[audit_info]} 
+      <!--{/if}--></em>
+      </dt>
+
+	  <var>可在下方重新提交认证信息进行认证。</var>
+     <dl>
+    <!--{/if}-->
+      <table>
+        <tbody>
+          <tr>
+            <td colspan="3"><div class="tagg2">注意：真实身份认证又名 <img src="images/vip.gif" /> 认证，请认真填写如下信息，保存后不可修改。<br>
+			通过认证后不仅享有发布特权，并且还可通过认证信息联系客服重设密码。</div></td>
+          </tr>
+          
+          <tr>
+            <td height="30">身份类别：</td>
+            <td height="30" colspan="2">
+              <select name="category_fid" id="category_fid" onchange="category(this.value);">
+                <option value="" selected="selected">选择主类</option>
+                <!--{loop $category_list $val}-->
+                <option value="{$val[id]}">{$val[category_name]}</option>
+                <!--{/loop}-->  
+              </select>
+              <select id="subclass_list" style="width:100px; height:20px;" name="category_id">
+                <option value="" selected="selected">选择子类</option>
+              </select>
+            </td>
+          </tr>
+          
+		<tr>
+	    <td>所在地区：</td>
+	    <td colspan="2">
+		{$province_list}
+		<select id="city" name="city">
+			<option value="{$member_city[id]}">{$member_city[name]}</option>
+		</select>
+		<input type="hidden" id="hid_city" name="hid_city" value="$member_city[id]">
+		</td>
+	  </tr>
+	   <tr>
+            <td height="30">真实姓名：</td>
+            <td height="30" colspan="2"><input type="text" name="validate_true_name" class="p1" value="$memberfields['validate_true_name']"/></td>
+	   </tr>
+		   <tr>
+            <td height="30">证件类型：</td>
+            <td height="30" colspan="2">{$validate_card_type_select}</td>
+		   </tr>
+		   <tr>
+            <td height="30">证件号码：</td>
+            <td height="30" colspan="2"><input type="text" name="validate_card_id" class="p1"  style="width:300px;" value="$memberfields['validate_card_id']"/></td>
+		   </tr>
+		   <!--{if $is_card_pic}-->
+		   <tr>
+            <td height="30">证件图片：</td>
+            <td height="30" colspan="2"><input name="card_pic" type="file" id="card_pic"/><var>必须与上述真实姓名相符合</var></td>
+		   </tr>
+		   <!--{/if}-->
+          <tr>
+            <td height="30" valign="top">认证内容：</td>
+            <td height="30" colspan="2"><textarea name="validate_remark" id="validate_remark" cols="45" rows="2" style="font-size:12px;padding:5px; border:1px solid #ddd;">{$memberfields['validate_remark']}</textarea><br>
+			<var>通过审核后，会展示给其他用户</var></td>
+            </tr>
+          <tr>
+            <td height="30">&nbsp;</td>
+            <td height="30">
+              <center><input type="submit" name="button" id="button" value="提 交"  class="sBtn_2"/></center>
+              <input name="postFlag" type="hidden" id="postFlag" value="1" /></td>
+            <td id="class_id_tip2"></td>
+          </tr>
+          </tbody>
+        </table>
+    </form>
+   <!--{/if}-->
+    
+   
+	</div>
+	<script type="text/javascript">
+	$(document).ready(
+			  function(){
+				  var category_id = $('#category_fid').val(); 
+				  
+				  if(category_id){
+				  	category(category_id);
+				  }
+			  }
+			)
+	</script>
+    <script type="text/javascript">
+	$(document).ready(
+			  function(){
+			  changeProvince();
+		  }
+			)
+	</script>
+
+
+
+<div style="width:210px; float:right">
+<div class="side">
+<div class="vpnav">1、为什么要申请 <img src="images/vip.gif" /> 认证？</div>
+<ul class="FTL">
+<li>1、为了避免身份混淆，并且响应国家实名发微博的要求；</li>
+<li>2、网站如开启了只有V认证用户才能发言的限制，则必须申请；</li>
+</ul>
+</div>
+
+<div class="side">
+<div class="vpnav">2、如何识别 <img src="images/vip.gif" /> 认证用户？</div>
+<ul class="FTL">
+<li>1、在身份认证用户个人页面，你会看到类似<img src="images/vip.gif" />的如下标识：<img src="images/vip_title.gif" /></li>
+<li>2、除了“<img src="images/vip.gif" />”标示外，不同身份类别的V认证图标有可能是不同，如有不清楚的地方请与我们联系 <a href="mailto:{conf site_admin_email}">{conf site_admin_email}</a></li>
+</ul>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+{template "topic_footer"}
+

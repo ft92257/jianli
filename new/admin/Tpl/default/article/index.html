@@ -1,0 +1,135 @@
+<include file="public:header" />
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/calendar/calendar-blue.css"/>
+<script type="text/javascript" src="__ROOT__/statics/js/calendar/calendar.js"></script>
+<div class="pad-10" >
+    <form name="searchform" action="" method="get" >
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+            	发布时间：
+            	<input type="text" name="time_start" id="time_start" class="date" size="12" value="{$time_start}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_start",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+                -
+                <input type="text" name="time_end" id="time_end" class="date" size="12" value="{$time_end}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_end",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+            	&nbsp;&nbsp;资讯分类：
+                <select name="cate_id">
+            	<option value="0">--请选择分类--</option>
+                <volist name="cate_list['parent']" id="val">
+                  <option value="{$val.id}" <if condition="$cate_id eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+                  <notempty name="cate_list['sub'][$val['id']]">
+                    <volist name="cate_list['sub'][$val['id']]" id="sval">
+                      <option value="{$sval.id}" <if condition="$cate_id eq $sval['id']"> selected="selected" </if>>&nbsp;&nbsp;&nbsp;&nbsp;{$sval.name}</option>
+                      <notempty name="cate_list['sub'][$sval['id']]">
+                        <volist name="cate_list['sub'][$sval['id']]" id="ssval">
+                          <option value="{$ssval.id}" <if condition="$cate_id eq $ssval['id']"> selected="selected" </if>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$ssval.cate_name}</option>
+                        </volist>
+                      </notempty>
+                    </volist>
+                  </notempty>
+                </volist>
+              </select>
+                &nbsp;关键字 :
+                <input name="keyword" type="text" class="input-text" size="25" value="{$keyword}" />
+                <input type="hidden" name="m" value="article" />
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form id="myform" name="myform" action="{:u('article/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=50>{$Think.lang.orders}</th>
+                <th width=25><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+                <th>ID</th>
+                <th width=280>标题名称</th>
+                <th>所属分类</th>
+                <th width=150>发布时间</th>
+                <th width=60>排序值</th>
+                <th width="40">热门</th>
+                <th width="40">推荐</th>
+                <th width="40">状态</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="article_list" id="val" >
+        <tr>
+        	<td align="center">{$val.key}</td>
+            <td align="center">
+            <input type="checkbox" value="{$val.id}" name="id[]"></td>
+            <td align="center"><a class="blue" href="{:u('article/edit', array('id'=>$val['id']))}">{$val.id}</a></td>
+            <td align="left"><a class="blue" href="{:u('article/edit', array('id'=>$val['id']))}">{$val.title}</a><if condition="$val['url'] neq ''"><br><a href="{$val.url}" target=_blank>{$val.url}</a></if>&nbsp;&nbsp;</td>
+            <td align="center"><b>{$val.cate_name.name}</b></td>
+            <td align="center">{$val.add_time}</td>
+            <td align="center"><input  type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="listorders[{$val.id}]"></td>
+            <td align="center" onclick="status({$val.id},'is_hot')" id="is_hot_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.is_hot}.gif" /></td>
+            <td align="center" onclick="status({$val.id},'is_best')" id="is_best_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.is_best}.gif" /></td>
+      		<td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /></td>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">{$Think.lang.select_all}/{$Think.lang.cancel}</label>
+    	<input type="submit" class="button" name="dosubmit" value="{$Think.lang.delete}" onclick="return confirm('{$Think.lang.sure_delete}')" style="float:left;margin:0 10px 0 10px;"/>
+    	<input type="submit" class="button" name="dosubmit" onclick="document.myform.action='{:u("article/sort_order")}'" value="{$Think.lang.sort_order}" style="float:left;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script language="javascript">
+function edit(id, name) {
+	var lang_edit = "编辑资讯";
+	window.top.art.dialog({id:'edit'}).close();
+	window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=article&a=edit&id='+id,width:'550',height:'400'}, function(){var d = window.top.art.dialog({id:'edit'}).data.iframe;d.document.getElementById('dosubmit').click();return false;}, function(){window.top.art.dialog({id:'edit'}).close()});
+}
+
+var lang_cate_name = "资讯标题";
+function check(){
+	if($("#myform").attr('action') != '{:u("article/sort_order")}') {
+		var ids='';
+		$("input[name='id[]']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+
+		if(ids=='') {
+			window.top.art.dialog({content:lang_please_select+lang_cate_name,lock:true,width:'200',height:'50',time:1.5},function(){});
+			return false;
+		}
+	}
+	return true;
+}
+
+function status(id,type){
+    $.get("{:u('article/status')}", { id: id, type: type }, function(jsondata){
+		var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+return_data.data+'.gif')
+	}); 
+}
+</script>
+</body>
+</html>

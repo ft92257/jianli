@@ -1,0 +1,55 @@
+{template admin/header}
+
+<form action="admin.php?mod=pm&code=dopmsend" method="post">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">群发私信</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		群发内容:
+		</td>
+		<td class="altbg2">
+		  <textarea id="message" class="text-area" name="message" rows="5" cols="100"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg2"></td>
+		<td class="altbg2">
+		  <input class="button" type="submit" name="send" value="发送">
+		</td>
+	</tr>
+</table>
+</form>
+<form method="post" action="admin.php?mod=pm&code=delmsg">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+		<tr class="header">
+			<td width="5%">
+			<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" ></td>	
+			<td width="15%">群发人</td>
+			<td>群发消息内容</td>
+			<td width="15%">群发时间</td>
+			<td width="10%">操作</td>
+		</tr>
+		<!--{loop $pm_list $pm}-->
+		<tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+			<td style="border-bottom:1px dotted #EDEDED">
+			<input class="checkbox" type="checkbox" name="ids[]" value="{$pm[pmid]}" ></td>
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$pm[msgfrom]}" target="_blank">{$pm[msgnickname]}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED">{$pm['message']}</td>
+			<td style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($pm[dateline], 'Y-m-d')}--></td>
+			<td style="border-bottom:1px dotted #EDEDED">
+			<A href="admin.php?mod=pm&code=delmsg&ids={$pm[pmid]}">删除</A>&nbsp;				</td>
+		</tr>
+		<!--{/loop}-->
+		<!--{if $page_arr[html]}-->
+		<tr align="center">
+			<td colspan="6" class="altbg1">
+			{$page_arr[html]}				</td>
+		</tr>
+		<!--{/if}-->
+	</table>
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+</form>
+
+

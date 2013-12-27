@@ -1,0 +1,53 @@
+<!--{template admin/header}-->
+
+<style>
+	.smalltxt{ margin-left:20px; color:#444043;}
+</style>
+<div id="main_wp" class="mt10">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header"><td>设计说明</td></tr>
+	<tr><td>1、本功能仅供插件开发者使用。</td></tr>
+	<tr><td>2、使用本功能前请务必阅读《<a href="http://cenwor.com/go.php?w=jsg.plugin.admin" target="_blank">记事狗插件开发文档</a>》</td></tr>
+	<tr><td>3、警告: 不正确的插件设计或安装可能危及到整个站点的正常使用。</td></tr>
+</table>
+<form action="admin.php?mod=plugin&code=adddesign" method="post" name="search">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">插件设计</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		插件名字		</td>
+		<td class="altbg2"><input type="text" name="plugin_name" id="" value="" size="40" /><span class="smalltxt">插件名称为中英文字符不得超过40字符<br>
+			</span></td>
+	</tr>
+	<tr>
+	  <td class="altbg1">插件唯一标识符</td>
+	  <td class="altbg2"><input type="text" name="identifier" id="" value="" size="40" /><span class="smalltxt">插件唯一标识符40以内有效字符，与现有插件不得重复<br>
+			</span></td>
+	  </tr>
+	<tr>
+		<td class="altbg1" width="150">
+		版本号		</td>
+		<td class="altbg2"><input type="text" name="version" id="" value="" size="40" /><span class="smalltxt">插件版本号，用于在安装版本旧于新版本，给用户提示<br>
+			</span></td>
+	</tr>
+	<tr>
+	  <td class="altbg1">版权信息 </td>
+	  <td class="altbg2"><input type="text" name="copyright" id="" value="" size="40" /><span class="smalltxt">插件作者的版权信息，已经确认不得修改，请控制在80字符<br>
+			</span></td>
+	  </tr>
+	<tr>
+	  <td class="altbg1">插件描述</td>
+	  <td class="altbg2"><textarea cols="48" rows="4" name="description"></textarea><span class="smalltxt">描述插件的简要功能，请控制在100字符内<br>
+			</span></td>
+	  </tr>
+	<tr>
+		<td class="altbg1" width="150">&nbsp;</td>
+		<td class="altbg2">&nbsp;</td>
+	</tr>
+</table>
+
+<center><input class="button" type="submit" name="setting_submit" value="提 交"></center>
+</form>
+</div>

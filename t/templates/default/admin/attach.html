@@ -1,0 +1,46 @@
+<!--{template admin/header}-->
+<form method="post" action="admin.php?mod=attach&code=do_modify_setting">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">参数设置</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="40%">
+                <b>开启附件上传应用:</b><br>
+                <span class="smalltxt">选择是开启，则普通用户可在前台上传附件</span><br />			
+			</td>
+			<td class="altbg2">
+                {$attach_enable_radio}
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="40%">
+                <b>开启微群附件上传功能:</b><br>
+                <span class="smalltxt">选择是，开启微群内的附件上传的功能</span><br />			
+			</td>
+			<td class="altbg2">
+                {$qun_attach_enable_radio}
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="40%">
+                <b>单个文件大小限制:</b><br>
+                <span class="smalltxt">单个文件最大可允许的大小（单位：KB），最大不超过5120(5M)，需要服务器配置的支持，如果php.ini中的配置小于该值，则该设置无效，建议2048KB。</span><br />			
+			</td>
+			<td class="altbg2">
+                <input type="text" name="attach[request_size_limit]" value="{$attach[request_size_limit]}" size=4 />KB
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="40%">
+                <b>单次上传数量限制:</b><br>
+                <span class="smalltxt">每次最多可以上传的文件数量，最多不超过5个，需要服务器配置的支持，建议3个。</span><br />			
+			</td>
+			<td class="altbg2">
+                <input type="text" name="attach[request_files_limit]" value="{$attach[request_files_limit]}" size=4 />
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交" /></center>
+</form>

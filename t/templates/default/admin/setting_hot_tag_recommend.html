@@ -1,0 +1,61 @@
+<!--{template admin/header}-->
+
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_modify_hot_tag_recommend">
+
+    <a name="热门推荐话题设置"></a>
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+        <tr class="header">
+    		<td colspan="2">热门推荐话题设置</td>
+    	</tr>
+    	<tr>
+    		<td width="45%"><b>是否启用？</b><br />
+            启用后，可以我的微博页面显示热门推荐话题内容；
+            </td>
+    		<td>{$hot_tag_recommend_enable_radio}</td>
+    	</tr>
+        <tr>
+    		<td width="45%"><b>模块名称？</b><br />
+            默认为“热门推荐话题”；
+            </td>
+    		<td><input type="text" name="hot_tag_recommend[name]" value="{$hot_tag_recommend[name]}" /></td>
+    	</tr>
+        <tr>
+    		<td width="45%"><b>显示数量？</b><br />
+            默认为“10”；
+            </td>
+    		<td>{$hot_tag_recommend_num_select}</td>
+    	</tr>        
+    </table>
+    <center><input type="submit" class="button" name="settingsubmit" value="提交设置" /></center><br />
+
+	<a name="热门推荐话题列表"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header"> 
+            <td>启用</td>
+            <td>话题</td>
+            <td>简介</td>
+			<td>排序</td>
+            <td>其他</td>          
+		</tr>
+        {loop $hot_tag_recommend_list $k $hot_tag_recommend}
+		<tr>
+            {eval $_checked = $hot_tag_recommend[enable] ? ' checked checked="true" ' : '';}
+			<td valign="top"><input type="hidden" name="_list[{$k}][enable]" value="{$hot_tag_recommend[enable]}" /><input type="checkbox" name="hot_tag_recommend[list][{$k}][enable]" value="1" {$_checked} /></td>
+            <td valign="top"><input type="hidden" name="_list[{$k}][name]" value="{$hot_tag_recommend[name]}" /><input type="text" name="hot_tag_recommend[list][{$k}][name]" value="{$hot_tag_recommend[name]}" size="50" /></td>
+            <td valign="top"><input type="hidden" name="_list[{$k}][desc]" value="{$hot_tag_recommend[desc]}" /><input type="text" name="hot_tag_recommend[list][{$k}][desc]" value="{$hot_tag_recommend[desc]}" size="50" /></td>
+            <td valign="top"><input type="hidden" name="_list[{$k}][order]" value="{$hot_tag_recommend[order]}" /><input type="text" name="hot_tag_recommend[list][{$k}][order]" value="{$hot_tag_recommend[order]}" size="5" /></td> 
+            <td valign="top"><a href="admin.php?mod=setting&code=do_modify_hot_tag_recommend&act=delete&id={$k}">删除</a></td>
+		</tr>
+        {/loop}
+        <tr>
+			<td><input type="checkbox" name="hot_tag_recommend_new[0][enable]" value="1" checked checked="true" /></td>
+            <td><input type="text" name="hot_tag_recommend_new[0][name]" value="" size="50" /></td>
+            <td><input type="text" name="hot_tag_recommend_new[0][desc]" value="" size="50" /></td>
+            <td><input type="text" name="hot_tag_recommend_new[0][order]" value="" size="5" /></td> 
+            <td>&nbsp;</td>
+		</tr>
+	</table>
+	<center><input type="submit" class="button" name="settingsubmit" value="提交设置" /></center><br />
+    
+</form>
+<br />

@@ -1,0 +1,55 @@
+<!--{eval $__my=$this->
+MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+<div class="Rlogo"><h1 class="logo"><a title="{conf site_name}" href="index.php"></a></h1></div>
+<div class="main_2">
+<div class="main_t3"></div>
+  <div class="mainL">
+    <!--{template "topic_publish"}-->
+  </div>
+  <div class="mainR R3_hor" >
+    <div class="sideBox">
+      <div class="sTitle"><span class="font14px left">温馨提示</span></div>
+      <ul class="sideul">
+        <li style="color:#333333">在“我的首页”中，可随时发布、删除我分享的新鲜事；也可自由收藏、评论TA人的分享的新鲜事。</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--{template "topic_footer"}-->

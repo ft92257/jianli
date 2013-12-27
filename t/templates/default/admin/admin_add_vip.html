@@ -1,0 +1,55 @@
+<!--{template admin/header}-->
+<script>
+function check_category(category_id)
+{
+	var category_id = 'undefined' == typeof(category_id) ? 0 : category_id;
+	if(category_id == 0){
+		var html = "<select name='category_id' id='category_id' style='width:100px;' notnull='true'><option>请选择...</option></select>";
+		document.getElementById('subclass_list').innerHTML=html;
+		return false;
+	}
+	var myAjax = $.post(
+		"admin.php?mod=vipintro&code=check_category",
+		{
+			category_id:category_id
+		},
+		function (d)
+		{
+		 	document.getElementById('subclass_list').innerHTML=d;
+		}
+	);
+}
+</script>
+<form id="form" name="form" method="post" action="admin.php?mod=vipintro&code=doaddvip">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+	 <tr>
+	   <td width="9%" height="27">用户昵称</td>
+	   <td><textarea id="nickname" name="nickname"></textarea></td>
+	   <td>注：同时添加多个用户名换行即可</td>
+	 </tr>
+     <tr>
+       <td width="9%" bgcolor="#F8F8F8">V认证类别：<br /></td>
+       <td width="11%" bgcolor="#F8F8F8">
+         <div id="category_list" style="width:100px;">
+           <select name="category_fid" id="category_fid" style="width:100px;" onchange="check_category(this.value);">
+             <option value="0" selected="selected">选择类别</option>
+             <!--{loop $category_list $val}-->
+             <option value="{$val[id]}">{$val[category_name]}</option>
+             <!--{/loop}-->  
+           </select>
+          </div>
+        </td>
+        <td>
+         <div id="subclass_list" style="width:100px; height:30px;">
+           <select name='category_id' id='category_id' style='width:100px;'><option>请选择...</option></select>
+		 </div>
+	  </td>
+    </tr>
+    <tr align="center">
+      <td></td>
+      <td height="30" colspan="2" class="altbg1">
+        <button name="do" value='' type="submit" class="button">提交</button>
+      </td>
+    </tr>
+  </table>
+</form>

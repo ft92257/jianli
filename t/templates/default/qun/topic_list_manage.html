@@ -1,0 +1,70 @@
+<script type="text/javascript">
+$(document).ready(function(){
+var objStr1 = "#topic_lists_{$val[tid]}_a";
+var objStr2 = "#topic_lists_{$val[tid]}_b";
+$(objStr1).mouseover(function(){$(objStr2).show();});
+$(objStr1).mouseout(function(){$(objStr2).hide();});
+});
+</script>
+<!--{eval if($this->Config['qun_attach_enable']) $allow_attach = 1; else $allow_attach = 0 }-->
+<div class="from"> 
+<div class="option"> 
+<ul>
+<!--{if MEMBER_ID>0}-->
+<li>
+<!--转发的判断 Begin-->
+<!--{if $val['managetype'] != 2}--><span>
+<a href="javascript:void(0);" onclick="<!--{if $allow_list_manage}-->get_forward_choose({$val[tid]},{$allow_attach}, {appitem:'{$val[item]}', appitem_id:'{$val[item_id]}',noReply:1});<!--{else}-->get_forward_choose({$val[tid]},{$allow_attach});<!--{/if}-->" style="cursor:pointer;">转发<!--{if $val[forwards]}-->({$val[forwards]})<!--{/if}--></a>
+	 </span>
+	 <!--{else}-->
+	 <span title="设置了特殊的权限，不允许转发">转发</span>
+	 <!--{/if}-->
+<!--转发的判断 End-->
+</li>
+<li class="o_line_l">|</li>
+
+<li>
+<!--{if !$val[reply_disable] && $val['managetype'] != 2}-->
+<span>
+<a href="javascript:void(0)" onclick="<!--{if $allow_list_manage}-->replyTopic({$val[tid]},'reply_area_{$val[tid]}','{$val[replys]}',1,{$allow_attach},{appitem:'{$val[item]}', appitem_id:'{$val[item_id]}'});<!--{else}-->replyTopic({$val[tid]},'reply_area_{$val[tid]}','{$val[replys]}',0,{$allow_attach});<!--{/if}-->return false;">评论<!--{if $val[replys]}-->({$val[replys]})<!--{/if}--></a>
+</span>
+<!--{else}-->
+<span>评论</span>
+<!--{/if}-->
+</li>
+
+<li class="o_line_l">|</li>
+<li id="topic_lists_{$val[tid]}_a" class="mobox"><a href="javascript:void(0)" class="moreti" ><span class="txt">更多</span><span class="more"></span></a> 
+<div id="topic_lists_{$val[tid]}_b" class="molist" style="display:none">
+<!--{if MEMBER_ID>0}-->
+<!--{if 'myfavorite'==$this->
+Code}--> <span id="favorite_{$val[tid]}"><a href="javascript:void(0)" onclick="favoriteTopic({$val[tid]},'delete');return false;">取消收藏</a></span>
+<!--{else}-->
+<span id="favorite_{$val[tid]}"><a href="javascript:void(0)" onclick="favoriteTopic({$val[tid]},'add');return false;">收藏</a></span> 
+<!--{/if}-->
+<!--{/if}-->
+<!--{if $this->Config[is_report] || MEMBER_ID > 0}-->
+<a href="javascript:void(0)" onclick="ReportBox('{$val[tid]}')" title="举报不良信息">举报</a>
+<!--{/if}-->
+<!--{if $val[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+<!--{eval if($this->Code > 0  ||  in_array($this->Code,array('list_reply','do_add'))) $eid = 'reply_list'; else $eid = 'topic_list' }-->
+<a href="javascript:void(0)" onclick="deleteTopic({$val[tid]},'{$eid}_{$val[tid]}');return false;">删除</a>
+<!--{eval $datetime = time(); $modify_time = $this->Config[topic_modify_time] * 60}-->
+<!--{if  $datetime - $val[addtime] < $modify_time || 'admin'==MEMBER_ROLE_TYPE }-->
+<!--{if $val[replys] <= 0 && $val[forwards] <= 0 || 'admin'==MEMBER_ROLE_TYPE}-->
+<a href="javascript:void(0);" onclick="modifyTopic({$val[tid]},'modify_topic_{$val[tid]}','{$eid}',{$allow_attach});return false;" style="cursor:pointer;">编辑</a>
+<!--{/if}-->
+<!--{/if}-->
+
+	<!--推荐开始 Begin-->
+		<a href="javascript:void(0)" onclick="showTopicRecdDialog({'tid':'{$val[tid]}'});return false;">推荐</a>
+	<!--推荐开始 End-->
+
+<!--{/if}-->
+</div>
+</li>
+<!--{/if}-->
+</ul>
+</div> 
+<div class="mycome">{if !$no_from}{$val[from_html]}{/if}</div> 
+</div>

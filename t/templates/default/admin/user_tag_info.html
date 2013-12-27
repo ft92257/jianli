@@ -1,0 +1,28 @@
+<!--{template admin/header}-->
+<form action="{$action}" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="4">编辑个人标签<span class="altbg1"></span> </td>
+    </tr>
+    <tr>
+       <td width="30%" bgcolor="#F8F8F8">&nbsp;</td>
+      <td colspan="2" bgcolor="#FFFFFF">&nbsp;</td>
+    </tr>
+	    <tr>
+      <td class="altbg1">个人标签 : </td>
+      <td colspan="2" class="altbg2"><input name="tagname" type="text" id="tagname" value="{$taglist[name]}" size="40" />      </td>
+    </tr>
+	    <tr>
+	      <td class="altbg1">&nbsp;</td>
+	      <td width="7%" align="left" >    
+		  <center>
+    <input type="submit" class="button" name="editsubmit" value="编辑提交">
+    <input name="tagid" type="hidden" id="tagid" value="{$taglist[id]}" />
+          </center>		  </td>
+          <td width="63%" align="left" >&nbsp;</td>
+    </tr>
+  </table>
+
+</form>
+
+

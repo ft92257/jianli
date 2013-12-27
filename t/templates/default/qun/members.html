@@ -1,0 +1,154 @@
+{template "topic_header"}
+<style type="text/css">
+.cat_block{ float:left; width:260px; height:50px; border-bottom: dotted 1px #ccc; margin-right:15px; margin-bottom:10px;}
+.qun_block{ float:left; width:260px; height:50px; margin-right:15px; margin-bottom:10px;}
+.mr20{ margin-right:20px;}
+.cat_content a{ margin-right:10px;}
+.rbl{ float:left;}
+.rbl img{ height:48px;width:48px; border:1px solid #ccc;margin-right:10px;}
+#sub_cat_wp{ border-bottom: dotted 1px #CCCCCC; padding-bottom:5px;}
+#sub_cat_wp a{ margin-right:10px;}
+a.on{ color:#000000; font-weight:700;}
+#sort_wp a{ margin-right:10px;}
+.member_info{ float:left; width:100px; margin-top:10px;}
+</style>
+<div class="main_2">
+
+	<div style=" margin-left:20px; margin-right:20px; margin-top:20px; margin-bottom:50px;">
+		<div style="border-bottom: solid 1px #CCCCCC; margin-bottom:10px; padding-bottom:10px;" id="m_h">
+			<div style="float:left; font-size:14px; font-weight:700">成员列表</div>
+			<div style="float:right;">
+				<!--{if $type != 'followed'}-->
+				<a href="index.php?mod=qun&code=members&type=followed&qid={$qid}">成员中我关注的人列表</a>
+				&nbsp;&nbsp;
+				<!--{/if}-->
+				<!--{if $this->Code=="member_search"}-->|&nbsp;&nbsp;
+				<a href="index.php?mod=qun&code=members&qid={$qid}">返回全部成员列表</a>
+				&nbsp;&nbsp;
+				<!--{/if}-->
+				<a href="index.php?mod=qun&qid={$qid}">&lt;&lt;&nbsp;&nbsp;返回{$qun_info['name']}微群</a>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		
+		<div style="margin-left:50px; margin-right:50px;">
+		
+			<!--成员搜索 Begin-->
+			<div id="m_search" style="margin-top:30px;">
+				<form action="index.php" method="get" id="search_from">
+					<input type="hidden" name="mod" value="qun"/>
+					<input type="hidden" name="code" value="member_search"/>
+					<input type="hidden" name="qid" value="{$qid}"/>
+					<input type="text" name="q" id="search_txt" value="{$key}" class="sinp"/>
+					&nbsp;
+					<input type="submit" class="shareI" id="search_btn" value="搜索成员"/>
+				</form>
+			</div>
+			<!--成员搜索 End-->
+			<script language="javascript">
+				var search_tips = "输入昵称查找群成员";
+				var obj_s = $('#search_txt');
+				<!--{if empty($key)}-->
+				obj_s.val(search_tips);
+				<!--{/if}-->
+				obj_s.click(function() {
+					if (obj_s.val() == search_tips) {
+						obj_s.val('');
+					}
+				});
+				obj_s.blur(function () {
+					if (obj_s.val() == '') {
+						obj_s.val(search_tips);
+					}
+				});
+				$('#search_from').submit(function() {
+					if (obj_s.val() == search_tips) {
+						return false;
+					}
+					return true;
+				});
+			</script>
+			
+			<!--{if $this->Code=='member_search'}-->
+				<!--搜索 Begin-->
+				<div style="margin-top:50px;">
+					<div style=" font-weight:600; padding-bottom:5px; border-bottom: dotted 1px #CCCCCC;">搜索结果</div>
+					<div style="padding-top:20px; padding-left:30px; padding-right:30px;" id="member_content_wp">
+						<!--{if $count}-->
+							<!--{loop $members $__m__}-->
+								{template "qun/member_item"}
+							<!--{/loop}-->
+							<div style="clear:both;"></div>
+							<div>{$page_arr['html']}</div>	
+						<!--{else}-->
+							<div>还没有相关的成员</div>
+						<!--{/if}-->		
+					</div>
+				</div>
+				<!--搜索 End-->
+			<!--{elseif $type == 'followed'}-->
+				
+				<!--群里我关注的人 Begin-->
+				<div style="margin-top:50px;">
+					<div style=" font-weight:700; padding-bottom:5px; border-bottom: dotted 1px #CCCCCC;">成员有{$count}人是我关注的</div>
+					<div style="padding-top:20px; padding-left:30px; padding-right:30px;" id="member_content_wp">
+						<!--{if $count}-->
+							<!--{loop $members $__m__}-->
+								{template "qun/member_item"}
+							<!--{/loop}-->
+							<div style="clear:both;"></div>
+							<div>{$page_arr['html']}</div>	
+						    <!--{else}-->
+							<div>还没有我关注的成员</div>
+						<!--{/if}-->		
+					</div>
+				</div>
+				<!--群里我关注的人 End-->
+				
+			<!--{else}-->
+				<!--{if $page == 1}-->
+				<!--群主 Begin-->
+				<div style="margin-top:50px;">
+					<div style=" font-weight:700; padding-bottom:5px; border-bottom: dotted 1px #CCCCCC;">群主</div>
+					<div style="padding-top:20px; padding-left:30px; padding-right:30px;" id="member_content_wp">
+						<!--{eval $__m__ = $founder_info;}-->
+						{template "qun/member_item"}
+						<div style="clear:both;"></div>
+															
+					</div>
+				</div>
+				<!--群主 End-->
+				
+				<!--管理员 Begin-->
+				<div style="margin-top:50px;">
+					<div style=" font-weight:700; padding-bottom:5px; border-bottom: dotted 1px #CCCCCC;">管理员({$admin_nums})</div>
+					<div style="padding-top:20px; padding-left:30px; padding-right:30px;" id="member_content_wp">
+							<!--{loop $admin_ary $__m__}-->
+								{template "qun/member_item"}
+							<!--{/loop}-->
+						<div style="clear:both;"></div>
+									
+					</div>
+				</div>
+				<!--管理员 End-->
+				<!--{/if}-->
+				
+				<!--成员 Begin-->
+				<div style="margin-top:50px;">
+					<div style=" font-weight:700; padding-bottom:5px; border-bottom: dotted 1px #CCCCCC;">成员({$count}人)</div>
+					<div style="padding-top:20px; padding-left:30px; padding-right:30px;" id="member_content_wp">
+						<!--{loop $members $__m__}-->
+							{template "qun/member_item"}
+						<!--{/loop}-->
+						<div style="clear:both;"></div>
+						<div>{$page_arr['html']}</div>			
+					</div>
+				</div>
+				<!--成员 End-->
+			<!--{/if}-->
+			
+		</div>
+		
+	</div>
+</div>
+{template "topic_footer"}

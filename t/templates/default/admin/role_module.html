@@ -1,0 +1,47 @@
+{template admin/header}
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+		<tr class="header">
+		<td><div style="float:left; margin-left:0px; padding-top:8px">
+			<a href="###" onclick="collapse_change('tip')">技巧提示</a></div>
+		<div style="float:right; margin-right:4px; padding-bottom:9px">
+</div>
+		</td>
+		</tr>
+		<tbody id="menu_tip" style="display:">
+			<tr>
+			<td>
+			<ul>
+				<li>只有这里存在的模块，才可以在【动作权限和积分】栏目进行设置动作权限</li>
+				<li>删除模块将删除模块所有权限，将可能会造成无法使用后台和前台的功能。</li>
+			</ul>
+			</td>
+			</tr>
+	</table>
+<form method="post" action="admin.php?mod=role_module&code=domodify"  enctype="multipart/form-data">
+
+	<br />
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+		<tr class="header">
+		<td><input class="checkbox" type="checkbox" name="chkall" class="header" onclick="checkall(this.form,'delete')">全删</td>
+		<td>模块</td>
+		<td>名称</td>
+		<td>默认权限</td>
+	</tr>
+		<!--{loop $module_list $module $module_name}-->
+		<tr align="center">
+				<td class="altbg1"><input class="checkbox" type="checkbox" name="delete[]" value="{$module}">删除</td>
+				<td class="altbg2"><input name="module[$module][module]" value="$module" type="text" size=30 readonly></td>
+				<td class="altbg1"><input name="module[$module][name]" value="$module_name" type="text" size=80></td>
+				<td class="altbg2">允许所有</td>
+		</tr>
+		<!--{/loop}-->
+		<tr align="center">
+				<td class="altbg1">新增</td>
+				<td class="altbg2"><input name="new_module" type="text" size=30></td>
+				<td class="altbg1"><input name="new_module_name" type="text" size=80></td>
+				<td class="altbg2">允许所有</td>
+		</tr>
+	</table>
+		<br>
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>

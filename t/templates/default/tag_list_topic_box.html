@@ -1,0 +1,162 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+<div class="mainL">
+
+<!--{if $tag_extra}-->
+	<!--{if $tag_extra[left_top_image][enable] && $tag_extra[left_top_image][src]}-->
+		<div>
+		<!--{if $tag_extra[left_top_image][link]}-->
+			<a target="_blank" href="{$tag_extra[left_top_image][link]}"><img style="border:0;width:590px;" src="{$tag_extra[left_top_image][src]}" /></a>
+		<!--{else}-->
+			<img style="border:0;width:590px;" src="{$tag_extra[left_top_image][src]}" />
+		<!--{/if}-->
+		</div>
+	<!--{/if}-->
+	
+	<!--{if $tag_extra[left_top_text][enable]}-->
+		<div style="padding:10px;">
+		<!--{if $tag_extra[left_top_text][title]}-->
+			<h3>{$tag_extra[left_top_text][title]}</h3>
+		<!--{/if}-->
+		<!--{if $tag_extra[left_top_text][content]}-->
+			<div>{$tag_extra[left_top_text][content]}</div>
+		<!--{/if}-->
+		</div>
+	<!--{/if}-->
+<!--{/if}-->
+
+
+<!--{template "topic_publish"}-->
+<script language="Javascript">
+function listTopic( s,lh ) {	
+	var s = 'undefined' == typeof(s) ? 0 : s;
+	var lh = 'undefined' == typeof(lh) ? 1 : lh;
+	if(lh) {
+		window.location.hash="#listTopicArea";
+	}
+
+    $("#listTopicMsgArea").html("<div><center><span class='loading'>内容正在加载中，请稍候……</span></center></div>");
+	var myAjax = $.post(
+		"ajax.php?mod=topic&code=list",
+		{
+			<!--{loop $params $k $v}-->
+			{$k}:"{$v}",
+			<!--{/loop}-->
+			start:s
+		},
+		function (d) {
+			$("#listTopicMsgArea").html('');
+			$("#listTopicArea").html(d);			
+		}
+	);
+}
+</script>
+<div class="listBox">
+<div class="listBoxNav">
+<!--{if $this->Config[ad_enable] && $this->Config[ad][ad_list][tag_view][header]}-->
+<div class="L_AD">
+{$this->Config[ad][ad_list][tag_view][header]}
+</div>
+<!--{/if}-->
+
+<!--导航 Begin-->
+<!--{eval $__code=urlencode($this->Code);}-->
+<div class="TopicMan s_fixed">
+		<div class="nfTagB">
+			<ul> 
+				<!--{eval if($this->Get['view'] == '')$def="current";}-->
+				<li class="{$def}">
+					<span id="follow_menu_wp">
+						<a title="最新微博" href="index.php?mod=tag&code={$__code}">最新微博</a>
+                        <em class="navNew"></em>
+					</span>
+				</li>
+				<!--{eval if($this->Get['view'] == 'recd')$recd="current";}-->
+				<li class="{$recd}">
+				<span id="qun_menu_wp">
+                <a class="wp_id" title="官方推荐" href="index.php?mod=tag&code={$__code}&view=recd">官方推荐</a>
+                </span>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="nfBox index_m">
+			<div class="left">
+				<!--话题筛选 Begin-->
+
+				<!--{eval if(empty($this->Get[type])) 	$all = "current";}-->
+				<!--{eval if($this->Get[type] == 'pic') 	$pic = "current";}-->
+				<!--{eval if($this->Get[type] == 'video') $video = "current";}-->
+				<!--{eval if($this->Get[type] == 'music') $music = "current";}-->
+				<!--{eval if($this->Get[view]) $__view = '&view='.$this->Get[view];}-->
+				<a title="全部" href="{$type_url}" class="{$all}">全部</a>
+				<a title="含图片" href="{$type_url}&type=pic" class="{$pic}">图片</a>
+				<a title="含视频" href="{$type_url}&type=video" class="{$video}">视频</a>
+				<a title="含音乐" href="{$type_url}&type=music" class="{$music}">音乐</a>
+				<!--话题筛选 End-->
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+<!--导航 End-->
+
+</div>
+<div id="listTopicMsgArea"></div>
+<div id="listTopicArea">
+<!--列表开始-->
+<div class="Listmain">
+
+
+<!--{if $topic_list}-->
+<!--{loop $topic_list $val}-->	
+<div class="feedCell" id="topic_list_{$val[tid]}">
+
+	<!--{if $this->Config[ad][enable]}-->
+		<!--{eval $_jflwjif_counts++;}-->
+		<!--{if 3==$_jflwjif_counts && $this->Config[ad][ad_list][tag_view][middle_center1]}-->
+		<div class="L_AD"><!--{$this->Config[ad][ad_list][tag_view][middle_center]}--></div>
+		<!--{/if}-->
+		
+		<!--{if 7==$_jflwjif_counts && $this->Config[ad][ad_list][tag_view][middle_center1]}-->
+		<div class="L_AD"><!--{$this->Config[ad][ad_list][tag_view][middle_center1]}--></div>
+		<!--{/if}-->
+	<!--{/if}-->
+
+	{template "topic_item_ajax"}
+	<div class="mBlog_linedot"></div> 
+</div>
+<!--{/loop}-->
+<!--{if $page_arr[html]}-->
+  <div class="pageStyle">
+	<li>{$page_arr[html]}</li>
+  </div>
+<!--{/if}-->
+<!--{else}-->
+<div>
+		<BR />
+		<span style="color:#FF0000;">没有找到相关的内容</span>
+</div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+
+        {template "tag_right.inc"}
+
+</div>
+<!--{if $this->Config[ad_enable] && $this->Config[ad][ad_list][tag_view][footer]}-->
+<div style="text-align:center" class="T_AD">
+ <!--{$this->Config[ad][ad_list][tag_view][footer]}-->
+</div>
+<!--{/if}-->
+<!--{template "topic_footer"}-->

@@ -1,0 +1,164 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+<div class="main_t"><span>搜索</span></div>
+<div class="set_warp">
+<div class="srch_con">
+<div class="srch_kind">
+<!--{eval $search_keyword=htmlspecialchars($search_keyword);}--> 
+<a href="index.php?mod=search&code=user&nickname={$search_keyword}"><!--{if $this->Code == 'user'}--><i>按昵称找人</i><!--{else}-->按昵称找人<!--{/if}--></a>
+<a href="index.php?mod=search&code=usertag&usertag={$search_keyword}"><!--{if $this->Code == 'usertag'}--><i>按标签找人</i><!--{else}-->按标签找人<!--{/if}--></a>
+<a href="index.php?mod=search&code=topic&topic={$search_keyword}"><!--{if $this->Code == 'topic'}--><i>按关键词找微博</i><!--{else}-->按关键词找微博<!--{/if}--></a>
+<a href="index.php?mod=search&code=tag&tag={$search_keyword}"><!--{if $this->Code == 'tag'}--><i>按话题找微博</i><!--{else}-->按话题找微博<!--{/if}--></a>
+
+<!--{if $this->Config['vote_open']}-->
+<a href="index.php?mod=search&code=vote&q={$search_keyword}"><!--{if $this->Code == 'vote'}--><i>找投票</i><!--{else}-->找投票<!--{/if}--></a>
+<!--{/if}-->
+
+<!--{if $this->Config['qun_setting']['qun_open']}-->
+<a href="index.php?mod=search&code=qun&q={$search_keyword}"><!--{if $this->Code == 'qun'}--><i>找微群</i><!--{else}-->找微群<!--{/if}--></a>
+<!--{/if}-->
+
+</div>
+  <div class="srch_form lf">
+    <div class="srch_form_r rt"></div>
+    <div class="srch_form_l lf"></div>
+	<form method="get" action="#" name="headSearchForm" id="headSearchForm" onsubmit="return ProfileSearch();">
+    <div class="srch_form_c lf">
+      <div class="srch_arrow">
+        <div class="srch_form_cr rt"></div>
+        <div class="srch_form_cl lf"></div>
+        <input id="ProfileSearchType" name="searchType" type="hidden" value="{$this->Code}">
+        <input type="text" id="keywarod" name="headSearchValue"  maxlength="40" value="{$search_keyword}" class="font_14 txt_srch">
+      </div>
+    </div>
+    <a href="###" class="srch_btn lf" onclick="javascript:return ProfileSearch();">搜索</a> 
+	</form>
+	</div>
+</div>
+ 
+<!--{if in_array($this->Code,array('user','usertag'))}--> 
+<div class="SLbox">
+<!--{if $mytag}-->
+	<div class="TopicMan" style=" width:540px;">
+			  <div>我的标签（<a href="index.php?mod=user_tag" target="_blank">修改</a>）：
+				  <!--{loop $mytag $val}-->
+				  <a href="index.php?mod=search&code=usertag&usertag&usertag={$val[tag_name]}">{$val[tag_name]}</a> | 
+				  <!--{/loop}-->
+			  </div>
+	</div>
+<!--{/if}-->
+ <ul class="followList" style="padding:0">
+<!--{if $total_record}-->共有{$total_record}位用户<!--{/if}-->
+  <!--{if $member_list}-->
+  <!--{loop $member_list $val}-->
+  <li>
+	<div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)"/></div>
+
+	<div id="user_{$val[uid]}_user" class="layS laySs"></div>
+	<div class="fBox_R">
+	  <span><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a> <!--{if $val[validate]}--><img src="./images/vip.gif" title="认证用户"/><!--{/if}--> </span>
+	</div>
+	<div class="fBox_R">被<span style="color:#ff0000;">{$val[fans_count]}</span>人关注 | 微博 <span style="color:#ff0000;">{$val[topic_count]}</span> 条</div>
+	<div class="fBox_R2">
+	  <!--{if MEMBER_ID!=$val[uid] && $val[follow_html]}-->
+	  {$val[follow_html]}
+	  <!--{elseif MEMBER_ID==$val[uid]}-->
+	  [我自己]
+	  <!--{/if}-->
+    </div>
+	<div class="fBox_R">
+	<!--{loop $member_tag $m_val}-->
+	<!--{if $val[uid] == $m_val[uid]}-->
+	<div class="feedP2" style="float:left;">
+	<a href="index.php?mod=search&code=usertag&usertag={$m_val[tag_name]}">
+	 <!--{if $usertag == $m_val[tag_name]}-->
+	 <span style="color:#ff0000;">{$m_val[tag_name]}</span>
+	 <!--{else}-->
+	 {$m_val[tag_name]}
+	<!--{/if}-->
+	</a> |&nbsp;
+	</div>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</div>
+  </li>
+	<div id="Pmsend_to_user_area" style="width:430px;"></div>
+	<div id="alert_follower_menu_{$val[uid]}"></div>
+	<span id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></span>
+	<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+  <!--{/loop}-->
+  <!--{if $page_arr[html]}-->
+  <li style="text-align:right; height:30px;">{$page_arr[html]}</li>
+  <!--{/if}-->
+  <!--{else}-->
+  <div class="SLtig">没有找到结果，请换个词试试吧</div>
+  <!--{/if}-->
+  </ul>
+</div>
+<!--{/if}-->
+
+<!--{if in_array($this->Code,array('topic','tag'))}--> 
+<div class="SLbox">
+<div class="Listmain" style="font-size:12px;">
+  <!--{if $topic_list}-->
+  <!--{loop $topic_list $val}-->
+  	<div class="feedCell" id="topic_list_{$val[tid]}">
+		<!--{subtemplate topic_item_ajax}-->
+	</div>
+  <!--{/loop}-->
+    <!--{if $page_arr[html]}-->
+    <div class="pageStyle">
+	<li>{$page_arr[html]}</li>
+    </div>
+   <!--{/if}-->
+  <!--{else}-->
+	<div class="SLtig">抱歉没有找到结果，请更换词语再次尝试</div>
+  <!--{/if}-->
+</div>	
+</div>
+<!--{/if}-->
+
+<!--搜索投票 Begin-->
+<!--{if $this->Code == 'vote'}--> 
+<div class="SLbox">
+<div class="Listmain" style="font-size:12px;">
+	<!--{if $count}-->
+		{template vote_list}        
+	<!--{else}-->
+		<div class="SLtig">抱歉没有找到结果，请更换词语再次尝试</div>
+	<!--{/if}-->
+</div>
+</div>
+<!--{/if}-->
+<!--搜索投票 End-->
+
+
+
+<!--{if $this->Code == 'qun'}-->
+<div class="SLbox">
+<div class="Listmain" style="font-size:12px;">
+	<!--{if $count}-->
+		{template qun/qun_search_list}        
+	<!--{else}-->
+		<div class="SLtig">抱歉没有找到结果，请更换词语再次尝试</div>
+	<!--{/if}-->
+</div>
+</div>
+<!--{/if}-->
+
+
+</div></div>
+</div>
+<!--{template "topic_footer"}-->
+
+

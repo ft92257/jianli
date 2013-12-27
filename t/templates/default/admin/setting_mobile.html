@@ -1,0 +1,75 @@
+<!--{template admin/header}-->
+
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>要点提示</td>
+	</tr>
+	<tr>
+		<td>
+		<ul>
+			<li>核心设置是指影响整个网站用户的设置，比如是否开启先审核后发布等；</li>
+			<li>本页面的设置以及网站的数据库配置信息都保存在/setting/settings.php中。</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<form method="post" name="config[settings]" action="{$action}" enctype="multipart/form-data"><a name="基本设置"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">核心设置</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="45%"><b>开启WAP手机访问:</b><br>
+		选择“是”开启，前台页面底部会显示“手机访问”链接。</td>
+		<td>$wap_radio</td>
+	</tr>
+	<tr class="altbg2">
+		<td width="45%"><b>开启WAP注册:</b><br>
+		选择“是”开启，WAP注册功能。</td>
+		<td>$open_wap_reg_radio</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="45%"><b>WAP访问url地址:</b><br>
+		默认为{conf site_url}/wap<br />
+		如果在此指定二级域名，需要将域名解析到wap目录。</td>
+		<td><input type="text" name="config[wap_url]"
+			value="{conf wap_url}" size="50" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="45%"><b>3G访问url地址:</b><br>
+		默认为{conf site_url}/mobile<br />
+		如果在此指定二级域名，需要将域名解析到mobile目录。</td>
+		<td><input type="text" name="config[mobile_url]"
+			value="{conf mobile_url}" size="50" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="45%"><b>iPhone客户端</b>
+		<br>
+		如您网站已经拥有此客户端，请在右侧填写下载地址<br>
+		<a href="http://cenwor.com/shop/brand.php?id=6" target=_blank><b style="color:red;">购买客户端商业授权，请点此</b></a>
+		</td>
+		<td><input type="text" name="config[iphone_download_url]" value="{conf iphone_download_url}" size="50" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="45%"><b>Android客户端</b>
+		<br>
+		如您网站已经拥有此客户端，请在右侧填写下载地址；<br>
+		<a href="http://cenwor.com/shop/brand.php?id=6" target=_blank><b style="color:red;">购买客户端商业授权，请点此</b></a>
+		</td>
+		<td><input type="text" name="config[android_download_url]" value="{conf android_download_url}" size="50" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="45%"><b>手机短信</b><br>
+		可实现短信发微博、有新微博接收通知、短信群发等
+		</td>
+		<td><a href="admin.php?mod=sms">请点击这里进行具体设置</a></td>
+	</tr>
+  </table>
+<br>
+<center><input type="submit" class="button"
+	name="settingsubmit" value="提 交"></center>
+<br>
+</form>
+<br>

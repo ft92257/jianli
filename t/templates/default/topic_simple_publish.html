@@ -1,0 +1,62 @@
+<!--{eval if(empty($__handle_key) && !empty($this->Get['handle_key']))$__handle_key='_'.$this->Get['handle_key'];}-->
+<div class="mWarp">
+	<form action="" method="POST" name="topic_simple_form" id="topic_simple_form{$__handle_key}" onsubmit="return false;">
+		<table>
+			<tr>
+			  <td colspan="2">
+				  <div class="fbqCount"><style type="text/css">ul.mycon li{ width:65px;}</style>
+					<ul class="mycon fontGreen">
+					<!--{if $this->Config[topic_input_length]>0}-->
+					  <li>还可以输入</li>
+					  <li style="width:auto"><span style='color:#ff0000;' id="topic_simple_wordc{$__handle_key}">{conf topic_input_length}</span></li>
+					  <li style="width:40px;">个字符</li>
+					<!--{/if}-->
+					</ul>
+					</div>
+				
+					<!-- 转发插入表情-->
+					<script type="text/javascript">
+						 $(document).ready(function(){
+						 $(".menu_bqb_c").click(function(){$("#bq_view{$__handle_key}").show();});
+						 });
+					</script>
+					<div class="menuf">
+						<div class="menuf_bq" onclick="topic_face('bq_view{$__handle_key}','topic_simple_content{$__handle_key}');return false;"><b class="menu_bqb_c">表情</b>
+							<div class="forward_f" id="bq_view{$__handle_key}"></div>
+						</div>
+					</div>
+			
+					<textarea  id="topic_simple_content{$__handle_key}" name="content" onkeyup="javascript:checkPublishText('{conf topic_input_length}', 'topic_simple_content{$__handle_key}', 'topic_simple_wordc{$__handle_key}');" class="Pbox_te" style="width:445px; padding:5px;" onkeydown="ctrlEnter(event, 'topic_simple_share_btn{$__handle_key}')">$value</textarea>
+			  </td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="center">
+				<div style="display:block; margin-top:10px;">
+					<!--{if isset($chk_topic_type) && $chk_topic_type}-->
+					<input id="topic_simple_type{$__handle_key}" type="checkbox" onclick="selectAppTopicType(this.id)"  value="first" checked="checked">分享到微博
+					<!--{/if}-->
+					&nbsp;&nbsp; 
+					<input id="topic_simple_share_btn{$__handle_key}" onclick="" type="button" value="确 定" class="shareI"/>
+					<input id="topic_simple_close_btn{$__handle_key}" type="button" name="del" value="取 消" onclick="" class="shareI"/>
+					<input name="item" type="hidden" id="topic_simple_item{$__handle_key}" value="{$item}" />
+					<input name="item_id" type="hidden" id="topic_simple_item_id{$__handle_key}" value="{$item_id}" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//初始化智能输入框
+		initAiInput('topic_simple_content{$__handle_key}');
+	});
+/*
+$('#forward_content_{$tid}').bind('keydown',function(event){
+	event = event || window.event;
+	if(event.keyCode == 13 && event.ctrlKey) {
+		$('#rcbtna_{$tid}').click();
+	}
+});*/
+</script>

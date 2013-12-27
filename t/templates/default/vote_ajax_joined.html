@@ -1,0 +1,18 @@
+<!--{if $count}-->
+	<!--{loop $list $value}-->
+	<div class="vote_joined_item">
+		<!--{if $value[username]}-->
+		<a href="index.php?mod={$value[username]}" target="_blank">{$value['nickname']}</a>
+		<!--{else}-->
+		{$value['nickname']}
+		<!--{/if}-->
+		&nbsp;投给了&nbsp;{$value['option']}
+		{$value['dateline']}
+	</div>
+	<!--{/loop}-->
+	<div class="vote_joined_multi">
+		{$multi}
+	</div>
+<!--{else}-->
+	还没有人投过票，抢个沙发？
+<!--{/if}-->

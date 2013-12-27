@@ -1,0 +1,70 @@
+{template "topic_header"}
+<div class="main {$t_col_main}">
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+  <div class="main3Box_m HotW">	
+    <div id="topNews_1" class="Hotwarp">
+	<div class="Menubox2" style="width:540px;">
+		<ul>
+			<li>
+				<div  class="<!--{if $active['new']}-->tago<!--{else}-->tagn<!--{/if}-->" >
+				<A HREF="index.php?mod=qun&view=new"><span>最近更新</span></A>
+				</div>
+			</li>
+			<li>
+				<div class="<!--{if $active['mypublish']}-->tago<!--{else}-->tagn<!--{/if}-->">
+				<A HREF="index.php?mod=qun&view=mypublish"><span>我发布的</span></A>
+				</div>
+			</li>
+			<li>
+				<div class="<!--{if $active['mycomment']}-->tago<!--{else}-->tagn<!--{/if}-->">
+				<A HREF="index.php?mod=qun&view=mycomment"><span>我评论的</span></A>
+				</div>
+			</li>
+		</ul>
+	</div>
+<style type="text/css">
+	a.v_on{ color:#000; font-weight:700;}
+</style>
+		
+		<!--微博列表 Begin-->
+		<div id="listTopicArea">
+			<!--{if $is_join}-->
+				<!--{if !empty($topic_list)}-->
+					{template "qun/topic_list_ajax"}
+				<!--{else}-->
+					<div style=" margin-top:30px; width:300px; margin-left:auto; margin-right:auto; text-align:center;">
+					<!--{if $this->Get['view']=='new'}-->
+						这里的微群静悄悄…
+						<br />
+						你加入的群居然没有人说话呢
+					<!--{elseif $this->Get['view']=='mypublish'}-->
+						你还没发布微博呢
+					<!--{elseif $this->Get['view']=='mycomment'}-->
+						你还没发布任何呢
+					<!--{/if}-->
+					</div>
+				<!--{/if}-->
+			<!--{else}-->
+				<div style="color:#ccc; margin-left:10px; margin-top:20px;">你还没有加入任何微群呢。赶快加入到群里发言吧！</div>
+			<!--{/if}-->
+		</div>
+		<!--微博列表 End-->
+</div>
+
+<!--{subtemplate qun/qun_right}-->
+
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

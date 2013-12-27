@@ -1,0 +1,2023 @@
+/*微博上墙设置*/
+BODY A {
+	OUTLINE-STYLE: none
+}
+HTML {
+	FONT-FAMILY: "MicroSoft YaHei","SimHei","黑体"; BACKGROUND: #ffffff; COLOR: #333333; FONT-SIZE: 12px; _height: 100%
+}
+BODY {
+	FONT-FAMILY: "MicroSoft YaHei","SimHei","黑体"; BACKGROUND: #ffffff; COLOR: #333333; FONT-SIZE: 12px; _height: 100%
+}
+BODY {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DIV {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+OL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+PRE {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+CODE {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+LEGEND {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+INPUT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TEXTAREA {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BLOCKQUOTE {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TH {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TD {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TABLE {
+	BORDER-SPACING: 0; BORDER-COLLAPSE: collapse
+}
+FIELDSET {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+IMG {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+ADDRESS {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CAPTION {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CITE {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CODE {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+DFN {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+EM {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+STRONG {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+TH {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+VAR {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+LI {
+	LIST-STYLE-TYPE: none
+}
+CAPTION {
+	TEXT-ALIGN: left
+}
+TH {
+	TEXT-ALIGN: left
+}
+H1 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+H2 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+H3 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+H4 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+H5 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+H6 {
+	FONT-SIZE: 100%; FONT-WEIGHT: normal
+}
+Q:before {
+	CONTENT: ''
+}
+Q:after {
+	CONTENT: ''
+}
+ABBR {
+	BORDER-RIGHT-WIDTH: 0px; FONT-VARIANT: normal; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+ACRONYM {
+	BORDER-RIGHT-WIDTH: 0px; FONT-VARIANT: normal; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+SUP {
+	VERTICAL-ALIGN: text-top
+}
+SUB {
+	VERTICAL-ALIGN: text-bottom
+}
+INPUT {
+	FONT-FAMILY: inherit; VERTICAL-ALIGN: middle
+}
+TEXTAREA {
+	FONT-FAMILY: inherit; VERTICAL-ALIGN: middle
+}
+SELECT {
+	FONT-FAMILY: inherit; VERTICAL-ALIGN: middle
+}
+INPUT {
+	FONT-SIZE: 100%
+}
+TEXTAREA {
+	FONT-SIZE: 100%
+}
+SELECT {
+	FONT-SIZE: 100%
+}
+LEGEND {
+	COLOR: #000
+}
+A {
+	COLOR: #336699; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+LABEL {
+	FONT-FAMILY: tahoma
+}
+LABEL INPUT {
+	MARGIN-RIGHT: 3px
+}
+.pass {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.vip {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_help {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_phone {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_star {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_input {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_index {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_mypub {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_about {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_myfav {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_letter {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_cale {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_skin {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.del {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_lmod {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_tmod {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.btn_moreSet {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_group {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_slock {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_ntips {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.ico_toWall {
+	WIDTH: 16px; DISPLAY: inline-block; HEIGHT: 16px; OVERFLOW: hidden
+}
+.pass {
+	DISPLAY: inline
+}
+.vip {
+	DISPLAY: inline
+}
+.ico_help {
+	DISPLAY: inline
+}
+.ico_phone {
+	DISPLAY: inline
+}
+.ico_star {
+	DISPLAY: inline
+}
+.ico_input {
+	DISPLAY: inline
+}
+.ico_index {
+	DISPLAY: inline
+}
+.ico_mypub {
+	DISPLAY: inline
+}
+.ico_about {
+	DISPLAY: inline
+}
+.ico_myfav {
+	DISPLAY: inline
+}
+.ico_letter {
+	DISPLAY: inline
+}
+.ico_cale {
+	DISPLAY: inline
+}
+.ico_skin {
+	DISPLAY: inline
+}
+.del {
+	DISPLAY: inline
+}
+.ico_lmod {
+	DISPLAY: inline
+}
+.ico_tmod {
+	DISPLAY: inline
+}
+.btn_moreSet {
+	DISPLAY: inline
+}
+.ico_group {
+	DISPLAY: inline
+}
+.ico_slock {
+	DISPLAY: inline
+}
+.ico_ntips {
+	DISPLAY: inline
+}
+.ico_toWall {
+	DISPLAY: inline
+}
+.vip {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_phone {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_pic {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_at {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_face {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_cut {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.newVideo {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.creatNew {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.creatNewYear {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_audio {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_audios {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_video {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_music {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_input {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.close {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.DClose {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.moreFoot EM {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+#allTopic .title H3 {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.btnNoStr {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.btnHasStr {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.disabled.btnHasStr {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.btnHover {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.dotList LI {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.dotList .dot {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.SM LI {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.topMenu {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.tSearch .inputBtn {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.recommendBox H3 {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.SC .btn {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.topMenu .ico_new {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.homeTab .ico_new {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.vUrl EM {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.sFoTip {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.nfunTips {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_star {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_clifford {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_cale {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_lmod {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_tmod {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.btn_moreSet {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.btn_ldrop {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_ntips {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ldHead {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ldHead EM {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ld_btn EM {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+.ico_care {
+	BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat
+}
+#logo A {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.tSearch FORM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.moreFoot {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.moreFoot A {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.blueFoot {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.delChose {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+#talkBox {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.cT .title {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.tabStyle2 {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.searchTit {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.navArr EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.topicIntro .left {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.vThumbs .mask EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_index EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_mypub EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_about EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_myfav EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_letter EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.ico_skin EM {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+.SC .btn B {
+	BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat
+}
+#logo A {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.tSearch FORM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.navArr EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.topicIntro .left {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.vThumbs .mask EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_index EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_mypub EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_about EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_myfav EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_letter EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.ico_skin EM {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+.SC .btn B {
+	_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106022.png')
+}
+#nav A:hover {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+#nav .hover A {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.ico_ts {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.ico_te {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.bubble {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.btn_goTop {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.sToolbarBg EM {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.mSimpleBox .mbg {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.sToolbar BUTTON {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.goTopBox {
+	BACKGROUND: url(..images/wall/bg_1106023.png) no-repeat; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='..images/wall/bg_1106023.png')
+}
+.inputTxt {
+	OUTLINE-STYLE: none; BACKGROUND: url(../images/wall/bg_1106022.png) #fff repeat-x 0px -380px; resize: none
+}
+TEXTAREA {
+	OUTLINE-STYLE: none; BACKGROUND: url(../images/wall/bg_1106022.png) #fff repeat-x 0px -380px; resize: none
+}
+.D .zfWrap .inputTxt {
+	OUTLINE-STYLE: none; BACKGROUND: url(../images/wall/bg_1106022.png) #fff repeat-x 0px -380px; resize: none
+}
+.D .talkWrap .inputTxt {
+	OUTLINE-STYLE: none; BACKGROUND: url(../images/wall/bg_1106022.png) #fff repeat-x 0px -380px; resize: none
+}
+.relayThumb SPAN {
+	OUTLINE-STYLE: none; BACKGROUND: url(../images/wall/bg_1106022.png) #fff repeat-x 0px -380px; resize: none
+}
+
+.zfWrap .SA {
+	TOP: -10px; LEFT: 398px
+}
+.talkWrap .SA {
+	TOP: -10px; LEFT: 355px
+}
+.zfWrap .SA * {
+	WIDTH: 18px; HEIGHT: 10px; COLOR: #dcdcdc
+}
+.talkWrap .SA * {
+	WIDTH: 18px; HEIGHT: 10px; COLOR: #dcdcdc
+}
+.zfWrap .SA SPAN {
+	COLOR: #fff; TOP: 1px; LEFT: 0px
+}
+.talkWrap .SA SPAN {
+	COLOR: #fff; TOP: 1px; LEFT: 0px
+}
+.zfWrap .top {
+	PADDING-BOTTOM: 4px; LINE-HEIGHT: 19px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; ZOOM: 1; COLOR: #999; OVERFLOW: hidden; PADDING-TOP: 6px
+}
+.talkWrap .top {
+	PADDING-BOTTOM: 4px; LINE-HEIGHT: 19px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; ZOOM: 1; COLOR: #999; OVERFLOW: hidden; PADDING-TOP: 6px
+}
+.zfWrap .bot {
+	LINE-HEIGHT: 31px; HEIGHT: 35px; FONT-SIZE: 12px; PADDING-TOP: 3px
+}
+.talkWrap .bot {
+	LINE-HEIGHT: 31px; HEIGHT: 35px; FONT-SIZE: 12px; PADDING-TOP: 3px
+}
+.zfWrap .inputBtn {
+	FLOAT: right; COLOR: #999; MARGIN-LEFT: 15px
+}
+.zfWrap .countTxt {
+	FLOAT: right; COLOR: #999; MARGIN-LEFT: 15px
+}
+.talkWrap .countTxt {
+	FLOAT: right; COLOR: #999; MARGIN-LEFT: 15px
+}
+.talkWrap .inputBtn {
+	FLOAT: right; COLOR: #999; MARGIN-LEFT: 15px
+}
+.D .inputBtn {
+	FLOAT: right; COLOR: #999; MARGIN-LEFT: 15px
+}
+.zfWrap .inputTxt {
+	BORDER-BOTTOM-COLOR: #cdcdcd; OVERFLOW-Y: hidden; BORDER-TOP-COLOR: #cdcdcd; WIDTH: 432px; BACKGROUND: #fff; BORDER-RIGHT-COLOR: #cdcdcd; BORDER-LEFT-COLOR: #cdcdcd
+}
+.talkWrap .inputTxt {
+	BORDER-BOTTOM-COLOR: #cdcdcd; OVERFLOW-Y: hidden; BORDER-TOP-COLOR: #cdcdcd; WIDTH: 432px; BACKGROUND: #fff; BORDER-RIGHT-COLOR: #cdcdcd; BORDER-LEFT-COLOR: #cdcdcd
+}
+.ipad .LC .zfWrap .inputTxt {
+	HEIGHT: 58px
+}
+.ipad .LC .talkWrap .inputTxt {
+	HEIGHT: 58px
+}
+.zfWrap .cont {
+	POSITION: relative; OVERFLOW: hidden
+}
+.talkWrap .cont {
+	POSITION: relative; OVERFLOW: hidden
+}
+.comtWrap .inputTxt {
+	LINE-HEIGHT: 17px; OVERFLOW-Y: auto; HEIGHT: 37px
+}
+.D .talkWrap .inputTxt {
+	LINE-HEIGHT: 17px; OVERFLOW-Y: auto; HEIGHT: 37px
+}
+.ico_face {
+	MARGIN-TOP: 6px; WIDTH: 16px; BACKGROUND-POSITION: -266px -53px; FLOAT: right; HEIGHT: 16px
+}
+.countTxt EM {
+	POSITION: relative; FONT-FAMILY: Georgia,Tahoma,Arial; FONT-SIZE: 26px; VERTICAL-ALIGN: middle; TOP: -5px
+}
+.zfWrap .countTxt EM {
+	FONT-SIZE: 22px
+}
+.talkWrap .countTxt EM {
+	FONT-SIZE: 22px
+}
+.talkWrap .inputBtn {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; WIDTH: 60px; BACKGROUND-POSITION: 0px -232px; BORDER-TOP-STYLE: none; HEIGHT: 19px; BORDER-LEFT-STYLE: none; CURSOR: pointer
+}
+.D .inputBtn {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; WIDTH: 60px; BACKGROUND-POSITION: 0px -232px; BORDER-TOP-STYLE: none; HEIGHT: 19px; BORDER-LEFT-STYLE: none; CURSOR: pointer
+}
+.subNav {
+	Z-INDEX: 20; POSITION: absolute; FILTER: progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa',Direction=135,Strength=2); BACKGROUND-COLOR: #fff; -moz-box-shadow: 1px 1px 2px #CAC8C8; -webkit-box-shadow: 1px 1px 2px #CAC8C8
+}
+.faceWrap {
+	Z-INDEX: 20; POSITION: absolute; FILTER: progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa',Direction=135,Strength=2); BACKGROUND-COLOR: #fff; -moz-box-shadow: 1px 1px 2px #CAC8C8; -webkit-box-shadow: 1px 1px 2px #CAC8C8
+}
+.vloadWrap {
+	Z-INDEX: 20; POSITION: absolute; FILTER: progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa',Direction=135,Strength=2); BACKGROUND-COLOR: #fff; -moz-box-shadow: 1px 1px 2px #CAC8C8; -webkit-box-shadow: 1px 1px 2px #CAC8C8
+}
+.mloadWrap {
+	Z-INDEX: 20; POSITION: absolute; FILTER: progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa',Direction=135,Strength=2); BACKGROUND-COLOR: #fff; -moz-box-shadow: 1px 1px 2px #CAC8C8; -webkit-box-shadow: 1px 1px 2px #CAC8C8
+}
+.delChose {
+	Z-INDEX: 20; POSITION: absolute; FILTER: progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa',Direction=135,Strength=2); BACKGROUND-COLOR: #fff; -moz-box-shadow: 1px 1px 2px #CAC8C8; -webkit-box-shadow: 1px 1px 2px #CAC8C8
+}
+.faceWrap {
+	Z-INDEX: 999; BORDER-BOTTOM: #adadad 1px solid; BORDER-LEFT: #adadad 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; WIDTH: 436px; PADDING-RIGHT: 10px; BORDER-TOP: #adadad 1px solid; BORDER-RIGHT: #adadad 1px solid; PADDING-TOP: 20px
+}
+.faceWrap .close {
+	MARGIN: -12px -2px 0px 0px
+}
+
+.tbList {
+	MARGIN: 26px 0px 0px 50px; COLOR: #999
+}
+.tbList TH {
+	PADDING-BOTTOM: 12px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 12px
+}
+.tbList TD {
+	PADDING-BOTTOM: 12px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 12px
+}
+.tbList .userId {
+	LINE-HEIGHT: 19px; COLOR: #333; FONT-SIZE: 14px
+}
+.tbList TH {
+	TEXT-ALIGN: right; LINE-HEIGHT: 23px; WIDTH: 63px; PADDING-RIGHT: 15px; FONT-FAMILY: Simsun; COLOR: #333; FONT-SIZE: 14px
+}
+.tbList TH SPAN {
+	COLOR: #e56c0a; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; MARGIN-RIGHT: 5px
+}
+.tbList .fs14 {
+	LINE-HEIGHT: 21px; COLOR: #333
+}
+.tbList IMG {
+	BORDER-BOTTOM: #d2d2d2 1px solid; BORDER-LEFT: #d2d2d2 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; WIDTH: 50px; PADDING-RIGHT: 2px; BACKGROUND: #fff; HEIGHT: 50px; BORDER-TOP: #d2d2d2 1px solid; BORDER-RIGHT: #d2d2d2 1px solid; PADDING-TOP: 2px
+}
+.tbList .inputTxt {
+	WIDTH: 180px
+}
+.tbList .inputArea {
+	WIDTH: 270px; HEIGHT: 116px
+}
+.tbList .inputBtn {
+	WIDTH: 60px; BACKGROUND-POSITION: 0px -192px; FLOAT: left; HEIGHT: 19px; MARGIN-RIGHT: 20px
+}
+.tbList .disabled {
+	BACKGROUND-POSITION: -62px -192px
+}
+.alterPic {
+	TEXT-ALIGN: right; MARGIN: 30px auto 10px; WIDTH: 530px
+}
+.alterPicTit {
+	TEXT-ALIGN: right; MARGIN: 30px auto 10px; WIDTH: 530px
+}
+.alterPic {
+	TEXT-ALIGN: left; DISPLAY: none
+}
+.alterPic TH {
+	PADDING-RIGHT: 30px
+}
+.alterPic IMG {
+	WIDTH: 120px; HEIGHT: 120px
+}
+.alterPic .cNote {
+	PADDING-BOTTOM: 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+.alterPic .loadBtn {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 1.231; PADDING-LEFT: 5px; WIDTH: 320px; PADDING-RIGHT: 5px; HEIGHT: 23px; PADDING-TOP: 3px
+}
+.alterPic .uploadBtn {
+	LINE-HEIGHT: 15px; WIDTH: 70px; DISPLAY: none; HEIGHT: 24px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 2px
+}
+.w70 {
+	WIDTH: 70px
+}
+.tbSendMsg {
+	BORDER-COLLAPSE: collapse
+}
+.tbSendMsg TH {
+	PADDING-BOTTOM: 7px; VERTICAL-ALIGN: top
+}
+.tbSendMsg TD {
+	PADDING-BOTTOM: 7px; VERTICAL-ALIGN: top
+}
+.tbSendMsg TH {
+	TEXT-ALIGN: right; PADDING-RIGHT: 12px; PADDING-TOP: 2px
+}
+.tbSendMsg .tl {
+	WIDTH: 5px; BACKGROUND-POSITION: -113px -263px; HEIGHT: 5px
+}
+.tbSendMsg .tr {
+	WIDTH: 5px; BACKGROUND-POSITION: -113px -263px; HEIGHT: 5px
+}
+.tbSendMsg .bl {
+	WIDTH: 5px; BACKGROUND-POSITION: -113px -263px; HEIGHT: 5px
+}
+.tbSendMsg .br {
+	WIDTH: 5px; BACKGROUND-POSITION: -113px -263px; HEIGHT: 5px
+}
+.tbSendMsg .tr {
+	BACKGROUND-POSITION: -135px -263px
+}
+.tbSendMsg .bl {
+	BACKGROUND-POSITION: -113px -285px
+}
+.tbSendMsg .br {
+	BACKGROUND-POSITION: -135px -285px
+}
+.tbSendMsg .tm {
+	BORDER-BOTTOM-STYLE: solid; BORDER-BOTTOM-COLOR: #8c8c8c; BORDER-RIGHT-STYLE: solid; BORDER-TOP-COLOR: #8c8c8c; BORDER-TOP-STYLE: solid; BACKGROUND: #ececec; BORDER-RIGHT-COLOR: #8c8c8c; BORDER-LEFT-STYLE: solid; BORDER-LEFT-COLOR: #8c8c8c
+}
+.tbSendMsg .lm {
+	BORDER-BOTTOM-STYLE: solid; BORDER-BOTTOM-COLOR: #8c8c8c; BORDER-RIGHT-STYLE: solid; BORDER-TOP-COLOR: #8c8c8c; BORDER-TOP-STYLE: solid; BACKGROUND: #ececec; BORDER-RIGHT-COLOR: #8c8c8c; BORDER-LEFT-STYLE: solid; BORDER-LEFT-COLOR: #8c8c8c
+}
+.tbSendMsg .rm {
+	BORDER-BOTTOM-STYLE: solid; BORDER-BOTTOM-COLOR: #8c8c8c; BORDER-RIGHT-STYLE: solid; BORDER-TOP-COLOR: #8c8c8c; BORDER-TOP-STYLE: solid; BACKGROUND: #ececec; BORDER-RIGHT-COLOR: #8c8c8c; BORDER-LEFT-STYLE: solid; BORDER-LEFT-COLOR: #8c8c8c
+}
+.tbSendMsg .bm {
+	BORDER-BOTTOM-STYLE: solid; BORDER-BOTTOM-COLOR: #8c8c8c; BORDER-RIGHT-STYLE: solid; BORDER-TOP-COLOR: #8c8c8c; BORDER-TOP-STYLE: solid; BACKGROUND: #ececec; BORDER-RIGHT-COLOR: #8c8c8c; BORDER-LEFT-STYLE: solid; BORDER-LEFT-COLOR: #8c8c8c
+}
+.tbSendMsg .tm {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 1px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.tbSendMsg .lm {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 1px
+}
+.tbSendMsg .rm {
+	BORDER-RIGHT-WIDTH: 1px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+.tbSendMsg .bm {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 1px; BORDER-LEFT-WIDTH: 0px
+}
+.D {
+	Z-INDEX: 999; POSITION: absolute; WIDTH: 100%; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.D .bg {
+	POSITION: absolute; FILTER: alpha(opacity=35); WIDTH: 100%; BACKGROUND: #000; HEIGHT: 100%; TOP: 0px; LEFT: 0px; -moz-opacity: 0.35; opacity: 0.35
+}
+.D IFRAME.cover_select {
+	Z-INDEX: -1; POSITION: absolute; FILTER: alpha(opacity=0); WIDTH: 100%; DISPLAY: none; HEIGHT: 100%; -moz-opacity: 0; opacity: 0; -display: 
+}
+.D .DLoad {
+	Z-INDEX: 5; POSITION: absolute; FILTER: alpha(opacity=50); BACKGROUND: url(../images/wall/loading.gif) #fff no-repeat 50% 50%; opacity: 0.5
+}
+.D .CR {
+	POSITION: absolute
+}
+.D .DWrap {
+	POSITION: relative; PADDING-BOTTOM: 2px; BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #fff; MARGIN: 0px 0px -7px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; ZOOM: 1; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 15px
+}
+.D .DTitle {
+	PADDING-BOTTOM: 0px; MARGIN: -14px -14px 0px; PADDING-LEFT: 14px; PADDING-RIGHT: 0px; ZOOM: 1; BACKGROUND: #fff; FONT-SIZE: 14px; OVERFLOW: hidden; CURSOR: move; FONT-WEIGHT: bold; PADDING-TOP: 14px
+}
+.D .SA {
+	DISPLAY: none
+}
+.D .top {
+	COLOR: #333; PADDING-TOP: 0px
+}
+.D .bot {
+	MARGIN: 5px 0px; HEIGHT: 37px
+}
+.D LABEL {
+	POSITION: absolute; LINE-HEIGHT: 23px; PADDING-LEFT: 5px; FONT-FAMILY: Simsun; COLOR: #999; _line-height: 25px
+}
+.D .inputTxt {
+	BORDER-BOTTOM-COLOR: #adb6c5; BORDER-TOP-COLOR: #adb6c5; WIDTH: 152px; BORDER-RIGHT-COLOR: #adb6c5; BORDER-LEFT-COLOR: #adb6c5
+}
+.D .inputBtn {
+	MARGIN-TOP: 6px
+}
+.D .inputArea {
+	BORDER-BOTTOM-COLOR: #adb6c5; BORDER-TOP-COLOR: #adb6c5; WIDTH: 432px; HEIGHT: 60px; BORDER-RIGHT-COLOR: #adb6c5; BORDER-LEFT-COLOR: #adb6c5
+}
+.D .talkWrap {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BORDER-RIGHT-STYLE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP-STYLE: none; FLOAT: none; BORDER-LEFT-STYLE: none; PADDING-TOP: 0px
+}
+.D .zfWrap {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BORDER-RIGHT-STYLE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP-STYLE: none; FLOAT: none; BORDER-LEFT-STYLE: none; PADDING-TOP: 0px
+}
+.D .talkWrap .inputTxt {
+	WIDTH: 432px
+}
+.D .zfWrap .inputTxt {
+	WIDTH: 432px
+}
+.D .close {
+	POSITION: absolute; FLOAT: none; TOP: 11px; RIGHT: 15px
+}
+.D .DClose {
+	POSITION: absolute; FLOAT: none; TOP: 11px; RIGHT: 15px
+}
+.D .DCont .close {
+	DISPLAY: none
+}
+.DCont .pubSuc {
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.popBox {
+	PADDING-BOTTOM: 17px; PADDING-LEFT: 30px; PADDING-RIGHT: 30px; BACKGROUND: #fff; PADDING-TOP: 13px
+}
+.popBox .ico_tsW {
+	POSITION: absolute; FLOAT: none
+}
+.popBox H2 {
+	LINE-HEIGHT: 21px; PADDING-LEFT: 37px; FONT-WEIGHT: normal
+}
+.popBox H3 {
+	LINE-HEIGHT: 21px; PADDING-LEFT: 37px; FONT-WEIGHT: normal
+}
+.popBox P {
+	CLEAR: both
+}
+
+@media Unknown    
+{
+.tbSendMsg .tl {
+	WIDTH: 12px; HEIGHT: 12px
+}
+.tbSendMsg .tr {
+	WIDTH: 12px; HEIGHT: 12px
+}
+.tbSendMsg .bl {
+	WIDTH: 12px; HEIGHT: 12px
+}
+.tbSendMsg .br {
+	WIDTH: 12px; HEIGHT: 12px
+}
+.tbSendMsg .tr {
+	BACKGROUND-POSITION: -128px -263px
+}
+.tbSendMsg .bl {
+	BACKGROUND-POSITION: -113px -271px
+}
+.tbSendMsg .br {
+	BACKGROUND-POSITION: -128px -271px
+}
+.D .DWrap {
+	MARGIN: -14px -7px -21px
+}
+.cmtBtn {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.btn1 {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.btn2 {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.delChose INPUT {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.blackTip P INPUT {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.applyPic INPUT {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.popBox INPUT {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.vloadWrap .btn {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+.cityDrop .selBtn {
+	PADDING-BOTTOM: 1px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; PADDING-TOP: 1px
+}
+    }
+.DmainTit {
+	LINE-HEIGHT: 29px; MARGIN: -8px 7px 0px -8px; PADDING-LEFT: 15px; BACKGROUND: #f0f0f0; HEIGHT: 29px; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.showModSet {
+	PADDING-BOTTOM: 15px; PADDING-LEFT: 30px; PADDING-RIGHT: 30px; PADDING-TOP: 15px
+}
+.showModSet P {
+	PADDING-BOTTOM: 4px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 4px
+}
+.showModSet .btnBox {
+	TEXT-ALIGN: center; MARGIN-TOP: 5px
+}
+.showModSet LABEL {
+	POSITION: static; WIDTH: 75px; DISPLAY: inline-block; COLOR: #333; CURSOR: default
+}
+.showModSet LABEL INPUT {
+	MARGIN: 0px 1px 0px -3px
+}
+.showModSet .btn2 {
+	MARGIN: 0px 6px
+}
+.txtWrap {
+	POSITION: relative
+}
+.txtShadow {
+	Z-INDEX: -1; POSITION: absolute; FILTER: alpha(opacity=0); WORD-WRAP: break-word; WORD-BREAK: break-all; TOP: 0px; LEFT: 0px; opacity: 0
+}
+.txtShadow B {
+	WIDTH: 0px; DISPLAY: inline-block; OVERFLOW: hidden
+}
+#talkBox .txtShadow {
+	LINE-HEIGHT: 21px
+}
+.D .txtShadow {
+	PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; OVERFLOW-Y: auto; PADDING-LEFT: 5px; WIDTH: 435px; PADDING-RIGHT: 5px; HEIGHT: 60px; PADDING-TOP: 3px
+}
+.facePreview {
+	BORDER-BOTTOM: #dfe6f6 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #dfe6f6 1px solid; PADDING-BOTTOM: 1px; PADDING-LEFT: 1px; WIDTH: 53px; PADDING-RIGHT: 1px; BACKGROUND: #008aff; HEIGHT: 53px; CLEAR: both; BORDER-TOP: #dfe6f6 1px solid; TOP: 0px; RIGHT: 1px; BORDER-RIGHT: #dfe6f6 1px solid; PADDING-TOP: 1px
+}
+.facePreview DIV {
+	BORDER-BOTTOM: #e5f3ff 1px solid; BORDER-LEFT: #e5f3ff 1px solid; BACKGROUND: #fff; BORDER-TOP: #e5f3ff 1px solid; BORDER-RIGHT: #e5f3ff 1px solid; PADDING-TOP: 6px
+}
+.facePreview P {
+	DISPLAY: block !important; HEIGHT: 28px; OVERFLOW: hidden
+}
+.facePreview .faceName {
+	LINE-HEIGHT: 19px; BACKGROUND: #f1f1f1; HEIGHT: 17px; COLOR: #999
+}
+#LUI .isBlock .left {
+	DISPLAY: none !important
+}
+.blackTip {
+	PADDING-BOTTOM: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 10px
+}
+.blackTip H2 {
+	FONT: 18px/23px "MicroSoft YaHei","Simhei"
+}
+.popBox H2 {
+	FONT: 18px/23px "MicroSoft YaHei","Simhei"
+}
+.popBox H3 {
+	FONT: 18px/23px "MicroSoft YaHei","Simhei"
+}
+.blackTip P {
+	LINE-HEIGHT: 2em; MARGIN-TOP: 10px; PADDING-LEFT: 38px
+}
+.blackTip P INPUT {
+	MARGIN-RIGHT: 10px
+}
+.blackNote {
+	BORDER-BOTTOM: #f0e0b1 1px solid; BORDER-LEFT: #f0e0b1 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 23px; MARGIN-TOP: 1px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; ZOOM: 1; FONT-FAMILY: "Simsun"; BACKGROUND: #fff9dc; FLOAT: left; HEIGHT: 23px; OVERFLOW: hidden; BORDER-TOP: #f0e0b1 1px solid; BORDER-RIGHT: #f0e0b1 1px solid; PADDING-TOP: 0px; _line-height: 25px; _margin-top: 2px
+}
+.blackNote EM {
+	MARGIN-TOP: 5px; WIDTH: 18px; DISPLAY: block; BACKGROUND-POSITION: -175px -88px; FLOAT: left; HEIGHT: 13px; _width: 15px
+}
+.applyPic {
+	PADDING-BOTTOM: 15px; LINE-HEIGHT: 23px; PADDING-LEFT: 10px; WIDTH: 350px; PADDING-RIGHT: 10px; PADDING-TOP: 0px
+}
+.applyPic H3 {
+	MARGIN-BOTTOM: 5px; FONT-WEIGHT: normal
+}
+.applyPic INPUT {
+	MARGIN: 10px auto 0px; WIDTH: 85px; DISPLAY: block; HEIGHT: 25px
+}
+.popBox INPUT {
+	MARGIN: 10px auto 0px; WIDTH: 85px; DISPLAY: block; HEIGHT: 25px
+}
+.showModSet .T {
+	TEXT-ALIGN: right; WIDTH: 100px; DISPLAY: inline-block; MARGIN-RIGHT: 5px
+}
+.icon {
+	DISPLAY: inline-block; BACKGROUND: url(../images/wall/icon.png) no-repeat; OVERFLOW: hidden
+}
+.icon-t {
+	DISPLAY: inline-block; BACKGROUND: url(../images/wall/icon.png) no-repeat; OVERFLOW: hidden
+}
+.account A.back {
+	DISPLAY: inline-block; BACKGROUND: url(../images/wall/icon.png) no-repeat; OVERFLOW: hidden
+}
+
+.icon {
+	DISPLAY: inline
+}
+.icon-t {
+	DISPLAY: inline
+}
+.account A.back {
+	DISPLAY: inline
+}
+.clearfix:after {
+	LINE-HEIGHT: 0px; DISPLAY: block; HEIGHT: 0px; VISIBILITY: hidden; CLEAR: both; FONT-SIZE: 0px; CONTENT: '.'
+}
+.clearfix {
+	ZOOM: 1
+}
+.FL {
+	FLOAT: left
+}
+.FR {
+	FLOAT: right
+}
+.banner DL.ML70 {
+	MARGIN-LEFT: 70px
+}
+.banner DD {
+	MARGIN-TOP: 5px; FONT-FAMILY: "宋体"
+}
+.tac {
+	TEXT-ALIGN: center;
+	margin:40px 0 0 0;
+}
+.fc9 {
+	COLOR: #999
+}
+.fs14 {
+	FONT-SIZE: 14px
+}
+.p10 {
+	PADDING-BOTTOM: 20px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 10px
+}
+.header {
+	WIDTH: 100%; BACKGROUND: url(../images/header_bb.png) repeat-x; HEIGHT: 40px
+}
+.header .wrapper {
+	POSITION: relative; MARGIN: 0px auto; WIDTH: 1000px; BACKGROUND: url(../images/logo2.png) no-repeat; HEIGHT: 40px
+}
+.wrapper {
+	MARGIN: 0px auto; WIDTH: 1000px;
+}
+.hackImg {
+	POSITION: absolute; WIDTH: 123px; BACKGROUND: url(../images/wall/bg_1106024.png) no-repeat; HEIGHT: 70px; TOP: 0px; LEFT: -123px
+}
+.LS {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 20px; PADDING-LEFT: 205px; PADDING-RIGHT: 0px; FLOAT: left; COLOR: #c5edfd; FONT-SIZE: 14px; PADDING-TOP: 18px
+}
+.LS P {
+	FONT-FAMILY: "宋体"; COLOR: #ffffff; FONT-SIZE: 12px
+}
+.account {
+	MARGIN-TOP: 35px; FLOAT: right; COLOR: #89c3dc
+}
+.account A {
+	MARGIN: 0px 10px; COLOR: #ffffff
+}
+.account A.hf {
+	POSITION: relative; PADDING-RIGHT: 16px
+}
+.hf .icon {
+	POSITION: absolute; WIDTH: 16px; BACKGROUND: url(../images/wall/bg_1106022.png) no-repeat -78px -46px; HEIGHT: 16px; TOP: 0px; RIGHT: 0px
+}
+.account A.back {
+	TEXT-ALIGN: center; LINE-HEIGHT: 22px; WIDTH: 102px; BACKGROUND-POSITION: 0px -166px; HEIGHT: 24px; FONT-SIZE: 13px; VERTICAL-ALIGN: middle; FONT-WEIGHT: bold
+}
+.banner {
+	BORDER-BOTTOM: #cccccc 1px solid; POSITION: relative; BORDER-LEFT: #cccccc 1px solid; MARGIN: 0px auto; WIDTH: 960px; BORDER-TOP: #cccccc 1px solid; BORDER-RIGHT: #cccccc 1px solid
+}
+.banner .container {
+	PADDING-BOTTOM: 10px; MARGIN: 0px auto; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; OVERFLOW: hidden; PADDING-TOP: 10px
+}
+.banner DL {
+	MARGIN: 0px 10px; DISPLAY: inline; FLOAT: left
+}
+.banner DT {
+	MARGIN-BOTTOM: 5px; FONT-SIZE: 16px; FONT-WEIGHT: bold
+}
+.banner DD {
+	FONT-SIZE: 14px; FONT-WEIGHT: normal
+}
+.banner .close {
+	POSITION: absolute; WIDTH: 15px; HEIGHT: 15px; TOP: 5px; RIGHT: 5px
+}
+.main {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; MARGIN: 20px auto; WIDTH: 980px; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+.leftCon {
+	WIDTH: 614px; overflow:hidden;
+}
+.leftCon {
+	DISPLAY: inline; FLOAT: left; MARGIN-RIGHT: 10px; margin-left:15px;
+}
+.rightCon {
+	DISPLAY: inline; FLOAT: left; MARGIN-RIGHT: 10px
+}
+.rightCon {
+	WIDTH: 346px; MARGIN-RIGHT: 0px
+}
+.title H2 {
+	MARGIN-TOP: 5px; FLOAT: left; FONT-SIZE: 20px; font-weight:600;
+}
+.title H2 SPAN {
+	FONT-SIZE: 14px
+}
+.title {
+	MARGIN-BOTTOM: 5px; OVERFLOW: hidden
+}
+.title STRONG {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.title .operate {
+	FLOAT: right
+}
+.operate .SP_Btn {
+	DISPLAY: inline
+}
+.playState {
+	COLOR: #339734
+}
+.source.title {
+	PADDING-LEFT: 10px; margin-bottom:12px;
+}
+.source .refresh {
+	TEXT-INDENT: -9999px; WIDTH: 88px; DISPLAY: block; BACKGROUND-POSITION: -94px 0px; HEIGHT: 32px
+}
+.going .sort {
+	MARGIN-TOP: 12px; FONT-FAMILY: Tahoma,Arial; FLOAT: left; COLOR: #ccc; FONT-SIZE: 12px
+}
+.mblist {
+	BORDER-BOTTOM: #d8d8d8 1px solid; BORDER-LEFT: #d8d8d8 1px solid; WIDTH: 484px; FONT-FAMILY: Tahoma,Arial; BACKGROUND: #ffffff; FLOAT: left; MARGIN-LEFT: -1px; OVERFLOW: hidden; BORDER-TOP: #d8d8d8 1px solid; BORDER-RIGHT: #d8d8d8 1px solid
+}
+.mblist .title {
+	Z-INDEX: 3; BORDER-BOTTOM: #999999 2px solid; POSITION: relative; PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; MARGIN-BOTTOM: -1px; BACKGROUND: #eeeced; PADDING-TOP: 10px
+}
+.mblist .title .on {
+	COLOR: #000000
+}
+.mblist .title A {
+	MARGIN: 0px 5px
+}
+.mblist UL {
+	BORDER-LEFT: #d8d8d8 1px solid
+}
+.mblist .title A {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+.mblist .title .FR {
+	WHITE-SPACE: nowrap
+}
+.mblist A.arrow {
+	POSITION: absolute; WIDTH: 30px; DISPLAY: block; HEIGHT: 99%; TOP: 0px; RIGHT: 0px
+}
+.mblist LI {
+	BORDER-BOTTOM: #ccc 0px; POSITION: relative; BORDER-LEFT: #e8e8e8 0px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 0px; BACKGROUND: url(../images/wall/arrow.png) no-repeat right center; BORDER-TOP: #ccc 1px dashed; BORDER-RIGHT: #e8e8e8 2px solid; PADDING-TOP: 2px; _padding: 2px 0px 12px 2px
+}
+.mblist LI.hover {
+	BORDER-BOTTOM: #22ab37 2px solid; BORDER-LEFT: #22ab37 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #22ab37 2px solid; CURSOR: pointer; BORDER-RIGHT: #22ab37 2px solid; PADDING-TOP: 1px; _padding: 1px 0px 10px
+}
+.mblist LI.hover.on {
+	BORDER-BOTTOM: #22ab37 2px solid; BORDER-LEFT: #22ab37 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #22ab37 2px solid; CURSOR: pointer; BORDER-RIGHT: #22ab37 2px solid; PADDING-TOP: 1px; _padding: 1px 0px 10px
+}
+.mblist LI.on {
+	BORDER-BOTTOM: #22ab37 2px solid; BORDER-LEFT: #22ab37 2px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: url(../images/wall/arrow-hover.png) no-repeat right center; BORDER-TOP: #22ab37 2px solid; BORDER-RIGHT: #22ab37 2px solid; PADDING-TOP: 1px
+}
+.mblist .draftRed {
+	BACKGROUND: #facccc
+}
+.mblist .draftBlue {
+	BACKGROUND: #c6e9fd
+}
+.mblist .draftYellow {
+	BACKGROUND: #fbca85
+}
+.mblist LI.hover .draft {
+	BOTTOM: 1px; LEFT: 1px
+}
+.mblist LI.on.hover .draft {
+	BOTTOM: 3px; LEFT: 3px
+}
+.mblist LI.hover .cb_arrow {
+	TOP: 5px
+}
+.mblist LI.on.hover .cb_arrow {
+	TOP: 6px
+}
+.mblist .draft {
+	POSITION: absolute; BOTTOM: 3px; LEFT: 3px
+}
+.mblist .draft LI {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 2px; BORDER-RIGHT-STYLE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-LEFT-STYLE: none; CURSOR: pointer; PADDING-TOP: 0px
+}
+.mblist .draft SPAN {
+	MARGIN: 0px; BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mblist .draft LI.current .red {
+	BACKGROUND: #facccc
+}
+.mblist .draft .red:hover {
+	BACKGROUND: #facccc
+}
+.mblist .draft LI.current .yellow {
+	BACKGROUND: #fbca85
+}
+.mblist .draft .yellow:hover {
+	BACKGROUND: #fbca85
+}
+.mblist .draft LI.current .blue {
+	BACKGROUND: #c6e9fd
+}
+.mblist .draft .blue:hover {
+	BACKGROUND: #c6e9fd
+}
+.userPic {
+	BORDER-BOTTOM: #d2d2d2 1px solid; BORDER-LEFT: #d2d2d2 1px solid; MARGIN: 10px 0px 10px 25px; WIDTH: 50px; FLOAT: left; HEIGHT: 50px; OVERFLOW: hidden; BORDER-TOP: #d2d2d2 1px solid; BORDER-RIGHT: #d2d2d2 1px solid; _display: inline
+}
+.pubCon {
+	MARGIN: 0px 40px 0px 90px
+}
+.msgBox {
+	LINE-HEIGHT: 24px; MARGIN: 10px 0px 0px; WORD-WRAP: break-word; FONT-SIZE: 14px; WORD-BREAK: break-all
+}
+.wall_img {
+	BORDER-BOTTOM: #ccc 1px solid; BORDER-LEFT: #ccc 1px solid; PADDING-BOTTOM: 2px; MARGIN-TOP: 5px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; DISPLAY: block; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 2px
+}
+.userName {
+	WHITE-SPACE: nowrap; COLOR: #336699
+}
+.pubInfo {
+	MARGIN-TOP: 3px; MARGIN-BOTTOM: 10px; HEIGHT: 19px; COLOR: #869eb6
+}
+.going.mblist {
+	BORDER-BOTTOM: #99cb34 8px solid; POSITION: relative; BORDER-LEFT: #99cb34 8px solid; MARGIN: 0px; WIDTH: 330px; BORDER-TOP: #99cb34 8px solid; BORDER-RIGHT: #99cb34 8px solid; _float: none
+}
+.clearfix.going.title {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+.going.mblist UL {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+.mblist UL UL {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+.going.mblist LI {
+	BORDER-BOTTOM: #22ad38 1px solid; POSITION: relative; BORDER-LEFT: #22ad38 1px solid; ZOOM: 0; BACKGROUND: #ffffff; BORDER-TOP: #22ad38 1px solid; BORDER-RIGHT: #22ad38 1px solid
+}
+.going.mblist LI.current {
+	BACKGROUND: #effbd7
+}
+.going.mblist LI .del {
+	POSITION: absolute; LINE-HEIGHT: 20px; MARGIN-TOP: -10px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #999; FONT-SIZE: 20px; TOP: 50%; RIGHT: 10px; _top: 25px
+}
+.going.mblist LI .del:hover {
+	TEXT-DECORATION: none
+}
+.going.mblist .pubCon {
+	MARGIN: 0px 30px 0px 15px
+}
+.cb_arrow {
+	POSITION: absolute; WIDTH: 14px; DISPLAY: block; BACKGROUND: url(../images/wall/cb_arrow.gif) no-repeat; HEIGHT: 14px; OVERFLOW: hidden; TOP: 6px; RIGHT: 6px
+}
+.cb_arrow:hover {
+	BACKGROUND-POSITION: 0px -14px
+}
+.replyBox {
+	BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; MARGIN: 5px 0px; BACKGROUND: #f8f8f8; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid
+}
+.replyBox .msgBox {
+	MARGIN: 5px 10px
+}
+.vip.icon {
+	MARGIN: 0px 0px 0px 3px; WIDTH: 16px; BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat -212px -130px; HEIGHT: 16px; VERTICAL-ALIGN: middle; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106021.png')
+}
+.phone.icon {
+	MARGIN: 0px 0px 0px 3px; WIDTH: 16px; BACKGROUND: url(../images/wall/bg_1106021.png) no-repeat -212px -130px; HEIGHT: 16px; VERTICAL-ALIGN: middle; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/bg_1106021.png')
+}
+.phone.icon {
+	BACKGROUND-POSITION: -237px -130px
+}
+.star.icon-t {
+	MARGIN: 0px 10px; WIDTH: 16px; BACKGROUND-POSITION: 0px -132px; HEIGHT: 15px; VERTICAL-ALIGN: middle
+}
+.funBar {
+	Z-INDEX: 6; BORDER-BOTTOM: #d8d8d8 1px solid; POSITION: relative; BORDER-LEFT: #d8d8d8 1px solid; PADDING-BOTTOM: 10px; LINE-HEIGHT: 21px; PADDING-LEFT: 0px; WIDTH: 127px; PADDING-RIGHT: 0px; FONT-FAMILY: 宋体; FLOAT: left; OVERFLOW: hidden; BORDER-TOP: #d8d8d8 1px solid; BORDER-RIGHT: #d8d8d8 1px solid; PADDING-TOP: 10px; -moz-border-radius: 10px 0px 0px 10px; -webkit-border-radius: 10px 0px 0px 10px
+}
+.funBar A {
+	MARGIN: 3px; COLOR: #2b4a79; FONT-SIZE: 12px
+}
+.funBar .SC A {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 15px; PADDING-RIGHT: 0px; DISPLAY: block; PADDING-TOP: 3px
+}
+.funBar .SC A:hover {
+	TEXT-DECORATION: none
+}
+.funBar .SC LI {
+	HEIGHT: 27px; OVERFLOW: hidden
+}
+.funBar LI.current A {
+	BACKGROUND: #cdd9dd
+}
+.funBar .SC LI A:hover {
+	BACKGROUND: #cdd9dd
+}
+.funBar LI.current A {
+	COLOR: #000000; FONT-WEIGHT: bold
+}
+.funBar .SC .icon-t {
+	MARGIN: 0px 5px 0px 7px; WIDTH: 19px; HEIGHT: 19px; VERTICAL-ALIGN: middle
+}
+.funBar .SC .ST.icon-t {
+	BACKGROUND-POSITION: 0px 0px;
+}
+.funBar .SC .SP.icon-t {
+	BACKGROUND-POSITION: 0px -19px
+}
+.funBar .SC .SK.icon-t {
+	BACKGROUND-POSITION: 0px -40px
+}
+.funBar .topicWall {
+	PADDING-BOTTOM: 5px; MARGIN: 10px 5px; PADDING-LEFT: 10px; PADDING-RIGHT: 15px; FONT-SIZE: 14px; BORDER-TOP: #d8d8d8 1px solid; PADDING-TOP: 10px
+}
+.funBar .topicWall LI {
+	POSITION: relative; MARGIN: 3px 0px
+}
+.funBar .topicWall A.del {
+	POSITION: absolute; TEXT-ALIGN: center; LINE-HEIGHT: 12px; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 10px; TOP: 3px; RIGHT: -12px; _right: 0px
+}
+.funBar .topicWall A.del:hover {
+	TEXT-DECORATION: none
+}
+.funBar .draft {
+	MARGIN: 0px 5px; CLEAR: both; BORDER-TOP: #d8d8d8 1px solid; PADDING-TOP: 10px
+}
+.funBar .draft LI {
+	MARGIN: 3px 0px
+}
+.draft .text {
+	LINE-HEIGHT: 18px; MARGIN: 3px 0px; WIDTH: 80px; HEIGHT: 18px
+}
+.draft .red {
+	BORDER-BOTTOM: #ee98a3 1px solid; BORDER-LEFT: #ee98a3 1px solid; MARGIN: 0px 10px; WIDTH: 13px; DISPLAY: inline-block; HEIGHT: 13px; VERTICAL-ALIGN: middle; BORDER-TOP: #ee98a3 1px solid; BORDER-RIGHT: #ee98a3 1px solid; -moz-border-radius: 2px; -webkit-border-radius: 2px
+}
+.draft .yellow {
+	BORDER-BOTTOM: #ee98a3 1px solid; BORDER-LEFT: #ee98a3 1px solid; MARGIN: 0px 10px; WIDTH: 13px; DISPLAY: inline-block; HEIGHT: 13px; VERTICAL-ALIGN: middle; BORDER-TOP: #ee98a3 1px solid; BORDER-RIGHT: #ee98a3 1px solid; -moz-border-radius: 2px; -webkit-border-radius: 2px
+}
+.draft .blue {
+	BORDER-BOTTOM: #ee98a3 1px solid; BORDER-LEFT: #ee98a3 1px solid; MARGIN: 0px 10px; WIDTH: 13px; DISPLAY: inline-block; HEIGHT: 13px; VERTICAL-ALIGN: middle; BORDER-TOP: #ee98a3 1px solid; BORDER-RIGHT: #ee98a3 1px solid; -moz-border-radius: 2px; -webkit-border-radius: 2px
+}
+.draft .red {
+	BACKGROUND: #facccc
+}
+.red.title {
+	BACKGROUND: #facccc
+}
+.draft .yellow {
+	BORDER-BOTTOM: #f6b84b 1px solid; BORDER-LEFT: #f6b84b 1px solid; BACKGROUND: #fbca85; BORDER-TOP: #f6b84b 1px solid; BORDER-RIGHT: #f6b84b 1px solid
+}
+.yellow.title {
+	BORDER-BOTTOM: #f6b84b 1px solid; BORDER-LEFT: #f6b84b 1px solid; BACKGROUND: #fbca85; BORDER-TOP: #f6b84b 1px solid; BORDER-RIGHT: #f6b84b 1px solid
+}
+.draft .blue {
+	BORDER-BOTTOM: #7fc5e6 1px solid; BORDER-LEFT: #7fc5e6 1px solid; BACKGROUND: #c6e9fd; BORDER-TOP: #7fc5e6 1px solid; BORDER-RIGHT: #7fc5e6 1px solid
+}
+.blue.title {
+	BORDER-BOTTOM: #7fc5e6 1px solid; BORDER-LEFT: #7fc5e6 1px solid; BACKGROUND: #c6e9fd; BORDER-TOP: #7fc5e6 1px solid; BORDER-RIGHT: #7fc5e6 1px solid
+}
+.draft .red {
+	*display:inline;
+}
+.draft .yellow {
+	*display:inline;
+}
+.draft .blue {
+	*display:inline;
+}
+DL.setTopic {
+	PADDING-BOTTOM: 20px; PADDING-LEFT: 30px; PADDING-RIGHT: 10px; BACKGROUND: #eeeced; PADDING-TOP: 10px
+}
+DL.setTopic DT {
+	MARGIN-BOTTOM: 5px; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+DL.setTopic .tips {
+	MARGIN: 5px 0px; COLOR: #999; FONT-SIZE: 14px
+}
+.tips {
+	MARGIN: 5px 0px; COLOR: #999; FONT-SIZE: 14px
+}
+.empty {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 50px; LINE-HEIGHT: 34px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: "MicroSoft YaHei","Simhei"; COLOR: #ccc; FONT-SIZE: 24px; PADDING-TOP: 50px
+}
+.newsBox {
+	Z-INDEX: 1; BORDER-BOTTOM: #f4e4b4 1px solid; POSITION: relative; BORDER-LEFT: #f4e4b4 1px solid; BACKGROUND-COLOR: #fff4d8; DISPLAY: none; HEIGHT: 27px; BORDER-TOP: #f4e4b4 1px solid; BORDER-RIGHT: #f4e4b4 1px solid
+}
+.newsBox A {
+	TEXT-ALIGN: center; WIDTH: 100%; DISPLAY: block; HEIGHT: 24px; COLOR: #efaa00; PADDING-TOP: 3px
+}
+.newsBox A STRONG {
+	FONT-WEIGHT: 800
+}
+.invite {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; PADDING-BOTTOM: 20px; MARGIN: 20px auto 0px; PADDING-LEFT: 20px; WIDTH: 940px; PADDING-RIGHT: 20px; BACKGROUND: #f8f8f8; BORDER-TOP: #dadada 1px solid; BORDER-RIGHT: #dadada 1px solid; PADDING-TOP: 20px
+}
+.invite .Tit {
+	MARGIN-BOTTOM: 10px
+}
+.invite .Tit H6 {
+	FLOAT: left; FONT-SIZE: 14px
+}
+.invite .Tit P {
+	FLOAT: left; FONT-SIZE: 14px
+}
+.invite .inputTxt {
+	WIDTH: 500px; HEIGHT: 21px; PADDING-TOP: 7px
+}
+.noteWB {
+	LINE-HEIGHT: 16px; MARGIN-TOP: 5px
+}
+.noteWB A {
+	VERTICAL-ALIGN: middle
+}
+.wb.icon-t {
+	WIDTH: 16px; BACKGROUND-POSITION: 0px -95px; HEIGHT: 16px
+}
+.succ {
+	COLOR: #e57600; MARGIN-LEFT: 10px; FONT-SIZE: 12px; VERTICAL-ALIGN: middle
+}
+.mic.icon-t {
+	WIDTH: 11px; BACKGROUND-POSITION: -2px -60px; HEIGHT: 16px
+}
+.AW {
+	MARGIN: 0px 2px; WIDTH: 16px; BACKGROUND-POSITION: 0px -115px; HEIGHT: 13px
+}
+.title .AW {
+	FLOAT: right
+}
+.cg .title {
+	BACKGROUND: #cdd9dd; FONT-WEIGHT: normal
+}
+.cg .title P {
+	FONT-SIZE: 14px
+}
+.cg .title .fs12 {
+	FONT-SIZE: 12px
+}
+.saveTopic {
+	VERTICAL-ALIGN: middle
+}
+.mblist .draft SPAN.loading {
+	WIDTH: 16px; DISPLAY: inline-block; BACKGROUND: url(../images/wall/loading.gif) no-repeat center center; HEIGHT: 13px
+}
+.mbWallHelp {
+	MARGIN: 35px auto; WIDTH: 500px
+}
+.mbWallHelp DT {
+	FONT-FAMILY: "MicroSoft YaHei","Simhei"; COLOR: #33acdd; FONT-SIZE: 18px
+}
+.mbWallHelp DD {
+	LINE-HEIGHT: 20px; MARGIN: 0px 0px 35px 37px; FONT-SIZE: 14px
+}
+.mbWallHelp .olNum {
+	WIDTH: 27px; DISPLAY: inline-block; BACKGROUND: url(../images/wall/llNum.png) no-repeat; HEIGHT: 27px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; MARGIN-RIGHT: 10px
+}
+.mbWallHelp .olNum {
+	DISPLAY: inline; _display: inline
+}
+.mbWallHelp .one.olNum {
+	BACKGROUND-POSITION: 0px 0px;
+}
+.mbWallHelp .two.olNum {
+	BACKGROUND-POSITION: 0px -27px;
+}
+.mbWallHelp .three.olNum {
+	BACKGROUND-POSITION: 0px -54px;
+}
+.title .fs12 {
+	COLOR: #999; FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+.smsE {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; PADDING-TOP: 10px
+}
+.uwURL {
+	PADDING-BOTTOM: 5px; MARGIN: 0px 0 10px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BACKGROUND: #F6F6F6; COLOR: #333; PADDING-TOP: 5px; height:25px; border-bottom:1px solid #ccc; font-size:14px;
+}
+.uwURL A {
+	MARGIN: 0px 5px; COLOR: #1fae38
+}
+.uwURL A.url {
+	TEXT-DECORATION: underline
+}
+.color EM {
+	BORDER-BOTTOM: #ffffff 3px solid; BORDER-LEFT: #ffffff 3px solid; WIDTH: 20px; DISPLAY: inline-block; HEIGHT: 10px; VERTICAL-ALIGN: middle; BORDER-TOP: #ffffff 3px solid; CURSOR: pointer; BORDER-RIGHT: #ffffff 3px solid
+}
+.color EM {
+	DISPLAY: inline
+}
+.color EM.on {
+	BORDER-BOTTOM: #bcb8b9 3px solid; BORDER-LEFT: #bcb8b9 3px solid; BORDER-TOP: #bcb8b9 3px solid; BORDER-RIGHT: #bcb8b9 3px solid
+}
+.color EM.c1 {
+	BACKGROUND: #f85700
+}
+.color EM.c2 {
+	BACKGROUND: #000000
+}
+.color EM.c3 {
+	BACKGROUND: #d92d3b
+}
+.color EM.c4 {
+	BACKGROUND: #d7b452
+}
+.color EM.c5 {
+	BACKGROUND: #71cef0
+}
+.color EM.c6 {
+	BACKGROUND: #00624a
+}
+.color EM.c7 {
+	BACKGROUND: #0c5362
+}
+.color EM.c8 {
+	BACKGROUND: #ff9ede
+}
+.color EM.c9 {
+	BACKGROUND: #770c7d
+}
+.color EM.c10 {
+	BACKGROUND: #4d3728
+}
+.toolsBar {
+	PADDING-BOTTOM: 5px; BACKGROUND: #99cb34
+}
+.toolsBar .delAll {
+	FLOAT: right
+}
+.toolsBar .exist {
+	FLOAT: left
+}
+.topicSet {
+	BORDER-BOTTOM: #e8e8e8 5px solid; BORDER-LEFT: #e8e8e8 5px solid; PADDING-BOTTOM: 0px; MARGIN: 0px auto; PADDING-LEFT: 10px; WIDTH: 450px; PADDING-RIGHT: 10px; BORDER-TOP: #e8e8e8 5px solid; BORDER-RIGHT: #e8e8e8 5px solid; PADDING-TOP: 10px; -moz-border-radius: 6px
+}
+.general-box H5 {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; BACKGROUND: #f0f0f0; FONT-SIZE: 14px; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+.setInfo {
+	MARGIN: 10px 30px; COLOR: #999999
+}
+.setInfo .text {
+	WIDTH: 200px; HEIGHT: 20px
+}
+.setInfo .tips {
+	LINE-HEIGHT: 18px; MARGIN: 5px 0px 15px
+}
+.setInfo LABEL {
+	COLOR: #333
+}
+.startBtn {
+	TEXT-ALIGN: center; MARGIN-TOP: 10px; WIDTH: 70px
+}
+.noResult {
+	PADDING-BOTTOM: 20px; PADDING-LEFT: 30px; PADDING-RIGHT: 30px; PADDING-TOP: 20px
+}
+.noResult P {
+	LINE-HEIGHT: 24px; FONT-SIZE: 18px
+}
+.noResult P.T {
+	LINE-HEIGHT: 16px; MARGIN: 15px 0px 5px; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.mblist .noResult UL {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+.noResult LI {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BACKGROUND: none transparent scroll repeat 0% 0%; FONT-SIZE: 12px; BORDER-LEFT-STYLE: none
+}
+.ffsong {
+	FONT-FAMILY: "宋体"
+}
+.mbWallHelp DD {
+	FONT-FAMILY: "宋体"
+}
+.cg.title {
+	FONT-FAMILY: "宋体"
+}
+.mblist .title P {
+	FONT-FAMILY: "宋体"
+}
+.helpBox .useEx DD {
+	FONT-FAMILY: "宋体"
+}
+.detailEx {
+	FONT-FAMILY: "宋体"
+}
+.succ {
+	FONT-FAMILY: "宋体"
+}
+.account A {
+	FONT-FAMILY: "宋体"
+}
+.helpBox.wrapper {
+	MARGIN: 0px auto; WIDTH: 970px
+}
+
+.suggest {
+	MARGIN: -22px 5px 0px 0px; FLOAT: right
+}
+.helpBox .useEx {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; PADDING-BOTTOM: 25px; LINE-HEIGHT: 21px; PADDING-LEFT: 25px; PADDING-RIGHT: 25px; BACKGROUND: #f8f8f8; BORDER-TOP: #dadada 1px solid; BORDER-RIGHT: #dadada 1px solid; PADDING-TOP: 25px
+}
+.helpBox .useEx LI {
+	BORDER-BOTTOM: #e0e0e0 1px solid; PADDING-BOTTOM: 15px; MARGIN-BOTTOM: 15px; CLEAR: both
+}
+.helpBox .useEx LI.noborder {
+	BORDER-BOTTOM-STYLE: none; PADDING-BOTTOM: 0px; BORDER-RIGHT-STYLE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; PADDING-TOP: 0px
+}
+.helpBox .useEx .num {
+	POSITION: relative; LINE-HEIGHT: 72px; MARGIN-TOP: -10px; FONT-FAMILY: Arial,sans-serif; FLOAT: left; COLOR: #bad7e6; FONT-SIZE: 72px
+}
+.helpBox .useEx DL {
+	MARGIN-TOP: -20px; MARGIN-LEFT: 50px
+}
+.helpBox .useEx DT {
+	MARGIN-BOTTOM: 10px; COLOR: #0099ff; FONT-SIZE: 18px
+}
+.helpBox .useEx DD {
+	MARGIN-BOTTOM: 5px; FONT-SIZE: 14px
+}
+.helpBox .useEx DD SPAN {
+	FLOAT: left
+}
+.helpBox .useEx DD SPAN STRONG {
+	FONT-WEIGHT: bold
+}
+.helpBox .useEx DD P {
+	OVERFLOW: hidden
+}
+.detailEx {
+	MARGIN-TOP: 15px; WIDTH: 100%; CLEAR: both
+}
+.w_w_w {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; WIDTH: 276px; BACKGROUND: #f8f8f8; FLOAT: left; BORDER-TOP: #dadada 1px; BORDER-RIGHT: #dadada 1px solid
+}
+.w_w_w LI {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 18px; PADDING-LEFT: 12px; PADDING-RIGHT: 12px; BORDER-TOP: #dadada 1px solid; PADDING-TOP: 18px
+}
+.w_w_w LI IMG {
+	MARGIN-BOTTOM: 2px
+}
+.helpTitle {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 5px; LINE-HEIGHT: 18px; COLOR: #1a93c6; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.xg.icon-t {
+	WIDTH: 14px; BACKGROUND-POSITION: -3px -80px; HEIGHT: 14px
+}
+.caseEx {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; PADDING-BOTTOM: 6px; PADDING-LEFT: 6px; WIDTH: 666px; PADDING-RIGHT: 6px; BACKGROUND: #f8f8f8; FLOAT: left; MARGIN-LEFT: 10px; BORDER-TOP: #dadada 1px solid; BORDER-RIGHT: #dadada 1px solid; PADDING-TOP: 15px; _margin-left: 5px
+}
+.moreLink {
+	MARGIN-TOP: -20px; FLOAT: right
+}
+.caseList {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; BACKGROUND: #ffffff; HEIGHT: 630px; OVERFLOW: hidden; BORDER-TOP: #dadada 1px solid; BORDER-RIGHT: #dadada 1px solid
+}
+.caseList LI {
+	BORDER-BOTTOM: #d7d7d7 1px dashed; PADDING-BOTTOM: 10px; LINE-HEIGHT: 23px; MARGIN: 0px 20px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT-FAMILY: Tahoma,Arial; FONT-SIZE: 14px; PADDING-TOP: 10px
+}
+.caseList LI IMG {
+	BORDER-BOTTOM: #e2ebea 1px solid; BORDER-LEFT: #e2ebea 1px solid; PADDING-BOTTOM: 2px; MARGIN-TOP: 5px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; CLEAR: both; VERTICAL-ALIGN: top; BORDER-TOP: #e2ebea 1px solid; BORDER-RIGHT: #e2ebea 1px solid; PADDING-TOP: 2px
+}
+.fc9 {
+	COLOR: #999
+}
+.pubInfo {
+	MARGIN: 0px; FONT-SIZE: 12px
+}
+.luck .source {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.luck .uwURL {
+	MARGIN: 10px 10px 10px 0px
+}
+.luck .source P.FR {
+	PADDING-TOP: 12px
+}
+.luck .rightCon .operate {
+	PADDING-TOP: 12px
+}
+.luck .source P.FR A {
+	PADDING-RIGHT: 5px; VERTICAL-ALIGN: middle
+}
+.luck .leftCon .userPic {
+	MARGIN-LEFT: 10px
+}
+.luck .leftCon .pubCon {
+	MARGIN-LEFT: 70px
+}
+.luck .leftCon .mblist {
+	WIDTH: 612px
+}
+.luck .noResult {
+	WIDTH: 607px
+}
+.luck .leftCon .mblist LI {
+	WIDTH: 607px
+}
+#Copyright {
+	WIDTH: 980px; BACKGROUND: none transparent scroll repeat 0% 0%; CLEAR: both; border-top:5px solid #fafafa; padding-top:10px; margin:0px auto;
+}
+#Copyright .wrapper {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 6px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #fff; PADDING-TOP: 8px
+}
+#Copyright .wrapper A {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; COLOR: #fff; PADDING-TOP: 0px
+}
+.position#Copyright {
+	POSITION: absolute; BOTTOM: 0px
+}
+#Copyright .wrapper {
+	COLOR: #333333
+}
+#Copyright .wrapper A {
+	COLOR: #333333
+}
+.pageNav {
+	TEXT-ALIGN: right; PADDING-BOTTOM: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 5px; COLOR: #999999; MARGIN-LEFT: 128px; CLEAR: both; OVERFLOW: hidden; PADDING-TOP: 0px; margin:0; width:100%; background:#fcfcfc; border-top:1px solid #ccc;
+}
+.rightCon .pageNav {
+	MARGIN: 0px; BORDER-RIGHT: #ccc 1px solid
+}
+.pageNav A {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav STRONG {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav STRONG {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BACKGROUND: 0px 0px; COLOR: #333333; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.pageNav A:hover {
+	BORDER-BOTTOM-COLOR: #3090bc; BORDER-TOP-COLOR: #3090bc; BACKGROUND: #73b2da 0px 0px; COLOR: #ffffff; BORDER-RIGHT-COLOR: #3090bc; BORDER-LEFT-COLOR: #3090bc; TEXT-DECORATION: none
+}
+#pageNav A:hover {
+	BORDER-BOTTOM-COLOR: #3090bc; BORDER-TOP-COLOR: #3090bc; BACKGROUND: #73b2da 0px 0px; COLOR: #ffffff; BORDER-RIGHT-COLOR: #3090bc; BORDER-LEFT-COLOR: #3090bc; TEXT-DECORATION: none
+}
+.blueFoot {
+	TEXT-ALIGN: right; LINE-HEIGHT: 37px; WIDTH: 465px; PADDING-RIGHT: 5px; COLOR: #999999
+}
+.blueFoot {
+	POSITION: relative; BACKGROUND-REPEAT: repeat-x; BACKGROUND-POSITION: 0px -62px; MARGIN-BOTTOM: -1px; HEIGHT: 37px; OVERFLOW: hidden; BORDER-TOP: #ffffff 15px solid; TOP: -1px
+}
+.moreFoot {
+	POSITION: relative; BACKGROUND-REPEAT: repeat-x; BACKGROUND-POSITION: 0px -62px; MARGIN-BOTTOM: -1px; HEIGHT: 37px; OVERFLOW: hidden; BORDER-TOP: #ffffff 15px solid; TOP: -1px
+}
+#pageNav A {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav STRONG {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav SPAN {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav A {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav STRONG {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav SPAN {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav A {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav STRONG {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav SPAN {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav A {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav STRONG {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+.pageNav SPAN {
+	BORDER-BOTTOM: #d6d6d6 1px solid; BORDER-LEFT: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; LINE-HEIGHT: 1.231; MARGIN: 7px 3px 0px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; DISPLAY: inline-block; BACKGROUND: #ffffff 0px 0px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #d6d6d6 1px solid; BORDER-RIGHT: #d6d6d6 1px solid; PADDING-TOP: 3px
+}
+#pageNav STRONG {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BACKGROUND: 0px 0px; COLOR: #333333; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+.pageNav STRONG {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BACKGROUND: 0px 0px; COLOR: #333333; BORDER-TOP: 0px; BORDER-RIGHT: 0px
+}
+#pageNav SPAN {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: 0px 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+.pageNav SPAN {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: 0px 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 0px
+}
+#pageNav A.pageBtn {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; FONT-FAMILY: "Simsun"; PADDING-TOP: 4px
+}
+.pageNav A.pageBtn {
+	PADDING-BOTTOM: 2px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; FONT-FAMILY: "Simsun"; PADDING-TOP: 4px
+}
+.SP_Btn {
+	WIDTH: 80px; HEIGHT: 32px; MARGIN-LEFT: 10px; FONT-SIZE: 14px; VERTICAL-ALIGN: middle; CURSOR: pointer; FONT-WEIGHT: bold
+}
+.setInfo .SP_Btn {
+	MARGIN-TOP: 10px; FLOAT: none
+}
+.setInfo .inputTxt {
+	WIDTH: 240px; HEIGHT: 21px; PADDING-TOP: 7px
+}
+.mblist DD .inputTxt {
+	WIDTH: 240px; HEIGHT: 21px; PADDING-TOP: 7px
+}
+.mblist .inputTxt {
+	WIDTH: 240px; HEIGHT: 21px; PADDING-TOP: 7px
+}
+
+.secondTips {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 20px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; FONT-FAMILY: "MicroSoft YaHei","SimHei"; COLOR: #ccc; FONT-SIZE: 20px; PADDING-TOP: 20px
+}
+.D .bg {
+	POSITION: absolute; FILTER: alpha(opacity=35); WIDTH: 100%; BACKGROUND: #000000; HEIGHT: 100%; TOP: 0px; LEFT: 0px; opacity: 0.35
+}
+.inputTxt {
+	BORDER-BOTTOM: #7f9db9 1px solid; BORDER-LEFT: #7f9db9 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 1.231; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT-FAMILY: Tahoma,Arial; HEIGHT: 17px; FONT-SIZE: 12px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; BORDER-TOP: #7f9db9 1px solid; BORDER-RIGHT: #7f9db9 1px solid; PADDING-TOP: 2px
+}
+.ico_ts {
+	WIDTH: 100%; DISPLAY: block; BACKGROUND-POSITION: 0px 0px; HEIGHT: 100%
+}
+.ico_te {
+	WIDTH: 100%; DISPLAY: block; BACKGROUND-POSITION: 0px 0px; HEIGHT: 100%
+}
+.ico_skin EM {
+	WIDTH: 100%; DISPLAY: block; BACKGROUND-POSITION: 0px 0px; HEIGHT: 100%
+}
+.ico_tsW {
+	WIDTH: 21px; DISPLAY: inline; FLOAT: left; HEIGHT: 21px; MARGIN-LEFT: 8px; VERTICAL-ALIGN: middle; OVERFLOW: hidden; MARGIN-RIGHT: 8px
+}
+.popBox .ico_tsW {
+	VERTICAL-ALIGN: baseline
+}
+.ico_te {
+	BACKGROUND-POSITION: -30px 0px
+}
+.cmtBtn {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.btn1 {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.btn2 {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.delChose INPUT {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.blackTip P INPUT {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.applyPic INPUT {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.popBox INPUT {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.vloadWrap .btn {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.cityDrop .selBtn {
+	PADDING-BOTTOM: 1px; LINE-HEIGHT: 1.231; PADDING-LEFT: 4px; WIDTH: auto; PADDING-RIGHT: 4px; WHITE-SPACE: nowrap; HEIGHT: 23px; FONT-SIZE: 12px; CURSOR: pointer; PADDING-TOP: 0px
+}
+.applyPic INPUT {
+	MARGIN: 10px auto 0px; WIDTH: 85px; DISPLAY: block; HEIGHT: 25px
+}
+.popBox INPUT {
+	MARGIN: 10px auto 0px; WIDTH: 85px; DISPLAY: block; HEIGHT: 25px
+}
+.close {
+	Z-INDEX: 50; POSITION: relative; MARGIN-TOP: 2px; TEXT-INDENT: -9999px; WIDTH: 15px; DISPLAY: inline-block; BACKGROUND-POSITION: -232px -84px; FLOAT: right; HEIGHT: 15px
+}
+.DClose {
+	Z-INDEX: 50; POSITION: relative; MARGIN-TOP: 2px; TEXT-INDENT: -9999px; WIDTH: 15px; DISPLAY: inline-block; BACKGROUND-POSITION: -232px -84px; FLOAT: right; HEIGHT: 15px
+}
+.D .close {
+	POSITION: absolute; FLOAT: none; TOP: 11px; RIGHT: 15px
+}
+.D .DClose {
+	POSITION: absolute; FLOAT: none; TOP: 11px; RIGHT: 15px
+}
+.mblist .ico_music {
+	DISPLAY: none
+}
+.mblist .ico_video {
+	DISPLAY: none
+}
+.mblist .draft LI.hidden {
+	VISIBILITY: hidden
+}
+.mblist .draft LI.current {
+	VISIBILITY: visible
+}
+.showModSet .T {
+	DISPLAY: inline
+}
+.loading {
+	DISPLAY: inline
+}
+.vip {
+	BACKGROUND-POSITION: -212px -130px; MARGIN-LEFT: 2px; VERTICAL-ALIGN: text-top; _height: 16px; _width: 16px; _background-position: -212px -130px
+}
+.going .vip {
+	BACKGROUND-POSITION: -212px -130px; MARGIN-LEFT: 2px; VERTICAL-ALIGN: text-top; _height: 16px; _width: 16px; _background-position: -212px -130px
+}
+.pass {
+	BACKGROUND-POSITION: -179px -32px; MARGIN-LEFT: 8px; VERTICAL-ALIGN: middle
+}
+.ico_phone {
+	BACKGROUND-POSITION: -237px -130px; MARGIN-LEFT: 2px; VERTICAL-ALIGN: text-top; _height: 19px; _background-position: -237px -129px; _vertical-align: middle
+}
+.ico_star {
+	BACKGROUND-POSITION: -237px -130px; MARGIN-LEFT: 2px; VERTICAL-ALIGN: text-top; _height: 19px; _background-position: -237px -129px; _vertical-align: middle
+}
+.goTopBox {
+	FILTER: none; MARGIN: 1px 1px 0px 0px; WIDTH: 36px; BACKGROUND-POSITION: -74px -68px; FLOAT: left; HEIGHT: 36px; OVERFLOW: hidden; CURSOR: pointer
+}
+.btn_goTop {
+	FILTER: none !important; LINE-HEIGHT: 20em; WIDTH: 100%; DISPLAY: block; BACKGROUND: url(../images/wall/icon.png) no-repeat -98px -40px; HEIGHT: 100%; CURSOR: pointer; _margin-left: 0px
+}
+.sToolbar .bg {
+	DISPLAY: none
+}
+.single .sToolbarBg {
+	DISPLAY: none
+}
+
+
+
+.wall_set_box{ padding:10px;}
+.wall_set_box tr td{ line-height:25px; padding:5px 0;}
+.wall_set_box input{ border:1px solid #ccc; background:none; padding:2px 3px;}
+.wall_set_box textarea{ border:1px solid #ccc; background:none; padding:2px 3px; width:250px;}
+.wall_set_box .wall_sub{ background:#3399CC; width:60px; height:25px; color:#fff; cursor:pointer;}

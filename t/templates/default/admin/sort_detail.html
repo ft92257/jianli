@@ -1,0 +1,70 @@
+{template admin/header}
+<div>
+<a href="admin.php?mod=module&code=moduel">模块管理</a>
+<a href="admin.php?mod=module&code=sortlist&id=$id">全部字段</a>
+<a href="admin.php?mod=module&code=addfiled&id=$id">增加字段</a>
+<a href="admin.php?mod=module&code=tpl&id=$id">生成模块</a>
+</div>
+<form name="form2" method="post" action="admin.php?mod=module&code=editname&id=$id">
+  <table width="100%" border="0" cellspacing="1" cellpadding="3" class="tablewidth">
+    <tr>
+      <td class="head">模块编辑</td>
+    </tr>
+    <tr>
+      <td>模块名称:
+        <input type="text" name="name" value="$rs[name]"> 
+        <input type="submit" name="editname" value="修改当前模块设置">
+        <input type="hidden" name="hid_name" value="$hid_name">
+        [<a href="admin.php?mod=module&code=newziduan&id=$id"><font color="#FF0000"><b>添加字段</b></font></a>] 
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="admin.php?mod=module&code=editorder&id=$id">
+  <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tr align="center"> 
+      <td width="40%">字段名称</td>
+      <td width="29%">字段ID</td>
+      <td width="17%">排序</td>
+      <td width="7%">修改</td>
+      <td width="7%">删除</td>
+    </tr>
+    <!-- {loop $listdb $key $val} -->
+    <tr> 
+      <td width="40%">$val[name]</td>
+      <td width="29%">$val[field_name]</td>
+      <td width="17%" align="center"> 
+        <input type="text" name="orderlist[$key]" size="6" value="$val[orderlist]">
+      </td>
+      <td width="7%" align="center"> 
+        <p><a href="admin.php?mod=module&code=newziduan&id=$id&field=$val[field_name]">管理</a></p>
+      </td>
+      <td width="7%" align="center"><a href="admin.php?mod=module&code=deletefield&id=$id&field=$val[field_name]">删除</a></td>
+    </tr>
+    <!-- {/loop} -->
+    <tr align="center"> 
+      <td colspan="5"> 
+        <input type="submit" name="Submit" value="修改排序">
+      </td>
+    </tr>
+    <tr align="left"> 
+      <td colspan="5">注意:<font color="#FF0000">数值大的排在前面</font></td>
+    </tr>
+  </table>
+</form>
+<SCRIPT LANGUAGE="JavaScript">
+function show_more(va){
+	var s=document.getElementsByTagName("tr");
+	for(var i=0;i<s.length;i++){
+		if( document.form1.showmore.checked==true ||va==1 ){
+			if(s[i].className=='hidetr'){
+				s[i].style.display="";
+			}	
+		}else{
+			if(s[i].className=='hidetr'){
+				s[i].style.display="none";
+			}	
+		}
+	}
+}
+</SCRIPT>

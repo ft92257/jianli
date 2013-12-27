@@ -1,0 +1,19 @@
+<!--{template "topic_header"}-->
+	<div style="margin: 10px 0px 0px 5px;">
+		<p>
+        <span class=""><a href="index.php?mod=pm">我的私信</a></span>  | 
+        <span class="hb"><a href="index.php?mod=pm&amp;code=pmsend">发私信</a></span>  | 
+		</p>
+	</div>
+<div class="m" style="padding:5px;">
+	<div>	
+	<form id="pmform" name="pmform" method="post" action="index.php?mod=pm&amp;code=dosend">
+	   <span>收件人昵称： (<a href="index.php?mod=topic&code=follow">从关注的人中选择</a>)
+	   	<p><textarea name="to_user" id="to_user" style="width:99%;" rows="2" cols="" />{$nickname}</textarea></p>
+	   </span>
+	   <span><p>私信内容：<textarea name="message" id="message" style="width:99%;" rows="3" cols="" /></textarea></p></span>
+	  <input type="submit" name="Submit" value="发送" />
+	</form>
+	</div>
+</div>
+<!--{template "topic_footer"}-->

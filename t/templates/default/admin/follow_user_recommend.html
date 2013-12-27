@@ -1,0 +1,76 @@
+<!--{template admin/header}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>输入昵称，选择关注方式，提交即可。<br />
+			</li>
+		  </ul>
+	  </td>
+	</tr>
+</table>
+
+<form action="{$action}" method="post" enctype="multipart/form-data" name="forminfo" id="forminfo">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center">
+    <tr>
+      <td bgcolor="#F8F8F8"><strong>用户昵称:</strong><br /></td>
+      <td bgcolor="#FFFFFF">
+      <input name="nickname" type="text" id="nickname" />
+      </td>
+    </tr>
+    <tbody>
+      <tr>
+        <td width="26%" bgcolor="#F8F8F8"><strong>关注方式:</strong><br />
+        推荐关注，注册后进入下一步会出现在推荐关注选项中。<br />
+        默认关注，用户注册后自动关注，前台不显示。</td>
+        <td width="74%" bgcolor="#FFFFFF">
+		   <input name="follow_type" id="validate_1" type="radio" value="recommend" checked="checked" />
+            推荐关注
+            <input name="follow_type" id="validate_0" type="radio" value="default" />
+            默认关注</td>
+      </tr>
+      <tr>
+        <td bgcolor="#F8F8F8">&nbsp;</td>
+        <td bgcolor="#FFFFFF"><button name="do" value='' type="submit" class="button">{$button_title}</button>&nbsp;&nbsp;<button class="button" type="button" onclick="window.location.href='admin.php?mod=vipintro';return false;">返回</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+
+<form method="post" action="admin.php?mod=member&code=del_follow_user_recommend">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder" style="margin-top:20px;">
+<tr>
+	<td width="6%" height="30"><a href="admin.php?mod=member&amp;code=follow_user_recommend&amp;type=recommend"><strong>推荐关注</strong></a></td>
+	<td width="8%" height="30"><a href="admin.php?mod=member&amp;code=follow_user_recommend&amp;type=default"><strong>默认关注 </strong></a></td>
+    <td width="86%" height="30">(提示：可推按荐关注方式类别，查看用户。)</td>
+</tr>
+<tr class="header">
+	<td height="30" colspan="3">
+	<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" >
+	全选<a href="admin.php?mod=member&amp;code=follow_user_recommend"></a><a href="admin.php?mod=member&amp;code=follow_user_recommend&amp;type=2"></a></td>
+  </tr>
+<!--{loop $members $val}-->
+<tr align="center">
+	<td height="30" colspan="3" align="left" style="border-bottom:1px dotted #EDEDED">
+	<input class="checkbox" type="checkbox" name="ids[]" value="{$val[uid]}" >
+	<a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></td>
+  </tr>
+<!--{/loop}-->
+
+<!--{if $page_arr[html]}-->
+<tr align="center">
+	<td colspan="6" class="altbg1">
+	{$page_arr[html]}</td>
+</tr>
+<!--{/if}-->
+<tr align="center">
+	<td colspan="6" class="altbg1"><center><input class="button" type="submit" name="cronssubmit" value="取消用户">
+	    <input name="type" type="hidden" id="type" value="{$type}" />
+	</center></td>
+</tr>
+</table>
+</form>

@@ -1,0 +1,186 @@
+{template "topic_header"}
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+
+<form method="post" action="index.php?mod=qun&code=docreate" autocomplete="off" id="qun_form" enctype="multipart/form-data" >
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+<div class="main_t main_t23">
+<span style=" float:left;">创建新微群</span>
+<span style="float:right; margin-right:10px;"><a href="index.php?mod=qun&code=profile"><em><<</em>返回</a></span>
+</div>
+<div class="qun_warp qun_sub">
+ <div id="settings-color" class="qun_create_2">
+ 	<!--{if $is_allowed}-->
+	<!--{if MEMBER_ROLE_TYPE != 'admin'}-->
+		<div class="qun_tips_2">
+			您当前等级可以创建{$detail['ploy_qnum']}个微群,
+			<!--{if $detail['my_qnum']}-->
+				您已经创建了{$detail['my_qnum']}个微群,还可以创建{$detail['allow_create_num']}个
+			<!--{else}-->
+				您还没有创建微群呢。赶快创建吧！
+			<!--{/if}-->
+		</div>
+	<!--{/if}-->
+	<table style="width:100%">
+		<tr>
+			<td width="15%" align="right"><label for="color-background"><i>*</i> 微群名称：</label></td>
+			<td>
+				<input id="qun_name" name="qun_name" value="" type="text" class="inputs" style="padding: 3px 2px;width:250px;">
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right"><label for="color-background"><i>*</i> 微群分类：</label></td>
+			<td>
+				<div style="float:left;">
+					<select id="top_cat" name="top_cat" onchange="get_catselect(this)">
+						{$catselect['first']}
+					</select>
+				</div>
+				<div style="float:left; ">
+					<select id="sub_cat" name="sub_cat">
+						{$catselect['second']}
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right"><label for="color-background"><i>*</i> 群所在地：</label></td>
+			<td>
+				<div style="float:left;">
+				{$province_list}
+				</div>
+				<div style="float:left; ">
+					<select id="city" name="city"></select>
+					<input type="hidden" id="hid_city" name="hid_city" value="{$hid_city}">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right"><label for="color-background">微群标签：</label></td>
+			<td>
+				<input id="tag" name="tag" value="" type="text" class="inputs" style="padding: 3px 2px;width:250px;" >
+				<span style="margin-left:10px;">最多可填5个标签，可以使用空格或英文逗号分隔</span>
+			</td>
+			
+		</tr>
+		<tr>
+			<td width="15%" align="right" valign="top"><label for="color-background">微群简介：</label></td>
+			<td><textarea id="desc" class="inputs" style="padding: 3px 2px;width:500px;height:60px;" name="desc"></textarea></td>
+		</tr>
+		<tr>
+			<td width="15%" align="right" valign="top"><label for="color-background"><i>*</i> 微群类型：</label></td>
+			<td>
+				<input type="radio" value="0" name="gview_perm" id="privacy_open" {$checked['gview_perm'][0]} />
+				<label for="privacy_open">公开群组</label>
+				<br />
+				<input type="radio" value="1" name="gview_perm" id="privacy_closed" {$checked['gview_perm'][1]} onclick="privacy_radio_force(1);"/>
+				<label for="privacy_closed">私密群组</label>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right" valign="top"><label for="color-background"><i>*</i> 加入方式：</label></td>
+			<td>
+				<input type="radio" value="0" name="join_type" id="join_free" {$checked['join_type'][0]} onclick="privacy_radio_force(2)"/>
+				<label for="join_free">任何人可自由加入</label>
+				<br />
+				<input type="radio" value="1" name="join_type" id="join_ratify" {$checked['join_type'][1]}/>
+				<label for="join_ratify">需群主批准后才能加入</label>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right" valign="top"><label for="color-background">微群头像：</label></td>
+			<td>
+				<input id="icon" name="icon" type="file"/><br>
+				<span>{$u_tips}</span>
+			</td>
+		</tr>
+	    <tr>
+	      <td width="15%" align="right" valign="top"><label for="color-background">微群风格：</label></td>
+	      <td>
+	      <div class="ulist6">
+	      <!--{loop $themelist $val}-->
+          <style type="text/css">
+          .ulist6 .selected .status{ margin:0 0 -4px 7px;}
+          </style>
+	        <div class="pf2 selected crPer">
+	          <p class="status">
+	          	<!--{if ($val[theme_id] == $qun_info[qun_theme_id])}-->
+				<input type="radio" id="$val[theme_id]" name="theme_rad" checked onclick="quntheme('$val[element]')">
+				<!--{else}-->
+				<input type="radio" id="$val[theme_id]" name="theme_rad" onclick="quntheme('$val[element]')">
+				<!--{/if}-->
+	          </p>
+	          <p class="mark"></p>
+	          <p class="avt">
+	            <b>
+	              <label for="checked_2" style="cursor:pointer;">
+	                <a href="javascript:void(0)" onclick="quntheme('$val[element]')">
+				    <img alt="" src="templates/default/images/quntheme/{$val[theme_id]}/themebg_preview.jpg"/></a>
+	              </label>
+	            </b>
+	          </p>
+	        </div>
+			<!--{/loop}-->
+		  </div>
+		</td>
+	  </tr>
+    </table>
+  </div>
+    <p class="act">
+        <input type="submit" class="shareI" id="save" value="创建"/>
+        <input id="qun_theme_id" name="qun_theme_id" value="{$qun_theme_id}" type="hidden">
+    </p>
+	      
+</div>
+<!--{else}-->
+<div class="qun_tips_2">
+	<!--{if $detail['no_avatar']}-->
+		系统要求上传了头像才能创建微群，请先上传你的头像吧&nbsp;&nbsp;<a href="index.php?mod=settings&code=face" target="_blank">立刻去上传</a>
+	<!--{elseif $detail['my_qnum'] > 0 && $detail['my_qnum'] ==  $detail['ploy_qnum']}-->
+		你已经达到了你可以创建群的上限了。
+	<!--{elseif $detail['little_fans']}-->
+		你当前拥有{$detail['my_fans_count']}个粉丝，系统策略要求最少拥有{$detail['ploy_fans_count']}个粉丝才能创建群
+	<!--{elseif $detail['little_topic']}-->
+		你当前拥有{$detail['my_topic_count']}条微博，系统策略要求最少拥有{$detail['ploy_topic_count']}条微博才能创建群
+	<!--{elseif $detail['sys_not_allow']}-->
+		系统禁止普通用户创建微群
+	<!--{elseif $detail['not_vip']}-->
+		非V认证用户禁止创建微群，<a href="index.php?mod=other&code=vip_intro">点击申请V认证</a>
+	<!--{/if}-->
+	<br /> <a href="index.php?mod=topic&code=myhome">返回我的首页</a> <span style="color:#444">|</span> <a href="index.php?mod=qun">返回微群首页</a>
+	</div>
+</div></div>
+<!--{/if}-->
+</div>
+</div>
+</form>
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	var selectOption={eval load::functions('area');echo area_config_to_json();};
+	});
+	
+	function changeProvince(){
+		  var province = document.getElementById("province").value;
+		  var hid_city = document.getElementById("hid_city").value;
+		  var url = "ajax.php?mod=member&code=sel&province="+province + "&hid_city="+hid_city;
+
+		  var myAjax=$.post(
+				  	url,
+				  	function(d){
+			  		    $('#' + "city").html(d);
+				  	}
+		  );
+		}
+		changeProvince();
+</script>
+{template "topic_footer"}

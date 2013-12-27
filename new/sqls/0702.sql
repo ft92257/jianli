@@ -1,0 +1,1 @@
+ALTER TABLE `yjl_reserve` ADD `region_area` VARCHAR( 255 ) NOT NULL COMMENT '区域' AFTER `expect_time` ;

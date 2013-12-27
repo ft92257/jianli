@@ -1,0 +1,52 @@
+{template "topic_header"}
+<div class="main {$t_col_main}">
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+	 {template "topic_left.inc"}
+	<!--{/if}-->
+	</div>
+	
+</div>
+</div>
+<!--此处三栏-->
+ <div class="mainL">
+  <!--{if $this->Get[ids] == ''}-->
+  <div class="main_t"><span>网站公告</span></div>
+	  <!--{loop $list_notice $val}-->
+	  <!--{eval $No++}-->
+	  <div style="padding:10px;"><a href="index.php?mod=other&code=notice&ids={$val[id]}">{$No}. {$val[title]}</a></div>
+	  <!--{/loop}-->
+	  <div style="margin-right:70px;">{$page_arr[html]}</div>
+  <!--{else}-->	  
+      <div class="main_t"><span>{$title}</span></div>
+
+	  <div style="padding:10px 20px;">{$content}</div>
+	  <div style="float:right; padding:10px 20px;">发布于：{$dateline}</div>
+  <!--{/if}-->	  
+ </div>
+ 
+ <div class="mainR">
+ <!--{if $this->Get[ids] != ''}-->
+
+   <!--网站公告-->
+  <div class="sideBox">
+	<div class="rightBox_t">{$this->Config[site_name]}网站公告 <span class="set_tag"></span></div>
+	<ul>
+	<!--{loop $list_notice $val}-->
+	  <div style="padding:1px 10px;"><a title="{$val[title]}" href="index.php?mod=other&code=notice&ids={$val[id]}">{$val[titles]}</a></div>
+	<!--{/loop}-->
+	</ul>
+  </div>
+ <!--{/if}-->	
+   
+ <!--意见反馈-->
+ <div class="sideBox">
+	<div class="rightBox_t">{$this->Config[site_name]}意见反馈 <span class="set_tag"></span></div>
+	<ul>众人拾柴火焰高，如您有任何建议欢迎点<a href="index.php?mod=tag&code=意见反馈" target="_blank">意见反馈</a>告诉我们。</ul>
+  </div>
+  </div>
+</div>
+{template "topic_footer"}

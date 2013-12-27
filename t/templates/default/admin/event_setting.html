@@ -1,0 +1,58 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=event&code=dosetting" method="post" name="search">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">基本设置</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是否开启活动应用
+		</td>
+		<td class="altbg2">
+			<input name='open' id='open_1' type='radio' value='1' class="radio" {$checked['open'][1]} >
+			<label for='open_1'>是</label>
+			<input name='open' id='open_0' type='radio' value='0' class="radio" {$checked['open'][0]} >
+			<label for='open_0'>否</label>&nbsp;&nbsp;<br>
+			选择是，用户在可在前台发起、查看、参与活动，选择否即关闭；
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是否开启活动审核
+		</td>
+		<td class="altbg2">
+			<label><input name='verify' id='verify_1' type='radio' value='1' class="radio" {$checked['verify'][1]} >
+			是</label>
+			<label><input name='verify' id='verify_0' type='radio' value='0' class="radio" {$checked['verify'][0]} >
+			否</label>&nbsp;&nbsp;<br>
+			选择是，用户发起活动需管理员在后台<a href="admin.php?mod=event&code=verify">审核活动</a>后才能公开显示，选择否则会立即显示；<br>
+			开启审核，有助于控制活动的质量；
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		活动仅限V认证用户
+		</td>
+		<td class="altbg2">
+			<label><input name='vip' id='vip_1' type='radio' value='1' class="radio" {$checked['vip'][1]} >
+			是</label>
+			<label><input name='vip' id='vip_0' type='radio' value='0' class="radio" {$checked['vip'][0]} >
+			否</label>&nbsp;&nbsp;<br>
+			选择是，只有<a href="admin.php?mod=vipintro&type=1">V认证用户</a>可以发起活动，选择否则不做限制；<br>
+			开启此限制，则有助于保证活动的质量。
+		</td>
+	</tr>
+</table>
+<center><input class="button" type="submit" name="setting_submit" id="setting_submit" value="提 交"></center>
+</form>
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#setting_submit").click();
+    }
+}
+</script>

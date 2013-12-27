@@ -1,0 +1,56 @@
+<!--{template admin/header}-->
+
+<div class="mt10">
+
+  <form method="get" name="search" action="admin.php">
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+      <tr>
+        <td width="20%">用户昵称</td>
+        <td><input type="text" name="nickname" value="{$nickname}"></td>
+      </tr>
+      <tr>
+        <td width="20%">时间（默认为24H）</td>
+        <td><input type="text" name="time" value="{$t}">小时内</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" name="Submit" value="查询"  class="button">
+          <input type="hidden" name="mod" value="member">
+          <input type="hidden" name="code" value="login">
+        </td>
+      </tr>
+    </table>
+  </form>
+  
+  <form method="post" action="admin.php?mod=member&code=dowaitvalidate">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr align="center" class="header">
+			<td width="15%">昵称</td>
+            <td width="15%">微博数</td>
+            <td width="15%">最新登录IP</td>
+            <td width="15%">所在城市</td>
+            <td width="15%">最后活跃时间</td>
+            <td>操作</td>
+		</tr>
+		<!--{loop $members $user}-->
+		<tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$user[username]}"  target="_blank">{$user['nickname']}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user['topic_count']}</td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user['lastip']}</td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user['province']}{if $user['city']}-{$user['city']}{/if}</td>
+			<td style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($user['lastactivity'], 'Y-m-d H:i:s')}--></td>
+			<td style="border-bottom:1px dotted #EDEDED">
+			  <a href="admin.php?mod=member&code=modify&id=$user['uid']">[修改资料]</a>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		
+		<!--{if $page['html']}-->
+		<tr>
+			<td colspan="7">{$page['html']}</td>
+		</tr>
+		<!--{/if}-->
+	</table>
+  </form>
+</div>

@@ -1,0 +1,56 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename t4.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 1478911615 1851718549 2846 $
+ *******************************************************************/
+
+
+/* CSS Document */
+body{ background-color:#F5BC49; background-image:url(../images/quntheme/t4/themebg.jpg);background-position:center 0px;background-repeat:repeat; background-attachment:fixed;}
+a:link{color:#2965B1;text-decoration:none;}
+a:visited{color:#2965B1;text-decoration:none;}
+a:hover{color:#2965B1;text-decoration:underline;}
+.headerBg { background:#1288B7;}
+.headerNav{ color:#fff;}
+.headerNav a:link {color:#fff;text-decoration:none;}
+.headerNav a:hover {color:#fff;text-decoration:underline;}
+.headerNav a:visited {color:#fff;text-decoration:none;}
+.main{ background:url(../images/theme/t4/rightbg2.png) repeat-y right center}
+.top_nav2 { background:#c4def0}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.person_atten_l{ border-right:#336699 1px solid}
+.sideBox .sTitle{ background:url(../images/theme/t4/side_bg.gif) no-repeat 0 0 }
+.boxRNav2 li,.boxRNav2 li a{background:url(../images/theme/t4/sideLb.png) 0 -126px no-repeat;}
+.boxRNav2 li.current{height:34px;z-index:2;background:url(../images/theme/t4/sideLb.png) 0 -90px no-repeat;}
+.sendMail{ width:100%;background:url(../images/theme/t4/sideLb.png) -334px -200px no-repeat; text-indent:21px; padding-top:5px;}
+.bottomLinks{ background:url(../images/theme/t4/foot_bg.png);}
+.vDateBox{background:#E9F9FF; border:1px solid #A1C7DD;}
+.rbt_2{ background:url(../images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.rbt_2 a{ color:#fff;}
+.boxRNav3 li,.boxRNav3 li a{background:url(../images/theme/t4/sideLb.png) 0 -126px no-repeat;}
+.boxRNav3 li.current{height:34px;z-index:2;background:url(../images/theme/t4/sideLb.png) 0 -90px no-repeat;}
+/*新增侧栏部分*/
+.SC{border-top:1px solid #ACB7C0;}
+.SC h3{border-top:1px solid #EBF5FE;}
+.rught_tj_box{background:url(../images/theme/t4/right_tj_t.gif) no-repeat; color:#666666;}
+.rught_tj_box span{ background:#ecf5f9;border:#B0C9D8 1px solid; border-top:none;}
+/*三栏部分*/
+.t_col_main{background:url(../images/quntheme/t4/rightbg2.png) repeat-y;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li,.boxRNav2 li a{background:url(../images/theme/t4/sideLb.png) 0 -126px no-repeat;_background:url(../images/theme/t4/sideLb.png) 0 -126px no-repeat;}
+.t_col_main_fl .boxRNav2 li.current{height:34px;z-index:2;background:url(../images/theme/t4/sideLb.png) 10px -462px no-repeat;}
+.t_col_main_fl .sendMail{ width:100%;background:url(../images/theme/t4/sideLb.png) -334px -200px no-repeat; text-indent:21px; padding-top:5px;}
+.t_col_main_fl .boxRNav2 li.myfav .anoTh{color:#336699;}
+.t_col_main_fl .boxRNav2 li.letter .anoTf{color:#336699;}
+.t_col_main_fl .boxRNav2 li.mailBox .anoTv{ color:#336699;}
+.t_col_main_fl .boxRNav2 li:hover,.t_col_main_fl .boxRNav2 li.hover{background-position:10px -428px;}
+.t_col_main_fl .boxRNav2 li.index:hover,.t_col_main_fl .boxRNav2 #x1.hover{background-position:10px -428px;}
+

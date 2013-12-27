@@ -1,0 +1,264 @@
+{template "topic_header"}
+<link href="templates/default/styles/talk.css" rel="stylesheet" type="text/css" />
+<div class="main {$t_col_main}">
+<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+<!--{if $talk[image]}-->
+<img src='{$talk[image]}' width='1000' height='120'>
+<!--{else}-->
+<img src='images/talk_banner.png' width='1000' height='120'>
+<!--{/if}-->
+<!--{/if}-->
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main3Box_m HotW ">
+<!--{if MEMBER_STYLE_THREE_TOL != 1}-->
+<!--{if $talk[image]}-->
+<img src='{$talk[image]}' width='800' height='100'>
+<!--{else}-->
+<img src='images/talk_bg.jpg' width='800' height='100'>
+<!--{/if}-->
+<!--{/if}-->
+<div class="talk_son">
+<div class="talk_son_titL">
+<a href="index.php?mod=talk&cat={$catp[cat_id]}">{$catp[cat_name]}</a><em>&gt;</em><a href="index.php?mod=talk&cat={$cat[cat_id]}">{$cat[cat_name]}</a><em>&gt;</em>{$talk[talkname]}
+</div>
+<div class="talk_son_titR">
+<a href="javascript:void(0);" onclick="showMainPublishBox('design','talk','{$talk[lid]}');return false;" class="talk_icon_8">推荐给朋友</a><a href="javascript:void(0);" onclick="talkvisit('{$talkvisit_str}');" class="talk_icon_9">邀请好友参加</a>
+</div>
+</div>
+<div id="topNews_1" class="Hotwarp">
+<div class="talk_son_con1_1L">
+<h2></h2>
+<p>{$talk[description]}</p>
+</div>
+<!--{if $talk[status_css] != 'ico_complete' && $is_talk_hosts}-->
+<div class="mBlog_linedot"></div>
+<style>
+#topNews_1 .issueBox{background:url(templates/default/images/issueBg2.jpg) no-repeat;margin-left:-20px;margin-right:-10px;}
+#topNews_1 .issueBox .box_1{*margin-left:10px;}
+</style>
+<!--{template "topic_publish"}-->
+<!--{/if}-->
+<!--{if !($talk[status_css] == 'ico_notyet' && !$is_talk_hosts)}-->
+<div class="Menubox2 talk_nav">
+<!--{if $talk[status_css] == 'ico_ongoing' && !$is_talk_hosts}-->
+<!--{if $talk[guests_num] > 1}-->
+<a href="javascript:void(0)" class="askToDiff">我要提问</a>
+<!--{else}-->
+<!--{loop $talk[guest] $user}-->
+<a href="javascript:void(0)" onclick="showMainPublishBox('ask','talk','{$talk[lid]}',0,'{$user[uid]}')" class="askToDiff">我要提问</a>
+<!--{/loop}-->	
+<!--{/if}-->
+<!--{/if}-->
+访谈内容</div>
+<div class="listBox">
+<div class="Listmain{$talklistcss}" id="Listmain1">
+<!--{if $is_talk_hosts}-->
+<div id="listTopicMsgArea"></div>
+<div id="listTopicArea">
+<!--{/if}-->
+<!--{if $question_list}-->
+<!--{loop $question_list $val}-->
+<!--{eval $counts++;}-->
+<div class="{$val[biank_css]}">
+<!--{subtemplate talk_ask_item_ajax}-->
+</div>
+<!--{/loop}-->
+<!--{if $ask_page_arr[html]}--><div class="pageStyle"><li>{$ask_page_arr[html]}</li></div><!--{/if}-->
+<!--{/if}-->
+</div>
+<!--{if $is_talk_hosts}-->
+</div>
+<!--{/if}-->
+</div>
+<!--{/if}-->
+<!--{if $talk[btn_css] == 'forange'}-->
+<div class="Menubox2 talk_nav">
+<!--{if !$is_talk_hosts}-->
+<!--{if $talk[guests_num] > 1}-->
+<a href="javascript:void(0)" class="askToDiff">我要提问</a>
+<!--{else}-->
+<!--{loop $talk[guest] $user}-->
+<a href="javascript:void(0)" onclick="showMainPublishBox('ask','talk','{$talk[lid]}',0,'{$user[uid]}')" class="askToDiff">我要提问</a>
+<!--{/loop}-->
+<!--{/if}-->
+<!--{/if}-->
+网友提问</div>
+<div class="listBox">
+<div class="Listmain{$asklistcss}" id="Listmain2">
+<!--{if !$is_talk_hosts}-->
+<div id="listTopicMsgArea"></div>
+<div id="listTopicArea">
+<!--{/if}-->
+<!--{if $topic_list}-->
+<!--{loop $topic_list $val}-->
+<!--{eval $counts++;}-->
+<div class="feedCell" id="topic_list_{$val[tid]}" style="border-bottom:1px dotted #ddd; overflow:hidden; padding:15px 0 5px;">
+<!--{subtemplate topic_item_ajax}-->
+</div>
+<!--{/loop}-->
+<!--{if $topic_page_arr[html]}--><div class="pageStyle"><li>{$topic_page_arr[html]}</li></div><!--{/if}-->
+<!--{/if}-->
+</div>
+{eval echo $this->js_show_msg();}
+<!--{if !$is_talk_hosts}-->
+</div>
+<!--{/if}-->
+</div>
+<!--{/if}-->
+</div>
+<!--右边栏目 Begin-->
+<div class="Hotright">
+<div class="HboxR">
+<p class="info_img"><img src="templates/default/images/transparent.gif" alt="{$talk[status]}" class="{$talk[img_css]}" /></p>
+<p class="info_time"><font class="gray">访谈时间：</font><font class="{$talk[btn_css]}">{$talk[time]}</font></p>
+<!--{if $talk[design]}-->
+<p class="info_txt"><span id='makeNotice' class="btn_normal" onclick="showMainPublishBox('btn_wydz','talk','{$talk[lid]}');" title="访谈开始前将发通知提醒">{$talk[design]}</span></p>
+<!--{/if}-->
+</div>
+<div class="HboxR">
+	<div class="talk_line talk_top">访谈嘉宾</div>
+	<ul class="followList act_ul">
+	<!--{loop $talk[guest] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention_del"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>嘉宾介绍</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+		  <!--{if $talk[btn_css] == 'forange' && !$is_talk_hosts}-->
+		  <p class="ask"><img src="templates/default/images/transparent.gif" class="wft_icon xttw" title="提问"><a href="javascript:void(0)" onclick="showMainPublishBox('ask','talk','{$talk[lid]}',0,'{$user[uid]}')" title="向{$user[nickname]}提问">向Ta提问</a></p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<div class="HboxR">
+	<div class="talk_line talk_top">主持人</div>
+	<ul class="followList act_ul">
+	<!--{loop $talk[host] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention_del"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>个人介绍</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<!--{if $talk[media]}-->
+<div class="HboxR">
+	<div class="live_line live_top">合作媒体</div>
+	<ul class="followList act_ul">
+	<!--{loop $talk[media] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>媒体简介</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<!--{/if}-->
+<div class="HboxR">
+	<div class="talk_line talk_top"><!--{if $talk_count >5}--><span><a href="index.php?mod=talk">更多>></a></span><!--{/if}-->微访谈列表</div>
+	<ul class="talk_list_side">
+	<!--{loop $talk_list $val}-->
+	<li>
+	<p><a href="index.php?mod=talk&code=view&id={$val[lid]}" target="_blank" title="{$val[talkname]}">{$val[shortname]}</a>&nbsp;({$val[status]})</p>
+	<p>主持人：<!--{loop $val[host] $user}--><a href="index.php?mod={$user[username]}" title="{$user[description]}" target="_blank">{$user[nickname]}</a><!--{/loop}--></p>
+	<p>时间：{$val[ldate]}</p>
+	</li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<div class="HboxR">
+	<div class="talk_line talk_top">申请微访谈</div>
+	<ul class="sideul2">
+	<!--{if $talk_config[ads]}-->{$talk_config[ads]}<!--{/if}-->
+	</ul>
+</div>
+</div>
+</div>
+</div>
+<!--{if $talk[btn_css] == 'forange' && !$is_talk_hosts && $talk[guests_num] > 1}-->
+<div class="askToDiffZone" style="display:none;">
+<div class="laypopC">
+<ul>
+<!--{loop $talk[guest] $user}-->
+<li><a href="javascript:void(0)" onclick="showMainPublishBox('ask','talk','{$talk[lid]}',0,'{$user[uid]}')" title="向@{$user[nickname]} 提问">向@{$user[nickname]} 提问</a></li>
+<!--{/loop}-->												
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+	 $(document).ready(function(){askmenuajax();}); 
+</script>
+<!--{/if}-->
+{template "topic_footer"}

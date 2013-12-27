@@ -1,0 +1,42 @@
+{template "topic_header"}
+<div class="main_2">
+
+  <div class="main3Box_t2"> 
+    <div class="ts_menu_2">{$share_name}</div>
+  </div>
+
+  <div class="main3Box_m">
+	  <!--{loop $share_list $val}-->
+      <div class="oriTxt">
+            <p><a title="{$val[username]}" href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}£º<span>
+			<a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}">{$val[content]}</a></span>
+			</p>
+       </div>
+
+		<!--{if $val[imageid] && $val[image_list]}-->
+			<ul class="imgList">
+			  {loop $val[image_list] $iv}
+			  <li><a href="{$iv[image_original]}" class="miniImg artZoom"><img src="{$iv[image_small]}"></a></li>
+			  {/loop}
+			</ul>
+		<!--{/if}-->
+
+		<!--{if $val[videoid] and $this->Config[video_status]}-->
+		<div class="feedUservideo">
+		
+		  <div style="margin:30px 0px 0px 40px; position:absolute; z-index:999;">
+		    <a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}">
+		    <img src="images/feedvideoplay.gif" style="filter:alpha(opacity=50)"/></a>
+		  </div>
+		  <a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}"><img src="{$val[VideoImg]}" style="border:none"/> </a>
+		  
+		</div>
+		<!--{/if}-->
+
+	  <!--{/loop}-->
+    
+  </div>
+  
+</div>
+
+{template "topic_footer"}

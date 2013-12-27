@@ -1,0 +1,86 @@
+{template admin/header}
+<div class="mt10">
+<form action="admin.php" method="get" name="search">
+<input type="hidden" name="mod" value="logs" />
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">查询后台操作记录</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">		操作者的用户昵称</td>
+		<td><input name="nickname" type="text" value="{$nickname}">
+		</td>
+	</tr>
+	<tr class="altbg2">
+		<td>		操作时记录的IP地址</td>
+		<td><input name="ip" type="text" value="{$ip}"></td>
+	</tr>
+	<tr class="altbg1">
+		<td>		操作时记录的MOD值</td>
+		<td><input name="s_mod" type="text" value="{$s_mod}"></td>
+	</tr>
+	<tr class="altbg2">
+		<td>		操作时记录的CODE值</td>
+		<td><input name="s_code" type="text" value="{$s_code}"></td>
+	</tr>
+	<tr class="altbg1">
+		<td>操作时间:<br>
+		格式为：YYYY-mm-dd（如：2012-04-01）</td>
+		<td><input name="dateline_start" type="text"
+			value="{$dateline_start}" size="6"> ~ <input
+			name="dateline_end" type="text" value="{$dateline_end}" size="6">
+		</td>
+	</tr>
+	<tr class="altbg2">
+		<td>&nbsp;</td>
+		<td>
+		<button name="do" type="submit" class="button">搜索一下（共有{$count}条记录）</button>
+		&nbsp;
+		<button type="button" class="button"
+			onclick="window.location='admin.php?mod=logs';return false;">查看全部记录</button>
+		&nbsp; <a href="admin.php?mod=logs&code=clean"
+			onclick="return confirm('清理掉的数据无法恢复，确认清理半年前记录的操作记录？');">清理半年前记录的数据</a>
+		</td>
+	</tr>
+</table>
+</form>
+<br />
+<table cellspacing="1" cellpadding="10" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td width="5%">类型</td>
+		<td width="15%">操作时间</td>
+		<td width="15%">操作人 / IP地址</td>
+		<td width="20%">操作类别：动作名</td>
+		<td>管理操作</td>
+	</tr>
+	<!--{loop $list $k $v}-->
+	<!--{eval $_tr_c=$k%2?"altbg2":"altbg1";}-->
+	<tr class="{$_tr_c}">
+		<td>{$v[request_method]}</td>
+		<td><!--{eval echo my_date_format($v[dateline], 'Y-m-d H:i:s');}--></td>
+		<td><a href="admin.php?mod=logs&uid={$v[uid]}" title="查看此用户的所有记录">{$v[nickname]}</a><br>
+		<a href="admin.php?mod=logs&ip={$v[ip]}" title="查看此IP的所有记录"><font style="color:gray">{$v[ip]}</font></a></td>
+		<td><a
+			href="admin.php?mod=logs&role_action_id={$v[role_action_id]}" title="查看此类操作的所有记录">{$v[role_action_name]}</a>：<a href="admin.php?mod=logs&s_mod={$v[mod]}&s_code={$v[code]}" title="查看此动作的所有记录">{$v[mod]}-{$v[code]}</a><br>
+			
+			</td>
+		<td><!--{if true===JISHIGOU_FOUNDER}--><a
+			href="admin.php?mod=role_action&code=modify&id={$v[role_action_id]}"
+			target="_blank">设置动作权限</a>&nbsp;|&nbsp;<a
+			href="admin.php?mod=member&code=modify&id={$v[uid]}" target="_blank">编辑用户信息</a>&nbsp;|&nbsp;<!--{else}-->
+			<font style="color:gray" title="此操作仅限网站创始人">设置动作权限&nbsp;|&nbsp;编辑用户信息&nbsp;|&nbsp;</font>
+		<!--{/if}-->
+		<a href="{$v[uri]}" target="_blank">查看操作页面</a>&nbsp;|&nbsp;
+		<a href="admin.php?mod=logs&code=view&id={$v[id]}" target="_blank">查看记录详情</a>
+		</td>
+	</tr>
+	<!--{/loop}-->
+	<!--{if $page[html]}-->
+	<tr>
+		<td colspan="6">{$page[html]}</td>
+	</tr>
+	<!--{/if}-->
+</table>
+</div>

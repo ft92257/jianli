@@ -1,0 +1,134 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<script>
+$(document).ready(function(){pm_group_list(0,$('#group_list_select').val());})
+
+function pm_group_list(page,group_id)
+{
+	var uid = '{MEMBER_ID}';
+	var page = 'undefined' == typeof(page) ? '0' : page;
+
+	if(uid == '')
+	{
+		ShowLoginDialog();
+	}
+	
+	var myAjax = $.post
+    (
+		"ajax.php?mod=pm&code=pm_group_list&page="+page,
+		{	
+			uid:uid,
+			group_id:group_id,
+			page:page
+		},
+		function (d) 
+        {
+            if(d) 
+            {	
+               $('#'+"pm_group_user_list").html(d);
+            }
+				
+			  //用户勾选状态
+			  var tag_name = $('#txtMsgTo').val();
+		
+			  var stringArray = tag_name.split(",");
+		
+			  for(i=0;i<10;i++)   
+			  {   
+			  		if(stringArray[i] != 'undefined')
+					{	
+						//打勾
+						$("#checked_"+stringArray[i]).attr("checked",true);
+					}
+			  }      
+		}
+	);
+	
+	return true;
+	
+}
+
+function choose_user(){
+	$('.user_list').toggle();
+}
+</script>
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+  <div class="mainL">
+  <div class="Hotwarp">
+	<!--以下站内短信导航部分-->
+    {$left_menu}
+	<!--以上站内短信导航部分-->
+
+    <div class="sendBox">
+      <form action="{$action}" method="post" onsubmit="return Validator.Validate(this,3);" id='sendPM'>
+        <table width="100%" border="0" style="font-size:12px;">
+          <tr>
+            <td width="16%" align="right" valign="middle">收件人：</td>
+            <td width="84%" align="left" valign="middle">
+              <div class="pm_user_input">
+			    <input type="text" id="txtMsgTo" name="to_user" value="{$to_user}" class="text-area" datatype="LimitB" min="1" msg="收件人不能为空" />
+				<a class="pm_icon" title="查看所有好友" href="javascript:void(0)" onclick="choose_user();"></a>
+				
+	            <div class="user_list" style="display:none; margin:10px 0 0 0;">
+					  <p class="pm_header">
+					    <select name="group_list_select" id="group_list_select" onchange="pm_group_list('0',this.value);">
+					      <option value='0'>全部</option>
+					      <!--{loop $my_grouplist $key $val}-->
+					      <option value='{$val[id]}'>{$val[group_name]} ({$val[group_count]})</option>
+					      <!--{/loop}-->
+					    </select>
+					  </p>
+					  <!--分组用户显示-->
+					  <div id="pm_group_user_list"></div>
+					  <!--分组用户显示-->
+					</div>
+			  </div>
+			</td>
+          </tr>
+          <!--{if $buddy_list}-->
+          <tr>
+            <td align="right" valign="middle">好友群发：</td>
+            <td align="left" valign="middle">
+			<!--{loop $buddy_list $buddy}-->
+              <input type="checkbox" style="border:0" name="buddy_list[{$buddy[buddyid]}]" value="{$buddy['nickname']}">
+              <span title="{$buddy[description]}">{$buddy[nickname]}</span> &nbsp;
+              <!--{/loop}-->            </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td align="right" valign="top"><span valign="top">内容：</span></td>
+            <td align="left" valign="middle"><textarea cols="45" rows="8" name="message" datatype="LimitB" min="1" msg="内容不能为空"  class="text-area">{$message}</textarea>            </td>
+          </tr>
+          <tr>
+            <td align="right" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle"><input name="save_to_outbox" type="checkbox" id="outbox" value="1" style="border:0">
+              不发送，只保存到草稿箱中</td>
+          </tr>
+          <tr>
+            <td align="right" valign="middle">&nbsp;</td>
+            <td align="left" valign="middle"><button type="submit" id="#submit" class="save">发送</button></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <!--{if $pm}-->
+    <div style="border:1px solid #ccc;padding:5px;margin:5px;color:#484848;"><b>{$to_user}说:</b><br>
+      {$pm[message]}</div>
+    <!--{/if}-->
+	
+  </div>
+  </div>
+  <!--左边结束，右边开始-->
+  <!--{template "topic_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->

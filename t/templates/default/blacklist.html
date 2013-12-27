@@ -1,0 +1,68 @@
+<!--{template "topic_header"}-->
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+	 {template "topic_left.inc"}
+	<!--{/if}-->
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+
+	<div class="mainL">
+	  <div class="mblogTitle3"><b>黑名单</b></div>
+		<div class="searchBox">
+		 <span style="font-size:14px;">被加入黑名单的用户将无法关注你、评论你。也会自动解除你对他的关注。</span>
+		 <ul class="followList" style="padding:0;">
+		  <!--{if $total_record}-->共有{$total_record}位用户<!--{/if}-->
+		  <!--{if $member_list}-->
+		  <!--{loop $member_list $val}-->
+		  <li id="follow_user_{$val[uid]}">
+          <div class="fBox_l"><a href="index.php?mod={$val[username]}"><img onerror="javascript:faceError(this);" src="{$val[face]}" /></a></div>
+		  <div class="fBox_R" style=" margin-left:5px; line-height:18px;">
+		  <a href="index.php?mod={$val[username]}">{$val[nickname]}</a>
+		  <div><span> 关注{$val[follow_count]}人 | 粉丝{$val[fans_count]}人 | 微博 {$val[topic_count]} 条</span></div>
+          <!--{loop $topic_list $t_val}-->
+				  <!--{if $val[uid] == $t_val[uid]}-->
+					  <div style="color:#666;">最近更新：{$t_val[dateline]}{$t_val[tid]}  </div>
+					  <span><a href="index.php?mod=topic&code={$t_val[tid]}"><!--{if $t_val[content]}-->{$t_val[content]}<!--{/if}--></a></span>
+				  <!--{/if}-->
+			  <!--{/loop}-->
+		  </div>
+          
+			<!--拉黑-->
+			 <div class="fBox_R2">
+				<div class="blacklist">
+					他在你的黑名单里<br /><a href="javascript:void(0)" onclick="DelBlackListDialog({$val[uid]});"> [移出黑名单] </a>
+				</div> 
+			</div>
+			<!--拉黑-->
+
+			  
+			<div id="alert_follower_menu_{$val[uid]}"></div>
+		  </li>
+		  <!--{/loop}-->
+		   <!--{if $page_arr[html]}-->
+			<li>{$page_arr[html]}</li>
+		   <!--{/if}-->
+		  <!--{else}-->
+		  <li>
+			还没有人被你拉入黑名单呢。
+		  </li>
+		  <!--{/if}-->
+		 </ul>
+		</div>
+		
+		
+		
+	</div>
+	<!--{template "follow_right.inc"}-->
+</div>
+
+<!--{template "topic_footer"}-->
+
+

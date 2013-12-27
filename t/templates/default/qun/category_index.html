@@ -1,0 +1,142 @@
+{template "topic_header"}
+
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+  <div class="main3Box_m HotW">	
+    <div id="topNews_1" class="Hotwarp">
+	
+	<!--用户还没有加入任何微群的提示 Begin-->
+		<!--{if $join_qun_count === 0}-->
+			<div style=" border: solid 1px #F9F2A7; padding:10px; margin:10px; background:#FEFFE5; color:#333333">
+				你还没有加入任何微群呢。赶快加入到群里发言吧！
+			</div>
+		<!--{/if}-->
+  	<!--用户还没有加入任何微群的提示 End-->
+	
+	<div>
+	  <div class="n_s">
+	    <span class="group"><!--{eval if (!$qun_num) $qun_num = 0}-->{$qun_num}</span><span class="normal_f">个兴趣群</span>
+	    <span class="person"><!--{eval if (!$member_num) $member_num = 0}-->{$member_num}</span><span class="normal_f">个群成员</span>
+	    <span class="topic"><!--{eval if (!$thread_num) $thread_num = 0}-->{$thread_num}</span><span class="normal_f">个群话题</span>
+	  </div>
+	</div>
+	<div class="search_form">
+      <div class="srch_form lf">
+        <div class="srch_form_r rt"></div>
+        <div class="srch_form_l lf"></div>
+	    <form method="get" action="#" name="headSearchForm" id="headSearchForm" onsubmit="return ProfileSearch();">
+          <div class="srch_form_c lf">
+            <div class="srch_arrow">
+              <div class="srch_form_cr rt"></div>
+              <div class="srch_form_cl lf"></div>
+              <input id="ProfileSearchType" name="searchType" type="hidden" value="qun">
+              <input type="text" id="keywarod" name="headSearchValue"  maxlength="40" value="" class="font_14 txt_srch">
+            </div>
+          </div>
+          <a href="###" class="srch_btn lf" onclick="javascript:return ProfileSearch();">搜索</a> 
+	    </form>
+	  </div>
+	  <br></br>
+	</div>
+	
+	<div class="Menubox2" style="width:540px;">
+		<!--{if $nav_cat_ary}-->
+		<div class="r_q_l"><h3>推荐微群</h3></div>
+		<div class="r_q_r">
+		<ul id="cat_nav">
+			<!--{loop $nav_cat_ary $tcat}-->
+			<!--{if $tcat['qun_num'] > 0}-->
+			<li>
+				<div  class="tagn" id="nav_inner_$tcat['cat_id']">
+				<A HREF="javascript:;"  onclick="recommendQun($tcat['cat_id'])"><span>{$tcat['cat_name']}</span></A>
+				</div>
+			</li>
+			<!--{/if}-->
+			<!--{/loop}-->
+		</ul>
+		</div>
+		<!--{/if}-->
+	</div>
+<style type="text/css">
+    .r_q_l{ float:left;margin: -12px 0px;}
+	.r_q_r{ float:right;}
+	a.v_on{ color:#000; font-weight:700;}
+</style>
+      <div id="listTopicArea">
+	  
+	  	<!--简单显示 Bein-->
+		<div class="Listmain qun_list_b"  id="recdqun_wp"></div>
+		<!--简单显示 End-->
+		
+		<!--{if $this->Config['qun_setting']['tc_qun']}-->
+		<div class="Listmain qun_list_b">
+		  <div class="qun_list_bline">
+          <span style="float:left">同城微群</span>
+          <span style="float:right; margin-top:-5px;">
+            {$province_list}
+            <select id='tc_city' name="tc_city" onchange="tcityQun($('#tc_city').val());"></select>
+          </span>
+          </div>
+		  <div  id="tc_wq"></div>
+		</div>
+		<!--{/if}-->
+
+		<!--微群分类 Begin-->
+		<div class="Listmain qun_list_b">
+		<div id="cat_content_wp">
+			<!--{loop $top_cat_ary $key $top_cat}-->
+			<!--{if $activity_qun[$top_cat['cat_id']]}-->
+			<div class="t_a_q">
+			  <div class="qun_list_bline">
+			  <a href="index.php?mod=qun&code=category&cat_id={$top_cat['cat_id']}">{$top_cat['cat_name']}活跃群</a></div>
+			  <!--{loop $activity_qun[$top_cat['cat_id']] $value}-->
+				<div class="qun_block" style="width:250px;">
+					<div class="rbl">
+						<div class="img_wp">
+							<a href="index.php?mod=qun&qid={$value['qid']}"><img src="{$value['icon']}" title="$value['desc']"/></a>
+						</div>
+					</div>
+					<div class="rbr">
+					<span style="font-size:12px; font-weight:600;"><a href="index.php?mod=qun&qid={$value['qid']}">{$value['name']}</a></span>
+					<br />
+					<span style="color:#666">{$value['member_num']}人&nbsp;&nbsp;|&nbsp;&nbsp;{$value['thread_num']}条微博</span>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			  <!--{/loop}-->
+			  </div>
+			  <div style="text-align:right"><a href="index.php?mod=qun&code=category&cat_id={$top_cat['cat_id']}">查看全部{$top_cat['cat_name']}分类>></a></div>
+			  <!--{/if}-->
+			<!--{/loop}-->
+			<div style="clear:both"></div>
+		</div>
+		</div>
+		<!--微群分类 End-->
+		
+      </div>
+</div>
+
+<!--右边栏 Begin-->
+{template "qun/qun_right"}
+<!--右边栏 End-->
+<script language="javascript">
+<!--{if $first_cat_id>0}-->
+recommendQun({$first_cat_id});
+<!--{/if}-->
+<!--{if $this->Config['qun_setting']['tc_qun']}-->
+tcQun($('#tc_province').val());
+<!--{/if}-->
+</script>
+ 
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

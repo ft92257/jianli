@@ -1,0 +1,480 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename style_w2.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 99349962 1317755756 15048 $
+ *******************************************************************/
+
+
+/*微博上墙展示*/
+HTML {
+	OVERFLOW: auto
+}
+BODY {
+	OVERFLOW: auto
+}
+DIV {
+	OVERFLOW: hidden
+}
+BODY {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DIV {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TH {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DD {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+OL {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H1 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+PRE {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+INPUT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+TEXTAREA {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BLOCKQUOTE {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY {
+	TEXT-ALIGN: center; BACKGROUND-COLOR: #3a9dcd; FONT-FAMILY: MicroSoft YaHei,simHei,"黑体"; FONT-SIZE: 36px
+}
+DIV {
+	TEXT-ALIGN: left
+}
+TABLE {
+	FONT-SIZE: 12px
+}
+TD {
+	FONT-SIZE: 12px
+}
+TR {
+	FONT-SIZE: 12px
+}
+TH {
+	FONT-SIZE: 12px
+}
+LI {
+	LIST-STYLE-TYPE: none
+}
+TABLE {
+	MARGIN: 0px auto
+}
+IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: top; BORDER-LEFT-WIDTH: 0px
+}
+OL {
+	LIST-STYLE-TYPE: none
+}
+UL {
+	LIST-STYLE-TYPE: none
+}
+CAPTION {
+	TEXT-ALIGN: left
+}
+TH {
+	TEXT-ALIGN: left
+}
+H1 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H2 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H3 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H4 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H5 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H6 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+Q:before {
+	CONTENT: ''
+}
+Q:after {
+	CONTENT: ''
+}
+ABBR {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+ACRONYM {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+ADDRESS {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CAPTION {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CITE {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+CODE {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+DFN {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+EM {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+TH {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+VAR {
+	FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+A {
+	COLOR: #333; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #333; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #2a66c1; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #2a66c1
+}
+.left {
+	FLOAT: left
+}
+.right {
+	FLOAT: right
+}
+.cl {
+	ZOOM: 1
+}
+.cl:after {
+	DISPLAY: block; HEIGHT: 0px; CLEAR: both; CONTENT: ""
+}
+.clear {
+	LINE-HEIGHT: 0; DISPLAY: block; HEIGHT: 0px; CLEAR: both; FONT-SIZE: 0px
+}
+
+.microblog {
+	MARGIN: 0px auto; WIDTH: 920px
+}
+.topbox {
+	HEIGHT: 94px; OVERFLOW: hidden; PADDING-TOP: 25px
+}
+.vip IMG {
+	MARGIN-TOP: -5px; VERTICAL-ALIGN: middle
+}
+.phone IMG {
+	MARGIN-TOP: -5px; VERTICAL-ALIGN: middle
+}
+.custom P {
+	TEXT-ALIGN: center; LINE-HEIGHT: 84px; FONT-STYLE: italic; PADDING-LEFT: 130px; BACKGROUND: url(../images/wall/custom.png) no-repeat right center; HEIGHT: 84px; COLOR: #ffffff; FONT-SIZE: 52px; FONT-WEIGHT: bold; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/custom.png')
+}
+.custom P.customCon {
+	LINE-HEIGHT: 40px; FONT-SIZE: 30px
+}
+.topbox .custom {
+	WIDTH: 610px
+}
+.jishigouLogo {
+	LINE-HEIGHT: 300px; WIDTH: 290px; BACKGROUND: url(../../default/images/logo.png) no-repeat scroll 0 0 transparent; HEIGHT: 84px; MARGIN-LEFT: 10px; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/logo_w.png')
+}
+.partnerLogo {
+	TEXT-ALIGN: right; WIDTH: 540px; FLOAT: right; HEIGHT: 84px
+}
+.talkBg {
+	WIDTH: 920px; BACKGROUND: url(../images/wall/listBG.png) no-repeat; HEIGHT: 593px; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/listBG.png')
+}
+.DCont {
+	MARGIN: 19px auto 0px; WIDTH: 884px; HEIGHT: 555px; OVERFLOW: hidden
+}
+.talkList {
+	MARGIN: 19px auto 0px; WIDTH: 884px; HEIGHT: 555px; OVERFLOW: hidden
+}
+.LC LI {
+	BORDER-BOTTOM: #fdfdfd 1px solid; BORDER-LEFT: #fdfdfd 1px solid; PADDING-BOTTOM: 35px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; MARGIN-BOTTOM: 7px; BACKGROUND: url(../images/wall/listS.png) #320100 no-repeat center top; BORDER-TOP: #fdfdfd 1px solid; BORDER-RIGHT: #fdfdfd 1px solid; PADDING-TOP: 35px; -moz-border-radius: 6px; -webkit-border-radius: 6px
+}
+.DCont LI {
+	BORDER-BOTTOM: #fdfdfd 1px solid; BORDER-LEFT: #fdfdfd 1px solid; PADDING-BOTTOM: 35px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; MARGIN-BOTTOM: 7px; BACKGROUND: url(..images/wall/listS.png) #320100 no-repeat center top; BORDER-TOP: #fdfdfd 1px solid; BORDER-RIGHT: #fdfdfd 1px solid; PADDING-TOP: 35px; -moz-border-radius: 6px; -webkit-border-radius: 6px
+}
+.LC LI.limit {
+	PADDING-BOTTOM: 30px; PADDING-LEFT: 15px; PADDING-RIGHT: 15px; HEIGHT: 125px; OVERFLOW: hidden; PADDING-TOP: 24px
+}
+.userPic {
+	BORDER-BOTTOM: #5d5f7d 1px solid; BORDER-LEFT: #5d5f7d 1px solid; PADDING-BOTTOM: 3px; MARGIN-TOP: 5px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BACKGROUND: #ffffff; FLOAT: left; BORDER-TOP: #5d5f7d 1px solid; BORDER-RIGHT: #5d5f7d 1px solid; PADDING-TOP: 3px
+}
+.userPic IMG {
+	WIDTH: 100px; HEIGHT: 100px; OVERFLOW: hidden
+}
+.msgBox {
+	MARGIN: 0px 0px 0px 140px
+}
+.bigPicBox {
+	MARGIN: 0px 0px 0px 140px
+}
+.msgBox {
+	LINE-HEIGHT: 1.5em; FONT-WEIGHT: bold
+}
+.userName {
+	DISPLAY: inline; COLOR: #ffffff
+}
+.userName A {
+	DISPLAY: inline; COLOR: #ffffff
+}
+.msgCnt {
+	DISPLAY: inline; COLOR: #ffffff
+}
+.msgCnt A {
+	DISPLAY: inline; COLOR: #ffffff
+}
+.userName A {
+	LINE-HEIGHT: 1.5em; COLOR: #d0fc9b
+}
+.picWrap {
+	MARGIN: 10px 0px; CLEAR: both
+}
+.picBox {
+	PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; BACKGROUND: #71cef0; FLOAT: left; PADDING-TOP: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px
+}
+.msgCnt {
+	WORD-WRAP: break-word; WORD-BREAK: break-all
+}
+.msgBox {
+	WORD-WRAP: break-word; WORD-BREAK: break-all
+}
+.msgBox {
+	BORDER-BOTTOM: #b6b7b7 1px solid; BORDER-LEFT: #b6b7b7 1px solid; PADDING-BOTTOM: 8px; MARGIN: 10px 0px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; BORDER-TOP: #b6b7b7 1px solid; BORDER-RIGHT: #b6b7b7 1px solid; PADDING-TOP: 8px; -moz-border-radius: 5px; -webkit-border-radius: 5px
+}
+.LC LI.limit .mbPic IMG {
+	WIDTH: 120px; HEIGHT: 120px
+}
+.mbPic IMG {
+	BORDER-BOTTOM: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; PADDING-BOTTOM: 3px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FLOAT: right; BORDER-TOP: #cccccc 1px solid; CURSOR: pointer; BORDER-RIGHT: #cccccc 1px solid; PADDING-TOP: 3px; -moz-border-radius: 4px; -webkit-border-radius: 4px
+}
+.LC LI .mbPic {
+	DISPLAY: none
+}
+.LC LI.pic .mbPic {
+	DISPLAY: none
+}
+.LC LI.zb .mbPic {
+	DISPLAY: none
+}
+.LC LI.limit .mbPic {
+	MARGIN: 5px 0px 0px 10px; WIDTH: 130px; DISPLAY: block; FLOAT: right; HEIGHT: 130px
+}
+.control_area {
+	POSITION: relative; MARGIN: 0px auto; WIDTH: 910px
+}
+.control_area .bg {
+	POSITION: absolute; FILTER: alpha(opacity=30); WIDTH: 100%; BACKGROUND: #ffffff; HEIGHT: 100%; TOP: 0px; LEFT: 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; opacity: 0.3
+}
+.undis {
+	MARGIN-TOP: 45px; BACKGROUND: url(../images/wall/tools-undis.png) no-repeat center top; HEIGHT: 11px; CURSOR: pointer; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/tools-undis.png')
+}
+.dis {
+	BACKGROUND: url(../images/wall/tools-undis.png) no-repeat center top; HEIGHT: 61px; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/tools-undis.png')
+}
+.dis A {
+	Z-INDEX: 3; POSITION: relative; LINE-HEIGHT: 300px; MARGIN: 8px 15px 0px; WIDTH: 104px; DISPLAY: block; BACKGROUND: url(../images/wall/button.png) no-repeat; FLOAT: left; HEIGHT: 37px; OVERFLOW: hidden; CURSOR: pointer; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/control-btn-d.png')
+}
+.rightControl A {
+	Z-INDEX: 3; POSITION: relative; LINE-HEIGHT: 300px; MARGIN: 8px 15px 0px; WIDTH: 104px; DISPLAY: block; BACKGROUND: url(../images/wall/button.png) no-repeat; FLOAT: left; HEIGHT: 37px; OVERFLOW: hidden; CURSOR: pointer; _background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/control-btn-d.png')
+}
+.dis A.vote {
+	BACKGROUND-POSITION: 0px -42px
+}
+.dis A.start {
+	TEXT-ALIGN: center; LINE-HEIGHT: 36px; WIDTH: 86px; BACKGROUND-POSITION: 0px -84px; FLOAT: right; COLOR: #ffffff; FONT-SIZE: 22px; FONT-WEIGHT: bold
+}
+.dis A.pre {
+	TEXT-ALIGN: center; LINE-HEIGHT: 36px; WIDTH: 86px; BACKGROUND-POSITION: 0px -84px; FLOAT: right; COLOR: #ffffff; FONT-SIZE: 22px; FONT-WEIGHT: bold
+}
+.dis A.next {
+	TEXT-ALIGN: center; LINE-HEIGHT: 36px; WIDTH: 86px; BACKGROUND-POSITION: 0px -84px; FLOAT: right; COLOR: #ffffff; FONT-SIZE: 22px; FONT-WEIGHT: bold
+}
+DIV.rightControl {
+	POSITION: relative; MARGIN: 0px auto; WIDTH: 920px; HEIGHT: 0px; OVERFLOW: visible
+}
+.rightControl UL {
+	POSITION: absolute; BOTTOM: 10px; RIGHT: -155px
+}
+.rightControl A {
+	POSITION: static; WIDTH: 100px; HEIGHT: 106px; CLEAR: both
+}
+.rightControl A.vote {
+	BACKGROUND-POSITION: 2px -125px
+}
+.rightControl A {
+	BACKGROUND-POSITION: 2px -233px
+}
+.rightControl A.pre {
+	BACKGROUND-POSITION: 2px -341px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/up.png')
+}
+.rightControl A.next {
+	BACKGROUND-POSITION: 2px -447px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/down.png')
+}
+.rightControl A.start {
+	BACKGROUND-POSITION: 0px -560px; HEIGHT: 100px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/play.png')
+}
+.rightControl A.pause {
+	BACKGROUND-POSITION: 0px -667px; HEIGHT: 100px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=crop,src='../images/wall/pause.png')
+}
+.D .bg {
+	POSITION: absolute; WIDTH: 100%; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.D .bg .bgCover {
+	FILTER: alpha(opacity=60); MARGIN: 0px auto; WIDTH: 1280px; BACKGROUND: #000000; HEIGHT: 768px; opacity: 0.6
+}
+.D .CR {
+	POSITION: absolute; MARGIN: 119px 0px 0px -460px; WIDTH: 920px; TOP: 0px; LEFT: 50%
+}
+.D .DWrap {
+	WIDTH: 920px; HEIGHT: 593px
+}
+.DWrap LI {
+	HEIGHT: 482px; MARGIN-LEFT: -15px; FONT-SIZE: 36px
+}
+.imgPopup {
+	Z-INDEX: 10006; POSITION: absolute; TEXT-ALIGN: center; WIDTH: 100%; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.blockLayer {
+	Z-INDEX: 10001; POSITION: absolute; FILTER: (opacity=70); WIDTH: 100%; BACKGROUND: #000000 0px 0px; HEIGHT: 100%; TOP: 0px; LEFT: 0px; opacity: 0.7
+}
+.imgPopup .bigPicBox {
+	TEXT-ALIGN: center; BORDER-LEFT: #b6b7b7 1px solid; MARGIN: 0px auto; MIN-HEIGHT: 125px; HEIGHT: auto !important; PADDING-TOP: 139px; _height: 125px
+}
+.bigPicBox IMG {
+	Z-INDEX: 10003; BORDER-BOTTOM: #b6b7b7 1px solid; POSITION: relative; TEXT-ALIGN: center; BORDER-LEFT: #b6b7b7 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; MAX-WIDTH: 725px; BORDER-TOP: #b6b7b7 1px solid; BORDER-RIGHT: #b6b7b7 1px solid; PADDING-TOP: 2px; -moz-border-radius: 5px; -webkit-border-radius: 5px
+}
+.luck INPUT {
+	POSITION: relative; BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; TEXT-INDENT: -9999px; MARGIN: 10px auto 0px; WIDTH: 162px; DISPLAY: block; BORDER-TOP-STYLE: none; HEIGHT: 47px; BORDER-LEFT-STYLE: none; OVERFLOW: hidden; CURSOR: pointer
+}
+
+.luck A:hover {
+	TEXT-DECORATION: none
+}
+.talkBox {
+	POSITION: relative; WIDTH: 920px; HEIGHT: 540px; OVERFLOW: hidden
+}
+.talkBox TABLE {
+	HEIGHT: 540px; VERTICAL-ALIGN: middle
+}
+.talkBox .ing {
+	VERTICAL-ALIGN: top
+}
+.talkBox TD {
+	FONT-SIZE: 38px
+}
+.talkBox .talkList {
+	MARGIN: 0px auto; HEIGHT: auto
+}
+.talkBox LI {
+	POSITION: relative
+}
+
+.pubInfo {
+	DISPLAY: none
+}
+.LC LI.limit .picWrap {
+	DISPLAY: none
+}
+.DWrap .DTitle {
+	DISPLAY: none
+}
+.DWrap .DClose {
+	DISPLAY: none
+}
+.DWrap .DLoad {
+	DISPLAY: none
+}
+.undis A {
+	DISPLAY: none
+}
+.LC LI {
+	_float: left; _width: 854px; _background-position: left top
+}
+.msgBox {
+	_float: left; _margin: 0px 0px 0px 20px
+}
+
+@media Unknown    
+{
+.msgBox {
+	MARGIN-RIGHT: -100px
+}
+
+}
+
+
+.wrapperSize1024,.wrapperSize1280{ background-image:url(../images/wall/bg.jpg);}
+.userName a{ color:#f9f09d;} 
+.LC li, .DCont, .DCont li{ background-image:url(../images/wall/listS.png); border-color:#bdf8fc;}
+.DCont .picBox{ background:#00bdb6;} 
+body{ background-color:#3A9DCD;}
+.topbox .custom,.topbox .jishigouLogo{ float:left;}
+.custom p{ font-size:35px; padding-left:50px;}
+.userName strong{ color:#D0FC9B;}
+.LC{MARGIN: 19px auto 0px; WIDTH:884px; HEIGHT:555px; OVERFLOW: hidden;}
+.LC .click_w1{ height:465px; font-size:60px; width:852px; position:absolute; top:157px; overflow:hidden;}
+
+.leftDD{ width:160px; height:585px; position:absolute; top:120px; left:20px; overflow:hidden;}
+.rightDD{width:160px; height:585px; position:absolute; top:120px; right:20px; overflow:hidden;}
+
+
+.msgBox {border:none;margin:0;padding:0 20px;}

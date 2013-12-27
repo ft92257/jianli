@@ -1,0 +1,61 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>1、下面积分等级是根据用户的总积分值计算的，<a href="admin.php?mod=setting&code=modify_credits"><b>请点此进行设置总积分规则</b></a>。</li>
+			<li>2、如果已经启用积分，具体的积分规则<a href="admin.php?mod=setting&code=list_credits_rule"><b>请点此进行设置</b></a>。</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings" action="admin.php?mod=setting&code=do_experience">
+
+<!--     <table width="100%" align="center" cellpadding="4" cellspacing="1" class="tableborder">
+      <tr class="header">
+        <td width="2%">&nbsp;</td>
+        <td colspan="2">添加积分等级</td>
+      </tr>
+      {loop $slide_list $k $slide}
+      {/loop}
+  <tr>
+    <td>&nbsp;</td>
+    <td width="17%">等级：
+      <input name="slide_new[0][level]" type="text" id="slide_new[0][level]" value="" />
+        <br /></td>
+    <td width="81%">积分要求：
+      <input name="slide_new[0][start_credits]" type="text" id="slide_new[0][start_credits]" value="" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" class="button" name="settingsubmit2" value="添加等级" /></td>
+    <td>&nbsp;</td>
+  </tr>
+    </table> -->
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header"> 
+            <td colspan=2>积分等级设置</td>
+		</tr>
+        {loop $slide_list $k $slide}
+		<tr>
+          <td width="17%" valign="top">LV
+            <input type="text" name="slide[list][{$k}][level]" value="{$slide[level]}" style="width:20px; height:15px;"/>
+          <br /></td>
+          <td  valign="top">起始积分值：
+              <input type="text" name="slide[list][{$k}][start_credits]" value="{$slide[start_credits]}" style="width:80px; height:15px;" /></td>
+<!--           <td width="37%" valign="top">&nbsp;</td>
+            <td valign="top"><input type="text" name="slide[list][{$k}][order]" value="{$slide[order]}" size="5" /></td> 
+ -->		</tr>
+		 {/loop}
+		<tr>
+		  <td colspan=2 valign="center"><center><input name="settingsubmit" type="submit" class="button" id="settingsubmit" value="提交设置" />（提示：如需取消等级，将等级值设为空，然后提交即可）</center></td>
+	  </tr>
+	</table>
+	<center>
+	</center><br />
+</form>

@@ -1,0 +1,406 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+
+<div class="mainL">
+	<div class="mblogTitle3"><b>找人</b></div>
+	<div class="Menubox2" style="width:540px;">
+	<ul>
+	<!--{loop $act_list $key $val}-->
+	<!--{eval $_hoverCLS = ($key==$act ? ' class="tago" ' : 'class="tagn"');}-->
+	<!--{if !is_array($val)}-->
+	<li><div {$_hoverCLS}><A HREF="index.php?mod=profile&code={$key}"><span>{$val}</span></A></div></li>
+	<!--{else}-->
+	<li><div {$_hoverCLS}><A HREF="index.php?mod={$val[link_mod]}&code={$val[link_code]}"><span>{$val[name]}</span></A></div></li>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</ul>
+	</div>
+<div class="set_warp" style="width:540px;">
+<!--{if 'search'==$act}-->
+<div class="oneCity">
+  <form method="GET" name="profile_base" action="index.php" onSubmit="return Validator.Validate(this,3);">
+    <p>
+	  {$province_list}
+      <select id="city" name="city" onchange="changeCity();">
+        <option value="0">请选择</option>
+	  </select>
+      <select id="area" name="area" onchange="changeArea();" style="display:none">
+        <option value="0">请选择</option>
+	  </select>
+      <select id="street" name="street" style="display:none">
+        <option value="0">请选择</option>
+	  </select>
+    </p>
+	<p>
+      <input type="submit" class="shareI" value="搜索"/>
+      <input type="hidden" name="mod" value="profile" />
+      <input type="hidden" name="code" value="search" />
+    </p>
+  </form>
+  <input type="hidden" id="hid_city" name="hid_city" value="$hid_city">
+  <input type="hidden" id="hid_area" name="hid_area" value="$hid_area">
+  <input type="hidden" id="hid_street" name="hid_street" value="$hid_street">
+</div>
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var selectOption={eval load::functions('area');echo area_config_to_json();};
+});
+
+function changeProvince(){
+  var province = document.getElementById("province").value;
+  var hid_city = document.getElementById("hid_city").value;
+  var url = "ajax.php?mod=member&code=sel&type=top&province="+province + "&hid_city="+hid_city;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+	  		    $('#' + "city").html(d);
+	  		    document.getElementById('area').length = 1;
+	  		    document.getElementById('street').length = 1;
+				changeCity();
+		  	}
+  );
+}
+changeProvince();
+function changeCity(){
+  var province = document.getElementById("province").value;
+  var city = document.getElementById("city").value;
+  document.getElementById("area").style.display = '';
+  var hid_area = document.getElementById("hid_area").value;
+  
+  if(city){
+    var url = "ajax.php?mod=member&code=sel&type=top&city="+city+"&hid_area="+hid_area;
+    var myAjax=$.post(
+		  	url,
+		  	function(d){
+				if(d){
+					document.getElementById("area").style.display = "block";
+		  		    $('#' + "area").html(d);
+					changeArea();
+				}else{
+					document.getElementById("street").style.display = "none";
+					document.getElementById("area").style.display = "none";
+					
+					document.getElementById("hid_city").value = '';
+					document.getElementById("hid_area").value = '';
+					document.getElementById("hid_street").value = '';
+				}
+		  	}
+  );
+  }else{
+		document.getElementById("street").style.display = "none";
+		document.getElementById("area").style.display = "none";
+		
+		document.getElementById("hid_city").value = '';
+		document.getElementById("hid_area").value = '';
+		document.getElementById("hid_street").value = '';
+  }
+}
+function changeArea(){
+  var area = document.getElementById("area").value;
+  var hid_street = document.getElementById("hid_street").value;
+  if(area){
+	  var url = "ajax.php?mod=member&code=sel&type=top&area="+area+"&hid_street="+hid_street;
+	  var myAjax=$.post(
+			  	url,
+			  	function(d){
+					if(d){
+						document.getElementById("street").style.display = "block";
+					    $('#' + "street").html(d);
+					}else{
+						document.getElementById("street").style.display = "none";
+					}
+			  	}
+	  );
+  }else{
+	  document.getElementById("street").style.display = "none";
+  }
+  document.getElementById("hid_city").value = '';
+  document.getElementById("hid_area").value = '';
+  document.getElementById("hid_street").value = '';
+}
+</script>
+   <!--{if $member_list}-->
+   <p class="p_tip">找到 {$total_record}人在<span class="fontRed">{$province_name}&nbsp;{$city_name}&nbsp;{$area_name}&nbsp;{$street_name}&nbsp;(<A HREF="index.php?mod=settings">修改</A>)</span></p>
+	<ul class="followList" style="padding:0">
+	<!--{loop $member_list $val}-->
+    <li>
+        <div class="fBox_l ">
+		  <img onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()" onerror="javascript:faceError(this);" src="{$val[face]}" width="50px" height="50px;"/>
+        </div>
+	    <div id="user_{$val[uid]}_user" class="layS"></div>
+        <div class="fBox_R ">
+			<a href="index.php?mod={$val[username]}" target="_blank" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}{$val[validate_html]}</a>
+			<span style="color:#666">{$val[from_area]}</span>
+			<div>被<span style="color:#ff0000;">{$val[fans_count]}</span>人关注 | 微博 <span style="color:#ff0000;">{$val[topic_count]}</span> 条</div>
+		 	<!--{loop $topic_list $t_val}-->
+		 	<!--{if $val[uid] == $t_val[uid]}-->
+		 		<div style="color:#666">最近更新：{$t_val[dateline]}{$t_val[tid]}</div>
+		 		<span><a href="index.php?mod=topic&code={$t_val[tid]}"><!--{if $t_val[content]}-->{$t_val[content]}<!--{/if}--></a></span>
+		 	<!--{/if}-->
+			<!--{/loop}-->
+     	</div>
+	   		<!--{if MEMBER_ID!=$val[uid] && $val[follow_html]}-->
+        		<div class="fBox_R2">{$val[follow_html]}</div>
+    		<!--{/if}-->
+   	 </li>
+		<div id="Pmsend_to_user_area" style="width:430px;"></div>
+		<div id="alert_follower_menu_{$val[uid]}"></div>
+		<span id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></span>
+		<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+	<!--{/loop}-->
+		<!--{if $page_arr[html]}-->
+        <li>{$page_arr[html]}</li>
+        <!--{/if}-->
+	</ul>
+
+	<!--{else}-->
+	<br />
+	暂无符合条件的用户；<BR />
+	你可尝试通过<A HREF="index.php?mod=profile&code=invite">邀请好友</A>功能，邀请站外朋友加入。
+	<!--{/if}-->
+
+ <!--{elseif 'maybe_friend'==$act}-->
+	<div class="oneCity">
+		<form method="GET" name="profile_base" action="index.php" onSubmit="return Validator.Validate(this,3);">
+			<input type="hidden" name="mod" value="search" />
+			<input type="hidden" name="code" value="tag" />
+			<p>
+			<input name="tag" value="" type="text" class="p1 iip2" width="60px"  />
+			<input type="submit" class="shareI" value="按话题"/></p>
+		</form>
+	</div>
+<p>这里显示与你关注同样<a href="index.php?mod=tag" target="_blank">话题</a>、并且你还未关注的人；</p>
+<!--{if $member_list}-->
+	<ul class="followList"  style="padding:0">
+	<!--{loop $member_list $val}-->
+		<li class="pane">
+			<div class="fBox_l "><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></div>
+			<div id="user_{$val[uid]}_user"></div>
+			<div class="fBox_R ">
+				<span class="name"><a href="index.php?mod={$val[username]}"  onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a>{$val[validate_html]}(@{$val[nickname]})</span>
+				<div class="fBox_R"> 被<span style="color:#ff0000;">{$val[fans_count]}</span>人关注 | 微博<span style="color:#ff0000;">{$val[topic_count]}</span>条</div>
+				<div>他关注的话题：
+					<!--{loop $user_favorite $v}-->
+						<!--{if $val[uid] == $v[uid]}-->
+							<span><a href="index.php?mod=tag&code={$v[tag]}">{$v[tag]}</a> |</span>
+						<!--{/if}-->
+					<!--{/loop}-->
+				</div>
+			</div>
+			<div class="fBox_R2" style="width:50px;">
+				<!--{if MEMBER_ID!=$val[uid] && $val[follow_html]}-->
+					{$val[follow_html]}
+				<!--{elseif MEMBER_ID==$val[uid]}-->
+					（这是我自己）
+				<!--{/if}-->
+			</div>
+		</li>
+		<div id="Pmsend_to_user_area" style="width:430px;"></div>
+		<div id="alert_follower_menu_{$val[uid]}"></div>
+		<span id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></span>
+		<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+	<!--{/loop}-->
+	</ul>
+<!--{else}-->
+<div class="oneCity">
+暂时没有（查看所有<a href="index.php?mod={$member[username]}&code=follow" target="_blank">我关注的</a>人）。<BR /><BR />
+你可以先访问<a href="index.php?mod=tag" target="_blank">话题</a>页，查找感兴趣的话题并予以关注，然后再访问此页面；<BR/>
+或者直接访问<a href="index.php?mod=topic&code=top" target="_blank">达人榜</a>，关注网站达人们。
+</div>
+<!--{/if}-->
+
+<!--{elseif 'usertag'==$act}-->
+<p>系统根据你的个性标签为你推荐同类人（<A HREF="index.php?mod=user_tag">设置标签</A>），你也可以用搜索框查找。</p>
+<div style="margin: 20px 0 0 0">
+<form method="GET" name="profile_base" action="index.php" onSubmit="return Validator.Validate(this,3);">
+  <span>输入标签：</span> 
+  <span><input name="usertag" value="" type="text" class="p1" /></span>
+  <span><input type="submit" class="shareI" value="搜 索"/></span>
+  <input type="hidden" name="mod" value="search" />
+  <input type="hidden" name="code" value="usertag" />
+</form>
+<p style="margin: 0 0 0 63px; color:#666;">输入你的兴趣标签，找到更多同类。如：音乐</p>
+</div>
+<!--{if $member_list}-->
+<p>&nbsp;</p>
+	<div class="TopicMan">
+	<div class="nfTagB">
+		<ul>
+			<li class="current"><span>我的标签</span></li>
+		</ul>	
+		<div class="clear"></div>
+	</div>
+	
+	<div class="nfBox">
+			  <div>
+				  <!--{loop $mytag $my_val}-->
+				  <span  style="float:left; padding:3px; white-space:nowrap"><a href="index.php?mod=search&code=usertag&usertag={$my_val[tag_name]}">{$my_val[tag_name]}</a></span>
+				  <!--{/loop}-->
+			  </div>
+			  <div class="clear"></div>
+		</div>
+</div>
+
+ <ul class="followList" style="padding:0">
+  <!--{loop $member_list $val}-->
+  <li>
+	<div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></div>
+	<div id="user_{$val[uid]}_user"></div>
+	<div class="fBox_R">
+	  <span>
+	  <a href="index.php?mod={$val[username]}"  onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a> 
+	  <!--{if $val[validate]}--><img src="./images/vip.gif"/><!--{/if}--> 
+	  <a href="javascript:void(0)" onclick="follower_choose({$val[uid]},'{$val[nickname]}','at','');">(@{$val[nickname]})</a>
+	  </span>
+	</div>
+	<div class="fBox_R">被<span style="color:#ff0000;">{$val[fans_count]}</span>人关注 | 微博 <span style="color:#ff0000;">{$val[topic_count]}</span>条</div>
+
+	<div class="fBox_R2">
+	  <!--{if MEMBER_ID!=$val[uid] && $val[follow_html]}-->
+	  {$val[follow_html]}
+	  <!--{elseif MEMBER_ID==$val[uid]}-->
+	  <!--{/if}-->
+    </div>
+	
+	<div class="fBox_R">
+	<!--{loop $member_tag $mb_val}-->
+	<!--{if $val[uid] == $mb_val[uid]}-->
+	<span style="float:left; padding:3px; white-space:nowrap">
+		<a href="index.php?mod=search&code=usertag&usertag={$mb_val[tag_name]}">
+		<!--{if in_array($mb_val[tag_id],$user_tagid)}-->
+		<span style="color:#FF0000;word-wrap: break-word; word-break: normal; ">{$mb_val[tag_name]}</span> | 
+		<!--{else}-->
+		{$mb_val[tag_name]} | 
+		<!--{/if}-->
+		</a>
+	</span>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</div>
+
+	<div id="Pmsend_to_user_area" style="width:430px;"></div>
+	<div id="alert_follower_menu_{$val[uid]}"></div>
+	<span id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></span>
+	<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+  </li>
+  <!--{/loop}-->
+
+  <!--{if $page_arr[html]}-->
+  <li>{$page_arr[html]}</li>
+ <!--{/if}-->
+</ul>
+<!--{else}--> 
+<br />
+暂无符合条件的用户；<BR />
+<!--{/if}-->
+
+<!--{elseif 'share'==$act}-->
+<div class="friends textB">
+<li>
+<p class="vshare"><img src="images/shareB.gif" border="0" />将其他网页内容分享到{conf site_name}（复制下面代码，粘贴到其他网页源码中）</p>
+<textarea id="inviteURL1" type="text"  value="" onclick="copyText(this.value);"><a title="分享到{conf site_name}" href="javascript:var d=document,w=window,f='{conf site_url}',l=d.location,e=encodeURIComponent,p=''+e(l.href)+'&t='+e(d.title);if(!w.open(f+'/index.php?mod=share&code=share&url='+p,'','toolbar=0,status=0,width=500,height=400')){l.href=f+'.new'+p;}void(0)"><img src="
+            {conf site_url}/images/shareB.gif" border="0" />分享到{conf site_name}</a>
+</textarea>
+<input type="button" class="save frr" value="复制链接" onclick="copyText($('#inviteURL1').val());" />
+</li>
+</div>
+<!--{elseif 'invite'==$act}-->
+<!--{if $can_invite_count<1}-->
+您的{$this->Config['invite_count_max']}个邀请名额已经用完，暂时不能再邀请好友了。
+<!--{else}-->
+邀请好友是有限制的，您还可以邀请 <span class="fontRed">{$can_invite_count}人 </span>，可在下面看到已发邀请的相关信息。<BR /> 
+通过你邀请加入的朋友，将与你自动相互关注（查看所有正在<a href="index.php?mod={$member[username]}&code=fans" target="_blank">关注我的</a>人）。
+<div class="friends textB">
+<span>方法一：根据情况复制下面的邀请内容，通过QQ、MSN、网站等发给你的朋友<br />
+注意：以下邀请链接每次最多可邀请{$this->Config[invite_enable]}人，达到{$this->Config[invite_enable]}人后邀请即自动失效</span>
+<textarea id="invite_url" type="text" onclick="copyText($(this).val());">
+<!--{if !empty($invite_msg)}-->
+{$invite_msg}
+<!--{else}-->
+想体验最酷、最火的即时微博服务吗？
+	欢迎在内测期加入【{$this->Config[site_name]}】做‘创始元老’，即可随时随地的记录生活、分享见闻，更可自由关注人物和话题的动态，与朋友保持联络；内测邀请{$inviteURL}（限{$this->Config[invite_enable]}人）
+<!--{/if}-->
+</textarea>
+<input type="button" class="save frr" value="复制链接" onclick="copyText($('#invite_url').val());" />
+</div>
+
+<div class="friends textB">
+<form method="POST" action="index.php?mod=profile&code=invite_by_email" onsubmit="return Validator.Validate(this,3);">
+<span>方法二：直接在下面输入朋友的邮箱地址，系统将自动通过邮件发邀请<br />
+注意：多个邮箱地址需用;分隔开，最多不超过10个。</span>
+<input dataType="LimitB" min="6" max="300" msg="请将长度控制在6~300个字符之间" name="inviteEmail" type="text" class="p1" style="width:400px; height:40px; padding:5px; margin-bottom:5px; margin-top:10px;" />&nbsp;<input type="submit" class="save frr" value="发送邀请" />
+</form>
+</div>
+<br />
+<!--{/if}-->
+
+<a id="MIL"></a>
+已发送 <span class="fontRed">{$my_invite_count}个</span> 邀请
+<!--{if $my_invite_count}-->
+<table width="100%" border="0" class="table_1">
+<!--{loop $invite_list $val}-->
+<tr>
+	<td width="60" class="t1">
+	<!--{if $val[fusername]}-->
+	<a href="index.php?mod={$val[fusername]}"><img onerror="javascript:faceError(this);" src="{$val[face]}" width="50" height="50"/></a> 
+	<!--{/if}-->
+	</td>
+	<td  class="t1">
+	<p><span class="fontGreen">
+	<!--{if $val[fusername]}-->
+	<a href="index.php?mod={$val[fusername]}">{$val[fusername]}</a>
+	<!--{/if}-->
+	<!--{if $val[femail]}-->&lt;{$val[femail]}&gt;<!--{/if}-->
+	</span></p>
+	<!--{if $val[fusername]}-->
+	<p><span>$val['from_area']</span></p>
+	<p><span>粉丝{$val[fans_count]}人 | {$val[topic_count]}条微博</span></p>
+	<!--{/if}-->
+	</td>
+	<td width="120" class="t1">
+	<!--{if $val[fuid] || ($val[dateline]+600)>time()}-->
+		<!--{eval $tm=my_date_format($val[dateline],'Y-m-d H:i');}-->
+		{$tm}
+		<!--{if $val[fuid] && $val[follow_html]}-->
+			<br />{$val[follow_html]}	
+		<!--{/if}-->
+	<!--{elseif $val[femail]}-->
+	<a href="index.php?mod=profile&code=invite_by_email&inviteEmail={$val[femail]}">重新发送邀请？</a>
+	<!--{elseif !$val[fuid]}-->
+		邀请已发送，等待其注册
+	<!--{/if}-->
+	</td>
+</tr>
+<!--{/loop}-->
+<!--{if $page_arr[html]}-->
+<tr>
+<td colspan="3">{$page_arr[html]}</td>
+</tr>
+<!--{/if}-->
+</table>
+<!--{/if}-->
+<!--{/if}-->
+</div>
+</div>
+<!--{template "follow_right.inc"}-->
+</div>
+</div>
+<style type="text/css">
+.mainL{ _overflow:hidden}.textB textarea{ width:400px; height:80px;}
+.followList li .fBox_l{ margin:2px 5px 0 1px;}
+.followList li .fBox_R{ width:365px; margin:0 0 0 5px; line-height:18px;}
+.followList li .fBox_R2{ width:100px; overflow:hidden;}
+</style>
+<!--{template "topic_footer"}-->

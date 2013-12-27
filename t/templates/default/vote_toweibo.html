@@ -1,0 +1,9 @@
+<!--{eval if(empty($__handle_key) && !empty($this->Get['handle_key']))$__handle_key='_'.$this->Get['handle_key'];}-->
+<!--返回对话框 Begin-->
+	<div class="dialog_inner">
+		<!--{if !empty($msg)}-->
+			<div id="vote_tips{$__handle_key}" class="vote_success">{$msg}</div>
+		<!--{/if}-->
+		{template 'topic_simple_publish'}
+	</div>
+<!--返回对话框 End-->

@@ -1,0 +1,240 @@
+{template "topic_header"}
+<link href="templates/default/styles/live.css" rel="stylesheet" type="text/css" />
+<div class="main {$t_col_main}">
+<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+<!--{if $live[image]}-->
+<img src='{$live[image]}' width='1000' height='120'>
+<!--{else}-->
+<img src='images/live_banner.png' width='1000' height='120'>
+<!--{/if}-->
+<!--{/if}-->
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main3Box_m HotW ">
+<!--{if MEMBER_STYLE_THREE_TOL != 1}-->
+<!--{if $live[image]}-->
+<img src='{$live[image]}' width='800' height='100'>
+<!--{else}-->
+<img src='images/live_bg.jpg' width='800' height='100'>
+<!--{/if}-->
+<!--{/if}-->
+<div id="topNews_1" class="Hotwarp">
+<!--{if MEMBER_ID < 1}-->
+<center><b>登录后，就可以与主持人或嘉宾进行互动，我要&nbsp;<a href="javascript:viod(0)" rel="nofollow" title="快速登录" onclick="ShowLoginDialog(); return false;">登录</a></b></center>
+<!--{else}-->
+<!--{if $live['status_css'] == 'ico_notyet' || $live['status_css'] == 'ico_ongoing'}-->
+<style>
+#topNews_1 .issueBox{background:url(templates/default/images/issueBg2.jpg) no-repeat;margin-left:-20px;margin-right:-10px;}
+#topNews_1 .issueBox .box_1{*margin-left:10px;}
+</style>
+<!--{template "topic_publish"}-->
+<!--{/if}-->
+<!--{/if}-->
+<div class="Menubox2" style="width:540px;margin-top:5px;overflow:hidden">
+<script language="Javascript">
+function listTopic( s , lh ) {	
+	var s = 'undefined' == typeof(s) ? 0 : s;
+	var lh = 'undefined' == typeof(lh) ? 1 : lh;
+	if(lh) {
+		window.location.hash="#listTopicArea";
+	}
+    $("#listTopicMsgArea").html("<div><center><span class='loading'>内容正在加载中，请稍候……</span></center></div>");
+	var myAjax = $.post(
+		"ajax.php?mod=app&code=list_topic",
+		{
+			<!--{loop $params $k $v}-->
+			{$k}:"{$v}",
+			<!--{/loop}-->
+			start:s
+		},
+		function (d) {
+			$("#listTopicMsgArea").html('');
+			$("#listTopicArea").html(d);
+		}
+	); 
+}
+</script>
+<ul>
+<!--{eval if($ltype == 'h') $h_css= 'tago';else $h_css = 'tagn';}-->
+<li><div class="{$h_css}"><a href="index.php?mod=live&code=view&id={$live[lid]}&list=h" title="直播{$live['banner']}"><span>直播{$live['banner']}</span></a></div></li>
+<!--{eval if($ltype == 'g') $g_css= 'tago';else $g_css = 'tagn';}-->
+<li><div class="{$g_css}"><a href="index.php?mod=live&code=view&id={$live[lid]}&list=g" title="网友热议"><span>网友热议</span></a></div></li>
+<li>（共{$topic_count}条微博）</li>
+</ul>
+</div>
+<div class="listBox">
+<div id="ajax_reminded"></div>
+<!--微博列表 Begin-->
+<div id="listTopicMsgArea"></div>
+<div id="listTopicArea">
+<div class="Listmain">
+<!--{if $topic_list}-->
+<!--{loop $topic_list $val}-->
+<!--{eval $counts++;}-->
+<div class="feedCell" id="topic_list_{$val[tid]}">
+<!--{subtemplate topic_item_ajax}-->
+</div>
+<!--{/loop}-->
+<!--{if $page_arr[html]}--><div class="pageStyle"><li>{$page_arr[html]}</li></div><!--{/if}-->
+<!--{/if}-->
+</div>
+{eval echo $this->js_show_msg();}
+</div>
+<!--微博列表 End-->
+</div>
+</div>
+<!--右边栏目 Begin-->
+<div class="Hotright">
+<div class="HboxR">
+<div class="live_line"><span><a class="ico_recommed" href="javascript:void(0)"  onclick="showMainPublishBox('design','live','{$live[lid]}');">推荐给朋友</a></span>直播时间</div>
+<div class="time_liveShowWrap clearFix">
+<div class="status_lf"><span class="{$live[clock_css]}"></span><span class="ico_status {$live[status_css]}">{$live[status]}</span></div>
+<div class="time_rt">
+<p class="date_ls">{$live[date]}</p><p class="time_ls">{$live[time]}</p>
+<p><a id='btn_css' href="javascript:void(0)" class="btn_tm_show {$live[btn_css]}" onclick="showMainPublishBox('{$live[btn_css]}','live','{$live[lid]}');">我要{$live[str]}</a></p>
+</div>
+</div>
+</div>
+<div class="HboxR">
+	<div class="live_line live_top">直播简介</div>
+	<ul class="sideul2">{$live[description]}</ul>
+</div>
+<div class="HboxR">
+	<div class="live_line live_top">主持人</div>
+	<ul class="followList act_ul">
+	<!--{loop $live[host] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention_del"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->		  
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>个人介绍</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<div class="HboxR">
+	<div class="live_line live_top">重要嘉宾</div>
+	<ul class="followList act_ul">
+	<!--{loop $live[guest] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention_del"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>嘉宾介绍</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<!--{if $live[media]}-->
+<div class="HboxR">
+	<div class="live_line live_top">合作媒体</div>
+	<ul class="followList act_ul">
+	<!--{loop $live[media] $user}-->
+	  <li class="pane">
+  	    <div class="fBox_l">
+  	        <a href="index.php?mod={$user[username]}" title="{$user[nickname]}">
+  	          <img src="{$user[face]}" title="{$user[nickname]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	        </a>
+  	      </div>
+		  <div class="fBox_r">
+		  <p class="ff_1 w_num"><a href="index.php?mod={$user[username]}" title="{$user[nickname]}">{$user[nickname]}</a>{$user[validate_html]}</p>
+		  <p class="ff_1 w_num">粉丝{$user[fans_count]}人</p>
+		  <p class="ff_1">
+		  <!--{if $user[uid] != MEMBER_ID}-->
+		  <!--{if $user[followed]}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','');return false;" class="attention_del"></a></span>
+		  <!--{else}-->
+		  <span class="follow_{$user[uid]}"><a href="javascript:void(0)" onclick="follow({$user[uid]},'follow_{$user[uid]}','add');return false;" class="attention"></a></span>
+		  <!--{/if}-->
+		  <!--{else}-->
+		  <span class="btn_normal">我自己</span>
+		  <!--{/if}-->
+		  </p>
+		  </div>
+		  <!--{if $user[description]}-->
+		  <p class="user_aboutme"><b>媒体简介</b>：<br>{$user[description]}</p>
+		  <!--{/if}-->
+  	  </li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<!--{/if}-->
+<div class="HboxR">
+	<div class="live_line live_top"><!--{if $live_count >5}--><span><a href="index.php?mod=live">更多>></a></span><!--{/if}-->直播列表</div>
+	<ul class="live_list_side">
+	<!--{loop $live_list $val}-->
+	<li>
+	<p><a href="index.php?mod=live&code=view&id={$val[lid]}" target="_blank" title="{$val[livename]}">{$val[shortname]}</a>&nbsp;({$val[status]})</p>
+	<p>主持人：<!--{loop $val[host] $user}--><a href="index.php?mod={$user[username]}" title="{$user[description]}" target="_blank">{$user[nickname]}</a><!--{/loop}--></p>
+	<p>时间：{$val[ldate]}</p>
+	</li>
+	<!--{/loop}-->
+	</ul>
+</div>
+<div class="HboxR">
+	<div class="live_line live_top">微直播合作</div>
+	<ul class="sideul2">
+	<!--{if $live_config[ads]}-->{$live_config[ads]}<!--{/if}-->
+	</ul>
+</div>
+</div>
+</div>
+</div>
+{template "topic_footer"}
+<!--{if $this->Config[ajax_topic_time] > 0 && MEMBER_ID > 0 && $live['status_css'] == 'ico_ongoing'}-->
+<!--{eval $ajax_time = $this->Config[ajax_topic_time] * 1000;}-->
+<script type="text/javascript">
+function circle_topic() {
+	ajax_reminded({MEMBER_ID});
+	setTimeout('circle_topic();', {$ajax_time});
+}
+setTimeout('circle_topic();', {$ajax_time});
+</script>
+<!--{/if}-->

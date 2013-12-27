@@ -1,0 +1,185 @@
+<!--{eval $__my=$this->
+MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]})</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/reg.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<style type="text/css">
+.reg_conbg {
+    background: url("../images/btbg.png") no-repeat scroll center bottom transparent;
+    margin: 0 5px;
+    min-height: 270px;
+    overflow: hidden;
+    padding-bottom: 150px;
+}
+.notice2 {
+    text-align: center;
+}
+
+.notice2 p {
+    font-size: 14px;
+    margin-left: 230px;
+    padding: 3px 0;
+    text-align: left;
+}
+.notice3 {
+    border-top: 1px dotted #D9D9D9;
+    margin: 50px 130px 20px;
+    padding-top: 20px;
+}
+.notice3 strong {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.notice3 p {
+    clear: both;
+    line-height: 1.8;
+}
+element.style {
+    color: #0082CB;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<script>
+function add_checkemail(uid,email,checktype)
+{
+	var uid='undefined'==typeof(uid) ? '0': uid;
+	
+	//date_email = post 过来的 email
+	var date_email = $('#'+email).val();
+	var date_email = ('undefined' == typeof(date_email) ? '' : date_email);
+	
+	//email =  js过来的email
+	var email = ('undefined' == typeof(email) ? '' : email);
+	
+	var checkemail = date_email ? date_email : email;
+	
+	
+	var email_value = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+   if(!email_value.test(checkemail)){
+		 show_message('提示\n\n请输入有效的E_mail',1);
+		 $('#email').focus();
+		 return false;
+	}
+	
+	 $("#email_loading").html("<div><center><span class='loading'>验证邮件正在放送中，请稍候……</span></center></div>");
+	
+		var myAjax=$.post
+		(
+			"index.php?mod=member&code=check_modify_emali",
+			
+			{
+				uid:uid,
+				email:checkemail,
+				checktype:checktype
+			},
+			
+			function(d)
+			{//alert(d);
+				if(''!=d)
+				{
+					show_message(d,2);
+					$("#email_loading").html("");
+					//parent.document.getElementById('user_email').innerHTML=checkemail;
+				}
+			}
+		);
+}
+
+</script>
+
+
+
+<div class="Rlogo"><h1 class="logo"><a title="{conf site_name}" href="index.php"></a></h1></div>
+<div class="main_2">
+	<div class="main_t3"></div>
+	<div class="notice3">
+		<strong>马上激活邮件，完成注册吧！ </strong>
+		<p>
+		确认邮件已经发送到你的邮箱
+		<a href="http://{$emali_url}"><span id="user_email">{$members[email]}</span></a>
+		</p>
+		<p>点击邮件里的确认链接即可登录微博</p>
+		<br />
+		<p><span><a id="submit" class="btn1" title="立即查看邮箱" href="http://{$emali_url}"><img src="images/email.gif" /></a></span></p>
+	</div>
+	
+	<div class="notice3">
+	<strong>还没有收到确认邮件？</strong>
+	<p><i>·</i> 注意：在完成激活之前，根据管理员设置，您将只能以<span style="color:#0082CB ;font-size:14px;font-weight:bold;">[{$role['name']}]</span>
+	的身份访问本站.<br><p>
+	<p>
+	<i>·</i> 尝试到广告邮件、垃圾邮件目录里找找看。
+	<p>
+	
+	<i>·</i> 邮件地址写错了？修改邮箱，重新发送验证
+	<a href="javascript:void(0);" onclick="getElementById('check_emali').style.display=(getElementById('check_emali').style.display=='none')?'':'none'">
+	修改邮箱</a>
+	。
+	<p>
+	<i>·</i> 或者再次
+	<a href="javascript:void(0);" onclick="add_checkemail('{$members[uid]}','{$members[email]}'); return false;">发送确认邮件</a>
+	。
+	</div>
+	<div id="email_loading"></div>
+	<div class="" id="check_emali" style="display:none;">
+		<form action="{$action}" method="POST" enctype="multipart/form-data" name="check_emali_form"   id="check_emali_form" >
+		<table width="300" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tr>
+			<td height="30" align="left"><strong>修改邮箱，重新发送验证。</strong></td>
+		  </tr>
+		  <tr>
+			<td height="30" align="center"><input type="text" name="email" id="email" value="" class="regP" /></td>
+		  </tr>
+		  <tr>
+			<td height="30" align="left">提示：重新填写正确的邮箱，然后点击重新发送</td>
+		  </tr>
+		  <tr>
+			<td height="30" align="left"><input type="button" name="Submit" value="修改并发送" onclick="add_checkemail('{$uid}','email','modify'); return false;"/></td>
+		  </tr>
+		  </table>
+		</form>
+	<div>
+</div>
+
+
+<!--{template "topic_footer"}-->

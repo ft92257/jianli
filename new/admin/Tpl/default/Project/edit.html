@@ -1,0 +1,248 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+
+<!-- 上传组件 -->
+<script type="text/javascript" src="__ROOT__/statics/js/fineuploader/fineuploader-3.4.1.js"></script>
+<link type="text/css"  href="__ROOT__/statics/js/fineuploader/fineuploader-3.4.1.css" rel="stylesheet"  />
+<style>
+.project_up {
+	width:280px;
+	
+}
+.project_up input{
+	height:23px;
+	margin:0 10px 15px 0;
+}
+/**
+div.allimg img {
+	border:none;
+	margin:0 10px 0 0;
+	cursor:pointer;
+	width:120px;
+	height:120px;
+}
+*/
+
+div.allimg .sort {
+	margin:0 10px 0 0;
+	width:140px;
+	height:110px;
+	float:left;
+	margin:0 10px 0 0;
+} 
+div.allimg .sort input {
+	width:20px;
+	float:left;
+} 
+div.allimg .sort img {
+	border:none;
+	cursor:pointer;
+	width:100px;
+	height:100px;
+} 
+
+</style>
+<form action="" method="post" name="myform" id="myform"   enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',6,1);">基本信息</li>
+
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          <tr>
+            <th></th>
+            <td></td>
+          </tr>
+        <tr>
+          <th width="100">项目名称:</th>
+          	<td>
+            	<input type="text" name="title"  rel="title_color" class="input-text iColorPicker" size="53" value="{$info.title}" />
+			</td>
+		</tr>
+		<tr>
+            <th width="100">项目简介 :</th>
+            <td><textarea class="input-text iColorPicker"  style=" width:400px; height:100px" name="content">{$info.content}</textarea>
+			</td>
+        </tr> 
+		<tr>
+          <th width="100">上传项目图片 :</th>
+          	<td>
+          		<div style="width:200px;" id="thumbnail-fine-uploader"></div>
+				<!--
+          		<div class="project_up">
+          			<div><input type="file" name="project_img[]"  rel="title_color" class="input-text iColorPicker" /><input type="button" value="清除" class="reduce"/></div>
+				</div>
+				<div class="project_edit">
+	          		<input type="button" value="继续添加" id="add"/>
+          		</div>
+            	 -->
+			</td>
+		</tr>
+		<tr>
+          <th width="100">已上传图片 :</th>
+          	<td>
+          		<div class="allimg">
+          			<volist name="imgs" id="img">
+          				<div class="sort">
+          				<input type="text" name="sort[{$img.mid}]" value="{$img.sort}" />
+          				<img src="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" data-img="{$img.mid}"/>
+						</div>
+          			</volist>
+				</div>
+	
+			</td>
+		</tr>
+		
+        </table>
+      </div>
+	
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			$('#div_'+name+'_'+i).show();
+			$('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			$('#div_'+name+'_'+i).hide();
+			$('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+function KE_show(id) {
+	KE.show({
+		id : id,
+		imageUploadJson : "{:U('company/KE_upload')}"
+	});
+}
+
+
+
+$(function () {
+	
+	
+	
+	//上传项目图片
+	(function () {
+		
+		var divImg = $('.allimg');		//图片容器
+		
+		//实例类
+	    var thumbnailuploader = new qq.FineUploader({
+	      //上传配置
+		  debug: false,
+		  element: $('#thumbnail-fine-uploader')[0],	//上传按钮对象
+		  multiple: true,					//是否允许多文件上传  
+		  autoUpload: true,			//是否选中文件直接上传	(如果为false，则需要定义一个上传按钮)
+	      maxConnections: 3,			//上传列队数
+		  validation: {
+	        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+	        sizeLimit: 6000000 // 50 kB = 50 * 1024 bytes	   
+	      },
+	     //按钮类型文本设置	
+		 text: {
+	        uploadButton: '<i class="icon-plus icon-white"></i> 上传图片',
+			 cancelButton: '取消',
+	     },
+		  
+	     //服务器配置：
+		  request: {
+	         endpoint: '?s=/Project/imgUploads',	
+	         params: {									//POST附带参数	
+	         		cid : {$cid},
+					pid : {$pid}
+				},
+	         inputName: 'project_img',		//$_FIFLE['字段名']
+	         totalFileSizeName: 'qqtotalfilesize'
+	      },
+		  
+		  //上传回调函数
+	      callbacks: {
+		  	//上传成功回调函数
+	        onComplete: function(id, fileName, responseJSON) {
+				console.log(responseJSON);
+				if (responseJSON.success == 1) {		
+					//添加节点
+					divImg.prepend('<div class="sort"><input type="text" name="sort['+responseJSON.data.mid+']" value="0" /><img src="'+responseJSON.data.file+'" data-img="'+responseJSON.data.mid+'"/></div>');
+					$('.qq-upload-list li').eq(id).remove();	//删除上传进度条
+				} else {
+					alert(responseJSON.info);
+				}
+	        },	
+	      },
+		  
+		  //报错文字
+		  messages: {
+	            typeError: "{file}上传文件类型错误 {extensions}.",
+	            sizeError: "{file} 文件太大 {sizeLimit}.",
+	            minSizeError: "{file} 文件太小 {minSizeLimit}.",
+	            emptyError: "{file} is empty, please select files again without it.",
+	            noFilesError: "没有上传文件，请选择.",
+	            tooManyItemsError: "您选择了 ({netItems}) 个文件.  一次只能选择 {itemLimit} 个.",
+	            retryFailTooManyItems: "Retry failed - you have reached your file limit.",
+	            onLeave: "文件被上传，如果你现在离开上传将被取消."
+	        },
+	    });
+
+	})();
+	
+	
+	
+	
+	//增加与减少修上传按钮
+	(function (){
+		
+		//获取操作对象
+		var add = $('#add');
+		var allIpt = $('.project_up');
+		add.click(function () {
+			allIpt.append('<div><input type="file" name="project_img[]"  rel="title_color" class="input-text iColorPicker" /><input type="button" value="清除" class="reduce"/></div>');
+		});
+		//删除上传按钮
+		$(document).delegate('.reduce','click',function (){
+			var _this = $(this);
+			_this.parent().remove();
+		});
+	})();
+	
+	
+	//删除图片
+	(function () {
+		//获取操作对象
+		//var arrImg = $('div.allimg img');
+		
+		//$(document).delegate('a', 'click', function() { alert() });
+		
+		$(document).delegate('div.allimg img', 'click',function () {	
+			var _this = $(this);
+			var mid = _this.data('img');
+			var status = confirm('确定要删除吗？');
+			if (status == true) {
+				//AJAX删除图片
+				$.post('?s=/Project/delFielImg/',{
+					'mid':mid
+				},function(obj){
+					if (obj == 1) {
+						_this.parent().remove();
+					} else {
+						alert('删除失败');
+					}
+				},'text');	
+			}
+		});
+		
+	})();
+});
+</script>
+</body>
+</html>

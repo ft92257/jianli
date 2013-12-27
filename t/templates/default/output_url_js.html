@@ -1,0 +1,25 @@
+<!--{if $hash_verify}-->
+
+function jsg_get_page_url() {
+	var url = location.href;
+	var i = url.indexOf('#');
+	if (i == -1) {
+		return url;
+	} else {
+		return url.substr(0, i);
+	}
+}
+
+function jsg_get_page_title() {
+	return document.title;
+}
+
+var iframe_src = '{$this->Config[site_url]}/index.php?mod=output&code=url_iframe&target_id={$target_id}&id={$id}&hash={$hash}&per_page_num={$per_page_num}&content_default=' + encodeURIComponent('{$content_default}') + '&url=' + encodeURIComponent(jsg_get_page_url()) + '&title=' + encodeURIComponent(jsg_get_page_title());
+
+document.getElementById('{$target_id}').innerHTML = '<iframe id="{$target_id}_iframe" src="' + iframe_src + '" style="width:100%; height:100%; border:0px; overflow-x:hidden; "></iframe>';
+
+<!--{else}-->
+
+document.getElementById('{$target_id}').innerHTML = '调用地址不正确，请确认';
+
+<!--{/if}-->

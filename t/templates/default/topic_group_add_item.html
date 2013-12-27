@@ -1,0 +1,16 @@
+<!--{loop $group_list $group}-->
+<div id="del_group_ajax_{$group[id]}" style="float:left; width:140px;">
+	<ul style=" padding:2px;">
+		<li id="del_group_follow_menu_{$group[id]}"> 
+			<input id="select__{$group[id]}" name="group" type="checkbox" onclick="groupState({$group[id]},'{$touid}',this);" />
+			<label for="select_{$touid}_{$group[id]}">{$group[group_name]}&nbsp;({$group[group_count]})</label>
+			<a onclick="del_group('{$group[id]}','{$touid}');return false;" href="javascript:;return false;" title="删除分组">×</a>
+		</li>
+	</ul>
+</div>
+<script language="javascript">
+$(document).ready(function() {
+	$('#select__{$group[id]}').click();
+});
+</script>
+<!--{/loop}-->

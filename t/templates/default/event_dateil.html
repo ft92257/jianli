@@ -1,0 +1,271 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+  <div class="main3Box_m HotW ">
+    <div class="Hotwarp">
+    <div class="e_list_title">{$rs['title']}<!--{if $from['name']}-->(来自<a href="{$from['url']}" target='_blank'>$from['name']</a>)<!--{/if}--></div>
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a target="_blank" href="{$rs[image]}">
+	        <img src="{$rs[image]}" height="128" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info event_d avatar2_info_2" style="margin-right:10px; border-right:1px dashed #ccc;">
+	      <p class="left_t2">
+	      开始时间：{$rs['fromt']}（{$rs['fromt_day']}）
+	      </p>
+	      <p class="left_t2">
+	      结束时间：{$rs['tot']}（{$rs['tot_day']}）
+	      </p>
+	      <p class="left_t2">
+	        地点：{$rs['address']}
+	      </p>
+	      <p class="left_t2">
+	        发起人：<a href="index.php?mod=$rs[username]"  target="_blank">{$rs[nickname]}</a><a href="index.php?mod=event&code=myevent&uid=$rs['uid']" target="_blank">(查看他的活动)</a>
+	      </p>
+	      <p class="left_t2">
+	      费用：{$rs['money']}
+	      </p>
+
+	      <p class="left_t21">
+	        <a href="javascript:void(0);" onclick="share();return false;" class="efx">分享</a>
+	        <!--{if !$rs[store]}-->
+	        <a href="javascript:void(0);" onclick="store('store');return false;" class="esc">收藏</a>
+	        <!--{else}-->
+	        <a href="javascript:void(0);" onclick="store('cancle');return false;" class="esc">取消收藏</a>
+	        <!--{/if}-->
+	        <!--{if MEMBER_ID == $rs[postman]}-->
+	        <a href="javascript:void(0);" onclick="manage(1);return false;" class="egl">管理</a>
+	        <a href="javascript:void(0);" onclick="window.location.href='index.php?mod=event&code=export_to_excel&id=$id';return false;" class="edc">导出</a>
+	        <!--{/if}-->
+	      </p>
+	      <!--{if MEMBER_ID == $rs[postman]}-->
+	      <p class="left_t21">
+	       <a href="index.php?mod=event&code=editevent&id=$rs[id]" class="exg">修改活动</a>
+	       <a href="index.php?mod=event&code=del&id=$rs[id]" onclick="return confirm('你确实要删除吗?不可恢复');" class="edel">删除活动</a>
+	      </p>
+	      <!--{/if}-->
+	    </div>
+	    <div class="e_detail_sign">
+		  <p class="ri_t2">{$rs[app_num]}人报名</p>
+		  <p class="ri_t2">同意{$rs[play_num]}人 参与</p>
+	      <p id="event_type"><span>{$rs[event_type]}</span></p>
+	      <p id="app">
+	      <!--{if $rs[app] == 1 || $rs[app]=='已报名'}-->
+	      <a href="javascript:void(0);" onclick="app('cancle');return false;">取消报名</a>
+	      <!--{else}-->
+	      <a href="javascript:void(0);" onclick="app('app');return false;">我要报名</a>
+	      <!--{/if}-->
+
+	      </p>
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="e_idS" style="overflow:visible">
+	  <div class="e_idSpTitle">
+	    <b>活动简介</b>
+	  </div>
+	  <div class="e_intro">
+	    {$rs[content]}
+	  </div>
+	</div>
+	<div class="topic_new_add">
+		<script language="javascript">
+			__APPITEM__ = 'event';
+			__APPITEM_ID__ = {$rs[id]};
+		</script>
+	  <!--{template "topic_publish"}-->  
+	  </div>
+	  <div id="listTopicArea">
+		{template "topic_list_ajax"}
+	  </div>
+	  <div id="share"></div>
+	  <div id="need_info"></div>
+    </div>
+
+	<script type="text/javascript">
+	function listTopic() {
+		var id = document.getElementById('hid_id').value;
+		var myAjax = $.post(
+			"ajax.php?mod=app&code=list_event&item_id="+id,
+			function (d) {
+				$("#listTopicArea").html(d);
+			}
+		); 
+	}
+	
+	function share(t){
+		var check_uid = $('#check_PublishBox_uid').val();
+		var uid ='undefined'==typeof(check_uid)?'0':check_uid;	
+		if(uid < 1){
+			ShowLoginDialog();
+			return false;
+		}
+		var handle_key = "share";
+		$.post(
+				"ajax.php?mod=event&code=publish_share&id=$id",
+				function(d){
+					showDialog(handle_key, 'local', '分享到微博', {"html":d}, 500);
+					$('#topic_simple_close_btn').click(
+						function() {
+							if(t){
+								location.reload();
+							}else{
+								closeDialog(handle_key);
+							}
+						}
+					);
+					$('#topic_simple_share_btn').click(
+						function () {
+							var options = {
+									response:function(){
+										closeDialog(handle_key);
+									}
+								}
+							publishSimpleTopic($('#topic_simple_content').val(), 'web', $("#topic_simple_item_id").val(),options);
+							MessageBox('notice', '分享成功');
+						}
+					);
+				}
+		);
+	}
+
+	function simpleTalk(){
+		var handle_key = "simpletalk";
+		$.post(
+				"ajax.php?mod=event&code=simple_talk&id=$id",
+				function(d){
+					showDialog(handle_key, 'local', '报名成功，说说你对该活动有什么看法？', {"html":d}, 500);
+					$('#topic_simple_close_btn').click(
+						function() {
+							location.reload();
+						}
+					);
+					$('#topic_simple_share_btn').click(
+						function () {
+							var options = {
+									response:function(){
+										location.reload();
+									},
+									topic_type:$('#topic_simple_type').val()
+								}
+							if(!$('#topic_simple_content').val()){MessageBox('notice', '请输入评论内容');return false;}
+							publishSimpleTopic($('#topic_simple_content').val(), 'event', $("#topic_simple_item_id").val(),options);
+						}
+					);
+				}
+		);
+	}
+
+	function store(t){
+		var check_uid = $('#check_PublishBox_uid').val();
+		var uid ='undefined'==typeof(check_uid)?'0':check_uid;	
+		if(uid < 1){
+			ShowLoginDialog();
+			return false;
+		}
+		$.post("ajax.php?mod=event&code=store&id=$id&type="+t,
+				function(d){
+			location.reload();
+			}
+		);
+	}
+
+	function app(t){
+		var check_uid = $('#check_PublishBox_uid').val();
+		var uid ='undefined'==typeof(check_uid)?'0':check_uid;	
+		if(uid < 1){
+			ShowLoginDialog();
+			return false;
+		}
+		var myAjax=$.post(
+				"ajax.php?mod=event&code=app&id=$id&type="+t,
+				function(d){
+					if(!is_json(d)){
+						var handle_key = 'need_info';
+						showDialog(handle_key, 'ajax', '我要参加', {url:"ajax.php?mod=event&code=app&id=$id&type="+t}, 300);
+					}else{
+						var json = eval('('+d.toString()+')');
+						if(json.done){
+							if(json.msg == '1'){
+								simpleTalk();
+							}else{
+								MessageBox('notice', json.msg);
+								setTimeout('location.reload()',1000);
+							}
+						}else{
+							MessageBox('warning', json.msg);
+						}
+					}
+				}
+		);
+	}
+
+	function manage(page){
+		handle_key = "manage";
+		showDialog(handle_key, 'ajax', '我要参加', {url:"ajax.php?mod=event&code=manage&id=$id&page="+page}, 600);
+	}
+	</script>
+	
+    <!--右侧--begin-->
+    <div class="Hotright">
+	  <div class="HboxR">
+	    <ul class="event_r_nav">
+	      <li>
+	        <a href="index.php?mod=event"><span>活动主页</span></a>
+	      </li>
+	      <li>
+	        <a href="index.php?mod=event&code=myevent"><span>我的活动</span></a>
+	      </li>
+		  <li>
+			<a href="index.php?mod=event&code=followevent"><span>我关注的人的活动</span></a>
+		  </li>
+	      <li>
+	        <a href="index.php?mod=event&code=pevent"><span>发起活动</span></a>
+	      </li>
+	    </ul>
+	  </div>
+	  <div  class="HboxR">
+	    <div class="vote_line">这个活动的参与者</div>
+	    <div>
+	      <ul class="followList eli" style="overflow:hidden">
+	        <!--{loop $play_member $val}-->
+	        <li class="pane" id="follow_user_{$val[uid]}">
+	          <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_r_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+	          <div id="user_{$val[uid]}_r_user" class="layS"></div>
+	        </li>
+	      <!--{/loop}-->
+	      </ul>
+	    </div>
+	  	<div><a href="index.php?mod=event&code=alluser&id=$id&type=play">共{$play_count}人(查看所有参与者)</a></div>
+	  </div>  
+  
+	  <div class="HboxR">
+	    <div class="vote_line">审核中的报名者</div>
+	
+	      <ul class="followList eli">
+	        <!--{loop $app_member $val}-->
+	        <li class="pane" id="app_user_{$val[uid]}">
+	          <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_r_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+	          <div id="user_{$val[uid]}_r_user" class="layS"></div>
+	        </li>
+	      <!--{/loop}-->
+		  <li style="width:180px;"><a href="index.php?mod=event&code=alluser&id=$id&type=app">共{$app_count}人(查看所有审核中报名者)</a> </li>
+	      </ul>
+	  </div>
+	</div>
+	<!--右侧--end-->
+  </div>
+</div>
+<!--{template "topic_footer"}-->

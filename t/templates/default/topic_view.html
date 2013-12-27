@@ -1,0 +1,397 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="mainL" style="padding-bottom:240px;">
+
+<!--评论页面头部描述 Begin-->
+<div id="app_description_wp">
+<!--{if !empty($qun_info)}-->
+<!--{template qun/widgets_simple_desc}-->
+<!--{/if}-->
+</div>
+<!--评论页面头部描述 End-->
+
+<!--{if $this->Config[ad_enable]}-->
+<div class="L_AD"></div>
+<!--{/if}-->  
+    <div id="topic_list_{$topic_info[tid]}" class="one_comment">
+      <li class="font14px">
+        <div class="feedCell feedP">
+		<script type="text/javascript">
+		function TV_resizeImage(imgObj, width, imgID) {	
+			var imageTimeID = window.setTimeout(function(){
+				if(imgObj.width > width) {
+					var p = width / imgObj.width;
+					imgObj.height = p * imgObj.height;
+					imgObj.width = width;
+				};
+				
+				$('#TV_img_a_' + imgID).click();
+		
+				window.clearTimeout(imageTimeID);
+			},100);
+		}
+		</script>
+		
+		<span id="topic_content_{$topic_info[tid]}_short">{$topic_info[content]}</span>
+	    <div id="topic_content_{$topic_info[tid]}_full" class="full_img_s"></div>
+	    <!-- 
+	    
+	    {if $topic_info[longtextid] > 0}
+	    	<script language="Javascript">
+	    		setTimeout(function () {
+	    			view_longtext('{$topic_info[longtextid]}', '{$topic_info[tid]}');
+	    		}, 100);	    		
+	    	</script>
+	    {/if}
+	    
+	    -->
+		<!--{if $topic_info[attachid] && $topic_info[attach_list]}-->
+		<table class="attachst" style="width:440px;">
+        <!--{loop $topic_info[attach_list] $iv}-->
+        <tr>
+        <td class="attachst_img"><img src="{$iv[attach_img]}"/></td>
+        <td class="attachst_att">
+			<p class="attachList_att_name"><b>{$iv[attach_name]}</b>&nbsp;（{$iv[attach_size]}）</p>
+			<p class="attachList_att_doc"><a href="javascript:void(0);"	onclick="downattach({$iv[id]});">点此下载</a>（需{$iv[attach_score]}积分，已下载{$iv[attach_down]}次）</p>
+        </td>
+		</tr>
+        <!--{/loop}-->
+        </table>          
+        <!--{/if}-->
+        <!--{if $topic_info[imageid] && $topic_info[image_list]}-->
+		  <style type="text/css">
+		  .fuimg img{ padding:0; border:none; float:left; overflow:hidden;display:inline;}
+		  .artZoomBox{ position:static;}
+		  .artZoomBox .tool{ width:530px;}
+		  </style>
+          <div class="feedUserImg fuimg" style="width:auto; padding:0; border:none;">
+          	<ul class="imgList">
+			<!--{loop $topic_info[image_list] $iv}-->
+		<li><a id="TV_img_a_{$iv[id]}" href="{$iv[image_original]}" class="artZoom2" rel="{$iv[image_small]}"><img id="TV_img_{$iv[id]}" src="{$iv[image_original]}" onload="TV_resizeImage(this, 550, {$iv[id]})" /></a></li>
+			<!--{/loop}-->
+			</ul>
+		  </div>
+          <br />
+          <!--{/if}-->
+          <!--{if $topic_info[videoid]}-->
+          <div class="feedUservideo" > 
+		  <a onclick="javascript:showFlash('{$topic_info[VideoHosts]}', '{$topic_info[VideoLink]}', this, '{$topic_info[VideoID]}');">
+          <div id="play_{$topic_info[VideoID]}" class="vP"><img src="images/feedvideoplay.gif"  /></div>
+          <img src="{$topic_info[VideoImg]}" style="border:none"/> </a> 
+		  </div>
+          <!--{/if}-->
+		  
+		<!--{if $topic_info['is_vote'] > 0}-->
+		<!--{eval $__v_tid =$topic_info['tid'].'_'.$topic_info['random']}-->
+		<!--投票 Begin-->
+			<ul class="imgList" id="vote_detail_{$__v_tid}">
+			<li><a href="javascript:;" onclick="getVoteDetailWidgets('{$__v_tid}', {$topic_info['is_vote']});"><img src='./images/vote_pic_01.gif'/></a> </li>
+			</ul>
+			<div id="vote_area_{$__v_tid}" style="display:none;">
+			<div class="blogTxt"> 
+			<div class="top"></div> 
+			<div class="mid" id="vote_content_{$__v_tid}"></div>
+			<div class="bottom"></div> 
+			</div>
+			</div>
+		<!--投票 End-->
+		<!--{/if}-->   
+		  
+        <!--{if $topic_info[musicid]}-->
+		<!--{if $topic_info[xiami_id]}-->
+		<div class="feedUserImg"><embed width="257" height="33" wmode="transparent" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_{$topic_info[xiami_id]}/singlePlayer.swf"></embed></div>
+		<!--{else}-->
+           <div class="feedUserImg">
+		   <div id="play_{$topic_info[MusicID]}"></div>
+		   <img src="images/music.gif" title="点击播放音乐" onclick="javascript:showFlash('music', '{$topic_info[MusicUrl]}', this, '{$topic_info['MusicID']}');" style="cursor:pointer; border:none;" /> 
+		   </div>
+          <!--{/if}-->
+        <!--{/if}-->
+        </div>
+      </li>
+	 <!--{if ($tpid=$topic_info[top_parent_id])>0}-->
+	 <!--{eval $pt=$t_parent_list[$tpid];}-->
+      <li>
+        <div class="blogTxt w540">
+          <div class="top_3"></div>
+          <div class="mid w508">
+			<!--{if $pt}-->
+				<span>
+		        <a href="index.php?mod={$pt[username]}" onmouseover="get_user_choose({$pt[uid]},'_reply_user',{$pt[tid]});" onmouseout="clear_user_choose();">{$pt[nickname]}</a>
+		        {$pt[validate_html]} :  
+		        <!--悬浮头像、弹出对话框--><span id="user_{$pt[tid]}_reply_user"></span><!--悬浮头像、弹出对话框-->	
+		        </span>
+				
+				<!--{eval $TPT_ = $TPT_ ? $TPT_ : 'TPT_';}-->
+				<span id="topic_content_{$TPT_}{$pt[tid]}_short">{$pt[content]}</span>
+				<span id="topic_content_{$TPT_}{$pt[tid]}_full"></span>
+				<!--{if $pt[longtextid] > 0}-->
+				<span>
+				<a href="javascript:;" onclick="view_longtext('{$pt[longtextid]}', '{$pt[tid]}', this, '{$TPT_}', '{$topic_info[tid]}');return false;">查看全文</a>
+				</span>
+				<!--{/if}-->
+
+				<!--{if $pt[attachid] && $pt[attach_list]}-->
+				<table class="attachst" style="width:440px;">
+				<!--{loop $pt[attach_list] $iv}-->
+                <tr>
+                <td class="attachst_img"><img src="{$iv[attach_img]}"/></td>
+                <td class="attachst_att" style="float:left;">
+				<p class="attachList_att_name"><b>{$iv[attach_name]}</b>&nbsp;（{$iv[attach_size]}）</p>
+				<p class="attachList_att_doc"><a href="javascript:void(0);"	onclick="downattach({$iv[id]});">点此下载</a>（需{$iv[attach_score]}积分，已下载{$iv[attach_down]}次）</p>
+
+                </td>
+                </tr>
+				<!--{/loop}-->
+				</table>
+				<!--{/if}-->
+				
+				<!--{if $pt[imageid] && $pt[image_list]}-->
+				<!--{eval $pt[image_key]=$pt[tid].'_'.$pt[random];}-->
+			    <ul class="imgList" id="image_area_{$pt[image_key]}">
+				<!--{loop $pt[image_list] $iv}-->
+			    <li><a href="{$iv[image_original]}" class="artZoomAll" rel="{$iv[image_small]}" rev="{$pt[image_key]}"><img style="width:{conf thumbwidth}px; height:{conf thumbheight}px;" src="{$iv[image_small]}" /></a></li>
+				<!--{/loop}-->
+				</ul>
+				<!--{/if}-->
+		
+				<!--{if $pt[videoid] and $this->Config[video_status]}-->
+				<div class="feedUservideo" > 
+				<a onClick="javascript:showFlash('{$pt[VideoHosts]}', '{$pt[VideoLink]}', this, '{$pt[VideoID]}');" >
+				<div id="play_{$pt[VideoID]}" class="vP"></div>
+				<img src="{$pt[VideoImg]}" style="border:none" /> </a>
+				</div>
+				<!--{/if}-->
+				
+				<!--{if $pt[musicid]}-->
+				<!--{if $pt[xiami_id]}-->
+				<div class="feedUserImg"><embed width="257" height="33" wmode="transparent" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_{$pt[xiami_id]}/singlePlayer.swf"></embed></div>
+				<!--{else}-->
+				<div class="feedUserImg"> 
+				<img src="images/music.gif" title="点击播放音乐" onClick="javascript:showFlash('music', '{$pt[MusicUrl]}', this, '{$pt['MusicID']}');" style="cursor:pointer;border:none;" /> 
+				<div id="play_{$pt[MusicID]}" class="vP"></div>
+				</div>
+				<!--{/if}-->
+				<!--{/if}-->
+				
+				<!--投票 Begin-->
+				<!--{if $pt['is_vote'] > 0}-->
+				<ul class="imgList" id="vote_detail_{$pt['tid']}">
+				<li><a href="javascript:;" onclick="getVoteDetailWidgets('{$pt['tid']}', {$pt['is_vote']});"><img src='./images/vote_pic_01.gif'/></a> </li>
+				</ul>
+				<div id="vote_area_{$pt['tid']}" style="display:none;">
+	            <div class="vote_zf_box" id="vote_content_{$pt['tid']}"></div> 
+				</div>
+				<!--{/if}-->              
+				<!--投票 End-->
+				
+				<p style="float:left; width:100%; display:block;"><a href="index.php?mod=topic&code={$tpid}" target="_blank">原文评论({$pt[replys]})</a>&nbsp;
+				<a onclick="get_forward_choose($tpid);return false;" href="index.php?mod=topic&code={$tpid}" target="_blank">转发原文({$pt[forwards]})</a></p>
+			<!--{else}-->
+				<span>原始微博已删除</span>
+			<!--{/if}-->
+          </div>
+          <div class="bottom_2"></div>
+        </div>
+      </li>
+      <!--{/if}-->
+      <li><span class="spanLeft fontGray"> {$topic_info[dateline]}
+		{$topic_info[from_html]}
+        </span>
+
+		
+		<!--右边对微博的一些操作 Begin-->
+		<!--{if $allow_op && $topic_info[managetype] != 2}-->
+		<span class="spanRight">
+		<span {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+			<a href="javascript:void(0)" onclick="ReportBox('{$topic_info[tid]}')" title="举报不良信息">举报</a> |
+		</span> 
+		
+		<span {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+			<a href="javascript:void(0)" onclick="get_forward_choose({$topic_info[tid]});return false;" title="转发微博">转发</a> |
+		</span> 
+		
+		<span>
+		 <!--{if $topic_info[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+			<a href="javascript:void(0)" onclick="deleteTopic({$topic_info[tid]},'topic_list}_{$topic_info[tid]}','view');return false;">删除</a> |&nbsp;
+			<!--{if  time() - $topic_info[addtime] < 3600 || 'admin'==MEMBER_ROLE_TYPE}-->
+			<!--{if $topic_info[replys] <= 0 && $topic_info[forwards] <= 0 || 'admin'==MEMBER_ROLE_TYPE}-->
+			<a href="javascript:void(0);" onclick="modifyTopic({$topic_info[tid]},'modify_topic_{$topic_info[tid]}','reply_list');return false;" style="cursor:pointer;">编辑</a> |&nbsp;
+			<!--{/if}-->
+			<!--{/if}-->
+		<!--{/if}-->
+		</span> 
+		
+		<!--{if $is_favorite}-->
+		<span id="favorite_{$topic_info[tid]}" {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+		<a href="javascript:void(0)" onclick="favoriteTopic({$topic_info[tid]},'delete');return false;">取消收藏</a></span>
+		<!--{else}-->
+		<span id="favorite_{$topic_info[tid]}" {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+		<a href="javascript:void(0)" onclick="favoriteTopic({$topic_info[tid]},'add');return false;">收藏</a></span>
+		<!--{/if}-->
+		
+		<!--{if in_array($root_type, get_topic_type('forward'))}-->
+			<!--{if $this->Config[sina_enable] && sina_weibo_init()}-->
+				{eval echo sina_weibo_share($topic_info[tid]);}
+			<!--{/if}-->
+			<!--{if $this->Config[qqwb_enable] && ($qqwb_config = qqwb_init()) && $qqwb_config[qqwb][is_rebutton_display]}-->
+				{eval $ioss="";$ios=array();if($topic_info[imageid] && $topic_info[image_list])foreach($topic_info[image_list] as $iv)$ios[]=$iv[image_original]; $ioss=implode("|",$ios);}
+				| <a href="javascript:void(0)" onclick="postToWb();" title="转播到腾讯微博" style="height:16px;font-size:12px;line-height:16px;">转播到<img src="http://v.t.qq.com/share/images/s/weiboicon16.png" align="absmiddle"/></a>
+			   <script type="text/javascript">
+					function postToWb(){
+						var _t = encodeURI(document.title);
+						var _url = encodeURIComponent(document.location);
+						var _appkey = encodeURI('{$qqwb_config[qqwb][app_key]}');//你从腾讯获得的appkey
+						var _pic = encodeURI('{$ioss}');//（例如：var _pic='图片url1|图片url2|图片url3....）
+						var _site = '{conf site_url}';//你的网站地址
+						var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic+'&title='+_t;
+						window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+					}
+				</script>	
+			<!--{/if}-->
+		<!--{/if}-->        
+        </span> 
+		<!--{/if}-->
+		<!--右边对微博的一些操作 End-->
+		
+		</li>
+    </div>
+	<div id="modify_topic_{$topic_info[tid]}"></div>
+	
+    <div class="blackBox"></div>
+    <div class="comheader">
+      <span class="mleft font14px">评论</span>
+      <span class="mright">共 <b>{$topic_info[replys]}</b> 条</span>
+    </div>
+    <style type="text/css">#replyListArea .oriTxt{ font-size:12px;}</style>
+    <div id="replyListArea">
+       {template "topic_reply_list_ajax"} 
+    </div>
+<script type="text/javascript">
+  <!--{if $isloading}-->var isLoading = true;<!--{else}-->var isLoading = false;<!--{/if}-->
+  if(isLoading){$('#pageinfo').html('');$("#pagehtml").hide();}var ajaxkeys = new Array();var onloading = false;var ajaxnum = 0;
+  <!--{loop $ajaxkey $key $val}-->
+  ajaxkeys[{$key}] = '{$val}';
+  <!--{/loop}-->
+  $(window).bind('scroll resize',function(event){if(isLoading && !onloading){var bodyTop = document.documentElement.scrollTop + document.body.scrollTop;if(bodyTop+$(window).height() >= ($('#replyListArea').height()+400)){loadtopic(ajaxkeys[ajaxnum],'asc');}}});
+  </script>    
+<script language="Javascript">
+function replyTopicHtml(tid,eid) {
+	var rthtml = $('#'+eid).html();
+	if(''==rthtml) {
+
+		{if MEMBER_ID > 0 }
+			rthtml = '<div class="blogTxt" style="float:right"><div class="top_2"></div><div class="mid"><p class="comment_p2 h10px"><textarea id="reply_area_content_'+tid+'" cols="65" rows="2" class="sp_3"></textarea><input id="rcbtn_'+tid+'" onclick="publishSubmit(\'reply_area_content_'+tid+'\','+tid+',\'rl_{$topic_info[tid]}\');return false;" type="button"  class="sBtn_2" value="确 定"/></p></div><div class="bottom"></div></div><scr'+'ipt>$("#reply_area_content_'+tid+'").bind("keydown",function(event){event = event || window.event;if(event.keyCode==13 && event.ctrlKey) { $("#rcbtn_'+tid+'").click(); } });</scr'+'ipt>';
+		{else}
+			if(confirm("登录后才能进行评论，现在就登录？")) {
+				window.location.href='index.php?mod=login';
+			}
+		{/if}
+
+	} else {
+		rthtml = '';
+	}
+	$('#'+eid).html(rthtml);
+}
+function replyList(pg) {
+	window.location.hash="#replyListArea";
+	
+	var pg = 'undefined'==typeof(pg) ? 0 : pg;
+	var myAjax = $.post(
+		'ajax.php?mod=topic&code=list_reply',
+		{
+			tid:{$topic_info[tid]},
+			p:pg
+		},
+		function (d) {
+			$('#replyListArea').html(d);
+		}
+	);
+}
+</script>
+<!--{if $topic_info[managetype] != 2}-->
+    <div class="blackBox"></div>
+    <a name="replyTopic" id="replyTopic"></a>
+    <div class="one_comment" {if MEMBER_ID<1} onclick="ShowLoginDialog();" {/if} >
+
+     <li> 
+	<textarea name="content" id="i_already_view" rows="3" class="sp sp_3 view_review"></textarea>
+    <input name="replytid" type="hidden" id="replytid" value="{$topic_info[tid]}"/>
+    </li>
+    
+    <li class="view_r">
+    <div class="viewNewLeft">
+	 <div class="viewfb">
+     <script type="text/javascript">
+     $(document).ready(function(){
+	 $(".reply_menu_bqb_c").click(function(){$("#reply_face").show();});
+	 });
+	 </script>
+	 <div class="menuf">
+	 <div class="menuf_bq">
+	 <b class="reply_menu_bqb_c"><a href="javascript:void(0);" onclick="topic_face('reply_face','i_already_view');return false;">表情</a></b>
+	 <div id="reply_face" class="reply_face"></div>
+	 </div>
+	 </div>
+     </div>
+      
+      <div class="comment_p_b2 comment_p_b22" id="reply_image_uploadify_{$topic_info[tid]}">
+      <div onclick="imageUploadifyHTML('{$topic_info[tid]}', 'i_already_view', 'reply_image_uploadify_{$topic_info[tid]}', 1);" class="menu_tq"><b class="menu_tqb_c">图片</b></div>
+      </div>
+      
+	  <!--{if $this->Config['attach_enable']}-->
+      <div class="comment_p_b2 comment_p_b22" id="reply_attach_uploadify_{$topic_info[tid]}">
+      <div onclick="attachUploadifyHTML('{$topic_info[tid]}', 'i_already_view', 'reply_attach_uploadify_{$topic_info[tid]}', 1);" class="menu_fj menu_fj_reply_style"><b class="menu_fjb_c">附件</b></div>
+      </div>
+      <!--{/if}-->
+     </div>
+     
+     <div class="viewNewRight">
+     <div class="view_r3"><input id="publishSubmit" onclick="publishSubmit('i_already_view','replytid','rl','topictype');return false;" type="button" value="评论" class="sBtn_2" title="按Ctrl+Enter快捷发布" /></div>
+     <div class="view_r2">
+     <!--{if in_array($root_type, get_topic_type('forward'))}--> 
+	 <div class="view_r1"><input name="topictype" type="checkbox" id="topictype" value="reply" onclick="select_checked();"/><label for="topictype" style="cursor:pointer;">同时转发微博</label> </div>
+	 <!--{else}-->
+	 <input name="topictype" type="hidden" id="topictype" value="reply"/>
+	 <!--{/if}-->
+     </div>
+     </div>
+     </li>
+	 <!--底部发布框 End-->
+    </div>
+   <!--{/if}-->
+  </div>
+  
+<script language="Javascript">
+String.prototype.trim = function() 
+{ 
+return this.replace(/(^\s*)|(\s*$)/g, ""); 
+}
+//字数统计 END
+$("#i_already_view").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#publishSubmit").click();
+    }
+});
+$(document).ready(function(){
+	//初始化智能输入框
+	initAiInput('i_already_view');
+});
+</script>
+<div>
+<div class="mainR">
+<!--{template "topic_myblog.ini"}-->
+</div>
+</div>
+</div>
+<!--{template "topic_footer"}-->

@@ -1,0 +1,42 @@
+<!--{template admin/header}-->
+
+
+<form method="post" action="admin.php?mod=setting&code=do_modify_topic_from">
+	
+	<a name="微博来源设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td width="100px">发布来源标识</td>
+			<td>来源显示名称(<font color="red">*</font>必填)</td>
+			<td>来源相关页面</td>
+			<td>默认来源名称</td>
+		</tr>
+		<!--{loop $topic_from_config $k $v}-->
+		<!--{eval $_tr_class = ++$_tr_count % 2 ? "altbg2" : "altbg1";}-->
+		<tr class="{$_tr_class}" valign="top">
+			<td> {$k} </td>
+			<td><input type="text" size="30" name="topic_from[{$k}][name]" value="{$v[name]}" /><br />
+				<input type="hidden" name="topic_from[{$k}][value]" value="{$k}" />
+				默认名称为 “{$topic_from_config_default[$k][name]}”
+			</td>
+			<td><input type="text" size="60" name="topic_from[{$k}][link]" value="{$v[link]}" /><br />
+				<!--{if $topic_from_config_default[$k][link]}-->默认地址为 “{$topic_from_config_default[$k][link]}”<!--{/if}-->
+			</td>
+			<td>
+			<!--{if $v[link]}-->
+				<a href="{$v[link]}" target="_blank">{$v[name]}</a>
+			<!--{else}-->
+				{$v[name]}
+			<!--{/if}-->
+			</td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	<center>
+		<input type="submit" class="button" name="settingsubmit" value="提 交"> &nbsp; 
+		<a href="admin.php?mod=setting&code=do_modify_topic_from&act=reset" onclick="return confirm('确认恢复为默认的配置？');">恢复为默认设置</a>
+	</center><br>
+	
+
+</form>
+<br>

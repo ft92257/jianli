@@ -1,0 +1,57 @@
+<!--{template admin/header}-->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+	class="tableborder">
+	<tr class="header">
+		<td>相关说明</td>
+	</tr>
+	<tr>
+		<td>
+		<ul>
+				<li>功能说明：微博评论模块，其支持将微博的发布框通过一段JS代码放到任何网页中，该模块能自动区分来自不同页面所发的微博并自动展示到所在网页，是记事狗首创的社会化评论模块；</li>
+				<li><font color=red>用途说明：微博评论模块可替代CMS等系统的评论功能，用户评论时可选同时转发到微博，从而实现将资讯等内容传播到微博系统中，进而打通整个网站的信息流</font>；</li>
+				<li>使用说明：不同的网页、系统可共用一段微博评论模块JS代码（系统会自动区分），并且可限定所使用的网站域名，或者设置评论框中默认显示#话题#；</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"
+	class="tableborder">
+	<tr class="header">
+		<td width="30%">调用名称（调用次数）</td>
+		<td width="50%">调用代码</td>
+		<td>其他操作</td>
+	</tr>
+	<!--{if $output_list}-->
+	<!--{loop $output_list $val}-->
+	<!--{eval $_tr_class = ++$_tr_count % 2 ? "altbg2" : "altbg1";}-->
+	<tr class="{$_tr_class}" valign="top" align="center">
+		<td align="left">{$val[id]}、{$val[name]}（{$val[open_times]}）<br>创建时间：{eval echo my_date_format($val[dateline]);}</td>
+		<td align="left"><textarea name="textarea" rows="3"
+			style="width: 90%">{$val[output_code]}</textarea></td>
+		<td><a href="admin.php?mod=output&code=modify&id={$val[id]}">编辑</a>&nbsp;
+		<a href="admin.php?mod=output&code=delete&id={$val[id]}"
+			onclick="return confirm('删除后的内容不可恢复，确认删除？');">删除</a></td>
+	</tr>
+	<!--{/loop}-->
+	<!--{else}-->
+	<tr class="altbg1">
+		<td align="center" colspan=3>暂无站外评论调用，第一次使用请点此"添加微博评论模块"</button>
+		</td>
+	</tr>
+	<!--{/if}-->
+
+	<!--{if $page_arr[html]}-->
+	<tr align="center">
+		<td colspan="3" class="altbg1">{$page_arr[html]}</td>
+	</tr>
+	<!--{/if}-->
+	<tr>
+		<td colspan="3">
+		<button class="button" type="button"
+			onclick="window.location.href='admin.php?mod=output&code=add';return false;">添加微博评论模块调用</button>
+		</td>
+	</tr>
+</table>
+

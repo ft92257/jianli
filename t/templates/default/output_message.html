@@ -1,0 +1,19 @@
+<html>
+<head>
+<!--{if $stop_time > 0 && $redirect_to}-->
+<meta http-equiv="refresh" content="{$stop_time}; URL={$redirect_to}" />
+<!--{/if}-->
+</head>
+
+<body>
+
+<div>
+	<div>消息提示</div>
+	<div>{$message}</div>
+	<!--{if $redirect_to}-->	
+	<div><a href="{$redirect_to}">如果您的浏览器没有自动跳转，请点此手动跳转</a></div>	
+	<!--{/if}-->
+</div>
+
+</body>
+</html>

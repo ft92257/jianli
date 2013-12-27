@@ -1,0 +1,171 @@
+<!--{template admin/header}-->
+<!--<script src="./js/date/WdatePicker.js" type="text/javascript"></script>
+<div align="center">
+<div id ="test1"></div>
+<br>
+<div><span style="background-color:#66F4DF">这个颜色代表这天还有没管理过的微博内容。</span></div>
+<br>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+WdatePicker({eCont:'test1',highLineWeekDay:false,opposite:true,disabledDates:[{$datelist}],specialDates:[{$datelist}]});
+});
+</script>
+-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td colspan="12">
+    <div class="NavaL ndt">系统版本信息（<a href="http://cnrdn.com/35f4" target=_blank>关注新版</a>）</div>
+      </td>
+  </tr>
+  <tr>
+	  <td>
+		本站所用版本：V
+				{conf sys_version}&nbsp;{SYS_PUBLISHED}&nbsp;{SYS_BUILD}&nbsp;({$this->Config[charset]})&nbsp;&nbsp;
+				[ <span id="ups_alert">正在确定版本状态</span> ]
+				<br/>{echo upsCtrl()->LicenceDSP()}
+			</td>
+	  </td>
+	  <td>
+	  <style type="text/css">.rssbutton input, textarea, select{ margin:0; padding:0;}</style>
+	  <!--以下是QQ邮件列表订阅嵌入代码--><style>.rssbook{margin:0 0 0 0px;}</style><script >var nId = "5f5ea8ab8681544bfe43201c6fa952f29a1943c4cea2620b",nWidth="380px",sColor="light",sText="<font color=red>想了解最新的安全更新、功能预览、运营技巧？</font>请填写Email订阅：" ;</script><script src="http://list.qq.com/zh_CN/htmledition/js/qf/page/qfcode.js" charset="gb18030"></script>
+	  </td>
+
+  </tr>
+</table>
+
+<!--版本信息-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td colspan="12">
+    <div class="NavaL ndt">主要设置引导</div>
+      </td>
+  </tr>
+	<tr class=""> <td>
+	1、初期设置：
+	<a href="admin.php?mod=setting&code=modify_normal">核心设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=show&code=editlogo"><span style="color:blue">Logo更新</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_mobile"><span class="fred">手机应用</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_smtp">邮件设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_rewrite">伪静态</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=vipintro&code=categorylist"><span style="color:red">V认证分类</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=ucenter&code=ucenter">UCenter整合</a> <br>
+	2、运营调整：
+	<a href="admin.php?mod=setting&code=modify_register">注册控制</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_filter">关键词过滤</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=regfollow"><span style="color:blue">自动关注</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=role&code=list&type=normal">角色权限</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=show&code=modify_theme"><span style="color:red">皮肤风格</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_slide">幻灯广告</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_credits">积分规则</a> <br>
+	3、特色功能：
+	<a href="admin.php?mod=output&code=output_setting"><span style="color:red">微博评论模块</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=dzbbs&code=discuz_setting"><span style="color:blue">论坛帖子调用</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=bbs_plugin"><span style="color:green">帖子发作微博</span></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=setting&code=modify_sina">平台帐号设置</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="admin.php?mod=robot">蜘蛛爬行统计</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<a href="http://cnrdn.com/G8f4" title="避免受到同IP网站的连带惩罚">监测同IP网站</a> 
+	</td>
+	</tr>
+</table>
+
+<!--最新动态-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder" id="recommend_tabler" style="display: none;">
+  <tr class="header">
+    <td colspan="12">
+	<div class="NavaL ndt">系统最新动态</div>
+      </td>
+  </tr>
+  <tr class="altbg1">
+    <td id="recommend">正在载入中...</td>
+  </tr>
+</table>
+<!--最新动态-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td colspan="12">
+      网站数据统计 </td>
+  </tr>
+  <tr class="altbg1">
+    <!--{loop $item_list $item_name $item}-->
+    <td title="{$item_name}个数">$item_name</td>
+    <!--{/loop}-->
+    <td title="数据库占用空间">数据库</td>
+  </tr>
+  <tr class="altbg2">
+    <!--{loop $statistic $item $count}-->
+    <td><a href="admin.php?mod=$item" title="管理">{$count}</a></td>
+    <!--{/loop}-->
+    <td><a href="admin.php?mod=db&code=export" title="备份">$data_length</a>&nbsp;|&nbsp;<a href="admin.php?mod=db&code=optimize" title="优化碎片">优化</a></td>
+  </tr>
+</table>
+<div class="c"></div>
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td colspan="12">待审核记录</td>
+  </tr>
+  <tr class="altbg1">
+    <!--{loop $data_verify['name'] $name}-->
+    <td title="{$name}个数">{$name}</td>
+    <!--{/loop}-->
+  </tr>
+  <tr class="altbg2">
+    <!--{loop $data_verify['count'] $count}-->
+    <td>{$count}</td>
+    <!--{/loop}-->
+  </tr>
+</table>
+<div class="c"></div>
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td colspan="3">相关系统推荐</td>
+  </tr>
+  <tr class="altbg1">
+    <td><A HREF="http://cenwor.com/go.php?w=tttg.jsg.admin" target=_blank title="10大首创功能">天天团购系统：强大免费开源</A></td>
+    <td><A HREF="http://cenwor.com/go.php?w=aijuhe.jsg.admin" target=_blank>爱聚合：智能专题网赚系统</A></td>
+    <td><A HREF="http://cenwor.com/go.php?w=wzb.jsg.admin" target=_blank>网赚宝：BBS和CMS建站必备</A></td>
+  </tr>
+</table>
+<!--{if $check_upgrade}-->
+<script language="JavaScript" type="text/javascript" src="admin.php?mod=upgrade&code=check&js=1"></script>
+<!--{/if}-->
+<script type="text/javascript" src="./templates/default/js/min.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$.get('admin.php?mod=index&code=recommend', function(data)
+	{
+		if (data != '')
+        {
+            $('#recommend_tabler').show();
+            $('#recommend').html(data);
+        }
+	})
+    $.get('admin.php?mod=index&code=upgrade_check', function(data){
+        if (data != 'noups')
+        {
+            $('#ups_alert').html(''+data+' <a href="admin.php?mod=upgrade"><font id="ups_alert_light" style="color:red;font-weight:bold;font-size:13px;">点此在线升级</font></a>');
+        }
+        else
+        {
+            $('#ups_alert').html('已是最新版本');
+        }
+    });
+    if (typeof(lrcmd) != 'undefined' && typeof(lrcmd) == 'string')
+    {
+        $.get('admin.php?mod=index&code=lrcmd_nt&lv='+lrcmd, function(data){
+            if (data != 'false')
+            {
+                $('#lic_recommend').html(data).slideDown();
+            }
+        });
+    }
+});
+
+</script>
+
+ 

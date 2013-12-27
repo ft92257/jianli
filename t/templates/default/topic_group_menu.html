@@ -1,0 +1,83 @@
+
+  <div class="dialog_inner">
+
+	<div style=" border: solid 1px #DDDDDD; padding:10px; background-color:#F3F3F3">
+		<!--关注分组 Begin-->
+		<ul id="add_group_menu_{$val[uid]}"  class="group_list" style="margin-left:0px;">
+		  <!--{loop $group_list $group}-->
+		  <div style="float:left; width:140px;">
+			<ul style=" padding:2px;">
+			  <li id="del_group_follow_menu_{$group[id]}"> 
+			   <span style="float:left; margin-top:3px;"> <input id="select_{$val[uid]}_{$group[id]}" name="group" type="checkbox" <!--{if in_array($group[id],$group_set)}-->checked="checked"<!--{/if}--> onclick="groupState({$group[id]},'{$val[uid]}',this);" />
+				<label for="select_{$val[uid]}_{$group[id]}">{$group[group_name]}&nbsp;({$group[group_count]})</label></span>
+			 </li>
+			</ul>
+		  </div>
+		  <!--{/loop}-->
+		  
+		  <div style="float:left; width:140px;" id="toggle_btn_{$val[uid]}">
+			<ul style=" padding:2px;">
+				<li><a href="javascript:;" onclick="toggleAddNew({$val[uid]})">+ 创建新分组</a></li>
+			</ul>
+		  </div>
+		  
+		</ul>
+		<!--关注分组 End-->
+		
+		<!--创建分组 Begin-->
+			<div class="addNew" id="add_new_{$val[uid]}" style="margin-left:0;display:none;">
+			  <form method="POST" name="publisher_group_form" id="publisher_group_form" onsubmit="return false;">
+				<table width="304" border="0" cellspacing="0" cellpadding="0" >
+				  <tr>
+					<td width="198">
+						<input name="groupName" type="text" id="groupName_{$userid}" class="addNewP" value="新分组" style="width:195px; color:#999;" onfocus="if(this.value=='新分组')this.value=''" onblur="if(this.value=='')this.value='新分组';"/>
+						<input id="groupSubmit"type="button" class="shareI" value="确定" onclick="GroupSubmit('groupName_{$userid}',0,'menu_add',{$userid});return false;" title="按Ctrl+Enter直接创建"/>
+						<span style="margin-left:5px;"><a href="javascript:;" onclick="toggleAddNew({$val[uid]})">取消</a></span>
+					</td>
+				  </tr>
+				</table>
+			  </form>
+			</div>
+		<!--创建分组 End-->
+	</div>
+	
+	<!--备注 Begin-->
+	<div id="" style="margin-top:10px;">
+		<ul style=" padding:2px;">
+			<li>
+				为TA设置备注名：
+				<input name="remark_name" id="qremark_name_{$val[uid]}" type="text" class="addNewP" style="width:244px; color:#999;" value="{$buddy_info[remark]}"/>
+			</li>
+		</ul>
+	</div>
+	<!--备注 End-->
+
+    <div class="tool_bar">
+      <input type="button" class="shareI" value="完成"  id="close1_{$val[uid]}" onclick="setGroupSubmit('{$val[uid]}');" />
+	  &nbsp;&nbsp;
+	  <input type="button" class="shareI" value="取消"  id="close1_{$val[uid]}" onclick="closeDialog('$this->Get[handle_key]');" />
+    </div>
+</div>
+
+<script>
+$("#groupName_{$userid}").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#groupSubmit").click();
+    }
+});
+
+function toggleAddNew(uid)
+{
+	var n = $('#add_new_'+uid);
+	var t = $('#toggle_btn_'+uid);
+	if (n.is(':hidden')) {
+		n.show();
+		t.hide();
+	} else {
+		n.hide();
+		t.show();
+	}
+}
+setDialogTitle('$this->Get[handle_key]', '已成功关注"{$member[nickname]}"，为TA设置分组');
+</script>

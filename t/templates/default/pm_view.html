@@ -1,0 +1,111 @@
+<!--{template "topic_header"}-->
+
+<div id="main_warp">
+  <!--中间左边主要部分-->
+  <div id="main_warpLeft">
+    <div class="main_2">
+      <div class="nav">
+        <div class="navLeft"></div>
+        <div class="navCenter"> <span class="spanL">查看{$nickname}发来的站内短信</span></div>
+        <div class="navRight"></div>
+      </div>
+      <div class="main_2">
+	<table id="comment_10580" width="100%" cellspacing="0" style="table-layout:fixed;overflow:hidden;word-break:break-all;word-wrap:break-word;">
+		<tr>
+			<td width="77" valign="top" rowspan="4" style="padding:0 10px;">
+				<table border="0" width="100%" class="online">
+					<tr>
+						<td>
+						<!--{if $user_id}-->
+						<a href="index.php?mod=member&code=view&id=$user_id"><img border="0" src="$face" class="pic" onerror="javascript:faceError(this);"/></a> 
+						<!--{else}-->
+						<img border="0" src="$face" class="pic" onerror="javascript:faceError(this);"/>
+						<!--{/if}-->
+						</td>
+					</tr>
+				<tr>
+					<td align="center">
+						<div>
+						<!--{if $user_id}-->
+						<span class="title"></span><a href="index.php?mod=member&code=view&id=$user_id">{$user}</a>
+						<!--{else}-->
+						<span class="title"></span>{$user}
+						<!--{/if}-->
+						</div>
+
+					</td>
+				</tr>
+				</table>
+			</td>
+			<td style="padding:0 10px;">
+			<div class="comment_box" >
+			标题：{$subject}
+			</div>
+			<p>
+				<div id="#description_comment_10580">
+				{$message}<br />
+				</div>
+				</p>
+			</td>
+		</tr>
+	</table>
+		<div class="notice" style="border:none">
+				<span class="text_gray px12">
+				<span class="style06"><a href="index.php?mod=pm&code=list&folder={$folder}&p={$this->Get[p]}">返回</a></span>
+				|
+				
+				<!--{if $prev_id}-->
+				<a href="index.php?mod=pm&code=view&folder={$folder}&id={$prev_id}">查看上条</a>
+				<!--{else}-->
+				<span class="style06">查看上条</span>
+				<!--{/if}-->
+				|
+				
+				<!--{if $next_id}-->
+				<a href="index.php?mod=pm&code=view&folder={$folder}&id={$next_id}">查看下条</a>
+				<!--{else}-->
+				<span class="style06">查看下条</span>
+				<!--{/if}-->
+				|
+				<a href="index.php?mod=pm&code=markunread&folder={$folder}&ids={$id}">标记未读</a>
+				|
+				<a href="index.php?mod=pm&code=delete&folder={$folder}&ids={$id}">删除消息</a>
+				</span>
+			</div>
+	</div>
+
+</div>
+
+
+    <div class="mLeftcon">
+      <div class="nav">
+        <div class="navLeft"></div>
+        <div class="main_2"> <span class="spanL">    
+回复短信给[$nickname]
+</span></div>
+        <div class="navRight"></div>
+      </div>
+      <div class="main_2">
+		<!--{if $user_id}--><div class="reply_box" style="padding:0 10px;">
+			<form action="index.php?mod=pm&code=dosend" method="post" id="frmReply">
+			  <input type="hidden" name="to_id" value="{$msgtoid} " />
+			  <div class="title_box" style="margin-top:-3px;">
+					<span class="style01">标&nbsp; 题</span> <input type="text" name="subject" size="51" value="回复: {$subject}" class="text-area" /></div>
+				<div class="write_box" style="border-top:none;">
+					<span class="style04">内&nbsp; 容</span> <textarea name="message" cols="53" rows="6" class="text-area"></textarea> </div>
+				<input type="hidden" name="to_user" value="{$nickname}"><br>
+			  <div class="send_box">
+				<input type="submit" value="就写这么多了" id="btnSend" />
+				</div> 
+			</form>
+		</div>
+		<!--{/if}-->
+	</div>
+</div>
+</div>
+<div id="main_warpRight">
+{$left_menu}
+</div>
+</div>
+
+<!--{template "topic_footer"}-->

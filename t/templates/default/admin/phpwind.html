@@ -1,0 +1,149 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>使用提示</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1">
+			<div>1、<b>整合phpwind，不可以与discuz和ucenter共存，此操作将取消系统与ucenter或discuz论坛的整合！</b></div>
+			<div>2、操作前，请先备份好Jishigou及phpwind的数据库，以防数据丢失</div>
+			<div>3、如果开启了本功能请，请按以下方法进行正确的配置，否则会导致用户不能正常的注册、登录Jishigou</div>
+			<div style="color:red;">以创始人身份进入phpwind后台。1、“创始人”->“用户中心设置”->“将本系统作为‘用户中心服务端’”。<br>2、“应用管理”->“添加应用”，(应用名称：jishigou，应用的URL：你的微博URL地址，随机生成密钥，保存。把生成的应用ID号和对应的应用密钥填写在下面对应的地方)。<br>3、“应用”->“插件中心”->“通行证”->“设置”（通行证：开启；通行证私有密钥：随机生成；将本系统作为：服务器端；同步登录的客户端地址：填写你的微博URL地址）</div>
+		</td>
+	</tr>
+</table>
+<br>
+
+<form method="post" action="admin.php?mod=phpwind&code=phpwind_save">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">phpwind整合</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		开启phpwind整合？
+		</td>
+		<td class="altbg2">
+		{$pw_enable_radio}</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		开启调用phpwind用户头像
+		</td>
+		<td class="altbg2">{$pw_face_radio}</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		开启调用phpwind论坛帖子
+		</td>
+		<td class="altbg2">{$pw_bbs_radio}（开启后在我的首页增加一个Tab“我的论坛”显示论坛的帖子）</td>
+	</tr>
+	<tr class="header">
+		<td colspan="2">参数配置</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind通行证私有密钥</b>
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_pptkey]" value="{$phpwind[pw_pptkey]}" />（phpwind后台->应用->插件中心->配置的通行证私有密钥，方法见上面说明）
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind通信密钥</b>
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_key]" value="{$phpwind[pw_key]}" />（phpwind后台->创始人->用户中心->应用管理->添加应用->生成的通信密钥，方法见上面说明）
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		当前应用的ID
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_app_id]" value="{$phpwind[pw_app_id]}" />（phpwind后台->创始人->用户中心->应用管理->应用列表->对应的应用ID，方法见上面说明）		
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind的URL地址</b>
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_api]" value="{$phpwind[pw_api]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库地址
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_db_host]" value="{$phpwind[pw_db_host]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库用户名
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_db_user]" value="{$phpwind[pw_db_user]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库密码
+		</td>
+		<td class="altbg2">
+		<input type="password" name="phpwind[pw_db_password]" value="" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库名称
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_db_name]" value="{$phpwind[pw_db_name]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库字符集
+		</td>
+		<td class="altbg2">{$pw_db_charset}
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind数据库表前辍
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_db_table_prefix]" value="{$phpwind[pw_db_table_prefix]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind字符集
+		</td>
+		<td class="altbg2">{$pw_charset}
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8">
+		<td class="altbg1" width="30%">
+		Phpwind IP地址
+		</td>
+		<td class="altbg2">
+		<input name="phpwind[pw_ip]" value="{$phpwind[pw_ip]}" />（可不填写）	
+		</td>
+	</tr>	
+</table>
+
+<br>
+
+<center><button type="submit" class="button"> 提 交 </button></center>
+
+</form>
+<br>
+
+
+<!---->

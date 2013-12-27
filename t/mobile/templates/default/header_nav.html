@@ -1,0 +1,99 @@
+<div id="g_header">
+	<!--{if $this->Code != "at_my" && $this->Code != "comment_my"}-->
+	<div class="g_left_nav_toolbar">
+    	<ul>
+        	<!--{if $this->Code=='publish'}-->
+            	<li><button class="g_nav_btn" onclick="history.go(-1);">取消</button></li>
+			<!--{elseif in_array($this->Module, array('search')) || in_array($this->Code, array('detail', 'hot_comments', 'hot_forwards', 'new', 'comment', 'follow', 'fans', 'my_blog', 'list', 'blacklist', 'my_favorite', 'tag', 'about'))}-->
+            	<li><button class="g_nav_btn" onclick="history.go(-1);">返回</button></li>
+           	<!--{elseif $this->Code == 'userinfo' && $_GET['uid'] != MEMBER_ID}-->
+            	<li><button class="g_nav_btn" onclick="history.go(-1);">返回</button></li>
+           <!--{elseif $this->Code=='login'}-->
+           		<li>&nbsp;</li>
+            <!--{else}-->
+                <li><button class="g_nav_btn_edit" onclick="openPublishBox(PUBLISH_NEW)">&nbsp;</button></li>
+            <!--{/if}-->
+        </ul>
+    </div>
+	<!--{/if}-->
+    
+    <div class="<!--{if $this->Code != "at_my" && $this->Code != "comment_my"}-->g_middle_nav_toolbar<!--{else}-->g_middle_nav_toolbar_message<!--{/if}-->">
+    <!--{if $this->Code == "home"}-->
+    	<!--{eval echo Mobile::convert($this->MemberHandler->MemberFields['nickname'])}-->
+	<!--{elseif $this->Code == "at_my" || $this->Code == "comment_my"}-->
+    	<!--{eval $tab_msg_actives[$this->Code] = "g_middle_chute_on";}-->
+    	<div class="g_middle_chute">
+        	<ul>
+            	<li class="{$tab_msg_actives['at_my']}" onclick="changeMessageTab(TAB_MESSAGE_AT);">@我</li>
+            	<li class="s {$tab_msg_actives['comment_my']}" onclick="changeMessageTab(TAB_MESSAGE_COMMENT);">评论</li>
+            </ul>
+        </div>
+	<!--{elseif $this->Module == "search"}-->
+    	<!--{eval $s_title_ary = array('user'=>'找人','topic'=>'搜索微博')}-->
+		<!--{eval echo $s_title_ary[$this->Code]}-->
+    <!--{elseif $this->Code == "userinfo"}-->
+    	<!--{if $_GET['uid'] == MEMBER_ID}-->
+    		我的资料
+        <!--{else}-->
+        	资料
+        <!--{/if}-->
+    <!--{elseif $this->Module == "more"}-->
+    	<!--{if $this->Code == "about"}-->
+        	关于
+        <!--{else}-->
+        	更多
+        <!--{/if}-->
+    <!--{elseif $this->Code == "3g"}-->
+    	广场
+    <!--{elseif $this->Code == "publish"}-->
+    	<!--{if $_GET['pt'] == "new"}-->
+        	新微博
+        <!--{elseif $_GET['pt'] == "reply"}-->
+        	评论
+        <!--{elseif $_GET['pt'] == "forward"}-->
+        	转发
+        <!--{/if}-->
+	<!--{elseif $this->Code == "detail"}-->
+    	微博正文
+	<!--{elseif $this->Code == 'hot_comments'}-->
+    	热门评论
+	<!--{elseif $this->Code == "new"}-->
+    	随便看看
+    <!--{elseif $this->Code == "hot_forwards"}-->
+    	热门转发
+    <!--{else}-->
+		<!--{eval $_title_ary = array('follow'=>'关注','fans'=>'粉丝','my_blog'=>'我的微博','list'=>'话题','blacklist'=>'黑名单','my_favorite'=>'收藏','tag'=>'话题', 'comment'=>'评论', 'login'=>'登录')}-->
+		<!--{eval echo $_title_ary[$this->Code]}-->
+    <!--{/if}-->
+	</div>
+    
+    <!--{if $this->Code != "at_my" && $this->Code != "comment_my"}-->
+    <div class="g_right_nav_toolbar">
+    	<ul>
+        	<!--{if $this->Code=='publish'}-->
+            <!--{elseif $this->Code=='comment'}-->
+            	<li><button class="g_nav_btn_edit" onclick="openPublishBox(PUBLISH_COMMENT, {totid:'{$tid}'});">&nbsp;</button></li>
+            <!--{elseif $this->Code=='login'}-->
+            	<li>&nbsp;</li>
+            <!--{else}-->
+               	<li><button class="g_nav_btn_ref" onclick="location.reload();">&nbsp;</button></li>
+          	<!--{/if}-->
+        </ul>
+    </div>
+    <!--{/if}-->
+    
+</div>
+
+<!--全局提示-->
+<div id="g_tips" onclick="closeTipsExp();">
+</div>
+
+<!--{if $_GET['code'] == 'login'}-->
+	<style>
+        #g_isrcollWrapper {
+            bottom:0px;
+        }
+    </style>
+<!--{/if}-->
+
+<div id="g_isrcollWrapper"> 

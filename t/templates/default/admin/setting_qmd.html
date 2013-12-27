@@ -1,0 +1,46 @@
+<!--{template admin/header}-->
+
+
+<form method="post" name="config[settings]" action="admin.php?mod=setting&code=domodify_normal" enctype="multipart/form-data">
+	
+	
+	<a name="图片签名档设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="">
+		<tr class="header">
+			<td colspan="2">图片签名档选项</td>
+		</tr>		
+		<tr class="altbg1">
+			<td width="45%" height="25"><p><b>是否开启图片签名档:</b><br>
+			开启该功能，因为需要将用户的微博生成图片，所以对网站效率有一定影响；<br>
+			选择“是”，则用户可在前台获取自己的图片签名档代码，用于挂在论坛签名栏处显示微博。
+		  </td>
+			<td height="25">{$qmd_radio}</td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%" height="25"><p><b>签名档图片存放目录:</b><br>
+			填写网站文件夹目录名称，注意以“/”结尾，如: images/qmd/ <br />
+			（提示: 如果开启了图片签名档，则此项不能为空）
+	  	  </td>
+		  <td height="25"><input name="config[qmd_file_url]" type="text" id="config[qmd_file_url]" value="{conf qmd_file_url}"  style="width:300px; height:15px;"/></td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%" height="25">
+			<p><b>签名档字体文件:</b><br>
+			填写系统字体文件路径或者已上传的字体文件路径。
+			<br />
+			字体文件为空将无法生成签名档，字体文件最好是宋体<br />
+			如：images/simsun.ttc <br />
+			（提示: 此项不能为空） <br />
+
+
+		  </p>		    </td>
+		  <td height="25"><input name="config[qmd_fonts_url]" type="text" id="config[qmd_fonts_url]" value="{conf qmd_fonts_url}" style="width:300px; height:15px;"/></td>
+		</tr>
+  </table>
+	<br>
+
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+	
+			
+</form>
+<br>

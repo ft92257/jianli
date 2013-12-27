@@ -1,0 +1,49 @@
+{template "topic_header"}
+<div class="main_2"><a name="top_t" id="top_t"></a>
+<div class="main_t"><span>导航1111</span></div>
+
+<div class="set_warp">
+
+
+
+  
+  <div class="main_t"><span>导航</span></div>
+
+  <div id="123">
+	  <span>1</span>
+  </div>
+  
+  <div id="123">
+  	<span>2</span>
+  </div>
+ 
+ ----------------------
+  <div id="456">
+	  <span>签名三</span>
+  </div>
+  
+  
+  <div ectype="spec_result">
+  	<span>签名一</span>
+  </div>
+  
+  
+  <div ectype="456">
+  	<span>签名三</span>
+  </div>
+  
+  <div ectype="spec_result">
+	  <span>签名一</span>
+  </div>
+ 
+<script>
+    $(document.body).click(function () {
+    
+	$('*.[ectype="spec_result"]').html("<p>Hello Again</p>"); 
+		//$("#123 span").html("<p>Hello Again</p>"); 
+     
+    });
+</script>
+	
+	
+</div>

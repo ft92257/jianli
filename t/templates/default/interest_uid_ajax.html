@@ -1,0 +1,29 @@
+<div id="interestUid">
+<!--{if $member_list}-->
+  <ul class="followList" style="overflow:hidden">
+  <!--{loop $member_list $val}-->
+    <li class="pane" id="follow_user_{$val[uid]}">
+      <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+      <div id="user_{$val[uid]}_user" class="layS"></div>
+	  
+      <div class="fBox_R ">
+	  
+        <span class="name"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a>{$val[validate_html]}</span>
+		
+        <span id="follow_{$val[uid]}">
+         {$val[follow_html]}
+        </span>	
+		<span class="ff_1">我关注的 {$val[count]}人 关注TA</span>	
+	  </div>
+
+    </li>
+	<div id="alert_follower_menu_{$val[uid]}"></div>
+	<div id="Pmsend_to_user_area"></div>
+	<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+	<div id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></div>
+    <!--{/loop}-->
+  </ul>
+<!--{else}-->
+<div>没有检索到你可能感兴趣的人</div>
+<!--{/if}-->
+</div>

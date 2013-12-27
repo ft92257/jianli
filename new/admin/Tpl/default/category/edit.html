@@ -1,0 +1,48 @@
+<include file="public:header" />
+<form action="" method="post" name="myform" id="myform"   enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',3,1);">基本信息</li>
+     
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          <tr>
+            <th></th>
+            <td><input type="hidden" name="id" class="input-text" value="{$items_cate_info.id}"></td>
+          </tr>
+          <tr>
+            <th width="100">风格 :</th>
+            <td>
+            	<input type="text" name="cate_name" id="name" rel="title_color" 
+                	class="input-text iColorPicker" size="60" value="{$icate.cate_name}" 
+                    />            </td>
+          </tr>            
+          <tr>
+            <th width="100">排序值 :</th>
+            <td><input type="text" name="ordid" id="ordid" class="input-text" size="4" value="{$icate.ordid}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"></td>
+          </tr>
+        </table>
+      </div>
+      
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			 $('#div_'+name+'_'+i).show();
+			 $('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			 $('#div_'+name+'_'+i).hide();
+			 $('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+</script>
+</body></html>

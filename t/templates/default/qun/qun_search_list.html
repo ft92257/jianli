@@ -1,0 +1,47 @@
+		<!--微群列表 Begin-->
+			<div class="Listmain" style="margin-top:20px;">
+				<!--{if $count}-->
+					<!--{loop $qun_list $value}-->
+						<div style="border-bottom: dotted 1px #ccc; padding-bottom:10px; margin-bottom:15px;">
+							<div class="rbl">
+								<div class="img_wp">
+									<a href="index.php?mod=qun&qid={$value['qid']}"><img src="{$value['icon']}" /></a>
+								</div>
+							</div>
+							<div style=" float:right; width:480px;">
+								<span style="float:left;">
+									<span style="font-size:12px; font-weight:700;">
+										<a href="index.php?mod=qun&qid={$value['qid']}">{$value['name']}</a>
+									</span>
+									<span style="color:#999;">(群ID：{$value['qid']})</span>
+								</span>
+								<span style="color:#999;display:block; float:right;">		
+									创建时间：{$value['dateline']}
+								</span>
+								<!--{if $value['tags']}-->
+								<br />
+								<span>
+									群标签：
+									<!--{loop $value['tags'] $tag}-->
+										<a href="index.php?mod=qun&code=tag&tag_id={$tag['tag_id']}">{$tag['tag_name']}</a>
+										&nbsp;
+									<!--{/loop}-->
+								</span>
+								<!--{/if}-->
+								<br />
+								<span>成员：<a href="index.php?mod=qun&code=members&qid={$value['qid']}">{$value['member_num']}</a></span>
+								<br />
+								<span style="color:#ccc">
+									{$value['desc']}
+								</span>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					<!--{/loop}-->
+					<div>{$page_arr[html]}</div>
+				<!--{else}-->
+					<div>当前分类下还没有群，赶快创建一个吧~~</div>
+				<!--{/if}-->
+			
+		</div>
+		<!--微群列表 End-->

@@ -1,0 +1,134 @@
+{template "topic_header"}
+<link href="templates/default/styles/talk.css" rel="stylesheet" type="text/css" />
+<div class="main {$t_col_main}">
+<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+<img src='images/talk_banner.png' width='1000' height='120'>
+<!--{/if}-->
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main3Box_m HotW ">
+<!--{if MEMBER_STYLE_THREE_TOL != 1}-->
+<img src='images/talk_bg.jpg' width='800' height='100'>
+<!--{/if}-->
+  <div id="topNews_1" class="Hotwarp">
+  <div class="Menubox2" style="width:556px;">
+    <ul>
+    <li><div class="<!--{if empty($cat)}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=talk&cat="><span>全 部</span></A> </div></li>
+	<!--{if $categoryall}--><!--{loop $categoryall $values}-->
+    <li><div class="<!--{if $values[cat_id]==$cat}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=talk&cat={$values[cat_id]}"><span>{$values[cat_name]}</span></A> </div></li>
+	<!--{/loop}--><!--{/if}-->
+    </ul>
+    </div>
+	<!--{if $categorys}-->
+	<div class="talknavone">
+	<ul>
+	<!--{loop $categorys $value}-->
+    <li><A href="index.php?mod=talk&cat={$value[cat_id]}"><span>{$value[cat_name]}</span></A></li>
+	<!--{/loop}-->
+	</ul>
+	</div>	
+	<!--{/if}-->
+	<script>function talklistselect(value){window.location.href='index.php?mod=talk&cat={$_GET[cat]}&view='+value;}</script>
+	<div class="talknavtwo">
+    <ul>
+    <li><span><!--{if $cate_info}-->{$cate_info[cat_name]} — <!--{/if}-->全部微访谈</span></li>
+	<li><select name="view" onchange="talklistselect(this.value);"><option value=''>全部</option>
+	<option value='on' <!--{if $view =='on'}selected="selected"<!--{/if}-->>进行中</option>
+	<option value='go' <!--{if $view =='go'}selected="selected"<!--{/if}-->>未开始</option>
+	<option value='no' <!--{if $view =='no'}selected="selected"<!--{/if}-->>已完成</option>
+	</select></li>
+    </ul>
+    </div>
+ <ul class="talkShowList">
+<!--{loop $talk_list $val}-->	
+	<li class="clearFix">
+	<div class="feed_ls">
+	<p class="f_content">
+	<img src="images/transparents.gif" class="ico_shtalk ico_talkshow" />
+	<a href="index.php?mod=talk&code=view&id={$val[lid]}" target="_blank" title="{$val[talkname]}">{$val[talkname]}</a>
+	<span class="ico_status {$val[status_css]}">{$val[status]}</span>
+	</p>
+	<p class="f_time">
+	<img src="images/transparents.gif" class="ico_shtalk ico_times" />
+	时间：({$val[datetime]})
+	</p>
+	<p class="f_name">
+	<img src="images/transparents.gif" class="ico_shtalk ico_talk" />嘉宾：
+	<!--{loop $val[guest] $user}-->
+	<span><a href="index.php?mod={$user[username]}" title="{$user[nickname]}" target="_blank">{$user[nickname]}</a>{$user[validate_html]}</span>
+	<!--{/loop}-->
+	</p>
+	</div>
+	<div class="pic_ls">
+	<!--{loop $val[guest] $user}-->
+	<div class="guest_lst"> 
+	<a href="index.php?mod={$user[username]}" target="_blank"><img height="50" width="50" src="{$user[face]}" title="{$user[description]}" onerror="javascript:faceError(this);" class="photo" /></a>
+	<a class="chead04_A" href="index.php?mod={$user[username]}" title="{$user[nickname]}" target="_blank">{$user[nickname]}<img src="images/transparents.gif" class="small_icon vip" title=""/></a>
+	</div>
+	<!--{/loop}-->
+	</li>
+<!--{/loop}-->
+	</ul>
+	<!--{if $page_arr[html]}-->
+    <div class="pageStyle">
+       <li>{$page_arr[html]}</li>
+    </div>
+    <!--{/if}-->	
+  </div>
+<!--右边栏目 Begin-->
+<div class="Hotright">
+<div class="HboxR">
+	<div class="talk_line">微访谈简介</div>
+	<ul class="sideul2">
+	<!--{if $talk_config[des]}-->{$talk_config[des]}<!--{/if}-->
+	</ul>
+</div>
+<div class="HboxR">
+<div class="talk_line talk_top">微访谈主持人</div>
+<ul class="followList act_ul">
+  <!--{if $talk_config[user]}-->
+  <li class="pane">
+     <div class="fBox_l">
+      <a href="index.php?mod={$user_host[username]}" title="{$talk_config[user]}">
+      <img src="{$user_host[face]}" title="{$talk_config[user]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	  </a>
+  	 </div>
+  	 <div class="fBox_r">
+  	   <p class="ff_1 w_num"><a href="index.php?mod={$user_host[username]}" title="{$talk_config[user]}">{$talk_config[user]}</a>{$user_host[validate_html]}</p>
+	   <p class="ff_1 w_num">粉丝{$user_host[fans_count]}人</p>
+	   <p class="ff_1">
+	   <!--{if $talk_config[uid] != MEMBER_ID}-->
+	   <!--{if $user_host[followed]}-->
+	   <span class="follow_{$talk_config[uid]}"><a href="javascript:void(0)" onclick="follow({$talk_config[uid]},'follow_{$talk_config[uid]}','');return false;" class="attention_del"></a></span>
+	   <!--{else}-->
+	   <span class="follow_{$talk_config[uid]}"><a href="javascript:void(0)" onclick="follow({$talk_config[uid]},'follow_{$talk_config[uid]}','add');return false;" class="attention"></a></span>
+	   <!--{/if}-->
+	   <!--{else}-->
+	   <span class="btn_normal">我自己</span>
+	   <!--{/if}-->
+	   </p>
+  	 </div>
+	 <p class="user_aboutme"><b>主持人介绍</b>：<br>微访谈官方主持人</p>
+  </li>
+ <!--{/if}-->
+</ul>
+</div>
+<div class="HboxR">
+	<div class="talk_line talk_top">申请微访谈</div>
+	<ul class="sideul2">
+	<!--{if $talk_config[ads]}-->{$talk_config[ads]}<!--{/if}-->
+	</ul>
+</div>
+</div>
+  </div>
+</div>
+{template "topic_footer"}

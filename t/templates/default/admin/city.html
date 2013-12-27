@@ -1,0 +1,69 @@
+{template admin/header}
+<div class="nav3">
+  <ul class="cc">
+    <li>
+      <a href="admin.php?mod=city">省份管理</a>
+    </li>
+    <li class="current">
+      <a href="admin.php?mod=city&code=city">城市管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=city&code=zone">区域管理</a>
+    </li>
+	<li>
+	  <a href="admin.php?mod=city&code=street">地段管理</a>
+	</li>
+  </ul>
+</div>
+
+<div class="mt10">
+<form name="form1" id="form1" method="post" action="admin.php?mod=city&code=addcity">
+  <table width=98% cellspacing=1 cellpadding=3 class="tableorder">
+  <!--{if $id}-->
+    <tr class="header">
+      <td colspan=2>修改城市</td>
+    </tr>
+    <tr>
+      <td class="altbg1">名称</td>
+      <td class="altbg2"><input type="text" name="city" id="city" value="{$name}"></td>
+    </tr>
+    <tr>
+  <!--{else}-->
+    <tr class="header">
+      <td colspan=2>创建城市</td>
+    </tr>
+    <tr>
+      <td class="altbg1">名称</td>
+      <td class="altbg2"><textarea name="city" id="city" rows="5" cols="40"></textarea><font color="red">注:</font>如要同时添加多个地名,每个城市换一行.</td>
+    </tr>
+  <!--{/if}-->
+    <tr>
+      <td class="altbg1">省份：</td>
+      <td class="altbg2">
+        <select name="area" id="area" onchange="return changeArea();">
+          <option value=0>请选择</option>
+          $area_option
+        </select>
+      </td>
+    </tr>
+  </table>
+<script type="text/javascript">
+  function changeArea(){
+	var area_id = document.getElementById("area").value;
+    var url = "ajax.php?mod=class&code=resultlist&act=city&area_id="+area_id;
+  	var myAjax=$.post(
+  		  	url,
+  		  	function(d){
+  	  		  	$('#' + "resultlist").html(d);
+  		  	});
+    return false;
+  }
+  changeArea();
+</script>
+<div>
+  <input type="submit" name="addcity" value="确定" class="button">
+  <input type="hidden" name="id" value="{$id}">
+</div>
+</form>
+<div id="resultlist"></div>
+</div>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<title>{eval echo htmlspecialchars($this->Title);} - {$this->Config[site_name]}({$this->Config[site_domain]}){conf page_title}</title>
+<meta name="Keywords" content="{eval echo htmlspecialchars($this->MetaKeywords);},{conf site_name}{conf meta_keywords}" />
+<meta name="Description" content="{eval echo htmlspecialchars($this->MetaDescription);},{conf site_notice}{conf meta_description}" />
+<link rel="shortcut icon" href="favicon.ico" >
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<!--{if $this->Config[qun_theme_id]}-->
+<link href="templates/default/qunstyles/{$this->Config[qun_theme_id]}.css" rel="stylesheet" type="text/css" />
+<!--{elseif $this->Config[theme_id]}-->
+<link href="theme/{$this->Config[theme_id]}/theme.css?v={SYS_BUILD}" rel="stylesheet" type="text/css" />
+<!--{/if}-->
+
+<style type="text/css">
+<!--{if $this->Config[theme_text_color]}-->
+body{ color:{$this->Config[theme_text_color]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_color]}-->
+body{ background-color:{$this->Config[theme_bg_color]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_image]}-->
+body{ background-image:url({$this->Config[theme_bg_image]}); }
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_position]}-->
+body{ background-position:{$this->Config[theme_bg_position]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_repeat]}-->
+body{ background-repeat:{$this->Config[theme_bg_repeat]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_fixed]}-->
+body{ background-attachment:{$this->Config[theme_bg_fixed]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_text_color]}-->
+body{ color:{$this->Config[theme_text_color]}; }
+<!--{/if}-->
+<!--{if $this->Config[theme_link_color]}-->
+a:link{ color:{$this->Config[theme_link_color]}; }
+<!--{/if}-->
+
+a.artZoom{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+
+a.artZoom2{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+
+a.artZoom3{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink3 { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+
+a.artZoomAll{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLinkAll { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+</style>
+
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<script type="text/javascript">var __ALERT__='{$this->Config[verify_alert]}';</script>
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<!--
+<script type="text/javascript" src="js/topicManage.js"></script>
+<script type="text/javascript" src="js/rotate.js"></script>
+<script type="text/javascript" src="js/dialog.js" id="dialog_js"></script>
+<script type="text/javascript" src="js/lang.js"></script>
+<script type="text/javascript" src="images/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+-->
+<!--{if in_array($this->Code, array("follow","fans"))}-->
+<script type="text/javascript" src="js/relation.js"></script>
+<!--{/if}-->
+<!--{if $this->Get['mod']=="vote"}-->
+<script type="text/javascript" src="js/vote.js"></script>
+<!--{/if}-->
+<!--{if $this->Get['mod']=="qun"}-->
+<script type="text/javascript" src="js/qun.js"></script>
+<!--{/if}-->
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript">DD_belatedPNG.fix('.header,.pweibo,.boxRNav2 li,.boxRNav2 li a');   </script>
+<![endif]-->
+
+</head>
+{$additional_str}
+<body>

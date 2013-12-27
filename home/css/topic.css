@@ -1,0 +1,45 @@
+﻿/*--www.dookay.com技术支持--*/
+.clear{clear:both;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+
+body{font-size:14px;font-family:"微软雅黑","宋体",Arial,Helvetica,sans-serif;background-color:#F3F3F3;color:#333;}
+*{padding:0;margin:0;}
+a{outline: none;text-decoration:none;}
+a img{border:0;}
+a:active {star:expression(this.onFocus=this.blur());}
+:focus {outline:0;}
+li{list-style-type:none;}
+.color_org,a.color_org{color:#FF6B24;}
+.color_blue,a.color_blue{color:#2A9AD2;}
+#wrap{background-color:#F3F3F3;}
+.local{height:1px;margin:-68px 0 69px;}
+*html .local{height:0px;margin:0;}
+/*--ico--*/
+.ico{background:url(../images/ico.png) no-repeat;display:inline-block;height:12px;width:12px;}
+
+/*--head--*/
+#phead{ height:69px;}
+#phead .extra{background:url(../images/head_bg.png) left bottom repeat-x;height:69px; width:100%;position:fixed;z-index:999;}
+.main_nav{ width:1000px; margin:0 auto;}
+.main_nav li{width:156px;height:69px;text-align:center;float:left; line-height:22px; display:block;}
+.main_nav li a{color:#333;display:block;height:46px;padding-top:23px; cursor:pointer;}
+.main_nav li .current{ background:url(../images/nav_current.png) center top no-repeat;color:#fff}
+.main_nav li a:hover{color:#666;}
+.main_nav li a.current:hover{ text-decoration:none;color:#fff;}
+.main_nav li.big_nav a{padding-top:10px; height:59px;}
+/*--body--*/
+#pbody{border:1px solid #D4D4D5;border-bottom:none;width:900px;margin:45px auto 90px; background-color:#fff;}
+.row{border-bottom:1px solid #D4D4D5; background-color:#fff;}
+
+.lazy {display: none;}
+#slide{ width:900px;height:450px; overflow:hidden; position:relative; z-index:1;}
+#slide ul{ position:absolute; z-index:0;}
+#slide li .tit_slide{ font-size:22px; font-family:'微软雅黑';color:#fff; background-color:#f57b04;height:58px; line-height:58px;padding-left:50px; position:relative; z-index:1;top:-58px; width:900px;}
+*html #slide li .tit_slide{line-height:50px;}
+*+html #slide li .tit_slide{line-height:50px;}
+.slidetabs{position:absolute;bottom:18px;right:0;padding:0 20px;background-color:#f57b04;}
+.slidetabs a{ background-color:#ffc13d;width:15px; height:15px; border-radius:10px; display:inline-block;margin:5px;}
+.slidetabs a.current{ background-color:#fff;}

@@ -1,0 +1,81 @@
+/*###########################
+   @Name:黎明时分 
+#############################*/
+body{ background-color:#00aadd; background-image:url(images/themebg.jpg);background-position:center bottom;background-repeat:repeat;background-attachment:fixed;}
+a:link{color:#D00C01;text-decoration:none;}
+a:visited{color:#D00C01;text-decoration:none;}
+a:hover{color:#D00C01;text-decoration:underline;}
+ul#tabnav2 a,.menu_vsbox p.stitle b,.menu_spb a:link, .menu_spb a:hover, .menu_spb a:visited,.menu_hdbox p.stitle b{color:#D00C01;}
+.headerBg { background:#207A00;}
+.top_nav2 .home_1{color:#FFD050;}
+.top_nav2 .home_1 a{color:#FFD050;}
+.headerNav{ color:#516000;}
+.headerNav a:link {color:#007FA9;text-decoration:none;}
+.headerNav a:hover {color:#007FA9;text-decoration:underline;}
+.headerNav a:visited {color:#007FA9;text-decoration:none;}
+.main{ background:url(images/rightbg.png) repeat-y right center;}
+.top_nav2 { background:#516000;}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.person_atten_l{ border-right:1px solid #ECCFAB;}
+.boxRNav2 li.current a{ color:#007FA9;}
+.ts_menu_2{background:url(../images/theme/t5/hotb_1.gif) repeat-x bottom;}
+.ts3_mbtn1{border:1px solid #b86b72; border-bottom:none;}
+.ts3_mbtn2{border:1px solid #b86b72; border-bottom:none; background:#ffaac7;}
+.bottomLinks{ background:url(images/foot_bg.png); color:#fff;}
+.bottomLinks a:link,.bottomLinks a:visited,.bottomLinks a:hover{color:#fff;}
+.nfBox .left a{ color:#D00C01;}
+.sideBox{ color:#fff;}
+.sideBox a:link,.sideBox a:visited,.sideBox a:hover{color:#CA0D0D;}
+.layS2{color:#D00C01;}
+.layS2 a:link,.layS2 a:visited,.layS2 a:hover{color:#fff;}
+.searchTool .btnSearch .lbl{ color:#FFD050;}
+.searchTool .selOption a:hover{color:#b72222;}
+.alert_follower_menu{ color:#333;}
+.alertBox{ color:#333;}
+.alertBox a:link,.alertBox a:visited,.alertBox a:hover{color:#207A00;}
+.vDateBox{background:#ECF5F9; border:1px solid #B0C9D8;}
+.rbt_2{ background:url(images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.sideBox .rbt_2 a{ color:#fff;}
+.boxRNav3 li.current a{color:#D00C01}
+ul.t_c1_box{box-shadow:none;}
+ul.t_c2_box{box-shadow:none;}
+.feedCell .from a:link, .feedCell .from a:hover, .feedCell .from a:visited { color: #C7716C;}
+.option ul li a span.more{ border-color: #C7716C transparent transparent;}
+/*三栏部分*/
+.mainL{ border-right:none;width:590px;}
+.t_col_main{background:url(images/rightbg2.png) repeat-y;}
+.SC,.FTL{color:#333;}
+.FTL li{color:#333;}
+.FTL li a:link,.FTL li a:visited,.FTL li a:hover{color:#D00C01;}
+.FTL li ul.tipsBox .tips_nn .tips_nn14 a{ color:#D00C01;}
+.FTL li ul.tipsBox{ color:#333;}
+.FTL li ul.tipsBox a:link,.FTL li ul.tipsBox a:visited,.FTL li ul.tipsBox a:hover{ color:#D00C01;}
+.SC .btn{background:url(images/b1_c2.gif) no-repeat;}
+.SC_woguanzhu_box a:link,.SC_woguanzhu_box a:visited,.SC_woguanzhu_box a:hover{ color:#fff;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li.index a{ color:#fff;}
+.FTL .thread_add a{ color:#007FA9;}
+.SC_taguanzhu_box p.m_m2 a{ color:#007FA9;}
+.followList li .fBox_R .ff_1{}
+.sideBox .f14B a{ color:#444;}
+.tabmenu .cli{background:#f6f6f6;}
+/*110913模板更换*/
+ul.tipsBox a:link,ul.tipsBox a:visited,ul.tipsBox a:hover{color:#D00C01;}
+.SC_taguanzhu_box .media_user_list{ margin:69px 0 0 -4px;*margin:69px 0 0 -4px;}
+/*新增侧栏部分*/
+.r_replace a:link,.r_replace a:visited,.r_replace a:hover{ color:#D00C01;}
+.side h3{background:#EEEDE3;border-bottom:#DCD9C9 1px solid;color:#D00C01;}
+.r_replace a:link,.r_replace a:visited,.r_replace a:hover{ color:#D00C01;}
+/*我的粉丝部分*/
+ul.boxRNav3 li:hover,ul.boxRNav3 li.hover{ z-index:1;background-color:#EEC1A5;}
+ul.boxRNav3 li.index:hover,ul.boxRNav3 #x1.hover{ background-color:#EEC1A5;}
+ul.boxRNav3 li.current{ height:26px;z-index:2;background-color:#D53B10;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#EEC1A5;}
+.t_col_main_fl .boxRNav2 li a{ color:#CA0D0D;}
+.t_col_main_fl .boxRNav2 li a:hover{text-decoration:none;background-color:#EEC1A5;} 
+.t_col_main_fl .boxRNav2 li:hover{z-index:1;background-color:#EEC1A5;}
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#EEC1A5;}
+.t_col_main_fl .boxRNav2 li.current,.t_col_main_fl .boxRNav2 li.current:hover{background-color:#EEC1A5;}
+.t_col_main_fl .boxRNav2 li.current a{background-color:#D53B10;}
+.t_col_main_fl .boxRNav2 li.current a{ color:#fff;}

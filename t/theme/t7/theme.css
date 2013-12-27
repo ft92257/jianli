@@ -1,0 +1,39 @@
+/*###########################
+   @Name:阳光 
+#############################*/
+body{ background-color:#87c8ee; background-image:url(images/themebg.jpg);background-position:0px 0px;background-repeat:no-repeat;}
+a:link{color:#006A92;text-decoration:none;}
+a:visited{color:#006A92;text-decoration:none;}
+a:hover{color:#006A92;text-decoration:underline;}
+.headerBg { background:#72C2E5;}
+.headerNav{ color:#fff;}
+.headerNav a:link {color:#fff;text-decoration:none;}
+.headerNav a:hover {color:#fff;text-decoration:underline;}
+.headerNav a:visited {color:#fff;text-decoration:none;}
+.main{ background:url(images/rightbg.png) repeat-y right center #FFFFFF;}
+.top_nav2{ background:#BBE6FF}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.person_atten_l{ border-right:#336699 1px solid;}
+.ts_menu_2{background:url(images/hotb_1.gif) repeat-x bottom;}
+.ts3_mbtn1{border:1px solid #3d98cd; border-bottom:none}
+.ts3_mbtn2{border:1px solid #3d98cd; border-bottom:none;background:#abdcf9;}
+.bottomLinks{ background:#c9f1ff;}
+.vDateBox{background:#ECF5F9; border:1px solid #B0C9D8;}
+.rbt_2{ background:url(images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.rbt_2 a{ color:#fff;}
+/*三栏部分*/
+.t_col_main{background:url(images/rightbg2.png) repeat-y;}
+
+
+/*我的粉丝部分*/
+ul.boxRNav3 li:hover,ul.boxRNav3 li.hover{ z-index:1;background-color:#BCE8F2;}
+ul.boxRNav3 li.index:hover,ul.boxRNav3 #x1.hover{ background-color:#BCE8F2;}
+ul.boxRNav3 li.current{ height:26px;z-index:2;background-color:#70CCE2;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li a:hover{text-decoration:none;background-color:#BCE8F2;} 
+.t_col_main_fl .boxRNav2 li:hover{z-index:1;background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.current,.t_col_main_fl .boxRNav2 li.current:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.current a{background-color:#70CCE2;}
+

@@ -1,0 +1,141 @@
+<!--{template admin/header}-->
+
+<script type="text/javascript" src="js/qun.js"></script>
+<form action="{$actions}" method="post" enctype="multipart/form-data" name="form1" id="form1" onsubmit="mk_date();">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder" style="margin-top:10px;">
+    <tr class="header">
+      <td colspan="2">编辑微群</td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">微群名称：</td>
+      <td bgcolor="#FFFFFF">
+	  	<span style="margin-right:15px;"><input type="text" name="qun_name" id="qun_name" value="{$qun_info['name']}" size="40"/></span>
+		<span><input class="checkbox" type="checkbox" name="recd" value="1" {$checked['recd']}>推荐</span>
+	  </td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">*微群分类:</td>
+      <td bgcolor="#FFFFFF">
+		<div style="float:left; margin-right:10px;">
+			<select id="top_cat" name="top_cat" onchange="get_catselect(this)">
+				{$catselect['first']}
+			</select>
+		</div>
+		<div style="float:left; ">
+			<select id="sub_cat" name="sub_cat">
+				{$catselect['second']}
+			</select>
+		</div>
+	  </td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">*微群所在地:</td>
+      <td bgcolor="#FFFFFF">
+		<div style="float:left;">
+		{$province_list}
+		</div>
+		<div style="float:left; ">
+			<select id="city" name="city"></select>
+			<input type="hidden" id="hid_city" name="hid_city" value="{$hid_city}">
+		</div>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">微群标签：</td>
+      <td bgcolor="#FFFFFF">
+	  	<input id="tag" name="tag" value="{$tag}" type="text" size="40">
+		<span style="margin-left:5px;">用英文逗号分隔,最多5个标签</span>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">微群简介：</td>
+      <td bgcolor="#FFFFFF">
+	  	<textarea id="desc" style="padding: 3px 2px;width:450px;height:50px;" name="desc">{$qun_info['desc']}</textarea>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">*微群类型：</td>
+      <td bgcolor="#FFFFFF">
+				<input type="radio" value="0" name="gview_perm" id="privacy_open" {$checked['gview_perm'][0]} />
+				<label for="privacy_open">公开群组</label>
+				<br />
+				<input type="radio" value="1" name="gview_perm" id="privacy_closed" {$checked['gview_perm'][1]} onclick="privacy_radio_force(1);"/>
+				<label for="privacy_closed">私密群组</label>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">*加入方式：</td>
+      <td bgcolor="#FFFFFF">
+			<input type="radio" value="0" name="join_type" id="join_free" {$checked['join_type'][0]} onclick="privacy_radio_force(2)"/>
+			<label for="join_free">任何人可自由加入</label>
+			<br />
+			<input type="radio" value="1" name="join_type" id="join_ratify" {$checked['join_type'][1]}/>
+			<label for="join_ratify">需群主批准后才能加入</label>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">*微群头像：</td>
+      <td bgcolor="#FFFFFF">
+	  	<div style="float:left;">
+	  	<input id="icon" name="icon" type="file" size="30"/>
+		</div>
+		<!--{if $op == 'edit'}-->
+		<div style="float:left; margin-left:50px;">
+			<img src="{$icon}" style="vertical-align:middle;height:48px;width:48px; border:1px solid #ccc;"/>
+			<span style="margin-left:20px; color:#666; vertical-align:middle;">{$u_tips}</span>
+		</div>
+		<!--{/if}-->
+	  </td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">微群风格：</td>
+      <td bgcolor="#FFFFFF">
+		<div class="themepwarp">
+		  <ul class="themelist">
+			<!--{loop $themelist $val}-->
+		    <a href="javascript:void(0)" onclick="qun_theme('$val[element]')">
+			<img alt="" src="templates/default/images/quntheme/{$val[theme_id]}/themebg_preview.jpg"/></a>
+			<!--{if ($val[theme_id] == $qun_info[qun_theme_id])}-->
+			<input type="radio" id="$val[theme_id]" name="theme_rad" checked onclick="qun_theme('$val[element]')">
+			<!--{else}-->
+			<input type="radio" id="$val[theme_id]" name="theme_rad" onclick="qun_theme('$val[element]')">
+			<!--{/if}-->
+		    <!--{/loop}-->
+		  </ul>
+		</div>
+	  </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+	  	<input type="submit" class="button" name="groupsubmit" value="提 交" />&nbsp;
+		<input name="reset" type="reset"class="button" onClick="history.go(-1)" value="取 消" />
+		<input id="qun_theme_id" name="qun_theme_id" value="{$qun_info[qun_theme_id]}" type="hidden">
+		<input name="qid" type="hidden" id="qid" value="{$qid}">
+	</td>
+    </tr>
+  </table>
+</form>
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript">
+	function changeProvince(){
+	    var province = document.getElementById("province").value;
+	    var hid_city = document.getElementById("hid_city").value;
+	    var url = "ajax.php?mod=member&code=sel&province="+province + "&hid_city="+hid_city;
+
+	    var myAjax=$.post(
+			  	url,
+			  	function(d){
+		  		    $('#' + "city").html(d);
+			  	}
+	    );
+	}
+	changeProvince();
+
+	function qun_theme(obj) {
+		var ele= obj.split(",");
+	    $("#qun_theme_id").val(ele[3]);
+	    document.getElementById(ele[3]).checked = "checked";
+	}
+	
+</script>

@@ -1,0 +1,60 @@
+<include file="public:header" />
+<div class="pad-lr-10">
+    <form id="myform" name="myform" action="{:u('admin/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <div>
+	<volist name='list' id='val'>
+	<div style="width:200px; height:400px">
+	<table style=" float:inherit">
+	<tr><a href="__URL__/exainfo?id={$val.id}"><img  width="100PX" height="100PX"src="__ROOT__{$val.img}" /></a></tr>
+	<tr>
+	  <td>组名:</td> 
+	  <td>{$val.name} </td></tr>
+	
+	<tr><td>风格:</td><td>{$val.style}</td></tr>
+	<tr><td>地区:</td><td>{$val.area}</td></tr>
+	<tr><td>地址:</td><td>{$val.address}</td></tr>
+	<tr><td>介绍:</td><td>{$val.intro}</td></tr>
+	<tr><td></td><td><a href="__URL__/edit?id={$val.id}">编辑</a></td></tr>
+	</table>
+	</div>
+	</volist>
+	
+	
+	</div>
+    <div class="btn">
+		<label for="check_box" style="float:left;">{$Think.lang.select_all}/{$Think.lang.cancel}</label>
+		<input type="submit" class="button" name="dosubmit" value="{$Think.lang.delete}" onclick="return confirm('{$Think.lang.sure_delete}')" style="float:left;margin-left:10px;"/>
+		<div id="pages">{$page}</div>
+    </div>
+    </div>
+    </form>
+</div>
+<script language="javascript">
+function edit(id, name) {
+	var lang_edit = "{$Think.lang.edit}";
+	window.top.art.dialog({id:'edit'}).close();
+	window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=admin&a=edit&id='+id,width:'480',height:'250'}, function(){var d = window.top.art.dialog({id:'edit'}).data.iframe;d.document.getElementById('dosubmit').click();return false;}, function(){window.top.art.dialog({id:'edit'}).close()});
+}
+
+var lang_user_name = "帐号！";
+function check(){
+	var ids='';
+	$("input[name='id[]']:checked").each(function(i, n){
+		ids += $(n).val() + ',';
+	});
+	if(ids=='') {
+		window.top.art.dialog({content:lang_please_select+lang_user_name,lock:true,width:'200',height:'50',time:1.5},function(){});
+		return false;
+	}
+	return true;
+}
+function status(id,type){
+    $.get("{:u('admin/status')}", { id: id, type: type }, function(jsondata){
+		var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+return_data.data+'.gif');
+	}); 
+}
+</script>
+</body>
+</html>

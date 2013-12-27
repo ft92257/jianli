@@ -1,0 +1,71 @@
+{template admin/header}
+<div class="nav3">
+  <ul class="cc">
+    <li class="current">
+      <a href="admin.php?mod=city">省份管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=city&code=city">城市管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=city&code=zone">区域管理</a>
+    </li>
+	<li>
+	  <a href="admin.php?mod=city&code=street">地段管理</a>
+	</li>
+  </ul>
+</div>
+
+<div class="mt10">
+<form name="form1" method="post" action="admin.php?mod=city&code=addarea">
+  <table width=98% cellspacing=1 cellpadding=3 class="tableorder">
+  <!--{if $id}-->
+    <tr class="header"> 
+      <td colspan=2>修改省份</td>
+    </tr>
+    <tr>
+  	  <td class="altbg1">名称</td>
+  	  <td class="altbg2"><input type="text" id="area" name="area" value="{$province}"></td>
+    </tr>
+  <!--{else}-->
+    <tr class="header"> 
+      <td colspan=2>创建省份</td>
+    </tr>
+    <tr>
+  	  <td class="altbg1">名称</td>
+  	  <td class="altbg2"><textarea id="area" name="area" rows="5" cols="40"></textarea><font color="red">注:</font>如要同时添加多个地名,每个省份换一行.</td>
+    </tr>
+  <!--{/if}-->
+    <tr>
+      <td>
+        <input type="submit" name="submit22" value="确定" class="button">
+        <input type="hidden" name="id" value="{$id}">
+      </td>
+    </tr>
+  </table>
+</form>
+<br>
+<form name="form2" method="post" action="admin.php?mod=city&code=areaorder">
+  <table width="98%" border="0" cellspacing="0" cellpadding="0" class="tableorder">
+    <tr align="center" class="header"> 
+      <td width="40%">名称</td>
+      <td width="30%">排序</td>
+      <td width="30%">操作</td>
+    </tr>
+    <!--{loop $rs $key $val}-->
+    <tr> 
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=city&code=city&area=$val[id]">{$val['name']}</a></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED"><input type='text' name='order[{$val[id]}]' value='$val[list]' size='5'/></td>
+      <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+        <a href="admin.php?mod=city&id=$val[id]">编辑</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="admin.php?mod=city&code=delarea&fid=$val[id]" onclick="return confirm('将一并删除该省份下的所有市、区、街道信息，你确实要删除吗?不可恢复');">删除</a>
+      </td>
+    </tr>
+    <!--{/loop}-->
+    <tr>
+      <td><input type="submit" name="submit11" value="修改排序" class="button"></td>
+    </tr>
+  </table>
+</form>
+</div>

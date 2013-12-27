@@ -1,0 +1,15 @@
+<!--成员列表项 Begin-->
+<div class="member_info">
+	<div>
+		<a href="index.php?mod={$__m__['username']}" target="_blank"><img src="{$__m__['face']}" onerror="javascript:faceError(this);" width="50" height="50"/></a>
+	</div>
+	<div><a href="index.php?mod={$__m__['username']}" target="_blank">{$__m__['nickname']}</a></div>
+	<div>
+		<!--{if $__m__['uid']!=MEMBER_ID}-->
+			<!--{eval echo follow_html($__m__['uid'],isset($buddyids[$__m__['uid']]));}-->
+		<!--{else}-->
+			（这是我自己） 
+		<!--{/if}-->
+	</div>
+</div>
+<!--成员列表项 End-->

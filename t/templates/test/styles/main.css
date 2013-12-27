@@ -1,0 +1,23 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename main.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 15917668 687364139 156 $
+ *******************************************************************/
+
+
+/* 引入默认模板的样式 */
+@import url(../../default/styles/main.css);
+
+/* 附加的自定义样式 */
+body{
+	font-size:14px;
+}
+/* 在这里写上您想要的CSS样式 */

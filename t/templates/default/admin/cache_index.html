@@ -1,0 +1,39 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>当站点进行了数据恢复、升级或者工作出现异常的时候，您可以使用本功能重新生成缓存。更新缓存的时候，可能让服务器负载升高，请尽量避开会员访问的高峰时间</li>
+			<li>模板缓存：更新站点模板、风格等缓存文件，当您修改了模板或者风格，但是没有立即生效的时候使用</li>
+			<li>数据缓存：更新站点的全部数据缓存</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings"
+	action="admin.php?mod=cache&code=do_clean">
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>清空缓存操作</td>
+	</tr>
+	<tr>
+		<td>
+		<center><label><input type="checkbox" name="type[]"
+			value="tpl" checked />模板缓存</label> <label><input type="checkbox"
+			name="type[]" value="data" />数据缓存</label></center>
+		</td>
+	</tr>
+</table>
+<br>
+<center><input type="submit" class="button"
+	name="settingsubmit" value="提 交"></center>
+<br>
+</form>
+<br>

@@ -1,0 +1,32 @@
+<!--{template admin/header}-->
+
+
+<form method="post" name="config[settings]" action="admin.php?mod=setting&code=domodify_normal" enctype="multipart/form-data">
+	
+	<input type="hidden" name="seccode_setting" value="1" />
+		<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="6">防灌水设置</td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%"><b>在哪些页面开启验证码功能：</b></td>
+			<td>
+				<span>
+					<input type="checkbox" name="config[seccode_login]" id="seccode_login" value="1" {$checked['seccode_login']}>
+					<label for="seccode_login">登录页面</label>
+				</span>
+				<span style="margin-left:5px;">
+					<input type="checkbox" name="config[seccode_register]" id="seccode_register" value="1" {$checked['seccode_register']}>
+					<label for="seccode_register">注册页面</label>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<br>
+		<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center>
+	<br>
+	
+
+	
+</form>
+<br>

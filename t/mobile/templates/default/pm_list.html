@@ -1,0 +1,51 @@
+<!--{template "header"}-->
+
+<!--{if !empty($pm_list)}-->
+	<div class="" id="pm_list_wp">
+	<!--{loop $pm_list $key $pm}-->
+	<div class="" id="pm_itmes_{$pm['plid']}">
+		<div class="pm" data-uid="{$pm['uid']}" <!--{if $this->Code=="history"}-->data-pmid="{$pm['pmid']}"<!--{/if}-->>
+			<div class="wb_l">
+				<div>
+					<img class="author" src="{$pm['face']}"/>
+				</div>
+			</div>
+			<div class="wb_r">
+				<div class="user_info">
+					<!--{if $this->Code=="list"}-->
+						<span class="fl p_u"><!--{if $pm['msgfromid'] == MEMBER_ID}--><span style="margin-right:5px;">发给:</span>{$pm['tonickname']}<!--{else}-->{$pm['msgnickname']}<!--{/if}--><span style="margin-left:8px;">[{$pm[num]}]</span></span>
+					<!--{else}-->
+						<span class="fl p_u">{$pm['msgnickname']}</span>
+					<!--{/if}-->
+					<span class="fr p_t"><span>{$pm['date']}</span></span>
+				</div>
+				
+				<!--私信内容 Begin-->
+				<div class="wb_c_wp">
+					<div class="wb_c">
+						{$pm['message']}
+					</div>
+				</div>
+               <!--私信内容 End-->
+			</div>
+		</div>
+        <div class="wb_line"></div>
+     </div>
+	<!--{/loop}-->
+	</div>
+	<!--{if $current_page < $total_page}-->
+			<!--{if $this->Code == "list"}-->
+       			<div class="wb_more" onclick='getMorePmList({"page":{$next_page}});return false;' id="btn_more">更多...</div>
+			<!--{elseif $this->Code == "history"}-->
+				<div class="wb_more" onclick='getMorePmList({"page":{$next_page}, "uid":{$uid}});return false;' id="btn_more">更多...</div>
+			<!--{/if}-->
+	<!--{/if}-->
+	<div style="margin-bottom:80px;"></div>
+	<script language="javascript">
+		$(document).ready(function(){
+			setPmListEvent();
+		});
+	</script>
+<!--{/if}-->
+
+<!--{template "footer"}-->

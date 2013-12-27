@@ -1,0 +1,39 @@
+<!--{template admin/header}-->
+<div class="nav3">
+	<ul class="cc">
+	  <!--{eval if($type==4) $a="class='current'"}-->
+	  <!--{eval if($type==118) $b="class='current'"}-->
+	  <li {$a}><a href="admin.php?mod=member&code=force_out&type=4">禁言</a></li>
+	  <li {$b}><a href="admin.php?mod=member&code=force_out&type=118">禁止访问</a></li>
+	</ul>
+</div>
+<br>
+<div>
+    <span>已禁言：用户只有浏览微博站，不能进行互动；禁止访问：被此封杀的用户帐号将不能登录到微博站。</span><br>
+    <span>封杀用户可以在微博管理、自我介绍管理、签名管理、编辑用户等页面进行操作。</span><br>
+</div>
+<br>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr align="center" class="header">
+			<td width="15%">昵称</td>
+			<td width="10%">封杀类型</td>
+            <td width="15%">被封时间</td>
+            <td width="15%">封杀人</td>
+            <td>封杀原因</td>
+            <td width="15%">管理</td>
+		</tr>
+		<!--{loop $user_arr $user}-->
+		<tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$user[username]}"  target="_blank">{$user[nickname]}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED"><!--{if $user[role_id] == 4}-->禁言<!--{else}-->禁止访问<!--{/if}--></td>
+			<td style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($user[dateline], 'Y-m-d')}--></td>
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$user[dousername]}"  target="_blank">{$user[donickname]}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user[cause]}</td>
+			<td style="border-bottom:1px dotted #EDEDED">
+			  <a href="admin.php?mod=member&code=modify&id=$user[uid]">[编辑用户]</a>&nbsp;|&nbsp;
+			  <a href="admin.php?mod=member&code=doforceout&uid=$user[uid]" title="将用户设置成普通会员">[解封]</a>
+			</td>
+		</tr>
+		<!--{/loop}-->
+</table>
+

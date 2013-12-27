@@ -1,0 +1,55 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>	
+  </div>
+</div>
+<!--此处三栏-->
+
+ <div class="main3Box_m HotW ">
+    <div>
+	  <div class="Menubox2" style="width:750px;">
+		<ul>
+		  <li>
+		    <div class="tago">
+			  <a href="index.php?mod=fenlei"><span>分类主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=fenlei&code=mypost"><span>我的分类</span></a>
+		    </div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=fenlei&code=followpost"><span>我关注的人的分类</span></a>
+		    </div>
+		  </li>
+		</ul>
+	  </div>
+    <div class="fl_m">
+	<!--{loop $act_list $key $val}-->
+	  <div>
+	    <h3>{$val[name]} ?</h3>
+	  </div>
+	  <!--{if $val['son']}-->
+	  <div>
+	  <!--{loop $val['son'] $key1 $val1}-->
+	    <span><A HREF="index.php?mod=fenlei&code={$val1[fid]}">{$val1[name]}</A>({$val1[mcount]})</span>
+	  <!--{/loop}-->
+	  </div>
+	  <!--{/if}-->
+    <!--{/loop}-->
+    </div>
+  </div>
+
+</div>
+</div>
+<!--{template "topic_footer"}-->
+

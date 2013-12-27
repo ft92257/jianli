@@ -1,0 +1,117 @@
+<script type="text/javascript">
+$(document).ready(function(){
+$(".media_user_list").bind('mouseover', function(){$(this).show();$(".arrow").show();});
+$(".media_user_list").bind('mouseout', function(){$(this).hide();$(".arrow").hide();clear_user_choose();});
+});
+</script>
+<!--{if $this->Config[company_enable]}-->
+<!--{eval $d_c_name = $this->Config[default_company] ? $this->Config[default_company] : '单位'; $d_d_name = $this->Config[default_department] ? $this->Config[default_department] : '部门'; }-->
+<!--{/if}-->
+<!--{if $arrow}-->
+<div class='arrow'><span class='out'>◆</span><span class='inside'>◆</span></div>
+<!--{/if}-->
+<div id="topic_user_menu_{$list_members[uid]}" class="media_user_list">
+  <ul class="tipsBox">
+    <li style="border:none; background:none;">  
+	  <div class="tips_n">
+	  <div>
+	  <!--({$remark_name}) -->		
+	  <div class="boxRimg" style="float:left; margin-right:10px;"><a href="index.php?mod={$list_members[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$list_members[face]}" /></a>
+	  </div>
+	  <div class="tips_nn">
+	  <a href="index.php?mod={$list_members[username]}" title="访问{$list_members[nickname]}的微博" class="tips_nn14">{$list_members[nickname]}</a>
+	  <span class="spanimg">
+	  {$list_members[validate_html]}
+	  <!--{if $this->Config[level_radio]}-->
+	  <a class="ico_level wbL{$list_members[level]}" title="微博等级：{$list_members[level]}级"  href="index.php?mod=settings&code=exp" target="_blank">{$list_members[level]}</a>
+	  <!--{/if}-->
+	  </span>
+	  <a href="javascript:void(0)" onclick="follower_choose({$list_members[uid]},'{$list_members[nickname]}','at','user_face');" title="点击发送(@{$list_members[nickname]})" class="tips_nn13">(@TA)</a>
+	  </div>			   
+	  	  
+	  <div class="tips_nn fontGray">
+	   {$list_members[province]}
+	   {$list_members[city]}
+	  </div>
+	  
+	  <div class="tips_nn fontGray">微博 {$list_members[topic_count]} 条 | 粉丝 {$list_members[fans_count]} 人</div>
+	  </div>
+	  </div>
+	 <div class="tips_t2">
+	 	<!--关于用户-->
+		<!--{if $this->Config[company_enable] && $list_members[company]}-->
+		<p class="fontGray">所在{$d_c_name}：{$list_members[company]}</p>
+		<!--{if $this->Config[department_enable] && $list_members[department]}-->
+		<p class="fontGray">所属{$d_d_name}：{$list_members[department]}</p>
+		<!--{/if}-->
+		<!--{/if}-->
+		<!--{if $list_members[aboutme]}-->
+		<p class="fontGray" title="关于{$list_members[nickname]}">关于：{$list_members[aboutme]}</p>
+		<!--{elseif MEMBER_ID == $list_members[uid]}-->
+		<p class="fontGray"><a href="index.php?mod=settings">快来写一句话</a>，向大家介绍一下吧</p>
+		<!--{else}-->
+		<p class="fontGray">这家伙很懒，什么也没有留下。</p>
+		<!--{/if}-->
+	    <!--关于用户-->
+		
+	 
+	  <!--{if MEMBER_ID != $list_members[uid]}-->
+	  <!--判断是否是好友-->
+	  <!--{if $buddy_info}-->
+		<p>
+			<span id="remarklist_{$buddy_info[uid]}" class="fontGray">备注：
+			<a href="javascript:void(0)" onclick="get_remark({$list_members[uid]});return false;"> 
+			<!--{if $buddy_info[remark]}-->({$buddy_info[remark]})<!--{else}-->点此添加备注 <!--{/if}-->
+			</a>
+			</span>
+		 </p>
+	   <!--{/if}--> 		
+	   <!--判断是否是好友-->
+	   <!--{/if}-->
+		
+   
+		<!--用户标签-->
+		<div>
+		<p>
+		<span><a href="index.php?mod=user_tag" title="设置我的个人标签" target="_blank">标签</a>：</span>
+		<!--{if $usertag}-->
+		<!--{loop $usertag $val}-->
+		<span style="padding:0 2px;white-space:nowrap;"><a href="index.php?mod=search&code=usertag&usertag={$val[tag_name]}">{$val[tag_name]}</a></span>
+		<!--{/loop}-->
+		<!--{/if}-->
+		</p>
+		</div>
+		<!--用户标签-->
+	  
+	</div>
+	</li>
+		
+	<li style="border:none; background:#f5f5f5;">
+	<!--{if MEMBER_ID}-->
+		<!--判断黑名单-->
+			<!--{if $blacklist_info}-->
+			<div class="tips_t">他在你的黑名单里<a href="javascript:void(0)" onclick="follower_choose({$list_members[uid]},'{$list_members[nickname]}','del','user_face');">移出</a></div>	
+			<!--{else}--> 
+		<!--判断黑名单-->
+			<!--对用户操作-->
+			<!--{if MEMBER_ID != $list_members[uid]}-->
+				<div class="tips_t">
+				<div class="tips_t_l">
+                <a href="javascript:void(0)" onclick="PmSend({$list_members[uid]},'{$list_members[nickname]}');return false;" >私信</a> 
+				| <a href="javascript:void(0)" onclick="follower_choose({$list_members[uid]},'{$list_members[nickname]}','lahei','user_face');">拉黑</a> |  
+				<!--{if $buddy_info}-->
+				<a href="javascript:void(0)" onclick="get_group_choose({$list_members[uid]});">分组</a>
+				<!--{/if}-->
+                </div>
+				<div class="tips_t_r">
+                {$follow_html}
+				</div>
+			</div>
+			<!--{/if}-->
+			<!--对用户操作-->
+		<!--{/if}-->
+	<!--{/if}-->	
+	</li>
+
+  </ul>
+</div>

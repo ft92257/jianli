@@ -1,0 +1,39 @@
+<include file="public:header" />
+<script src="__ROOT__/statics/js/setavatar/new/jquery.form.js"></script>
+
+<div class="pad_10">
+
+<form action="__APP__/img/apple" method="post" name="myform" enctype="multipart/form-data" id="myform">
+
+<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	<tr> 
+      	<th width="60">iphone :</th>
+      	<td><input type="file" name="iphone" id="iphone" class="input-text" value="" size="25"></td>
+		<td><img src="{$iphone.img}" /></td>
+    </tr>
+		<tr> 
+      	<th width="60">ipad :</th>
+      	<td><input type="file" name="ipad" id="ipad" class="input-text" value="" size="25"></td>
+		<td><img src="{$ipad.img}" /></td>
+    </tr>
+		<tr> 
+      	<th width="60">android :</th>
+      	<td><input type="file" name="android" id="android" class="input-text" value="" size="25"></td><td><img src="{$android.img}" /></td>
+    </tr>
+	<tr>
+	<td><input type="submit" name="submit" value="提交" /></td>
+	</tr>
+</table>
+<input type="submit" name="dosubmit" id="dosubmit" class="dialog" value=" ">
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+		
+	
+</script>
+</div>
+
+</body>
+
+</html>

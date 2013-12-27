@@ -1,0 +1,30 @@
+<div style="width: {$iframeshare[width]}px; height: {$iframeshare[height]}px; border:1px solid {$iframeshare[bg_color]};">
+  <h5 style="background:{$iframeshare[title_color]};">{$this->Config[site_name]}Î¢²©</h5>
+  <div>
+    <!--{loop $topic_list $val}-->
+    <ul>
+      <span>
+      <!--{if $is_face == 1}-->
+      <!--{if UCENTER_FACE === true}-->
+      <img onerror="javascript:faceError(this);" src="{$val[face]}" width="50px" height="50px" title="{$val[nickname]}"/>
+      <!--{else}-->
+      <img onerror="javascript:faceError(this);" src="{$val[face]}" width="50px" height="50px" title="{$val[nickname]}"/>
+      <!--{/if}-->
+      <!--{/if}-->
+      </span> <span> <a title="{$val[nickname]}" href="{$this->Config[site_url]}/index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a>£º <a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}" target="_blank">
+      <!--{eval echo(cutStr(strip_tags({$val[content]}),{$string}));}-->
+      </a> </span>
+    </ul>
+  </div>
+  <!--{if $val[imageid] && $val[image_list]}-->
+  <div> 
+	{loop $val[image_list] $iv}
+	<span> <a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}" target="_blank"><img src="{$iv[image_small]}" border="0px"></a> </span> 
+	{/loop}
+  </div>
+  <!--{/if}-->
+  <!--{if $val[videoid] and $is_video == 1}-->
+  <div> <span> <a href="{$this->Config[site_url]}/index.php?mod=topic&code={$val[tid]}" target="_blank"><img src="{$val[VideoImg]}" style="border:none" border="0px"/> </a> </span> </div>
+  <!--{/if}-->
+  <!--{/loop}-->
+</div>

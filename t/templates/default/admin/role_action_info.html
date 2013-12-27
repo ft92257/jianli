@@ -1,0 +1,83 @@
+<!--{template admin/header}-->
+
+
+<form method="post" action="{$action}">
+	<a name="{$title}用户组"></a>
+	<INPUT TYPE="hidden" name='id' value="{$action_info[id]}">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">{$title}权限</td>
+		</tr>
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>类型:</b></td>
+			<td bgcolor="#FFFFFF">
+			{$action_type_radio}</td>
+		</tr>
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>名称:</b></td>
+			<td bgcolor="#FFFFFF">
+			<input type="text" size="30" name="name" value="{$action_info[name]}"> </td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<a name="基本设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">基本设置</td>
+		</tr>
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>默认权限设置:</b><br>
+			<span class="smalltxt">选择“角色设置”该操作权限将在角色权限设置里判断，<BR>否则按这里的设置进行判断。</span></td>
+			<td bgcolor="#FFFFFF">
+			<input name='allow_all' id='allow_all_1' type='radio' value='1' {$allow_all_1_checked} class=radio onclick="if($('allow_all_0').checked==true){$('role_ids_chekbox').style.display='block'}else{$('role_ids_chekbox').style.display='none'}" ><label for='allow_all_1'>全部允许</label>
+			<input name='allow_all' id='allow_all_0' type='radio' value='0' {$allow_all_0_checked} class=radio onclick="if($('allow_all_0').checked==true){$('role_ids_chekbox').style.display='block'}else{$('role_ids_chekbox').style.display='none'}" ><label for='allow_all_0'>角色设置</label>
+			<input name='allow_all' id='allow_all_-1' type='radio' value='-1' {$disallow_checked} class=radio onclick="if($('allow_all_0').checked==true){$('role_ids_chekbox').style.display='block'}else{$('role_ids_chekbox').style.display='none'}" ><label for='allow_all_-1'>全部禁止</label>
+			<!--{eval $_display='none';if(!$action_info[allow_all])$_display='block';}-->
+			<div id='role_ids_chekbox' style="display:{$_display};">
+			{$role_ids_chekbox}
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>所在模块:</b><br>
+			<span class="smalltxt">该操作所在模块</span></td>
+			<td bgcolor="#FFFFFF">
+			$module_select</td>
+		</tr>
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>操作命令:</b><br>
+			<span class="smalltxt">同一操作多样命令用"|"格开,可用"*"匹配所有操作命令</span></td>
+			<td bgcolor="#FFFFFF">
+			<input type="text" size="30" name="action" value="{$action_info[action]}"> </td>
+		</tr>
+		<!--
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>记录操作:</b><br>
+			<span class="smalltxt">选择“是”将用户关于该操作记录下来</span></td>
+			<td bgcolor="#FFFFFF">
+			{$log_radio}</td>
+		</tr>
+		-->
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>自定义提示信息:</b><br>
+			<span class="smalltxt">可自己定义出错提示</span></td>
+			<td bgcolor="#FFFFFF">
+			<TEXTAREA NAME="message" ROWS="10" COLS="50">{$action_info[message]}</TEXTAREA>
+		</tr>
+		<!--
+		<tr>
+			<td width="60%" bgcolor="#F8F8F8"><b>描述:</b><br>
+			<span class="smalltxt">对该操作的一个简单描述</span></td>
+			<td bgcolor="#FFFFFF">
+			<TEXTAREA NAME="describe" ROWS="10" COLS="50">{$action_info[describe]}</TEXTAREA>
+		</tr>
+		-->
+	</table>
+	<br>
+
+	<center><input type="submit" class="button" name="detailsubmit" value="提 交">
+	&nbsp;<INPUT TYPE="reset"  class="button" value="取 消" onclick="history.go(-1)"><center>
+	</center></center>
+</form>
+<br>

@@ -1,0 +1,182 @@
+<!--{template "topic_header"}-->
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+  <div class="mainL">
+  <div class="Hotwarp">
+    <!--以下站内短信导航部分-->
+    {$left_menu}
+    <!--以上站内短信导航部分-->
+   <style type="text/css">.nleftL .liL_2{ padding:3px;}</style>
+  <div style="margin:15px 0;">
+    <div class="nleftL">
+      <li style="float:left;">
+      <!--{eval if($read) $r_class="liL_2";else $n_class="liL_2"}-->
+      <span class="$n_class">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?mod=pm&code=list&folder=inbox">全部</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      |
+      <span class="$r_class">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?mod=pm&code=list&folder=inbox&read=1">未读</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </li>
+    </div>
+  </div>
+
+    <div class="comBox" style="overflow:hidden; margin-top:20px;">
+	  <ul class="followList" style="overflow:hidden; padding:0;">
+	  <!--{IF $pm_list}-->
+		<!--{loop $pm_list $key $val}-->
+		<!--{if $folder == 'inbox'}-->
+		<!--{if $val[plid] == 0}-->
+        <li id="msg_0">
+          <div class="fBox_l" style="margin-top:3px;"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user','{$key}');" onmouseout="clear_user_choose();"/> </div>
+          <div id="user_{$key}_user" class="layS"></div>
+          <div class="fBox_R3" style="margin:0; width:470px;">
+          <p>
+             <span><a href="index.php?mod=$val[username]">{$val[nickname]}</a>
+               <a target="_blank" href="index.php?mod=other&code=vip_intro">
+			     <img class="vipImg" src="images/vip.gif" title="管理员">
+			   </a>
+			 </span>
+			 </p>
+             <span>{$val[message]}</span>
+             <p>
+               <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+               <span style="float: right"><a href="index.php?mod=pm&code=history">共{$val[num]}条记录</a>&nbsp;|&nbsp;<span>回复</span></span>
+             </p>
+	      </div>
+        </li>
+		<!--{else}-->
+        <li id="msg_{$val[uid]}" onclick="setRead($val['uid']);">
+          <div class="fBox_l" style="margin-top:3px;"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/> 
+          <div id="user_{$val[uid]}_user" class="layS"></div>
+          </div>
+          
+          <div class="fBox_R3" style="margin:0; width:470px;">
+          <p>
+          <!--{if $val[msgfromid] == MEMBER_ID}-->
+          <span>我发给</span>
+          <!--{/IF}-->
+             <span><a href="index.php?mod=$val[username]">{$val[nickname]}</a></span>
+          <!--{if $val[msgfromid] != MEMBER_ID}-->
+          <span>发给我</span>
+          <!--{/IF}-->
+          <!--{if $val['is_new']}-->
+          <img src="templates/default/images/navNewgif.gif" title="有新私信" id="img_{$val[uid]}"></img>
+          <!--{/if}-->
+             <span style="float: right"><a href="javascript:void(0);" onclick="delmsg($val[uid]);" class="dels" title="删除">X</a></span>
+             </p>
+             <span>{$val[message]}</span>
+             <p>
+               <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+               <span style="float: right"><a href="index.php?mod=pm&code=history&uid=$val[uid]">共{$val[num]}条记录</a>
+               &nbsp;|&nbsp;
+               <!--{if $val[msgtoid] == MEMBER_ID}-->
+               <a onclick="PmSend($val[uid],'$val[nickname]');return false;" href="javascript:void(0);">回复</a>
+               <!--{else}-->
+               <span>回复</span>
+               <!--{/if}-->
+               </span>
+             </p>
+	      </div>
+        </li>
+        <!--{/if}-->
+        <!--{else}-->
+        <li id="outbox_{$val[pmid]}">
+          <div class="fBox_l" style="margin-top:3px;"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]});" onmouseout="clear_user_choose();"/> 
+          <div id="user_{$val[uid]}_user" class="layS"></div>
+          </div>
+          
+          <div class="fBox_R3"  style="margin:0; width:470px;"><p>
+          发给&nbsp;
+             <span><a href="index.php?mod=$val[username]">{$val[nickname]}</a></span>
+             <span style="float: right"><a href="javascript:void(0);" onclick="deloutbox($val[pmid]);">X</a></span>
+             </p>
+             <span>{$val[message]}</span>
+             <div>
+               <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+             </div>
+             <div class="show">
+               <span><a href="javascript:void(0);" onclick="PmSend($val[uid],'$val[nickname]','sendagain',$val[pmid]);return false;">重新发送</a></span>
+             </div>
+	      </div>
+        </li>
+        <!--{/if}-->
+		<!--{/loop}-->
+	  <!--{else}-->
+	  <li>
+	  <!--{if $folder == 'inbox'}-->
+	  没有私信聊天记录，赶快<a href="index.php?mod=pm&code=send&folder=send">发一封私信</a>给好友，联络感情。
+	  <!--{else}-->
+	  草稿箱是空的...
+	  <!--{/if}-->
+	  </li>
+	  <!--{/if}-->
+	  </ul>
+	  <ul>
+	  	<!--{if $page_arr[html]}-->	
+	    <li>{$page_arr[html]}</li> 
+	    <!--{/if}--> 
+	  </ul>
+    </div>
+  </div>
+  </div>
+
+<script type="text/javascript">
+function delmsg(uid){
+	var del = confirm("确定要删除你和他的所有私信内容吗？");
+	if(del == true){
+		$.post(
+				'ajax.php?mod=pm&code=delusermsg&uid='+uid,
+				function(d){
+					if('' != d){
+						show_message(d);
+					}else{
+						$('#msg_'+uid).remove();
+					}
+				}
+			);
+	}else{
+		return false;
+	}
+}
+
+function deloutbox(pmid){
+	var del = confirm("确定要删除这条私信吗？");
+	if(del == true){
+	$.post(
+			'ajax.php?mod=pm&code=deloutboxmsg&pmid='+pmid,
+			function(d){
+				if('' != d){
+					show_message(d);
+				}else{
+					$('#outbox_'+pmid).remove();
+				}
+			}
+		);
+	}else{
+		return false;
+	}
+}
+
+function setRead(uid){
+	$.post(
+			'ajax.php?mod=pm&code=setread&uid='+uid,
+			function(d){
+				if('' != d){
+					show_message(d);
+				}else{
+					$('#img_' + uid).remove();
+				}
+			}
+		);
+}
+</script>
+<!--{template "topic_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->

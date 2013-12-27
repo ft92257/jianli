@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/script_face.js"></script>
+<link href="styles/url.css" rel="stylesheet" type="text/css" />
+</head>
+<body scroll="no">
+<div class="urlT">
+  <!--关闭导航-->
+  <div class="closeT">
+    <table cellspacing="0" cellpadding="0">
+      <tbody>
+        <tr>
+          <td class="closeTsp"><a href="{$url_info[url]}"><img src="images/imgdel.gif"></a></td>
+          <td class="closeTsp pdl6"><a href="{$url_info[url]}">关闭本栏</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--导航信息-->
+  <table cellspacing="0" cellpadding="0" class="fl">
+    <tbody>
+      <tr>
+        <td class="va pdl1em"><a target="_blank" href="/home"><img src="images/t1/url_logo.png"></a></td>
+        <td class="infoPlaceholder">&nbsp;</td>
+        <td class="va pdl1em">
+		<input type="hidden" name="hiddenField" id="{$topic_info[tid]}_forward" value="转发"/>
+		<a href="javascript:void(0)" onclick="publishSubmit('{$topic_info[tid]}_forward',{$topic_info[tid]},'fc');return false;" id="rjFav">
+		<span id="fav2bg" urn="tom#y2#200">转发</span>(<span id="fav2Count">{$topic_info[forwards]}</span>)</a> 
+		
+		</td>
+        <td class="va"><img src="images/t1/upright.gif" class="separaor"></td>
+        <td class="va pdl1em"><a class="replyNum toobarLink" urn="tom#y1#200">已有回应({$total_record})</a></td>
+        <div id="y1" class="skill_t">
+          <li>
+		  <iframe src="" style="width:800px;height:460px;top:0px;left:0px;position:absolute;visibility:inherit;z-index:-1;" frameborder=0></iframe> 
+            <!--{loop $reply_list $v}-->
+            <div id="reply_list_{$v[tid]}" class="cvsItem">
+              <div>{$v[nickname]}:{$v[content]}</div>
+              <div id="reply_area_{$v[tid]}" class="topicView"></div>
+            </div>
+            <!--{/loop}-->
+          </li>
+          <li>
+            <textarea id="i_already" rows="3" class="sp_1">@{$topic_info[nickname]} </textarea>
+            <span><input id="publishSubmit" onclick="publishSubmit('i_already',{$topic_info[tid]},'rl');return false;" type="button" value="发布" class="save" /></span>
+			<!-- 插入表情-->
+			<div id="face_shows"></div>
+			<div><a  href="###"id="editface_{$topic_info[tid]}" onclick="showFaces(this.id, 'i_already');return false;">插入表情</a></div>
+			<!-- 插入表情-->
+          </li>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+  <!--链接信息-->
+  <div class="recommenderInfo">
+    <div class="recommenderInfoLf">
+      <div class="recommenderInfoRt">
+        <div class="recommenderInfoCt infoWd">
+          <div class="infoPd">
+            <table cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td width="28" class="align_tp"><a target="_blank" href="#"><img src="#" class="imgBd"></a> </td>
+                  <td class="align_tp"><div class="infoCt"> <a target="_blank" href="/{$topic_info[nickname]}">{$topic_info[nickname]}</a>: <span>{$topic_info[content]}</span> </div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="arrow"><img src="/images/arrow.gif"></div>
+</div>
+<IFRAME marginWidth=0 marginHeight=0 src="{$url_info[url]}" frameBorder=0 width="100%" scrolling="auto" height="100%"> </IFRAME>
+</body>
+</html>

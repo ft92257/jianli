@@ -1,0 +1,42 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename theme.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 114829023 204354777 2137 $
+ *******************************************************************/
+
+
+/*####################################
+   @Name:记事狗微博客模板设置页样式表 
+   @Link:www.jishigou.net
+   @Date:2010.11.12
+   @Author:@itom
+#####################################*/
+.themepwarp{padding:10px 20px;_padding:10px;}
+.themelist{margin-bottom:25px;overflow:hidden;width:770px;}
+.themelist li{ width:76px; float:left;margin:5px 17px 0 0;border:1px solid #fff;}
+.themelist a{cursor:pointer;display:inline;float:left;height:76px;overflow:hidden;position:relative;width:76px;}
+.upload{margin:5px 0 10px;padding:10px;background-color:#f3f3f3;}
+.color{clear:both;padding:10px;border:1px solid #eee;margin:10px 0;}
+p.act{width:700px;float:left;*float:none;margin-left:0;text-align:center; height:40px; padding-top:20px;}
+p.tBlod{ font-weight:600;}
+p.manss{ width:700px; display:block; _margin-top:10px;}
+p.manss b i{ font-style:normal; color:#FF0000; float:left; margin:3px 3px 0 0;}
+.themepwarp .inputs input{border:1px solid #FFF;display:block;float:left;text-transform:uppercase;width:85px;margin:10px;padding:5px 10px}
+.themepwarp .inputs tr td{vertical-align:middle;height:30px;line-height:30px}
+.themepwarp .inputs{float:left;height:150px;width:250px;margin-top:20px}
+#themeimages{display:block;border:1px dashed #ccc; padding:12px 20px; margin:5px 0; overflow:hidden;height:100px; }
+#themeimages p{display:block; float:left; width:300px;}
+dl.setii{ width:300px; float:left; padding-top:6px; *margin-top:-25px;}
+dl.setii dt{ width:100%; background:#F3F3F3; height:25px; line-height:25px; text-indent:10px; margin-bottom:5px;}
+dl.setii dd{ width:100%; display:block;padding:2px 0 0 2px; border-bottom:1px dotted #ccc;}
+a.yesbg{display:block;_display:inline;float:left;width:76px;height:76px;background-color:#fff;background-repeat:no-repeat;background-position:0 0;border:1px solid #ddd;overflow:hidden;margin:10px 10px 10px 0;}
+a.yesbg img{width:76px;height:76px;overflow:hidden;}
+a.nobg{height:51px;text-decoration:none;width:61px;background-color:#FFF;background-position:0 0;background-repeat:no-repeat;border:1px solid #CCC;display:block;float:left;margin:10px 10px 10px 0;padding:15px 0 10px 15px;}

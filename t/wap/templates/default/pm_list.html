@@ -1,0 +1,46 @@
+<!--{template "topic_header"}-->
+
+<div style="margin: 10px 0px 0px 5px;">
+    <!--{eval if($this->Code == 'pmsend') $hb_addpm = 'hb';}--> 
+    <p>
+    <span class="{$mypm}"><a href="index.php?mod=pm">我的私信</a></span>  | 
+    <span class="{$hb_mypm}"><a href="index.php?mod=pm&amp;code=pmsend">发私信</a></span>  | 
+    </p>
+</div>
+    
+<div class="m">
+<!--{if $pm_list}-->
+	<!--{loop $pm_list $val}--> 
+	<!--{eval $with_uid = 0}-->
+	<div class="u2">
+	<div style="padding:5px;">
+        <!--{if $val['msgfromid'] == $member['uid'] && $val['plid'] > 0}-->对<!--{/if}-->
+		<!--{eval $val['nickname'] = wap_iconv($val['nickname']);}--> 
+		<a href="index.php?mod={$val['uid']}">{$val['nickname']}</a>
+		<!--{if $val[plid] < 1}-->
+		群发：
+		<!--{else}-->
+		<!--{eval $with_uid = $val['uid']}-->
+		说:
+		<!--{/if}-->
+		<!--{eval $val['message'] = wap_iconv($val['message']);}--> 
+        <span style="margin-left:5px;"><a href="index.php?mod=pm&amp;code=view&amp;uid=$with_uid">{$val[message]}</a>
+		</span>
+		<!--{eval $val['dateline'] = wap_my_date_format($val['dateline']);}-->
+        <span style="color:#999999;">  {$val[dateline]}</span>   
+        <span style="color:#999999;"> 共{$val[num]}条</span>
+	</div>
+
+	</div>
+	<div class="lineDot"></div>
+	<!--{/loop}-->
+    <!--{if $page_html}-->
+	<!--{eval $page_html = wap_iconv($page_html)}-->
+    {$page_html}
+    <!--{/if}-->
+<!--{else}-->
+<div class="t_list_c">这里暂时还没有私信</div>
+<!--{/if}-->
+
+</div>
+<!--{template "topic_footer"}-->

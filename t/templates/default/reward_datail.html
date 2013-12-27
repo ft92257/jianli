@@ -1,0 +1,227 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/time.lesser.js"></script>
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+            <script type="text/javascript">
+              var _P_Count = 0;
+              var _P = {};
+              function addPrize(id){
+                  _P[id] = 1;
+            	  _P_Count++;
+              }
+
+              $(document).ready(function(){
+				setPrizeShow(0);
+              });
+
+              function setPrizeShow(id){
+                  for (i in _P) {
+                      if(id == i){
+                          $("#prize_"+i).show();
+                      } else {
+                    	  $("#prize_"+i).hide();
+                      }
+                  }
+                  id++;
+                  if(id >= _P_Count){id = 0}
+                  setTimeout(function(){setPrizeShow(id);},5000);
+              }
+
+              //抽奖1
+              function getprizeuser(rid){
+                  var html = '<div class="prize_div"><select id="pid" name="pid"><option value="">请选择</option>';
+            	  <!--{loop $reward['prize'] $k $v}-->
+            	  html = html + '<option value="{$k}">$v[prize_name]</option>';
+            	  <!--{/loop}-->
+                  html = html + '</select><div class="prize_div_b"><input type="button" value="抽奖" onclick="dodraw();"></div><div id="user_list"></div></div>';
+                  var js = '<sc'+'ript>function dodraw(){var pid = $("#pid").val();if(pid == ""){show_message("请选择要抽奖的等级");return false;}$.post("ajax.php?mod=reward&code=dodraw&rid='+rid+'&pid="+pid,"",function(r){$("#user_list").html(r);});}</sc'+'ript>';
+				  html = html + js;
+                  showDialog('getprizeuser', 'local', '抽奖', {"html":html}, 500);
+              }
+
+              function showTab(fid,id,pid,page){
+            	  var handle_key = 'show_table';
+            	  var ajax_url = 'ajax.php?mod=reward&code=showtab&fid='+fid+'&id='+id;
+            	  if (pid) ajax_url = ajax_url + '&pid='+pid;
+            	  if (page) ajax_url = ajax_url + '&page='+page;
+            	  var title = '';
+            	  if(id == 1){title = '转发申明';}else if (id == 2) {title='中奖名单';} else if (id == 3) {title='我的奖品';} else { title = '有奖转发';}
+            	  showDialog(handle_key, 'ajax', title, {"url":ajax_url}, 500);
+              }
+
+  			  function manage(page,option){
+				  if(isUndefined(option)) {option = {};}
+				  if(!option.rid) return false;
+
+				  if(!option.id) return false;
+
+				  showTab(option.rid,option.id,option.pid,page);
+  	  	  	  }
+            </script>
+  <div class="main3Box_m HotW ">
+    <div class="Hotwarp">
+    <div class="e_list_title">{$reward['title']}</div>
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a target="_blank" href="{$reward[image]}">
+	        <img src="{$reward['image']}" height="100" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info event_d avatar2_info_2" style="margin-right:10px; border-right:1px dashed #ccc;">
+	      <p class="left_t2">开始时间：{$reward['from_time']}</p>
+	      <p class="left_t2"> 结束时间：{$reward['to_time']}</p>
+	      <p class="left_t2">发起人：<a href="index.php?mod=$reward['username']"  target="_blank">{$reward['nickname']}</a>{$reward['validate_html']}</p>
+	      <p class="left_t21">
+	        <!--{if MEMBER_ID == $reward['uid']}-->
+	        {if $reward['type'] == 2}
+	        <a href="javascript:void(0);" onclick="getprizeuser($reward['id']);return false;" class="egl">抽奖</a>
+	        {/if}
+	        <a href="index.php?mod=reward&code=add&id=$reward['id']" class="exg">修改</a>
+	        <a href="index.php?mod=reward&code=del&id=$reward['id']" onclick="return confirm('你确实要删除吗?不可恢复');" class="edel">删除</a>
+	        <!--{/if}-->
+	      </p>
+	    </div>
+	    <div class="e_detail_sign">
+	      <p id="app"><a href="javascript:void(0);">{$reward['reward_type']}</a></p>
+	      {if $reward['type'] == 1}
+	      <p id="app"><a style="cursor:pointer;" onclick="get_forward_choose($reward['tid'],$member['uid'],{appitem:'reward',appitem_id:$reward[id],is_reward:$reward[id],i_content:'$content'});" href="javascript:void(0);">参与转发 </a></p>
+	      {/if}
+	    </div>
+	  </div>
+	</div>
+	
+	<div class="reward_flash_main">
+	  <div class="re_flash">
+	    <div class="re_flash_head">
+	      <p class="re_top">有奖转发</p>
+	      <div class="re_flash_nav">
+	        <a href="javascript:;" onclick="showTab($reward['id'],1);">转发申明</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+			<a href="javascript:;" onclick="showTab($reward['id'],2);">中奖名单</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+			<a href="javascript:;" onclick="showTab($reward['id'],3);">我的奖品</a>
+	      </div>
+	    </div>
+	    
+        <div class="re_flash_time">
+          距离转发结束还有 <span class="re_flash_time2" id="reward_{$reward['id']}"></span>
+          <script type="text/javascript">
+            addTimeLesser($reward['id'], $reward['time_lesser']);
+          </script>
+          已被<b>{$reward['f_num']}</b>人转发
+        </div>
+        
+        <div class="re_flash_area">
+          <div class="re_flash_left">
+            {if $reward['prize']}
+            {loop $reward['prize'] $key $val}
+            <div id="prize_{$key}" style="display:none" class="prize">
+              <div class="prize_head">$val['prize_name']</div>
+              <div class="prize_image">
+                <div class="prize_con">
+                  <span>奖品：{$val['prize']}</span><br>
+                  <span>数量：{$val['prize_num']}</span>
+                </div>
+                <img src="$val['prize_image_url']">
+              </div>
+            </div>
+            <script type="text/javascript">addPrize($key);</script>
+            {/loop}
+            <div class="prize_table" id="prize_table"></div>
+            {/if}
+          </div>
+          <div class="re_flash_right">
+            <div>
+              <p class="re_flash_title">转发到我的微博：</p>
+              <p class="re_flash_content">转：{$reward['topic_content']}<a href="index.php?mod=topic&code={$reward['tid']}">查看全文&gt;&gt;</a></p>
+              <p class="re_flash_title">转发规则：</p>
+              <p>
+              {if $reward['rules']}
+              {loop $reward['rules']['user'] $key $val}
+              需关注<a href="index.php?mod={$key}" target="_blank">{$val['nickname']}</a>,&nbsp;
+              {$val['follow_html']}
+              <br>
+              {/loop}
+              {/if}
+            </p>
+            {if $reward['rules']['at_num']}
+            <span>转发微博需@{$reward['rules']['at_num']}名好友</span>
+            {/if}
+            <p></p>
+          </div>
+        </div>
+	  </div>
+	</div>
+	
+	<div class="e_idS" style="overflow:visible">
+	  <div class="e_idSpTitle">
+	    <b>有奖转发简介</b>
+	  </div>
+	  <div class="e_intro">
+	    {$reward['content']}
+	  </div>
+	</div>
+	
+	<div class="topic_new_add">
+		<script language="javascript">
+			__APPITEM__ = 'reward';
+			__APPITEM_ID__ = {$reward[id]};
+		</script>
+	  <!--{template "topic_publish"}-->  
+	  </div>
+	  <div id="listTopicArea">
+		{template "topic_list_ajax"}
+	  </div>
+	  <div id="share"></div>
+	  <div id="need_info"></div>
+    </div>
+
+	<script type="text/javascript">
+	function listTopic() {
+		var id = document.getElementById('hid_id').value;
+		var myAjax = $.post(
+			"ajax.php?mod=app&code=list_reward&item_id="+id,
+			function (d) {
+				$("#listTopicArea").html(d);
+			}
+		); 
+	}
+	</script>
+	</div>
+	    <!--右侧--begin-->
+    <div class="Hotright">
+    <div class="HboxR">
+      <ul class="event_r_nav">
+        <li><a href="index.php?mod=reward">有奖转发主页</a></li>
+        <li><a href="index.php?mod=reward&code=myreward">我的有奖转发</a></li>
+        <li><a href="index.php?mod=reward&code=add">发起有奖转发</a></li>
+      </ul>
+	</div>
+	{if $play_member}
+	<div class="HboxR">
+	  <div class="vote_line">这个活动的参与者</div>
+	  <div>
+	    <ul class="followList eli" style="overflow:hidden">
+	      <!--{loop $play_member $val}-->
+	      <li class="pane" id="follow_user_{$val[uid]}">
+	        <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_r_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+	        <div id="user_{$val[uid]}_r_user" class="layS"></div>
+	      </li>
+	      <!--{/loop}-->
+	    </ul>
+	  </div>
+	  <div align="right"><a href="index.php?mod=reward&code=user&rid={$reward['id']}" target="_blank">共{$play_num}人&gt;&gt;</a></div>
+	</div>
+	{/if}
+	</div>
+	<!--右侧--end-->
+  </div>
+</div>
+<!--{template "topic_footer"}-->

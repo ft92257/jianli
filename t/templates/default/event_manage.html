@@ -1,0 +1,107 @@
+<script type="text/javascript">
+</script>
+<div class="event_b1">
+<form id="event_manage" name="event_manage" method="post" action="">
+  <table width="100%">
+<thead>
+    <tr>
+      <td width="15%"><label><input type="checkbox" id="chkall" name="chkall" onclick="checkall('che');">全选</label></td>
+      <td width="20%">申请者</td>
+      <td width="20%">报名信息</td>
+      <td width="25%">申请时间</td>
+      <td width="20%">状态</td>
+    </tr>
+</thead>
+    <!--{loop $rs $key $val}-->
+    <tr>
+      <td width="5%"><input type="checkbox" id="che[$key]" name="che[$key]" value="{$val[nickname]}" $val[check]></td>
+      <td width="20%">{$val[nickname]}</td>
+      <td width="20%">
+        <a href="javascript: void(0);" onMouseOver="document.getElementById('app_info[$key]').style.display='block';" onMouseOut="document.getElementById('app_info[$key]').style.display='none';">查看</a>
+        <div id="app_info[$key]" class="" style="display: none">
+        <!--{loop $val[app] $key1 $val1}-->
+          <p>{$key1}:{$val1}</p>
+        <!--{/loop}-->
+        </div>
+      </td>
+      <td width="25%">{$val[app_time]}</td>
+      <td width="30%">{$val[type]}</td>
+    </tr>
+    <!--{/loop}-->
+    
+	<!--{if $multi}-->
+	<tr>
+	  <td colspan="2">
+		<div class="myvote_multi">$multi</div>
+	  </td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<!--{/if}-->
+	<tr>
+	  <td colspan="5">
+	    <textarea id="message" class="text-area2" style="padding:3px 5px;width:98%;height:50px; font-size:12px; margin:10px 0 0;" name="message"></textarea>
+	</tr>
+    <tr>
+      <td colspan="4">
+	    <div class="event_b1_2">
+          <input type="button" id="agree" name="agree" value="批准" onclick="manage_agree();return false;" class="eb_b">
+          <input type="button" id="refuse" name="refuse" value="拒绝" onclick="manage_refuse();return false;" class="eb_b">
+          <input type="button" id="dosend" name="dosend" value="发通知" onclick="do_send();return false;" class="eb_b">
+		</div>
+	  </td>
+      <td><input type="hidden" id="id" name="id" value="$id"></td>
+    </tr>
+  </table>
+</form>
+</div>
+<script type="text/javascript">
+function manage_agree(){
+	var post_data = $('#event_manage').serialize();
+	$.post(
+		"ajax.php?mod=event&code=choose&type=agree",
+		{post_data},
+		function(r){
+			location.reload();
+		},'json'
+	);
+}
+function manage_refuse(){
+	var post_data = $('#event_manage').serialize();
+	$.post(
+		"ajax.php?mod=event&code=choose&type=refuse",
+		{post_data},
+		function(r){
+			location.reload();
+		},'json'
+	);
+}
+function do_send(){
+	var message = $('#message').val();
+	var post_data = $('#event_manage').serialize();
+	$.post(
+		"ajax.php?mod=pm&code=do_add",
+		{post_data},
+		function (d) {
+			if ('' != d) {
+				show_message(d);
+				return false;
+			} else {
+				show_message('发送通知成功');
+				closeDialog('manage');
+			}
+		}
+	);
+}
+function checkall(prefix, checkall) {
+    form=document.event_manage;
+    var checkall = checkall ? checkall : 'chkall';
+    for(var i = 0; i < form.elements.length; i++) {
+        var e = form.elements[i];
+        if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+            e.checked = form.elements[checkall].checked;
+        }
+    }
+}
+</script>

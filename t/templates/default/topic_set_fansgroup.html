@@ -1,0 +1,64 @@
+<div class="p20">
+	<div>
+		<ul id="add_group_menu_{$uid}"  class="group_list">
+		  <!--{loop $group_list $group}-->
+		  <div style="float:left; width:140px;">
+			<ul style=" padding:2px;">
+			  <li> 
+			   <span style="float:left; margin-top:3px;"> <input id="group_{$group[gid]}" name="group[]" type="checkbox" value="{$group[gid]}" <!--{if in_array($group[gid], $fans_group)}-->checked="checked"<!--{/if}-->
+			   onclick="setFansGroup({'uid':'{$uid}','gid':'{$group[gid]}'});"
+			   /><label for="group_{$group[gid]}">{$group[group_name]}&nbsp;({$group[fans_nums]})</label></span>
+			 </li>
+			</ul>
+		  </div>
+		  <!--{/loop}-->
+		</ul>
+	</div>
+	
+	<!--创建新分组 Begin-->
+	<div class="addNew">
+      <form action="ajax.php?mod=topic&code=do_group" method="POST">
+        <table width="304" border="0" cellspacing="0" cellpadding="0" >
+          <tr>
+            <td width="198">创建新分组
+              <input name="groupName" type="text" id="groupName_{$uid}" class="addNewP"/>
+            </td>
+            <td width="106">
+			<input id="groupSubmit"type="button" class="shareI" value="创 建" onclick="addFansGroup({success:addFansGroupSuccess,'group_name':'groupName_{$uid}'})" title="按Ctrl+Enter直接创建"/>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+	<!--创建新分组 End-->
+	
+	<div class="tool_bar">
+		<button type="submit" class="shareI" onclick="closeDialog('{$handle_key}');">保 存</button>
+		&nbsp;&nbsp;
+		<button type="button" class="shareI" onclick="closeDialog('{$handle_key}');">取 消</button>
+	</div>
+</div>
+
+<script language="javascript">
+	//创建新分组成功回调
+	function addFansGroupSuccess(options)
+	{
+		var gid = 0;
+		if (options.gid) {
+			gid = options.gid;
+		}
+		var uid = '{$uid}';
+		var group_name = '';
+		if (options.group_name) {
+			group_name = options.group_name;
+		}
+		var tpl = '<li id="del_group_ajax_'+gid+'" style="padding-top:5px; width:124px;"><input id="select__'+gid+'" name="group" type="checkbox" onclick="setFansGroup({\'uid\':\''+uid+'\',\'gid\':\''+gid+'\'});"/><a href="index.php?mod=topic&code=fans&gid='+gid+'" title="成员人数：0">'+group_name+'</a> (0)<a onclick="deleteFansGroup('+gid+',{success:deleteSuccess})" href="javascript:;" title="删除分组">×</a></li>';
+		$("#add_group_menu_"+uid).html( $("#add_group_menu_"+uid).html()+tpl);
+	}
+	
+	//删除回调
+	function deleteSuccess(gid)
+	{
+		$("#del_group_ajax_"+gid).hide();
+	}
+</script>

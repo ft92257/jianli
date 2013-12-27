@@ -1,0 +1,61 @@
+<!--{template admin/header}-->
+
+
+<form method="post" name="config[settings]" action="admin.php?mod=setting&code=domodify_normal" enctype="multipart/form-data">
+	
+	<a name="搜索引擎优化"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">搜索引擎优化，可留空（切忌不要进行关键词堆词，会导致搜索引擎惩罚！）</td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%" valign="top"><b>网站关键词（全站）:</b><br>
+			<span class="smalltxt">针对网站的所有页面设置Meta部分关键词定义,多个词用逗号分隔 </span>
+			</td>
+			<td>
+			<img src="./templates/default/images/admincp/zoomin.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[meta_keywords]', 1)">
+			<img src="./templates/default/images/admincp/zoomout.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[meta_keywords]', 0)"><br>
+			<textarea rows="4" name="config[meta_keywords]" cols="48">{conf meta_keywords}</textarea></td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%" valign="top"><b>网站描述（全站）:</b><br>
+			<span class="smalltxt">针对网站的所有页面设置Meta部分的描述定义,多个描述用逗号分隔 </span>
+			</td>
+			<td>
+			<img src="./templates/default/images/admincp/zoomin.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[meta_description]', 1)">
+			<img src="./templates/default/images/admincp/zoomout.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[meta_description]', 0)"><br>
+			<textarea rows="4" name="config[meta_description]" cols="48">{conf meta_description}</textarea></td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%" valign="top"><b>附加标题（全站）:</b><br>
+			<span class="smalltxt">附加在网站标题后面</span></td>
+			<td>
+			<img src="./templates/default/images/admincp/zoomin.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[page_title]', 1)">
+			<img src="./templates/default/images/admincp/zoomout.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[page_title]', 0)"><br>
+			<textarea rows="4" name="config[page_title]" cols="48">{conf page_title}</textarea></td>
+		</tr>
+		<tr class="altbg2">
+			<td width="45%" valign="top"><b>首页关键词（首页）:</b><br>
+			<span class="smalltxt">针对网站首页的Meta部分关键词设置,多个词用逗号分隔 </span>
+			</td>
+			<td>
+			<img src="./templates/default/images/admincp/zoomin.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[index_meta_keywords]', 1)">
+			<img src="./templates/default/images/admincp/zoomout.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[index_meta_keywords]', 0)"><br>
+			<textarea rows="4" name="config[index_meta_keywords]" cols="48">{conf index_meta_keywords}</textarea></td>
+		</tr>
+		<tr class="altbg1">
+			<td width="45%" valign="top"><b>首页描述（首页）:</b><br>
+			<span class="smalltxt">针对网站首页的Meta部分描述定义,多个描述用逗号分隔 </span>
+			</td>
+			<td>
+			<img src="./templates/default/images/admincp/zoomin.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[index_meta_description]', 1)">
+			<img src="./templates/default/images/admincp/zoomout.gif" onmouseover="this.style.cursor='hand'" onclick="zoomtextarea('config[index_meta_description]', 0)"><br>
+			<textarea rows="4" name="config[index_meta_description]" cols="48">{conf index_meta_description}</textarea></td>
+		</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+	
+
+</form>
+<br>

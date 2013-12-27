@@ -1,0 +1,68 @@
+
+<div class="reward_b1">
+{if $id == 1}
+{$html}
+{elseif $id == 2}
+  <table width="100%">
+    <thead>
+      <tr>
+        <td width="20%">昵称</td>
+        <td width="30%">等级
+          <select onchange="showTab($rid,$id,this.value);">
+            <option value=''>奖品等级</option>
+            {loop $reward['prize'] $key $val}
+            <option value={$key} {$selected[$key]}>{$val['prize_name']}</option>
+            {/loop}
+          </select>
+        </td>
+        <td width="30%">奖品</td>
+        <td width="20%">中奖时间</td>
+      </tr>
+    </thead>
+    {if $prize_user_list}
+    <!--{loop $prize_user_list $key $val}-->
+    <tr>
+      <td><a href="index.php?mod=$val['username']">{$val['nickname']}</a></td>
+      <td>{$val['prize_name']}</td>
+      <td>{$val['prize']}</td>
+      <td>{$val['dateline']}</td>
+    </tr>
+    <!--{/loop}-->
+    {else}
+    <tr>
+      <td colspan="4">还没有中奖的人</td>
+    </tr>
+    {/if}
+	<!--{if $multi}-->
+	<tr>
+	  <td colspan="2">
+		<div class="myvote_multi">$multi</div>
+	  </td>
+	  <td></td>
+	  <td></td>
+	</tr>
+	<!--{/if}-->
+  </table>
+{elseif $id==3}
+  <table width="100%">
+    <thead>
+      <tr>
+        <td width="30%">奖品等级</td>
+        <td width="40%">奖品</td>
+        <td width="30%">中奖时间</td>
+      </tr>
+    </thead>
+    {if $my_prize}
+    <tr>
+      <td>{$my_prize['prize_name']}</td>
+      <td>{$my_prize['prize']}</td>
+      <td>{$my_prize['dateline']}</td>
+    </tr>
+    {else}
+    <tr>
+      <td colspan="3">该有奖转发你还没有中奖</td>
+    </tr>
+    {/if}
+  </table>
+{/if}
+</div>

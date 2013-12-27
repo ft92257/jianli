@@ -1,0 +1,43 @@
+/*###########################
+   @Name:经典蓝色 
+#############################*/
+body{ background-color:#D0F1F6;background-image:url(images/themebg.jpg);background-position:center 0px;background-repeat:no-repeat;}
+a:link{color:#0078B6;text-decoration:none;}
+a:visited{color:#0078B6;text-decoration:none;}
+a:hover{color:#0078B6;text-decoration:underline;}
+.headerBg { background:#C4DEF0;}
+.headerNav{ color:#fff;}
+.headerNav a:link {color:#fff;text-decoration:none;}
+.headerNav a:hover {color:#fff;text-decoration:underline;}
+.headerNav a:visited {color:#fff;text-decoration:none;}
+.main{ background:url(images/rightbg.gif) repeat-y right center;}
+.top_nav2 { background:#c4def0;}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.person_atten_l{ border-right:#C1E3F2 1px solid;}
+.ts_menu_2{background:url(../images/theme/t3/hotb_1.gif) repeat-x bottom;}
+.ts3_mbtn1{border:1px solid #6699CC; border-bottom:none;}
+.ts3_mbtn2{border:1px solid #6699CC; border-bottom:none;background:#b2d2ec;}
+.bottomLinks{ background:#def5f9;}
+.vDateBox{background:#E9F9FF; border:1px solid #A1C7DD;}
+.rbt_2{ background:url(../images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.rbt_2 a{ color:#fff;}
+.person_atten_l a,.person_atten_r a{ color:#73A5C1;}
+.person_atten_l .num a,.person_atten_r .num a{ color:#0078B6; text-decoration:none;}
+/*.boxRNav2 li,.boxRNav2 li a{ background-image:url(images/sideLb.png);_background-image:url(images/sideLb.gif);}
+.boxRNav2 li.current{background-image:url(images/sideLb.png);_background-image:url(images/sideLb.gif);}*/
+/*我的粉丝部分*/
+ul.boxRNav3 li:hover,ul.boxRNav3 li.hover{ z-index:1;background-color:#BCE8F2;}
+ul.boxRNav3 li.index:hover,ul.boxRNav3 #x1.hover{ background-color:#BCE8F2;}
+ul.boxRNav3 li.current{ height:26px;z-index:2;background-color:#70CCE2;}
+/*新增侧栏部分*/
+.rught_tj_box{}
+.rught_tj_box span{}
+.SC .btn{background:url(images/b1_c2.gif) no-repeat;}
+/*三栏部分*/
+.t_col_main{background:url(images/rightbg2.gif) repeat-y;}
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li a:hover{text-decoration:none;background-color:#BCE8F2;} 
+.t_col_main_fl .boxRNav2 li:hover{z-index:1;background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.index:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.current,.t_col_main_fl .boxRNav2 li.current:hover{background-color:#BCE8F2;}
+.t_col_main_fl .boxRNav2 li.current a{background-color:#70CCE2;}

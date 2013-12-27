@@ -1,0 +1,257 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+
+	<div class="main_t main_t23"><span>工具</span></div>
+		<div class="Menubox2">
+			<ul>
+				<!--{loop $act_list $key $val}-->
+				<!--{eval $_hoverCLS = ($key==$act ? ' class="tago" ' : 'class="tagn"');}-->
+					<!--{if !is_array($val)}-->
+						<li><div {$_hoverCLS}><A HREF="index.php?mod=tools&code={$key}"><span>{$val}</span></A></div></li>
+					<!--{else}-->
+						<li><div {$_hoverCLS}><A HREF="index.php?mod={$val[link_mod]}&code={$val[link_code]}"><span>{$val[name]}</span></A></div></li>
+					<!--{/if}-->
+				<!--{/loop}-->
+			</ul>
+		</div>
+		
+		<div class="set_warp" style="width:650px; margin:0 auto; padding:20px 0 50px;">
+			<!--{if 'qqrobot'==$act}-->
+			<div>
+				<span style='color:red'>【注意】</span>请当QQ机器人在线时给TA发消息；离线时TA无法对你的消息作出回应！
+			</div>
+			<!--{if $member[qq]}-->
+			<div>
+				<BR />你当前帐户已经与QQ{$member[qq]}绑定了，现在可以：<BR />
+				1、通过你的QQ发微博内容到QQ机器人{$this->Config[imrobot]}，格式是“<span style='color:red'>新微博：你的微博内容</span>”；<BR>
+				2、有人回复你的微博、或@提到你，你会接收到QQ机器人{$this->Config[imrobot]}通知。<BR>
+				3、通过QQ签名发微博：修改QQ签名后，机器人会自动获取签名内容并更新微博。<BR>
+				4、如需取消QQ与帐户绑定，只需你的QQ号码{$member[qq]}发给QQ机器人即可。<BR>
+			</div>
+			<!--{else}-->
+			<div><BR />
+				你当前帐户还未绑定QQ，请按如下步骤设置绑定：<BR />
+				1、请用您的QQ加QQ机器人{$this->Config[imrobot]}为好友；<BR />
+				2、发送<span style='color:red'>{$qq_code}</span>到QQ机器人{$this->Config[imrobot]}；<BR /><BR />
+				帐号绑定QQ后如需解除，只需将绑定的QQ号码发给机器人即可。
+			</div>
+			<!--{/if}-->
+		
+			<!-- IM机器人 -->
+			<!--{elseif 'imjiqiren'==$act}-->
+			{$imjiqirenHTML}
+			
+			<!-- 手机短信 -->
+			<!--{elseif 'sms'==$act}-->
+			{$smsHTML}
+		
+			<!--腾讯微博-->
+			<!--{elseif 'qqwb'==$act}-->
+			<form method="post" action="index.php?mod=qqwb&code=do_modify_bind_info">
+			<table width="100%" border="0">
+			{if $qqwb_bind_info}
+			{if $qqwb[is_synctopic_toweibo]}  
+			<tr>
+				<td align="right">新发微博是否自动发到腾讯微博？</td>
+				<td>{$synctoqq_radio}</td>
+			</tr>
+			{/if}            
+			<tr>
+				<td width="40%" align="right" valign="top">&nbsp;</td>
+				<td><input type="submit" class="save" value="保存设置"/></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					您已绑定的腾讯微博帐号为：<a target="_blank" href="http://t.qq.com/{$qqwb_bind_info[qqwb_username]}"><font color="red">{$qqwb_bind_info[qqwb_username]}</font></a>;<br />
+					<a onclick="return confirm('您在 {$this->Config[site_name]} 发表的内容将不再同步到腾讯微博，确定解除绑定？');" href="index.php?mod=qqwb&code=unbind">点此可解除绑定</a>
+					(<font color="gray">解除绑定后，您在 {$this->Config[site_name]} 发表的内容将不再同步到腾讯微博</font>)
+				</td>
+			</tr>
+			{else}
+			<tr>
+				<td colspan="2"><div class="tagg2">绑定后，可以使用腾讯微博帐号进行登录，在本站发的微博可以同步发到腾讯微博</div></td>
+			</tr>
+			<tr>
+				<td align="right">&nbsp;</td>
+				<td><input onclick="window.location.href='index.php?mod=qqwb&code=login';return false;" type="button" class="button" value="点此绑定腾讯微博帐号" /></td>
+			</tr>
+			{/if}
+			</table>
+			</form>
+		
+			<!--新浪微博-->
+			<!--{elseif 'sina'==$act}-->
+			{$profile_bind_message}
+			
+			
+			<!--{elseif 'share'==$act}-->
+			<style>.mainL{ _overflow:hidden}</style>
+			<div class="friends textB" style="height:260px;">
+				<li>
+				<p class="vshare">
+					<img src="templates/default/images/shareB.gif" border="0" title="分享到{$shareName}"/>将其他网页内容 <strong>分享到{$shareName}</strong>（复制下面代码，粘贴到其他网页源码中）
+				</p>
+					<textarea id="invite_url" type="text"  value="" onclick="copyText(this.value);"><a title="分享到{$shareName}" href="javascript:void(0)" onclick="var d=document,w=window,f='{conf site_url}',l=d.location,e=encodeURIComponent,p=''+e(l.href)+'&t='+e(d.title);if(!w.open(f+'/index.php?mod=share&code=share&url='+p)){l.href=f+'/index.php?mod=share&code=share&url='+p;}"><img src="
+				{$this->Config[site_url]}/templates/default/images/shareB.gif" border="0" />分享到{$shareName}</a></textarea>
+				</li>
+				<li>
+					<input type="button" class="save frr" value="复制链接" onclick="copyText($('#invite_url').val(),'inviteURL');" />
+				</li>
+			</div>
+		
+			<!--{elseif 'medal'==$act}-->
+			<!--{loop $medal_list $val}-->
+				<div style="width:120px; height:120px; float:left; margin-right:15px;">
+					<img src="{$val[medal_img]}" style="margin-right:5px; vertical-align:middle" />
+					<p>{$val[medal_name]}</p>
+					<p><input type="checkbox"  onchange="open_medal_index({$val[id]});return false;" {eval if($val[is_index] == "1") echo "checked=checkbox";}/>显示</p>
+				</div>
+			<!--{/loop}-->
+		
+			<!--{if $sina}-->
+			<div style="width:120px; height:120px; float:left; margin-right:15px;">
+				<img src="images/medal/M_sina.gif" />
+				<p>绑定新浪</p>
+				<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+			</div>
+			<!--{/if}-->
+		
+			<!--{if $qqwb}-->
+			<div style="width:120px; height:120px; float:left; margin-right:15px;">
+				<img src="./templates/default/images/medal/qqwb.png" />
+				<p>绑定腾讯</p>
+				<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+			</div>
+			<!--{/if}-->
+		
+			<!--{if $imjiqiren}-->
+			<div style="width:120px; height:120px; float:left; margin-right:15px;">
+				<img src="images/medal/M_qq.gif" />
+				<p>绑定QQ</p>
+				<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+			</div>
+			<!--{/if}-->
+		
+			<!--{if $sms}-->
+			<div style="width:120px; height:120px; float:left; margin-right:15px;">
+				<img src="images/medal/Tel.gif" />
+				<p>绑定手机</p>
+				<p><input type="checkbox" checked="checked" disabled="disabled"/>显示</p>
+			</div>
+			<!--{/if}-->
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><a href="index.php?mod=other&amp;code=medal" target="_blank">点击获得更多勋章</a></td>
+			</tr>
+			</table>
+			
+			<!--{elseif 'qmd'==$act}-->
+				<!--{if $this->Config[is_qmd]}-->
+				<!--{eval $qmd_my_url=get_full_url($this->Config[site_url],'index.php?mod='.$member[username]);$qmd_img_url=get_full_url($this->Config[site_url],'index.php?mod=other&code=qmd&ids='.MEMBER_ID);}-->
+				<script>
+					function check_qmd_type(typename)
+					{
+							var qmd_value = '';
+							
+							if(typename == 'bbs'){
+								qmd_value  = "[url={$qmd_my_url}][img]{$qmd_img_url}[/img][/url]";
+							}
+							if(typename == 'email'){
+								;
+							}
+							if(typename == 'bloge'){
+								qmd_value = "<a href='{$qmd_my_url}' target='_blank'><img border='0' src='{$qmd_img_url}'/></a>";
+							}
+							if(typename == 'pic'){
+								qmd_value = "<img border='0' src='{$qmd_img_url}'/>";
+							}
+							
+							document.getElementById('html_code').value=qmd_value;
+					}
+				
+				</script>
+				<div style="height:50px;">
+				  <span><p><b>签名档介绍</b></p></span>
+				  <span><p>微博签名档，可以放置在你的博客、论坛，或是其它可以引用网上图片的位置，签名档会随你的微博同步更新。 </p></span>
+				</div>
+				<div class="mBlog_linedot"></div>
+				
+				<div style="height:50px;">
+				<p><b>皮肤主题</b><p>
+				 <span>
+					<p id="template_skins">
+						<a href="javascript:void(0);" onclick="select_qmd('images/qmd.jpg'); return false;"><em>皮肤一</em></a>
+						<a href="javascript:void(0);" onclick="select_qmd('images/qmd2.jpg'); return false;"><em>皮肤二</em></a>
+						<a href="javascript:void(0);" onclick="select_qmd('images/qmd3.jpg'); return false;"><em>皮肤三</em></a>
+						<a href="javascript:void(0);" onclick="select_qmd('images/qmd4.jpg'); return false;"><em>皮肤四</em></a>
+						<a href="javascript:void(0);" onclick="select_qmd('images/qmd5.jpg'); return false;"><em>皮肤五</em></a>
+					</p>
+				</span>
+				</div>
+				
+				<div style="height:50px;">
+				  <span><p><b>用途</b></p></span>
+				   <span>
+				    <input name="use" type="radio" id="pic" checked="checked" onclick="check_qmd_type('pic');"/>
+					<label for="pic" style="cursor:pointer;" onclick="check_qmd_type('pic');">图片</label>
+					
+					<input id="bbs" type="radio" name="use" onclick="check_qmd_type('bbs');"/>
+					<label for="bbs" style="cursor:pointer;" onclick="check_qmd_type('bbs');">论坛签名</label>
+					
+					<!--<input id="email" type="radio" name="use" onclick="check_qmd_type('email');"/>
+					<label for="email" style="cursor:pointer;" onclick="check_qmd_type('email');">邮件签名</label>-->
+					
+					<input id="bloge" type="radio" name="use" onclick="check_qmd_type('bloge');"/>
+					<label for="bloge" style="cursor:pointer;" onclick="check_qmd_type('bloge');">博客挂件</label>
+				  </span>
+				</div>
+				<div class="mBlog_linedot"></div>
+
+				<div style="height:100px;">
+				  <p><b>获得代码</b><p><span>
+					<textarea  name="textarea" cols="30" rows="5" id="html_code"><img border='0' src='{$qmd_img_url}'/></textarea>
+				  </span>
+				</div>
+				<div style="height:30px;"><a id="copyhtml" href="javascript:void(0);" onclick="copyText($('#html_code').val());"><em>复制代码</em></a>请将代码添加到您的网站</div>
+
+				<div>
+				 <p><b>效果预览</b>
+				 <p><span><p><img border='0' src='{conf site_url}/index.php?mod=other&code=qmd&ids={MEMBER_ID}&{TIMESTAMP}'/><p></span>
+				</div>
+				<div id="qmd_list"></div>
+				<!--{else}-->
+				
+				 <p>系统暂时未开启签名档功能。<p>
+				 <!--{if MEMBER_ROLE_TYPE == 'admin'}-->
+					<p><h4>管理员可见: 可在后台 核心设置 >> 签名档选项  中选择开启并填写相关信息。</h4><p>
+				 <!--{else}-->
+				 
+				 <!--{/if}-->
+				 
+				 
+				<!--{/if}-->
+				
+				
+			<!--{/if}-->
+		</div>
+	</div>		
+	</div>
+</div>
+<!--{template "topic_footer"}-->
+

@@ -1,0 +1,18 @@
+<style type="text/css">
+.dialogues img{vertical-align:middle}
+</style>
+<!--{if 'add' == $types}-->
+<div class="blacklist">他在你的黑名单里 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','del','topic_black_ajax');"> [取消拉黑] </a></div>
+<!--{else}-->
+
+<div class="dialogue">
+{$follow_html}
+ <span>
+	 <a href="javascript:void(0)" onclick="PmSend({$member[uid]},'{$member[nickname]}');return false;" >私信</a>
+ </span>
+</div>
+	
+<!--{/if}-->
+
+<div id="Pmsend_to_user_area"></div>
+

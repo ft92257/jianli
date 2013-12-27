@@ -1,0 +1,42 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>可在下面自定义用户传播邀请链接时候的描述内容，可使用如下标签：
+				<br />
+				#nickname# 		=> 		用户昵称
+				<br />
+				#inviteurl# 	=> 		邀请链接
+				<br />
+				#invite_num#	=>		可邀请人数
+				<br />
+				#site_name#		=>		站点名称
+				<br />
+			</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br />
+<form method="post" action="admin.php?mod=setting&code=do_invite">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder t1">
+		<tr class="header">
+			<td colspan="6">邀请语设置</td>
+		</tr>
+		<tr>
+			<td class="td2">
+			<textarea name="invite_msg" cols="100" rows="8">{$invite_msg}</textarea>
+			</td>
+		</tr>
+	</table>
+	<br>
+		<center><input type="submit" class="button" name="invitesubmit" value="提 交"></center>
+	<br>
+</form>
+</div>

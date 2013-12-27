@@ -1,0 +1,65 @@
+<!--{if !empty($myquns)}-->
+	<!--{if $type==1}-->
+		<!--{eval $__key='';if(!empty($this->Get['key'])) $__key=$this->Get['key'];}-->
+		<dl id="qun_select_{$__key}" class="combobox">
+			<dd>
+				<ul>
+				<!--{loop $myquns $val}-->
+					<li>
+						<a href="javascript:;">
+							<img src="$val['icon']" style="width:16px; height:16px;"/>{$val['name']}<span class="value">{$val['qid']}</span>
+						</a>
+					</li>
+				<!--{/loop}-->
+				</ul>
+			</dd>
+		</dl>
+	<!--{elseif $type==2}-->
+		<div class="side">
+		<ul class="FTL FTL2 SC_taguanzhu_box">
+		  <!--{loop $myquns $val}-->
+			  <li style=" height:80px;">
+				  <img onerror="javascript:faceError(this);" src="{$val[icon]}" class="manface" title="{$val[name]}"/>
+				  <b><a href="index.php?mod=qun&qid={$val[qid]}" title="{$val[name]}" target="_blank">{$val[name]}</a></b>
+			  </li>
+		  <!--{/loop}-->
+		  <!--
+		  <li><a class="cWhite" href="index.php?mod={$member[username]}&code=follow">更多</a></li>
+		  -->
+		</ul>
+	  </div>
+	<!--{else}-->
+		<dl id="my_qun_select" class="combobox">
+			<dd>
+				<ul>
+					<li>
+						<a href="javascript:;">不发布到微群<span class="value">0</span></a>
+					</li>
+				<!--{loop $myquns $val}-->
+					<li>
+						<a href="javascript:;">
+							<img src="$val['icon']" style="width:16px; height:16px;"/>{$val['name']}<span class="value">{$val['qid']}</span>
+						</a>
+					</li>
+				<!--{/loop}-->
+				</ul>
+			</dd>
+		</dl>
+		<span style="display:none;" id="toweibo_wp">
+			<span>
+				<input name="" id="checkbox_toweibo" type="checkbox" value="1" checked="checked" />
+				<label for="checkbox_toweibo">同时发布到微博</label>
+			</span>
+			<span style="margin-left:10px;"><a href="javascript:;" target="_blank" id="goto_qun">去该群逛逛</a></span>
+		</span>
+	<!--{/if}-->
+<!--{else}-->
+	<!--{if $type==2}-->
+		<ul class="FTL">TA还没有加入任何微群</ul>
+	<!--{else}-->
+		<div id="no_qun_wp_{$__key}">
+			抱歉，你还没有加入任何微群！<BR>
+			<a href="index.php?mod=qun" target="_blank" >点此查看有趣的微群吧</a>
+		</div>
+	<!--{/if}-->
+<!--{/if}-->

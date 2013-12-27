@@ -1,0 +1,72 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/validate.js"></script>
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>	
+  </div>
+</div>
+<!--此处三栏-->
+ <div class="main3Box_m HotW ">
+    <div id="topNews_1">
+	  <div class="Menubox2" style="width:750px;">
+		<ul>
+		  <li>
+		    <div class="tagn">
+			  <a href="index.php?mod=fenlei"><span>分类主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=fenlei&code=mypost"><span>我的分类</span></a>
+		    </div>
+		  </li>
+		  <li>
+			<div class="tago">
+			  <a href="index.php?mod=fenlei&code=followpost"><span>我关注的人的分类</span></a>
+		    </div>
+		  </li>
+		</ul>
+	  </div>
+	  <div id="listTopicArea" style="width:700px;float:left;margin:10px 40px;">
+<!--{if $rs}-->
+
+<!--{loop $rs $val}-->
+  <div class="Listmain">
+    <div id="topic_list_25">
+      <div id="topic_list_25" class="feedCell vote_list">
+        <div class="avatarL">
+          <div class="avatar"><a href="index.php?mod=$val[username]"><img onerror="javascript:faceError(this);" src="$val[face]"></img></a></div>
+          <div class="vText"><a href="index.php?mod=$val[username]">$val['nickname']</a></div>
+        </div>
+        <div class="Contant">
+          <div id="topic_lists_25" style="_overflow:hidden">
+            <div class="oriTxt">
+            <p class="vote_l_1"><a href="index.php?mod=fenlei&code=detail&fid=$val[fid]&id=$val[id]" target="_blank">$val['title']</a></p>
+            <p class="vote_l_1">$val['fname']</p>
+            <p class="vote_l_1"><span>最后更新时间：$val['edittime']</span>
+            <span style="margin-left:5px;"><a href="index.php?mod=fenlei&code=detail&fid=$val[fid]&id=$val[id]">点击查看</a></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--{/loop}-->
+	<!--{if $page_arr[html]}-->	
+	<div><ul><li>{$page_arr[html]}</li> </ul></div>
+	<!--{/if}--> 
+
+<!--{else}-->
+	<div><span>还没有发布分类信息</span></div>
+<!--{/if}-->
+</div>
+</div>
+</div>
+</div>
+<!--{template "topic_footer"}-->
+

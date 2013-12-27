@@ -1,0 +1,92 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td>技巧提示</td>
+  </tr>
+  <tr class="altbg1">
+    <td><ul>
+        <li>开启本功能后，会将用户上载的图片和头像通过FTP上传到远程服务器上，便于实施附件与程序分离。</li>
+      </ul></td>
+  </tr>
+</table>
+<form method="post" name="ftp" action="admin.php?mod=setting&code=do_modify_ftp">
+  <a name="远程附件设置"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">远程附件设置</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>是否开启？</b><br>
+      <span class="smalltxt"></span>
+      </td>
+      <td class="altbg2">{$ftp_on_radio}</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>启用SSL？</b><br>
+      <span class="smalltxt">注意：FTP服务器必需开启 SSL</span>
+      </td>
+      <td class="altbg2">{$ftp_ssl_radio}</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>FTP地址:</b><br>
+        <span class="smalltxt">请填写FTP服务器的域名或者IP地址</span></td>
+      <td class="altbg2"><input type="text" size="40" name="ftp[host]" value="{$ftp[host]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>FTP端口:</b><br>
+        <span class="smalltxt">默认为21</span></td>
+      <td class="altbg2"><input type="text" size="6" name="ftp[port]" value="{$ftp[port]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>FTP帐号:</b><br>
+        <span class="smalltxt">该帐号必需具有以下权限：读取文件、写入文件、删除文件、创建目录、子目录继承</span></td>
+      <td class="altbg2"><input type="text" size="40" name="ftp[username]" value="{$ftp[username]}">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%"><b>FTP密码:</b><br>
+        <span class="smalltxt">帐号对应的密码</span></td>
+      <td class="altbg2"><input type="password" size="40" name="ftp[password]" value="请输入FTP密码">
+      </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>被动模式(pasv)连接？</b><br>
+      <span class="smalltxt">一般情况下非被动模式即可，如果存在上传失败问题，可尝试打开此设置</span>
+      </td>
+      <td class="altbg2">{$ftp_pasv_radio}</td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>FTP远程目录</b><br>
+      <span class="smalltxt">远程附件目录的绝对路径或相对于 FTP 主目录的相对路径，结尾不要加斜杠“/”，“.”表示 FTP 主目录</span>
+      </td>
+      <td class="altbg2"><input type="text" size="40" name="ftp[attachdir]" value="{$ftp[attachdir]}" /></td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>FTP访问URL</b><br>
+      <span class="smalltxt">支持 HTTP 和 FTP 协议，结尾不要加斜杠“/”；如果使用 FTP 协议，FTP 服务器必需支持 PASV 模式，为了安全起见，使用 FTP 连接的帐号不要设置可写权限和列表权限</span>
+      </td>
+      <td class="altbg2"><input type="text" size="40" name="ftp[attachurl]" value="{$ftp[attachurl]}" /></td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="45%" width="45%">
+      <b>FTP传输超时时间</b><br>
+      <span class="smalltxt">单位：秒，0 为服务器默认</span>
+      </td>
+      <td class="altbg2"><input type="text" size="6" name="ftp[timeout]" value="{$ftp[timeout]}" /></td>
+    </tr>
+  </table>
+  <br>
+  <center>
+    <input class="button" type="submit" name="settingsubmit" value="提 交">
+  </center>
+  <br>
+</form>
+<br>

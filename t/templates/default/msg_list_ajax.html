@@ -1,0 +1,67 @@
+      <div class="comBox" style="overflow:hidden; margin-top:20px;">
+	    <ul class="followList" style="overflow:hidden">
+		  <!--{loop $pm_list $val}-->
+		  <!--{if $touid == 0}-->
+        <li class="pane" id="msg_0">
+          <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_user','{$key}');" onmouseout="clear_user_choose();"/> </div>
+          <div id="user_{$key}_user" class="layS"></div>
+		  <div class="fBox_R3">
+			<p>
+             <span><a href="index.php?mod=$val[username]">{$val[nickname]}</a>
+               <a target="_blank" href="index.php?mod=other&code=vip_intro">
+			     <img class="vipImg" src="images/vip.gif" title="管理员">
+			   </a>
+			 </span>
+		    </p>
+             <span>{$val[message]}</span>
+             <div class="time">
+               <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+             </div>
+	      </div>
+        </li>
+		  <!--{else}-->
+          <li class="pane" id="msg_{$val[pmid]}">
+            <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[msgfromid]},'_user',{$val[pmid]});" onmouseout="clear_user_choose();"/> </div>
+            <div id="user_{$val[pmid]}_user" class="layS"></div>
+            <div class="fBox_R3"><p>
+            <!--{if $val[msgfromid] == MEMBER_ID}-->
+          	  <span><strong>我</strong></span>
+            <!--{ELSE}-->
+              <span><strong><a href="index.php?mod=$val[username]">{$val[nickname]}</a></strong></span>
+            <!--{/IF}-->
+              <span style="float: right"><a href="javascript:void(0);" onclick="delmsg($val[pmid]);">X</a></span>
+              </p>
+              <span>{$val[message]}</span>
+              <div>
+                <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+              </div>
+	        </div>
+          </li>
+          <!--{/if}-->
+		  <!--{/loop}-->
+	    </ul>
+	    <ul>
+	  	  <!--{if $page_arr[html]}-->	
+	      <li>{$page_arr[html]}</li> 
+	      <!--{/if}--> 
+	    </ul>
+      </div>
+      <script type="text/javascript">	
+      function delmsg(pmid){
+  		var del = confirm("确定要删除这条私信吗？");
+		if(del == true){
+			$.post(
+				'ajax.php?mod=pm&code=delmsg&pmid='+pmid,
+				function(d){
+					if('' != d){
+						show_message(d);
+					}else{
+						$('#msg_'+pmid).remove();
+					}
+				}
+			);
+		}else{
+			return false;
+		}
+      }
+      </script>

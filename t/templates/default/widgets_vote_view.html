@@ -1,0 +1,56 @@
+<link href="styles/vote.css" rel="stylesheet" type="text/css" />
+<div class="index_v_title">
+<span id="close_vote_detail_{$tid}"><a href="javascript:;">收起</a></span> | <span><a href="index.php?mod=vote&vid={$vote['vid']}">{$vote['subject']}</a></span></div>
+
+<div id="vote_publish_tips_{$tid}" class="index_v_tig"></div>
+
+<!--投票主体 Begin-->
+<div id="vote_main_{$tid}">
+<div class="vtd">
+<!--<img src="./images/ico/ico_voteicon.gif" /> --><b><a href="index.php?mod=vote&vid={$vote['vid']}">{$vote['subject']}</a></b> <em><!--{if $vote['multiple']}-->(最多可选{$vote['maxchoice']}项)<!--{else}-->(单选)<!--{/if}--></em>
+</div>
+
+<div class="vtd2">
+发起人：<a href="index.php?mod={$member[username]}" title="@{$member[nickname]}">{$member[nickname]}</a>{$member[validate_html]} &nbsp;|&nbsp;{$vote['voter_num']}人参与 &nbsp;|&nbsp; <a href="index.php?mod=vote&vid={$vote['vid']}">详情>></a>
+</div>
+
+	
+<!--投票描述 Begin-->
+<div class="vtd2">{$vote['message']}</div>
+
+	
+	<!--{if !$vote['is_view'] && !$hasvoted}-->
+	<div style="margin-top:10px; margin-left:auto; margin-right:auto; width:150px; border: solid 1px #B9DBEA; background:#F8FEFF; padding:5px; color:#CCCCCC;">
+		投票后才能查看结果
+	</div>
+	<!--{/if}-->
+	
+	<div style="margin-top:10px;">
+	<form name="vote_form_{$tid}" method="post" action="ajax.php?mod=vote&code=vote&vid=$vote['vid']" id="vote_form_{$tid}">
+		<input type="hidden" value="{$tid}" name="tid" />
+		<div class="index_tp">
+		<!--投票选项 Begin-->
+			<!--{template "vote_options"}-->
+		<!--投票选项 End-->
+		</div>
+		<div style="text-align:center;">
+			<!--{if $allowedvote && !$hasvoted}-->
+				<div>
+                	<div style="margin:5px 0 0 50px; position:absolute; *margin-left:-150px;">
+					<span><input type="checkbox" name="toweibo"  value="1" id="toweibo_{$tid}" checked="checked" class="index_tp_input"/><label for="toweibo_{$tid}">分享到微博</label></span>
+					<span><input type="checkbox" name="anonymous" value="1" id="anonymous_{$tid}" class="index_tp_input"/><label for="anonymous_{$tid}">匿名</label></span>
+				</div>
+                
+                <input class="vote_btn" type="button" onclick="doVote('vote_form_{$tid}',{type:'topic',tid:'{$tid}'});" value=""></div>
+
+			<!--{else}-->
+				<input type="submit" class="shareI" value="已投票"  disabled="disabled"/>
+			<!--{/if}-->
+		</div>
+	</form>
+	</div>
+</div>
+<!--投票主体 End-->
+
+
+				

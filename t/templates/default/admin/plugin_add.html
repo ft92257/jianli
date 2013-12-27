@@ -1,0 +1,28 @@
+<!--{template admin/header}-->
+
+<div id="main_wp" class="mt10">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="4">安装新插件(plugin/ 目录下未安装的插件)</td>
+	</tr>
+	<tr class="list_h_2">
+		<td width="5%">&nbsp;</td>
+		<td>插件信息</td>
+		<td>所在目录</td>
+		<td width="15%">操作</td>
+	</tr>
+	<!--{loop $plugin_ary $key $value}-->
+		<tr>
+			<td class="td2"><img src="{$value[logo]}" /></td>
+			<td class="td2">{$value[name]}</td>
+			<td class="td2">{$value[dir]}</td>
+			<td class="td2"><a href="{$value[install_url]}">安装</a></td>
+		</tr>
+	<!--{/loop}-->
+	<!--{if $pages}-->
+		<tr>
+		<td colspan="4">$pages</td>
+		</tr>
+		<!--{/if}-->
+</table>
+</div>

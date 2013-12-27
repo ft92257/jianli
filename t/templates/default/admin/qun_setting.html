@@ -1,0 +1,76 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=qun&code=dosetting" method="post" name="search">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">基本设置</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是否开启微群功能
+		</td>
+		<td class="altbg2">
+			<input name='config[qun_open]' id='qun_open_1' type='radio' value='1' class="radio" {$checked['qun_open'][1]} >
+			<label for='qun_open_1'>是</label>
+			<input name='config[qun_open]' id='qun_open_0' type='radio' value='0' class="radio" {$checked['qun_open'][0]} >
+			<label for='qun_open_0'>否</label>
+			<span class="input_tips">此项对系统管理员无效</span>	
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是否允许普通用户创建微群
+		</td>
+		<td class="altbg2">
+			<input name='config[new_qun]' id='new_qun_1' type='radio' value='1' class="radio" {$checked['new_qun'][1]} >
+			<label for='new_qun_1'>是</label>
+			<input name='config[new_qun]' id='new_qun_0' type='radio' value='0' class="radio" {$checked['new_qun'][0]} >
+			<label for='new_qun_0'>否</label>
+			<span class="input_tips">此项对系统管理员无效</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是否开启同城微群
+		</td>
+		<td class="altbg2">
+			<input name='config[tc_qun]' id='tc_qun_1' type='radio' value='1' class="radio" {$checked['tc_qun'][1]} >
+			<label for='tcqun_1'>是</label>
+			<input name='config[tc_qun]' id='tc_qun_0' type='radio' value='0' class="radio" {$checked['tc_qun'][0]} >
+			<label for='tc_qun_0'>否</label>
+			<span class="input_tips">选择是在微群首页显示同城群</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		微群头像最大尺寸
+		</td>
+		<td class="altbg2">
+		<input type="text" name="config[img_size]" id="img_size" value="{$config['img_size']}" size="9">
+		<span class="input_tips">(KB)，超过这个尺寸无法上传</span>			
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		群成员人数上限
+		</td>
+		<td class="altbg2">
+		<input type="text" name="config[member_num]" id="member_num" value="{$config['member_num']}" size="9" maxlength="9">
+		<span class="input_tips">0或者为空表示不限制</span>		
+		</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		群管理员人数上限
+		</td>
+		<td class="altbg2">
+		<input type="text" name="config[admin_num]" id="admin_num" value="{$config['admin_num']}" size="9" maxlength="9">	
+		<span class="input_tips">0或者为空表示不限制</span>	
+		</td>
+	</tr>
+</table>
+
+<center><input class="button" type="submit" name="setting_submit" value="提 交"></center>
+</form>
+</div>

@@ -1,0 +1,70 @@
+<!--评论我的 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list"></div>
+
+<!--{hook/global_usernav_extra2}-->
+
+<!--@我的 右侧-->
+<script language="javascript">
+	$(document).ready(function(){
+		//本周常评论我的人
+		<!--{if MEMBER_ID > 0}-->	
+		get_comment_user();
+		<!--{/if}-->
+		//本周热门评论
+		get_hot_comment();
+	});
+	function get_comment_user(){			
+		right_show_ajax('{$member[uid]}','comment_user','comment_user');
+	}
+	function get_hot_comment(){
+		right_show_ajax('{$member[uid]}','hot_comment','hot_comment');
+	}
+</script>
+  
+	<!--{if MEMBER_ID > 0}-->
+ 	<!--本周常评论我的人 begin-->
+	<script type="text/javascript">
+			$(document).ready(function(){
+				$(".SC_renqituijian").click(function(){$(this).parent().toggleClass("fold_renqituijian");$(".SC_renqituijian_box").toggle();});
+			});
+		</script>
+	<div class="side" id="comment_user_div">
+	  <h3>本周常评论我的人<a class="btn SC_renqituijian" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','comment_user','comment_user')"></a></h3>
+	  <ul class="FTL3 SC_renqituijian_box">
+		<div id="{$member[uid]}_comment_user"></div>
+	  </ul>
+	</div>
+	<!--本周常评论我的人 end-->
+   <!--{/if}-->
+   
+ 	<!--本周热门评论  begin-->
+	<script type="text/javascript">
+			$(document).ready(function(){
+				$(".SC_renqituijian").click(function(){$(this).parent().toggleClass("fold_renqituijian");$(".SC_renqituijian_box").toggle();});
+			});
+		</script>
+	<div class="side">
+	  <h3>本周热门评论<a class="btn SC_renqituijian" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','hot_comment','hot_comment')"></a></h3>
+	  <ul class="FTL3 SC_renqituijian_box">
+		<div id="{$member[uid]}_hot_comment"></div>
+	  </ul>
+	</div>
+	<!--本周热门评论 end-->
+   
+<!--{template 'topic_right_common.ini'}-->
+
+</div>
+</div>

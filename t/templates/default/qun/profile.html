@@ -1,0 +1,73 @@
+{template "topic_header"}
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+  <div class="main3Box_m HotW">	
+  <div id="topNews_1" class="Hotwarp">
+
+      <div id="listTopicArea">
+        <div class="Listmain">
+		
+		<!--{if $view=='index'}-->
+			<!--{loop $all_list $value}-->
+			<div class="qun_block qun_block2">
+				<div class="title">$value['title']({$value['row_nums']})</div>
+				<!--{if $value['row_nums'] > 0}-->
+				<div class="content">
+					<ul class="qun_list">
+						<!--{loop $value['list'] $data}-->
+						<li>
+							<div class="rbl"><a href="index.php?mod=qun&qid={$data['qid']}" title="{$data['name']}"><img src="{$data['icon']}" /></a></div>
+							<div class="rbr"><a href="index.php?mod=qun&qid={$data['qid']}" title="{$data['name']}"><b>{$data['name']}</b></a><br />成员{$data['member_num']}人</div>
+						</li>
+						<!--{/loop}-->
+					</ul>
+					<ul class="cl"></ul>
+					<div style="text-align:right;"><a href="index.php?mod=qun&code=profile&view={$value['code']}">查看全部>></a></div>
+				</div>
+				<!--{/if}-->
+			</div>
+			<!--{/loop}-->
+		<!--{else}-->
+			<div class="qun_block qun_block2">
+				<div class="title">{$title}({$qun_list['row_nums']})</div>
+				<!--{if $qun_list['row_nums'] > 0}-->
+				<div class="content">
+					<ul class="qun_list">
+						<!--{loop $qun_list['list'] $value}-->
+						<li>
+							<div class="rbl"><a href="index.php?mod=qun&qid={$value['qid']}" title="{$value['name']}"><img src="{$value['icon']}" /></a></div>
+							<div class="rbr"><a href="index.php?mod=qun&qid={$value['qid']}" title="{$value['name']}"><b>{$value['name']}</b></a><br />成员{$value['member_num']}人</div>
+						</li>
+						<!--{/loop}-->
+					</ul>
+					<ul class="cl"></ul>
+				</div>
+				<div id="page_wp">{$multi}</div>
+				<!--{/if}-->
+			</div>
+		<!--{/if}-->
+		
+		</div>
+      </div>
+</div>
+
+
+
+<!--右边栏目 Begin-->
+
+<!--{subtemplate qun/qun_right}-->
+
+<!--右边栏目 End-->
+ 
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

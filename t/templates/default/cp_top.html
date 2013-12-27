@@ -1,0 +1,95 @@
+{template "topic_header"}
+<style type="text/css">
+.media_user_list{margin:-11px 0 0 -9px;*margin:-11px 0 0 -64px;}
+</style>
+<!--{if (($this->Get[mod] == 'company' && $id == $member['companyid']) || ($this->Get[mod] == 'department' && $id == $member['departmentid']))}-->
+<div class="main {$t_col_main}">
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_member_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<!--{else}-->
+<div class="setframe">
+<!--{template 'topic_new_left.ini'}-->
+<!--{/if}-->
+<div class="main_2b">
+<!--{if $notall}-->
+<a name="top_t" id="top_t"></a>
+<div class="main_t22">
+<div class="main_t22l">{$cpnavurl}</div>
+</div>
+<!--{/if}-->
+<!--{if $cp_list}-->
+<div class="topL">
+<div class="Tnav"><div class="Pname">
+<!--{if $notall}-->
+下级{$cp_name}排行榜
+<!--{else}-->
+{$cp_name}微博排行榜
+<!--{/if}-->
+</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $cp_list $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li>
+<div class="daren">
+<div class="daren2">
+<a href="index.php?mod={$dotable}&code=top&id={$v[id]}"><img src="{$v[image]}" onerror="javascript:faceError(this);" /></a>
+</div>
+<div class="daren3">
+<p>微博:{$v[topiccount]}</p>
+<p>人数:{$v[usercount]}</p>
+<p></p>
+</div>
+<p><a href="index.php?mod={$dotable}&code=top&id={$v[id]}">{$v[name]}</a></p>
+</div>
+</li>
+<!--{/loop}-->
+</ul>
+</div>
+<!--{/if}-->
+<!--{if $notall}-->
+<div class="topL">
+<div class="Tnav"><div class="Pname">本{$cp_name}用户排行</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $user_list $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li>
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{else}-->
+<img href="javascript:void(0);" onmouseover="get_user_choose({$v[uid]},'_r_users');"  onmouseout="clear_user_choose()" src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_r_users" class="layS4"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>微博:{$v[topic_count]}</p>
+<p>{$v[department]}</p>
+</div>
+<p>{$v[company]}</p>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+<!--{/if}-->
+</div>
+</div>
+{template "topic_footer"}

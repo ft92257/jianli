@@ -1,0 +1,154 @@
+<!--{template "topic_header"}-->
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+	 {template "topic_left.inc"}
+	<!--{/if}-->
+	</div>
+	
+</div>
+</div>
+<!--此处三栏-->
+<div class="mainL">
+    <div class="mblogTitle2"><b> {$member[nickname]}关注了{$member[follow_count]} 人</b>
+      <!--{if MEMBER_ID}-->
+      （<span><a href="index.php?mod=profile&code=search">点此找人</a></span>）
+      <!--{/if}-->
+    </div>
+	 <!--分组管理-->
+   <!--{if $member[uid] == MEMBER_ID}-->
+	<div class="TopicMan">
+	<div class="nfTagB">
+			
+		<ul>
+		    <!--{eval if($this->Get[gid] == '') $follow= "current";}-->
+			<li class="{$follow}">
+				<span><a href="index.php?mod={$member[username]}&code=follow" title="">全部</a></span>
+			</li>
+			<!--{if $group_view[group_name]}-->
+			<li class="current nfTagB_cur">
+				<span>
+					<b id="up_grouplist_view_{$group_view[id]}">{$group_view[group_name]}</b>
+					<a href="index.php?mod=topic&code=follow" class="arrow">
+						<cite class="arr_m"></cite> 
+						<div class="sltmenu" onclick="get_group_choose({$member[uid]});">管理分组</div>
+					</a>
+				</span>
+			</li>
+			<!--{/if}-->
+			<!--{loop $grouplist2 $val}-->
+			<li>
+			  <span id="del_group_follow_top_{$val[id]}">
+			  <!--{if $this->Get[gid] != $val[id]}-->
+				<a title="{$val[group_name]}" href="index.php?mod=topic&code=follow&gid={$val[id]}">
+					{$val[group_name]}
+				</a>
+			  <!--<li class="MIB_line_l">|</li>-->
+			  <!--{/if}-->
+			  </span>
+			</li>
+			<!--{/loop}-->
+			<script type="text/javascript">
+			 $(document).ready(function(){
+			 $(".arrow").mouseover(function(){$(".sltmenu").show();});
+			 $(".arrow").mouseout(function(){$(".sltmenu").hide();});
+			 $(".moreBox").mouseover(function(){$(".morelist").show();});
+			 $(".moreBox").mouseout(function(){$(".morelist").hide();});
+			});
+			</script>
+			<li class="moreBox"> <a href="#" class="moreti"><span class="txt">更多</span><span class="more"></span></a> 
+				<div class="morelist">
+					<ul class="sltmenu_m" >
+					 	<li id="add_group_fllow" class="grouplist">
+						<!--{template "topic_group_ajax"}-->
+					 	</li>
+						<li class="B_linedot"></li>
+						<li class="slA"><a href="javascript:void(0)" onclick="showFollowGroupAddDialog();">添加分组</a></li>
+						<li class="slM"><a href="index.php?mod={$member[username]}&code=follow">管理分组</a></li>
+					</ul>
+				</div>	
+			</li>
+		</ul>	
+		<div class="clear"></div>
+	</div>
+		<!--{if $this->Get[gid]}-->
+		<div class="nfBox">
+			  <div class="nfBoxList">
+				  <!--{eval if($this->Get[gid]) $get_gid= "&gid=".$this->Get[gid];}-->
+				  <a href="javascript:void(0)"><img src="images/user.gif" class="chgz_ico">该分组共{$group_view[group_count]}人</a>
+				  <a href="javascript:showFollowGroupModifyDialog();"><img src="images/dot_edit.gif" class="chgz_ico">修改分组名称</a>
+				  <a href="javascript:deleteFollowGroup({$group_view[id]});" ><img src="./images/imgdel.gif" class="chgz_ico">删除该分组</a>
+				  <a href="index.php?mod=topic&code=myhome&gid={$group_view[id]}"><img src="images/dot_bro.gif" class="chgz_ico">浏览该分组微博</a>
+			  </div>
+			  <div class="clear"></div>
+		</div>
+		<!--{/if}-->
+	</div>
+	<!--{if $this->Get[gid]}-->
+	<!--修改分组-->
+	<div id="modify_group" style="display:none">
+		<div class="fans_group_inner">
+			<form action="ajax.php?mod=topic&code=do_group" method="POST" name="up_group_name_form" id="up_group_name_form" target="groupframe" onsubmit="return false;" >
+			<div>
+				<div>
+				<span>分组名称：</span>
+				<input name="modify_group_{$group_view[id]}" type="text" id="modify_group_{$group_view[id]}" class="Ainp" value="{$group_view[group_name]}" style="width:250px;" onkeydown="ctrlEnter(event, 'modify_follow_btn');"/>
+				</div> 
+				<div class="tool_bar">
+					<button type="button" id="modify_follow_btn" class="shareI" onclick="GroupSubmit('modify_group_{$group_view[id]}',{$group_view[id]},'modify');closeDialog('hk_follow_group_modify_dialog');return false;">保存</button>
+					&nbsp;&nbsp;
+					<button type="button" class="shareI" onclick="closeDialog('hk_follow_group_modify_dialog');">取消</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<!--修改分组-->
+	<!--{/if}-->
+	<!--{/if}-->
+<!--分组管理-->
+
+<div style="padding:0 25px">
+<div style="margin-top: 20px;" class="setupTag_tit">给分组<strong> "{$group_view[group_name]}" </strong>设置用户</div>
+<div class="setupTag_txtList">
+	<p>·关于分组</p>
+	<p>·将已经关注的人进行分组，方便你快速搜索和管理。</p>
+	<p>·我的首页中可以设置按照分组进行查看，将海量的信息分类阅读。</p>
+	<p>·将关注人添加到分组。 </p>
+</div>
+
+
+<!--{if $buddysList}-->
+<style type="text/css">
+.ulist6 .selected .status{ margin:0 0 -5px 7px;}
+</style>
+<div class="ulist6"> 
+	<!--{loop $buddysList $val}-->
+		<div class="pf2 selected crPer">
+			<p class="status">
+			<input type="checkbox" name="checked_{$val[uid]}" id="checked_{$val[uid]}" onclick="groupState({$gid},'{$val[uid]}',this);"/>
+			</p> 
+			<p class="mark"></p>
+			<p class="avt"><label for="checked_{$val[uid]}" style="cursor:pointer;"><img src="{$val[face]}" onerror="javascript:faceError(this);"/></label></p> 
+			<p class="nm"><label for="checked_{$val[uid]}" style="cursor:pointer;">{$val[nickname]}</label>{$val[validate_html]}</p> 
+		</div> 
+	<!--{/loop}-->
+</div>
+<!--{/if}-->
+<!--{if $page_arr[html]}-->
+<div class="groupLLl">{$page_arr[html]}</div>
+<!--{/if}-->
+
+<div class="groupLL2">
+<input type="submit" name="Submit" value="完成" class="shareI" onclick="show_message('分组设置成功',3);window.location.href='index.php?mod=topic&code=follow&gid={$gid}';"/>
+</div>
+
+</div>
+</div>
+  <!--{template "follow_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->

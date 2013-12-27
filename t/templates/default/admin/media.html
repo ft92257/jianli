@@ -1,0 +1,106 @@
+<!--{template admin/header}-->
+
+<script>
+function media_order(mdeiaid,order) {
+
+	var mdeiaid = 'undefined' == typeof(mdeiaid) ? 0 : mdeiaid;
+	
+	var order = $('#'+order).val();
+	
+	if(isNaN(order)){  
+		document.getElementById(mdeiaid+'_order').value='';
+		return false;
+	} 
+
+	var myAjax = $.post(
+		"admin.php?mod=media&code=oredr",
+		{
+			mdeiaid:mdeiaid,
+			order:order
+		},
+		function (d)
+		{
+		  
+		}
+	);
+}
+</script>
+<form action="admin.php?mod=media&code=add" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="3"> 添加媒体汇类别</td>
+    </tr>
+    <tr>
+       <td width="171" bgcolor="#F8F8F8"><span class="altbg1">媒体汇类别: </span></td>
+      <td width="962" bgcolor="#FFFFFF"><span class="altbg2">
+        <input name="media_name" type="text" id="media_name" value="{$media_name}" size="40" />
+      </span></td>
+      <td rowspan="3" class="altbg1" width="228"><button name="do" value='' type="submit" class="button">添加</button></td>
+    </tr>
+
+  </table>
+</form>
+
+<form action="admin.php?mod=media&code=media_user" method="post" enctype="multipart/form-data" name="media_user_form" id="media_user_form">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="4"><span class="altbg1">快速添加媒体汇用户: </span></td>
+    </tr>
+    <tr>
+       <td width="171" bgcolor="#F8F8F8">输入用户昵称：</td>
+       <td width="312" bgcolor="#FFFFFF"><span class="altbg2">
+            
+                <input name="nickname" type="text" id="nickname" />
+      </span></td>
+       <td width="643" bgcolor="#FFFFFF"><span class="altbg1"> 选择媒体类别：{$media_select}</span></td>
+       <td rowspan="3" class="altbg1" width="226"><button name="do" value='' type="submit" class="button">添加</button></td>
+    </tr>
+  </table>
+</form>
+
+<form method="post"  action="admin.php?mod=media&code=delete">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="10%">
+				<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" >
+				全选</td>	
+				<td width="20%">媒体汇类别</td>
+				<td width="27%">成员数</td>
+				<td width="22%" align="center">排序</td>
+			    <td width="21%" align="center">管理操作</td>
+			</tr>
+			<!--{loop $media_list $media}-->
+			<tr align="center">
+				<td align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED">
+				<input class="checkbox" type="checkbox" name="ids[]" value="{$media[id]}" ></td>
+				<td align="left" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+				  <span class="altbg1" style="border-bottom:1px dotted #EDEDED">
+				  <a href="admin.php?mod=media&amp;code=modify&amp;ids={$media[id]}" title="点击查看成员">{$media[media_name]}</a></span>				</td>
+				<td align="left" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+				  {$media[media_count]}			    </td>
+				<td align="center" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<input name="order" type="text" id="{$media[id]}_order" style="width:30px;" value="{$media[order]}" onchange="media_order('{$media[id]}','{$media[id]}_order');"/>
+				</td>
+			    <td align="center" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<span class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<a href="admin.php?mod=media&code=modify&ids={$media[id]}">编辑</a>&nbsp;|
+					&nbsp; <a href="admin.php?mod=media&code=delete&ids={$media[id]}">删除</a>&nbsp;
+				</span>
+				</td>
+			</tr>
+			<!--{/loop}-->
+			
+			
+			<!--{if $page_arr[html]}-->
+			<tr align="center">
+				<td colspan="6" class="altbg1">
+				{$page_arr[html]}				</td>
+			</tr>
+			<!--{/if}-->
+  </table>
+
+
+<center>
+  <button type="submit" class="button"> 删除选定 </button>
+</center>
+</form>

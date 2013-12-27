@@ -1,0 +1,12 @@
+<!--{template admin/header}--> <table  cellspacing="0" width="100%" cellpadding="0" class="tableborder" id="table111"> <tr class="header"> <td colspan="2">技巧提示</td> </tr> <tbody> <tr > <td colspan="2"><div class="tr5" style="width:100%; margin:5px;"> 1、计划任务是一项使系统在指定时间自动执行任务的功能，如需执行计划任务除在下面启用任务外，还需要激活计划任务才可以；<BR>
+2、查看计划任务LOG，到指定时间未被触发执行的任务，将自动推迟到有触发行为时再执行；<br /> </div></td> </tr> </tbody> </table> <form method="post" action="admin.php?mod=task&code=dobatchmodify"> <table class="tableborder" cellspacing="0" cellpadding="0" id="table2" name="table2"> <tbody> <tr > <td width="8%"><input class="checkbox" type="checkbox" name="chkall" class="header" onclick="checkall(this.form,'delete')">
+删</td> <td>计划任务名称</td> <td>可用</td> <td>类型</td> <td>分钟</td> <td width="6%">小时</td> <td width="6%">日期</td> <td width="6%">星期</td> <td>上次执行时间</td> <td>下次执行时间</td> <td>操作</td> </tr> <!--{loop $task_list $task}--> <tr > <td><input class="checkbox" type="checkbox" name="delete[]" value="$task[id]"           
+<!--{if $task['type'] == 'system'}-->
+disabled
+<!--{/if}-->
+>删除</td> <td><input type="text" name="namenew[{$task[id]}]" size="20" value="$task[name]" class="input"> <br> <b>$task[filename]</b></td> <td><input class="checkbox" type="checkbox" name="availablenew[{$task[id]}]" value="1" 
+<!--{if $task['available']}-->
+checked
+<!--{/if}-->
+$task[disabled]></td> <td>$task[type_name]</td> <td>$task[minute]</td> <td>$task[hour]</td> <td>$task[day]</td> <td>$task[weekday]&nbsp;</td> <td>$task[lastrun]</td> <td>$task[nextrun]</td> <td><a href="admin.php?mod=task&code=modify&id={$task[id]}">编辑</a> <!--{if $task['available']}--> <a href="admin.php?mod=task&code=run&id={$task[id]}">执行</a> <!--{else}--> <span disabled>执行</span> <!--{/if}--> <br> <a href="admin.php?mod=task&code=log_list&task_id={$task[id]}">查看执行LOG</a> </td> </tr> <!--{/loop}--> <tr > <td>新增任务名称:</td> <td><input type="text" size="20" name="newname" class="input"></td> <td colspan="9">&nbsp;</td> </tr> </tbody> </table> <span id="submit"><br/> <center> <input type="submit" name="cronssubmit" value="提 交" class="btn"> </center> <br/> </span> </form>
+{template admin/footer}

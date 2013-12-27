@@ -1,0 +1,166 @@
+<!--{template admin/header}-->
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?" method="get">
+<input type="hidden" value="member" name="mod">
+<input type="hidden" value="dosearch" name="code">
+  <table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+	  <td colspan="4">快捷搜索
+	  <span style="float:right;"><a href="#" onclick="collapse_change('tip')">收缩/展开</a></span></td>
+	  
+	</tr>
+  <tbody id="menu_tip" style="display:">
+	<tr>
+	  <td class="altbg1" width="120" >用户昵称</td>
+	  <td class="altbg2">
+		<input type="text" name="nickname" value="{$nickname}" size="20"></input>
+	  </td>
+	  <!--{if $this->Config[company_enable]}-->
+	  <td class="altbg1" width="120" >所属{$d_c_name}</td>
+	  <td class="altbg2">{$companyselect}</td>
+	  <!--{else}-->
+	  <td></td><td></td>
+	  <!--{/if}-->
+	</tr>
+	<tr>
+	  <td class="altbg1" width="120">排除已获得奖励</td>
+	  <td class="altbg2">
+		<select name="earned">
+		  <option value="">请选择</option>
+          <!--{loop $medal $key $val}-->
+          <option value="{$key}" $medal_arr[$key]>{$val}</option>
+          <!--{/loop}-->
+		</select>
+	  </td>
+	  <!--{if $this->Config[company_enable] && $this->Config[department_enable]}-->
+	  <td class="altbg1" width="120" >所在{$d_d_name}</td>
+	  <td class="altbg2"><div id="departmentselect">{$departmentselect}</div></td>
+	  <!--{else}-->
+	  <td></td><td></td>
+	  <!--{/if}-->
+	</tr>
+	<tr>
+	  <td class="altbg2" colspan="4">
+	  <center>
+	    <input class="button lf" type="submit" name="setting_submit" id="setting_submit" value="搜索" title="CTRL+ENTER提交">&nbsp;
+	    <button class="button lf" type="button" onclick="window.location.href='admin.php?mod=member&code=$this->Code';return false;">全部用户</button>
+		</center>
+	  </td>
+	</tr>
+  </table>
+</form>
+</div>
+<form method="post" action="{$action}">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr align="center" class="header">
+
+			<td width="5%"><label><input type="checkbox" name="chkall" onclick="checkall(this.form, 'ids')" class="checkbox">选</label></td>
+			<td width="12%">昵称/角色</td>
+            <td width="20%">EMAIL&nbsp;/&nbsp;注册IP</td>
+            <td width="12%">积分情况</td>
+            <td width="12%">注册时间/推荐人</td>
+			<td>所在{$d_c_name}</td>
+			<td>所属{$d_d_name}</td>
+			<td >操作</td>
+
+		</tr>
+		
+		<!--{if $order_html}-->
+		<tr>
+			<td colspan="8" style="text-align:right;">排序：{$order_html}</td>
+		</tr>
+		<!--{/if}-->
+		
+		<!--{loop $member_list $member}-->
+		<tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+			<td style="border-bottom:1px dotted #EDEDED">
+			<input type="checkbox" name="ids[]" value="{$member[uid]}" class="checkbox"></td>
+
+			<td style="border-bottom:1px dotted #EDEDED">
+
+			  <a href="admin.php?mod=member&code=list&invite_uid={$member[uid]}" title="点此查看我推荐注册的用户">{$member[nickname]}</a>
+			  <!--{if $member[validate]}--><img src="./images/vip.gif" title="{$member[validate_remark]}"/><!--{/if}-->
+			  <br><span style="color:gray;">{$member[role_name]}</span>
+			</td>
+			<td style="border-bottom:1px dotted #EDEDED">
+			  {$member[email]}			  
+			  <br>
+			  <span style="color:gray;">{$member[regip]}</span>
+			  </td>
+
+			<td style="border-bottom:1px dotted #EDEDED"><span>总积分:{$member[totle_credit]}</span>
+			  <div id="credits_{$member[uid]}">
+			    <!--{loop $member[credit] $key $val}-->
+			    <span style="color:gray;">$val[name]:$val[credit]</span>;
+			    <!--{/loop}-->
+			  </div>
+			</td>			
+			
+			<td style="border-bottom:1px dotted #EDEDED">
+			<!--{eval echo my_date_format($member[regdate], 'Y-m-d H:i:s')}--> <br>
+			<!--{if $member[invite_uid]>0}-->
+			<!--{eval $member[invite_nickname]=$invite_members[$member[invite_uid]][nickname];}-->
+			<a href="admin.php?mod=member&code=list&invite_uid={$member[invite_uid]}" title="点此查看 {$member[invite_nickname]} 推荐注册的所有注册用户"><span style="color:gray;"><!--{if $member[invite_nickname]}-->{$member[invite_nickname]}<!--{else}-->无<!--{/if}--></span></a>
+			<!--{else}-->
+				无
+			<!--{/if}-->
+			</td>
+
+			<td style="border-bottom:1px dotted #EDEDED">{$member[company]}</td>
+			<td style="border-bottom:1px dotted #EDEDED">{$member[department]}</td>
+			
+			<td style="border-bottom:1px dotted #EDEDED"> 
+				<a href="admin.php?mod=account&code=index&uid={$member[uid]}" title="查看其绑定了哪些平台帐号" target=_blank>[平台帐号绑定]</a> <br>
+				<a href="admin.php?mod=member&code=modify&id={$member[uid]}">[编辑]</a> &nbsp; 
+				<a href="admin.php?mod=member&code=dodelete&ids={$member[uid]}" onclick="return confirm('你确实要删除吗?不可恢复');">[删除]</a> &nbsp; 
+			</td>
+		</tr>
+		<!--{/loop}-->
+		
+		<!--{if $pages['html']}-->
+		<tr>
+			<td colspan="8">{$pages['html']}</td>
+		</tr>
+		<!--{/if}-->
+		
+    <tr  style="text-align:top;">
+      <td colspan="2" class="altbg1">
+       选择相应操作： <label onclick="document.getElementById('medal_id').style.display='none';document.getElementById('msg').style.display='none';"><input type="radio" name="act" id="act" value="deluser" />删除</label>
+		</td>
+		<td colspan="1" class="altbg1">
+        <label onclick="document.getElementById('medal_id').style.display='block';document.getElementById('msg').style.display='none';"><input type="radio" name="act" id="setmedal" value="setmedal" />发勋章</label>
+        <select name="medal_id" id="medal_id" style="display:none">
+          <option value="" selected>-请选择-</option>
+          <!--{loop $medal $key $val}-->
+          <option value="{$key}">{$val}</option>
+          <!--{/loop}-->
+        </select>
+		</td>
+		<td colspan="5" class="altbg1">
+        <label onclick="document.getElementById('msg').style.display='block';document.getElementById('medal_id').style.display='none';"><input type="radio" name="act" id="sendmsg" value="sendmsg" />发私信</label>
+        <textarea rows="3" cols="10" id="msg" name="msg" style="width: 285px; height: 45px;display:none">{$msg}</textarea>
+		</td>
+    </tr>
+</table>
+<script type="text/javascript">
+function changedepartment(id){
+  var cid = 'undefined' == typeof(id) ? 0 : id;
+  var myAjax=$.post("ajax.php?mod=member&code=cp",{cid:cid},function(d){if(d){$('#' + "departmentselect").html(d);}});
+}
+$(document).ready(function() {
+	var sendmsg = document.getElementById('sendmsg').checked;
+	var setmedal = document.getElementById('setmedal').checked;
+	if(sendmsg){
+		document.getElementById('msg').style.display='block';
+		document.getElementById('medal_id').style.display='none';
+	}else if(setmedal){
+		document.getElementById('medal_id').style.display='block';
+		document.getElementById('msg').style.display='none';
+	}
+})
+</script>
+
+	  <center><input type="submit" name="editsubmit" value="提 交" class="button"></center>
+</form>
+

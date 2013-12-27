@@ -1,0 +1,220 @@
+/*Login page*/
+body{
+	background:none repeat scroll 0 0 #D7D7D7;
+	font:12px/18px Arial,Verdana,sans-serif;
+}
+div#login {
+	margin:110px auto 0;
+	width:546px;
+}
+div#signup {
+	margin:20px auto 0;
+	width:90%;
+}
+div#signup #branding
+{
+	padding:10px 0px;
+}
+div#signup #panelSignup
+{
+	border-top: 1px solid #eee;
+	margin:10px 0px;
+	clear:both;
+    font-size: 12px;
+}
+div#panelbody, div#changepasswordPanel {
+	background-color:#fff;
+	padding:0px 10px 10px 10px;
+	border: 1px solid #eee;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+	box-shadow: 2px 5px 5px #888;
+	-webkit-box-shadow: 2px 5px 5px #888;
+	-moz-box-shadow: 2px 5px 5px #888;
+}
+* html div#panelbody {
+	background-image:none;
+}
+#panelbody img{margin-bottom:20px;}
+div#login div#panelLogin div, div#login div#panelResetPass div, div#login div#panelChangePass div {
+	margin:0 auto;
+	padding-bottom:18px;
+	width:480px;
+}
+div#login div#branding {
+	padding-top:20px;
+}
+div#login div#branding img {
+	display:block;
+}
+#imgLogo
+{
+	margin:0 0 20px 0;
+	/*max-width:525px;
+	width:expression(document.body.clientWidth > 500? "500px": "auto" );
+	height:auto !important;*/
+}
+div#panelLogin
+{
+	clear:both;
+}
+div#login label, div#changepasswordPanel label {
+	color:#888888;
+	display:block;
+	font-size:12px;
+}
+div#login span.checkBoxListStyle label {
+	display:inline;
+}
+div#login input#txtLogin, div#login input#txtPassword, div#login input#txtEmailAddressResetPass, div#login input.textbox {
+	background:none repeat scroll 0 0 #FAFAFA;
+	border:1px solid #888;
+	font-size:18px;
+	line-height:20px;
+	margin:0;
+	padding:3px;
+	width:465px;
+}
+* html div#login input#txtLogin, * html div#login input#txtPassword, * html div#login input#txtEmailAddressResetPass, * html div#login input.textbox, input.textboxSmall {
+	background:none repeat scroll 0 0 #EEEEEE;
+	border:1px solid #DDDDDD;
+	font-size:18px;
+	line-height:20px;
+	margin:0;
+	padding:3px;
+	width:465px;
+}
+
+input.textboxSmall
+{
+	width:250px;
+	margin:3px;
+}
+
+div#login input#txtLogin:focus, div#login input#txtPassword:focus, div#login input.textbox:focus {
+	background:none repeat scroll 0 0 #FCFCFC;
+	border:1px solid #CCCCCC;
+}
+div#login div.submit p {
+	float:left;
+	margin:0;
+}
+div#login a:link, div#login a:visited {
+	color:#000;
+}
+div#login a:hover, div#login a:active {
+	color:#6C4848;
+}
+p.lostpassword {
+	left:8px;
+	margin:0;
+	position:relative;
+	top:-25px;
+	width:260px;
+}
+div#login p.lostpassword a {
+	color:#0066BC !important;
+	padding:0px;
+	margin:0px;
+}
+
+a.button {
+    background: transparent url(../images/button-end.png) no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: right;
+    font: bolder 12px arial, sans-serif;
+    height: 35px;
+    margin-right: 6px;
+    padding-right: 24px; /* sliding doors padding */
+    text-decoration: none;
+	color:#000;
+}
+
+a.button span {
+    background: transparent url(../images/button-bg.png) no-repeat;
+    display: block;
+    line-height: 35px;
+    padding: 0px 10px 0px 35px;
+	text-align:center;
+}
+#loginWheel
+{
+	float:right;
+}
+.error, .errorOverwrite
+{
+    color: #FF0000;
+    font-size: 11px;
+    text-align: left;
+}
+
+.requiredField
+{
+    font-size: 11px;
+    color: Red;
+}
+
+.validationFail
+{
+    border: 1px solid red;
+	padding:2px;
+}
+
+a.error:hover, a.errorOverwrite:hover
+{
+    color: #A8B35E;
+}
+
+.attention
+{
+    margin: 10px 0px 0px 0px;
+    text-align: left;
+    padding: 5px 5px 5px 23px;
+    background: url(/WebInterface/jQuery/images/exclamation.png) no-repeat 5px 4px;
+    color: #FF0404;
+    float: left;
+}
+
+.customForm tr td
+{
+	padding : 5px;
+}
+
+a.loginLink, a.loginLink:visited, a.loginLink:hover
+{
+	float:right;
+	margin:10px;
+	color: #0066BC !important;
+    margin: 0;
+    padding: 0;
+}
+div.blockMsg {
+    width:  250px;
+    border: 1px solid #ddd;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+	top:100px;
+    padding: 50px;
+    color: #fff;
+}
+
+#topSwitchButtons ul
+{
+	padding: 0;
+    margin: 0px;
+	list-style: none;
+	position:relative;
+}
+
+#topSwitchButtons li
+{
+	padding:5px 8px 5px 14px;
+	float:left;
+	margin:1px;
+}
+
+#recaptcha_area, #recaptcha_area div
+{
+    padding-bottom: 0px !important;
+}

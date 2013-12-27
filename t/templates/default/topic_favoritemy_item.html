@@ -1,0 +1,34 @@
+<div class="avatar">
+	<a href="index.php?mod={$favorite_members[$val[fuid]][username]}">
+		<img onerror="javascript:faceError(this);" src="{$favorite_members[$val[fuid]][face]}" />
+	</a>
+</div>
+<div class="Contant">
+	<div id="topic_lists_{$val[tid]}" style="_overflow:hidden;">
+		<div class="oriTxt">
+			<p>
+				<a title="{$val[username]}" href="index.php?mod={$favorite_members[$val[fuid]][username]}">		 										{$favorite_members[$val[fuid]][nickname]}
+				</a>
+				{$favorite_members[$val[fuid]][validate_html]}：
+				<span style="color:#666; font-size:12px;">收藏于{$val[favorite_time]}</span>
+			</p>
+			<span>
+			<a href="index.php?mod={$val[username]}">
+			  {$val[nickname]}
+			</a>{$val[validate_html]}:{$val[content]}
+			</span>
+			{template "topic_share_1"}
+			{template "topic_share_2"}
+		</div>
+
+		<div class="from">
+			<span class="option"></span> 
+			<span class="mycome"></span> 
+		</div>
+	</div>
+	<div id="reply_area_{$val[tid]}"></div>
+	<!--编辑微博-->
+	<div id="modify_topic_{$val[tid]}"></div>
+	<!--编辑微博-->
+</div>
+<div class="mBlog_linedot"></div>

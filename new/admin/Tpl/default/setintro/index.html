@@ -1,0 +1,40 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+<script type="text/javascript">
+KE.show({
+		id : 'text',
+		imageUploadJson : '__ROOT__/statics/js/kindeditor/php/upload_json.php',
+		fileManagerJson : '__ROOT__/statics/js/kindeditor/php/file_manager_json.php',
+		allowFileManager : true,
+		afterCreate : function(id) {
+			KE.event.ctrl(document, 13, function() {
+				KE.util.setData(id);
+				document.forms['myform'].submit();
+			});
+			KE.event.ctrl(KE.g[id].iframeDoc, 13, function() {
+				KE.util.setData(id);
+				document.forms['myform'].submit();
+			});
+		}
+	});
+	
+	$(document).ready(function(){
+		$('img').live('click',function(){
+		alert(this.herf);
+		})
+	})
+</script>
+<div class="pad_10">
+公司简介
+<form action="__URL__/update" method="post" name="myform" id="myform">
+  <textarea id="text" name="text" style="width:700px;height:300px;">{$intro}</textarea>
+
+ <input type="submit" name="dosubmit" id="dosubmit" class="button" value="提交">
+</form>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<title>{$this->Config[site_name]}({$this->Config[site_domain]}){conf page_title}</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}{conf meta_keywords}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}{conf meta_description}" />
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="styles/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<!--{if $this->Config[theme_id]}-->
+<link href="theme/{$this->Config[theme_id]}/theme.css?v={SYS_BUILD}" rel="stylesheet" type="text/css" />
+<!--{/if}-->
+<style type="text/css">
+<!--{if $this->Config[theme_text_color]}-->
+body{ color:{$this->Config[theme_text_color]};}
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_color]}-->
+body{ background-color:{$this->Config[theme_bg_color]};}
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_image]}-->
+body{ background-image:url({$this->Config[theme_bg_image]});}
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_position]}-->
+body{ background-position:{$this->Config[theme_bg_position]};}
+<!--{/if}-->
+<!--{if $this->Config[theme_bg_repeat]}-->
+body{ background-repeat:{$this->Config[theme_bg_repeat]};}
+<!--{/if}-->
+<!--{if $this->Config[theme_text_color]}-->
+body{ color:{$this->Config[theme_text_color]};}
+<!--{/if}-->
+<!--{if $this->Config[theme_link_color]}-->
+a:link{ color:{$this->Config[theme_link_color]};}
+<!--{/if}-->
+a.artZoom{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+
+a.artZoom2{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+
+a.artZoom3{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLink3 { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+
+a.artZoomAll{ cursor:url({conf site_url}/templates/default/images/magnifier_b.cur), pointer; }
+.artZoomBox a.maxImgLinkAll { cursor:url({conf site_url}/templates/default/images/magnifier_s.cur), pointer; }
+</style>
+</head>
+{$additional_str}
+<body>
+<div id="headWrap">
+<!--{if defined('NEDU_MOYO')}-->
+	<h1 id="logo_nedu"><a title="{conf site_name}" href="index.php" ></a></h1>
+<!--{else}-->
+	<h1 id="logo"><a title="{conf site_name}" href="index.php"></a></h1>
+<!--{/if}-->
+</div>
+<div id="mainWrapper">
+  <div id="topbox">
+    <div id="tleft">
+	
+<!--幻灯广告-->
+{if $this->Config[slide_index_enable] && ($slide_config=ConfigHandler::get('slide_index')) && $slide_config[enable] && $slide_config[list]}
+	<script src="js/kinslideshow.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#KinSlideshow").KinSlideshow({
+			moveStyle:"down",			//切换方向 可选值：【 left | right | up | down 】
+			intervalTime:3,   			//设置间隔时间为5秒 【单位：秒】 [默认为5秒]
+			moveSpeedTime:400 , 		//切换一张图片所需时间，【单位：毫秒】[默认为400毫秒]
+			isHasTitleFont:false,		//是否显示标题文字 可选值：【 true | false 】
+			isHasTitleBar:false,		//是否显示标题背景 可选值：【 true | false 】[默认为true]	
+			//标题文字样式，(isHasTitleFont = true 前提下启用)  
+			titleBar:{titleBar_height:30,titleBar_bgColor:"#08355c",titleBar_alpha:0.3},
+			titleFont:{TitleFont_size:12,TitleFont_color:"#FFFFFF",TitleFont_weight:"normal"},
+			//按钮样式设置，(isHasBtn = true 前提下启用) 
+			btn:{btn_bgColor:"#FFFFFF",btn_bgHoverColor:"#1072aa",btn_fontColor:"#000000",btn_fontHoverColor:"#FFFFFF",btn_borderColor:"#cccccc",btn_borderHoverColor:"#1188c0",btn_borderWidth:1}
+			});
+		});
+	</script>
+	<div id="KinSlideshow" style="visibility:hidden;width:680px;height:220px;overflow:hidden;position:relative;">
+	{loop $slide_config[list] $_v}
+	  {if $_v['enable'] == 1}
+        <a href="{$_v[href]}" target="_blank"><img src="{$_v[src]}" alt="" width="680" height="220" onerror="javascript:faceError(this);"/></a>
+	  {/if}
+    {/loop}
+	</div>
+{/if}
+<!--幻灯广告-->
+
+      <!--热门话题-->
+      <div class="talking"> <strong>正在热议：</strong>
+        <div id="Tacticle" class="acticle">
+          <div id="indemo">
+            <div id="Tacticle_s">
+			<!--{if $r_tags}--><!--{loop $r_tags $val}--><a href="index.php?mod=tag&code={$val[name]}" class="Ts">{$val[name]}</a><!--{/loop}--><!--{/if}-->
+</div>
+            <div id="demo2"></div>
+          </div>
+		<script type="text/javascript">
+			/*
+			 两秒后再执行
+			 */
+			 $(document).ready(function(){
+				var speed=40;
+				var tab=document.getElementById("Tacticle");
+				var tab1=document.getElementById("Tacticle_s");
+				var tab2=document.getElementById("demo2");
+				tab2.innerHTML=tab1.innerHTML;
+				function Marquee(){
+					if(tab2.offsetWidth-tab.scrollLeft<=0)
+						tab.scrollLeft-=tab1.offsetWidth
+					else{
+						tab.scrollLeft++;
+					}
+				}
+				var MyMar=setInterval(Marquee,speed);
+				tab.onmouseover=function() {clearInterval(MyMar)};
+				tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+			 });
+			 
+			function guestLoginSubmit()
+			{
+				<!--{if $this->Config['seccode_login']}-->
+					var username = $("#username_input").val();
+					var psw = $("#password_input").val();
+					if (username.length<1 || psw.length<1) {
+						location.href = "index.php?mod=login";
+					} else {
+						showSeccodeDialog();
+					}
+				<!--{else}-->
+					$('#guest_login').submit();
+				<!--{/if}-->
+			}
+		</script>
+        </div>
+      </div>
+      <!--热门话题-->
+    </div>
+    <!--注册登录-->
+    <div class="loginbox"> <a title="注册{conf site_name}" onclick="window.location.href='{conf site_url}/index.php?mod=member';return false;" class="btn_reg">注册{conf site_name}</a>
+      <div class="login_area">
+	  <!--{eval $login_extract=jsg_member_login_extract();}-->
+	  <!--{if $login_extract}--><!--{eval $login_extract_forms=$login_extract[login_forms];}-->
+		<form method="{$login_extract_forms[method]}" action="{$login_extract_forms[action]}" id="guest_login">
+		  <!--{loop $login_extract_forms[hidden_inputs] $v}-->
+		  <input type="hidden" name="{$v[name]}" value="{$v[value]}" />
+		  <!--{/loop}-->
+          <div class="item">
+            <label for="username" class="labelTag">昵称：</label>
+            <span class="enterInput">
+            <input type="text" name="{$login_extract_forms[username_input][name]}" class="inputtextTag" id="username_input">
+            </span> </div>
+          <div class="item">
+            <label for="password" class="labelTag">密&nbsp;&nbsp;&nbsp;码：</label>
+            <span class="enterInput">
+            <input type="password" name="{$login_extract_forms[password_input][name]}" class="inputtextTag" id="password_input">
+            </span> </div>
+          <div class="item pos_rel">
+            <label class="labelTag">&nbsp;</label>
+            <span class="enterInput"></span>
+            <div class="login-tiparea autologin-tiparea" id="autologin_tiparea">
+              <div class="login-tiparea-top"></div>
+            </div>
+          </div>
+          <div class="clearfix">
+            <label class="labelTag">&nbsp;</label>
+            <!-- <span class="enterInput"> <input type="submit" class="btn_login" value="{$login_extract_forms[submit_input][value]}" name="{$login_extract_forms[submit_input][name]}"/></span> -->
+            <span class="enterInput"> <input type="submit" class="btn_login" value="" name="{$login_extract_forms[submit_input][name]}"/></span>  
+		  </div>
+		  <div class="clearfix2">
+		  <label class="labelTag">&nbsp;</label>
+		  </div>
+        </form>
+	  <!--{else}-->
+        <form method="POST" action="{conf site_url}/index.php?mod=login&code=dologin" id="guest_login" onKeyDown="if(event.keyCode==13) guestLoginSubmit();" autocomplete="off">
+		<!--{if $this->Config['seccode_login']}-->
+			<input type="hidden" name="seccode" id="seccode_input" value="">
+		<!--{/if}-->
+          <div class="item">
+            <label for="username" class="labelTag">昵&nbsp;&nbsp;称：</label>
+            <span class="enterInput">
+            <input type="text" name="username" class="inputtextTag" id="username_input">
+            </span> </div>
+          <div class="item">
+            <label for="password" class="labelTag">密&nbsp;&nbsp;码：</label>
+            <span class="enterInput">
+            <input type="password" name="password" class="inputtextTag" id="password_input">
+            </span> </div>
+          <div class="item pos_rel">
+            <label class="labelTag">&nbsp;</label>
+            <span class="enterInput">
+            <label id="savelogin">
+            <input type="checkbox" name="savelogin" class="inputcheckTag" checked title="请不要在公共电脑上使用自动登录功能">
+            下次自动登录 </label>
+            <a onclick="window.location.href='{conf site_url}/index.php?mod=get_password';return false;" href="javascript:void(0)" class="forgetPass" title="点此可通过2种方式重设密码">忘记密码？</a> </span>
+            <div class="login-tiparea autologin-tiparea" id="autologin_tiparea">
+              <div class="login-tiparea-top"></div>
+            </div>
+          </div>
+          <div class="clearfix">
+            <label class="labelTag">&nbsp;</label>
+            <span class="enterInput"> <input type="button" class="btn_login" value="" onclick="guestLoginSubmit();"/></span>  
+		  </div>
+		  <div class="clearfix2">
+          <p class="tlb_P">或使用如下帐号登录：</p>
+		  <label class="labelTag">&nbsp;</label>
+		  	{if $this->Config[sina_enable] && sina_weibo_init()} {eval echo sina_weibo_login('s');} {/if}
+			{if $this->Config[qqwb_enable] && qqwb_init()} {eval echo qqwb_login('s');} {/if}	
+			{if $this->Config[yy_enable] && yy_init()} {eval echo yy_login('s');} {/if}	
+			{if $this->Config[renren_enable] && renren_init()} {eval echo renren_login('s');} {/if}	
+			{if $this->Config[kaixin_enable] && kaixin_init()} {eval echo kaixin_login('s');} {/if}	
+			{if $this->Config[fjau_enable] && fjau_init()} {eval echo fjau_login('s');} {/if}	
+		  </div>
+        </form>
+	  <!--{/if}-->
+      </div>
+    </div>
+    <!--注册登录-->
+  </div>
+ <div id="midBox">
+    <div class="mleft">
+	<h1 class="htitle2">最受关注用户</h1>
+      <ul class="userlist">
+	  <!--{loop $r_users $val}-->
+      <!--{eval ++$_floor;}-->
+      <li><a target="_blank" href="index.php?mod={$val[username]}"><img  title="{$val[nickname]}" src="{$val[face]}"  onerror="javascript:faceError(this);">{$val[nickname]}</a></li>
+      <!--{/loop}-->
+      </ul>
+	  <h1 class="htitle4">近期活跃用户</h1>
+      <ul class="userlist">
+	  <!--{loop $day2_r_users $val}-->
+      <li><a target="_blank" href="index.php?mod={$val[username]}"><img  title="{$val[nickname]}" src="{$val[face_original]}"  onerror="javascript:faceError(this);">{$val[nickname]}</a></li>
+	  <!--{/loop}-->
+      </ul>
+
+	</div>
+    <div class="mcenter">
+    <h1 class="htitle">大家都在说</h1>
+    {template "index_recommend"}
+    </div>
+    <div class="mright">
+	  <div class="dlblank">
+	    <h1 class="htitle3">公告</h1>
+		<p></p>
+		 <!--{loop $list_notice $notice}-->
+		 <p><a href="index.php?mod=other&code=notice&ids={$notice[id]}" title="{$notice[titles]}">{$notice[title]}</a></p>
+		 <!--{/loop}-->
+	  </div>
+
+<script type="text/javascript">
+function tabChange(obj,id)
+{
+var arrayli = obj.parentNode.getElementsByTagName("li"); //获取li数组
+var arrayul = document.getElementById(id).getElementsByTagName("ul"); //获取ul数组
+for(i=0;i<arrayul.length;i++)
+{
+if(obj==arrayli[i])
+{
+arrayli[i].className = "cli";
+arrayul[i].className = "";
+}
+else
+{
+arrayli[i].className = "";
+arrayul[i].className = "hidden";
+}
+}
+}
+</script>  
+<h3 style=" width:230px; float:left; margin:15px 0 5px 0; color:#555; font-weight:600;">手机访问{$this->Config[site_name]}</h3>
+<div class="guest_table">
+<div class="tabmenu">
+<ul>
+<li onmouseover="tabChange(this,'tabcontent')" class="cli" ><img src="images/transparents.gif" class="icon_pf icpf_mclient" title="手机客户端"></li>
+<li onmouseover="tabChange(this,'tabcontent')" ><img src="images/transparents.gif" class="icon_pf icpf_3g" title="3G访问"></li>
+<li onmouseover="tabChange(this,'tabcontent')" ><img src="images/transparents.gif" class="icon_pf icpf_mphone" title="WAP访问"></li>
+<li onmouseover="tabChange(this,'tabcontent')"><img src="images/transparents.gif" class="icon_pf icpf_message" title="短信微博"></li>
+</ul>
+</div>
+<div id="tabcontent">
+<ul name="tabul"><b>客户端</b>：更好的用户体验，支持<a href="index.php?mod=other&code=android" target="_blank">Android<a/>、<a href="index.php?mod=other&code=iphone" target="_blank">iPhone</a>手机即拍即传</ul>
+<ul class="hidden"><b>3G版</b>：智能手机访问<a href="index.php?mod=other&code=mobile" target="_blank">{$this->Config[site_url]}/mobile</a>，享受类客户端的体验</ul>
+<ul class="hidden"><b>WAP版</b>：手机WAP访问地址<b><a href="index.php?mod=other&code=wap" target="_blank">{$this->Config[wap_url]}</a></b></ul>
+<ul class="hidden"><b>短信版</b>：<a href="index.php?mod=other&code=sms" rel="nofollow" target="_blank">手机短信</a><!--{if $this->Config[sms_enable] && sms_init($this->Config)}--><br />页绑定手机后，就可以发短信到<b>{SMS_ID}</b>发微博啦！<!--{/if}--></ul>
+</div>
+</div>
+
+<!--{if $this->Config[imjiqiren_enable] && imjiqiren_init($this->Config)}-->
+<div class="visBox">
+<p>使用<a href="index.php?mod=tools&code=imjiqiren" rel="nofollow">{$this->Config[site_name]}QQ机器人</a>
+<br /> 加QQ号：<b>{eval echo imjiqiren_user_qq_robot();}</b> 为好友，按提示进行绑定便可用QQ发微博啦！</p>
+</div>
+<!--{/if}-->
+
+
+
+<!--{if $this->Config[ad_enable]}-->
+<div style="text-align:center" class="Ir_AD">
+{$this->Config[ad][ad_list][topic_][middle_right]}
+</div>
+<!--{/if}-->
+</div>
+</div>
+<!--{if $this->Config[ad_enable]}-->
+<div style="text-align:center" class="I_AD">{$this->Config[ad][ad_list][topic_][footer]}</div>
+<!--{/if}-->
+
+<div class="mlink">
+<span class="lf">
+    <!--{if $this->
+    Config['default_module']==$this->Module && !$this->Code}-->
+    {eval $link_config=ConfigHandler::get('link');}
+    <!--{if $link_config}-->
+    友情链接：
+    <!--{loop $link_config $link}-->    
+		<!--{if !empty($link[logo])}-->
+			<a href="{$link[url]}" target="_blank"><img src="{$link[logo]}" width="88" height="31" border="0" alt="{$link[name]}"></a>
+		<!--{else}-->
+			<a href="{$link[url]}" target="_blank">{$link[name]}</a>
+		<!--{/if}-->
+		 &nbsp;
+    <!--{/loop}-->
+    <!--{/if}-->
+    <!--{/if}-->
+</span>
+<span class="rt">
+    <!--{eval $about_link = ConfigHandler::get('about_link');}-->
+    <!--{loop $about_link $about_id $_about}-->
+    <!--{eval global $rewriteHandler; if($rewriteHandler) $_about[link]=$rewriteHandler->
+    formatURL($_about[link],null);}--> <a href="{$_about[link]}">{$_about[name]}</a>&nbsp;
+    <!--{/loop}-->
+    {conf copyright}&nbsp;<a href="http://www.miibeian.gov.cn/" rel="nofollow" target="_blank" title="网站备案">{conf icp}</a>
+    <!--{conf tongji}-->
+	<!--{eval $__server_execute_time = round(microtime(true) - $GLOBALS[_J][time_start], 5) . " Second ";}-->
+	<!--{eval $__gzip_tips = ((defined('GZIP') && GZIP) ? "&nbsp;Gzip Enable." : "Gzip Disable.");}-->
+	<span class="f10" title="{$__server_execute_time},{$__gzip_tips}">执行信息</span>
+</span>
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//图片延迟加载
+	$("ul.imgList img, div.avatar img.lazyload").lazyload({
+		skip_invisible : false,
+		threshold : 200,
+		effect : "fadeIn"
+	});
+
+
+	$(".sinaweiboLogin").mouseover(function(){$(".tlb_sina").show();});$(".sinaweiboLogin").mouseout(function(){$(".tlb_sina").hide();});
+	$(".qqweiboLogin").mouseover(function(){$(".tlb_qq").show();});$(".qqweiboLogin").mouseout(function(){$(".tlb_qq").hide();});
+	$(".yyLogin").mouseover(function(){$(".tlb_yy").show();});$(".yyLogin").mouseout(function(){$(".tlb_yy").hide();});
+	$(".renrenLogin").mouseover(function(){$(".tlb_renren").show();});$(".renrenLogin").mouseout(function(){$(".tlb_renren").hide();});
+	$(".kaixinLogin").mouseover(function(){$(".tlb_kaixin").show();});$(".kaixinLogin").mouseout(function(){$(".tlb_kaixin").hide();});
+	$(".fjauLogin").mouseover(function(){$(".tlb_fj").show();});$(".fjauLogin").mouseout(function(){$(".tlb_fj").hide();});
+});
+</script>
+
+
+</div>
+</div>
+</body>
+</html>

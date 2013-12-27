@@ -1,0 +1,134 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td><a href="#" onclick="collapse_change('tip')"
+			style="color: red;">点此查看要点提示</a></td>
+	</tr>
+	<tbody id="menu_tip" style="display: none">
+		<tr class="altbg1">
+			<td>
+			<div>1、ucenter整合是指通过ucenter接口（简称uc）将各系统中的用户进行关联绑定，实现同步注册登录等；</div>
+			<div>2、整合前请先备份好各系统的数据库，以防数据丢失；并且保证对接的uc版本是一致的（本系统内置V1.6.0版本）<a target="_blank"
+				href="http://www.jishigou.net/doc/jishigou-uc-help.html"><b
+				style="color: red;">详情帮助点此查看</b></a>；</div>
+			<div>3、如果开启了本功能，请正确的进行配置，否则会导致用户不能正常的注册、登录；</div>
+			<div>4、如果ucenter server和本系统是在两台不同的服务器上，请确保两台服务器的时间一致，否则会导致通信失败；</div>
+			<div>如进行了错误设置无法登录，请通过ftp修改/setting/ucenter.php文件，将'enable'
+			变量设置为 '0'</div>
+			</td>
+		</tr>
+</table>
+<br>
+
+<form action="admin.php?mod=ucenter&code=do_setting" method="POST"
+	name="ucenterConfigForm"><input type="hidden"
+	name="ucenter[user_merge]" value="$ucenter[user_merge]" />
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">Ucenter整合</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">开启Ucenter整合？<br>
+		注意：为了保证各系统中用户名称的统一、减少用户歧义，记事狗从V3.5版本开始通过微博昵称与uc用户名对接</td>
+		<td>{$uc_enable_radio}</td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">开启调用Ucenter头像<br>
+		选择是，将调用uc的头像；选择否，则调用微博本身的头像。</td>
+		<td>{$uc_face_radio}</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">整合uc后是否允许普通用户修改昵称<br>
+		选择是，允许修改，虽不影响绑定关系，但可能造成微博昵称与uc中的用户名不统一，给用户造成歧义；<br />
+		选择否，则禁止修改（推荐），管理员仍可通过修改ucenter系统中的用户名来修改昵称。</td>
+		<td>{$uc_modify_nickname_radio}</td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">Ucenter连接方式<br />
+		使用mysql方式进行连接，更加高效和快速（推荐）；<br />
+		</td>
+		<td><input type="radio" id="uc_connect_mysql"
+			name="ucenter[uc_connect]" value="mysql"
+			{$uc_connect_mysql_checked} class=radio /><label
+			for="uc_connect_mysql">mysql</label>&nbsp;<input type="radio"
+			id="uc_connect_fsock" name="ucenter[uc_connect]" value="fsock"
+			{$uc_connect_fsock_checked} class=radio /><label
+			for="uc_connect_fsock">fsockopen 连接</label>&nbsp;</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%"><b>UCenter中应用的配置信息:</b><br>
+		方法1、【推荐】<br>
+		直接从UCenter中复制配置信息字符串填到右侧框，提交即可<br>
+		留空时将不更新原先设置的信息。<br>
+		<br>
+		方法2、手动填写以下的配置信息</td>
+		<td><textarea name="uc_config_string"
+			style="width: 300px; height: 80px;"></textarea></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">2.1、Ucenter数据库地址</td>
+		<td><input name="ucenter[uc_db_host]"
+			value="{$ucenter[uc_db_host]}" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">2.2、Ucenter数据库用户</td>
+		<td><input name="ucenter[uc_db_user]"
+			value="{$ucenter[uc_db_user]}" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">2.3、Ucenter数据库密码</td>
+		<td><input type="password" name="ucenter[uc_db_password]"
+			value="请输入Ucenter的数据库密码" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">2.4、Ucenter数据库名称</td>
+		<td><input name="ucenter[uc_db_name]"
+			value="{$ucenter[uc_db_name]}" /></td>
+	</tr>
+	<tr bgcolor="#F8F8F8" style="display: none;">
+		<td width="30%">Ucenter数据库字符集</td>
+		<td><input name="ucenter[uc_db_charset]"
+			value="{$ucenter[uc_db_charset]}" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">2.5、Ucenter数据库表前辍</td>
+		<td><input name="ucenter[uc_db_table_prefix]"
+			value="{$ucenter[uc_db_table_prefix]}" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">2.6、<b>Ucenter通信密钥</b></td>
+		<td><input name="ucenter[uc_key]" value="{$ucenter[uc_key]}" />
+		</td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">2.7、<b>Ucenter地址</b></td>
+		<td><input name="ucenter[uc_api]" value="{$ucenter[uc_api]}" />
+		</td>
+	</tr>
+	<tr bgcolor="#F8F8F8" style="display: none;">
+		<td class="altbg1" width="30%">Ucenter字符集</td>
+		<td><input name="ucenter[uc_charset]"
+			value="{$ucenter[uc_charset]}" /></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%">2.8、Ucenter IP地址</td>
+		<td><input name="ucenter[uc_ip]" value="{$ucenter[uc_ip]}" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%">2.9、<b>当前应用的ID</b></td>
+		<td><input name="ucenter[uc_app_id]"
+			value="{$ucenter[uc_app_id]}" /></td>
+	</tr>
+</table>
+
+<br>
+
+<center>
+<button type="submit" class="button">提 交</button>
+</center>
+
+</form>
+<br>

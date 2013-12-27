@@ -1,0 +1,165 @@
+{template admin/header}
+
+<!--{eval if($this->Get['mod'] == 'fenlei') $fenlei='current'}-->
+<!--{eval if($this->Get['mod'] == 'module') $module='current'}-->
+<div class="nav3">
+  <ul class="cc">
+    <li class="{$fenlei}">
+      <a href="admin.php?mod=fenlei" class='{$fenlei}'>栏目管理</a>
+    </li>
+    <li class="$module">
+      <a href="admin.php?mod=module" class='{$module}'>模块管理</a>
+    </li>
+    <li class="$newmodule">
+      <a href="admin.php?mod=module&code=newmodule" class='{$module}'>创建模块</a>
+    </li>
+	<li class="{$setting}">
+	  <a href="admin.php?mod=fenlei&code=setting">基本设置</a>
+	</li>
+	<li class="{$manage}">
+	  <a href="admin.php?mod=fenlei&code=manage">分类管理</a>
+	</li>
+  </ul>
+</div>
+
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=fenlei&code=addfenlei&act=$act" method="POST">
+  <table width=98% cellspacing=1 cellpadding=3 class="tableorder">
+    <tr> 
+      <td class="altbg1"> 
+       分类名称 
+      </td>
+      <td class="altbg2" colspan="2">
+        <!--{if $act == 'new'}-->
+        <textarea name="name" cols="25" rows="5"></textarea>
+        <!--{elseif $act == 'edit'}-->
+        <input type="text" name="editname" id="editname" value="{$sort[name]}">
+        <input type="hidden" name="hid_fid" id="hid_fid" value={$sort[fid]}>
+        <input type="hidden" name="hid_fup" id="hid_fup" value={$sort[fup]}>
+        <!--{/if}-->
+      </td>
+    </tr>
+    <tr> 
+      <td class="altbg1"> 
+        归属
+      </td>
+      <td class="altbg2" colspan="2">
+        <select name="fid">
+          <option value="0">顶级分类</option>
+          {$fup_select}
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td class="altbg1"> 
+        所属模型
+      </td>
+      <td class="altbg2">
+        {$module_select} 
+      </td>
+      <td class="altbg2">
+        <a href="javascript:void(0);" target="_blank" onclick="moduleView(); return false;">浏览此模型</a>
+        (没有适合的模型可供选择、你可以<a href="admin.php?mod=module&code=newmodule">点击此处</a>建立自己喜欢的模型)
+      </td>
+    </tr>
+    <tr> 
+      <td class="altbg1" colspan="3"> 
+      <!--{if $act == 'new'}-->
+        <input type=submit value="创 建" name="create" class='button'>
+        <br>
+        <font color="#FF0000">注意:</font>可以同时创建多个栏目,每个栏目换一行即可.
+      <!--{else}-->
+        <input type="submit" value="修改" name="edit" class='button'>
+      <!--{/if}-->
+      </td>
+    </tr>
+  </table>
+</form>
+<SCRIPT LANGUAGE="JavaScript">
+	function moduleView(){
+		var mid = document.getElementById("moduleList").value;
+		window.open('admin.php?mod=module&code=viewmodule&mid='+mid);
+	}
+</SCRIPT>
+<br>
+<form name="formlist" method="post" action="">
+  <table width="98%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header"><td colspan=8>编辑分类</td></tr>
+    <tr class="header"> 
+      <td width="10%">FID</td>
+      <td width="20%"><label><input type="checkbox" name="chkall" onclick="checkall('chelist');"></input>分类名称</label></td>
+      <td width="10%">排序</td>
+      <td width="20%">模块类型</td>
+      <td width="10%">性质</td>
+      <td width="10%">设置</td>
+      <td width="10%">状态</td>
+      <td width="10%">删除</td>
+    </tr>
+    <!--{loop $rs $key $val}-->
+    <tr> 
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val['fid']}</td>
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+	  <label><input type="checkbox" name="chelist[{$val[fid]}]"/>
+	  <!--{if $val['fup'] == 0}-->
+	  【<font color="red">
+	  <!--{else}-->
+	   |—【
+	  <!--{/if}-->
+	  {$val['classname']}</font>】</label>
+	</td>
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><input type='text' name='order[{$val[fid]}]' value='$val[list]' size='5'/></td>
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=module&code=newmodule&id=$val[mid]">{$val['modulename']}</a></td>
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+	<!--{if $val['fup'] == 0}-->
+	分类
+	<!--{else}-->
+	栏目
+	<!--{/if}-->
+	</td>
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=fenlei&id=$val[fid]">修改</a></td>
+	<!--{if $val['style'] == 1}-->
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=fenlei&code=hidfenlei&id=$val[fid]&action=hid">启用</a></td>
+	<!--{else}-->
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=fenlei&code=hidfenlei&id=$val[fid]&action=active">未启用</a></td>
+	<!--{/if}-->
+	<td class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=fenlei&code=delfenlei&id=$val[fid]" onclick="return confirm('你确认要删除栏目吗?不可恢复');">删除</a></td>
+    </tr>
+    <!--{/loop}-->
+  </table>
+  <div align="center"> 
+    <input type="button" name="Submit22" value="隐藏分类" onClick="postlist('hid')" class="button">
+    <input type="button" name="Submit33" value="启用分类" onClick="postlist('active')"class="button">
+    <input type="button" name="Submit44" value="删除分类" onClick="postlist('del')" class="button">
+    <input type="button" name="Submit2" value="修改分类排序" onclick="postlist('list')" class="button">
+    <SCRIPT LANGUAGE="JavaScript">
+function postlist(t){
+	if(t=='list'){
+		document.formlist.action="admin.php?mod=fenlei&code=editfenleisort";
+	}else if(t=='hid'){
+		document.formlist.action="admin.php?mod=fenlei&code=hidfenlei&action=hid";
+	}else if(t=='active'){
+		document.formlist.action="admin.php?mod=fenlei&code=hidfenlei&action=active";
+	}else if(t=='del'){
+		r=confirm('你确认要删除栏目吗?不可恢复');
+		if(r==true){
+			document.formlist.action="admin.php?mod=fenlei&code=delfenlei";
+		}else{
+			return false;
+		}
+	}
+	document.formlist.submit();
+}
+function checkall(prefix, checkall) {
+	form=document.formlist;
+	var checkall = checkall ? checkall : 'chkall';
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+			e.checked = form.elements[checkall].checked;
+		}
+	}
+}
+ </SCRIPT>
+</div>
+</form>
+</div>

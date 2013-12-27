@@ -1,0 +1,50 @@
+<!--{template "topic_header"}-->
+<div style="margin-top:5px;">消息提示</div>
+<!--{if $member[uid] == MEMBER_ID}-->
+       <!--{if $member[comment_new]>0}-->
+		  <div class="u" style="margin-top:5px;">
+          <span>
+			<p><a href="index.php?mod=topic&code=mycomment"> [ {$member[comment_new]} ] 条新评论,查看 </a></p>
+          </span>  
+        </div>
+        <!--{/if}--> 
+        
+        <!--{if $member[at_new]>0}-->
+        <div class="u" style="margin-top:5px;">
+          <span>
+			<p> <a href="index.php?mod=topic&code=myat"> [ {$member[at_new]} ]  人@提到我,查看</a></p>
+          </span>  
+        </div>
+        <!--{/if}-->
+     
+       
+        <!--{if $member[newpm]>0}-->
+          <div class="u" style="margin-top:5px;">
+          <span>
+			<a href="index.php?mod=pm"> [ {$member[newpm]} ] 条新私信,查看</a>
+          </span>  
+        </div>
+       <!--{/if}-->
+        
+       <!--{if $member[fans_new]>0}-->
+         <div class="u" style="margin-top:5px;">
+          <span>
+		 <a href="index.php?mod={$__my[username]}&code=fans"> [ {$member[fans_new]} ] 人关注了我,查看</a>
+          </span>  
+        </div>
+       <!--{/if}-->
+
+      
+        <!--{if $info_notice == ''}-->
+         <div class="u" style="margin-top:5px;">
+          <span>
+		   暂时没有新的提示消息。
+          </span>  
+         </div>
+        <!--{/if}-->
+    </div>
+
+<!--{/if}-->
+
+<!--{template "topic_footer"}-->
+

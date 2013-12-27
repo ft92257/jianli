@@ -1,0 +1,59 @@
+{template admin/header}
+
+<div class="nav4">
+<!--
+    <ul class="cc">
+        <li class="current"><a href="javascript:;">微群等级</a></li>
+        <li><a href="javascript:;">微群等级统计</a></li>
+    </ul>
+-->
+</div>
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=qun&code=dolevel" method="post" name="search">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="6">微群等级</td>
+	</tr>
+	<tr class="list_h_2">
+		<td width="5%">删?</td>
+		<td width="25%">等级名称</td>
+		<td width="25%">积分(互动值+原创值)介于</td>
+		<td width="15%">群人数上限</td>
+		<td width="15%">管理员上限</td>
+		<td width="15%"></td>
+	</tr>
+	<!--{loop $level_list $value}-->
+		<tr>
+			<td class="td2"><input class="checkbox" type="checkbox" name="del_ids[]" value="{$value['level_id']}"></td>
+			<td class="td2"><input type="text" name="level[{$value['level_id']}][level_name]"  value="{$value['level_name']}"/></td>
+			<td class="td2">
+				<input type="text" name="level[{$value['level_id']}][credits_higher]"  value="{$value['credits_higher']}" size="8"/>
+				<span style="vertical-align:middle; margin-left:5px; margin-right:5px;">~</span>
+				<input type="text" name="level[{$value['level_id']}][credits_lower]"  value="{$value['credits_lower']}" size="8" readonly="readonly" style="background:#eee;"/>
+			</td>
+			<td class="td2"><input type="text" name="level[{$value['level_id']}][member_num]" size="5" value="{$value['member_num']}"/></td>
+			<td class="td2"><input type="text" name="level[{$value['level_id']}][admin_num]" size="5" value="{$value['admin_num']}"/></td>
+			<td class="td2"></td>
+		</tr>
+	<!--{/loop}-->
+	<tbody id="new_level_body"></tbody>
+	<tr class="list_h_2">
+		<td></td>
+		<td colspan="5"><a href="javascript:" onclick="add_tbody('new_level','new_level_body')" class="addtr">添加微群等级</a></td>
+	</tr>
+</table>
+<center><input class="button" type="submit" name="level_submit" value="提 交"></center>
+</form>
+<table  style="display:none;">
+<tbody id="new_level">
+	<tr class="list_h_2">
+		<td></td>
+		<td><input type="text" name="new_level[level_name][]"  value=""/></td>
+		<td><input type="text" name="new_level[credits_higher][]"  value="" size="8"/></td>
+		<td><input type="text" name="new_level[member_num][]" size="5" value=""/></td>
+		<td><input type="text" name="new_level[admin_num][]" size="5" value=""/></td>
+		<td><a href="javascript:;" onclick="del_tbody(this);">删除</a></td>
+	</tr>
+</tbody>
+</table>
+</div>

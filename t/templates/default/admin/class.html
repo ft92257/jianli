@@ -1,0 +1,93 @@
+{template admin/header}
+<div><a href="admin.php?mod=class&code=newclass">创建新分类</a></div>
+<form name="formlist" method="post" action="">
+<table width=100% cellspacing=1 cellpadding=3>
+  <tr> 
+    <td bgcolor="#EAEAEA"><font>编辑分类</font></td>
+  </tr>
+  <tr> 
+      <td align="left"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr align="center" height="18"> 
+            <td width="10%">FID</td>
+            <td width="20%">分类名称</td>
+            <td width="10%">排序</td>
+            <td width="20%">模块类型</td>
+            <td width="10%">性质</td>
+            <td width="10%">设置</td>
+            <td width="10%">状态</td>
+            <td width="10%">删除</td>
+          </tr>
+          <!-- {loop $rs $key $val} -->
+          <tr class="ctA" onmouseover="this.className='ctB';" onmouseout="this.className='trA';"> 
+		    <td>{$val['fid']}</td>
+		    <td>
+		      <input type="checkbox" name="chelist[{$val[fid]}]"/>
+		      <!-- {if $val['fup'] == 0} -->
+		      【<font color="red">
+		      <!-- {else} -->
+		       |—【
+		      <!-- {/if} -->
+		      {$val['classname']}</font>】
+		    </td>
+		    <td><input type='text' name='order[{$val[fid]}]' value='$val[list]' size='5'/></td>
+		    <td><a href="admin.php?mod=module&code=newmodule&id=$val[mid]">{$val['modulename']}</a></td>
+		    <td>
+		    <!-- {if $val['fup'] == 0} -->
+		    分类
+		    <!-- {else} -->
+		    栏目
+		    <!-- {/if} -->
+		    </td>
+		    <td><a href="admin.php?mod=class&code=newclass&id=$val[fid]">修改</a></td>
+		    <!-- {if $val['style'] == 1} -->
+		    <td><a href="admin.php?mod=class&code=hidclass&id=$val[fid]&action=hid">启用</a></td>
+		    <!-- {else} -->
+		    <td><a href="admin.php?mod=class&code=hidclass&id=$val[fid]&action=active">未启用</a></td>
+		    <!-- {/if} -->
+		    <td><a href="admin.php?mod=class&code=delclass&id=$val[fid]">删除</a></td>
+          </tr>
+          <!-- {/loop} -->
+        </table>
+        <div align="left">
+          <input type="checkbox" name="chkall" onclick="checkall('chelist');"></input>全选
+        </div>
+        <div align="center"> 
+          <input type="button" name="Submit22" value="隐藏分类" onClick="postlist('hid')">
+          <input type="button" name="Submit33" value="启用分类" onClick="postlist('active')">
+          <input type="button" name="Submit44" value="删除分类" onClick="postlist('del')">
+          <input type="button" name="Submit2" value="修改分类排序" onclick="postlist('list')">
+          <SCRIPT LANGUAGE="JavaScript">
+			function postlist(t){
+				if(t=='list'){
+					document.formlist.action="admin.php?mod=class&code=editclasssort";
+				}else if(t=='hid'){
+					document.formlist.action="admin.php?mod=class&code=hidclass&action=hid";
+				}else if(t=='active'){
+					document.formlist.action="admin.php?mod=class&code=hidclass&action=active";
+				}else if(t=='del'){
+					r=confirm('你确认要删除栏目吗?不可恢复');
+					if(r==true){
+						document.formlist.action="admin.php?mod=class&code=delclass";
+					}else{
+						return false;
+					}
+				}
+				document.formlist.submit();
+			}
+			function checkall(prefix, checkall) {
+				form=document.formlist;
+				var checkall = checkall ? checkall : 'chkall';
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+					if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+						e.checked = form.elements[checkall].checked;
+					}
+				}
+			}
+		  </SCRIPT>
+	    </div>
+      </td>
+    </tr> 
+  </table>
+</form>

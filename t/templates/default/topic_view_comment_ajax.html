@@ -1,0 +1,14 @@
+<success></success>
+
+<!--{if $topic_info[replys]}-->
+<p> 共有<font class="fontRed">{$topic_info[replys]}</font>条评论<!--{if $topic_info[replys]>$limit}-->，<a href="index.php?mod=topic&code={$topic_info[tid]}" target="_blank">点此查看全部&gt;&gt;</a><!--{/if}--></p>
+<!--{/if}-->
+
+<div id="topic_view_comment_msg_area_{$topic_info[tid]}"></div>
+<!--{loop $reply_list $val}-->
+	<div id="view_comment_{$val[tid]}"class="comment_p">
+	<!--{subtemplate topic_comment_item}-->
+	</div>
+<!--{/loop}-->
+
+<!--{eval echo $this->js_show_msg();}-->

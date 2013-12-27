@@ -1,0 +1,11 @@
+<div class="Listmain">
+<!--{if $topic_list}-->
+<!--{loop $topic_list $val}-->
+<div class="feedCell" id="topic_list_{$val[tid]}">
+<!--{subtemplate topic_item_ajax}-->
+<div class="mBlog_linedot" style=""></div>
+</div>
+<!--{/loop}-->
+<!--{/if}-->
+</div>
+{eval echo $this->js_show_msg();}

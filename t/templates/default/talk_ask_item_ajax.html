@@ -1,0 +1,211 @@
+<!--{eval $talkanswerid = 'talk_';}-->
+<div class="{$val[tubiao_css]}"></div>
+<div class="feedCell jianpa" id="topic_list_a{$val[tid]}">
+{template "user_face_menu"}
+<div class="Contant">
+	<div id="topic_lists_{$val[tid]}" style="_overflow:hidden">
+		<div class="oriTxt">
+			<!--{if 'myfavorite'==$this->Code && $val[favorite_time]}-->
+				<p style="color:#666; font-size:12px;">收藏于：{$val[favorite_time]}</p>
+			<!--{/if}-->			  
+			<p class="utitle">
+				<!--个人签名文件-->
+				{template "user_signature"}
+				<!--个人签名文件-->
+				<span class="ut"><a href="index.php?mod=topic&code={$val[tid]}" target="_blank">{$val[dateline]} </a></span>
+			</p>
+			<span id="topic_content_{$val[tid]}_short">{$val[content]}</span>
+			<span id="topic_content_{$val[tid]}_full"></span>
+			<!--{if $val[longtextid] > 0}-->
+				<span>
+				<a href="javascript:;" onclick="view_longtext('{$val[longtextid]}', '{$val[tid]}', this);return false;">查看全文</a>
+				</span>
+			<!--{/if}-->
+			{template "topic_share_1"}
+			{template "topic_list_manage"}
+		</div>
+	</div>
+	<div id="talk_reply_area_{$val[tid]}"></div>
+	<div id="modify_topic_{$val[tid]}"></div>
+	<div id="forward_menu_{$val[tid]}" class="Fbox"></div>
+</div>
+<!--{if !$no_mBlog_linedot2}-->
+	<div class="mBlog_linedot"></div>
+<!--{/if}-->
+</div>
+
+<!--{if $val[ask_list]}-->
+<!--{loop $val[ask_list] $value}-->
+<div class="{$value[tubiao_css]}"></div>
+<div class="feedCell jianpa" id="ask_list_{$value[tid]}">
+<div class="wb_l_face">
+<div class="avatar">
+<!--{if $this->Code != ''}-->
+    <!--{if MEMBER_ID != $value[uid]}-->
+    <a href="javascript:void(0)" onmouseover="get_user_choose({$value[uid]},'_user',{$value[tid]});" onmouseout="clear_user_choose();">
+        <img src="{$value[face]}" onerror="javascript:faceError(this);" />
+    </a>
+    <!--{else}-->
+        <img src="{$value[face]}" onerror="javascript:faceError(this);" />
+    <!--{/if}-->
+<!--{else}-->
+<a href="index.php?mod={$value[username]}"><img src="{$value[face]}" onerror="javascript:faceError(this);" /></a>
+<!--{/if}-->
+<!--{if $this->Config[is_topic_user_follow]}-->
+{$value[follow_html]}
+<!--{/if}-->
+</div>
+<!--{if $value[user_css]}-->
+<p class="{$value[user_css]}">{$value[user_str]}</p>
+<!--{/if}-->
+</div>
+<!--悬浮头像、弹出对话框-->
+<div id="user_{$value[tid]}_user"></div>
+<!--悬浮头像、弹出对话框-->
+<!--私信对话框-->
+<div id="Pmsend_to_user_area" style="width:430px;" style="display:none"></div>
+<!--私信对话框-->
+<!--AT、拉黑对话框-->
+<div id="alert_follower_menu_{$value[uid]}" style="display:none"></div>
+<!--AT、拉黑对话框-->
+<div id="button_{$value[uid]}" onclick="get_group_choose({$value[uid]});" style="display:none"></div>
+<!--分组对话框-->
+<div id="global_select_{$value[uid]}" class="alertBox" style="display:none"></div>
+<!--分组对话框-->
+<!--备注对话框-->
+<div id="get_remark_{$value[uid]}" style="display:none"></div>
+<!--备注对话框-->
+<!--微博内容中 @用户 悬浮提示-->
+<div id="at_{$value[tid]}_user" class="at_style" style="display:none;"></div>
+<!--微博内容中 @用户 悬浮提示-->
+<div class="Contant">
+	<div id="topic_lists_{$value[tid]}" style="_overflow:hidden">
+		<div class="oriTxt">
+			<!--{if 'myfavorite'==$this->Code && $value[favorite_time]}-->
+				<p style="color:#666; font-size:12px;">收藏于：{$value[favorite_time]}</p>
+			<!--{/if}-->			  
+			<p class="utitle">
+			<span class="un">
+			<a title="查看{$value[nickname]}的微博" href="index.php?mod={$value[username]}" >{$value[nickname]}</a>
+			<!--{if $value[validate_html]}-->
+			{$value[validate_html]}&nbsp;
+			<!--{else}-->
+			<!--{if $this->Config[topic_level_radio]}-->
+			<span class="wb_l_level">
+			<a class="ico_level wbL{$value[level]}" title="点击查看微博等级" href="index.php?mod=settings&code=exp" target="_blank">{$value[level]}</a>
+			</span>
+			<!--{/if}-->
+			<!--{/if}-->
+			<!--{if $this->Config[is_signature]}-->
+			<!--{if  !$_GET[mod_original]}-->
+			<!--{if $value[signature]}-->
+			<span class="signature">
+			<!--{if $value[uid] == MEMBER_ID ||  'admin' == MEMBER_ROLE_TYPE}-->
+			<a href="javascript:void(0);" onclick="follower_choose({$value[uid]},'{$value[nickname]}','topic_signature');" title="点击修改个人签名">
+			<em ectype="user_signature_ajax_{$value[uid]}">({$value[signature]})</em>
+			</a>
+			<!--{else}-->
+			<em>({$value[signature]})</em>
+			<!--{/if}-->
+			</span>
+			<!--{/if}-->
+			<!--{/if}-->
+			<!--{/if}-->
+			</span>
+				<span class="ut"><a href="index.php?mod=topic&code={$value[tid]}" target="_blank">{$value[dateline]} </a></span>
+			</p>
+			<span id="topic_content_{$value[tid]}_short">{$value[content]}</span>
+			<span id="topic_content_{$value[tid]}_full"></span>
+			<!--{if $value[longtextid] > 0}-->
+				<span>
+				<a href="javascript:;" onclick="view_longtext('{$value[longtextid]}', '{$value[tid]}', this);return false;">查看全文</a>
+				</span>
+			<!--{/if}-->
+			<!--{if $value[imageid] && $value[image_list]}-->
+			<!--{eval $value[image_key]=$value[tid].'_'.mt_rand();}-->
+			<ul class="imgList" id="image_area_{$value['image_key']}">
+			<!--{loop $value[image_list] $iv}-->
+			<li><a href="{$iv[image_original]}" class="artZoomAll" rel="{$iv[image_small]}" rev="{$value[image_key]}"><img  src="{$iv[image_small]}" /></a></li>
+			<!--{/loop}-->
+			</ul>
+			<!--{/if}-->
+			<!--{if $value[videoid] and $this->Config[video_status]}-->
+			<div class="feedUservideo"><a onClick="javascript:showFlash('{$value[VideoHosts]}', '{$value[VideoLink]}', this, '{$value[VideoID]}','{$value[VideoUrl]}');" >
+			<div id="play_{$value[VideoID]}" class="vP"><img src="images/feedvideoplay.gif"  /></div>
+			<img src="{$value[VideoImg]}" style="border:none"/> </a></div>
+			<!--{/if}-->
+			<!--{if $value[musicid]}-->
+			<div class="feedUserImg"><div id="play_{$value[MusicID]}"></div><img src="images/music.gif" title="点击播放音乐" onClick="javascript:showFlash('music', '{$value[MusicUrl]}', this, '{$value['MusicID']}');" style="cursor:pointer; border:none;" /> </div>
+			<!--{/if}-->
+			<script type="text/javascript">
+			$(document).ready(function(){
+			var objStr1 = "#ask_lists_{$value[tid]}_a";
+			var objStr2 = "#ask_lists_{$value[tid]}_b";
+			$(objStr1).mouseover(function(){$(objStr2).show();});
+			$(objStr1).mouseout(function(){$(objStr2).hide();});
+			});
+			</script>
+			<div class="from"> 
+			<div class="option">
+			<ul>
+			<!--{if $this->Get[type] != 'my_verify'}-->
+			<li>
+			<span {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+			<a href="javascript:void(0);" onclick="get_forward_choose({$value[tid]});" style="cursor:pointer;">转发<!--{if $value[forwards]}-->({$value[forwards]})<!--{/if}--></a>
+			</span>
+			</li>
+			<li class="o_line_l">|</li>
+			<li>
+			<!--{if !$value[reply_disable] && $value['managetype'] != 2}-->
+			<span>
+			<a id="ask_list_reply_{$value[tid]}_aid" href="javascript:void(0)" {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if} onclick="replyTopic({$value[tid]},'reply_area_{$value[tid]}','{$value[replys]}',{$not_allow_forward});return false;">评论
+			<!--{if $value[replys]}-->({$value[replys]})<!--{/if}--></a>
+			</span>
+			<!--{else}-->
+			<span>评论</span>
+			<!--{/if}-->
+			</li>
+			<li class="o_line_l">|</li>
+			<li id="ask_lists_{$value[tid]}_a" class="mobox">
+			<a href="javascript:void(0)" class="moreti" ><span class="txt">更多</span><span class="more"></span></a> 
+			<div id="ask_lists_{$value[tid]}_b" class="molist" style="display:none">
+			<!--{if 'myfavorite'==$this->Code}--> 
+				<span id="favorite_{$value[tid]}" {if MEMBER_ID <1 } onclick="ShowLoginDialog();" {/if}>
+					<a href="javascript:void(0)" onclick="favoriteTopic({$value[tid]},'delete');return false;">取消收藏</a>
+				</span>
+			<!--{else}-->
+				<span id="favorite_{$value[tid]}" {if MEMBER_ID < 1} onclick="ShowLoginDialog();" {/if}>
+					<a href="javascript:void(0)" onclick="favoriteTopic({$value[tid]},'add');return false;">收藏</a>
+				</span> 
+			<!--{/if}-->
+		
+			<!--{if $value[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+				<a href="javascript:void(0)" onclick="deleteTopic({$value[tid]},'ask_list_{$value[tid]}');return false;">删除</a>			
+			<!--{/if}-->
+		</div>
+		</li>
+		<!--{else}-->
+		<li id="ask_lists_{$value[tid]}_a" class="mobox">
+		<!--{if $value[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+		<a href="javascript:void(0)" onclick="deleteVerify({$value[tid]},'ask_list_{$value[tid]}');return false;">删除</a>
+		<!--{/if}-->
+		</li>
+		<!--{/if}-->
+		</ul>
+		</div>
+		<div class="mycome">
+		{if !$no_from}{$value[from_html]}{/if}
+		</div>
+		</div>
+		</div>
+	</div>
+	<div id="reply_area_{$value[tid]}"></div>
+	<div id="modify_topic_{$value[tid]}"></div>
+	<div id="forward_menu_{$value[tid]}" class="Fbox"></div>
+</div>
+<!--{if !$no_mBlog_linedot2}-->
+	<div class="mBlog_linedot"></div>
+<!--{/if}-->
+</div>
+<!--{/loop}-->
+<!--{/if}-->

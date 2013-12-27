@@ -1,0 +1,184 @@
+<!--我的首页 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list"></div>
+
+<!--{hook/global_usernav_extra2}-->
+
+<!--{if 'pic' == $this->Get['type']}-->
+  <script type="text/javascript">
+	$(document).ready(function(){
+		right_show_ajax('{$member[uid]}','photo','photo');
+	});
+  </script>
+  <div class="side">
+	<h3><a href="index.php?mod=topic&code=photo&uid={$member['uid']}">关注人的图片</a></h3>
+	<div id="{$member[uid]}_photo"></div>
+  </div>
+<!--{elseif 'my_reply' == $this->Get['type']}-->
+  <script type="text/javascript">
+	$(document).ready(function(){
+		right_show_ajax('{$member[uid]}','mycomment_user','mycomment_user');
+	});
+  </script>
+  <div class="side">
+	<h3><!--{if $member['uid']==MEMBER_ID}-->本周我常评论的人<!--{ELSE}-->本周{$member[gender_ta]}常评论的人<!--{/if}-->
+	    <a class="btn SC_to_user_tag" href="javascript:void(0);"></a>
+	</h3>
+	  <ul class="FTL SC_to_user_tag_box">
+		<div id="{$member[uid]}_mycomment_user"></div>
+	  </ul>
+   </div>
+<!--{elseif 'video' == $this->Get['type']}-->
+  <script type="text/javascript">
+	$(document).ready(function(){
+		right_show_ajax('{$member[uid]}','video_content','video_content');
+	});
+  </script>
+  <div class="side">
+	<h3><!--{if $member['uid']==MEMBER_ID}-->我关注人的视频<!--{ELSE}-->{$member[gender_ta]}关注人的视频<!--{/if}-->
+	    <a class="btn SC_to_user_tag" href="javascript:void(0);"></a>
+	</h3>
+	  <ul class="FTL" id="{$member[uid]}_video_content"></ul>
+   </div>
+<!--{elseif 'music' == $this->Get['type']}-->
+  <script type="text/javascript">
+	$(document).ready(function(){
+		right_show_ajax('{$member[uid]}','music_user','music_user');
+	});
+  </script>
+  <div class="side">
+	<h3>本月音乐达人
+	    <a class="btn SC_to_user_tag" href="javascript:void(0);"></a>
+	</h3>
+	  <ul class="FTL SC_to_user_tag_box">
+		<div id="{$member[uid]}_music_user"></div>
+	  </ul>
+   </div>
+<!--{else}-->		
+		<!--认证资料-->
+		<!--{if $member[vip_info]}-->
+		<div class="side S15">
+			<div class="vipBox">
+				
+                <div class="ico_vData"><img src="images/vip_c2.png" /></div>
+				<p class="vipBox_info">{$member[vip_info]}</p>
+				<p class="vipBox_info" style="text-align:right;"><a href="index.php?mod=other&code=vip_intro">点击申请认证</a></p>
+			</div>
+		</div>
+		<!--{/if}-->  
+		
+	<!--{if MEMBER_ID != $member[uid]}-->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".SC_guanyu").click(function(){$(this).parent().toggleClass("fold_guanyu");$(".SC_guanyu_box").toggle();});
+		});
+	</script>
+	<div class="side">
+		<h3>关于{$member[nickname]}<a class="btn SC_guanyu" href="javascript:void(0)"></a></h3>
+		<ul class="FTL SC_guanyu_box">
+			<!--{if $member[aboutme]}-->
+			<li>&nbsp;{$member[aboutme]}</li>
+			<!--{elseif MEMBER_ID==$member[uid] && !$_GET[mod_original]}-->
+			<li><a href="index.php?mod=settings">快来写一句话</a>，向大家介绍一下吧</li>
+			<!--{else}-->
+			这家伙很懒，什么都没留下。
+			<!--{/if}-->
+		</ul>
+	</div>
+	<!--{/if}-->  
+		
+	<!--属于TA的标签-->
+
+			  <script type="text/javascript">
+				$(document).ready(function(){
+					//属于他的标签
+					get_to_user_tag();
+					//他关注的人
+					get_user_follow();
+					//关注的话题
+					get_Right3();
+					
+					$(".SC_to_user_tag").click(function(){$(this).parent().toggleClass("fold_to_user_tag");$(".SC_to_user_tag_box").toggle();});
+					$(".SC_woguanzhu").click(function(){$(this).parent().toggleClass("fold_woguanzhu");$(".SC_woguanzhu_box").toggle();});
+				});
+				function get_to_user_tag(){
+					//属于他的标签
+					right_show_ajax('{$member[uid]}','to_user_tag','to_user_tag');
+				}
+				function get_user_follow(){
+					//他关注的人
+					right_show_ajax('{$member[uid]}','user_follow','user_follow');
+				}
+				function get_Right3(){
+					right_show_ajax('{$member[uid]}','myfavoritetags','right_myfavoritetags');
+				}
+			  </script>
+			  <div class="side">
+				<h3><!--{if $member['uid']==MEMBER_ID}-->属于我的标签<!--{ELSE}-->属于{$member[gender_ta]}的标签<!--{/if}-->
+				    <a class="btn SC_to_user_tag" href="javascript:void(0);"></a>
+				</h3>
+				  <ul class="FTL SC_to_user_tag_box">
+					<div id="{$member[uid]}_to_user_tag"></div>
+				  </ul>
+			   </div>
+			   
+			  <div class="side">
+				<h3><!--{if $member['uid']==MEMBER_ID}-->我关注的人<!--{ELSE}-->{$member[gender_ta]}关注的人<!--{/if}-->({$member[follow_count]})
+					<a class="btn SC_taguanzhu" href="javascript:void(0)"></a>
+				</h3>
+				<ul class="FTL FTL2 SC_taguanzhu_box">
+					<div id="{$member[uid]}_user_follow"></div>
+				</ul>
+			  </div>
+			  <div class="side">
+			    <h3><!--{if $member['uid']==MEMBER_ID}-->我关注的话题<!--{ELSE}-->{$member[gender_ta]}关注的话题<!--{/if}-->
+			        <a class="btn SC_woguanzhu" href="javascript:void(0);" ></a></h3>
+			    <ul class="FTL SC_woguanzhu_box">
+				  <div id="{$member[uid]}_right_myfavoritetags"></div>
+			    </ul>
+			  </div>
+
+	   <!--属于TA的标签-->
+	   
+	  <!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+	  <!--{if $qun_setting['qun_open']}-->
+		  <!--他的微群 Begin-->
+			<script type="text/javascript">
+				$(document).ready(function(){
+					if($member['uid'] > 0){
+						get_my_qun();
+					}
+					$(".SC_my_qun").click(function(){$(this).parent().toggleClass("fold_qun");$(".SC_qun_box").toggle();});
+				});
+				function get_my_qun(){
+					right_show_ajax('{$member[uid]}','my_qun','qun_box');
+				}
+			</script>
+			<div class="side">
+				<h3>
+					<!--{if $member['uid']==MEMBER_ID}-->我加入的微群<!--{ELSE}-->{$member[gender_ta]}加入的微群<!--{/if}-->
+					<a class="btn SC_my_qun" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','my_qun','qun_box'); return false;">
+					</a>
+				</h3>
+				<ul class="SC_qun_box">
+					<div id="{$member[uid]}_qun_box"></div>
+				</ul>
+			</div>
+		  <!--他的微群 End-->
+	  <!--{/if}-->
+  <!--{template 'topic_right_common.ini'}-->
+<!--{/if}-->
+</div>
+</div>

@@ -1,0 +1,39 @@
+<!--{template admin/header}-->
+<script src="templates/default/js/date/WdatePicker.js" type="text/javascript"></script>
+<form action="admin.php?mod=recdtopic&code=doedit" method="post" name="form1" id="form1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">编辑推荐</td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">推荐等级：</td>
+      <td bgcolor="#FFFFFF">
+		<select name="recd">
+			<!--{loop $recd_levels $value}-->
+				<option value="{$value['level']}" <!--{if $value['level']==$topic_recd['recd']}-->selected="selected"<!--{/if}-->>{$value['name']}</option>
+			<!--{/loop}-->
+		</select>
+	  </td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">显示顺序:</td>
+      <td bgcolor="#FFFFFF">
+	  		<input id="display_order" name="display_order" value="{$topic_recd['display_order']}" >
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">截止时间：</td>
+      <td bgcolor="#FFFFFF">
+	  		<input id="expiration" name="expiration" value="{$topic_recd['expiration']}" onclick="WdatePicker({minDate:'%y-%M-%d'})"  type="text" readonly="readonly">
+	  </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+	  	<input type="submit" class="button" name="groupsubmit" value="提 交" />&nbsp;
+		<input name="reset" type="reset"class="button" onClick="history.go(-1)" value="返 回" />
+		<input name="tid" type="hidden" id="tid" value="{$tid}">
+	</td>
+    </tr>
+  </table>
+</form>

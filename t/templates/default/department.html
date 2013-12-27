@@ -1,0 +1,194 @@
+{template "topic_header"}
+<style type="text/css">
+a.v_on{ color:#333; font-weight:700;}
+.department_info_wp{padding-left:10px; padding-right:10px; margin-top:0px;}
+.department_info_left{ float:left; width:84px; margin-right:10px;}
+.department_info_right{ float:left; width:400px; padding-top:5px;}
+.department_icon img{ border: solid 1px #CCCCCC; padding:1px; width:80px; height:80px;}
+.sp{ color:#CCCCCC; background:none;}
+.fl{ float:left;}
+.mrb{ border-right: solid 1px #999; width:50px; padding-left:5px;}
+.q_th{ color:#333; font-weight:600;}
+.department_notic{ border: solid 1px #FFECB0; background:#FDFFD2; padding:10px; margin:10px; border-radius:5px;}
+</style>
+<!--{if $id != $member['departmentid']}-->
+<div class="setframe">
+<!--{template 'topic_new_left.ini'}-->
+<!--{else}-->
+<div class="main {$t_col_main}">
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<!--{/if}-->
+<div class="main3Box_m HotW ">
+<div id="topNews_1" class="Hotwarp">
+	  <!--部门 Begin-->  
+	  <div class="department_info_wp">
+	  	<div class="department_info_left">
+			<div class="department_icon"><img src="{$com_my_info[image]}" height="80" width="80"/></div>
+		</div>
+		<div class="department_info_right">
+			<div class="info_title">
+				<span class="qun_s2">
+				<!--{if $com_my_info[nickname]}-->{$com_my_info[nickname]}（{$com_my_info[name]}）<!--{else}-->{$com_my_info[name]}<!--{/if}-->
+				</span>
+				<span class="qun_s3">(人数：{$com_my_info[usercount]})</span>
+				<span class="qun_s1">微博数：{$com_my_info[topiccount]}</span>
+				<span style="clear:both"></span>
+			</div>
+			<div style="margin-left:5px; color:#999999; clear:both;">
+			{$d_d_name}简介：{$com_my_info[description]}
+			<!--{if $com_my_info[info]}--><br>附加说明：{$com_my_info[info]}<!--{/if}-->
+			</div>
+			<div style="margin-top:0px; text-align: right;">
+			<!--{if $is_ml}-->
+			<a href="index.php?mod=department&code=bulletin"><font color="red">公告管理</font></a>
+			<!--{/if}-->
+			<!--{if $c_department}-->
+			<!--{loop $c_department $key $val}-->
+			<span class="sp">|</span><a href="index.php?mod=department&id={$val[id]}">{$val[name]}</a>
+			<!--{/loop}-->
+			<!--{/if}-->
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	  </div>
+	  <!--部门信息 End-->
+	  <!--{if $this->Code == 'bulletin'}-->
+	  <div class="department_notic">
+	  	<div>
+			<span style="font-weight:700;">公告管理</span>
+		</div>
+	  </div>
+	  <div class="cpnav"> 
+		<form action="index.php?mod=department&code=add" method="post">
+		<input type="hidden" name="uid" value="{$member[uid]}"><input type="hidden" name="cpid" value="{$member[departmentid]}">
+		<input type="hidden" name="nickname" value="{$member[nickname]}">
+		<textarea name="message" class="inputs" style="width:510px; height:100px;"></textarea>
+		<span><input type="submit" class="shareI" value="发 布"/></span>
+		</form>
+	  </div>
+	  <table class="cptable">
+	  <tr><th>内容</th><th>时间</th><th>操作</th></tr>
+	  <!--{if $bulletin_list}-->
+	  <!--{loop $bulletin_list $val}-->
+	  <tr><td class="cpname">{$val[message]}</td><td>{$val[dateline]}</td><td><a href="index.php?mod=company&code=del&id={$val[id]}">删除</a></td></tr>
+	  <!--{/loop}-->
+	  <!--{/if}-->
+	  </table>
+	  <!--{else}-->
+	  <!--部门公告 Begin-->
+	  <div class="department_notic">
+	  	<div>
+			<span style="font-weight:700;">{$d_d_name}公告：</span>
+			<span style="color:#666666;">
+				<!--{if $announcement}-->
+					{$announcement}
+				<!--{else}-->
+				{$d_d_name}暂无公告。
+				<!--{/if}-->
+			</span>
+		</div>
+	  </div>
+	  <!--部门公告 End-->
+	  <!--{if MEMBER_ID < 1}-->
+	  <div class="cpnav">{$cpnavurl}</div>
+	  <style>.cptable th{background:#def5f9;color:#336699;}</style>
+	  <table class="cptable">
+	  <!--{if $cp_list}-->
+	  <tr><th>{$d_d_name}名称</th><th>{$d_d_name}人数</th><th>微博数</th></tr>
+	  <!--{loop $cp_list $key $val}-->
+	  <tr><td class="cpname"><a href="index.php?mod=department&id={$val[id]}">{$val[name]}</a></td><td>{$val[usercount]}</td><td>{$val[topiccount]}</td></tr>
+	  <!--{/loop}-->
+	  <!--{/if}-->
+	  <tr><th>用户昵称</th><th>微博UID</th><th>微博数</th></tr>
+	  <!--{if $user_list}-->
+	  <!--{loop $user_list $key $val}-->
+	  <tr><td class="cpname"><a href="index.php?mod={$val[username]}">{$val[nickname]}</a></td><td>{$val[username]}</td><td>{$val[topic_count]}</td></tr>
+	  <!--{/loop}-->
+	  <!--{else}-->
+	  <tr><td colspan="3">无数据</td></tr>
+	  <!--{/if}-->
+	  </table>
+	  <!--{/if}-->
+	   <div id="listTopicArea">
+	  	<!--微博列表 Begin-->
+		<!--{subtemplate topic_list_ajax}-->
+		<!--微博列表 End-->
+      </div>
+	  <!--{/if}-->
+ </div>
+<!--右边栏目 Begin-->
+<div class="Hotright">
+<script language="javascript">
+$(document).ready(function(){get_leader();get_manager();});
+function get_leader(){right_show_ajax('{$member[departmentid]}','leader','leader','department');}
+function get_manager(){right_show_ajax('{$member[departmentid]}','manager','manager','department');}
+</script>
+<div class="SC">
+<h3>排行榜</h3>
+<div class="FTL"><a href="index.php?mod=department&code=top&view=all">所有{$d_d_name}微博排行榜</a></div>
+<div class="FTL"><a href="index.php?mod=department&code=top&id={$id}">用户或下级{$d_d_name}微博排行榜</a></div>
+</div>
+<div class="SC">
+<h3>{$d_d_name}领导</h3>
+<div class="FTL"><div id="{$id}_leader"></div></div>
+</div>
+<div class="SC">
+<h3>{$d_d_name}负责人</h3>
+<div class="FTL"><div id="{$id}_manager"></div></div>
+</div>
+<div class="SC">
+<h3>{$d_d_name}成员列表</h3>
+<ul class="FTL FTL3 SC_renqituijian_box">
+<div id="{MEMBER_ID}_department_user">
+<!--{loop $department_user $val}-->
+<li> 
+<a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></a> 
+<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b> 
+{template "alert_menu"} 
+</li>
+<!--{/loop}-->
+</div>
+</ul>
+</div>
+<div class="SC">
+<h3>{$d_d_name}微博达人TOP3</h3>
+<ul class="FTL FTL3 SC_renqituijian_box">
+<div id="{MEMBER_ID}_topic_user">
+<!--{loop $topic_user $val}-->
+<li> 
+<a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_userss',{$val[uid]})" onmouseout="clear_user_choose()"/></a> 
+<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b> 
+<div id="user_{$val[uid]}_userss"></div>
+</li>
+<!--{/loop}-->
+</div>
+</ul>
+</div>
+<div class="SC">
+<h3>{$d_d_name}最受关注TOP3</h3>
+<ul class="FTL FTL3 SC_renqituijian_box">
+<div id="{MEMBER_ID}_fans_user">
+<!--{loop $fans_user $val}-->
+<li> 
+<a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_users',{$val[uid]})" onmouseout="clear_user_choose()"/></a> 
+<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b>
+<div id="user_{$val[uid]}_users"></div>
+</li>
+<!--{/loop}-->
+</div>
+</ul>
+</div>
+</div>
+</div>
+</div>
+{template "topic_footer"}

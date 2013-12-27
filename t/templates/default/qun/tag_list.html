@@ -1,0 +1,66 @@
+{template "topic_header"}
+<style type="text/css">
+.cat_block{ float:left; width:260px; height:50px; border-bottom: dotted 1px #CCCCCC; margin-right:15px; margin-bottom:10px;}
+.qun_block{ float:left; width:260px; height:50px; margin-right:15px; margin-bottom:10px;}
+.mr20{ margin-right:20px;}
+.cat_content a{ margin-right:10px;}
+.rbl{ float:left;}
+.rbl img{ height:48px;width:48px; border:1px solid #ccc; margin-right:10px;}
+#sub_cat_wp{ border-bottom: dotted 1px #CCCCCC; padding-bottom:5px;}
+#sub_cat_wp a{ margin-right:10px;}
+a.on{ color:#000000; font-weight:700;}
+#sort_wp a{ margin-right:10px;}
+</style>
+<div class="main {$t_col_main}">
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      <!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+      {template "topic_left.inc"}
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+  <div class="main3Box_m HotW">	
+    <div id="topNews_1" class="Hotwarp qun_Hotwarp">
+	<div style="margin-left:10px; margin-right:10px;">
+		<div style="border-bottom: solid 1px #CCCCCC; margin-bottom:10px; padding-bottom:10px;">
+			<div style="float:left; font-size:14px; font-weight:700">{$title}</div>
+			<div style="float:right;"><a href="index.php?mod=qun&code=category"><<返回全部分类列表</a></div>
+			<div style="clear:both;"></div>
+		</div>
+		<!--排序等相关信息 Begin-->
+		<!--{if $count}-->
+		<div style="margin-top:10px;">
+			<div style="float:left; color:#999;">共{$count}个</div>
+			<div style="float:right;" id="sort_wp">
+				<span>排序方式：</span>
+				<span>
+					<a href="index.php?mod=qun&code=tag&tag_id={$tag_id}&sort=1" {$active_sort[1]}>成员人数</a>
+					<a href="index.php?mod=qun&code=tag&tag_id={$tag_id}&sort=2" {$active_sort[2]}>微群博数</a>
+					<a href="index.php?mod=qun&code=tag&tag_id={$tag_id}&sort=3" {$active_sort[3]}>创建时间</a>
+				</span>
+			</div>
+			<div style="clear:both"></div>
+		</div>	
+		<!--{/if}-->	
+		<!--排序等相关信息 End-->
+	</div>
+<style type="text/css">
+	a.v_on{ color:#000; font-weight:700;}
+</style>
+      <div id="listTopicArea">
+			{template "qun/qun_search_list"}
+      </div>
+</div>
+
+<!--右边栏 Begin-->
+{template "qun/qun_right"}
+<!--右边栏 End-->
+
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

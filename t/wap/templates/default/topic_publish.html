@@ -1,0 +1,44 @@
+<!--{if in_array($this->Code,array('myhome')) || !empty($tag_value)}-->
+<div class="m">
+    <div style="padding:2px;">
+	<!--{if $tag}-->
+	针对# {$tag} #说点什么
+	<!--{else}-->	
+	随便说说
+	<!--{/if}-->
+	<!--{if $this->Config[topic_input_length]>0}-->
+	：({conf topic_input_length}字以内)
+	<!--{/if}-->
+	</div>
+        <div class="u2">
+        <form action="index.php?mod=topic&amp;code=do_add" method="post" enctype="multipart/form-data" name="forminfo" id="forminfo">
+             <div>
+                <textarea name="content" id="content" style="width:98%;" rows="2" cols="" /></textarea>
+				<p>图片：(注：需要浏览器支持)<input name="topic" type="file" id="topic" style="width:190px;"/></p>
+             </div>
+            <input name="topictype" type="hidden" id="topictype" value="first" />
+             <input name="tag" type="hidden" id="tag" value="{$tag}" />
+             <div style="margin-top:3px;">
+			 	<input type="submit" name="addTopic" value="发布" />	
+                 <!--{if $this->Config[sina_enable] && sina_weibo_init()}-->
+                    {eval echo array_iconv($this->Config['charset'],'utf-8',sina_weibo_syn());}
+                 <!--{/if}-->
+                <!--{if $this->Config[qqwb_enable] && qqwb_init()}-->
+                    {eval echo array_iconv($this->Config['charset'],'utf-8',qqwb_syn());}
+                <!--{/if}-->
+                <!--{if $this->Config[kaixin_enable] && kaixin_init()}-->
+                    {eval echo array_iconv($this->Config['charset'],'utf-8',kaixin_syn_html());}
+                <!--{/if}-->
+                <!--{if $this->Config[renren_enable] && renren_init()}-->
+                    {eval echo array_iconv($this->Config['charset'],'utf-8',renren_syn_html());}
+                <!--{/if}-->
+             </div>
+             <div>
+             <input name="tag" type="hidden" id="tag" value="{$tag_value}" />
+             </div>
+            <input name="return_code" type="hidden" id="return_code" value="mod={$this->Get['mod']}&code={$this->Code}" />
+            <input type="hidden" />
+        </form> 
+        </div>
+</div>
+<!--{/if}-->

@@ -1,0 +1,106 @@
+{template admin/header}
+
+<form method="post" action="admin.php?mod=setting&code=domodify_filter">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+	<tr class="header">
+		<td colspan="2">内容过滤设置</td>
+	</tr>		
+    <tr>
+    	<td><b>查询已有关键词</b><br>
+    	  <span class="smalltext">查询结果将会显示在对应关键词库的右侧</span>
+    	</td>
+    	<td>
+    	  <input type="text" id="keyword" name="keyword" size="20">
+    	  <input class="button" type="submit" name="cronssubmit" value="查询" onclick="searchKeyWord($('#keyword').val());return false;">
+    	</td>
+    </tr>
+	<tr class="altbg1">
+		<td><b>启用过滤功能</b><br>
+			<span class="smalltext">选择“是”会对提交的内容、个人签名等进行过滤；<br>词语过多时有一定的效率影响。 </span></td>
+		<td>	{$enable_radio}	<BR>
+			
+		</td>
+	</tr>			
+
+	<tr class="altbg2">
+		<td><b>隐藏被过滤的关键词？</b><br>
+			<span class="smalltext">
+			选择“是”将隐藏具体哪个词语有问题，避免用户跳过；<br />
+			选择“否”告知具体哪个词语被过滤，方便用户改正。
+			
+			</span></td>
+		<td>	{$keyword_disable_radio}	<BR>
+		</td>
+	</tr>
+	
+	<tr class="altbg1">
+		<td><b>设置违法关键词</b><br>
+			<span class="smalltext">包含下面设置的关键词时，将禁止提交发布
+			<br>(关键词一行一个，或用 "|" 隔开)</span></td>
+		<td class="altbg1">
+			<textarea cols="30" rows="6" name="filter[keywords]">$filter[keywords]</textarea>
+
+			<span id="keyword_f" style="color:red" class="fiter"></span>
+		</td>
+	</tr>			
+
+	<tr class="altbg2">
+		<td><b>设置审核关键词</b><br>
+			<span class="smalltext">包含下面设置的关键词时，将审核提交内容
+			<br>(关键词一行一个，或用 "|" 隔开)</span></td>
+		<td>
+			<textarea cols="30" rows="6" name="filter[verifys]">$filter[verifys]</textarea>
+
+			<span id="verify_f" style="color:red" class="fiter"></span>
+		</td>
+	</tr>
+	
+	<tr class="altbg1">
+		<td><b>设置替换关键词</b><br>
+			<span class="smalltext">包含下面设置的关键词时，将替换提交内容
+			<br>(关键词一行一个，或用 "|" 隔开)
+			<br>如：需要替换的内容=***</span></td>
+		<td>
+			<textarea cols="30" rows="6" name="filter[replaces]">$filter[replaces]</textarea>
+
+			<span id="replace_f" style="color:red" class="fiter"></span>
+		</td>
+	</tr>
+	<tr class="altbg2">
+		<td><b>设置屏蔽关键词</b><br>
+			<span class="smalltext">包含下面设置的关键词时，在前台搜索不到内容
+			<br>(关键词一行一个，或用 "|" 隔开)</span></td>
+		<td>
+			<textarea cols="30" rows="6" name="filter[shield]">$filter[shield]</textarea>
+
+			<span id="shield_f" style="color:red" class="fiter"></span>
+		</td>
+	</tr>
+	
+</table>
+	<br>
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+</form>
+<script type="text/javascript">
+  function searchKeyWord(keyword){
+	if(keyword == ''){
+		show_message('输入你想要检索的关键字',2);
+		return false;
+	}
+	$.post(
+		'ajax.php?mod=class&code=keyword',
+		{keyword:keyword},
+		function(d){
+		  if(d.done == false){
+			show_message(d.msg);
+		  }else{
+			$('#keyword_f').html(d.retval.keyword_f);
+			$('#verify_f').html(d.retval.verify_f);
+			$('#replace_f').html(d.retval.replace_f);
+			$('#shield_f').html(d.retval.shield_f);
+			window.scroll(0,350);
+		  }
+		},'json'
+	)
+  }
+</script>

@@ -1,0 +1,89 @@
+<!--{eval echo '<'.'?xml version="1.0" encoding="utf-8"?'.'>';}-->
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$this->Config[wap_url]}/" />
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<meta name="MobileOptimized" content="236"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<title>{$this->Title} - <!--{eval echo array_iconv($this->Config['charset'],'utf-8',{$this->Config[site_name]});}-->微博手机版 - <!--{eval echo array_iconv($this->Config['charset'],'utf-8',{$this->Config[page_title]});}--></title>
+<link href="images/wap_style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--{if MEMBER_ID}-->
+
+	<div class="logo">
+	<a href="index.php"><img src="{$this->Config[site_url]}/wap/templates/default/images/wap_logo.gif" /></a>
+	<a name="top" id="top"></a></div>
+	{eval $member=($member ? $member : wap_iconv($this->MemberHandler->MemberFields));}
+	<div class="topbg">
+	<span>
+	
+	<!--{eval if($this->Code == 'myhome') $myhome_hb = 'hb';}-->
+    <!--{eval if($this->Code == 'info')   $info_hb = 'hb';}-->
+    <!--{eval if($this->Code == 'mycomment') $reply_hb = 'hb';}-->
+    <!--{eval if($this->Code == 'myat') $myat_hb = 'hb';}-->
+	<a href="index.php?mod=topic&amp;code=new" title="最新微博"><span class="{$topic_new_hb}">广场</span></a>|
+	<a href="index.php?mod=topic&amp;code=myhome" title="我的首页"><span class="{$myhome_hb}">首页</span></a>|
+	<a href="index.php?mod=topic&amp;code=mycomment" title="评论我的"><span class="{$reply_hb}">评论</span></a>|
+	<a href="index.php?mod=topic&amp;code=myat" title="@提到我的"><span class="{$myat_hb}">@我</span></a>|
+	<a href="index.php?mod=topic&amp;code=myfavorite" title="我的收藏"><span class="{$favorite_hb}">收藏</span></a>
+	</span>
+	</div>
+
+	<div class="topbg">
+	<span>
+    <!--{if $member[uid] == MEMBER_ID}--> 
+    <!--{eval if($member[comment_new]>0 || $member[at_new]>0 || $member[newpm]>0 || $member[fans_new]>0) $info_notice = '<img src="images/new.gif" alt="" width="" height="" />';}-->
+	<!--{/if}-->
+	<a href="index.php?mod=pm" title="私信"><span class="{$pm_hb}">私信</span></a>|
+	<a href="index.php?mod=settings&code=base&uid={MEMBER_ID}" title="设置"><span class="{$setting_hb}">设置</span></a>| 
+    <a href="index.php?mod=topic&code=info" title="消息"><span class="{$info_hb}">消息{$info_notice}</span></a>| 
+	<a href="index.php?mod=topic&code=add" title="发微博"><span class="{$addtopic_hb}">发微博</span></a>
+
+	</span>
+	</div>
+	<!--{if in_array($this->Code,array('myhome','myblog','fans','follow','info')) || $params[code] == 'myblog' || $this->Code > 0 || $this->Get['mod'] == 'pm'}-->
+
+	<div class="u">
+		<span>
+			<a href="index.php"><img onerror="javascript:faceError(this);" src="{$member[face]}" style="width:45px; height:45px;padding:1px;border:1px solid #ccc; background:#fff;"/></a>
+			<a href="index.php?mod={$member[username]}">{$member[nickname]}</a> | 
+            <a href="index.php?mod=settings&code=base&uid={$member[uid]}">资料</a>
+			<!--{if $member[uid] == MEMBER_ID}--> | <a href="index.php?mod=login&amp;code=logout">退出</a><!--{/if}-->
+		<br />
+		<!--{eval if($this->Code == 'follow') $follow_hb = 'hb';}--> 
+		<!--{eval if($this->Code == 'fans') $fans_hb = 'hb';}--> 
+		<!--{eval if($topic_selected == 'myblog') $myblog_hb = 'hb';}--> 
+		  <span class="{$follow_hb}"><a href="index.php?mod={$member[username]}&amp;code=follow">关注{$member[follow_count]}人</a> |</span>
+		  <span class="{$fans_hb}"><a href="index.php?mod={$member[username]}&amp;code=fans">粉丝{$member[fans_count]}人</a> | </span>
+		  <span class="{$myblog_hb}"><a href="index.php?mod={$member[username]}">微博{$member[topic_count]}条</a></span><br />
+		  <!--{if $this->Code != 'fans' && $this->Code != 'follow'}-->
+		  {$member[follow_html]}
+		  <!--{/if}-->
+
+		</span> 
+	</div>
+	<!--{/if}-->
+	
+	<!--{template "topic_publish"}-->
+
+
+<!--{else}-->
+	<div class="logo">
+		<a href="index.php"><img src="{$this->Config[site_url]}/wap/templates/default/images/wap_logo.gif" /></a>
+	</div>
+	<div class="topbg">
+		<span>
+		<a href="index.php?mod=topic&amp;code=new" title="最新微博">广场</a>|
+		<a href="index.php?mod=tag">话题</a>|
+		<a href="index.php?mod=login">登录</a>|
+		<a href="index.php?mod=member"><font color="red">免费注册</font></a>
+		</span>
+	</div>
+<!--{/if}-->
+
+
+
+

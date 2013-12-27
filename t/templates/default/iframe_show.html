@@ -1,0 +1,230 @@
+<style type="text/css">
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{color:#393939;font-size:12px; padding:5px;}
+li{list-style-type:none}
+a{color:{$linkColor};text-decoration:none}
+/*微博秀预览*/
+.tblog{font-family:Arial, Helvetica, sans-serif; height:500px;}
+.tblog img{border:none}
+/*标题*/
+.tblog .tblog_header{background:none repeat scroll 0 0 #D6F3F7;color:#333;height:30px;overflow:hidden;border-bottom:1px solid {$titleColor};}
+.tblog .tblog_header h1{float:left;padding-left:10px;padding-top:4px;position:relative;font-weight:400;font-size:12px;}
+.tblog .tblog_header h1 a.mini_logo{background:url({conf site_url}/images/t_logo.gif) no-repeat scroll 0 0 transparent;display:block;height:16px;left:11px;position:absolute;top:9px;width:19px;}
+.tblog .tblog_header h1 a.title{display:inline-block;position:relative;padding:4px 0 0 0;}
+/*个人信息*/
+.tblog .fans_top{overflow:hidden;width:100%;padding:12px 0 10px;height:55px;*height:80px;}
+.tblog .fans_top .fansphoto{float:left;height:52px;width:52px;margin:0 11px 0 9px;}
+.tblog .fans_top ul li{height:16px;margin-bottom:4px;overflow:hidden;padding-right:9px;}
+.tblog .fans_top ul li.btn{height:auto;margin:10px 0 0;}
+/*微博列表*/
+.tblog .blog_list .list_warp{overflow:hidden;width: 100%; position:relative; height:259px;}
+.tblog .blog_list ul li{margin:3px auto;padding:0px; width:98%;border-bottom:1px dotted #ccc;}
+.tblog .blog_list ul li p{ padding:5px;}
+.tblog .blog_list dl{border-bottom:1px dotted #ccc;overflow:hidden;width:100%;padding:8px 0;}
+.tblog .blog_list dl dd.msg{margin-bottom:3px;word-wrap:break-word;line-height:18px;}
+.tblog .blog_list dl dd span.act{float:right;white-space:nowrap;}
+/*FANS列表*/
+.tblog .fans_list{ overflow:hidden;}
+.tblog .fans_list h4{height:25px;line-height:25px;overflow:hidden;font-weight:400;margin:2px 9px; font-size:12px;}
+.tblog .fans_list h4 a.all{float:right;font-family:宋体}
+.tblog .fans_list ul li{float:left;height:72px;overflow:hidden;padding-bottom:12px;text-align:center;width:50px;margin:0 5px;}
+.tblog .fans_list ul li a.pic{display:block;margin-bottom:6px;height:48px;width:48px; border:1px solid #ccc;}
+.tblog .fans_list ul li a.name{font-family:宋体;vertical-align:middle;}
+.tblog .blog_list dl dd p,.fans_list h4 span{float:left;}
+/*控制按钮*/
+.tblog .bg_arrow{background:#e6e6e6 url({conf site_url}/images/ico_tblog_arrow.gif);background-repeat:repeat-x;display:block;height:7px;padding-top:3px;*padding:0px;text-align:center;margin:0;}
+.tblog .bg_arrow img{ margin:0 auto; width:8px; height:4px; background:url({conf site_url}/images/ico_tblog_arrow.png) no-repeat;}
+.tblog a.arrow_up img {background-position: 0 0;}
+.tblog a.arrow_down img {background-position: 0 -12px;}
+ul.attachList {
+    float: left;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 480px;
+}
+ul.attachList li {
+    display: inline;
+    float: none;
+    font-size: 12px;
+    margin: 5px 5px 0;
+    width: 100%;
+}
+.attachList_img {
+    display: inline;
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+.attachList_att {
+    display: inline;
+    text-align: left;
+}
+p.attachList_att_name,p.attachList_att_doc {
+    display: block;
+    width: 350px;
+}
+.feedUserImg {
+    overflow: hidden;
+    position: relative;
+    width: 470px;
+}
+ul.imgList {
+    float: left;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 480px;
+}
+ul.imgList li {
+    display: inline;
+    margin-top: 5px;
+}
+.feedCell .feedUservideo {
+    float: left !important;
+    overflow: hidden;
+    position: relative;
+    width: 470px;
+}
+</style>
+<script language="JavaScript">
+function scroll(n){
+	temp=n;
+	News.scrollTop=News.scrollTop+temp;
+	if (temp==0) return;
+	setTimeout("scroll(temp)",20); 
+}
+</script>
+
+<div class="tblog" style="width:{$div_width}px;height:{$div_height}px;background:{$bgColor};border:{$isBorder}px solid {$borderColor};">
+ 
+  <!--标题-->
+  <!--{if $isTitle}-->
+  <div class="tblog_header" style="background:{$titleColor}; borde-bottom:1px solid #C0DADE; height:{$title_height}px;" >
+	<h1><a target="_blank" class="title" href="{$this->Config[site_url]}">{conf site_name}</a></h1>
+  </div>
+  <!--{/if}-->
+  <!--标题-->
+ 
+
+  <!--个人信息-->
+  <div class="fans_top">
+    <div class="fansphoto">
+		<a target="_blank" href="{$this->Config[site_url]}/index.php?mod={$members[username]}"> 
+		<img src="{$members[face]}" width="54px" height="54px" border="0" onerror="javascript:faceError(this);" /></a> 
+	</div>
+    <ul>
+      <li> <a  target="_blank" href="{$this->Config[site_url]}/index.php?mod={$members[username]}">{$members['nickname']}</a>{$members['validate_html']}</li>
+      <!--{if $members[province]}-->
+      <li><span style="color:#666">{$members[province]} {$members[city]}</span> </li>
+      <!--{/if}-->
+      <li><span> <a  target="_blank" href="{$this->Config[site_url]}/index.php?mod={$members[username]}">微博{$members[topic_count]}条 </a></span> <span><a target="_blank" href="{$this->Config[site_url]}/index.php?mod={$members[username]}&code=fans">粉丝{$members[fans_count]}人</a></span></li>
+    </ul>
+  </div>
+  <!--个人信息-->
+
+  <!--微博列表-->
+  <!--{if $isTopic}-->
+  <div class="blog_list">
+	  <a class="bg_arrow arrow_up" href="javascript:;" onmousedown="scroll(-3)" onmouseover="scroll(-3)" style="cursor: pointer" onmouseout="scroll(0)">
+		 <img width="8" height="4" title="" class="arrow" src="{conf site_url}/templates/default/images/transparent.gif">
+	  </a>
+    <div class="list_warp" id="News" style="height:{$content_height}px;">
+      <ul>
+      <!--{loop $topic_list $val}-->
+		<div style="color:{$textColor};">
+			  <li>
+				<p>
+					<a href="{$this->Config[site_url]}/index.php?mod={$val[username]}" style="color:{$linkColor};" target="_blank">{$val[nickname]}</a>{$val['validate_html']}：
+					<span class="mbTxtB" style="color:{$textColor};">{$val[content]}</span>
+					
+<!--{if $val[attachid] && $val[attach_list]}-->
+<!--{eval $val[attach_key]=$val[tid].'_'.mt_rand();}-->
+<ul class="attachList" id="attach_area_{$val['attach_key']}">
+	<!--{loop $val[attach_list] $iv}-->
+	<li><img src="{$iv[attach_img]}" class="attachList_img" />
+	<div class="attachList_att">
+	<p class="attachList_att_name"><b>{$iv[attach_name]}</b>
+	&nbsp;（{$iv[attach_size]}）</p>
+	</div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->
+<!--{if $val[imageid] && $val[image_list]}-->
+<!--{eval $val[image_key]=$val[tid].'_'.mt_rand();}-->
+<ul class="imgList" id="image_area_{$val['image_key']}">
+	<!--{loop $val[image_list] $iv}-->
+	<li><a href="{$iv[image_original]}" class="artZoomAll"
+		rel="{$iv[image_small]}" rev="{$val[image_key]}"><img
+		src="{$iv[image_small]}" /></a>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->
+
+<!--{if $val[videoid] and $this->Config[video_status]}-->
+<div class="feedUservideo">
+  <img src="{$val[VideoImg]}" style="border: none" />
+</div>
+<!--{/if}-->
+
+<!--{if $val[musicid]}-->
+<!--{if $val[xiami_id]}-->
+<div class="feedUserImg"><embed width="257" height="33"
+	wmode="transparent" type="application/x-shockwave-flash"
+	src="http://www.xiami.com/widget/0_{$val[xiami_id]}/singlePlayer.swf"></embed></div>
+<!--{else}-->
+<div class="feedUserImg">
+<div id="play_{$val[MusicID]}"></div>
+<img src="images/music.gif" title="点击播放音乐"
+	onClick="javascript:showFlash('music', '{$val[MusicUrl]}', this, '{$val['MusicID']}');"
+	style="cursor: pointer; border: none;" /></div>
+<!--{/if}-->
+<!--{/if}-->
+					
+				</p>
+				<p>
+				  <span style="color:{$textColor};">{$val[dateline]}</span>
+				  <span style="color:{$textColor};">[转发:{$val[forwards]}]</span>
+				  <span style="color:{$textColor};">[评论:{$val[replys]}]</span>
+				</p>
+			</li>
+		 </div>
+        <!--{/loop}-->
+      </ul>
+    </div>
+	  <a class="bg_arrow arrow_down" href="javascript:;" onmousedown="scroll(3)" onmouseover="scroll(3)" style="CURSOR: hand" onmouseout="scroll(0)">
+	  	<img width="8" height="4" title="" class="arrow" src="{conf site_url}/templates/default/images/transparent.gif">
+	  </a>
+  </div>
+  <!--{/if}-->
+  <!--微博列表-->
+
+ 
+  <!--FANS列表-->
+  <!--{if $isFans}-->
+  <div class="fans_list" style="height:30px;">
+    <h4> 
+	<span>粉丝<em><strong>{$members[fans_count]}</strong>人</em></span> 
+	<a target="_blank" class="all" href="{$this->Config[site_url]}/index.php?mod={$members[username]}&code=fans">全部&gt;&gt;</a> 
+	</h4>
+	</div>
+	<div class="fans_list" style="height:{$fans_height}px;">
+    <ul style="padding:0 10px;">
+      <!--{loop $user_list $val}-->
+      <!--{eval if(false===strpos($val[face],'://')) $val[face] = $this->
+      Config[site_url].'/'.$val[face]; }-->
+      <li> 
+	  <a target="_blank" title="" class="pic" href="{$this->Config[site_url]}/index.php?mod={$val[username]}"> 
+	  <img title="{$val[username]}" onerror="javascript:faceError(this);" src="{$val[face]}" width="50px" height="50px"></a> 
+	  <a title="{$val[username]}" target="_blank" class="name" href="{$this->Config[site_url]}/index.php?mod={$val[username]}">{$val[nickname]}</a> 
+	  </li>
+      <!--{/loop}-->
+    </ul>
+  </div>
+  <!--{/if}-->
+  <!--FANS列表-->
+
+</div>
+

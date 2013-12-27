@@ -1,0 +1,409 @@
+
+<div class="event_pbox">
+<iframe id="uploadframe" name="uploadframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+  <form name="FORM" id="FORM" method="post" action="index.php?mod=event&code=pevent" enctype="multipart/form-data" target="uploadframe">
+  
+    <table><tr><td>
+      <table id="step1" align="left">
+        <tr>
+          <td width="60"><span>*</span>标题:</td>
+          <td><input type="text"  size="30" maxlength="50" id="name" name="name" value="{$title}" class="inputs">
+          <sup id="name_tips" style="display:none; color:#FF0000;"></sup></td>
+        </tr>
+        <tr>
+          <td><span>*</span>主题:</td>
+          <td>{$event_type}</td>
+        </tr>
+        <tr>
+          <td><span>*</span>开始:</td>
+          <td>
+            <sup class="vote_endtime input">
+		  	  <input id="fromt" name="fromt" value="{$fromt}" onclick="WdatePicker({minDate:'%y-%M-%d'})"  type="text" readonly="readonly" size=6 class="inputs2">
+			  &nbsp;&nbsp;
+			  {$hour_select_from}&nbsp;时&nbsp;&nbsp;{$min_select_from}&nbsp;分
+		    </sup>
+		    <sup id="fromt_tips" style="display:none; color:#FF0000;"></sup>
+		  </td>
+        </tr>
+        <tr>
+          <td><span>*</span>结束:</td>
+          <td>
+            <sup class="vote_endtime input">
+		  	  <input id="tot" name="tot" value="{$tot}" onclick="WdatePicker({minDate:'%y-%M-%d'})"  type="text" readonly="readonly" size=6 class="inputs2">
+			  &nbsp;&nbsp;
+			  {$hour_select_to}&nbsp;时&nbsp;&nbsp;{$min_select_to}&nbsp;分
+		    </sup>
+		    <sup id="tot_tips" style="display:none; color:#FF0000;"></sup>
+		  </td>
+        </tr>
+        <tr>
+          <td valign="top"><span>*</span>地址:</td>
+          <td>
+            $province_list
+
+            <input type="hidden" id="hid_province" name="hid_province" value="{$hid_province}">
+
+            <select id="city1" name="city" onchange="changeCity();">
+              <option value='0'>请选择</option>
+            </select>
+
+            <input type="hidden" id="hid_city" name="hid_city" value="{$hid_city}">
+
+            <select id="area1" name="area" style="display:none">
+              <option value='0'>请选择</option>
+            </select>
+
+            <input type="hidden" id="hid_area" name="hid_area" value="$hid_area">
+            <input type="text" id="address" name="address" value="{$address}" size="30" maxlength="50">
+            <sup id="address_tips" style="display:none; color:#FF0000;"></sup>
+          </td>
+        </tr>
+        <!--{if $top == 'top'}-->
+        <tr>
+        <td align="center">&nbsp;</td>
+		<td><input type="button" id="next2" name="next2" value="下一步" onclick="set_step(2,this.form);return false;" class="shareI"></td>
+		</tr>
+        <!--{/if}-->
+      </table>
+	</td></tr></table>
+	
+	<table><tr><td>
+      <table id="step2" align="left">
+        <tr>
+          <td><span>*</span>活动具体描述:（最多2000个字）<br>
+		  <textarea name="content1" id="content1">{$content}</textarea>
+		  <sup id="content1_tips" style="display:none; color:#FF0000;"></sup>
+		  </td></tr>
+        <tr>
+          <td><span>*</span>上传活动海报:
+            <input type="file" id="pic" name="pic" onchange="onloadPic();">
+            <sup id="message" style="display:none; color:#FF0000;"></sup>
+            <sup id='uploading' style="display:none"><img src="images/loading.gif">图片正在上传中、请稍等...</sup>
+            <sup id="hid_pic_tips" style="display:none; color:#FF0000;"></sup>
+            <input type="hidden" id="hid_pic" name="hid_pic" value="{$image}">
+          </td>
+        </tr>
+        <tr id="img" style="display:none">
+          <td>
+            <img id="showimg" name="showimg" src="{$image}" height="50" width="30"></img>
+          </td>
+        </tr>
+        <!--{if $top == 'top'}-->
+        <tr>
+          <td align="center">
+            <input type="button" id="back1" name="back1" value="上一步" onclick="set_step(1,this.form);return false;" class="shareI">
+            <input type="button" id="next3" name="next3" value="下一步" onclick="set_step(3,this.form);return false;" class="shareI"></td>
+        </tr>
+        <!--{/if}-->
+      </table>
+	</td></tr></table>
+	
+	<table><tr><td>
+      <table id="step3" align="left">
+        <tr>
+          <td>人均费用:
+            <label><input type="radio" id="money_r" name="money_r" value="money" {$money} onclick="choosemoney('money');">费用为</label> <input type="text" id="money" name="money" size="1" maxlength="5" readonly="readonly" value="$moneys"> 元
+            <label><input type="radio" id="money_r" name="money_r" value="free" {$free} onclick="choosemoney('free');">免费</label>
+          </td>
+        </tr>
+        <tr>
+          <td>报名资格:
+            <label><input type="radio" id="qua" name="qua" value="all" {$all} onclick="chooseuser('all');"/>所有用户</label><input type="text" style="display: none">
+            <label><input type="radio" id="qua" name="qua" value="qua" {$qua} onclick="chooseuser('qua');"/>指定用户</label>
+          </td>
+        </tr>
+        <tr id="user" style="display:none">
+          <td>
+            <label><input type="checkbox" id="fans" name="fans" onclick="choosefans();" {$fans}>粉丝数不少于</label>
+            <input type="text" id="fans_num" name="fans_num" readonly size=1 maxlength=5 value="{$fans_num}"><br>
+            <label><input type="checkbox" id="same_city" name="same_city" {$same_city}>同城用户<br></label>
+            <!--{if $item_id}-->
+            <label><input type="checkbox" id="inqun" name="inqun" {$inqun} value="{$item_id}">群内用户</label>
+            <!--{/if}-->
+          </td>
+        </tr>
+        <tr>
+          <td>勾选报名时需要用户填写的内容:</td>
+        </tr>
+        <tr>
+          <td>
+            <!--{loop $info $key1 $val1}-->
+            <label><input type="checkbox" id="{$val1[ename]}" name="{$val1[ename]}" value={$key1} {$val1[$val1[ename]]}>$val1[name]</label>
+            <!--{/loop}-->
+          </td>
+        </tr>
+        
+        <tr>
+          <td align="center">
+          <!--{if $top == 'top'}-->
+            <input type="button" id="back2" name="back2" value="上一步" onclick="set_step(2,this.form);return false;" class="shareI">
+          <!--{/if}-->
+            <input type="button" name="SUBMIT" value="发布" onclick="formSubmit();" class="shareI">
+            <input type="hidden" id="top" name="top" value="{$top}">
+            <input type="hidden" id="act" name="act" value="{$act}">
+            <input type="hidden" id="id" name="id" value="{$id}">
+          </td>
+        </tr>
+      </table>
+	</td></tr></table>
+    </form>
+    <div id="publish_share"></div>
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.init({
+	id : 'content1',
+	width : '100%',
+	height : '200px',
+	resizeMode : 1,
+	filterMode : true,
+	skinsPath : '{conf site_url}/templates/default/js/kind/skins/',
+	items : [
+'justifyleft', 'justifycenter', 'justifyright','insertorderedlist', 'insertunorderedlist','title', 'fontname','textcolor','bold','italic', 'underline',
+	]
+});
+setTimeout("KE.create('content1');",100);
+</script>
+<script type="text/javascript">
+function set_step(num,form){
+	if(num == 1){
+		$('#step1').show();
+		$('#step2').hide();
+		$('#step3').hide();
+	}else if(num == 2){
+		var check = checkEventStep1();
+		if(check == false){return false;}
+		$('#step1').hide();
+		$('#step2').show();
+		$('#step3').hide();
+	}else if(num == 3){
+		var check = checkEventStep2();
+		if(check == false){return false;}
+		
+		$('#step1').hide();
+		$('#step2').hide();
+		$('#step3').show();
+	}
+}
+<!--{if $top == 'top'}-->
+$(document).ready(function() {
+set_step(1);
+})
+<!--{/if}-->
+function checkEventStep1(){
+	var name = $("#name").val();
+	if(strlen(name) < 2){
+		$("#name_tips").html("标题必须有哦");
+		$("#name_tips").show();
+		return false;
+	}else{$("#name_tips").hide();}
+
+	var fromt = $("#fromt").val();
+	if(!fromt){
+		$("#fromt_tips").html("开始时间必须有哦");
+		$("#fromt_tips").show();
+		return false;
+	}else{$("#fromt_tips").hide();}
+
+	var tot = $("#tot").val();
+	if(!tot){
+		$("#tot_tips").html("结束时间必须有哦");
+		$("#tot_tips").show();
+		return false;
+	}else{$("#tot_tips").hide();}
+
+	//var address1 = $("#city").val();
+	var address2 = $("#address").val();
+	if(strlen(address2) < 2){
+		$("#address_tips").html("活动地址必须有哦");
+		$("#address_tips").show();
+		return false;
+	}else{$("#address_tips").hide();}
+	
+	return true;
+}
+
+function checkEventStep2(){
+	var content = $("#content1").val();
+	if(strlen(content) < 2){
+		$("#content1_tips").html("活动描述必须有哦");
+		$("#content1_tips").show();
+		return false;
+	}else{
+		$("#content1_tips").hide();
+	}
+	
+	var hid_pic = $("#hid_pic").val();
+	if(!hid_pic){
+		$("#hid_pic_tips").html("活动海报必须有哦");
+		$("#hid_pic_tips").show();
+		return false;
+	}else{$("#hid_pic_tips").hide();}
+	
+	return true;
+}
+function onloadPic(){
+	var fn = $('#pic').val();
+	if (!/.(gif|jpg|png|jpeg)$/i.test(fn)) {
+		alert("请上传jpg、jpeg、gif、png格式的图片。");
+		return false;
+	}
+	var top = $('#top').val();
+	if(top == 'top'){
+		document.getElementById('back1').style.display = 'none';
+		document.getElementById('next3').style.display = 'none';
+	}
+	document.getElementById('uploading').style.display = 'block';
+	document.FORM.target="uploadframe";
+	document.FORM.action="ajax.php?mod=event&code=onloadPic";
+	$('#FORM').submit();
+  }
+
+function formSubmit(){
+
+	document.FORM.target="";
+	var top = document.getElementById('top').value;
+	var post_data = $('#FORM').serialize();
+	$.post(
+		"ajax.php?mod=event&code=create&item="+__APPITEM__+"&item_id="+__APPITEM_ID__, 
+		post_data, 
+		function(r){
+			if(!is_json(r)){
+				var handle_key = 'publish_share';
+				showDialog(handle_key, 'local', '分享到微博', {html:r}, 500);
+				
+				$('#topic_simple_close_btn').click(
+					function() {
+						location.href = "index.php?mod=event&code=detail&id="+$("#topic_simple_item_id").val();
+					}
+				);
+				$('#topic_simple_share_btn').click(
+					function () {
+						var response = function() {
+							location.href = "index.php?mod=event&code=detail&id="+$("#topic_simple_item_id").val();
+						}
+						publishSimpleTopic($('#topic_simple_content').val(), 'event', $("#topic_simple_item_id").val(), {response:response})
+					}
+				);
+			}else{
+				var json = eval('('+r.toString()+')');
+				if (json.done) {
+					if(top){
+					    MessageBox('notice',json.msg);
+						if($('#i_already').length > 0){
+							$('#i_already').val(json.retval.content);
+						}else{
+							$('#i_alreadyajax').val(json.retval.content);
+						}
+						//$('#i_already').val(json.retval.content);
+						//$('#mapp_item').val(json.retval.from);
+						//$('#mapp_item_id').val(json.retval.id);
+						$(".menu_hdb").hide();
+					}else{
+						MessageBox('notice',json.msg);
+						location.href = "index.php?mod=event&code=detail&id="+json.retval.id;
+					}
+				} else {
+					if(json.msg.indexOf("发布成功")>0){
+						show_message_2(json.msg);
+						if(!top){
+							location.href = "index.php?mod=event&code=myevent";
+						}else{
+							$(".menu_hdb").hide();
+						}
+					}
+					MessageBox('warning', json.msg);
+				}
+			}
+		}
+	);
+}
+
+function changeProvince(){
+  var province_id = document.getElementById("province").value;
+  var hid_city = document.getElementById("hid_city").value;
+  var url = "ajax.php?mod=member&code=sel&province="+province_id+"&hid_city="+hid_city;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+	  		    $('#' + "city1").html(d);
+		  		document.getElementById("area1").style.display = "none";
+	  		    document.getElementById('area1').length = 1;
+	  		    if(hid_city){
+					changeCity();
+	  		    }
+		  	}
+  );
+}
+
+$(document).ready(function() {
+changeProvince();
+})
+function changeCity(){
+  var city_id = document.getElementById("city1").value;
+  var url = "ajax.php?mod=member&code=sel&city="+city_id+"&hid_area="+document.getElementById("hid_area").value;
+  var myAjax=$.post(
+		  	url,
+		  	function(d){
+				if(d){
+					document.getElementById("area1").style.display = "block";
+		  		    $('#' + "area1").html(d);
+				}else{
+		  		    document.getElementById('area1').length = 1;
+					document.getElementById("area1").style.display = "none";
+				}
+				document.getElementById("hid_province").value = '';
+				document.getElementById("hid_city").value = '';
+				document.getElementById("hid_area").value = '';
+		  	}
+);
+}
+
+function chooseuser(t){
+  if(t == 'all'){
+	document.getElementById("user").style.display = "none";
+  }else if('qua'){
+	document.getElementById("user").style.display = "block";
+  }
+}
+<!--{if $qua}-->
+$(document).ready(function() {
+chooseuser('qua');
+})
+<!--{/if}-->
+	
+function choosemoney(t){
+  if(t == 'money'){
+	document.getElementById("money").readOnly = false;
+  }else if(t == 'free'){
+	document.getElementById("money").readOnly = "readonly";
+  }
+}
+<!--{if $money}-->
+$(document).ready(function() {
+choosemoney('money');
+})
+<!--{/if}-->
+
+function choosefans(){
+  var fans = document.getElementById("fans").checked;
+  if(fans){
+    document.getElementById("fans_num").readOnly = false;
+  }else{
+	document.getElementById("fans_num").readOnly = "readonly";
+  }
+}
+$(document).ready(function() {
+choosefans();
+})
+
+<!--{if $image}-->
+function setStyle(){
+  document.getElementById("img").style.display = 'block';
+}
+$(document).ready(function() {
+setStyle();
+})
+<!--{/if}-->
+</script>
+<script src="js/date/WdatePicker.js" type="text/javascript"></script>
+</div>

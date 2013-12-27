@@ -1,0 +1,33 @@
+<!--{template admin/header}-->
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.show({
+id : 'content'
+});
+</script>
+<form action="{$action}" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="3"> {$ButtonTitle}网站公告</td>
+    </tr>
+    <tr>
+       <td width="13%" bgcolor="#F8F8F8"><span class="altbg1">标题: </span></td>
+       <td bgcolor="#FFFFFF"><span class="altbg2">
+        <input name="title" type="text" id="title" value="{$notice_title}" size="60" />
+      </span>
+	  </td>
+    </tr>
+	    <tr>
+       <td width="13%" bgcolor="#F8F8F8"><span class="altbg1">内容: </span></td>
+       <td bgcolor="#FFFFFF"><textarea name="content" cols="100" rows="15" id="content">{$notice_content}</textarea></td>
+    </tr>
+	</tr>
+	  <td rowspan="3" class="altbg1" width="200"></td>
+      <td rowspan="3" class="altbg1" width="200">
+	  <button name="do" value='' type="submit" class="button">编辑</button>&nbsp;
+	  <button class="button" type="button" onclick="window.location.href='admin.php?mod=notice';return false;">取消</button>
+        <input name="notice_id" type="hidden" id="notice_id" value="{$notice_id}" /></td>
+    </tr>
+  </table>
+</form>
+

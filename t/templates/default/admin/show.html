@@ -1,0 +1,342 @@
+<!--{template admin/header}-->
+
+
+<form action="admin.php?mod=show&code=domodify" method="post" name="search">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">页面显示设置（将显示数量设置为0，将不显示该栏目信息）</td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic" target="_blank" title="在新窗口中打开查看效果">站点首页</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style=" border:none;border-right:1px dotted #EDEDED;">				
+              <div><span class="fG">[页面左侧]</span> &nbsp;大家都在说：显示
+                <input type="text" name="show[topic_index][recommend_topic]" value="{$show[topic_index][recommend_topic]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_index][recommend_topic]",$this->cache_time(0,43200),$cache[topic_index][recommend_topic]);}</div>
+            				
+              <div><span class="fG">[页面滚动]</span> &nbsp;热议话题：显示
+                <input type="text" name="show[topic_index][hot_tag]" value="{$show[topic_index][hot_tag]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_index][hot_tag]",$this->cache_time(0,86400),$cache[topic_index][hot_tag]);}
+			
+			</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=new" target="_blank" title="在新窗口中打开查看效果">微博广场：最新微博页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style="border:none; border-right:1px dotted #EDEDED"><div><span class="fG">[页面左侧]</span> &nbsp;最新微博显示
+                <input type="text" name="show[topic_new][topic]" value="{$show[topic_new][topic]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_new][topic]",$this->cache_time(0,32400),$cache[topic_new][topic]);}</div>
+		    </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic&amp;code=forward" target="_blank" title="在新窗口中打开查看效果">微博广场：热门转发页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style="border:none; border-right:1px dotted #EDEDED"><div><span class="fG">[页面左侧]</span> &nbsp;近一天热门转发：显示
+                <input type="text" name="show[topic_hot][day1]" value="{$show[topic_hot][day1]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_hot][day1]",$this->cache_time(0,86400),$cache[topic_hot][day1]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近一周热门转发：显示
+                <input type="text" name="show[topic_hot][day7]" value="{$show[topic_hot][day7]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_hot][day7]",$this->cache_time(3600,86400),$cache[topic_hot][day7]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近两周热门转发：显示
+                <input type="text" name="show[topic_hot][day14]" value="{$show[topic_hot][day14]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_hot][day14]",$this->cache_time(7200,864000),$cache[topic_hot][day14]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近一月热门转发：显示
+                <input type="text" name="show[topic_hot][day30]" value="{$show[topic_hot][day30]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_hot][day30]",$this->cache_time(14400,864000),$cache[topic_hot][day30]);}</div>
+				<BR>
+			</td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&amp;code=reply" target="_blank" title="在新窗口中打开查看效果">微博广场：热门评论页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style="border:none; border-right:1px dotted #EDEDED"><div><span class="fG">[页面左侧]</span> &nbsp;近一天热门评论：显示
+                <input name="show[reply_hot][day1]" type="text" id="show[reply_hot][day1]" value="{$show[reply_hot][day1]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[reply_hot][day1]",$this->cache_time(0,86400),$cache[reply_hot][day1]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近一周热门评论：显示
+                <input name="show[reply_hot][day7]" type="text" id="show[reply_hot][day7]" value="{$show[reply_hot][day7]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[reply_hot][day7]",$this->cache_time(3600,86400),$cache[reply_hot][day7]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近两周热门评论：显示
+                <input name="show[reply_hot][day14]" type="text" id="show[reply_hot][day14]" value="{$show[reply_hot][day14]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[reply_hot][day14]",$this->cache_time(7200,864000),$cache[reply_hot][day14]);}</div>
+              <div><span class="fG">[页面左侧]</span> &nbsp;近一月热门评论：显示
+                <input name="show[reply_hot][day30]" type="text" id="show[reply_hot][day30]" value="{$show[reply_hot][day30]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[reply_hot][day30]",$this->cache_time(14400,864000),$cache[reply_hot][day30]);}</div>
+				<BR>
+		    </td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic&amp;code=newreply" target="_blank" title="在新窗口中打开查看效果">微博广场：最新评论页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style="border:none; border-right:1px dotted #EDEDED">
+              <div><span class="fG">[页面左侧]</span> &nbsp;近一月热门评论：显示
+                <input name="show[new_reply][reply]" type="text" id="show[new_reply][reply]" value="{$show[new_reply][reply]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[reply_hot][reply]",$this->cache_time(14400,864000),$cache[reply_hot][reply]);}</div>
+				<BR>
+			  </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=top" target="_blank" title="在新窗口中打开查看效果">达人榜页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>1、最受关注榜：显示
+                <input type="text" name="show[topic_top][guanzhu]" value="{$show[topic_top][guanzhu]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_top][guanzhu]",$this->cache_time(3600,86400),$cache[topic_top][guanzhu]);}</div>
+              <div>2、一周人气榜：显示
+                <input type="text" name="show[topic_top][renqi]" value="{$show[topic_top][renqi]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_top][renqi]",$this->cache_time(3600,345600),$cache[topic_top][renqi]);}</div>
+              <div>3、一周活跃榜：显示
+                <input type="text" name="show[topic_top][huoyue]" value="{$show[topic_top][huoyue]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_top][huoyue]",$this->cache_time(3600,345600),$cache[topic_top][huoyue]);}</div>
+              <div>4、一周影响榜：显示
+                <input type="text" name="show[topic_top][yingxiang]" value="{$show[topic_top][yingxiang]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_top][yingxiang]",$this->cache_time(3600,345600),$cache[topic_top][yingxiang]);}</div>
+              <div>5、积分榜：显示
+                <input type="text" name="show[topic_top][credits]" value="{$show[topic_top][credits]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_top][credits]",$this->cache_time(3600,345600),$cache[topic_top][credits]);}</div>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=tag" target="_blank" title="在新窗口中打开查看效果">话题榜页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>1、最受关注话题：显示
+                <input name="show[tag_index][guanzhu]" type="text" id="show[tag_index][guanzhu]" value="{$show[tag_index][guanzhu]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[tag_index][guanzhu]",$this->cache_time(3600,86400),$cache[tag_index][guanzhu]);}</div>
+              <div>2、最近热门话题：显示
+                <input name="show[tag_index][hot]" type="text" id="show[tag_index][hot]" value="{$show[tag_index][hot]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[tag_index][hot]",$this->cache_time(3600,345600),$cache[tag_index][hot]);}			  </div>
+              <div>3、一周热门话题：显示
+                <input name="show[tag_index][day7]" type="text" id="show[tag_index][day7]" value="{$show[tag_index][day7]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[tag_index][day7]",$this->cache_time(3600,345600),$cache[tag_index][day7]);}</div>
+              <div>4、一周关注话题：显示
+                <input name="show[tag_index][day7_guanzhu]" type="text" id="show[tag_index][day7_guanzhu]" value="{$show[tag_index][day7_guanzhu]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[tag_index][day7_guanzhu]",$this->cache_time(3600,345600),$cache[tag_index][day7_guanzhu]);}</div>
+			  <div>5、推荐话题：显示
+                <input name="show[tag_index][tag_tuijian]" type="text" id="show[tag_index][tag_tuijian]" value="{$show[tag_index][tag_tuijian]}" size="2">
+              条，数据缓存时间 {eval echo FormHandler::Select("cache[tag_index][tag_tuijian]",$this->cache_time(3600,345600),$cache[tag_index][tag_tuijian]);}</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=new" target="_blank" title="在新窗口中打开查看效果">微博广场：页面右侧</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" valign="top" style="border:none; border-right:1px dotted #EDEDED">
+			   <div>1、最活跃用户：显示
+                <input type="text" name="show[topic_index][new_user]" value="{$show[topic_index][new_user]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_index][new_user]",$this->cache_time(0,86400),$cache[topic_index][new_user]);}</div>
+				
+				<div>2、人气关注榜：显示
+                <input type="text" name="show[topic_index][guanzhu]" value="{$show[topic_index][guanzhu]}" size="2">
+                条，数据缓存时间 {eval echo FormHandler::Select("cache[topic_index][guanzhu]",$this->cache_time(0,86400),$cache[topic_index][guanzhu]);}</div>
+			  <div>3、最近话题榜：显示
+                <input type="text" name="show[topic_new][tag]" value="{$show[topic_new][tag]}" size="2">条，
+				显示{eval echo FormHandler::Select("cache[topic_new][day_tag]",$this->cache_time(43200,9676800),$cache[topic_new][day_tag]);}内的话题，数据缓存时间 {eval echo FormHandler::Select("cache[topic_new][tag]",$this->cache_time(0,32400),$cache[topic_new][tag]);}
+			  </div>
+			  <div>4、推荐微群：显示
+                <input type="text" name="show[page_r][recd_qun]" value="{$show[page_r][recd_qun]}" size="2">个
+			  </div>
+			  <div>5、最新同城活动：显示
+                <input type="text" name="show[page_r][tc_event]" value="{$show[page_r][tc_event]}" size="2">个
+			  </div>
+		    </td>
+          </tr>
+        </table></td>
+    </tr>
+    
+	<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=qun" target="_blank" title="在新窗口中打开查看效果">发现微群页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>每个群分类的活跃数：显示
+              <input name="show[qun][activity]" type="text" id="show[qun][activity]" value="{$show[qun][activity]}" size="2">
+                个，数据缓存时间 {eval echo FormHandler::Select("cache[qun][activity]",$this->cache_time(3600,86400),$cache[qun][activity]);}</div>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=myhome" target="_blank" title="在新窗口中打开查看效果">我的首页页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][myhome]" value="{$show[topic][myhome]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic&code=myblog" target="_blank" title="在新窗口中打开查看效果">我的微博页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][myblog]" value="{$show[topic][myblog]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=myfavorite" target="_blank" title="在新窗口中打开查看效果">我的收藏页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][myfavorite]" value="{$show[topic][myfavorite]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic&code=favoritemy" target="_blank" title="在新窗口中打开查看效果">收藏我的页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][favoritemy]" value="{$show[topic][favoritemy]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod=topic&code=mycomment" target="_blank" title="在新窗口中打开查看效果">评论我的页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][mycomment]" value="{$show[topic][mycomment]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=topic&code=myat" target="_blank" title="在新窗口中打开查看效果">@提到我的页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][myat]" value="{$show[topic][myat]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&code=follow" target="_blank" title="在新窗口中打开查看效果">我的关注页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][follow]" value="{$show[topic][follow]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="altbg1">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&code=fans" target="_blank" title="在新窗口中打开查看效果">关注我的页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input type="text" name="show[topic][fans]" value="{$show[topic][fans]}" size="2">
+                条</div></td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg2">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&amp;code=media" target="_blank" title="在新窗口中打开查看效果">媒体汇页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[media][user]" type="text" id="show[media][user]" value="{$show[media][user]}" size="2">
+                个用户</div></td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&amp;code=media" target="_blank" title="在新窗口中打开查看效果">更多媒体汇页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[media_view][user]" type="text" id="show[media_view][user]" value="{$show[media_view][user]}" size="2">
+                个用户</div></td>
+          </tr>
+        </table></td>
+    </tr>
+
+	<tr class="altbg2">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&amp;code=新人报道" target="_blank" title="在新窗口中打开查看效果">单个话题页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[tag_view][tag]" type="text" id="show[tag_view][tag]" value="{$show[tag_view][tag]}" size="2">
+                条
+            </div></td>
+          </tr>
+        </table></td>
+    </tr>
+		<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&amp;code=media" target="_blank" title="在新窗口中打开查看效果">注册完成关注人数</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[reg_follow][user]" type="text" id="show[reg_follow][user]" value="{$show[reg_follow][user]}" size="2">
+                个用户</div></td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg2">
+      <td width="15%"><a href="index.php?mod={MEMBER_NAME}&amp;code=新人报道" target="_blank" title="在新窗口中打开查看效果">投票页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;">
+				<div>
+                	1、列表页面：
+					显示<input name="show[vote][list]" type="text" id="show[vote][list]" value="{$show[vote][list]}" size="2">条
+            	</div>
+				<div>
+					2、右侧热点推荐：
+					显示<input name="show[vote][recd]" type="text" id="show[vote][recd]" value="{$show[vote][recd]}" size="2">条
+				</div>
+			</td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg1">
+      <td width="15%"><a href="index.php?mod=other&amp;code=notice" target="_blank" title="在新窗口中打开查看效果">网站公告页面</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[notice][list]" type="text" id="show[notice][list]" value="{$show[notice][list]}" size="2">
+                条公告</div></td>
+          </tr>
+        </table></td>
+    </tr>
+	<tr class="altbg2">
+      <td width="15%"><a href="index.php" target="_blank" title="在新窗口中打开查看效果">单条微博下拉评论数</a> </td>
+      <td><table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="49%" style="border:none;"><div>
+                <input name="show[topic_one_comment][list]" type="text" id="show[topic_one_comment][list]" value="{$show[topic_one_comment][list]}" size="2">
+                条微博</div></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <center>
+    <button name="do" value='' type="submit" class="button">提交</button>
+  </center>
+</form>
+<br>

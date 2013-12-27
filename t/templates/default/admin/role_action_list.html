@@ -1,0 +1,52 @@
+<!--{template admin/header}-->
+
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+<tr class="header"><td colspan="2">过滤查看-$filter_title</td></tr>
+<tr><td colspan="2" class="category">
+<!--{loop $filter_list $code $_filter}-->
+<button onclick="window.location.href='admin.php?mod=role_action&code=list_action&filter=$code';" class="button">{$_filter[name]}</button> &nbsp;
+<!--{/loop}-->
+<BR><BR>
+&nbsp;&nbsp;前台模块：<!--{loop $module_list $module $module_name}-->
+&nbsp;<A href="admin.php?mod=role_action&code=list_action&filter=module&name={$module}"><B>$module_name</B></A>&nbsp;|
+<!--{/loop}-->
+<HR>
+&nbsp;&nbsp;后台模块：<!--{loop $admin_module_list $module $module_name}-->
+&nbsp;<A href="admin.php?mod=role_action&code=list_action&filter=module&name={$module}&is_admin=1"><B>$module_name</B></A>&nbsp;|
+<!--{/loop}-->
+</td></tr>
+</table><br>
+<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+<tr><td class="multi"></td></tr></table>
+<br>
+
+<form method="POST" action="{$action}">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header" align="center">
+		<td>名称</td>
+
+		<td>操作</td>
+	</tr>
+	<!--{if $filter=='olympic'}-->
+	<td colspan="2"><font color="red">奥运期间建议将以下列出的动作全部禁止。</font><br>
+	禁止方法：选择指定名称->点编辑->进入默认权限设置栏->选全部禁止->提交
+	</td>
+	<!--{/if}-->
+	<!--{loop $action_list $action}-->
+	<!--{eval $_style=$action[is_admin]?' style="color:red;" class="altbg2" ':' class="altbg1" ';}-->
+	<tr align="center" {$_style}>
+		<td>[<!--{eval echo $action[is_admin]?'后台':'前台';}-->]{$action[name]}</td>
+
+		<td>
+		<a href="admin.php?mod=role_action&code=modify&id={$action[id]}">[编辑]</a>
+		<a href="admin.php?mod=role_action&code=delete&id={$action[id]}">[删除]</a>
+		</td>
+	</tr>
+	<!--{/loop}-->
+
+</table>
+<br>
+<center><input type="submit" class="button" value="提　交" /></center>
+<br>
+</form>

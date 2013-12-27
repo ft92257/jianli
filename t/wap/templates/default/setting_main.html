@@ -1,0 +1,225 @@
+<!--{template "topic_header"}-->
+<!--{if MEMBER_ID == $member[uid]}-->
+<div style="margin-top:5px;">
+<p>
+	<span><a href="index.php?mod=settings&code=base&uid={MEMBER_ID}">我的资料</a></span>  |  
+    <span><a href="index.php?mod=settings&code=sex">选择性别</a></span>
+</p>
+<p>
+	<span><a href="index.php?mod=settings&code=nick">修改昵称</a></span>  |  
+	<span><a href="index.php?mod=settings&code=face">修改头像</a></span>
+</p>
+<p>
+	<span><a href="index.php?mod=settings&code=aboutme">个人说明</a></span>  |  
+	<span><a href="index.php?mod=settings&code=signature">个人签名</a></span>
+</p>
+<p>
+	<span><a href="index.php?mod=settings&code=usertag&type=all">选择标签</a></span>
+</p>
+</div>
+<!--{/if}-->
+
+<!--{if $act}-->
+    
+<!--{if 'base' == $act}-->
+    <!--{eval if($member[gender] == 1) $_sex = '男'; else $_sex = '女';}-->
+
+    <div class="u" style="margin-top:10px;">
+      
+          <span>[基本信息]</span>
+          <div class="base_u">
+            <span>
+                <img src="{$member[face]}" style="width:45px; height:45px;padding:1px;border:1px solid #ccc; background:#fff;"/></a>
+                {$member[nickname]}
+            </span>
+            {$member[validate_html]} ({$_sex})
+            <br />
+              <span>
+              <a href="index.php?mod={$member[username]}&code=follow">关注:{$member[follow_count]}人</a>
+               <a href="index.php?mod={$member[username]}&code=fans">粉丝:{$member[fans_count]}人</a>
+               <a href="index.php?mod={$member[username]}">微博:{$member[topic_count]}条</a><br />
+              
+              </span> 
+
+              <span>地区:<!--{if $member[province]}-->{$member[province]},{$member[city]}<!--{else}-->暂无<!--{/if}--></span><br />
+          </div>
+        </div>
+    
+     
+     <div class="u" style="margin-top:10px;">
+
+     
+        <span>[个人信息]</span>
+         <div class="base_u" style="padding:5px;">
+         
+          <span><p>个人签名:<!--{if $member[signature]}-->{$member[signature]}<!--{else}-->暂无<!--{/if}--></p></span>
+          
+          <div style="margin-top:5px;">个人说明:<!--{if $member[aboutme]}-->{$member[aboutme]}<!--{else}-->暂无<!--{/if}--></div>
+          
+         
+        </div>
+        
+    </div> 
+    
+    <div class="u" style="margin-top:10px;">
+     
+     <span>[个人标签]</span>
+       <div class="base_u" style="padding:5px;">
+       
+        <span>
+        <!--{if $my_user_tag}--> 
+        	<!--{loop $my_user_tag $val}--> 
+            	<span><a href="index.php?mod=settings&code=user_tag_view&tagid={$val[tag_id]}">{$val[tag_name]}</a></span> | 
+            <!--{/loop}--> 
+        <!--{else}-->
+        暂无
+        <!--{/if}-->
+        </span>
+        
+      </div>
+     
+  	</div>
+
+
+<!--{elseif 'face' == $act}-->
+    <div class="u" style="margin-top:5px;">
+    <p><img src="{$member[face_original]}" id="cropbox" onclick="upload_face();" border="0" alt="" class="Image" /></p>
+    <p>修改头像:</p>
+    <div>
+    <form method="post" action="index.php?mod=settings&code=do_modify_face" enctype="multipart/form-data" name="face_form"  id="face_form">
+           
+    <input id="idFile" name="face" type="file" />
+      <p><input type="submit" name="Submit" value="修改" /></p>
+    </form>
+    <div>
+    <br />
+    <p>注:<br />
+      1、图片上传速度及大小限制视各地网络情况而定,建议100K以内,支持JPG、GIF.<br />
+      2、部分手机不支持文件名为中文的图片上传.
+    </p>
+    </div>
+      
+<!--{elseif 'nick' == $act}-->
+    
+    <div class="u" style="margin-top:5px;">
+    <p>当前昵称:{$member[nickname]} {$member[validate_html]}</p>
+    <!--{if $member[validate]}-->
+    <span>提醒：已是 V 认证用户,不能修改昵称。</span>
+    <!--{else}-->
+    <form method="post" action="index.php?mod=settings&code=do_modify_profile" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+     <input name="nickname" id="nickname" type="text" value=""  />
+      <p><input type="submit" name="Submit" value="修改" /></p>
+    </form>
+    <p>(发微博后会显示，也用于@姓名 通知)</p>
+    <span>提醒：申 V 认证后，禁止再修改昵称</span>
+    <!--{/if}-->
+    </div>
+    
+    
+<!--{elseif 'aboutme' == $act}-->
+    
+    <div class="u" style="margin-top:5px;">
+     <span style="margin-top:5px;">个人说明</span>
+
+	 <div style="margin-top:5px;">
+     <form method="post" action="index.php?mod=settings&code=do_modify_profile" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+      <textarea name="aboutme" require="false" datatype="LimitB"  style="width:90%; height:100px;">{$member[aboutme]}</textarea>
+      <p><input type="submit" name="Submit" value="修改" /></p>
+     </form>
+     </div>
+     
+      <div  style="margin-top:5px;">提醒:请控制在250个字符之间。</div>
+    </div>
+    
+<!--{elseif 'signature' == $act}-->
+    
+    <div class="u" style="margin-top:5px;">
+     <span style="margin-top:5px;">个人签名</span>
+	 <div style="margin-top:5px;">
+        <form method="post" action="index.php?mod=settings&code=do_modify_profile" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+         <textarea name="signature"  style="width:98%">{$member[signature]}</textarea>
+         <p><input type="submit" name="Submit" value="修改" /></p>
+        </form>
+    </div>
+    <div  style="margin-top:5px;">提醒:不能超过16个字,超过系统将自动截取。</div>
+
+    </div>
+    
+<!--{elseif 'sex' == $act}-->
+    <div class="u" style="margin-top:5px;">
+	<!--{eval if($member[gender] == 1) $_sex = '男'; else $_sex = '女';}-->
+    <p>当前性别：{$_sex}<br />
+    <form method="post" action="index.php?mod=settings&code=do_modify_profile" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+      新的性别：<input type="radio" name="gender" value="1" {eval if($member[gender] == 1) echo 'checked="checked"';}/>
+      男
+      <input type="radio" name="gender" value="2"{eval if($member[gender] == 2) echo 'checked="checked"';}/>
+      女
+      <p><input type="submit" name="Submit" value="修改" /></p>
+    </form>
+    </p>
+
+<!--{elseif 'usertag' == $act}-->
+    <div  class="u"  style="margin-top:5px;">
+    
+    <div style="margin-top:5px;">
+    <!--{eval if($type == 'all') $usettag_hb1 = 'hb';}-->
+    <!--{eval if($type == 'myadd') $usettag_hb2 = 'hb';}-->
+     <a class="{$usettag_hb1}" href="index.php?mod=settings&code=usertag&type=all">全部标签</a> | 
+     <a class="{$usettag_hb2}" href="index.php?mod=settings&code=usertag&type=myadd">已添加的标签</a>
+	</div>
+    
+    <!--{if  'user_tag_all' == $act}-->
+    <p>你可能感兴趣的标签:</p>
+    <!--{/if}-->
+    
+        <div style="width:200px; margin-top:5px;">
+        <!--{if $user_tag_list}-->
+            <!--{loop $user_tag_list $val}-->
+            <span><a href="index.php?mod=settings&code=user_tag_view&tagid={$val[id]}">{$val[name]}</a></span> | 
+            <!--{/loop}-->
+        <!--{/if}-->
+        </div>
+    
+    
+        <br />
+      <p>注:填写多个标签时可以逗号隔开.</p>
+        <form method="post" action="index.php?mod=settings&code=add_user_tag" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+         <input type="text" name="user_tag" id="textfield" style="width:90%"/>
+         <p><input type="submit" name="Submit" value="添加标签" /></p>
+      </form><br />
+        
+    </div>
+    
+<!--{elseif 'user_tag_view' == $act}-->
+
+   <div class="u" style="margin-top:10px;">
+
+    <!--{if $user_tag}-->
+    <div>
+      <span> <font  color="#FF0000" >  [{$user_tag_name}]  </font> 标签已经添加将。 <a href="index.php?mod=settings&code=usertag&type=all">点此重新选择</a></span>
+
+		<div style="margin-top:5px;">
+          <form method="post" action="index.php?mod=settings&code=del_user_tag" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+           <input type="submit" name="Submit" value="删除标签" />  
+           <input name="tagid" type="hidden" id="tagid" value="{$tagid}" />
+          </form>
+          </div>
+	</div>
+      <!--{else}-->
+      <span>确定将<font  color="#FF0000" >  [{$user_tag_name}]  </font>添加到你的标签中</span>吗？<br />
+      <form method="post" action="index.php?mod=settings&code=add_user_tag" enctype="multipart/form-data" name="forminfo"  id="forminfo">
+       <p><input type="submit" name="Submit" value="添加标签" />
+         <input name="user_tag" type="hidden" id="user_tag" value="{$user_tag_name}" />
+       </p>
+  	 </form>
+      <!--{/if}-->
+    </div>
+    
+    <!--{/if}-->
+    
+    
+<!--{/if}-->
+
+
+<!--{template "topic_footer"}-->
+

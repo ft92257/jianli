@@ -1,0 +1,307 @@
+<!--右边栏目 Begin-->
+<div class="mainR">
+
+   <script language="javascript">
+		$(document).ready(function(){
+		    //微群分类
+		    get_qun_category();});
+		//群分类
+		function get_qun_category(){			
+			right_show_ajax('{$member[uid]}','qun_category','qun_category');
+		}
+		
+	</script>
+
+  <div class="side">
+	<h3>
+	微群分类<a class="btn SC_rementuijian_box" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','qun_category','qun_category'); return false;"></a>
+	</h3>
+	<div class="FTL SC_rementuijian_box">
+	  <div id="{$member[uid]}_qun_category"></div>
+    </div>
+  </div>
+
+
+	<!--用户信息 Begin-->
+	<!--{if MEMBER_ID > 0 && !empty($member)}-->
+	<div class="HboxR">
+		<div class="boxRimg qun_r">
+		    <div class="lface"><a href="index.php?mod={$member[username]}" title="{$member[username]}"><img onerror="javascript:faceError(this);" src="{$member[face]}" title="{$member[nickname]}" /></a></div>
+			<div class="rcon">
+            <span class="spanimg">{$member[nickname]} {$member[validate_html]}</span>
+			<br />
+			<span style="color:#555;">{$member[province]}&nbsp;{$member[city]}</span>
+			<br />
+			<span class="qun_r_t_13"><a href="index.php?mod={$member[username]}" title="{$member[username]}">我的微博</a></span>
+			</div>
+		 </div>
+
+		<div class="create_qun_b"><a href="index.php?mod=qun&code=create " class="create_button">创建微群</a></div>
+	</div>
+	<!--{/if}-->  
+
+	<!--{if $this->Get['mod'] == 'qun'}-->
+    <div class="sideBox">
+		<div class="f14B"><a title="微群首页" href="index.php?mod=qun">微群首页</a></div>
+        <div class="f14B"><a title="我的微群" href="index.php?mod=qun&code=profile">我的微群</a></div>
+    </div>
+	<!--{/if}-->
+	
+	
+	<!--推荐群 Begin-->
+	<!--{if in_array($this->Code, array('index', 'tag')) }-->
+	<div class="HboxR" style="margin-top:25px;">
+		<div style="font-size:14px;">你可能感兴趣的群</div>
+		<div class="qun_r">
+			<!--{if $recd_qun_list}-->
+			<ul>
+			  <!--{loop $recd_qun_list $val}-->
+				  <li>
+				  	<div class="lface">
+						<a href="index.php?mod=qun&qid={$val['qid']}" target="_blank">
+							<img src="{$val[icon]}" title="{$val[name]}"/>
+						</a>
+                     </div>
+					<div class="rcon">
+						<span><a href="index.php?mod=qun&qid={$val['qid']}" target="_blank">{$val['name']}</a></span>
+						<br />
+						<span style="color:#555;">
+							<!--{if $val['member_num'] > 0}-->
+								成员{$val['member_num']}人
+							<!--{else}-->
+								还没有成员
+							<!--{/if}-->
+						</span>
+					</div>
+					<div class="clear"></div>
+				  </li>
+			  <!--{/loop}-->
+			</ul>
+			<!--{else}-->
+				<span>可以由管理员在后台推荐</span>
+			<!--{/if}-->
+		</div>
+	</div>
+	<!--{/if}-->	
+	<!--推荐群 End-->
+	
+	<!--{if $new_qun_list}-->
+	<div class="HboxR" style="margin-top:25px;">
+	  <div style="font-size:14px;">最新微群</div>
+	    <div class="qun_r">
+		  <ul>
+		   <!--{loop $new_qun_list $val}-->
+			<li>
+			  <div class="lface">
+				<a href="index.php?mod=qun&qid={$val['qid']}" target="_blank">
+				  <img src="{$val[icon]}" title="{$val[name]}"/>
+				</a>
+              </div>
+			  <div class="rcon">
+				<span><a href="index.php?mod=qun&qid={$val['qid']}" target="_blank">{$val['name']}</a></span>
+				<br />
+				<span style="color:#555;">{$val['member_num']}人	&nbsp;&nbsp;|&nbsp;&nbsp;{$val['thread_num']}条微博</span>
+				<br />
+				<span> <a href="javascript:;" onclick="joinQun({$val['qid']})">加入群</a></span> 
+			  </div>
+		    <div class="clear"></div>
+		  </li>
+		  <!--{/loop}-->
+		</ul>
+	  </div>
+	</div>
+	<!--{/if}-->
+
+	<!--群相关信息 Begin-->
+	<!--{if !empty($qun_info)}-->
+	<div class="HboxR">
+		
+		<!--微群右侧顶部统计 Begin-->
+		
+		<div id="c_wp" class="qun_r_t">
+			<div class="fl mrb">
+				<div class="qun_r_t_11"><a href="index.php?mod=qun&code=members&qid={$qid}">{$qun_info['member_num']}</a></div>
+				<div class="qun_r_t_12">成员</div>
+			</div>
+			<div class="fl mrb">
+				<div class="qun_r_t_11"><a href="index.php?mod=qun&qid={$qid}">{$qun_info['thread_num']}</a></div>
+				<div class="qun_r_t_12">微博</div>
+			</div>
+			<!--
+			<div class="fl" style="padding-left:5px;">
+				<div style="font-size:14px; font-weight:700;"><a href="">{$qun_info['topic_num']}</a></div>
+				<div class="qun_r_t_12">话题</div>
+			</div>-->
+			<div style="clear:both;"></div>
+		</div>
+		
+		<!--微群右侧顶部统计 End-->
+		
+		<div id="qun_att_wp" style="margin-top:15px;">
+		
+			<!--微群分类 Begin-->
+			<div>
+				<span class="q_th">分 类：</span>
+				<span class="qun_r_t_13">
+					<a href="index.php?mod=qun&code=category&cat_id={$top_cat['cat_id']}">{$top_cat['cat_name']}</a>
+					&nbsp;>&nbsp;
+					<a href="index.php?mod=qun&code=category&cat_id={$sub_cat['cat_id']}">{$sub_cat['cat_name']}</a>
+				</span>
+			</div>
+			<!--微群分类 End-->
+			
+			<!--群主 Begin-->
+			<div>
+				<span class="q_th">群 主：</span>
+				<span class="qun_r_t_13">
+					<a href="index.php?mod={$qun_info['foundername']}">
+						{$founder_info[nickname]} {$founder_info[validate_html]}
+					</a>
+				</span>
+			</div>
+			<!--群主 End-->
+			
+			<!--群管理员 Begin-->
+			<!--{if $qun_admin_list}-->
+			<div>
+				<span class="q_th">管理员：</span>
+				<!--{loop $qun_admin_list $admin}-->
+				<span class="qun_r_t_13"><a href="index.php?mod={$admin['username']}">{$admin['nickname']}</a>$admin['validate_html']</span>
+				&nbsp;
+				<!--{/loop}-->
+			</div>
+			<!--{/if}-->
+			<!--群管理员 End-->
+			
+			<!--{if $followme_nums > 0}-->
+			<div>
+				<span class="q_th">
+					群里有：
+					<a href="index.php?mod=qun&code=members&type=followed&qid={$qid}">{$followme_nums}位我关注</a>
+				</span>
+				<span></span>
+			</div>
+			<!--{/if}-->
+			
+			<!--{if !empty($tag_ary)}-->
+			<div>
+				<span class="q_th">群标签：</span>
+				<span class="qun_r_t_13">
+					<!--{loop $tag_ary $tag}-->
+						<a href="index.php?mod=qun&code=tag&tag_id={$tag['tag_id']}">{$tag['tag_name']}</a>
+						&nbsp;
+					<!--{/loop}-->
+				</span>
+			</div>
+			<!--{/if}-->
+			
+			<div>
+				<span class="q_th">群简介：</span>
+				<!--{if $qun_info['desc']}-->
+					<span>{$qun_info['desc']}</span>
+				<!--{else}-->
+					<span>欢迎来到{$qun_info['name']}微群</span>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+	
+	<!--群内活动 Begin-->
+		<!--{if $recd_event_list}-->
+		<div class="HboxR" style="margin-top:15px;">
+			<div style="font-size:14px;">群内推荐活动</div>
+			<div>
+				<ul>
+				  <!--{loop $recd_event_list $val}-->
+					  <li class="qun_r_t_13"><a href="index.php?mod=event&code=detail&id={$val[eid]}">$val['title']</a></li>
+				  <!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		<!--{/if}-->
+	<!--群内活动End-->
+	
+	<!--群内活动 Begin-->
+		<!--{if $recd_vote_list}-->
+		<div class="HboxR" style="margin-top:15px;">
+			<div style="font-size:14px;">群内推荐投票</div>
+			<div>
+				<ul>
+				  <!--{loop $recd_vote_list $val}-->
+					  <li class="qun_r_t_13"><a href="javascript:void(0);" onclick="vote_ajax_menu($val[vid],$uid);">$val['subject']</a></li>
+				  <!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		<!--{/if}-->
+	<!--群内活动End-->
+	
+	<!--群内最新成员 Begin-->
+		<!--{if $new_members}-->
+		<div class="HboxR" style="margin-top:15px;">
+			<div style="font-size:14px;">欢迎新成员</div>
+			<div>
+				<ul class="sideul2">
+				  <!--{loop $new_members $val}-->
+					  <li class="h_h2"><a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" title="{$val[nickname]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></a>
+					  <b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b>
+					  <div id="user_{$val[uid]}_user" class="layS2"></div>
+					  </li>
+				  <!--{/loop}-->
+				</ul>
+			</div>
+		</div>
+		<!--{/if}-->
+	<!--群内最新成员 End-->
+	
+	<!--{/if}-->
+	<!--群相关信息 End-->
+	
+	<!--我的微群页面右侧边栏 Begin-->
+	<!--{if $this->Code == 'profile'}-->
+	<div class="HboxR" style="margin-top:15px;">
+		<div style="color:#444;">
+			满足以下条件才能创建微群：
+			<br />
+			<!--{loop $ploys $key $val}-->
+				<!--{eval echo $key+1;}-->.{$val}
+				<br />
+			<!--{/loop}-->
+			<a href="index.php?mod=qun&code=ploy">查看微群策略&gt;&gt;</a>
+		</div>
+	</div>
+	 
+	 <!--我的微群页面右侧导航 Begin-->
+	 <div class="HboxR" style="margin-top:25px; font-size:14px;">
+		<!--{loop $view_list $view_nav}-->
+		<div class="pf_r_nav"><a href="index.php?mod=qun&code=profile&view={$view_nav['code']}">{$view_nav['title']}</a></div>
+		<!--{/loop}-->
+	 </div>
+	 <!--我的微群页面右侧导航 End-->
+	 
+	<!--{/if}-->
+	<!--我的微群页面右侧边栏 End-->
+	
+	<!--{if $this->Code=='category'}-->
+	<!--{if $hot_tag_ary}-->
+	<div class="HboxR">
+		<div style="margin-top:30px; font-size:14px; margin-bottom:10px;">热门群标签</div>
+		<div id="hot_24_wp">
+			<!--{loop $hot_tag_ary $tag}-->
+			<span><a href="index.php?mod=qun&code=tag&tag_id={$tag['tag_id']}" >{$tag['tag_name']}</a></span>
+			&nbsp;
+			<!--{/loop}-->
+		</div>
+    </div>
+	<!--{/if}-->
+	<!--{/if}-->
+	 
+    <!--{if $this->Config[ad_enable]}-->
+    <div class="R_AD">
+		{$this->Config[ad][ad_list][qun][middle_right]}
+    </div>
+    <!--{/if}-->
+	
+</div>
+</div>
+</div>

@@ -1,0 +1,39 @@
+<include file="public:header" />
+
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',3,1);">广告图</li>
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+<form action="" enctype="multipart/form-data"	  method="post" >
+<table>
+<tr>
+<th>名称</th>
+<td><input name='name' width="200px" type="text" value="{$info.name}" /></td>
+</tr>
+
+<tr>
+<th>图片</th>
+<td><input type="file" name="file" value="{$val.img}"></td>
+</tr>
+
+
+<tr>
+<th>显示</th>
+<td>显示<input type="radio" name="show" value="1" 
+<if condition="$info.is_look eq 1 " >checked="checked"</if>  /> 不显示<input type="radio" name="show" value="0"  checked="checked"/></td>
+</tr>
+
+
+
+</table>
+
+		
+      </div>
+      
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+</form>
+

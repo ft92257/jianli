@@ -1,0 +1,55 @@
+<!--{template "topic_header"}-->
+<div style="padding:2px;">
+	<span class="">转发至我的微博</span>
+</div>
+<div class="m">
+  <div style="padding:2px;"><a href="index.php?mod={$list_topic[username]}">{$list_topic[nickname]}</a>：{$list_topic[content]} </div>
+  <!--{if $list_topic[imageid] && $list_topic[image_list]}-->
+	<div>
+		{loop $list_topic[image_list] $iv}
+		<p><img src="{$iv[image_small]}" /></p>
+		{/loop}
+	</div>
+  <!--{/if}-->
+
+	<div class="t_manger">
+	<span class="p_time">{$list_topic[dateline]}   {$list_topic[from_string]}</span> 
+	 <!--{if $list_topic[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+		<a href="index.php?mod=topic&amp;code=del&amp;tid={$list_topic[tid]}">删除</a> |&nbsp;
+		<!--{if  time() - $list_topic[addtime] < 3600 || 'admin'==MEMBER_ROLE_TYPE}-->
+		<!--{if $list_topic[replys] <= 0 && $list_topic[forwards] <= 0 || 'admin'==MEMBER_ROLE_TYPE}-->
+		<a href="index.php?mod=topic&amp;code=modify&amp;tid={$list_topic[tid]}">编辑</a> &nbsp;
+		<!--{/if}-->
+		<!--{/if}-->
+	 <!--{/if}-->
+	 </div>
+</div>
+
+
+<div style="padding:2px;">
+<!--{if $this->Config[topic_input_length]>0}-->
+转发理由{conf topic_input_length}字以内
+<!--{/if}-->
+</div>
+<div class="u2">
+	<!--{if MEMBER_ID}-->
+	<div style="padding:2px;">
+	<form action="index.php?mod=topic&code=do_forward" method="POST" enctype="multipart/form-data" name="forward_form" id="forward_form">
+	 <span>
+	 <textarea name="content" id="content" style="width:99%;" rows="2" cols="" /></textarea>
+	 </span>
+	 <span> 
+	  <input type="submit" name="Submit" value="提交" />
+	  <input name="topictype" type="checkbox" id="topictype" value="both" checked="checked" />
+	  同时作为评论发布
+	  <input name="roottid" type="hidden" id="roottid" value="{$roottid}" />
+	  <input name="totid" type="hidden" id="totid" value="{$totid}" />
+	 </span>
+	 </form>
+	</div>
+	<div>(可为空，默认为转发微博)</div>
+	<!--{else}-->
+	<div style="margin-top:20px;"> <a href="index.php?mod=login">登录后转发微博</a></div>
+	<!--{/if}-->
+</div>
+<!--{template "topic_footer"}-->

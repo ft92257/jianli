@@ -1,0 +1,26 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename WdatePicker.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 512440855 1563773478 173 $
+ *******************************************************************/
+
+
+.Wdate{
+	border:#999 1px solid;
+	height:20px;
+	background:#fff url(datePicker.gif) no-repeat right;
+	padding:4px;
+}
+
+.WdateFmtErr{
+	font-weight:bold;
+	color:red;
+}

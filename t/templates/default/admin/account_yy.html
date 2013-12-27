@@ -1,0 +1,49 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>说明提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>启用YY，可以使用YY帐户登录{conf site_name}({conf site_url})、不再担心忘记密码；</li>
+        </ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings" action="admin.php?mod=account&code=do_modify_yy">
+	<a name="YY设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">YY设置</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>是否启用？</b><br>（注意：允许此功能需要PHP支持curl组件）</td>
+			<td>{$yy_enable_radio}</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>client_id</b><br>
+            默认 “”，<BR>
+			如需全新申请，请访问<A HREF="http://gdb.yy.com" target=_blank><b>http://gdb.yy.com</b></A>
+            </td>
+			<td><input type="text" name="yy[client_id]" value="{$yy[client_id]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td width="45%"><b>client_secret</b><br>
+            默认 “”，使用同上
+            </td>
+			<td><input type="text" name="yy[client_secret]" value="{$yy[client_secret]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td width="45%"><b>使用YY帐号登录后，是否向用户显示注册帐号/密码提示信息？</b><br>
+            建议选是
+            </td>
+			<td>{$yy_reg_pwd_display_radio}</td>
+		</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+</form>
+<br>

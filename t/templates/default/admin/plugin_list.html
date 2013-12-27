@@ -1,0 +1,74 @@
+<!--{template admin/header}-->
+
+<style>
+.td2 span{ padding:2px 4px;}
+</style>
+<div id="main_wp" class="mt10">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="4">已安装插件列表</td>
+	</tr>
+	<tr class="list_h_2">
+		<td colspan="2">插件名称/设置管理</td>
+		<td width="15%">插件状态</td>
+		<td width="18%">操作</td>
+	</tr>
+	<!--{loop $plugin_list $value}-->
+		<tr>
+			<td class="td2" width="3%"><img src="{$value['logo']}"/></td>
+			<td class="td2"><!--{if $value['available'] == 1}--><b>{$value['name']}&nbsp;&nbsp;{$value['version']}</b><!--{else}--><font style="color:#999999">{$value['name']}&nbsp;&nbsp;{$value['version']}</font><!--{/if}--><!--{if $value['available'] == 1}--><br>
+			<!--{if $value['pluginvar']}-->
+			&nbsp;[ <a href="admin.php?mod=plugin&code=config&id={$value['pluginid']}">设置</a> ]
+			<!--{/if}-->
+			<!--{if $value['pluginmenu']}-->
+			<!--{loop $value['pluginmenu'] $managemenu}-->
+			&nbsp;[ <a href="admin.php?mod=plugin&code=manage&id={$value['pluginid']}&identifier={$managemenu['identifier']}&pmod={$managemenu['pmod']}">{$managemenu['name']}</a> ]
+			<!--{/loop}-->
+			<!--{/if}-->
+			<!--{/if}-->
+			</td>
+			<td class="td2">
+			<!--{if $value['available'] == 0}-->
+			<span style="padding:3px 5px; background-color:#FF0000; color:#FFFFFF;">插件已关闭</span>
+			<!--{elseif $value['available'] == 1}-->
+			<span style="padding:3px 5px; background-color:#006600; color:#FFFFFF;">插件启动中</span>
+			<!--{else}-->
+			<span style="padding:3px 5px; background-color:#000066; color:#FFFFFF;">插件设计中</span>
+			<!--{/if}-->
+			</td>
+			<td class="td2" align="right"><span>
+			<!--{if $value['available'] == 1}-->
+			<a href="admin.php?mod=plugin&&code=action&tyle=stop&id={$value['pluginid']}">关闭</a>
+			<!--{elseif $value['available'] == 2}-->
+			<a href="admin.php?mod=plugin&code=del&id={$value['pluginid']}">删除</a>
+			<!--{else}-->
+			<a href="admin.php?mod=plugin&&code=action&tyle=start&id={$value['pluginid']}">启动</a>
+			<!--{/if}-->
+			</span>
+			<span>
+			<!--{if $value['available'] == 2}-->
+			<font style="color:#999999;">卸载</font>
+			<!--{else}-->
+			<a href="{$value['uninstall']}" onclick="return confirm('您确定要卸载[{$value['name']}]插件吗？');">卸载</a>
+			<!--{/if}-->
+			</span>
+			<span>
+			<!--{if $value['available'] == 2}-->
+			<font style="color:#999999;">升级</font>
+			<!--{else}-->
+			<a href="{$value['upgrade']}">升级</a>
+			<!--{/if}-->
+			</span>
+			<!--{if PLUGINDEVELOPER > 0}-->
+			<span><a href="admin.php?mod=plugindesign&code=design&id={$value['pluginid']}">设计</a></span>
+			<!--{/if}-->
+			</td>
+		</tr>
+	<!--{/loop}-->
+	<!--{if $pages}-->
+		<tr>
+		<td colspan="4">$pages</td>
+		</tr>
+		<!--{/if}-->
+</table>
+</div>

@@ -1,0 +1,17 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename jquery.mobile.i.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:35 1869195883 24284899 210 $
+ *******************************************************************/
+
+
+.ui-content{border-width:0;overflow:visible;overflow-x:hidden; padding-top:0px; padding-bottom:0px; padding-left:0px; padding-right:0px;}
+.ui-controlgroup-label { font-size: 24px;width:70px; line-height:49px;}

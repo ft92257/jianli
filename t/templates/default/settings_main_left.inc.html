@@ -1,0 +1,54 @@
+<div class="W_main_l">
+  <div class="left_nav">
+  <style type="text/css">
+  .setframe .left_nav .tago{background-color: #4D9CD4;}
+  .setframe .left_nav .tagn:hover{ background-color:#e3eef2;}
+  .setframe .left_nav .tago a{ color:#fff;}
+  </style>
+	<h3 class="person_info">资料设置</h3>
+    
+	<!--{eval $base_hoverCLS = ('base' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $face_hoverCLS = ('face' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $secret_hoverCLS = ('secret' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $user_tag_hoverCLS = ('user_tag' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $vip_intro_hoverCLS = ('vip_intro' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $validate_extra_hoverCLS = ('validate_extra' == $this->Code ? 'tago' : 'tagn');}-->
+	
+	<li><div class="{$base_hoverCLS}"><A HREF="index.php?mod=settings&code=base">我的资料</A></div></li>
+	<li><div class="{$face_hoverCLS}"><A HREF="index.php?mod=settings&code=face">我的头像</A></div></li>
+	<li><div class="{$secret_hoverCLS}"><A HREF="index.php?mod=settings&code=secret">修改密码</A></div></li>
+	<li><div class="{$user_tag_hoverCLS}"><A HREF="index.php?mod=user_tag">我的标签</A></div></li>
+	<li><div class="{$vip_intro_hoverCLS}"><A HREF="index.php?mod=other&code=vip_intro">申请V认证</A></div></li>
+	<!--{if ($member['validate'] && $member['validate_extra'])}-->
+	<li><div class="{$validate_extra_hoverCLS}"><A HREF="index.php?mod=settings&code=validate_extra">专题设置</A></div></li>
+	<!--{/if}-->
+	<li><div class="tagb"></div></li>
+  </div>
+	
+  <div class="left_nav">
+	<h3 class="person_lever">积分等级</h3>
+	<!--{eval $extcredits_hoverCLS = ('extcredits' == $this->Code ? 'tago' : 'tagn');}-->
+	<!--{eval $exp_hoverCLS = ('exp' == $this->Code ? 'tago' : 'tagn');}-->
+	<li><div class="tagn {$extcredits_hoverCLS}"><A HREF="index.php?mod=settings&code=extcredits">我的积分</A></div></li>
+	<li><div class="tagn {$exp_hoverCLS}"><A HREF="index.php?mod=settings&code=exp">微博等级</A></div></li>
+	<li><div class="tagb"></div></li>
+  </div>
+	
+  <div class="left_nav">
+  <!--{eval $theme_hoverCLS = ('theme' == $this->Code ? 'tago2' : 'tagn2');}-->
+	<h3 class="person_theme {$theme_hoverCLS}"><A HREF="index.php?mod=skin">更换皮肤</A></h3>
+	<li><div class="tagb"></div></li>
+  </div>
+
+  <div class="left_nav">
+  <!--{eval $account_hoverCLS = (in_array($this->Code,array('qqwb','sina','yy','renren','kaixin','fjau_enable')) ? 'tago2' : 'tagn2');}-->
+	<h3 class="person_account {$account_hoverCLS}"><A HREF="index.php?mod=account">帐号绑定</A></h3>
+	<li><div class="tagb"></div></li>
+  </div>
+  
+  <div class="left_nav">
+    <!--{eval $sms_hoverCLS = (in_array($this->Code,array('wap','mobile','iphone','android','pad','sms')) ? 'tago2' : 'tagn2');}-->
+	<h3 class="person_phone {$sms_hoverCLS}"><A HREF="index.php?mod=other&code=wap">手机应用</A></h3>
+	<li><div class="tagb"></div></li>
+  </div>
+</div>

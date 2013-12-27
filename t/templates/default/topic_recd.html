@@ -1,0 +1,45 @@
+<style type="text/css">
+.recd_wp td{ height:30px;}
+</style>
+<div class="dialog_inner">
+	<div>
+	<form id="recd_from_{$tid}" method="post">
+		<table class="recd_wp">
+			<tr>
+				<td width="30%">推荐或置顶</td>
+				<td>
+					<select name="recd" id="recd">
+						<!--{loop $recd_levels $value}-->
+							<option value="{$value['level']}" <!--{if $value['level']==$topic_recd['recd']}-->selected="selected"<!--{/if}-->>{$value['name']}</option>
+						<!--{/loop}-->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">显示优先级</td>
+				<td>
+					<input id="display_order" name="display_order" class="Ainp" type="text" style="width:77px;" value="{$topic_recd['display_order']}" onkeyup="allowNumeric(this);">&nbsp;数字大的优先显示
+				</td>
+			</tr>
+			<tr>
+				<td>有效日期到</td>
+				<td>
+					<input id="expiration" name="expiration" class="Ainp" onclick="WdatePicker({minDate:'%y-%M-%d'})"  type="text" readonly="readonly" style="width:77px;" value="{$topic_recd['expiration']}">&nbsp;留空代表一直有效
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" name="tid" value="{$tid}" />
+					<input type="hidden" name="tag_id" value="{$tag_id}" />
+				</td>
+				<td>
+					<input type="button" title="按Ctrl+Enter直接创建" onclick="recdTopic('{$this->Get[handle_key]}','recd_from_{$tid}');" value="确定" class="shareI" id="groupSubmit">
+					&nbsp;&nbsp;
+					<button class="shareI" onclick="closeDialog('{$this->Get[handle_key]}');" type="button">取消</button>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+<script src="js/date/WdatePicker.js" type="text/javascript"></script>

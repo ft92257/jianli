@@ -1,0 +1,125 @@
+{template admin/header}
+<div class="nav3">
+  <ul class="cc">
+    <li>
+      <a href="admin.php?mod=city">省份管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=city&code=city">城市管理</a>
+    </li>
+    <li>
+      <a href="admin.php?mod=city&code=zone">区域管理</a>
+    </li>
+	<li class="current">
+	  <a href="admin.php?mod=city&code=street">地段管理</a>
+	</li>
+  </ul>
+</div>
+
+<div class="mt10">
+<form name="form1" id="form1" method="post" action="admin.php?mod=city&code=addstreet">
+  <table width=98% cellspacing=1 cellpadding=3 class="tableorder">
+  <!--{if $id}-->
+    <tr class="header">
+      <td colspan=2>修改街道</td>
+    </tr>
+    <tr>
+      <td class="altbg1">名称</td>
+      <td class="altbg2"><input type="text" name="street" id="street" value="{$name}"></td>
+    </tr>
+    <tr>
+  <!--{else}-->
+    <tr class="header">
+      <td colspan=2>创建街道</td>
+    </tr>
+    <tr>
+      <td class="altbg1">名称</td>
+      <td class="altbg2"><textarea name="street" id="street" rows="5" cols="40"></textarea><font color="red">注:</font>如要同时添加多个地名,每个地段换一行.</td>
+    </tr>
+  <!--{/if}-->
+    <tr>
+      <td class="altbg1">区域</td>
+      <td class="altbg2">
+        <select name="area" id="area" onchange="return changeArea();">
+          <option value=0>请选择</option>
+          $area_option
+        </select>
+        
+        <select name="city" id="city" onchange="return changeCity();">
+          <option value=0>请选择</option>
+        </select>
+        <input type="hidden" name="hid_city" id="hid_city" value="{$city}">
+
+        <select name="zone" id="zone" onchange="return changeZone();">
+          <option value=0>请选择</option>
+        </select>
+        <input type="hidden" name="hid_zone" id="hid_zone" value="{$zone}">
+      </td>
+    </tr>
+  </table>
+<script type="text/javascript">
+  function changeArea(){
+	var area_id = document.getElementById("area").value;
+	var city = document.getElementById("hid_city").value;
+    var url = "ajax.php?mod=member&code=sel&province="+area_id + "&hid_city=" + city;
+  	var myAjax=$.post(
+  		  	url,
+  		  	function(d){
+  	  		  	if(d){
+  	  		    	$('#' + "city").html(d);
+  	  	  			changeCity();
+  	  		  	}else{
+  	  	  		  	document.getElementById("city").length = 1;;
+  	  	  		  	document.getElementById("zone").length = 1;;
+  	  	  		}
+  		  	}
+  	);
+    return false;
+  }
+  changeArea();
+  function changeCity(){
+		var city_id = document.getElementById("city").value;
+		var zone_id = document.getElementById("hid_zone").value;
+		
+	    var url = "ajax.php?mod=member&code=sel&city="+city_id+"&hid_area="+zone_id;
+	  	var myAjax=$.post(
+	  		  	url,
+	  		  	function(d){
+		  		  	if(d){
+	  	  		    	$('#' + "zone").html(d);
+	  	  	  			changeZone();
+		  		  	}else{
+	  	  	  		  	document.getElementById("zone").length = 1;;
+			  		}
+	  		  	}
+	  	);
+	    return false;
+	  }
+
+  function changeZone(){
+	var area_id = document.getElementById("area").value;
+	var city_id = document.getElementById("city").value;
+	var zone_id = document.getElementById("zone").value;
+	var url = "ajax.php?mod=class&code=resultlist&act=street&area="+area_id +"&city="+city_id+"&zone_id="+zone_id;
+    if(zone_id == '0'){
+      	 $('#' + "resultlist").hide();
+      	 return;
+   	}
+	var myAjax=$.post(
+	  		  	url,
+	  		  	function(d){
+		  		  	$('#' + "resultlist").show();
+	  	  		    $('#' + "resultlist").html(d);
+	  		  	}
+	);
+	return false;
+  }
+  
+</script>
+<div>
+  <input type="submit" name="addstreet" value="确定" class="button">
+  <input type="hidden" name="id" value="{$id}">
+</div>
+</form>
+<div id="resultlist"></div>
+</div>

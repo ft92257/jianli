@@ -1,0 +1,55 @@
+<!--{template admin/header}--> <script language="JavaScript">
+function checkalloption(form, value) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.value == value && e.type == 'radio' && e.disabled != true) {
+e.checked = true;
+}
+}
+}
+function checkallvalue(form, value, checkall) {
+var checkall = checkall ? checkall : 'chkall';
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.type == 'checkbox' && e.value == value) {
+e.checked = form.elements[checkall].checked;
+}
+}
+}
+function zoomtextarea(objname, zoom) {
+zoomsize = zoom ? 10 : -10;
+obj = $(objname);
+if(obj.rows + zoomsize > 0 && obj.cols + zoomsize * 3 > 0) {
+obj.rows += zoomsize;
+obj.cols += zoomsize * 3;
+}
+}
+function redirect(url) {
+window.location.replace(url);
+}
+var collapsed = getcookie('guanzhu_collapse');
+function collapse_change(menucount) {
+if($('menu_' + menucount).style.display == 'none') {
+$('menu_' + menucount).style.display = '';collapsed = collapsed.replace('[' + menucount + ']' , '');
+$('menuimg_' + menucount).src = './images/menu_reduce.gif';
+} else {
+$('menu_' + menucount).style.display = 'none';collapsed += '[' + menucount + ']';
+$('menuimg_' + menucount).src = './images/menu_add.gif';
+}
+setcookie('guanzhu_collapse', collapsed, 2592000);
+}
+</script> <div class="tt"> <form method="post" action="admin.php?mod=task&code=domodify"> <input type="hidden" name="id" value="{$this->ID}" /> <table class="tableborder" cellspacing="0" cellpadding="0"  id="table2" name="table2"> <tr class="header"> <td colspan="2">编辑计划任务 - {$task[name]}</td> </tr> <tbody> <tr > <td width="60%"><b>星期：</b>设置在每周的星期几执行本任务<br> <font color=red> “*”为不设置按周运行，那将按下面日期设定运行</font><BR>
+如果空间商规定了每周只能在周六可以采集，那么选“周六”，否则不要设置 </td> <td><select name="weekdaynew"> <option value="-1">*</option>
+$weekdayselect
+</select></td> </tr> <tr > <td width="60%"><b>日期：</b>设置在每月哪一天执行本任务<br> <font color=red>“*”为不限制，即每天都执行本任务</font>；<BR>
+如果上面设置了在特定的“周几”执行任务，那么日期设置就无效了 </td> <td><select name="daynew"> <option value="-1">*</option>
+$dayselect
+</select></td> </tr> <tr > <td width="60%"><b>小时：</b>设置某天的哪一小时执行本任务<br> <font color=red>“*”为不限制，即每小时都会按下面设置的分钟点执行</font></td> <td><select name="hournew"> <option value="-1">*</option>
+$hourselect
+</select></td> </tr> <tr > <td width="60%"><b>分钟：</b>设置在某小时的哪些分钟点执行本任务<br> <font color=red>分钟值只能是从小到大，每小时最多设置12个分钟点，即执行12次，“*”为不执行</font><BR>
+如选择15、30、45，其他为*，那么每小时的15分、30分和45分都会执行一次本任务 </font> </td> <td>$minuteselect</td> </tr> <!--{if 'system'==$task['type']}--> <tr > <td width="60%"><b>任务脚本：</b><br>
+设置本任务的执行程序文件名（请勿包含路径），程序脚本统一存放于 ./include/task/ 目录中</span></td> <td><input readonly style="color:#000;" type="text" size="30" name="filenamenew" value="{$task[filename]}" class="input"> </td> </tr> <!--{else}--> <tr > <td width="60%"><b>任务脚本：</b><br>
+设置本任务的执行程序文件名（请勿包含路径），程序脚本统一存放于 ./include/task/ 目录中</span></td> <td><input type="text" size="30" name="filenamenew" value="{$task[filename]}" class="input"> </td> </tr> <!--{/if}--> </tbody> </table> <span id="submit"><br/> <center>
+（请在修改之前记录原有设置，不当的设置将可能导致不可预期的错误）
+<input type="submit" name="editsubmit" value="提交修改" class="btn"> </center> <br/> </span> </form>
+{template "admin/footer"} 

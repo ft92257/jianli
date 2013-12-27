@@ -1,0 +1,99 @@
+BODY {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+TD {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+TH {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+DIV {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+LI {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+DT {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+DD {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+SPAN {
+	FONT-SIZE: 13px; COLOR: #566984
+}
+FORM {
+	MARGIN: 0px
+}
+#bdutree {
+	DISPLAY: none; FILTER: alpha(opacity=85); LEFT: 0px; WIDTH: 400px; POSITION: absolute; TOP: 0px; HEIGHT: 300px
+}
+#bdutree A {
+	COLOR: #364c6d; TEXT-DECORATION: none
+}
+.button {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BACKGROUND-IMAGE: url(bg_button_blue.gif); BORDER-LEFT: 0px; WIDTH: 78px; COLOR: white; BORDER-BOTTOM: 0px; HEIGHT: 21px; BACKGROUND-COLOR: transparent
+}
+.rectbutton {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; DISPLAY: block; BACKGROUND-IMAGE: url(bg_rectbtn.png); OVERFLOW: hidden; BORDER-LEFT: 0px; WIDTH: 67px; COLOR: #364c6d; BORDER-BOTTOM: 0px; BACKGROUND-REPEAT: repeat-x; HEIGHT: 27px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+.linkbutton {
+	BACKGROUND-IMAGE: url(bg_button_blue.gif); MARGIN: 0px 5px; WIDTH: 78px; COLOR: white; LINE-HEIGHT: 21px; HEIGHT: 21px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.linkbutton:hover {
+	BACKGROUND-IMAGE: url(bg_button_blue.gif); MARGIN: 0px 5px; WIDTH: 78px; COLOR: white; LINE-HEIGHT: 21px; HEIGHT: 21px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.textbox {
+	BORDER-RIGHT: #0197bc 1px solid; BORDER-TOP: #0197bc 1px solid; BORDER-LEFT: #0197bc 1px solid; BORDER-BOTTOM: #0197bc 1px solid
+}
+.pager {
+	BORDER-RIGHT: lightblue 1px solid; PADDING-RIGHT: 30px; DISPLAY: block; PADDING-LEFT: 30px; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: middle; BORDER-LEFT: lightblue 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: lightblue 1px solid; TEXT-ALIGN: right
+}
+.empty {
+	BORDER-RIGHT: lightblue 1px solid; PADDING-RIGHT: 30px; DISPLAY: block; PADDING-LEFT: 30px; PADDING-BOTTOM: 10px; VERTICAL-ALIGN: middle; BORDER-LEFT: lightblue 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: lightblue 1px solid; TEXT-ALIGN: center
+}
+.hyperLink {
+	COLOR: #566984; TEXT-DECORATION: none
+}
+.hyperLink:hover {
+	COLOR: blue; BORDER-BOTTOM: blue 1px dashed; TEXT-DECORATION: none
+}
+.coll_tab {
+	LINE-HEIGHT: 32px; BORDER-COLLAPSE: collapse
+}
+.coll_tab TH {
+	BACKGROUND-IMAGE: url(bg_th.gif); LINE-HEIGHT: 27px
+}
+.coll_tab TR {
+	
+}
+.r1 {
+	OVERFLOW: hidden; HEIGHT: 1px; BACKGROUND-COLOR: #364c6d
+}
+.r2 {
+	OVERFLOW: hidden; HEIGHT: 1px; BACKGROUND-COLOR: #364c6d
+}
+.r3 {
+	OVERFLOW: hidden; HEIGHT: 1px; BACKGROUND-COLOR: #364c6d
+}
+.r4 {
+	OVERFLOW: hidden; HEIGHT: 1px; BACKGROUND-COLOR: #364c6d
+}
+.r5 {
+	OVERFLOW: hidden; HEIGHT: 1px; BACKGROUND-COLOR: #364c6d
+}
+.r1 {
+	MARGIN: 0px 5px
+}
+.r2 {
+	MARGIN: 0px 3px
+}
+.r3 {
+	MARGIN: 0px 2px
+}
+.r4 {
+	MARGIN: 0px 1px
+}
+.r5 {
+	MARGIN: 0px 1px
+}

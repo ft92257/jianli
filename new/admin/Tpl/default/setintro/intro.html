@@ -1,0 +1,117 @@
+<include file="public:header" />
+<script src="__ROOT__/statics/js/jquery/plugins/formvalidator.js"></script>
+<script src="__ROOT__/statics/js/jquery/plugins/formvalidatorregex.js"></script>
+<script src="__ROOT__/statics/js/setavatar/new/jquery.form.js"></script>
+<script src="__ROOT__/statics/js/json2.js"></script>
+<script src="__ROOT__/statics/js/jquery/plugins/jquery.json-2.4.js"></script>
+<script type="text/javascript" >
+
+$(document).ready(function(){
+
+
+
+var num=$('#root').find('div').length-2;
+var arr = {};
+
+
+	$('#add').click(function(){
+		num=(Math.floor( (Math.random()*10000000)));
+		di=$('#ex').clone().attr('id',num);
+	    
+		div=$('#none').before(di);
+	})
+	
+	$(':text').live('change',function(){
+	var name=this.name;
+	var val =this.value;
+    var p=$(this).parentsUntil("div").parent().attr('id');
+    if(arr[p]==null){
+	arr[p]={};
+    }else{
+	
+	}
+	arr[p]['key']=num;
+	arr[p][name]=val;
+	
+	})
+	
+	   $('#button').click(function(){
+	   for(v in arr){
+	    var val =$("[id='"+v+"'] [name='id']").val();
+		if(val!=''){ 
+		arr[v]["id"]=val;
+		};
+			
+	   }
+		$.post('http://localhost/sfy/admin.php/setintro/getinfo',
+		{'data':arr},
+		function(data){
+		  alert(data);
+          var text=eval("("+ data +")");
+		  for(v in text){
+		  $("[id='"+text[v]['key']+"'] [name='id']").val(text[v]['id'])
+		  }
+		})
+	
+	})
+	
+	
+})
+</script>
+
+<div id="root">
+
+<volist name='info' id='val'>
+<div  style="width:300px; height:110px" id="{$val.id}">
+<table>
+<tr>
+<td>名称:</td>
+<td id='sss'><input type="text" name="name"   value="{$val.name}"/><br />
+</td>
+</tr>
+<tr>
+<td>地址   : </td>
+<td><input type="text" name="address" value="{$val.address}" /><br /></td>
+</tr>
+<tr>
+<td>电话   :</td>
+<td><input  type="text" name="phone" value="{$val.phone}" /><br /></td>
+</tr>
+<tr>
+<td>邮箱</td>
+<td><input type="text" name='email' value="{$val.email}"/></td>
+</tr>
+<input type="hidden"  name="id" value="{$val.id}"/>
+</table>
+</div>
+</volist>
+<div style="display:none" id='none'>
+<div  style="width:300px; height:110px" id="ex">
+<table>
+<tr>
+<td>名称:</td>
+<td id=''><input type="text" name="name" /><br /></td>
+</tr>
+<tr>
+<td>地址   : </td>
+<td><input type="text" name="address" /><br /></td>
+</tr>
+<tr>
+<td>电话   :</td>
+<td><input  type="text" name="phone" /><br /></td>
+</tr>
+<tr>
+<td>邮箱</td>
+<td><input type="text" name='email'/></td>
+</tr>
+<input type="hidden"  name="id"/>
+</table>
+</div>
+
+</div>
+</div>
+<p>1<img  src="__ROOT__/statics/images/add.jpg" id="add" />
+  </div>
+  <input type="button"  value="提交" id="button"/>
+</p>
+<p>{$page}</p>

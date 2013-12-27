@@ -1,0 +1,21 @@
+<div id="weather_content">
+<!--{if $list}-->
+<br /><p>天气最后更新时间：（{eval echo my_date_format($list[0][read_time],'Y年m月d日 H时i分s秒');}）</p>
+<!--{loop $list $d $val}-->
+<br /><p>
+<!--{if 0==$d}-->
+今天
+<!--{elseif 1==$d}-->
+明天
+<!--{elseif 2==$d}-->
+后天
+<!--{else}-->
+{$d}天后
+<!--{/if}-->
+({$val[today]}){$val[city]}天气：{$val[weather]}，气温{$val['temperature_max']}℃~{$val['temperature_min']}℃，{$val[wind_direction]}</p>
+<!--{/loop}-->
+<br /><p>{$list[0][city]}电话区号：{$list[0][area_code]}</p>
+<br /><p>{$list[0][city]}邮政编码：{$list[0][post_code]}</p>
+<br /><p>内容来自<a href="{conf site_url}">{$this->Config[site_name]}</a> - {$this->Config[site_url]}</p>
+<!--{/if}-->
+</div>

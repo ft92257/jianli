@@ -1,0 +1,67 @@
+<style type="text/css">
+.alertBox ul.manBox li {
+    background: none;
+    border: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	_width:400px;
+}
+</style>
+<div class="dialog_inner">
+<div class="mWarp">
+  <form action="{$action}" method="post" onsubmit="return Validator.Validate(this,3);" id='sendPM'>
+    <table >
+      <tr>
+        <td style="width:30%;" align="right" valign="middle">收信人：</td>
+        <td style="width:70%;" align="left" valign="middle"><input type="text" id="txtMsgTo" name="to_user" value="{$to_user}" class="text-area2" style="width:280px;"/>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top"><span valign="top">私信内容：</span></td>
+        <td align="left" valign="middle"><textarea  id="message" name="message" datatype="LimitB" min="1" msg="内容不能为空"  class="text-area2" style="width:280px;height:90px;">{$message}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="middle">&nbsp;</td>
+        <td align="left" valign="middle">
+		<input id="publishSubmit_{$to_user}" onclick="PmSubmit('{$id}','Pmsend_to_user_area','{$to_user}');return false;" type="button" class="shareI" value="发送" title="按Ctrl+Enter快捷发布"/>
+		<input id="mclose" onclick="closeDialog('{$this->Get[handle_key]}');return false;" type="button" class="shareI" value="取消" />
+		<input type="hidden" id="pmid" name="pmid" value="{$pmid}">
+		</td>
+      </tr>
+    </table>
+  </form>
+  </div>
+  <!--{if $pm_list}-->
+  <ul class="followList" style="overflow:hidden">
+    <!--{loop $pm_list $val}-->
+    <li class="pane">
+      <div class="fBox_R ">
+        <span>
+        <!--{if $val[msgfromid] == MEMBER_ID}-->
+          <!--{eval echo MEMBER_NICKNAME}-->：
+        <!--{else}-->
+          <a href="index.php?mod=$val[username]">{$val[nickname]}</a>：
+        <!--{/IF}-->
+        </span>
+        <span>{$val[message]}</span>
+        <div>
+          <span><!--{eval echo my_date_format($val[dateline], 'm月d日 H:i')}--></span>
+        </div>
+      </div>
+    </li>
+    <!--{/loop}-->
+  </ul>
+  <div><a href="index.php?mod=pm&code=history&uid=$touid" target="_blank">查看所有记录</a></div>
+  <!--{/if}-->
+</div>
+<script>
+$("#message").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#publishSubmit_{$to_user}").click();
+    }
+});
+</script>

@@ -1,0 +1,88 @@
+<!--{template admin/header}-->
+<script type="text/javascript">
+	var textCounter=function (field,counter,maxlimit){
+		var charcnt = field.value.length;
+		if (charcnt > maxlimit) {
+			field.value = field.value.substring(0, maxlimit);
+		}else {
+			document.getElementById(counter).innerHTML=charcnt;
+		}
+	}
+</script>
+<form action="{$action}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">{$title}</td>
+    </tr>
+    <tr>
+      <td width="13%" bgcolor="#F8F8F8">&nbsp;</td>
+      <td width="87%" bgcolor="#FFFFFF">&nbsp;</td>
+    </tr>
+	
+
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">发表用户：</td>
+      <td bgcolor="#FFFFFF"><a href="index.php?mod={$topiclist[username]}" target="_blank">{$topiclist[nickname]}</a></td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">微博内容:</td>
+      <td bgcolor="#FFFFFF">
+	  <textarea name="content" id="maxcharfield" style="width:480px; height:80px;" > <!--{echo (strip_tags({$topiclist[content]}));}--></textarea></td>
+    </tr>
+	<!--{if $attach_list}-->
+	<style>.ataachlist li{float:left;margin:0 10px;text-align:center;}</style>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">附件:</td>
+      <td bgcolor="#FFFFFF"><ul class="ataachlist">
+      <!--{loop $attach_list $key $val}-->
+	  <li><img src="{$val[attach_img]}" border="0"/><br>{$val[attach_name]}<br>积分：<input type="hidden" name="attach_id[]" value="{$val[id]}"><input type="hidden" name="old_attach_score[]" value="{$val[attach_score]}"><input type="text" name="attach_score[]" size="2" value="{$val[attach_score]}">分<br>
+	  <A href="admin.php?mod=topic&code=del_attach&tid=$tid&ids={$val[id]}&verify=$verify"><font color='red'>删除</font></A></li>	
+	  <!--{/loop}-->
+	  </ul></td>
+    </tr>
+	<!--{/if}-->
+	<!--{if $image_list}-->
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">图片:</td>
+      <td bgcolor="#FFFFFF">
+      <!--{loop $image_list $key $val}-->
+	  <img src="{$val[img_path]}" border="0"/>
+	  <A href="admin.php?mod=topic&code=del_img&tid=$tid&ids={$val[id]}&verify=$verify">删除</A>&nbsp;	
+	  <!--{/loop}-->
+	  </td>
+    </tr>
+	<!--{/if}-->
+	
+	<!--{if $videoid}-->
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">视频:</td>
+      <td bgcolor="#FFFFFF">
+	   <div class="feedUservideo">
+	  <a onClick="javascript:showFlash('{$videohost}', '{$videolink}', this, '{videoid}');" >
+		<div id="play_{$videoid}" class="vP"><img src="images/feedvideoplay.gif" style="cursor:pointer;"/></div>
+		<img src="{$videoimg}" style="border:none"/>      </a>
+	 <A href="admin.php?mod=topic&code=del_video&ids={$videoid}&verify=$verify">删除</A>&nbsp;	  </div>	  </td>
+    </tr>
+	<!--{/if}-->
+   <!--{if $musicid_id}-->
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">音乐:</td>
+      <td bgcolor="#FFFFFF">
+	 <img src="images/music.gif" title="点击播放音乐" border="0" onClick="javascript:showFlash('music', '{$ContentMusicid}', this, '{$musicid_id}');" style="cursor:pointer; border:none;" />
+	  <A href="admin.php?mod=topic&code=del_music&ids={$musicid_id}&verify=$verify">删除</A>&nbsp;	  </td>
+    </tr>
+	<!--{/if}-->
+    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+		<button name="do" value='' type="submit" class="button">提 交</button>
+		&nbsp;
+		<button class="button" type="button" onclick="window.location.href='admin.php?mod=topic&code=$verify';return false;">返回</button>
+		<input name="tid" type="hidden" id="tid" value="{$tid}">
+		<input name="imageid" 	type="hidden" 		id="imageid" 	value="{$topiclist[imageid]}" />
+		<input name="videoid" 	type="hidden"  		id="videoid" 	value="{$topiclist[videoid]}" />
+		<input name="musicid" 	type="hidden"  		id="musicid" 	value="{$topiclist[musicid]}" /></td>
+    </tr>
+  </table>
+
+</form>

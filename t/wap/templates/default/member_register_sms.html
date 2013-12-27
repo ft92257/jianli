@@ -1,0 +1,18 @@
+<!--{template "topic_header"}-->
+ <div class="tbox">
+ <!--{if $inviter_member[username]}-->
+	<div class="u">
+	<span>
+	<img src="{$inviter_member[face]}" class="facestyle"/></span>
+	<!--{eval $inviter_member[nickname]=wap_iconv($inviter_member[nickname]);}-->
+	<span style="margin-top:15px;"><span class="fontGreen">{$inviter_member[nickname]}</span> 邀您注册 （注册后你们将相互关注，并在首页看到彼此的分享）</span>
+	</div>
+<!--{/if}-->
+ <form id="form1" name="form1" method="post" action="{$action}">
+ {if $this->_sms_register()}
+ <div class="regp">请输入您常用的手机号码（11位）<br /><input name="sms_bind_num" type="text" id="sms_bind_num" /></div>
+ {/if}
+ <div class="regp"><input type="submit" name="Submit" value="下一步" /></div>
+ </form>
+</div>
+<!--{template "topic_footer"}-->

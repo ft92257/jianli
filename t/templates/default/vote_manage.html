@@ -1,0 +1,125 @@
+<div class="mWarp dialog_inner">
+<!--{if $op == 'modify_date'}-->
+	<script src="templates/default/js/date/WdatePicker.js" type="text/javascript"></script>
+	<form method="post" action="ajax.php?mod=vote&code=modify_date" autocomplete="off" id="me_form" onsubmit="modifyVoteExpiration();return false;">
+		<table width="100%">
+			<tr>
+				<td width="20%">
+					截止时间：
+				</td>
+				<td>
+					<input id="expiration" name="expiration" value="{$expiration}" onclick="WdatePicker({minDate:'%y-%M-%d'})"  type="text" readonly="readonly" style="width:120px;">
+					&nbsp;&nbsp;
+					{$hour_select}&nbsp;时&nbsp;&nbsp;{$min_select}&nbsp;分
+					<input type="hidden" value="{$vote[vid]}" name="vid" />
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class="dialog_button_panel">
+					<span>
+						<input id="share_btn" type="submit" value="修 改" class="shareI"/>
+					</span>
+					<span>
+						<input type="button" name="del" value="取 消" onclick="closeModifyVoteExpirationDialog();" class="shareI"/>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</form>
+<!--{elseif $op == 'edit_opt'}-->
+	<form method="post" action="ajax.php?mod=vote&code=edit_opt" autocomplete="off" id="ao_form" onsubmit="editVoteOption();return false;">
+	<input type="hidden" value="{$vote[vid]}" name="vid"/>
+	<div class="ao_form">
+		<!--{loop $options $key $val}-->
+			<!--{eval $__i=$key+1;}-->
+			<p>
+				<sup class="vote_al">{$__i}.</sup>
+				<sup class="vote_ar"><input id="option_{$__i}" name="option[{$val['oid']}]" value="{$val['option']}" type="text" <!--{if $is_voted}-->readonly="readonly"<!--{/if}-->></sup>
+				<sup id="option_{$__i}_tips" style="display:none;"></sup>
+			</p>
+		<!--{/loop}-->
+		
+		<!--{if $option_num < 20}-->
+			<p id="moretip">
+				<sub>&nbsp;</sub>
+				<sup>
+					<span class="vote_addicon"></span>
+					<a onfocus="this.blur();" onclick="addNewOptionInput();" href="javascript:;">增加选项</a>
+					<span style="margin-left:10px;">(每项最多20个汉字)</span>
+				</sup>
+			</p>
+			<!--新增选项 Begin-->
+			<div id="new_option_wp"></div>
+			<!--新增选项 End-->
+		<!--{/if}-->
+	</div>
+	
+	<div class="dialog_button_panel">
+		<span>
+			<input type="submit" value="确 定" class="shareI"/>
+		</span>
+		<span>
+			<input type="button" name="del" value="取 消" onclick="closeEditVoteOptionDialog();" class="shareI"/>
+		</span>
+	</div>
+		<!--
+		<table>
+			<tr>
+				<td>
+					每项最多20个汉字
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input id="option" name="option" onclick=""  type="text" style="width:360px;">
+					<input type="hidden" value="{$vote[vid]}" name="vid" />
+				</td>
+			</tr>
+			<tr>
+				<td class="dialog_button_panel">
+					<span>
+						<input type="submit" value="确 定" class="shareI"/>
+					</span>
+					<span>
+						<input type="button" name="del" value="取 消" onclick="closeAddVoteOptionDialog();" class="shareI"/>
+					</span>
+				</td>
+			</tr>
+		</table>-->
+	</form>
+	<script language="javascript">
+		var _optionNum = <!--{$option_num}-->;
+		function addNewOptionInput()
+		{
+			if (_optionNum >= 20) {
+				MessageBox('notice', '最多只能有20个投票项');
+				return false;
+			}
+			$('#new_option_wp').append('<p><sup class="vote_al">&nbsp;</sup><sup class="vote_ar"><input name="new_option[]" value="" type="text"></sup></p>');
+			_optionNum++;
+		}
+		
+		//编辑提交
+		function editVoteOption()
+		{
+			var post_data = $('#ao_form').serialize();
+			$.post(
+				$('#ao_form').attr("action"),
+				post_data,
+				function (r) {
+					if (r.done) {
+						closeEditVoteOptionDialog();
+						location.reload();
+					} else {
+						if (r.msg) {
+							MessageBox('warning', r.msg);
+						}
+					}
+				},
+				'json'
+			);
+		}
+	</script>
+<!--{/if}-->
+</div>

@@ -1,0 +1,56 @@
+{//icon custom crop container}
+<div id="background_crop_edit_{$app_id}" style=" position: absolute;display: block; z-index: 10012; outline: 0px none; height: auto; width: 630px;" class="ui-dialog ui-widget ui-widget-content ui-corner-all upload_image_new ui-draggable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-postImageUploadDialog">
+    <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+      <span class="ui-dialog-title" id="ui-dialog-title-postImageUploadDialog">Crop image</span>
+        <a href="#" onClick="close_content_bg_dialog('{$app_id}');" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a>
+    </div>
+    <div>
+    
+    <div class="new_upload_dialog ui-dialog-content ui-widget-content" id="postImageUploadDialog" style="width: auto; min-height: 0px; height: auto;">        
+      <div class="img_upload_main_text crop_desc">        Preview    </div>    
+      <div class="clearfix" id="postImageUploadPreview">        
+      <div id="PIUPreviewWrapper" style="width: 100px; height: 150px;">            
+
+      <div id="PIUPreviewWrapperInner" style="width: 100px; height: 150px; margin-top: 0px;">                
+          <img id="photo_big" alt="" src="" style="width: 100px; margin-left: 0px; margin-top: 0px; height: 150px;">            
+      </div>        </div>       
+    </div>   
+
+    <div class="img_upload_main_text crop_desc">        
+    Crop image source    
+    </div>    
+           
+    <div id="postImageUploadCropArea" style="position:relative;">            
+         <img alt="" src="" style="width: 600px; height: 450px;">
+    </div>    
+    
+    <div class="img_upload_main_text crop_desc">        Drag corners to crop     </div> 
+    <div id="postUploadBottomStrip">        
+       <div class="img_upload_main_text" id="colorizeOptions">            <input type="checkbox" id="grayscaleSelect">            <label for="grayscaleSelect">Convert to grayscale</label>                
+       </div>                
+       <div class="clearfix" id="postUploadButtons">      
+            <form enctype="multipart/form-data" method="post" id="infouploadpic_crop" name="upform" dotype="ajax" callback="uploadpic" target="upload_target" action="/index.php/Upload/pics/t/save">
+                <input type="hidden" name="ax_apps_id" value="{$ax_apps_id}" />
+                <input type="hidden" name="my_page_numbers" value="{$app_id}" />
+                <input type="hidden" name="savetype" value="content_background_bg" />
+                <input type="hidden" name="p_w" value="320" />
+                <input type="hidden" name="p_h" value="480" />
+				<input type="hidden" name="picurl">
+				<input type="hidden" name="x1">
+				<input type="hidden" name="y1">
+				<input type="hidden" name="x2">
+				<input type="hidden" name="y2">
+				<input type="hidden" name="w">
+				<input type="hidden" name="h">
+           </form>     
+        <div class="upload_btn_gray" id="btnSaveImagePostUpload" onClick="content_background_crop_save('{$app_id}');">                Save            </div> 
+    
+        </div>  
+     </div>     
+     
+    <div class="new_upload_process" id="postImageUplaodLoading">        
+       <img alt="Processing..." src="/images/Loading/horizontal_loader_100x15.gif" style="display: none;">        
+       <div id="postUploadError" style="display: none;">        </div>    
+    </div> 
+</div>
+ 

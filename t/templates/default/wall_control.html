@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+{eval $conf_charset=$this->Config['charset'];}<meta http-equiv="Content-Type" content="text/html; charset=$conf_charset" />
+<TITLE>{conf site_name}上墙导播室</TITLE>
+<META name=GENERATOR content="MSHTML 8.00.6001.19046">
+<LINK rel=stylesheet type=text/css href="styles/style_w1.css">
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<link rel="shortcut icon" href="favicon.ico" >
+<script type="text/javascript" src="templates/default/js/min.js"></script>
+<script type="text/javascript" src="templates/default/js/common.js"></script>
+<script type="text/javascript" src="templates/default/js/wall.js"></script>
+<style type="text/css">
+/*弹出对话框样式*/
+.dialog_wrapper {  background: #595959; padding:7px;-moz-border-radius:5px;-webkit-border-radius:5px; display:block}
+    .dialog_body {}
+        .dialog_head {}
+            .dialog_title {color: #333; font-size: 12px; font-weight: bold; padding: 0px 10px 0px 10px; display: block; line-height:27px;background: #fff url(../images/dialog/dialog_title_bg.gif) repeat-x;}
+			.dialog_title_icon{display:block; clear:both; height:27px;}
+            .dialog_close_button {display: block; width: 15px; height: 15px; background: url(../images/dialog/dialog_close_bg.gif) 0 0px; position: absolute; top: 5px; right: 10px;}
+            /*.dialog_close_button:hover { background: url(../images/dialog/dialog_close_bg.png) 8px 0px;}*/
+        .dialog_content { background:#fff;}
+            .dialog_loading { text-align:center; width:300px;}
+                .dialog_loading_text { padding:0px;padding-top:20px;padding-left:10px;width:220px;font-style:italic;margin:15px auto 5px auto; text-align:left; font-size:15px;background:transparent url(../images/dialog/loading.gif) no-repeat center top; }
+            .dialog_message_body { margin:15px 5px 5px 5px; }
+                .dialog_message_contents { margin:0px 10px; padding-left:45px; padding-top:5px; padding-bottom:20px; }
+                .dialog_message_notice { background:transparent url(../images/dialog/message_notice.gif) no-repeat left top; }
+                .dialog_message_warning { background:transparent url(../images/dialog/message_warning.gif) no-repeat left top; }
+                .dialog_message_confirm { background:transparent url(../images/dialog/message_confirm.gif) no-repeat left top; }
+                .dialog_buttons_bar { text-align:center;margin-top:5px; }
+                .dialog_buttons_bar input { margin:0px 5px; }
+                .dialog_buttons_bar .btn1 {width: 75px; height: 29px; border: 0; background: url(../images/dialog/btn1.gif); color: #c73702; font-weight: bold; font-size: 14px;}
+                .dialog_buttons_bar .btn2 {width: 75px; height: 29px; border: 0; background: url(../images/dialog/btn2.gif); color: #4e4e4e; font-weight: bold; font-size: 14px;}
+.dialog_has_title { background: #555; }
+    .dialog_has_title .dialog_body { background: #fff; bottom: 3px; right: 3px; padding: 10px; border: 4px solid #dadada; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #666;}
+        .dialog_has_title .dialog_head {background: url(../images/dialog/login_h1.gif); height: 30px;}
+            .dialog_has_title .dialog_title {color: #666; font-size: 16px; font-weight: bold; background: #fff url(../images/dialog/linebox_h1_span.gif) no-repeat left 3px; padding: 4px 10px 5px 15px; display: block; float: left; }
+            .dialog_has_title .dialog_close_button {position: absolute; top: 10px; _top:14px; right: 10px; background: #fff url(../images/dialog/dialog_close_button.gif) no-repeat right bottom; width: 21px; height: 21px; padding-right: 10px; overflow: hidden; cursor: pointer;}
+            .dialog_has_title .dialog_close_button:hover {background: #fff url(../images/dialog/dialog_close_button.gif) no-repeat right top;}
+        .dialog_has_title .dialog_content {}
+            .dialog_has_title .dialog_loading { text-align:center; }
+                .dialog_has_title .dialog_loading_text { padding:0px;padding-top:20px;padding-left:10px;width:220px;font-style:italic;margin:15px auto 5px auto; text-align:left; font-size:15px;background:transparent url(../images/dialog/loading.gif) no-repeat center top; }
+            .dialog_has_title .dialog_message_body { margin:15px 5px 5px 5px; }
+                .dialog_has_title .dialog_message_contents { margin:0px 10px; padding-left:45px; padding-top:5px; padding-bottom:20px; }
+                .dialog_has_title .dialog_message_notice { background:transparent url(../images/dialog/message_notice.gif) no-repeat left top; }
+                .dialog_has_title .dialog_message_warning { background:transparent url(../images/dialog/message_warning.gif) no-repeat left top; }
+                .dialog_has_title .dialog_message_confirm { background:transparent url(../images/dialog/message_confirm.gif) no-repeat left top; }
+                .dialog_has_title .dialog_buttons_bar { text-align:center;margin-top:5px; }
+                .dialog_has_title .dialog_buttons_bar input { margin:0px 5px; }
+                .dialog_has_title .dialog_buttons_bar .btn1 {width: 75px; height: 29px; border: 0; background: url(../images/dialog/btn1.gif); color: #c73702; font-weight: bold; font-size: 14px;}
+                .dialog_has_title .dialog_buttons_bar .btn2 {width: 75px; height: 29px; border: 0; background: url(../images/dialog/btn2.gif); color: #4e4e4e; font-weight: bold; font-size: 14px;}
+.dialog_cl{clear:both;}
+</style>
+</HEAD>
+<BODY>
+
+<!--{template "topic_header"}-->
+
+<DIV id="mainContent" class="wrapper" style="width:1000px; overflow:hidden;">
+<DIV class="clearfix" style="background:#fff; padding-bottom:50px;">
+<DIV id=uwUrl class="uwURL clearfix">
+请在投影屏幕中，打开微博墙页面<A class=url title=大屏幕 href="{conf site_url}/index.php?mod=wall&code=screen&wall_id={$wall_id}" target=_blank>{conf site_url}/index.php?mod=wall&amp;code=screen&amp;wall_id={$wall_id}</A> 
+</DIV>
+<DIV class=leftCon>
+<DIV class="title source clearfix">
+<H2>素材库</H2></DIV>
+<DIV class="BL clearfix">
+
+<DIV class=funBar>
+<UL class=SC>
+	{loop $type_list $k $v}
+	<li{if $k==$type} class=current {/if}><a href="index.php?mod=wall&code=control&type={$k}">{$v[name]}</a></li>
+	{/loop}
+</UL>
+{if $key_list}
+<UL class="topicWall clearfix">
+	{loop $key_list $v}
+	<li><a href="index.php?mod=wall&code=control&type={$type}&key={$v[name_urlen]}">{$v[name_disp]}</a>
+	<A class=del title=删除 
+	  onclick="wall_del_key('{$v[name]}', '{$type}');return false;" 
+	  href="javascript:;">×</A></li>
+	{/loop}
+</UL>
+{/if}
+
+</DIV>
+
+<DIV id="mbMsgList" class="mblist" style="_width:465px; overflow:hidden;">
+<DL class="setTopic">
+  <DT>{$type_info[name]} 
+  <DD>
+  <FORM id='setForm' method='get' action='index.php'>
+	  <INPUT value='wall' type='hidden' name='mod'>
+	  <INPUT value='control' type='hidden' name='code'>
+	  <INPUT value='{$type}' type='hidden' name='type'> 
+	  <INPUT value='{$key}' class='inputTxt' name='key'>
+	  <INPUT class='SP_Btn' value='确定' type='submit'>&nbsp;&nbsp;&nbsp; 
+	  {if $key && $topic_list}
+	  <a onClick="wall_add_key('$key', '$type');return false;" href="javascript:;" class="saveTopic">+保存</a>
+	  {/if}
+  </FORM>
+  {if !$key}
+  <P class="tips">{$type_info['tips']}</P>
+  <DD class="tac"><IMG alt="" src="images/wall/wall_guide.png"></DD>
+  {/if}
+</DL>
+
+{if $key}
+	{if !$topic_list}
+	<div class="noResult">
+		<p>没有找到与"{$key}"相关的微博</p>
+		<p class="T">你可以</p>
+		<ul>
+			<li><span class="ffsong">·</span>换一个相近的关键词重新搜索</li>
+		    <li><span class="ffsong">·</span>去掉原关键词中无意义的词，如"的"，"呢"等</li>
+		</ul>
+	</div>
+	{else}
+	<div class="title clearfix">
+		<p class="FL"><span class="icon-t mic"></span>共找到<strong>{$total_record}</strong>条微博<span class="fs12"></span></p>
+		<p class="FR"><span class="icon-t AW"></span><a onClick="wall_add_playlist_all();return false;" href="javascript:;" class="FR">添加本页</a></p>
+	</div>
+	<ul id="topicList">
+		{loop $topic_list $v}
+		<li id="{$v[tid]}" class="clearfix" onMouseOut="WallUI.removeClass(this, 'hover')" onMouseOver="WallUI.addClass(this, 'hover')" onClick="wall_add_playlist('{$v[tid]}', 0, this);return false;" >
+			<!--
+			<ul class="draft">
+            	<li><span onClick="wall_add_draft(1, '{$v[tid]}', this)" title="放入草稿箱1" class="red"></span></li>
+                <li><span onClick="wall_add_draft(2, '{$v[tid]}', this)" title="放入草稿箱2" class="yellow"></span></li>
+                <li><span onClick="wall_add_draft(3, '{$v[tid]}', this)" title="放入草稿箱3" class="blue"></span></li>
+            </ul>
+            -->
+            <img class="userPic" title="{$v[nickname]}" src="{$v[face]}" onerror="javascript:faceError(this);" />
+            <div class="pubCon">
+            	<div class="msgBox">
+                	<span class="userName">{$v[nickname]}：&nbsp;</span>{$v[content]}
+                	{if $v[imageid] && $v[image_list]}                                                                        
+                	<div class="wall_img">
+						{loop $v[image_list] $iv}
+						<img src="{$iv[image_small]}" />
+						{/loop}
+					</div>
+                	{/if}
+                	{if ($p=$parent_list[$v[top_parent_id]]) }
+                	<div class="replyBox">
+                    	<div class="msgBox">
+                        	<span class="userName">{$p[nickname]}：&nbsp;</span>{$p[content]}
+                        	{if $p[imageid] && $p[image_list]}
+                        	<div class="wall_img">
+								{loop $p[image_list] $iv}
+								<img src="{$iv[image_small]}" />
+								{/loop}
+							</div>
+                        	{/if}                    	</div>
+                    </div>
+                    {/if}
+                   	<div class="pubInfo"><p class="left"><span class="time">{$v[dateline]}</span> &nbsp;{$v[from_string]}{if $v[forwards]}&nbsp;转发数({$v[forwards]}){/if}</p></div>
+               	</div>
+           	</div>
+            <a class="cb_arrow" title="插播" onClick="wall_add_playlist('{$v[tid]}', 1, this);return false;" href="javascript:;"></a>		</li>
+		{/loop}                                       
+    </ul>
+	<script type="text/javascript">$('.cb_arrow').click(function(event){WallUI.stopBubble(event);});</script>
+	{/if}
+{/if}
+
+{if $page_arr[html]}
+<div class="pageNav" id="pageNav">{$page_arr[html]}</div>
+{/if}
+
+</DIV></DIV></DIV>
+<DIV class=rightCon>
+
+<DIV class="title going clearfix">
+	<H2>播放列表</H2>
+	<DIV class=operate>
+		<DIV class=sort><A onClick="show_wall_set_dialog();return false;" href="javascript:;">设置</A> </DIV>
+		{if $wall_info[status]}
+		<INPUT onClick="wall_set_status();return false;" id="wall_status_btn" class="SP_Btn" value="暂停" type="button">
+		{else}
+		<INPUT onClick="wall_set_status();return false;" id="wall_status_btn" class="SP_Btn" value="开始上墙" type="button">
+		{/if}
+	</DIV>
+</DIV>
+
+<DIV id="playList" class="mblist going">
+	<P class=empty>从左边点选“<SPAN class="icon AW"></SPAN>”<BR>将微博添加到播放列表</P>
+</DIV>
+<script type="text/javascript" language="javascript">
+	
+{if $wall_info[wall_reload_time] > 0}
+	WallReloadTime = {$wall_info[wall_reload_time]} * 1000;
+{/if}
+
+	wall_load_playlist();
+
+</script>
+
+</DIV>
+
+</DIV>
+</DIV>
+<style type="text/css">.bottomLinks{ width:980px;}/style>
+<!--{template "topic_footer"}-->
+<!--{if $this->Config[ajax_topic_time] > 0 && MEMBER_ID > 0 && 'myhome'==$this->Code}-->
+<!--{eval $ajax_time = $this->Config[ajax_topic_time] * 1000;}-->
+<script>
+function circle_topic()
+{
+	ajax_reminded({MEMBER_ID});
+	setTimeout('circle_topic();',{$ajax_time});
+}
+setTimeout('circle_topic();',{$ajax_time});
+</script>
+<!--{/if}-->

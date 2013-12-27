@@ -1,0 +1,32 @@
+
+#
+# robots.txt
+#
+
+User-agent: *
+Allow: /
+Disallow: /images/thumb/
+Disallow: /ajax.php?
+Disallow: /admin.php?
+Disallow: /api
+Disallow: /data
+Disallow: /iis_rewrite
+Disallow: /include
+Disallow: /install
+Disallow: /modules
+Disallow: /setting
+Disallow: /templates
+Disallow: /get_password
+Disallow: /profile
+Disallow: /member
+Disallow: /url
+Disallow: /xwb
+Disallow: /pm
+Disallow: /imjiqiren
+Disallow: /*?mod=get_password
+Disallow: /*?mod=profile
+Disallow: /*?mod=setting
+Disallow: /*?mod=member
+Disallow: /*?mod=url
+Disallow: /*?mod=xwb
+Disallow: /*?mod=pm

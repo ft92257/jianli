@@ -1,0 +1,58 @@
+{template admin/header}
+<div>
+  <a href="admin.php?mod=class">返回分类管理</a>
+</div>
+<form action="admin.php?mod=class&code=addclass&act=$act" method="POST">
+  <table width=100% cellspacing=1 cellpadding=3>
+    <tr> 
+      <td> 
+       分类 名称 
+        <!-- {if $act == 'new'} -->
+        <textarea name="name" cols="25" rows="5"></textarea>
+        <!-- {elseif $act == 'edit'} -->
+        <input type="text" name="editname" id="editname" value="{$rs[name]}">
+        <input type="hidden" name="hid_fid" id="hid_fid" value={$rs[fid]}>
+        <input type="hidden" name="hid_fup" id="hid_fup" value={$rs[fup]}>
+        <!-- {/if} -->
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        归属
+        <select name="fid">
+          <option value="0">顶级分类</option>
+          {$fup_select}
+        </select>
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        所属模型
+        {$module_select} 
+      </td>
+      <td><a href="" target="_blank" onclick="moduleView(); return false;">浏览此模型</a></td>
+      <td><div id="viewmodule"></div></td>
+
+      <td>没有适合的模型可供选择、你可以<a href="admin.php?mod=module&code=newmodule">点击此处</a>建立自己喜欢的模型</td>
+    </tr>
+    <tr> 
+      <td> 
+      <!-- {if $act == 'new'} -->
+        <input type=submit value="创 建" name="create">
+        <br>
+        <font color="#FF0000">注意:</font>可以同时创建多个栏目,每个栏目换一行即可.
+      <!-- {else} -->
+        <input type="submit" value="修改" name="edit">
+      <!-- {/if} -->
+      </td>
+    </tr>
+  </table>
+</form>
+<SCRIPT LANGUAGE="JavaScript">
+
+	function moduleView(){
+		
+		var mid = document.getElementById("moduleList").value;
+		window.open('admin.php?mod=module&code=viewmodule&mid='+mid);
+	}
+</SCRIPT>

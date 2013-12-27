@@ -1,0 +1,123 @@
+{template admin/header}
+<!--{eval if($this->Get['mod'] == 'fenlei') $fenlei='current'}-->
+<!--{eval if($this->Get['mod'] == 'module' && $this->Code != 'newmodule') $module='current'}-->
+<!--{eval if($this->Code == 'newmodule') $newmodule='current'}-->
+<div class="nav3">
+  <ul class="cc">
+    <li class="{$fenlei}">
+      <a href="admin.php?mod=fenlei" class='{$fenlei}'>栏目管理</a>
+    </li>
+    <li class="$module">
+      <a href="admin.php?mod=module" class='{$module}'>模块管理</a>
+    </li>
+    <li class="$newmodule">
+      <a href="admin.php?mod=module&code=newmodule" class='{$module}'>创建模块</a>
+    </li>
+	<li class="{$setting}">
+	  <a href="admin.php?mod=fenlei&code=setting">基本设置</a>
+	</li>
+	<li class="{$manage}">
+	  <a href="admin.php?mod=fenlei&code=manage">分类管理</a>
+	</li>
+  </ul>
+</div>
+
+<div id="main_wp" class="mt10">
+<form name=form action="admin.php?mod=module&code=addmod" method=POST>
+  <table width="98%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header">
+      <td colspan=8>
+        <span>模型名称 </span>
+        <input type=text name="name" size=10 value="{$rsdb[name]}">
+        <input type=hidden name="id" id="id"  size=10 value="{$rsdb[id]}">
+        <input type=hidden name="hid_name" size=10 value="{$rsdb[name]}">
+      </td>
+    </tr>
+   <!--{if $listdb}-->
+
+   <tr align="center" class="header"> 
+     <td width="40%" colspan=4>字段名称</td>
+     <td width="29%">字段ID</td>
+     <td width="17%">排序</td>
+     <td width="7%">修改</td>
+     <td width="7%">删除</td>
+   </tr>
+   <!--{loop $listdb $key $val}-->
+   <tr> 
+     <td width="40%" class="altbg1" style="border-bottom:1px dotted #EDEDED" colspan=4>$val[name]</td>
+     <td width="29%" class="altbg1" style="border-bottom:1px dotted #EDEDED">$val[field_name]</td>
+     <td width="17%" align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED"> 
+       <input type="text" name="orderlist[$key]" size="6" value="$val[orderlist]">
+     </td>
+     <td width="7%" align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED"> 
+       <p><a href="admin.php?mod=module&code=newziduan&action=edit&hid_id=$rsdb[id]&id=$val[id]">管理</a></p>
+     </td>
+     <td width="7%" align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=module&code=deletefield&id=$id&field=$val[field_name]">删除</a></td>
+   </tr>
+   <!--{/loop}-->
+   <tr align="center"> 
+     <td colspan="8"> 
+       <input type="submit" name="Submit" value="修改排序" onclick="editorder();" class="button">
+       <input type=submit value="确定" name="submit" class="button">
+     </td>
+   </tr>
+
+	<!--{/if}-->
+
+      <tr class="header">
+        <td colspan=8> 选择你需要的字段：(没有符合你的需求的字段？<a href="admin.php?mod=module&code=newziduan&hid_id=$rsdb[id]">点击此处</a>添加字段)</td>
+      </tr>
+
+      <tr class="header">
+        <td width="10%"></td>
+        <td width="10%">名称</td>
+        <td width="10%">效果</td>
+        <td width="10%">必填</td>
+        <td width="10%">在列表页显示</td>
+        <td width="10%">筛选搜索字段</td>
+        <td width="10%">修改</td>
+        <td width="10%">删除</td>
+      </tr>
+      <!--{loop $field_list $key $val}-->
+       <tr>
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+		   <input type="checkbox" name="che[{$val[id]}]" $val[che]></input>
+ 		 </td>
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val['name']}</td>
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val['type']}</td>
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+         {$val['mustfill']}
+         </td>
+         
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+         {$val['show']}
+         </td>
+         
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+         {$val['search']}
+         </td>
+         
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+           <a href="admin.php?mod=module&code=newziduan&action=edit&hid_id=$rsdb[id]&id=$val[id]">修改</a>
+         </td>
+         
+         <td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+           <a href="admin.php?mod=module&code=delziduan&hid_id=$id&id=$val[id]" onclick="return confirm('你确实要删除吗?不可恢复');">删除</a>
+        </td>
+      </tr>
+      <!--{/loop}-->
+
+          <tr>
+            <td>
+              <input type=submit value="确定" name="submit" class="button">
+            </td>
+          </tr>
+        </table>
+      </form>
+<SCRIPT LANGUAGE="JavaScript">
+function editorder(){
+	document.form.action = "admin.php?mod=module&code=editorder&id=$id";
+	form.submit;
+}
+</SCRIPT>
+</div>

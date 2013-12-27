@@ -1,0 +1,74 @@
+<include file="public:header" />
+
+<script  src="__ROOT__/statics/js/setavatar/new/mobile_style.js"></script>
+<script  src="__ROOT__/statics/js/setavatar/new/mobile_content.js"></script>
+<script  src="__ROOT__/statics/js/setavatar/new/jquery.form.js"></script>
+<script  src="__ROOT__/statics/js/setavatar/new/content_upload_background.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#info_splash_dialog").css("top",($(window).height() - $('#info_splash_dialog').outerHeight())/2 + $(document).scrollTop());
+	$("#info_splash_dialog").css("left",($(window).width() - $('#info_splash_dialog').outerWidth())/2 );		
+	
+	//关闭或取消对话框
+    $("#info_splash_dialog .ui-dialog-titlebar-close,#splash-upload-dialog .upload_cancel_button").click(function(){
+   	    $(".ui-widget-overlay").hide();
+	    $("#info_splash_dialog").remove();
+		return false;
+    });
+	 
+	
+});
+
+//上传默认初始化背景图片
+function douploadpic(){
+
+		$("#info_splash_dialog").show();  //show loading pic 
+		$("#info_splash_dialog").addClass("upload_btn_disabled");  //disabled button class
+		$("#info_splash_dialog").attr("disabled","disabled"); //disabled button
+		var options = {
+			    success: function(txt) {
+					uploadpic(txt);
+			    }
+		};		
+		$('#uploadpic_mobile').ajaxSubmit(options);
+	    return false;		
+  }
+var imgrs;
+function uploadpic(txt){
+	txt = eval('('+txt+')');
+	if(txt.code==1){
+		var tmpDate = new Date(); 
+		set_UP_W_H(txt.data['picwidth'],txt.data['picheight']);
+		var defautlv = ( txt.data['picwidth'] > txt.data['picheight']) ?txt.data['picheight']:txt.data['picwidth'];
+//		$("#photo").attr('src',txt.data['picurl']+'?t='+ tmpDate.getTime());
+		$("#photo").html("<img id='photo_img' src="+txt.data['picurl']+'?t='+ tmpDate.getTime()+">");
+		$("input[name=picurl]").attr('value',txt.data['picurl']);
+		$("#photo_big").attr('src',txt.data['picurl']+'?t='+ tmpDate.getTime());
+		
+		imgrs = $('#photo_img').imgAreaSelect({ 
+					x1: 0, 
+					y1: 0,
+					x2: 100, 
+					y2: 100, 
+					handles: true,
+					onInit:preview,
+					onSelectChange:preview,
+					onSelectEnd:onSelectEnd,
+					aspectRatio: '1:1',
+					instance: true,
+					parent:$('#photo')
+					});
+		$('#loading_gif').hide();
+	 }else{
+		alert(txt.message);
+	 }
+}  
+</script>
+<form action="" method="post"  enctype="multipart/form-data"  dotype='ajax'   >
+<input type="file" name="img" onchange="douploadpic()"/>
+</form>
+
+<div id="info_splash_dialog" style="display:none">
+<include file='app:get_content_crop_bg' />
+</div>
+ 

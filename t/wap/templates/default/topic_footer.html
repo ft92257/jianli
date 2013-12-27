@@ -1,0 +1,37 @@
+<div style="height:20px;"></div>
+<div class="topbg">
+<span>
+
+<a href="index.php?mod=topic&code=add" title="发微博">发微博</a>  |  
+<a href="#" id="top" title="返回顶部">返回顶部</a>
+</span>
+</div>
+
+
+<div class="">
+<span>
+<a href="index.php?mod=topic&amp;code=new" title="最新微博">微博广场</a>  |   
+<a href="index.php?mod=topic&amp;code=myhome" title="我的首页">我的首页</a>
+<!--{if $member[uid] == MEMBER_ID}-->
+ | <a href="index.php?mod=login&amp;code=logout">退出</a>
+<!--{/if}-->
+
+</span>
+</div>
+
+<div style="height:20px;"></div>
+
+<div>
+<!--{conf tongji}-->
+<!--
+{eval $__server_execute_time = round(microtime(true) - $GLOBALS[_J][time_start], 5) . " Second ";}
+{eval $__gzip_tips = ((defined('GZIP') && GZIP) ? "&nbsp;Gzip Enable." : "Gzip Disable.");}
+<span title="网页执行信息：{$__server_execute_time},{$__gzip_tips}">
+&nbsp; Execute：{$__server_execute_time},{$__gzip_tips}</span>
+-->
+</div>
+
+{$GLOBALS[schedule_html]}
+</body> 
+</html>
+<!--{eval if($this->MemberHandler) $this->MemberHandler->UpdateSessions();}-->

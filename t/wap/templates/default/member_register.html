@@ -1,0 +1,26 @@
+<!--{template "topic_header"}-->
+ <div class="tbox">
+ <form id="form1" name="form1" method="post" action="{$action}">
+ <!--{if $inviter_member}-->
+	<div class="u">
+	<span>
+	<img src="{$inviter_member[face]}" class="facestyle"/></span>
+	<!--{eval $inviter_member[nickname]=wap_iconv($inviter_member[nickname]);}-->
+	<span style="margin-top:15px;"><span class="fontGreen">{$inviter_member[nickname]}</span> 邀您注册 （注册后你们将相互关注，并在首页看到彼此的分享）</span>
+	</div>
+<!--{elseif $this->Config[register_invite_input]}-->
+ <div class="regp">请输入邀请人昵称（可以为空）<br /><input name="inviter_nickname" type="text" id="inviter_nickname" /></div>
+<!--{/if}-->
+ {if $this->_sms_register()}
+ <input name="sms_bind_num" value="{$sms_bind_num}" type="hidden" id="sms_bind_num" />
+ <div class="regp">请输入您接收到的手机验证码<br /><input name="sms_bind_key" type="text" id="sms_bind_key" /></div>
+ {/if}
+ {if !$noemail}
+ <div class="regp">登录邮箱（请使用常用Email）<br /><input name="email" type="text" id="email"/></div>
+ {/if}
+ <div class="regp">帐户/昵称（用于登录、显示等）<br /><input name="nickname" type="text" id="nickname" /></div>
+ <div class="regp">登录密码（至少5位字母或数字）<br /><input name="password"  type="password" id="password " /></div>
+ <div class="regp"><input type="submit" name="Submit" value="注册" /></div>
+ </form>
+</div>
+<!--{template "topic_footer"}-->

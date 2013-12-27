@@ -1,0 +1,123 @@
+<!--我的首页 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list"></div>
+
+<!--{hook/global_usernav_extra2}-->
+
+<!--我的关注的话题 右侧导航-->
+  
+   <script language="javascript">
+		$(document).ready(function(){
+			/*
+			* ajax 右侧显示数据
+			* 这里的函数可以随便更改位置，加载的顺序也会不同。
+			*/
+			//本周最受关注话题（top10）
+			get_hot_tag_top();
+			//推荐话题
+			get_hot_tag(); 
+			//我关注的话题	
+			<!--{if MEMBER_ID > 0}-->	
+			get_my_follow_tag();
+			//共同兴趣话题的用户
+			get_common_interest_user();	
+			<!--{/if}-->
+		});
+
+		//最受关注话题
+		function get_hot_tag_top(){			
+			right_show_ajax('{$member[uid]}','hot_tag_top','hot_tag_top');
+		}
+
+		function get_hot_tag(){
+			//热门话题
+			right_show_ajax('{$member[uid]}','hot_tag','hot_tag');
+		}
+		
+		function get_my_follow_tag(){
+			//我关注的话题
+			right_show_ajax('{$member[uid]}','myfavoritetags','myfavoritetags');
+		}
+
+		function get_common_interest_user(){
+			right_show_ajax('{$member[uid]}','common_interest','common_interest');
+		}
+	</script>
+	
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+	$(".SC_rementuijian").click(function(){$(this).parent().toggleClass("fold_rementuijian");$(".SC_rementuijian_box").toggle();});
+	});
+  </script>
+  
+   <div class="side">
+	<h3>本周热门话题<a class="btn SC_rementuijian_box" href="javascript:void(0);"></a>
+	</h3>
+	<div class="FTL SC_rementuijian_box">
+		<div id="{$member[uid]}_hot_tag_top"></div>
+	</div>
+  </div>
+  
+  
+   <!-- 热门话题推荐-->
+    <!--{if $this->Config[hot_tag_recommend_enable] && ($hot_tag_recommend = ConfigHandler::get('hot_tag_recommend')) && $hot_tag_recommend[list]}-->
+    <script type="text/javascript">
+			$(document).ready(function(){
+				$(".SC_rementuijian").click(function(){$(this).parent().toggleClass("fold_rementuijian");$(".SC_rementuijian_box").toggle();});
+			});
+		  </script>
+    <div class="side">
+      <h3>{$hot_tag_recommend[name]}<a class="btn SC_rementuijian" href="javascript:void(0);"></a></h3>
+      <ul class="FTL SC_rementuijian_box">
+        <div id="{MEMBER_ID}_hot_tag" style="padding:0 2px"></div>
+      </ul>
+    </div>
+    <!--{/if}-->
+	<!-- 热门话题推荐-->
+
+	<!--{if MEMBER_ID > 0}-->
+  	    <!--有共同兴趣话题的人 begin-->
+		<script type="text/javascript">
+				$(document).ready(function(){
+					$(".SC_renqituijian").click(function(){$(this).parent().toggleClass("fold_renqituijian");$(".SC_renqituijian_box").toggle();});
+				});
+			</script>
+		<div class="side" id="common_interest_div">
+		  <h3>共同兴趣话题用户<a class="btn SC_renqituijian" href="javascript:void(0);"></a></h3>
+		  <ul class="FTL3 SC_renqituijian_box">
+			<div id="{$member[uid]}_common_interest"></div>
+		  </ul>
+		</div>
+       <!--有共同兴趣话题的人 end-->
+  	    <!--我关注的话题-->
+		<script type="text/javascript">
+				$(document).ready(function(){
+					$(".SC_woguanzhu").click(function(){$(this).parent().toggleClass("fold_woguanzhu");$(".SC_woguanzhu_box").toggle();});
+				});
+			</script>
+		<div class="side">
+		  <h3>我关注的话题<a class="btn SC_woguanzhu" href="javascript:void(0);"></a></h3>
+		  <ul class="FTL SC_woguanzhu_box">
+			<div id="{$member[uid]}_myfavoritetags"></div>
+		  </ul>
+		</div>
+       <!--我关注的话题-->
+   <!--{/if}-->
+
+<!--{template 'topic_right_common.ini'}-->
+
+</div>
+</div>

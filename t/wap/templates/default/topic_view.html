@@ -1,0 +1,125 @@
+<!--{template "topic_header"}-->
+<div style="padding:2px;">
+	<span class="">微博原文</span>
+</div>
+<div class="m">
+	<div style="padding:5px;">
+		<div><p>{$topic_info[nickname]}： {$topic_info[content]}</p></div>
+		<!--{if ($tpid=$topic_info[top_parent_id])>0}-->
+			<div class="transpond">
+				<!--{if ($pt=$parent_list[$tpid])}-->
+					<p>
+						<span>
+						<a href="index.php?mod={$pt[username]}">{$pt[nickname]}</a>
+						<!--{if $pt[validate_html]}--><img class='vipImg' title='{$pt[vip_info]}' src='{conf site_url}/images/vip.gif' /><!--{/if}-->: 
+						{$pt[content]} 
+						</span>
+					</p>
+					<!--{if $pt[imageid] && $pt[image_list]}-->
+					<div class="Im">
+						{loop $pt[image_list] $iv}
+						<img src="{$iv[image_original]}" />
+						{/loop}
+					</div>
+					<!--{/if}-->
+                <!--{else}-->
+					<!--{eval $val[reply_disable]=0;}-->
+					<span>原始微博已删除</span>
+                <!--{/if}-->
+			</div>
+		<!--{/if}-->
+
+		<!--{if $topic_info[imageid] && $topic_info[image_list]}-->
+			<div class="Im">
+				{loop $topic_info[image_list] $iv}
+				<img src="{$iv[image_original]}" />
+				{/loop}
+			</div>
+		<!--{/if}-->
+		
+		<!--{if $topic_info[videoid]}-->
+		[视频]
+		<!--{/if}-->
+		
+		 <div class="t_manger">
+			<span class="p_time">{$topic_info[dateline]} |   {$topic_info[from_string]} |
+			 评论({$topic_info[replys]}) | 转发({$topic_info[forwards]}) 
+			 </span> 
+			 <span style="margin-left:5px;">
+			 <!--{if $topic_info[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+				<a href="index.php?mod=topic&amp;code=del&amp;tid={$topic_info[tid]}">删除</a> |
+				<!--{eval $datetime = time(); $modify_time = $this->Config[topic_modify_time] * 60}-->
+				<!--{if $datetime - $topic_info[addtime] < $modify_time || 'admin'==MEMBER_ROLE_TYPE}-->
+				<!--{if $topic_info[replys] <= 0 && $topic_info[forwards] <= 0 || 'admin'==MEMBER_ROLE_TYPE}-->
+				<a href="index.php?mod=topic&amp;code=modify&amp;tid={$topic_info[tid]}">编辑</a> 
+				<!--{/if}-->
+				<!--{/if}-->
+			<!--{/if}-->
+			</span> 
+		</div>
+	</div>
+	
+	<div class="u2">
+	<!--{if MEMBER_ID}-->
+	
+		<!--{if $this->Get['return']}--><div class="t_tips"><!--{if $this->Get['return'] == 'addreply'}-->请输入评论内容<!--{/if}--></div><!--{/if}-->
+
+		<!--{if $topic_info[replys] > 0}-->
+		 <div style="padding:2px;"><span>评几句：<!--{if $this->Config[topic_input_length]>0}-->({conf topic_input_length}字以内)<!--{/if}--></span> [共{$topic_info[replys]}条评论]</div>
+		<!--{else}-->
+		<span>期待你的第一个评论</span>
+		<!--{/if}-->
+		
+		<div class="u2">
+		<form id="form1" name="form1" method="post" action="index.php?mod=topic&amp;code=doreply">
+		 <span>
+		 	<p>
+			<!--<input name="content" type="text" id="content" style="width:98%;"/>-->
+			<textarea name="content" id="content" style="width:99%;" rows="3" cols="" /></textarea>
+			</p>
+		 </span>
+		 <span>
+		  <input name="totid" type="hidden" id="totid" value="{$topic_info[tid]}" />
+		  <input name="reply" type="hidden" id="reply" value="replycontent" />
+  		  <input name="return_code" type="hidden" id="return_code" value="{$this->Code}" />
+		  <input type="submit" name="Submit" value="发评论" />
+		  <!--{if in_array($root_type, get_topic_type('forward'))}--> 
+		   <input name="topictype" type="checkbox" id="topictype" value="both" />
+			 同时发布微博
+	  	  <!--{/if}-->
+		  </form>
+		  </span>
+		</div>
+	<!--{else}-->
+		<div style="margin-top:20px;"> <a href="index.php?mod=login">登录后发表评论</a></div>
+	<!--{/if}-->
+	</div>
+	<div class="lineDot"></div>
+	<div class="m">
+		<!--{loop $reply_list $val}-->
+		<div>
+			<!--微博主体-->
+			<div class="t_list_b">
+				<span>
+					<a title="{$val[username]}" href="index.php?mod={$v[username]}">{$val[nickname]}</a>
+					<!--{if $val[validate_html]}--><img class='vipImg' title='{$val[vip_info]}' src='{conf site_url}/images/vip.gif' /><!--{/if}-->: 
+					回复 {$val[tousername]}: {$val[content]}
+				</span>
+				{template "topic_list_manage"}
+			</div>
+			<div class="lineDot"></div>
+		</div>
+		<!--{/loop}-->
+	</div>
+
+	<div>
+	<!--{if $page_arr[html]}-->
+		<span><p>{$page_arr[html]}</p></span>
+	<!--{/if}-->
+	</div>
+	
+	
+	
+</div>
+
+<!--{template "topic_footer"}-->

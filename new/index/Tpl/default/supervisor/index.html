@@ -1,0 +1,66 @@
+<include file='public:header' />
+
+<style>
+.select_diantu img {
+	width:51px;
+	height:50px;
+}
+p.fontstyle {
+	text-indent:29px;
+}
+</style>
+<div class="select_bg">
+    <div class="select_content">
+           <div class="select_toptxt">  <a href="">线下监理 </a><a href="">> 选监理师</a></div>
+           <div class="select_conleft">
+                <div id="TabbedPanels1" class="TabbedPanels">
+                	<ul class="TabbedPanelsTabGroup">
+                               <a href="{:U('supervisor/index?f=1')}"><li class="TabbedPanelsTab <if condition='$f eq 1'>TabbedPanelsTabSelected</if>" tabindex="0" >工装监理师</li></a>
+                               <a href="{:U('supervisor/index?f=2')}"><li class="TabbedPanelsTab <if condition='$f eq 2'>TabbedPanelsTabSelected</if>" tabindex="0">别墅监理师</li></a>
+                               <a href="{:U('supervisor/index?f=3')}"><li class="TabbedPanelsTab <if condition='$f eq 3'>TabbedPanelsTabSelected</if>" tabindex="0">公寓监理师</li></a>
+                               <a href="{:U('supervisor/index?f=4')}"><li class="TabbedPanelsTab <if condition='$f eq 4'>TabbedPanelsTabSelected</if>" tabindex="0">预算师</li></a>
+                               <a href="{:U('supervisor/index?f=5')}"><li class="TabbedPanelsTab <if condition='$f eq 5'>TabbedPanelsTabSelected</if>" tabindex="0">验房师</li></a>
+                               <a href="{:U('supervisor/index?f=6')}"><li class="TabbedPanelsTab <if condition='$f eq 6'>TabbedPanelsTabSelected</if>" id="tabpat" tabindex="0" style="border-right:solid 1px #c8cdce;">维权律师</li></a>
+                    </ul>
+                    <div class="TabbedPanelsContentGroup">
+                              <div class="TabbedPanelsContent">
+								<volist name="data" id="val" empty="还没有任何记录！" >
+                                 <div class="select_p">
+                                      <div class="select_pleft">
+                                          <a href="{:U('supervisor/supervisor?sid=')}{$val.id}"> <img src="__IMAGES__{$val.avatar}" width=120 height=120 /></a>
+                                          <a href="{:U('reserve/index?sid=')}{$val.id}"><img src="__ROOT__/statics/index/images/button1.jpg" /></a>
+                                      </div>
+                                      <div class="select_pright">
+                                        <p><span class="select_pright-span">{$val.name}</span>[{$val.profession}]</p>
+                                        <div class="select_dianping" id="allImg"></div>
+                                           <p class="fontstyle">{$val.introduction}</p>
+                                           <p>所属监理公司：{$val.company}   &nbsp;&nbsp;&nbsp;&nbsp;  本月预约：{$val.reserve_month} &nbsp;     &nbsp;&nbsp;&nbsp;      累计预约：{$val.reserve_total}</p>
+                                           <p>服务区域：{$val.service_area}  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <!--<a href="">67</a>条点评--> &nbsp;&nbsp;&nbsp;&nbsp;      负责监理的项目：<a href="">{$val.project_count}</a>    </p>
+                                           <div class="select_diantu">
+                                           	<if condition='$val[img][0]'><a href="{$url}{$val[img][0][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][0][url]}" /></a></if>
+										   	<if condition='$val[img][1]'><a href="{$url}{$val[img][1][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][1][url]}"/></a></if></div>
+                                           <div class="select_diantu">
+                                           	<if condition='$val[img][2]'><a href="{$url}{$val[img][2][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][2][url]}" /></a></if>
+											<if condition='$val[img][3]'><a href="{$url}{$val[img][3][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][3][url]}"/></a></if></div>
+                                           <div class="select_diantu">
+                                           	<if condition='$val[img][4]'><a href="{$url}{$val[img][4][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][4][url]}" /></a></if>
+											<if condition='$val[img][5]'><a href="{$url}{$val[img][5][url]}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$url}{$val[img][5][url]}"/></a></if></div>
+                                      </div>
+                                      
+                                 </div>
+   								</volist>
+								<div id="pages">{$page}</div>
+                              </div>
+<!--
+                              <div class="TabbedPanelsContent">内容 2</div>
+                              <div class="TabbedPanelsContent">内容 3</div>
+                              <div class="TabbedPanelsContent">内容 4</div>
+                              <div class="TabbedPanelsContent">内容5</div>
+                              <div class="TabbedPanelsContent">内容6</div>-->
+                 </div>
+             </div>
+          </div>
+		  <include file='public:sidebar' />
+    </div>
+</div>
+<include file='public:footer' />

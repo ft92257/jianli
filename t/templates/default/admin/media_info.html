@@ -1,0 +1,67 @@
+<!--{template admin/header}-->
+<form action="{$action}" method="post" enctype="multipart/form-data" name="m_type_from" id="m_type_from">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="6"> 编辑媒体汇类别</td>
+    </tr>
+
+    <tr>
+      <td class="altbg1" width="130">媒体汇名称:</td>
+      <td class="altbg1" width="318"><span class="altbg2">
+        <input name="media_name" type="text" id="media_name" value="{$media_name}" size="40" /></span></td>
+      <td class="altbg1" width="46">排序：</td>
+      <td class="altbg1" width="443"><input name="order" type="text" id="order" value="{$order}" style="width:40px;"/></td>
+      <td width="406" class="altbg2"><span class="altbg1">
+        <input type="submit" class="button" name="editsubmit" value="编辑媒体类别" />
+        <input name="media_id" type="hidden" id="media_id" value="{$media_id}" />
+      </span></td>
+    </tr>
+  </table>
+    <center>
+  </center>
+</form>
+
+
+
+
+
+
+<form  action="admin.php?mod=media&code=del_media" method="post" name="m_user_from" id="m_user_from">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="30">
+				<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" ></td>	
+				<td width="363"><strong>$media_name</strong> 媒体汇用户</td>
+				<td width="826">&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			 <!--{loop $media_user $_user}-->
+			<tr align="center">
+			  <td align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED">
+			    <input class="checkbox" type="checkbox" name="ids[]2" value="$_user[uid]" />
+			 </td>
+				<td align="left" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+				<span class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$_user[username]}" target="_blank">{$_user[nickname]}</a></span></td>
+				<td align="left" class="altbg2" style="border-bottom:1px dotted #EDEDED">
+			    
+				<td align="center" class="altbg1" style="border-bottom:1px dotted #EDEDED">&nbsp;</td>
+			</tr>
+			<!--{/loop}-->
+			
+			
+			<!--{if $page_arr[html]}-->
+			<tr align="center">
+				<td colspan="4" class="altbg1">
+				{$page_arr[html]}				</td>
+			</tr>
+			<!--{/if}-->
+  </table>
+
+
+<center>
+  <button type="submit" class="button"> 批量取消媒体用户 </button>&nbsp;&nbsp;
+  <button class="button" type="button" onclick="window.location.href='admin.php?mod=media';return false;">返回</button>
+
+  <input name="media_ids" type="hidden" id="media_ids" value="{$ids}" />
+</center>
+</form>

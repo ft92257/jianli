@@ -1,0 +1,107 @@
+<script type="text/javascript" src="js/kind/kindeditor.js" charset="utf-8"></script>
+<div id="longtext_info_box">
+
+<table border="0" width="100%" cellspacing="10" cellpadding="10">
+	<tr>
+		<td>
+		<form id="longtext_info_form" name="longtext_info_form" method="post" action="{$action}" onsubmit="longtext_info_submit();return false;">
+			<input type="hidden" name="id" value="{$longtext_info[id]}" />		
+			<div class="cw_textarea"> <textarea style="width:100%;height:200px;" id="longtext" name="longtext">{$longtext_info[longtext]}</textarea></div>
+			<div class="cw_submit"><p style="float:right;"><input type="submit" value=" 提交 " class="c_b3" /> &nbsp; <input type="button" value="取消" onclick="longtext_info_cancel();return false;"  class="c_b4"/></p></div>		
+		</form>
+		<div class="cw_img">
+			<!--{eval $image_uploadify_topic = array();}-->
+			<!--{eval $image_uploadify_from = 'topic_longtext_info_ajax';}-->
+			<!--{eval $content_textarea_id = $topic_textarea_id = 'longtext';}-->
+			{template "image_uploadify.inc"}
+		</div>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+function initEditor()
+{
+	KE.init({
+		id : 'longtext',
+		resizeMode : 1,
+		skinsPath : '{conf site_url}/templates/default/js/kind/skins/',
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		allowFileManager : false,
+		items : [
+		'bold', 'italic', 'underline', '|', 
+		'insertorderedlist', 'insertunorderedlist'
+		],
+		filterMode : true,
+		htmlTags : {
+			span : ['.font-weight', '.font-style', '.text-decoration'],
+			img : ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '/'],
+			'strong,br,em,ol,ul,li,p,b,i,u' : []
+		}
+	});
+	setTimeout("KE.create('longtext');",100);
+}
+
+$(document).ready(function(){
+	initEditor();
+});
+
+function longtext_info_img_insert(srcval)
+{
+	var srcval = srcval.replace(/(.+)\_s\.jpg/i, "$1_o.jpg");	
+	var imgHtml = '<img src="' + srcval + '" />';	
+	KE.insertHtml('longtext', imgHtml);	
+}
+
+//点击取消按钮时执行的操作
+function longtext_info_cancel()
+{
+	var from_cls = '{$from_cls}';
+	if('menu_cwb_c1' == from_cls) {
+		$('.menu_cwb_c1').click();
+	} else {
+		close_longtext_info_dialog();
+	}
+}
+
+function longtext_info_submit()
+{
+	var content_id = '{$content_id}';
+	var button_id = '{$button_id}';
+	if( '' == $('#longtext').val() ) {
+		MessageBox('warning', '内容不能为空');
+		return false;
+	}
+	$.post(
+		$('#longtext_info_form').attr('action'),
+		$('#longtext_info_form').serialize(),
+		function (r) {
+			if(r.done) {
+				longtext_info_cancel();
+				var rv = r.retval;
+				if (rv.id > 0) {
+					__LONGTEXT_ID__ = rv.id;
+				}
+				if (rv.data) {
+					$('#' + content_id).val(rv.data);
+				}
+				options = {
+					onclick:function() {
+						if($('#' + content_id).val()) {
+							$('#' + button_id).click();
+						}
+					},
+					close_first:true
+				};
+				MessageBox('notice', r.msg, '提示', options);
+			} else {
+				if(r.msg) {
+					MessageBox('warning', r.msg);
+				}
+			}
+		},
+		'json'
+	);	
+}
+</script>
+</div>

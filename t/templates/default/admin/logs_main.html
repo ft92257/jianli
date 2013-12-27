@@ -1,0 +1,48 @@
+{template admin/header}
+<div class="mt10">
+  <form action="admin.php" method="get" name="search">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="4">查询记录</td>
+		</tr>
+		<tr>
+		  <td class="altbg1" width="250">记录时间:<br>格式：YYYYmm</td>
+		  <td class="altbg2">
+		    <input name="date" type="text" id="date" value="{$yearmonth}" size="6">		
+		  </td>
+		</tr>
+		<tr>
+		  <td class="altbg1" width="250">操作员</td>
+		  <td class="altbg2">
+		    <input name="nickname" type="text" id="nickname" value="{$nickname}">		
+		  </td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="250">&nbsp;
+			</td>
+			<td class="altbg2">
+			<button name="do" value='' type="submit" class="button">搜索一下</button>
+			<input type="hidden" id="code" name="code" value="{$this->Code}">
+			<input name="mod" type="hidden" value="logs">
+			<input name="per_page_num" type="hidden" value="{$per_page_num}">
+			</td>
+		</tr>
+	</table>
+  </form>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="altbg1">
+      <td width="150">操作者</td>
+      <td width="150">IP 地址</td>
+      <td width="150">时间</td>
+      <td>记录</td>
+    </tr>
+    <!--{loop $log $key $val}-->
+    <tr class="altbg2">
+      <td><a href="index.php?mod=$val[username]" target="_blank">{$val['nickname']}</a></td>
+      <td>{$val['ip']}</td>
+      <td><!--{eval echo my_date_format($val[dateline], 'Y-m-d H:i')}--></td>
+      <td>{$val[action_name]}{$val['action']}</td>
+    </tr>
+    <!--{/loop}-->
+  </table>
+</div>

@@ -1,0 +1,27 @@
+<style>
+.q_attach th{border-bottom:1px solid #ccc;}
+.q_attach td{border-bottom:1px dashed #ccc;padding:3px 0px;}
+</style>
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%" class="q_attach">
+<tr>
+<th width="8%">类型</th>
+<th width="45%">文件名称</th>
+<th width="8%">积分</th>
+<th width="24%">上传时间</th>
+<th width="8%">已下载</th>
+<th width="7%">操作</th>
+</tr>
+<!--{loop $attach_list $val}-->
+<tr>
+<td><img src="{$val['type']}" width="32" height="32"></td>
+<td><a href="index.php?mod=topic&code={$val['tid']}" title="查看所属微博" target="_blank">{$val['name']}</a>({$val['size']})</td>						
+<td>{$val[score]}分</td>
+<td>{$val['time']}</td>
+<td>{$val[download]}次</td>
+<td><a href="javascript:void(0);"  onclick="downattach({$val[id]});">下载</a></td>
+</tr>
+<!--{/loop}-->
+</table>
+<!--{if $page_arr[html]}-->
+<div class="pageStyle">{$page_arr[html]}</div>
+<!--{/if}-->

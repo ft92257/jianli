@@ -1,0 +1,209 @@
+{template "topic_header"}
+<style type="text/css">
+.media_user_list{margin:-11px 0 0 -9px;*margin:-11px 0 0 -64px;}
+.setframe .left_nav .tago{background-color: #4D9CD4;}
+.setframe .left_nav .tagn:hover{ background-color:#e3eef2;}
+.setframe .left_nav .tago a{ color:#fff;}
+</style>
+
+<div class="setframe">
+
+<!--此处三栏-->
+<!--{template 'topic_new_left.ini'}-->
+<!--此处三栏-->
+
+<div class="main_2b">
+<a name="top_t" id="top_t"></a>
+<div class="main_t22">
+<div class="main_t22l">达人榜<span>（必须上传了个人头像才有机会上榜哦）</span><!--{hook/global_topictop_extra1}--></div>
+<a href="index.php?mod=settings&code=face" title="上传个人头像获得上榜机会"><img src="images/quare/btn_uf.gif" /></a>
+</div>
+<div class="topL">
+<script type="text/javascript">
+var authort;
+function showauthor(ctrlObj, menuid) {
+	authort = setTimeout(function () {
+		//showMenu({'menuid':menuid});
+		if($(menuid + '_ma').innerHTML == '') $(menuid + '_ma').innerHTML = ctrlObj.innerHTML;
+	}, 500);
+	if(!ctrlObj.onmouseout) {
+		ctrlObj.onmouseout = function() {
+			clearTimeout(authort);
+		}
+	}
+}
+</script>
+<div class="Tnav"><div class="Pname">1、最受关注榜</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $r_users $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li style="height:75px;">
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{else}-->
+<a href="javascript:void(0)" onmouseover="get_user_choose({$v[uid]},'_r_users')" onmouseout="clear_user_choose()"><img src="{$v[face]}" onerror="javascript:faceError(this);" /></a>
+<!--{/if}-->
+<!--{if $v[follow_html]}--><p style="margin-top:5px;">{$v[follow_html]}</p><!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_r_users" class="layS4"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank" onmouseover="get_at_user_choose('{$v[nickname]}',this)">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>{$v[from_area]}</p>
+<p>粉丝{$v[fans_count]}人|微博{$v[topic_count]}条</p>
+<p><!--{hook/global_topictop_extra2}--></p>
+</div>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+<div class="topL">
+<div class="Tnav"><div class="Pname">2、一周人气榜</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $day7_r_buddys $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li style="height:75px;">
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{else}-->
+<img href="javascript:void(0);" onmouseover="get_user_choose({$v[uid]},'_day7_r_buddys');"  onmouseout="clear_user_choose()" src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{/if}-->
+<!--{if $v[follow_html]}--><p style="margin-top:5px;">{$v[follow_html]}</p><!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_day7_r_buddys"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank" onmouseover="get_at_user_choose('{$v[nickname]}',this)">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>{$v[from_area]}</p>
+<p>粉丝{$v[fans_count]}人|微博{$v[topic_count]}条</p>
+<p><!--{hook/global_topictop_extra2}--></p>
+</div>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+
+<div class="topL">
+<div class="Tnav"><div class="Pname">3、一周活跃榜</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $day7_r_users $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li style="height:75px;">
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{else}-->
+<img href="javascript:void(0);" onmouseover="get_user_choose({$v[uid]},'_huoyue');"  onmouseout="clear_user_choose()" src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{/if}-->
+<!--{if $v[follow_html]}--><p style="margin-top:5px;">{$v[follow_html]}</p><!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_huoyue"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank" onmouseover="get_at_user_choose('{$v[nickname]}',this)">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>{$v[from_area]}</p>
+<p>粉丝{$v[fans_count]}人|微博{$v[topic_count]}条</p>
+<p><!--{hook/global_topictop_extra2}--></p>
+</div>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+<div class="topL">
+<div class="Tnav"><div class="Pname">4、一周影响榜</div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $day7_r_topics $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li style="height:75px;">
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{else}-->
+<img href="javascript:void(0);" onmouseover="get_user_choose({$v[uid]},'_yingxiang');"  onmouseout="clear_user_choose()" src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{/if}-->
+<!--{if $v[follow_html]}--><p style="margin-top:5px;">{$v[follow_html]}</p><!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_yingxiang"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank" onmouseover="get_at_user_choose('{$v[nickname]}',this)">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>{$v[from_area]}</p>
+<p>粉丝{$v[fans_count]}人|微博{$v[topic_count]}条</p>
+<p><!--{hook/global_topictop_extra2}--></p>
+</div>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+
+<!--{if $credits}-->
+<div class="topL">
+<div class="Tnav"><div class="Pname">5、<!--{if $credits_name}-->{$credits_name}榜<!--{else}-->总积分榜<!--{/if}--></div></div>
+<ul class="toplu">
+<!--{eval $_v_c_i = 0;}-->
+<!--{loop $top_day7_r_sign $v}-->
+<!--{eval $_v_c_i++;$_v_c=($_v_c_i<4?"<b class='fontRed'> $_v_c_i </b>":"<b> $_v_c_i </b>");}-->
+<li style="height:75px;">
+<div class="daren">
+<div class="daren2">
+<!--{if MEMBER_ID == {$v[uid]}}-->
+<img src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{if $v[follow_html]}--><p>{$v[follow_html]}</p><!--{/if}-->
+<!--{else}-->
+<img href="javascript:void(0);" onmouseover="get_user_choose({$v[uid]},'_sign');"  onmouseout="clear_user_choose()" src="{$v[face]}" onerror="javascript:faceError(this);" />
+<!--{/if}-->
+<!--{if $v[follow_html]}--><p style="margin-top:5px;">{$v[follow_html]}</p><!--{/if}-->
+</div>
+<div id="user_{$v[uid]}_sign"></div>
+<div class="daren3">
+<p><a href="index.php?mod={$v[username]}" target="_blank" onmouseover="get_at_user_choose('{$v[nickname]}',this)">{$v[nickname]}{$v[validate_html]}</a></p>
+<p>{$v[from_area]}</p>
+<p>粉丝{$v[fans_count]}人|微博{$v[topic_count]}条</p>
+<p>{$v[credit]}</p>
+<p><!--{hook/global_topictop_extra2}--></p>
+</div>
+</div>
+</li>
+<div id="Pmsend_to_user_area"></div>
+<div id="alert_follower_menu_{$v[uid]}"></div>
+<span id="button_{$v[uid]}" onclick="get_group_choose({$v[uid]});"></span>
+<div id="global_select_{$v[uid]}" class="alertBox" style="display:none"></div>
+<div id="get_remark_{$v[uid]}" ></div>
+<!--{/loop}-->
+</ul>
+</div>
+<!--{/if}-->
+
+</div>
+</div>
+{template "topic_footer"}

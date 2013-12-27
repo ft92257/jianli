@@ -1,0 +1,60 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>点编辑框左侧的“关于我们”等字样，可以直接在前台查看实际显示效果</li>
+			<li>本页面的内容信息都保存在/setting/web_info.php中，可以通过ftp直接修改</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.show({
+id : 'about'
+});
+KE.show({
+id : 'contact'
+});
+KE.show({
+id : 'joins'
+});
+</script>
+<form method="post" action="admin.php?mod=web_info&code=domodify"  enctype="multipart/form-data">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+<tr align="center">
+  <td width="8%" rowspan="2" class="altbg2"><A HREF="index.php?mod=other&code=about" target=_blank>关于我们</A></td>
+  <td colspan="2" align="left" class="altbg1"> <textarea name="about" style="width:640px; height:240px;" id="content">{$_web_info['about']}</textarea>
+   <center></center></td>
+</tr>
+<tr align="center">
+  <td width="20%" class="altbg1">&nbsp;</td>
+  <td width="74%" align="left" class="altbg1"><input class="button" type="submit" name="cronssubmit2" value="提 交" /></td>
+</tr>
+<tr align="center">
+  <td rowspan="2" class="altbg2"><A HREF="index.php?mod=other&code=contact" target=_blank>联系我们</A></td>
+  <td colspan="2" align="left" class="altbg1"><textarea name="contact" style="width:640px; height:240px;" id="content">{$_web_info['contact']}</textarea>
+    <center></center></td>
+</tr>
+<tr align="center">
+  <td width="20%" class="altbg1">&nbsp;</td>
+  <td align="left" class="altbg1"><input class="button" type="submit" name="cronssubmit3" value="提 交" /></td>
+</tr>
+<tr align="center">
+ <td rowspan="2" class="altbg2"><A HREF="index.php?mod=other&code=joins" target=_blank>加入我们</A></td>
+ <td colspan="2" align="left" class="altbg1"><textarea name="joins" style="width:640px; height:240px;" id="content">{$_web_info['joins']}</textarea>
+  <center></center></td>
+</tr>
+<tr align="center">
+  <td width="20%" class="altbg1">&nbsp;</td>
+  <td align="left" class="altbg1"><input class="button" type="submit" name="cronssubmit" value="提 交" /></td>
+</tr>
+</table>
+
+
+</form>

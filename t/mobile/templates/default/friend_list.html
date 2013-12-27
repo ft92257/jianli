@@ -1,0 +1,47 @@
+<!--{template "header"}-->
+<div data-role="content" >
+    	<!--我关注的人 Begin-->
+    	<div id="member_list">
+        	<!--{if !empty($member_list)}-->                                    
+        	  <ul class="m_list" id="member_ul">
+              	<!--{loop $member_list $member}-->
+              	<li onclick="goToUserInfo('{$member['uid']}')">
+                	<div class="info_wp">
+                    	<div class="bc_l">
+                    		<img src="{$member['face']}"/>
+                        </div>
+                        <div class="bc_r">
+                        	<div class="uname">{$member['nickname']}</div>
+                            <div class="other">
+                            	{$member['from_area']}
+								<br>
+								粉丝{$member['fans_count']}人 | {$member['topic_count']}条微博
+                          </div>
+                        </div>
+                    </div>
+                    <div class="do_wp">
+                    	<!--{if $this->Code=='blacklist'}-->
+                        	 <a href="javascript:;" onclick="delFromBlackList(this, {$member[uid]}); return true;" class="btn_y">解除黑名单</a>
+                        <!--{else}-->
+                            <!--{if $member['friendship'] == 0}-->
+                                <a href="javascript:;" onclick="addFollow(this, {$member[uid]}); return true;" class="btn_g">关注</a>
+                            <!--{elseif $member['friendship'] == 1}-->
+                                自己
+                            <!--{elseif $member['friendship'] == 2}-->
+                                <a href="javascript:;" onclick="delFollow(this, {$member[uid]}); return true;" class="btn_y">取消关注</a>
+                            <!--{elseif $member['friendship'] == 4}-->
+                                <a href="javascript:;" onclick="delFollow(this, {$member[uid]}); return true;" class="btn_y">取消关注</a>
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    </div>
+                </li>
+                <!--{/loop}-->
+              </ul>
+              <!--{if $list_count >= 20}-->
+					<div class="wb_more" onclick="getMoreMemberList({'max_id':{$max_id}, 'code':'{$this->Code}', 'uid':{$this->Get['uid']}})" id="btn_more">更多...</div>
+              <!--{/if}-->
+             <!--{/if}-->  
+        </div>
+        <!--我关注的人 End-->
+</div>
+<!--{template "footer"}-->

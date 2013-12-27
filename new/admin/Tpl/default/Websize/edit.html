@@ -1,0 +1,136 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript" src="__ROOT__/statics/js/ckeditor/ckeditor.js" ></script> 
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+<form action="?s=/Websize/edit" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+		
+		<assign name="quantity" value="17" />
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',{$quantity},1);">家装监理师</li>
+   	   	<li id="tab_setting_2" class="" onclick="SwapTab('setting','on','',{$quantity},2);">工装监理师</li>
+		<li id="tab_setting_3" class="" onclick="SwapTab('setting','on','',{$quantity},3);">为什么选择监理师傅</li>
+		
+		<li id="tab_setting_4" class="" onclick="SwapTab('setting','on','',{$quantity},4);">连锁店</li>
+		<li id="tab_setting_5" class="" onclick="SwapTab('setting','on','',{$quantity},5);">品牌店</li>
+		<li id="tab_setting_6" class="" onclick="SwapTab('setting','on','',{$quantity},6);">餐饮连锁</li>
+		<li id="tab_setting_7" class="" onclick="SwapTab('setting','on','',{$quantity},7);">办公室</li>
+		<li id="tab_setting_8" class="" onclick="SwapTab('setting','on','',{$quantity},8);">实验室</li>
+		<li id="tab_setting_9" class="" onclick="SwapTab('setting','on','',{$quantity},9);">酒店会所</li>
+		<li id="tab_setting_10" class="" onclick="SwapTab('setting','on','',{$quantity},10);">金融机构</li>
+		<li id="tab_setting_11" class="" onclick="SwapTab('setting','on','',{$quantity},11);">厂房</li>
+		<li id="tab_setting_12" class="" onclick="SwapTab('setting','on','',{$quantity},12);">土建监理</li>
+		<li id="tab_setting_13" class="" onclick="SwapTab('setting','on','',{$quantity},13);">其它</li>
+		<li id="tab_setting_14" class="" onclick="SwapTab('setting','on','',{$quantity},14);">绿色易监理</li>
+		<li id="tab_setting_15" class="" onclick="SwapTab('setting','on','',{$quantity},15);">联系我们</li>
+		<li id="tab_setting_16" class="" onclick="SwapTab('setting','on','',{$quantity},16);">诚聘精英</li>
+		<li id="tab_setting_17" class="" onclick="SwapTab('setting','on','',{$quantity},17);">收费标准</li>
+      </ul>
+	  
+     <div id="div_setting_1" class="contentList pad-10">
+		<textarea id="KE_1" name="houser" style="width:820px;height:300px;">{$info.houser}</textarea>
+     </div>
+	
+	<div id="div_setting_2" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_2" name="worker" style="width:820px;height:300px;">{$info.worker}</textarea>
+	</div>
+
+	<div id="div_setting_3" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_3" name="why" style="width:820px;height:300px;">{$info.why}</textarea>
+	</div>
+	
+	<div id="div_setting_4" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_4" name="multiple_shop" style="width:820px;height:300px;">{$info.multiple_shop}</textarea>
+	</div>
+	
+	<div id="div_setting_5" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_5" name="office_building" style="width:820px;height:300px;">{$info.office_building}</textarea>
+	</div>
+
+	<div id="div_setting_6" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_6" name="laboratory" style="width:820px;height:300px;">{$info.laboratory}</textarea>
+	</div>
+	
+	<div id="div_setting_7" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_7" name="hotel" style="width:820px;height:300px;">{$info.hotel}</textarea>
+	</div>
+
+	<div id="div_setting_8" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_8" name="catering" style="width:820px;height:300px;">{$info.catering}</textarea>
+	</div>
+	
+	<div id="div_setting_9" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_9" name="factory" style="width:820px;height:300px;">{$info.factory}</textarea>
+	</div>
+	
+	<div id="div_setting_10" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_10" name="finance" style="width:820px;height:300px;">{$info.finance}</textarea>
+	</div>
+	
+	<div id="div_setting_11" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_11" name="school" style="width:820px;height:300px;">{$info.school}</textarea>
+	</div>
+	
+	<div id="div_setting_12" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_12" name="building" style="width:820px;height:300px;">{$info.building}</textarea>
+	</div>
+	
+	<div id="div_setting_13" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_13" name="other" style="width:820px;height:300px;">{$info.other}</textarea>
+	</div>
+	
+	<div id="div_setting_14" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_14" name="green" style="width:820px;height:300px;">{$info.green}</textarea>
+	</div>
+
+	<div id="div_setting_15" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_15" name="contact" style="width:820px;height:300px;">{$info.contact}</textarea>
+	</div>
+	
+	<div id="div_setting_16" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_16" name="recruit" style="width:820px;height:300px;">{$info.recruit}</textarea>
+	</div>
+	
+	<div id="div_setting_17" class="contentList pad-10" style="display:none;">
+		<textarea id="KE_17" name="money" style="width:820px;height:300px;">{$info.money}</textarea>
+	</div>
+
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			$('#div_'+name+'_'+i).show();
+			$('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			$('#div_'+name+'_'+i).hide();
+			$('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+function KE_show(id) {
+	KE.show({
+		id : id,
+		imageUploadJson : "{:U('company/KE_upload')}"
+	});
+}
+
+function setEdit() {
+	var length = $('.col-tab').find('div').size();
+	for (var i=1;i<=length;i++) {
+		var id = 'KE_' + i;
+		KE_show(id);
+	}
+}
+
+setEdit();
+
+</script>
+</body></html>

@@ -1,0 +1,69 @@
+
+
+<div id="ViewBox" class="dialog_inner">
+	<ul class="manBox ViewBox_p" style="width:410px; overflow:hidden;">
+		<li style="border:none; padding:0;">
+			<div class="mWarp" style="white-space:normal">
+			
+				<a href="javascript:void(0)" onmouseover="get_user_choose({$msgfromid},'_user',{$msgfromid})" onmouseout="clear_user_choose()">
+				<img border="0" src="{$face}" class="pic" onerror="javascript:faceError(this);"/></a>
+				<div id="user_{$msgfromid}_user"></div>
+				
+	
+				<p id="#description_comment_10580">{$msgnickname} ：{$message}</p>
+				<!--<span class="spanL"><b>回复短信给 [$nickname]</b></span>-->
+				
+				<!--聊天记录-->
+				<div id="chat_list_{$msgfromid}">
+					<!--{if $listchat}-->
+					 <!--{loop $listchat $val}-->
+						 <span style="color:#999;">{$val[msgnickname]}：{$val[message]} </span>
+					 <!--{/loop}-->
+					<!--{/if}-->	
+				</div >
+				<!--聊天记录-->
+				
+				
+				<div class="reply_box">
+					<form action="index.php?mod=pm&code=dosend" method="post" enctype="multipart/form-data" name="frmReply" id="frmReply">
+						<input type="hidden" name="to_id" value="{$msgtoid} " />
+						<div class="title_box" style="margin-top:-3px; display:none;">
+						<input type="text" id="subject" name="subject" size="20" value="回复: {$subject}" class="inputB" />
+					</div>
+						<div class="write_box" style="border-top:none;"> 
+							<span class="style04"></span>
+							<textarea id="message" name="message"  rows="3" class="inputB"></textarea>
+						</div>
+						<input type="hidden" id="to_user" name="to_user" value="{$nickname}">
+					  <div class="send_box">
+						<input id="publishSubmit" onclick="PmSubmit('{$id}','Pmreply_area_{$id}','{$nickname}','{$pmid}');return false;" type="button" class="sBtn_2" value="回复" title="按Ctrl+Enter直接发布"/>
+						</div>
+					</form>
+				</div>
+				<a href="javascript:;" onclick="closeDialog('{$this->Get[handle_key]}');">返回</a></span> |
+				<a href="index.php?mod=pm&code=markunread&folder={$folder}&ids={$id}">标记未读</a> |
+				<a href="javascript:void(0)" onClick="Pmdelete({$id},'pm_list_{$id}','{$folder}');return false;">删除消息</a> |
+<!--<a href="javascript:void(0)" onclick="getElementById('chat_list_{$msgfromid}').style.display=(getElementById('chat_list_{$msgfromid}').style.display=='none')?'':'none'">短信记录</a>  
+-->				</div> 
+		</li>
+	</ul>
+
+</div>
+
+
+	
+<script>
+$("#message").bind('keydown',function(event){
+event = event || window.event;
+if (event.keyCode == 13 && event.ctrlKey) {
+$("#publishSubmit").click();
+}
+});
+
+//设置对话框标题
+setDialogTitle('{$this->Get[handle_key]}', '<span>查看 <a href="index.php?mod={$user}">{$nickname}</a> 发来的站内短信</span>')
+</script>
+<div id="Pmsend_to_user_area" style="width:430px;"></div>
+<div id="alert_follower_menu_{$msgfromid}"></div>
+<div id="button_{$msgfromid}" onclick="get_group_choose({$msgfromid});"></div>
+<div id="global_select_{$msgfromid}" class="alertBox alertBox_2" style="display:none"></div>

@@ -1,0 +1,28 @@
+<rewrite>
+<rules>
+  <rule name="jishigou wap rule" stopProcessing="true">
+   <match url="^((?:(?!/other/).)*)/wap/?$" />
+   <conditions>
+	<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+	<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+   </conditions>
+   <action type="Rewrite" url="{R:1}/wap/index.php" />
+  </rule>
+  <rule name="jishigou mobile rule" stopProcessing="true">
+   <match url="^((?:(?!/other/).)*)/mobile/?$" />
+   <conditions>
+	<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+	<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+   </conditions>
+   <action type="Rewrite" url="{R:1}/mobile/index.php" />
+  </rule>
+  <rule name="jishigou main rule" stopProcessing="true">
+   <match url="^[^.?]*$" />
+   <conditions logicalGrouping="MatchAll">
+	<add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+	<add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+   </conditions>
+   <action type="Rewrite" url="/index.php" />
+  </rule>
+</rules>
+</rewrite>

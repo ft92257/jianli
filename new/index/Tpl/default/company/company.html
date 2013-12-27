@@ -1,0 +1,48 @@
+<include file='public:header' />
+<div class="select_bg">
+    <div class="select_content">
+           <div class="select_toptxt">  <a href="">线下监理 </a><a href="{:U('company/index')}">> 监理服务</a><a href=""> > {$company.name}</a><a href="#top"></a></div>
+           <div class="yijianli_content">
+             <div class="yijianli_left">
+               <div class="yijianli_leftimg"><img src="__IMAGES__{$company.logo}" width=160 height=160 /></div>
+                     <div class="yijianli_txt">
+                       <h2>{$company.name}</h2>
+                       <p class="yijianli_txtp">{$company.info} </p>
+                       <!--<p class="yijielitxt_b">贴的话要看敲掉以后的平整度情况，如果敲掉后很不平，也是需要找平的，就我们目前来看很多装修公司在预算里面都有这</p>-->
+                       <p class="yijieli_buttom">月预约量：<a href="">{$company.reserve_month}</a><br />
+                        累计预约：<a href="">{$company.reserve_total}</a>
+                         <a href="{:U('reserve/index?cid=')}{$company.id}"><img src="__ROOT__/statics/index/images/button2.jpg" class="yijielitxtimg" /></a></p>
+                      
+                   </div>
+                    <div class="yijieli_but"></div>
+               </div>
+               <div class="yijieli_right">
+                     <div id="TabbedPanels1" class="TabbedPanels">
+                       <ul class="TabbedPanelsTabGroup">
+                               <li class="TabbedPanelsTab" tabindex="0" >特色</li>
+                               <li class="TabbedPanelsTab" tabindex="0">价格</li>
+                               <li class="TabbedPanelsTab" tabindex="0">流程</li>
+                               <!-- <li class="TabbedPanelsTab" tabindex="0">案例</li> -->
+                               <li class="TabbedPanelsTab" tabindex="0"  style="border-right:solid 1px #c8cdce;">联系我们</li>
+                        </ul>
+                        <div class="TabbedPanelsContentGroup">
+                              <div class="TabbedPanelsContent">{$company.feature_info}</div>
+                              <div class="TabbedPanelsContent">{$company.price_info}</div>
+                              <div class="TabbedPanelsContent">{$company.process_info}</div>
+                              <!--<div class="TabbedPanelsContent">{$company.case_info}</div>-->
+                              <div class="TabbedPanelsContent">{$company.contact_info}</div>
+                 </div>
+             </div>
+               </div>
+           </div>
+         <a href="" id="top" class="hometop"><img src="__ROOT__/statics/index/images/top.png" /></a>
+          </div>
+    </div> 
+</div>
+
+<script type="text/javascript">
+<!--
+var TabbedPanels1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+//-->
+    </script>
+<include file='public:footer' />

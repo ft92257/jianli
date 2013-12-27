@@ -1,0 +1,244 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_member_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+  <div class="mainL">
+    <div class="mblogTitle2"> 
+	<div class="left_s">
+    <!--{if !$pageOnOff}-->
+    <b>{$member[nickname]}关注了{$member[follow_count]} 人</b>
+      <!--{if MEMBER_ID}-->
+             （<span><a href="index.php?mod=profile&code=search">点此找人</a></span>）
+      <!--{/if}-->
+    <!--{else}-->
+	  <div>
+	    <a href="index.php?mod=admin&code=follow">返回我关注的人</a><em> &gt; </em>昵称或备注含"{$nickname}"的人（{$followcount}）
+	  </div>
+	<!--{/if}-->
+    </div>
+    <!--搜索关注 start -->
+	<!--{if $member[uid]}-->
+	<div class="right_s">
+	  <form method="get" action="#" name="headSearchForm" id="headSearchForm" onsubmit="return ProfileSearch();">
+	   <input id="ProfileSearchType" name="searchType" type="hidden" value="followSearch">
+	   <input id="userName" name="userName" type="hidden" value="{MEMBER_NAME}">
+	   <!--{eval $serachValue = $keyword ? $keyword : "请输入关键字";}-->
+	   <input class="sc_r_t_a" id="keywarod" name="headSearchValue" type="text" value="{$serachValue}" onfocus="this.value=''" onblur="this.value='请输入关键字'"/>
+	   <a href="#" onclick="javascript:return ProfileSearch();" class="c_b2">&nbsp;</a>
+	   </form>
+	</div>
+	<!--{/if}-->
+  	 <!-- 搜索关注 end -->
+	 </div>
+     
+   <!--{if !$pageOnOff}-->
+   <!--分组管理-->
+   <!--{if $member[uid] == MEMBER_ID}-->
+	<div class="TopicMan">
+	<div class="nfTagB">
+		<li class="add_group2"><a href="javascript:void(0)" onclick="showFollowGroupAddDialog();" class="shareII">创建分组</a></li>
+
+		<ul class="nfTagB2ul">
+		    <!--{eval if($this->Get[gid] == '') $follow= "current";}-->
+			<li class="{$follow}"><span><a href="index.php?mod={$member[username]}&code=follow" title="">全部</a></span></li>
+			<!--{if $group_view[group_name]}-->
+			<li class="current nfTagB_cur ">
+			<span>
+			<b id="up_grouplist_view_{$group_view[id]}">{$group_view[group_name]}</b>
+			<a href="index.php?mod=topic&code=follow" class="arrow">
+			<cite class="arr_m"></cite> 
+			<div class="sltmenu" onclick="get_group_choose({$member[uid]});">管理分组</div>
+			</a>
+			</span>
+			</li>
+			<!--{/if}-->
+            
+			<!--{loop $grouplist2 $val}-->
+			<li>
+			<!--{if $group_view[group_name] != $val[group_name]}-->
+			<span id="del_group_follow_top_{$val[id]}">
+			<a title="{$val[group_name]}" href="index.php?mod=topic&code=follow&gid={$val[id]}">{$val[group_name]}</a>
+			</span>
+			<!--{/if}-->
+			</li>
+			<!--{/loop}-->
+            
+			<script type="text/javascript">
+			 $(document).ready(function(){
+			 $(".arrow").mouseover(function(){$(".sltmenu").show();});
+			 $(".arrow").mouseout(function(){$(".sltmenu").hide();});
+			 $(".moreBox").mouseover(function(){$(".morelist").show();});
+			 $(".moreBox").mouseout(function(){$(".morelist").hide();});
+			});
+			</script>
+			  
+			<li class="moreBox"> <a href="javascript:;" class="moreti"><span class="txt">更多</span><span class="more"></span></a> 
+			<div class="morelist">
+			<ul class="sltmenu_m" >
+			<li id="add_group_fllow" class="grouplist">
+			<!--{template "topic_group_ajax"}-->
+			</li>
+			<li class="B_linedot"></li>
+			<li class="slA"><a href="javascript:void(0)" onclick="showFollowGroupAddDialog();">添加分组</a></li>
+			<li class="slM"><a href="index.php?mod={$member[username]}&code=follow">管理分组</a></li>
+			</ul>
+			</div>	
+			</li>
+		</ul>	
+		<div class="clear"></div>
+	</div>
+
+	<div class="nfBox">
+    <div class="left">排序方式：
+    <!--{eval if(empty($this->Get[type])) $_follow_time = "current";}-->
+	<!--{eval if($this->Get[type] == 'lastpost') 	$lastpost = "current";}-->
+	<!--{eval if($this->Get[type] == 'fans_count') $fans_count = "current";}-->
+	<a href="index.php?mod={$member[username]}&code={$this->Code}" class="{$_follow_time}">关注时间</a>
+	<a href="index.php?mod={$member[username]}&code={$this->Code}&type=lastpost" class="{$lastpost}">最近活跃</a>
+	<a href="index.php?mod={$member[username]}&code={$this->Code}&type=fans_count" class="{$fans_count}">粉丝数</a>
+	</div>
+	<div class="clear"></div>
+	</div>
+
+	<!--{if $this->Get[gid]}-->
+	<div class="nfBox">
+	<div class="nfBoxList">
+	<!--{eval if($this->Get[gid]) $get_gid= "&gid=".$this->Get[gid];}-->
+    <a href="javascript:void(0)"><img src="images/user.gif" class="chgz_ico">该分组共{$group_view[group_count]}人</a>
+	<a href="javascript:void(0)" onclick="showFollowGroupModifyDialog();"><img src="images/dot_edit.gif" class="chgz_ico">修改分组名称</a>
+	<a href="javascript:deleteFollowGroup({$group_view[id]});" ><img src="images/imgdel.gif" class="chgz_ico">删除该分组</a>
+	<a href="index.php?mod=topic&code=myhome&gid={$group_view[id]}"><img src="images/dot_bro.gif" class="chgz_ico">浏览该分组微博</a>
+	</div>
+	<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+	</div>
+	<!--{if $this->Get[gid]}-->
+	<!--修改分组-->
+	<div id="modify_group" style="display:none">
+	<div class="fans_group_inner">
+	<form action="ajax.php?mod=topic&code=do_group" method="POST" name="up_group_name_form" id="up_group_name_form" target="groupframe" onsubmit="return false;"  >
+	<div>
+    <span>分组名称：</span>
+    <input name="modify_group_{$group_view[id]}" type="text" id="modify_group_{$group_view[id]}" class="Ainp" value="{$group_view[group_name]}" style="width:250px;" onkeydown="ctrlEnter(event, 'modify_follow_btn');"/>
+	</div> 
+	<div class="tool_bar">
+	<button type="button" id="modify_follow_btn" class="shareI" onclick="GroupSubmit('modify_group_{$group_view[id]}',{$group_view[id]},'modify');closeDialog('hk_follow_group_modify_dialog');return false;">保存</button>
+	<button type="button" class="shareI" onclick="closeDialog('hk_follow_group_modify_dialog');">取消</button>
+	</div>
+	</form>
+	</div>
+	</div>
+	<!--修改分组-->
+	<!--{/if}-->
+	<!--{/if}-->
+<!--{/if}-->
+
+<!--{if $member_list}-->
+<ul class="followList" style="overflow:hidden">
+	<!--{loop $member_list $val}-->
+	<li class="pane" id="follow_user_{$val[uid]}">
+	<div class="fBox_l">
+	<img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)"/> 
+	</div>
+	<div id="user_{$val[uid]}_user" class="layS"></div>
+	<div class="fBox_R" style="width:200px;">
+    <p>
+	<span class="name" style="float:left; display:inline;"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a></span>     
+	
+	<!--{if $val[validate_html]}-->
+	{$val[validate_html]}
+	<!--{else}-->
+	<!--{if $this->Config[topic_level_radio]}-->
+	<span class="wb_l_level">
+	<a class="ico_level wbL{$val[level]}" title="点击查看微博等级"  href="index.php?mod=settings&code=exp" target="_blank">{$val[level]}</a>
+	</span>
+	<!--{/if}-->
+	<!--{/if}-->	
+	
+	<!--{if $val[gender] == 1}-->
+	<img src="images/user.gif"  title="{$val[nickname]}"/>
+	<!--{elseif $val[gender] == 2}-->
+	<img src="images/user_female.gif"  title="{$val[nickname]}"/>
+	<!--{/if}-->   
+	
+	<!--{if MEMBER_ID==$member[uid]}-->
+	<span>
+	<a href="javascript:void(0)" onclick="get_remark({$val[uid]});return false;">
+	<span id="remarklist_{$val[uid]}">{if $val[remark]}({$val[remark]}){/if}</span>
+	</a>
+	</span>
+	<!--{/if}-->
+	</p>
+	<p><span>{$val[from_area]}</span></p>
+	<p><span>粉丝{$val[fans_count]}人 | {$val[topic_count]}条微博</span></p>
+	<span id="group_list2_{$val[uid]}" style="display:block;">
+	  <!--{loop $user_group $GroupName}-->
+		  <!--{if $GroupName[touid] == {$val[uid]}}-->
+			  <span style="padding:0px;">
+			  <a href="index.php?mod=topic&code=follow&gid={$GroupName[gid]}">[ {$GroupName[g_name]} ]</a>
+			  </span>
+		  <!--{/if}-->
+	  <!--{/loop}-->
+	</span>
+	</div>
+	
+	<div class="fBox_R2" style="width:270px;">
+	
+	<!--{if $val[follow_html]}-->
+	<p class="pclas">{$val[follow_html]}</p>
+	<!--{/if}-->
+	
+	<!--{if MEMBER_ID == $member[uid]}-->
+	<p class="pclas2">
+	<a href="javascript:void(0)" onclick="PmSend({$val[uid]},'{$val[nickname]}');return false;" >发私信</a> |
+	<a href="javascript:void(0)" onclick="get_group_choose({$val[uid]});return false;">设置分组</a> |
+	<a href="javascript:void(0)" onclick="get_remark({$val[uid]});return false;">添加备注</a> |
+	<a href="javascript:void(0)" onclick="follower_choose({$val[uid]},'{$val[nickname]}','lahei','topic_follow');return false;">拉入黑名单</a>
+	</p>
+	<!--{/if}-->
+	</div>
+	
+	<!--分组、私信、拉黑ajax显示层-->
+	<div id="alert_follower_menu_{$val[uid]}"></div>
+	<div id="Pmsend_to_user_area"></div>
+	<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+	<div id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></div>
+	<div id="get_remark_{$val[uid]}" ></div>
+	<!--分组、私信、拉黑ajax显示层-->
+	</li>
+	<!--{/loop}-->
+	<!--{if $member[follow_count]<7}-->
+	<li style="background:none">
+	 给关注的人分组，可在我的首页按分组查看他们的微博；<br />如要关注更多人，请访问<a href="index.php?mod=topic&code=top">达人榜</a>
+	  <!--{if MEMBER_ID}-->
+		<span>或查看<a href="index.php?mod=profile&code=maybe_friend" target="_blank">可能感兴趣的人</a></span>
+	  <!--{/if}-->
+	</li>
+	<!--{/if}-->
+	<!--{if $page_arr[html]}-->
+	<li style=" background:none">{$page_arr[html]}</li>
+	<!--{/if}-->
+</ul>
+<!--{elseif $pageOnOff}-->
+	<div style="padding:20px;">{$member[nickname]}的关注里没有检索到关于昵称或备注含"{$nickname}"的人</div>
+<!--{else}-->
+	<!--{if $group_view[group_name]}-->	
+	<div style="padding:20px;">"<strong>{$group_view[group_name]}</strong>" 的分组下暂时没有用户，<a href="index.php?mod=topic&code=group&gid={$gid}">点击设置用户</a></div>
+	<!--{else}-->
+	<div style="padding:20px;">该用户暂时没有关注其他人。</div>
+	<!--{/if}-->
+<!--{/if}-->
+
+</div>
+<!--{template "follow_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->

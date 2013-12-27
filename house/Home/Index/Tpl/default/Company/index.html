@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="__STATICS__/css/style.css" />
+<script type="text/javascript" src="__STATICS__/js/jquery.js"></script>
+<script type="text/javascript" src="__STATICS__/js/jquery-1.4.2.min.js"></script>
+<!–[if IE7 and IE10]>
+<style>
+ .topnav li{ float:left; cursor:pointer}
+ .topnav li a{ display:block; cursor:pointer}
+</style>
+<![endif]–>
+<title>装修公司详情</title>
+</head>
+<body>
+<div class="halfPop"></div>
+<div class="pop_chuang">
+ <iframe src="{:U('/Case/reserve/')}" style="border:0; width:410px; height:300px" scrolling="no"></iframe>
+</div>
+<div class="center" style=" overflow:auto; zoom:1">
+<div class="wrap">
+  <div class="pbar">
+  <div class="top clearfix">
+    <div class="left">
+      <ul>
+        <li><span><img src="__STATICS__/images/Construction/top1.fw.png" class="hmiddle"></span><span class="hmiddle">100%服务品质</span></li>
+        <li><span><img src="__STATICS__/images/Construction/top2.fw.png" class="hmiddle"></span><span class="hmiddle">A级信誉</span></li>
+        <li><span><img src="__STATICS__/images/Construction/top3.fw.png" class="hmiddle"></span><span class="hmiddle">提升20%质量</span></li>
+        <li><span><img src="__STATICS__/images/Construction/top4.fw.png" class="hmiddle"></span><span class="hmiddle">100%省钱</span></li>
+      </ul>
+    </div>
+    <div class="right login">已有账号？&nbsp;<a href="#">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="#">免费注册</a></span></div>
+  </div>
+  </div><!-- pbar结束 -->
+  <div class="phead">
+  <div class="head clearfix">
+    <div class="logo left">装修从此容易！</div>
+    <div class="menu left">
+      <a href="#"><span class="hd_ico ico01"><img src="__STATICS__/images/Construction/选监理.fw.png" /></span>选监理</a>
+      <a href="#"><span class="hd_ico ico02"><img src="__STATICS__/images/Construction/项目.fw.png" /></span>监理项目</a>
+      <a href="#"><span class="hd_ico ico03"><img src="__STATICS__/images/Construction/选监理.fw.png"  /></span>样板房参观</a>
+      <a href="#"><span class="hd_ico ico04"><img src="__STATICS__/images/Construction/谁施工好.fw.png"  /></span>谁施工好</a>
+    </div>
+    <div class="right" style="margin-top:15px"><img src="__STATICS__/images/Construction/Phone.png"></div>
+  </div>
+  </div><!-- phead 结束-->
+  <div class="clear"></div>
+</div><!-- wrap 结束-->
+
+<div class="part">
+  <div class="topnav">
+    <ul>
+      <li class="current"><a href=""><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li><a href=""><span>样板工地</span></a></li>
+      <li><a href=""><span>监理公正保</span></a></li>
+      <li><a href=""><span>施工质量认证</span></a></li>
+    </ul>
+  </div><div class="clear"></div>
+  <div>
+  <div class="content left">
+    <div class="box">
+        <div class="focusmap left"><img src="{$company['logo']}"></div>
+        <div class="info left">
+          <div style="font-size:16px">{$company['name']}</div>
+          <div><span>擅长领域</span><span>：易监理创立于1994年，汇聚大量来自同济大学的室内设计精英和多位国家级注册室内设计师。</span></div>
+<div class="h"></div>
+          <div style="margin-top:10px"><span>装修公司简介：</span></div>
+          <p>{$company['info']}</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="yangbanlist_title">
+     <h4 class="title_yanbans">{$active['name']}</h4>
+     <div class="clear"></div>
+    </div><!--/yangbanlist_title-->
+    <dl class="yangs_dl_baoming">
+     <dt><a href="{:U('/Active/detail/id')}/{$active['id']}"><img src="{$active['focus']}" width="200" height="150" /></a></dt>
+     <dd>
+      <P>时间：{$active.obserdate|date='Y-m-d',###}至{$active.end|date='Y-m-d',###}}</P>
+      <p style="margin-top:8px">简介：{$active['info']}</p>
+      <a href="#" class="baoming">报名参观</a>
+     </dd>
+     <div class="clear"></div>
+    </dl>
+    <div class="yangbanlist_title">
+     <h4 class="title_yanbans">样板工地</h4>
+     <a href="#" class="moreas">更多</a>
+     <div class="clear"></div>
+    </div><!--/yangbanlist_title-->
+    <div class="list_banmian">
+      <foreach name="case" item="vo">
+     <dl>
+      <dt><a href="{:U('/Case/detail/pid/')}/{$vo.id}"><img src="{$vo.focus}" width="200" height="200" /></a></dt>
+      <dd>
+       <p class="styles_jg"><a href="#">{$vo.area} | {$vo.name} | {$vo.housetype}</a></p>
+       <p class="jindu_pinglun">进度({$vo['schedule']*100/6|round=###,0}%) | {$vo['cost']/10000}万</p>
+      </dd>
+     </dl>      
+     </foreach>
+     <div class="clear"></div>
+    </div><!--/list_banmian-->
+    <div class="yangbanlist_title">
+     <h4 class="title_yanbans">施工队</h4>
+     <a href="#" class="moreas">更多</a>
+     <div class="clear"></div>
+    </div><!--/yangbanlist_title-->
+    <div class="shigongdui_list_div">
+ 		<foreach name="cons" item="vo">
+     <dl>
+      <dt><a href="{:U('/Construction/detail/consid')}/{$vo.id}"><img src="{$vo.focus}" width="200" height="200" /></a></dt>
+      <dd>
+       <p>施工队长：{$vo.captain}</p>
+       <p>所述公司：{$vo.cid}</p>
+       <ul style="height:25px">
+       <volist name="vo['tags']" id="tag">
+        <li>{$tag}</li>
+        </volist>
+        <div class="clear"></div>
+       </ul>
+      </dd>
+     </dl>
+     </foreach>  
+     <div class="clear"></div>
+    </div><!--/shigongdui_list_div-->
+    <div class="yangbanlist_title">
+     <h4 class="title_yanbans">材料</h4>
+     <a href="#" class="moreas">更多</a>
+     <div class="clear"></div>
+    </div><!--/yangbanlist_title-->
+    <div class="cailiao_list_div">
+   <foreach name="material" item="vo">
+     <dl>
+      <dt><a href="#"><img src="{$vo.fid}" width="200" height="200" /></a></dt>
+      <dd>
+       <p>{$vo.name}</p>
+       <p>{$vo.caption}</p>
+      </dd>
+     </dl>
+     </foreach>
+     <div class="clear"></div>
+    </div><!--/cailiao_list_div-->
+    <div class="yangbanlist_title">
+     <h4 class="title_yanbans">业主评论</h4>
+     <div class="clear"></div>
+    </div><!--/yangbanlist_title-->
+    <div class="ping">
+             <foreach name="score" item="vo">
+            <div class="case_l">
+              <div class="sp1"> <span><img class="tou" src="{$vo.uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;<sp>{$vo.score}</sp>分</span> <span class="sp2">{$vo.createtime}</span> </div>
+              <p>{$vo.comment} </p>
+            </div>
+    		</foreach>
+            <div class="case_l">
+              <div class="case_my"><a href="">我要评论</a></div>
+              <table class="my_ta">
+                <tr>
+                  <td class="my_le">评分：</td>
+                  <td class="my_ri" id="my_star"><img src="__STATICS__/images/Construction/star2.gif" id="s1" onclick="change"> <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > &nbsp;&nbsp; <span>一般</span><input type="hidden" name="score"></td>
+                </tr>
+                <tr>
+                  <td class="my_le">评论：</td>
+                  <td class="my_ri"><textarea ></textarea></td>
+                </tr>
+              </table>
+              <div class="my_foot"><a href=""><img src="__STATICS__/images/Construction/pinglun.gif" /></a> </div>
+            </div>
+          </div>
+  </div><!--content end-->
+  <div class="reservation right">
+    <h3>{$company['name']}</h3>
+    <table class="rightTable">
+     <tr>
+      <td>专家评分：</td>
+      <td><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;</td>
+      <td>{$company['score_expert']}分</td>
+     </tr>
+     <tr>
+      <td>业主评分：</td>
+      <td><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;</td>
+      <td>{$company['score_owner']}分</td>
+     </tr>
+    </table>
+    <div class="yuyue_visit"><a href="#" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></div>
+  </div><!--reservation end-->
+  <div class="clear"></div>
+  </div>
+    <div class="footer right">
+    <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
+    <div class="clear"></div>
+  </div><!-- footer end-->
+</div><!--part end-->
+</div>
+</body>
+</html>
+<script>
+$("#my_star img").bind("click", function() {
+  $("#my_star img").attr("src","__STATICS__/images/Construction/star2.gif");
+     var a = $(this).index()+1;$("#my_star input").val(a*2);
+     $("#my_star img:lt("+a+")").attr("src","__STATICS__/images/Construction/star1.gif");
+     if(a <=1)
+     $("#my_star span").text('不好');
+     if(a<=3&a>1) $("#my_star span").text('一般');
+     if(a>3)$("#my_star span").text('很好');
+});
+</script>
+ </script>
+ <script>for(i=0 ;i<=2;i++){
+var sp1 = (($(".sp1:eq("+i+") sp").text())/2).toFixed();
+  $(".sp1:eq("+i+") img[class!=tou]:lt("+sp1+")").attr("src","__STATICS__/images/Construction/star1.gif");
+}
+</script>
+<script>
+ $(".yuyue,.baoming").click(function(){
+	  var halfPopHeight=$(".center").height();
+	  $(".halfPop").show().css({"height":halfPopHeight});
+	  $(".pop_chuang").show();
+	 });
+</script>

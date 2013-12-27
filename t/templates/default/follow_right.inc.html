@@ -1,0 +1,19 @@
+<div class="mainR">
+<!--{if $member}-->
+ <ul class="boxRNav3">
+ 	<!--{eval if($this->Code == 'follow') $follow_tab = 'current';}-->
+	<!--{eval if($this->Code == 'fans') $fans_tab = 'current';}-->
+	<!--{eval if($this->Code == 'maybe_friend') $maybe_friend_tab = 'current';}-->
+	<!--{eval if($this->Code == 'usertag') $usertag_tab = 'current';}-->
+	<!--{eval if($this->Code == 'search') $search_tab = 'current';}-->
+	<!--{eval if($this->Get[mod] == 'blacklist') $blacklist_tab = 'current';}-->
+	<!--{eval if (MEMBER_ID==$member[uid] ) $_my = '我'; else $_my = $member[gender_ta]}-->
+	<li class="{$follow_tab} i_follow"><a href="index.php?mod={$member[username]}&code=follow">{$_my}的关注({$member[follow_count]})</a></li>
+	<li class="{$fans_tab} i_fans"><a href="index.php?mod={$member[username]}&code=fans">{$_my}的粉丝({$member[fans_count]})</a></li>
+	<li class="{$maybe_friend_tab} i_maybe"><a href="index.php?mod=profile&code=maybe_friend">找到感兴趣的人</a></li>
+	<li class="{$usertag_tab} i_tag"><a href="index.php?mod=profile&code=usertag">标签/兴趣爱好</a></li>
+	<li class="{$search_tab} i_search"><a href="index.php?mod=profile&code=search">可能在我附近</a></li>
+	<li class="{$blacklist_tab} i_black"><a href="index.php?mod=blacklist">黑名单</a></li>
+ </ul>
+<!--{/if}-->
+</div>

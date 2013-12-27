@@ -1,0 +1,215 @@
+{template "topic_header"}
+
+<link href="templates/default/styles/photo.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.topnew_pic_bg{ padding:10px;}
+.item_wrap{ margin-right:7px;}
+.main3Box_m{ padding-bottom:0;}
+.item_list li,.item_list li .favorite{ width:220px;}
+.item_list li{ margin-bottom:15px;}
+.item_list li .ws_bd h5{ width:175px;}
+.item_list li .item_photo{ width:220px;}
+</style>
+
+
+<script type="text/javascript">
+function loadtopic_pic()
+{
+	$('.boutique_load').html('<span>正在加载，请稍后...</span>');
+	onloading = true;
+	var myAjax = $.post(
+	"ajax.php?mod=topic&code={$this->Code}",
+	{
+		<!--{loop $params $k $v}-->
+		{$k}:"{$v}",
+		<!--{/loop}-->
+		page:topicpagenum
+	},
+	function (d){
+		if('' != d){
+			listpic(d,3);
+		}
+		topicpagenum++;
+		$('.boutique_load').html('');
+		onloading = false;
+	});
+}
+function listpic(html,m)
+{
+	var s=html.split('<jishigou>');	var n=s.length;
+	if(n==1){s=html.split('<JISHIGOU>');n=s.length;}//此处为兼容IE内核浏览器
+	for(var i=0;i<n;i++){
+		var h = $('#topic_pic_0').height();var hj = 0;
+		for(var j=1;j<m;j++){
+			if(h > $('#topic_pic_'+j).height()){
+				h = $('#topic_pic_'+j).height();
+				hj = j;
+			}
+		}
+		$('#topic_pic_'+hj).append(s[i]);
+	}
+}
+<!--{if $ajax_num}-->var ajax_num = {$ajax_num};<!--{else}-->var ajax_num = 0;<!--{/if}-->
+var onloading = false;var topicpagenum = 2;
+$(window).bind('scroll resize',function(event){
+	if(!onloading && (ajax_num >= topicpagenum)){
+		var ulheight = $('#topic_pic_0').height();
+		for(var i=1;i<3;i++){
+			if(ulheight > $('#topic_pic_'+i).height()){
+				ulheight = $('#topic_pic_'+i).height();
+			}
+		}
+		var bodyTop = document.documentElement.scrollTop + document.body.scrollTop;
+		if(bodyTop+$(window).height()-200 >= ulheight){
+			loadtopic_pic();
+		}
+	}
+});
+$(document).ready(function() {
+var defhtml = $('#deftopic').html();
+listpic(defhtml,3);
+});
+</script>
+
+<div class="setframe topnewBG">
+<!--{template 'topic_new_left.ini'}-->
+<div class="main3Box_m">
+  
+  <div class="list_title" style="background-color:#fff;">
+  <a class="picmod" href="index.php?mod=topic&code={$this->Code}&filter_type=pic"><b>瀑布流</b></a>
+  <a class="listmod "href="index.php?mod=topic&code={$this->Code}">列表</a>
+  </span>
+  </div>
+  
+  
+  <div class="topic_pic topnew_pic_bg">
+
+
+  <!--{if $this->Code == 'tc'}-->
+        <div class="btop">
+            <div class="b16">
+              <!--{if $area_name}-->
+              	<a href="index.php?mod=topic&code=tc&province=$province_id">{$province_name}</a>，
+              	<a href="index.php?mod=topic&code=tc&province=$province_id&city=$city_id">{$city_name}</a>，
+              	{$area_name}
+              <!--{elseif $city_name}-->
+                <a href="index.php?mod=topic&code=tc&province=$province_id">{$province_name}</a>，{$city_name}
+              <!--{elseif $province_name}-->
+                {$province_name}
+              <!--{else}-->
+              <a href="index.php?mod=settings">编辑地址</a><!--{/if}-->
+            </div>
+            
+            <div class="c_area">
+            <a href="javascript:void(0);" onclick="choose();" class="c_area_a" >[ 切换地域 <img src="templates/default/images/t_c_bg.gif" class="c_area_c" /> ]</a>
+            <input type="hidden" id="hid_tc_city" name="hid_tc_city" value="{$city_id}">
+            <input type="hidden" id="hid_tc_area" name="hid_tc_area" value="{$area_id}">
+            
+            <div id='choosecity' style="display:none" class="citysel">
+            <div class="citysel_b">
+            {$province_list}
+
+            <select id='tc_city' name="tc_city" onchange="changeCity();">
+              <option value=''>请选择</option>
+            </select>
+
+            <select id='tc_area' name="tc_area" style="display:none width:150px">
+              <option value=''>请选择</option>
+            </select>
+
+            <div class="c_area_b"><a href="javascript:choosecity();" class="sBtn_2 c_area_d">确定</a></div>
+            </div>
+            </div>
+            </div>
+
+        </div>
+		<script type="text/javascript">
+	    function choose(){
+		    var display = document.getElementById('choosecity').style.display == 'block' ? 'none' : 'block';
+		  	if(display == 'block'){
+		  		changeProvince();
+			}
+		  	document.getElementById('choosecity').style.display = display;
+		}
+	    function changeProvince(){
+	        var province = document.getElementById('tc_province').value;
+	        var city = document.getElementById('hid_tc_city').value;
+	        var url = "ajax.php?mod=member&code=sel&province="+province+"&hid_city="+city;
+	        $.post(
+	  		url,
+	  		function(r){
+		  		if(r){
+	  		  		$('#tc_city').html(r);
+	  		  		changeCity();
+		  		}else{
+					document.getElementById('tc_area').lenght = 1;
+					document.getElementById('tc_area').style.display = 'none';
+			    }
+	  		}
+	        );
+	      }
+
+	    function changeCity(){
+	        var city = document.getElementById('tc_city').value;
+	        var area = document.getElementById('hid_tc_area').value;
+	        var url = "ajax.php?mod=member&code=sel&city="+city+"&hid_area="+area;
+	        $.post(
+	  		url,
+	  		function(r){
+		  		if(r){
+		  			document.getElementById('tc_area').style.display = 'block';
+	  		  		$('#tc_area').html(r);
+		  		}else{
+					document.getElementById('tc_area').style.display = 'none';
+			    }
+	  		}
+	        );
+		}
+	    
+	    function choosecity(){
+	    	var url = thisSiteURL + "index.php?mod=topic&code=tc&filter_type=pic";
+	    	
+	    	var province = document.getElementById('tc_province').value;
+	    	if(province){
+				url = url + "&province="+province;
+		    }
+	    	var city = document.getElementById('tc_city').value;
+	    	if(city){
+				url = url + "&city="+city;
+		    }
+	    	var area = document.getElementById('tc_area').value;
+	    	if(area){
+				url = url + "&area="+area;
+		    }
+		    
+	        location.href=url;
+		}
+		</script>
+	<!--{/if}-->
+    
+	<!--{if $d_list}-->
+        <ul class="nleftL" style="float:left;">
+          <div>
+            <!--{loop $d_list $key $val}-->
+            <!--{eval $_i = ($d==$key ? 3 : 9);}-->
+            <li class="liL_{$_i}" id="Num{$key}"><a href="index.php?mod=topic&code={$this->Code}&d={$key}&filter_type=pic">{$val}</a></li>
+            <li class="liLine">|</li>
+            <!--{/loop}-->
+          </div>
+        </ul><br>
+    <!--{/if}-->
+    
+	<!--{loop $topic_pic_keys $key $val}-->
+	<div class="item_wrap"><ul class="item_list" id="topic_pic_{$key}"></ul></div>
+	<!--{/loop}-->
+	<div id="deftopic" style="display:none;">
+	<!--{loop $topics $val}-->
+	{template "topic_new_pic_item"}
+	<jishigou>
+	<!--{/loop}-->
+	</div>
+  <div class="boutique_load"></div>
+  </div>
+</div>
+</div>
+{template "topic_footer"}

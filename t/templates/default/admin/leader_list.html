@@ -1,0 +1,70 @@
+{template admin/header}
+<div class="mt10">
+  <div>
+    <span>上报领导列表用于给需要汇报的领导发送邮件，以告知有关的信息内容。</span><br>
+    <span>此功能在微博、活动等应用的管理中有运用。<a href="admin.php?mod=topic&code=topic_manage">点击查看</a>。</span><br>
+    <span style="color:red">邮件地址必须真实。</span><br>
+    <span style="color:red"></span><br>
+  </div>
+	<form method="post" action="admin.php?mod=member&code=setleaderlist">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+			  <td width="5%">删？</td>
+			  <td width="45%">领导名(<span style="color:red">*</span>)</td>
+			  <td width="50%">邮件地址(<span style="color:red">*</span>)</td>
+			</tr>
+			<!--{loop $leader_list $key $leader}-->
+			<tr>
+			  <td class= "td2"><input type="checkbox" name="chk[]" value="{$key}" /></td>
+			  <td class= "td2"><input type="text" name="name[]" value="{$leader[name]}" style="width:60%; height:15px;"/></td>
+			  <td class= "td2"><input type="text" name="email[]" value="{$leader[email]}" style="width:60%; height:15px;"/></td>
+			</tr>
+			<!--{/loop}-->
+			<tr>
+			  <td colspan="3" class="td2"><a href="javascript:void(0);" onclick="addrow(this, 0)" class="addtr">添加上报领导</a></td>
+			</tr>
+		</table>
+		<center>
+		  <input class="button" type="submit" name="cronssubmit" id="cronssubmit" value="提交" title="CTRL+ENTER提交">
+		</center>
+	</form>
+</div>
+	<script type="text/JavaScript">
+		var rowtypedata = [
+			[
+				[1,'', 'td2'],
+				[1,'<input type="text" name="name[]" value="" style="width:60%; height:15px;"/>', 'td2'], 
+				[1, '<input name="email[]" value="" type="text" style="width:60%; height:15px;"/>', 'td2'],
+			],
+		];
+		
+		var addrowdirect = 0;
+		function addrow(obj, type) {
+			var table = obj.parentNode.parentNode.parentNode;
+			if(!addrowdirect) {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex);
+			} else {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex + 1);
+			}
+			var typedata = rowtypedata[type];
+			for(var i = 0; i <= typedata.length - 1; i++) {
+				var cell = row.insertCell(i);
+				cell.colSpan = typedata[i][0];
+				var tmp = typedata[i][1];
+				if(typedata[i][2]) {
+					cell.className = typedata[i][2];
+				}
+
+				tmp = tmp.replace(/\{(\d+)\}/g, function($1, $2) {return addrow.arguments[parseInt($2) + 1];});
+				cell.innerHTML = tmp;
+			}
+			addrowdirect = 0;
+		}
+
+		document.onkeydown=function(event){
+			event = event || window.event;
+		    if(event.ctrlKey==true && event.keyCode==13){
+		    	$("#cronssubmit").click();
+		    }
+		}
+	</script>

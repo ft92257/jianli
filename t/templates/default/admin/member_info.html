@@ -1,0 +1,191 @@
+<!--{template admin/header}-->
+{if !$admin_check_allow}
+<h3>为安全起见，您没有编辑 <font color="red">{$member_info['nickname']}</font> 用户信息的权限，请使用<b>网站创始人</b>的身份登录后再进行编辑操作。</h3>
+<div>关于“<b>网站创始人</b>”，请参阅readme.txt文件中的第三条说明，<a title="点此在新窗口中打开查看关于“网站创始人”的说明及设置方法" href="{conf site_url}/readme.txt" target="_blank">点击查看&gt;&gt;</a></div>
+{/if}
+<form method="post" action="{$action}">
+  <INPUT TYPE="hidden" name='uid' value={$this->ID}>
+  <INPUT TYPE="hidden" name='old_username' value={$username}>
+  <a name="{$this->Title} - {$username}"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">{$this->Title} - {$nickname}</td>
+    </tr>
+	<tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>帐户昵称:</b><br>
+        <span class="smalltxt">如不是特别需要，请不要修改</span></td>
+      <td bgcolor="#FFFFFF"><strong>
+        <input name="nickname" type="text" id="nickname" value="{$nickname}" size="30" />
+      </strong></td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>登录密码:</b><br>
+        <span class="smalltxt">如果不更改密码此处请留空</span></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="password">      </td>
+    </tr>
+	<!--{if $this->Config[company_enable]}-->
+	<tr>
+	    <td width="110" align="right" valign="top"><b>所属{$d_c_name}:</b></td>
+	    <td>{$companyselect}</td>
+	  </tr>
+	  <!--{if $this->Config[department_enable]}-->
+	  <tr>
+	    <td width="110" align="right" valign="top"><b>所在{$d_d_name}:</b></td>
+	    <td><div id="departmentselect">{$departmentselect}</div></td>
+	  </tr>
+	<!--{/if}-->
+	<!--{/if}-->
+	<tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>用户所在地:</b><br>
+        <span class="smalltxt">暂不支持修改</span></td>
+      <td bgcolor="#FFFFFF"><strong><span>{$province}</span></strong></td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>用户角色:</b><br>
+        <span class="smalltxt"></span></td>
+      <td bgcolor="#FFFFFF">
+	   <!--{if true===JISHIGOU_FOUNDER || 'admin'!=$member_info[role_type]}-->
+        {$role_select}
+       <!--{else}-->
+        {$role_name}
+       <!--{/if}-->
+       </td>
+    </tr>
+    
+    <tr id="causetext" style="display:none; width:100%;" >
+      <td width="40%" bgcolor="#F8F8F8"><b>封杀理由:</b><br>
+        <span class="smalltxt">将用户放入禁言组或封杀组时的理由</span></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="cause" value="{$cause}"></td>
+      </tr>
+      <script type="text/javascript">
+	  function changedepartment(id){
+	  var cid = 'undefined' == typeof(id) ? 0 : id;
+	  var myAjax=$.post("ajax.php?mod=member&code=cp",{cid:cid},function(d){if(d){$('#' + "departmentselect").html(d);}});
+	  }
+      function showcause(){
+          var role_id = document.getElementById('role_id').value;
+          if(role_id == '4' || role_id == '118'){
+			  document.getElementById('causetext').style.display = 'block';
+          }else{
+			  document.getElementById('causetext').style.display = 'none';
+          }
+      }
+      showcause();
+     </script>
+     
+     
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>性别:</b></td>
+      <td bgcolor="#FFFFFF"> {$gender_radio}</td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>Email:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="email" value="{$email}">      </td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>注册IP:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="regip" value="{$regip}">      </td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>个性域名:</b><br>
+        <span class="smalltxt">如不是特别需要，请不要修改</span></td>
+      <td bgcolor="#FFFFFF">
+        <input type="text" size="30" name="username" value="{$username}">
+      </td>
+    </tr>
+	<tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>关于{$nickname}:</b><br>
+	  <span class="smalltxt">该信息显示在用户微博页面右侧</span>
+	  </td>
+      <td bgcolor="#FFFFFF"><textarea name="aboutme" cols="30" rows="3" id="aboutme">{$aboutme}</textarea></td>
+	</tr>
+  </table>
+  <center>
+    <input type="submit" class="button" name="editsubmit" value="提 交">
+  </center>
+  <br>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">真实信息（证件号码不会对外显示，仅供管理员核对用户身份用）</td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>真实姓名:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" name="validate_true_name" value="{$member_info[validate_true_name]}" size="30" /></td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>证件类型:</b></td>
+      <td bgcolor="#FFFFFF">{$validate_card_type_select}</td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>证件号码:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" name="validate_card_id" value="{$member_info[validate_card_id]}" size="30" /></td>
+    </tr>
+	<!--<tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>是否V认证:</b><br>
+	  <span class="smalltxt">选择是，用户头像右侧会显示一个认证图标</span></td>
+      <td bgcolor="#FFFFFF">{$validate_radio}</td>
+    </tr>-->
+	 <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>V认证备注:</b><br>
+	  <span class="smalltxt">鼠标在认证图标悬浮时，会看到右侧填写的信息</span></td>
+      <td bgcolor="#FFFFFF"><input type="text" name="validate_remark" value="{$member_info[validate_remark]}" size="30" /></td>
+    </tr>
+  </table>
+  <center>
+    <input type="submit" class="button" name="editsubmit" value="提 交">
+  </center>
+  <br>
+  <a name="用户资料"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">联系资料</td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>主页:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="site" value={$site}>
+      </td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>QQ:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="qq" value={$qq}>
+      </td>
+    </tr>
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>MSN:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="msn" value={$msn}>
+      </td>
+    </tr>
+<!--     <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>来自:</b></td>
+      <td bgcolor="#FFFFFF"> $zone_select </td>
+    </tr> -->
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>生日:</b></td>
+      <td bgcolor="#FFFFFF"> {$year_select}年{$month_select}月{$day_select}日 </td>
+    </tr>
+  </table>
+  <center>
+    <input type="submit" class="button" name="editsubmit" value="提 交">
+  </center>
+  <br>
+  <!--{if $this->Config[extcredits_enable]}-->
+  <a name="用户积分"></a>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">用户积分</td>
+    </tr>
+    <!--{loop $this->Config[credits][ext] $_k $_v}-->
+    <tr>
+      <td width="40%" bgcolor="#F8F8F8"><b>{$_v[name]}:</b></td>
+      <td bgcolor="#FFFFFF"><input type="text" size="30" name="{$_k}" value={$member_info[$_k]}>
+      </td>
+    </tr>
+    <!--{/loop}-->
+  </table>
+  <center>
+    <input type="submit" class="button" name="editsubmit" value="提 交">
+  </center>
+  <br>
+  <!--{/if}-->
+</form>
+

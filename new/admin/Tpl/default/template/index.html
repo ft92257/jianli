@@ -1,0 +1,34 @@
+<include file="public:header" />
+<div class="subnav">
+	<h1 class="title-2 line-x">模板中心</h1>
+</div>
+<form id="myform" name="myform" action="" method="get">
+<div class="pad-10">
+
+	<volist name="template_list" id="val">
+	<div class="table_block">
+    	<div class="pad-10">
+    	<table>
+        	<tr>
+              <td><img src="{$val.preview}" width="120" height="160" style="border:1px #E4E4E4 solid;" /></td>
+              <td valign="top">
+                	<table>
+                    	<tr><th align="right"><input type="radio" name="dirname" value="{$val.dirname}" <if condition="$setting_template eq $val['dirname']">checked="checked"</if> />&nbsp;&nbsp;</th><td width="160"><if condition="$setting_template eq $val['dirname']"><span class="red">默认</span><else/><a href="{:U('template/index',array('dirname'=>$val['dirname']))}" class="blue">设为默认</a></if></td></tr>
+                    	<tr><th align="right">模板文件夹：</th><td>{$val.dirname}</td></tr>
+                    	<tr><th align="right">模板名称：</th><td>{$val.name}</td></tr>
+                        <tr><th align="right">模板作者：</th><td>{$val.author}</td></tr>
+                        <tr><th align="right">版本：</th><td>{$val.version}</td></tr>
+                    </table>
+              </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    </volist>
+    <input type="hidden" name="m" value="template" />
+	<div class="bk15"></div>
+	<div class="btn"><input type="submit" value="{$Think.lang.submit}" name="dosubmit" class="button" id="dosubmit"></div>
+</div>
+</form>
+</body>
+</html>

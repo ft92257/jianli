@@ -1,0 +1,119 @@
+<!--{template "topic_header"}-->
+<script type="text/javascript" src="js/iColorPicker.js"></script>
+<script>
+ function TopicShowSubmit()
+ {
+ 	document.getElementById('show_form').submit();
+ }
+
+function copyCode(id){
+    var testCode=document.getElementById(id).value;
+    if(copy2Clipboard(testCode)!=false){
+        alert("生成的代码已经复制到粘贴板，你可以使用Ctrl+V 粘贴到你的网页后台代码中！  ");
+    }
+}
+copy2Clipboard=function(txt){
+    if(window.clipboardData){
+        window.clipboardData.clearData();
+        window.clipboardData.setData("Text",txt);
+    }
+    else if(navigator.userAgent.indexOf("Opera")!=-1){
+        window.location=txt;
+    }
+    else {
+            alert("你的浏览器不支持脚本复制或你拒绝了浏览器安全确认。请尝试[Ctrl+C]复制代码并粘贴到要加入功能的页面。");
+            return false;
+    }
+}
+</script>
+<iframe id="showframe" name="showframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+<div class="main_2 {$t_col_main}"> 
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	 {template "topic_left.inc"}
+	</div>
+</div>
+</div>
+<!--此处三栏-->
+
+<div class="main_2b">
+<div class="main_t main_t23"><span>微博秀</span></div>
+
+	<div class="Menubox2">
+	<ul>
+	<!--{loop $act_list $key $val}-->
+	<!--{eval $_hoverCLS = ($key==$act ? ' class="tago" ' : 'class="tagn"');}-->
+	<!--{if !is_array($val)}-->
+	<li><div {$_hoverCLS}><A HREF="index.php?mod=tools&code={$key}"><span>{$val}</span></A></div></li>
+	<!--{else}-->
+	<li><div {$_hoverCLS}><A HREF="index.php?mod={$val[link_mod]}&code={$val[link_code]}"><span>{$val[name]}</span></A></div></li>
+	<!--{/if}-->
+	<!--{/loop}-->
+	</ul>
+	</div>
+<div class="show_warp">
+<p>将生成的代码放置到你的博客、网站或是其它支持html代码的位置，就能向网页访问者展示你在本站的微博。</p>
+<div class="showBox">
+<form method="post" action="ajax.php?mod=topic&code=topicshow" enctype="multipart/form-data" name="show_form" target="showframe" id="show_form">
+
+        <div class="showBox_l">
+		<li><h4>设置尺寸：</h4></li>
+		<ul>
+			<span>宽：<input name="width" type="text"  value="{$width}"  size="3" onchange="TopicShowSubmit();"/>
+			px</span> 
+			<span style="margin-left:20px;">高：<input name="height" type="text"  value="{$height}"size="3" onchange="TopicShowSubmit();"/>px</span>	
+		</ul>
+		
+	
+		<li><h4>颜色设置:</h4></li>	
+		<ul>
+			<li>标题色：<input id="titleColor" 	name="titleColor" value="{$titleColor}" type="text" class="iColorPicker"  style="width:70px;"/></li>
+			<li>背景色：<input id="bgColor" 	name="bgColor" 	  value="{$bgColor}" 	type="text" class="iColorPicker"  style="width:70px;"></li>
+		
+			<li>主字色：<input id="textColor" name="textColor" value="{$textColor}" type="text" class="iColorPicker"  style="width:70px;" ></li>
+			<li>链接色：<input id="linkColor" name="linkColor" value="{$linkColor}" type="text" class="iColorPicker"  style="width:70px;" /></li>
+			<li>边框色：<input id="borderColor" name="borderColor" value="{$borderColor}" type="text" class="iColorPicker"  style="width:70px;" /></li>
+
+		</ul>
+
+		
+		<li><h4>模块设置:</h4></li>
+		<ul style="float:left; width:110px;">
+			<li><input type="checkbox" id="isTitleCheckbox" name="isTitle"  value="1" {eval if($isTitle) echo "checked=checked";}  onclick="TopicShowSubmit();"/><label for="isTitleCheckbox">显示标题</label></li>
+			<li><input type="checkbox" id="isBorderCheckbox" name="isBorder" value="1" {eval if($isBorder) echo "checked=checked";}  onclick="TopicShowSubmit();"/><label for="isBorderCheckbox">显示边框</label></li>
+		</ul>
+		<ul>
+			<li><input type="checkbox" id="isTopicCheckbox" name="isTopic" value="1" {eval if($isTopic) echo "checked=checked";}  onclick="TopicShowSubmit();"/><label for="isTopicCheckbox">显示微博</label></li>
+			<li><input type="checkbox" id="isFansCheckbox" name="isFans"   value="1" {eval if($isFans) echo "checked=checked";}  onclick="TopicShowSubmit();"/><label for="isFansCheckbox">显示粉丝</label></li>
+		</ul>
+		
+		
+		<li><h4>关注我的人</h4></li>
+		<ul>
+			<li>
+			显示：<input name="showFans" id="showFans" size="2" maxlength="2"  value="{$showFans}"  onchange="TopicShowSubmit();" />
+			行</li>
+			<li>可以设置1-5行，最多显示20个关注我的		</li>
+		</ul>
+
+		<li><strong>代码获取</strong></li>
+		<ul>
+			<li><textarea name="textarea" cols="30" rows="5" id="txtTestCode" class="textStyle"><iframe id="iframeid" width="{$width}" height="{$height}" name="ifrmname" frameborder="0" scrolling="No" src="{$this->Config[site_url]}/index.php?mod=show&uid={MEMBER_ID}&width={$width}&height={$height}&color={$iframe_color}&showFans={$showFans}&isFans={$isFans}&isTopic={$isTopic}&isTitle={$isTitle}&isBorder={$isBorder}"></iframe></textarea>
+			</li>
+			<li><input type="button" class="shareI" value="复制代码" onclick="copyCode('txtTestCode'); return false;" style="border:none"/></li>
+			<li>复制以下代码，粘贴到你的网页代码中，即可在网页中看到你的微博秀</li>
+		</ul>
+	</div>
+	</form>  
+ 
+ 
+ 
+ <div class="showBox_r"><iframe id="iframeid" width="{$width}" height="{$height}" name="ifrmname" frameborder="0" scrolling="No" src="{$this->Config[site_url]}/index.php?mod=show&uid={MEMBER_ID}&width={$width}&height={$height}&color={$iframe_color}&showFans={$showFans}&isFans={$isFans}&isTopic={$isTopic}&isTitle={$isTitle}&isBorder={$isBorder}"></iframe></div>
+ 
+ 
+ </div>   </div>
+</div></div>
+<!--{template "topic_footer"}-->

@@ -1,0 +1,69 @@
+/* CSS Document */
+#pbody .main_left{ width:700px;padding:10px 0 30px; float:left;}
+.box1{border:1px solid #e6e6e6;background-color:#fff;padding:10px;}
+.box1 .left{ width:370px;}
+.box1 img{ float:left;margin-right:20px;}
+.box1 h2{font-size:14px;padding:5px 0;}
+.count{height:38px;margin:12px 0 0;}
+.count a{display:inline-block;height:38px;border-right:1px solid #ececec; text-align:center;color:#333; line-height:18px;padding:0 25px;}
+.count a b{color:#FF6B24; font-size:16px;}
+.box1 .right{ line-height:22px; text-align:right;margin:36px 20px 0 0;}
+.box1 .right span{color:#999;}
+
+.vge_nav{ height:36px;line-height:36px;margin-top:10px;}
+.vge_nav a{ display:inline-block;padding:0 20px;color:#999;}
+.vge_nav a.current{ background-color:#fff;border:1px solid #e6e6e6; border-bottom:none;color:#333; position:relative; z-index:1;}
+.vge_inf{border:1px solid #e6e6e6;background-color:#fff; min-height:823px;}
+
+#pbody .main_right{ width:250px;float:right;padding-bottom:30px;}
+.box2{border:1px solid #e6e6e6; background-color:#fff;margin-top:10px;}
+.box2 h3{height:42px; font-size:12px; font-weight:normal; line-height:42px;background-color:#F1F1F1;padding:0 15px;}
+.box2 h3 a{color:#333; text-decoration:underline; float:right;}
+
+.list_maybe{margin:5px 10px 15px 17px;}
+.list_maybe li{margin-top:15px;clear:both; display:inline-block;color:#999;width:100%;}
+.list_maybe li img{float:left;margin-right:10px; width:80px; height:80px;}
+.list_maybe li p{line-height:22px;height:56px;}
+.list_maybe li p a{color:#333;line-height:normal;}
+.bt_ltblue a{display:inline-block; background:url(../images/button.jpg) left -259px; width:60px; height:24px; text-align:center;color:#fff; line-height:24px;margin-right:5px;}
+.bt_ltblue a:hover{ background-position:right -259px;}
+
+.friend{margin-top:5px;padding-bottom:20px;}
+.friend li{margin:15px 16px 0; float:left; width:50px; line-height:16px; text-align:center;}
+.friend li a{color:#333;}
+.friend li img{widht:50px; height:50px;}
+
+.map{margin-top:10px;}
+.map h3{ font-size:14px; line-height:22px; font-weight:normal; padding:5px 0;}
+.map .map_cnt{ width:250px; height:200px; overflow:hidden;}
+
+.vge_cnt h4{margin:40px 22px 20px; font-weight:normal; font-size:14px;}
+.vge_cnt h4 span{ float:left;margin-right:5px;}
+.vge_cnt .even{ background-color:#F6F6F6;}
+.vge_cnt th{ font-weight:normal;}
+.vge_cnt p{padding:0 20px; line-height:22px;color:#666;}
+
+.list_hsmodel{padding:30px 0 0 15px;}
+.list_hsmodel li{ background-color:#F3F3F3;border:1px solid #e6e6e6; width:190px;margin:0 15px 15px; float:left; text-align:center;}
+.list_hsmodel li img{ width:190px; height:190px;}
+.list_hsmodel li p{padding:5px;border-top:1px solid #e6e6e6;}
+
+.list_vgepic{ margin-top:35px;}
+.list_vgepic li{ width:150px; padding:0 35px 35px;float:left;color:#999; line-height:18px;}
+.list_vgepic img{ max-width:150px;margin-bottom:5px;}
+.list_vgepic a{color:#333;}
+.list_vgepic p a{ color:#2097DD;}
+
+.list_friend{margin:15px 10px 0;}
+.list_friend li{padding:20px 10px;height:50px;border-bottom:1px solid #e6e6e6; line-height:18px;}
+.list_friend li .flt_rt{margin-top:25px; display:none;}
+.list_friend li .flt_rt a{color:#333;}
+.list_friend li .flt_rt .btn{color:#fff;}
+.list_friend .hover{ background-color:#f9f9f9;}
+.list_friend .hover .flt_rt{ display:block;}
+.pic_text{width:550px;}
+.pic_text img{float:left;margin-right:15px; width:50px; height:50px;}
+.pic_text p{line-height:20px;color:#666;}
+.pic_text p.memb{line-height:12px;margin-bottom:6px;}
+.pic_text p.memb a{margin-right:10px;}
+.pic_text p.memb span{color:#999;}

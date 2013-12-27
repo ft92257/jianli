@@ -1,0 +1,184 @@
+<!--{template "topic_header"}-->
+<div class="main_2">
+	<div class="main_t"><span>人人帐号绑定</span></div>
+    <div class="Menubox2">
+    	<ul>
+    	   <li><div id="renren_div_0" class="tago"><a onclick="renren_switch_div(0);return false;" href="javascript:void(0)"><span>注册新帐户</span></a></div></li>
+    	   <li><div id="renren_div_1" class="tagn"><a onclick="renren_switch_div(1);return false;" href="javascript:void(0)"><span>绑定已有的帐号</span></a></div></li>
+    	</ul>
+	</div>
+    <script language="javascript">
+        function renren_switch_div(ss)
+        {
+            var ss = ('undefined'==typeof(ss) ? 0 : ss);
+            
+            if(ss)
+            {
+                $('#renren_div_0').attr('class','tagn');
+                $('#renren_div_1').attr('class','tago');
+                $('#renren_user_reg').css('display','none');
+                $('#renren_user_login').css('display','block');
+            }
+            else
+            {                
+                $('#renren_div_0').attr('class','tago');
+                $('#renren_div_1').attr('class','tagn');
+                $('#renren_user_reg').css('display','block');
+                $('#renren_user_login').css('display','none');
+            }
+            
+            return false;            
+        }
+        var reg_submit = false;
+        function renren_user_reg_check()
+        {
+        	if(true == reg_submit) return ;
+        	
+            var reg_nickname = $('#reg_nickname').val();
+            var reg_email = $('#reg_email').val();
+            var reg_password = $('#reg_password').val();           
+            
+            var myAjax = $.post
+            (
+                'index.php?mod=renren&code=reg_check&in_ajax=1',
+                {
+                    nickname:reg_nickname,
+                    email:reg_email,
+                    password:reg_password
+                },
+                function(d)
+                {
+                    if(d)
+                    {
+                    	reg_submit = false;
+                        alert(d);
+                    }
+                    else
+                    {
+                    	reg_submit = true;
+                    	if(true == reg_submit) {
+	                        $('#renren_user_reg_form').submit();                        
+	                        return true;
+                    	}
+                    }
+                }
+            );
+            
+            return false;
+        }
+        var login_submit = false;
+        function renren_user_login_check()
+        {
+        	if(true == login_submit) return ;
+        	
+            var login_username = $('#login_username').val();
+            var login_password = $('#login_password').val();
+            
+            var myAjax = $.post
+            (
+                'index.php?mod=renren&code=login_check&in_ajax=1',
+                {
+                    username:login_username,
+                    password:login_password
+                },
+                function(d)
+                {
+                    if(d)
+                    {
+                    	login_submit = false;
+                        alert(d);
+                    }
+                    else
+                    {
+                    	login_submit = true;
+                    	if(true == login_submit) {
+                        	$('#renren_user_login_form').submit();                        
+                        	return true;
+                    	}
+                    }
+                }
+            );
+            
+            return false;
+        }
+    </script>
+    <div class="set_warp" style="width:650px; margin:0 auto; padding:20px 0 50px;">    
+        <div id="renren_user_reg" style="display: block;">
+			<!--{eval $regstatus = jsg_member_register_check_status();}-->
+            <!--{if $regstatus['error'] || (true!==JISHIGOU_FORCED_REGISTER && $regstatus['invite_enable'] && !$regstatus['normal_enable'])}-->
+            
+                非常抱歉，本站目前不支持绑定新注册用户；<a onclick="renren_switch_div(1);return false;" href="javascript:void(0)"><span><strong>请点此绑定已有的帐号</strong></span></a>
+                
+            <!--{else}-->            
+                
+        	<form id="renren_user_reg_form" name="renren_user_reg_form" method="POST" action="index.php?mod=renren&code=do_reg" onsubmit="return renren_user_reg_check();">
+        		<input type="hidden" name="hash" value="{$hash}" />        		
+                <!--{loop $bind_info $k $v}-->
+            	<input type="hidden" name="bind_info[{$k}]" value="{$v}" />
+            	<!--{/loop}-->
+            	<table width="100%" border="0">
+                  <tr>
+            	    <td colspan="2">            
+            	       <div class="tagg2">新注册的帐号将会与人人帐号绑定</div>
+           	        </td>
+            	  </tr>
+            	  <tr>
+            	    <td width="15%" align="right" valign="top">帐户/昵称：</td>
+            	    <td><input id="reg_nickname" name="nickname" type="text"  class="p1"  value="{$reg[nickname]}" />
+            		（用于登录、显示、@通知和发送站内信）
+            		</td>
+            	  </tr>
+            	  <tr>
+            	    <td align="right" valign="top">Email 邮箱：</td>
+            	    <td><input id="reg_email" name="email" type="text" value="{$reg[email]}" class="p1" />
+            		（用于登录、提醒和取回密码）
+            		</td>
+            	  </tr>
+                  <tr>
+            	    <td align="right" valign="top">登录密码：</td>
+            	    <td><input id="reg_password" name="password" type="password" value="" class="p1" />
+            		</td>
+            	  </tr>          
+            	  <tr>
+            	    <td align="right" valign="top">&nbsp;</td>
+            	    <td><input type="submit" class="save" value="注 册"/></td>
+            	  </tr>
+            	</table>
+            </form>
+            
+            <!--{/if}-->
+            
+        </div>        
+        <div id="renren_user_login" style="display: none;">
+            <form id="renren_user_login_form" name="renren_user_login_form" method="POST" name="profile_base" action="index.php?mod=renren&code=do_login" onsubmit="return renren_user_login_check();">
+            	<input type="hidden" name="hash" value="{$hash}" />        		
+                <!--{loop $bind_info $k $v}-->
+            	<input type="hidden" name="bind_info[{$k}]" value="{$v}" />
+            	<!--{/loop}-->
+            	<table width="100%" border="0">
+                  <tr>
+            	    <td colspan="2">            
+            	       <div class="tagg2">登录的帐号将会与人人帐号绑定</div>
+           	        </td>
+            	  </tr>
+            	  <tr>
+            	    <td width="13%" align="right" valign="top">帐户/昵称：</td>
+            	    <td><input id="login_username" name="username" type="text" value="" class="p1" />
+            		</td>
+            	  </tr>
+                  <tr>
+            	    <td align="right" valign="top">登录密码：</td>
+            	    <td><input id="login_password" name="password" type="password" value="" class="p1" />
+            		</td>
+            	  </tr>          
+            	  <tr>
+            	    <td align="right" valign="top">&nbsp;</td>
+            	    <td><input type="submit" class="save" value="登 录"/></td>
+            	  </tr>
+            	</table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--{template "topic_footer"}-->

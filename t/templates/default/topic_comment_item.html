@@ -1,0 +1,52 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	var objStr = "#view_comment_{$val[tid]}";
+	$(objStr).mouseover(function(){$(objStr + " i").show();});
+	$(objStr).mouseout(function(){$(objStr + " i").hide();});
+});
+</script>
+
+<a href="index.php?mod={$val[username]}" onmouseover="get_user_choose({$val[uid]},'_reply_user',{$val[tid]});" onmouseout="clear_user_choose();">
+	<img class="comment_p_img" src="{$val[face]}" onerror="javascript:faceError(this);" />
+</a>
+<!--评论中 悬浮头像 显示用户名片-->
+<div id="user_{$val[tid]}_reply_user"></div>
+<!--评论中 悬浮头像 显示用户名片-->
+
+<!--微博内容中 @用户 悬浮提示-->
+<div id="at_{$val[tid]}_user" class="at_style"></div>
+<!--微博内容中 @用户 悬浮提示-->
+
+<div class="ttxt">
+<div class="ttxtinfo">
+	<a href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}：{if 'reply'==$val[type]}回复{elseif 'both'==$val[type] || 'forward'==$val[type]}转发{/if} {$val[tousername]} : 
+	
+	<!--{eval $topic_view = 1;}-->	
+	<span id="topic_content_{$val[tid]}_short">{$val[content]}</span>
+	<span id="topic_content_{$val[tid]}_full"></span>
+    &nbsp;<font class="fontGray">({$val[dateline]})</font>
+	<!--{if $val[longtextid] > 0}-->
+		<span>
+		<a href="javascript:;" onclick="view_longtext('{$val[longtextid]}', '{$val[tid]}', this);return false;">查看全文</a>
+		</span>
+	<!--{/if}-->
+	{template "topic_share_1"}
+	{template "topic_share_2"}
+	
+	 
+</div>
+
+<p class="ttxtmore">
+<i style="display:none">
+<a href="javascript:void(0)" onclick="ReportBox('{$val[tid]}')" title="举报不良信息">举报</a> |
+<!--{if $val[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+<a href="javascript:void(0)" onclick="deleteTopic({$val[tid]},'view_comment_{$val[tid]}');return false;">删除</a> |		
+<!--{if  time() - $val[addtime] < 3600 || 'admin'==MEMBER_ROLE_TYPE}-->	
+<a href="javascript:void(0);" onclick="modifyTopic({$val[tid]},'modify_topic_{$val[tid]}','reply_list_ajax');return false;" style="cursor:pointer;">编辑</a> |
+<!--{/if}-->
+<!--{/if}-->
+</i>			
+<a href="javascript:void(0)" onclick="document.getElementById('replytid_{$topic_info[tid]}').value='{$val[tid]}';document.getElementById('is_huifu_{$topic_info[tid]}').value='is_huifu';document.getElementById('to_reply_user_{$topic_info[tid]}').innerHTML='回复:{$val[nickname]}';onFoucsReplyInput({$topic_info[tid]}); return false;">回复</a>
+<div id="modify_topic_{$val[tid]}"></div>	
+</p>
+</div>

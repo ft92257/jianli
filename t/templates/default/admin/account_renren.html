@@ -1,0 +1,61 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>说明提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>启用人人，可以使用人人帐户登录{conf site_name}({conf site_url})、不再担心忘记密码；</li>
+        </ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings" action="admin.php?mod=account&code=do_modify_renren">
+	<a name="人人设置"></a>
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">人人设置</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>是否启用？</b><br>（注意：允许此功能需要PHP支持curl组件）</td>
+			<td>{$renren_enable_radio}</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>client_id 或 API Key</b><br>
+            默认 “”，<BR>
+			如需全新申请，请访问<A HREF="http://dev.renren.com/" target=_blank><b>http://dev.renren.com/</b></A>
+            </td>
+			<td><input type="text" name="renren[client_id]" value="{$renren[client_id]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td width="45%"><b>client_secret 或 Secret Key</b><br>
+            默认 “”，使用同上
+            </td>
+			<td><input type="text" name="renren[client_secret]" value="{$renren[client_secret]}" size="60" /></td>
+		</tr>
+		<tr>
+			<td width="45%"><b>使用人人帐号登录后，是否向用户显示注册帐号/密码提示信息？</b><br>
+            建议选是
+            </td>
+			<td>{$renren_reg_pwd_display_radio}</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>开启发微博时同步发到人人的功能？</b><br>
+            建议选是，可将内容推广到人人平台
+            </td>
+			<td>{$renren_is_sync_topic_radio}</td>
+		</tr>
+		<tr>
+			<td width="45%"><b>微博同步到人人时，是否包含图片？</b><br>
+            建议选是，可将内容推广到人人平台
+            </td>
+			<td>{$renren_is_sync_image_radio}</td>
+		</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="settingsubmit" value="提 交"></center><br>
+</form>
+<br>

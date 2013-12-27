@@ -1,0 +1,248 @@
+<!--{template admin/header}-->
+
+
+<script>
+//
+function check_category(category_id)
+{
+	var category_id = 'undefined' == typeof(category_id) ? 0 : category_id;
+	var myAjax = $.post(
+		"admin.php?mod=vipintro&code=check_category",
+		{
+			category_id:category_id
+		},
+		function (d)
+		{		
+		 	 document.getElementById('subclass_list').innerHTML=d;
+		}
+	);
+	
+	
+}
+
+</script>
+<script language="javascript">
+function autoSelected(obj, defVal)
+{
+	if(!obj) return;
+	
+	if((typeof defVal).toLowerCase() != 'object')
+	{
+		var tmp = defVal;
+		
+		defVal = new Array();
+		defVal[0] = tmp;
+	}
+	
+	if(obj.tagName)
+	{
+		switch(obj.tagName.toLowerCase())
+		{
+			case 'select':
+					for(var i = 0; i < obj.length; i++)
+					{
+						if(in_array(obj.options[i].value, defVal))
+						{
+							obj.options[i].selected = true;
+						}
+					}
+			case 'input':
+					if(obj.type.toLowerCase() == 'checkbox' || obj.type.toLowerCase() == 'radio')
+					{
+						if(in_array(obj.value, defVal))
+						{
+							obj.checked = true;
+						}
+					}
+					break;
+		}
+	}
+	else
+	{
+		for(var i = 0; i < obj.length; i++)
+		{
+			if(obj[i].tagName.toLowerCase() == 'select')
+			{
+				for(var j = 0; j < obj[i].length; j++)
+				{
+					if(in_array(obj[i].options[j].value, defVal))
+					{
+						obj[i].options[j].selected = true;
+					}
+				}
+			}
+			else if(obj[i].tagName.toLowerCase() == 'input')
+			{
+				if(in_array(obj[i].value, defVal))
+				{
+					obj[i].checked = true;
+				}
+			}
+		}
+	}
+}
+</script>
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+    <td>认证操作</td>
+  </tr>
+  <tr class="altbg1">
+    <td><ul>
+      <li>
+      <a href="admin.php?mod=vipintro&code=category">增加主类</a>|
+      <a href="admin.php?mod=vipintro&code=categoryclass">增加分类</a>|
+      <a href="admin.php?mod=vipintro&code=categorylist">类别列表</a>
+      </li>
+    </ul></td>
+  </tr>
+</table>
+
+<!--用户认证 分类显示-->
+<!--{if $act == 'categorylist'}-->
+<form method="post" action="admin.php?mod=vipintro&code=delcategory">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+    <tr class="list_h">
+        <td height="30">V认证分类名称</td>
+        <td height="30">默认图标</td>
+        <td height="30">认证人数</td>
+        <td height="30">编辑</td>
+        <td height="30">查看</td>
+        <td height="30"><label><input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'ids')" >删除</label></td>
+    </tr>
+    <!--{loop $category $val}-->
+    <tr>
+        <td width="20%" height="30" class="td2"><b>{$val[category_name]}</b></td>
+        <td width="15%" class="td2"><!--{if $val[category_pic]}--><img src="{$val[category_pic]}" /><!--{/if}--></td>
+        <td width="15%" class="td2">{$val[num]}</td>
+        <td width="15%" class="td2"><a href="admin.php?mod=vipintro&code=modifycategory&ids={$val[id]}">编辑顶级分类</a></td>
+        <td height="30" class="td2">&nbsp;</td>
+        <td class="td2">
+          <!--{if $val[num] < 1}-->
+          <label><input type="checkbox" name="ids[]" value="{$val[id]}">删除</label>
+          <!--{/if}-->
+        </td>
+    </tr>
+  
+    <!--{loop $val[child] $child}-->
+        <tr>
+            <td height="30" align="left" class="td2"> <i class="lower"></i>{$child[category_name]}	</td>
+            <td height="30" class="td2"><!--{if $child[category_pic]}--><img src="{$child[category_pic]}" /><!--{/if}--></td>
+            <td width="10%" class="td2">{$child[num]}</td>
+            <td class="td2"><a href="admin.php?mod=vipintro&amp;code=modifycategoryclass&ids={$child[id]}">编辑子分类</a></td>
+            <td height="30" class="td2"><a href="admin.php?mod=vipintro&type=1&typeids={$child[id]}">查看用户</a></td>
+            <td height="30" class="td2">
+              <!--{if $child[num] < 1}-->
+              <label><input type="checkbox" name="ids[]" value="{$child[id]}">删除</label>
+              <!--{/if}-->
+            </td>
+        </tr>
+    <!--{/loop}-->
+  
+    <tr>
+        <td height="30" colspan="6" class="td2">
+         <i class="lower_b"></i> <a href="admin.php?mod=vipintro&code=categoryclass">增加子分类</a></td>
+    </tr>
+    <!--{/loop}-->
+    <tr>
+        <td height="30" colspan="6" class="td2"><a href="admin.php?mod=vipintro&code=category">增加顶级分类</a></td>
+    </tr>
+    <tr>
+        <td height="30" colspan="6" class="td2"><center><input class="button" type="submit" name="cronssubmit" value="提 交"></center></td>
+  </table>
+</form>
+<!--{/if}-->  
+<!--用户认证 分类显示-->
+
+
+
+<!--用户认证 增加主类-->
+<!--{if $code == 'category'}-->
+<form action="{$act}" method="post" enctype="multipart/form-data" name="forminfo" id="forminfo" >
+  <table cellspacing="1" cellpadding="4" width="100%" align="center">
+  <tr class="header">
+    <td>{$button}认证主类</td>
+     <td>&nbsp;</td>
+  </tr>
+    <tr>
+      <td align="center" bgcolor="#F8F8F8"><strong>填写主类</strong>：<br /></td>
+      <td width="88%" bgcolor="#F8F8F8">
+      <input name="category_name" type="text" id="category_name" value="{$category_info[category_name]}"/>
+      </td>
+    </tr>
+    <tbody>
+      <tr>
+        <td width="12%" align="center" bgcolor="#F8F8F8"><strong>类别图标：</strong></td>
+        <td bgcolor="#F8F8F8"><span class="altbg2">
+          <input name="validate" type="file" id="validate"/>
+        </span></td>
+      </tr>
+      <!--{if $category_info[category_pic]}-->
+      <tr>
+      <td align="center" bgcolor="#F8F8F8"><strong>图标原图</strong>：<br /></td>
+      <td width="88%" bgcolor="#F8F8F8"><span class="altbg2"><img src="{$category_info[category_pic]}" /></span></td>
+     </tr>
+     <!--{/if}-->
+      <tr>
+        <td bgcolor="#F8F8F8">&nbsp;</td>
+        <td bgcolor="#F8F8F8"><button name="do" value='' type="submit" class="button">提交</button>&nbsp;&nbsp;<button class="button" type="button" onclick="window.location.href='admin.php?mod=vipintro';return false;">返回</button>
+        <input name="postFlag" type="hidden" id="postFlag" value="1" />
+        <input name="ids" type="hidden" id="ids" value="{$category_info[id]}" /></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<!--{/if}-->
+<!--用户认证 增加主类-->
+
+
+<!--用户认证 增加分类-->
+<!--{if $code == 'categoryclass'}-->
+<form action="{$act}" method="post" enctype="multipart/form-data" name="forminfo1" id="forminfo1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center">
+    <tr class="header">
+    <td>{$button}认证分类</td>
+     <td>&nbsp;</td>
+  </tr>
+  <tr>
+      <td width="12%" align="center" bgcolor="#F8F8F8"><strong>选择主类</strong>：<br /></td>
+      <td width="88%" bgcolor="#F8F8F8">
+      <div id="category_list" style="width:130px;">
+      <select name="category_fid" id="category_fid" style="width:100px;">
+      <!--{loop $category_list $val}-->
+        <option value="{$val[id]}">{$val[category_name]}</option>
+      <!--{/loop}-->  
+      </select>
+      <script language='JavaScript' type="text/javascript">autoSelected(document.forminfo1.category_fid, '{$category_id}');</script>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td width="12%" align="center" bgcolor="#F8F8F8"><strong>填写分类</strong>：<br /></td>
+      <td width="88%" bgcolor="#F8F8F8">
+      <input name="category_name" type="text" id="category_name" value="{$category_name}" />
+      </td>
+    </tr>
+      <tr>
+        <td width="12%" align="center" bgcolor="#F8F8F8"><strong>类别图标：</strong></td>
+        <td bgcolor="#F8F8F8"><span class="altbg2">
+          <input name="validate" type="file" id="validate"/>
+        </span></td>
+      </tr>
+      <!--{if $category_info[category_pic]}-->
+      <tr>
+      <td align="center" bgcolor="#F8F8F8"><strong>图标原图</strong>：<br /></td>
+      <td width="88%" bgcolor="#F8F8F8"><span class="altbg2"><img src="{$category_info[category_pic]}" /></span></td>
+     </tr>
+     <!--{/if}-->
+    <tbody>
+      <tr>
+        <td bgcolor="#F8F8F8">&nbsp;</td>
+        <td bgcolor="#FFFFFF"><button name="do" value='' type="submit" class="button">提交</button>&nbsp;&nbsp;<button class="button" type="button" onclick="window.location.href='admin.php?mod=vipintro';return false;">返回</button>
+        <input name="postFlag" type="hidden" id="postFlag" value="1" />
+        <input name="ids" type="hidden" id="ids" value="{$ids}" /></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<!--{/if}-->
+<!--用户认证 增加分类-->

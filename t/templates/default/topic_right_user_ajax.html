@@ -1,0 +1,369 @@
+<!--{if $code == 'hot_weiqun'}-->
+<script type="text/javascript" src="js/qun.js"></script>
+<!--{/if}-->
+
+<!--{if $code == 'favorite_tag'}-->
+	<!---我关注的话题-->
+	<li id="add_ajax_favorite_tags">
+		<!--{loop $my_favorite_tags $val}-->
+		<span id="favorite_{$val[tag]}">
+		 <a href="index.php?mod=tag&code={$val[tag]}" target="_blank">{$val[tag]}</a>
+		</span>
+		<!--{/loop}-->
+	</li>
+	<!--{if $uid == MEMBER_ID}-->
+	<span class="thread_add">
+    <a href="javascript:void(0);" onclick="getElementById('add_favorite_tags').style.display=(getElementById('add_favorite_tags').style.display=='none')?'':'none'">添加</a> 
+    </span>
+    
+	<div id="add_favorite_tags" style="display:none; width:186px; float:left; margin:3px 0;"> 
+	  <p>
+		<input type="text" name="tag_name" id="tag_name" class="sc_r_t_a" value="请添加想关注的话题" onfocus="this.value=''" onblur="this.value='请添加想关注的话题'"/>
+		<input name="button" type="button" onclick="favoriteTag('tag_name','input_add')" value="保存" class="c_b1" />
+	  </p>
+
+	  </div>
+	  <!--{/if}-->
+	<!---我关注的话题-->
+
+<!--{elseif $code == 'user_tag'}-->
+	<!---属于我/TA的标签-->
+	<ul class="SC_biaoqian_box">
+	  <li>
+		<!--{if $myuser_tag}-->
+		<!--{loop $myuser_tag $val}-->
+		<span class="sc_bq"><a href="index.php?mod=search&code=usertag&usertag={$val[tag_name]}">{$val[tag_name]}</a></span>
+		<!--{/loop}-->
+	  </li>
+	  <!--{else}-->
+	  设置自己的标签，<a href="index.php?mod=user_tag" target="_blank">点此添加</a>
+	  <!--{/if}-->
+	</ul>
+
+	<!--{elseif $code == 'to_user_tag'}-->
+	<ul class="SC_biaoqian_box">
+	  <li>
+		<!--{if $to_user_tag}-->
+		<!--{loop $to_user_tag $val}-->
+		<span class="sc_bq"><a href="index.php?mod=search&code=usertag&usertag={$val[tag_name]}">{$val[tag_name]}</a></span>
+		<!--{/loop}-->
+	  </li>
+	  <!--{else}-->
+	  设置自己的标签，<a href="index.php?mod=user_tag" target="_blank">点此添加</a>
+	  <!--{/if}-->
+	</ul>
+
+	<!--{elseif $code == 'leadmanager'}-->
+	<!-- 分管领导及部门负责人 -->
+	<div id="interestUid">
+	<!--{if $leadmanager_list}-->
+	<ul class="followList" style="overflow:hidden">
+		<!--{loop $leadmanager_list $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_right_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>		 
+		  <div class="fBox_R "><span class="name"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a>{$val[validate_html]}</span> 
+		  <span id="follow_{$val[uid]}">{$val[follow_html]} </span> 
+		  <span class="ff_1">{$val[here_name]}</span>
+		  </div>
+ 		<div id="user_{$val[uid]}_right_user" class="layS"></div>
+		</li>
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+	</div>
+	<!-- 分管领导及部门负责人-->
+
+	<!--{elseif $code == 'department'}-->
+	<!-- 同单位其它部门 -->
+	<!--{if $department_list}-->
+	<div class="followList" style="overflow:hidden">
+	{$department_list}
+	</div>
+	<!--{/if}-->	
+	<!-- 同单位其它部门-->
+
+<!--{elseif $code == 'refresh'}-->
+	
+	<!--{if false!=($may_interest_user=Load::model('data_block')->may_interest_user())}-->
+	<!-- 可能感兴趣的人 -->
+	<div id="interestUid">
+	  <ul class="followList" style="overflow:hidden">
+		<!--{loop $may_interest_user $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_right_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+		  <div class="fBox_R "> <span class="name"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a>{$val[validate_html]}</span> 
+		  <span id="follow_{$val[uid]}"> {$val[follow_html]} </span> 
+		  <!--{if $val['refresh_type'] == 'follow'}-->
+		  <span class="ff_1">我 关注的{$val[count]}人关注{$val[gender_ta]}</span>
+		  <!--{elseif $val['refresh_type'] == 'tag'}-->
+		  <span class="ff_1">我和{$val[gender_ta]}有{$val[count]}个共同话题</span>
+		  <!--{elseif $val['refresh_type'] == 'user_tag'}-->
+		  <span class="ff_1">我和{$val[gender_ta]}有{$val[count]}个共同标签</span>
+		  <!--{elseif $val['refresh_type'] == 'city'}-->
+		  <span class="ff_1">{$val[gender_ta]}和我同在一个城市</span>
+		  <!--{/if}-->
+		  </div>
+ 		<div id="user_{$val[uid]}_right_user" class="layS"></div>
+		</li>
+		
+		<div id="alert_follower_menu_{$val[uid]}"></div>
+		<div id="Pmsend_to_user_area"></div>
+		<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+		<div id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></div>
+		<!--{/loop}-->
+	  </ul>
+	 <p class="r_replace"><a href="javascript:viod(0);" onclick="right_show_ajax('{MEMBER_ID}','refresh','refresh'); return false;">换一换</a></p>
+	</div>
+	<!-- 可能感兴趣的人 -->
+	<!--{/if}-->				
+
+<!--{elseif $code == 'hot_tag'}-->
+	<!--热门推荐话题-->
+	<!--{loop $hot_tag_recommend[list] $val}-->
+	<li> 
+	  <a href="index.php?mod=tag&code={$val[name]}" target="_blank">{$val['name']}({$val['topic_count']})</a>
+	  {if $val['desc']}
+	  	<div class="rught_tj_box"><span>{$val['desc']}</span></div>
+	  {/if} 
+	 </li>
+	<!--{/loop}-->
+	<!--热门推荐话题-->
+
+<!--{elseif $code == 'to_user_info'}-->
+	<!--关于他的信息-->
+	<!--{if $member[aboutme]}-->
+	<li>&nbsp;{$member[aboutme]}</li>
+	<!--{else}-->
+	<li>这家伙很懒，什么也没有留下。</li>
+	<!--{/if}-->
+	<!--关于他的信息-->
+	
+	
+<!--{elseif $code == 'to_user_event'}-->
+	<!--他参与的活动-->
+	<!--{if $to_user_event}-->
+	<!--{loop $to_user_event $val}-->
+	<li><a href="index.php?mod=event&code=detail&id={$val[id]}" title="点此查看活动详情" target="_blank">{$val[title]}</a></li>
+	<!--{/loop}-->
+	<!--{/if}-->
+	<!--他参与的活动-->
+	
+<!--{/if}-->
+
+
+<!--{if $code == 'recommend_user'}-->
+		<!--人气用户推荐-->
+		<!--{loop $recommend_user_list $val}-->
+		<li> 
+		<a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></a> 
+		<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b> 
+		{template "alert_menu"} 
+		</li>
+		<!--{/loop}-->
+		<!--人气用户推荐-->
+	<!--{/if}-->
+
+<!--{if $new_vip_user_list}-->
+		<!--最新认证用户-->
+			<!--{loop $new_vip_user_list $val}-->
+			<li> 
+			<a href="index.php?mod={$val[username]}" target="_blank">
+			<img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/>
+			</a> 
+			<b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b> 
+			{template "alert_menu"} 
+			</li>
+			<!--{/loop}-->
+		<!--最新认证用户-->
+	<!--{/if}-->
+
+<!--{if $code == 'user_follow'}-->
+	<!--TA关注的人-->
+		<!--{loop $user_follow_list $val}-->
+		<li> 
+		<img onerror="javascript:faceError(this);" src="{$val[face]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/> 
+		<a href="index.php?mod={$val[username]}"><b>{$val[nickname]}</b></a>
+		<b>{$val[follow_html]}</b> 
+		</li>
+		{template "alert_menu"}
+		<!--{/loop}-->
+		<p class="m_m2"><a href="index.php?mod={$member[username]}&code=follow">更多&gt;&gt;</a></p>
+	<!--TA关注的人-->
+	<!--{/if}-->
+	
+	
+	
+	<!--{if $code == 'qun_category'}-->
+	<!-- 微群分类 Begin -->
+		<div id="cat_content_wp">
+			<!--{loop $top_cat_ary $key $top_cat}-->
+			<div class="cat_block">
+			  <div class="cat_block_h">
+			    <a href="index.php?mod=qun&code=category&cat_id={$top_cat['cat_id']}">{$top_cat['cat_name']}</a>
+			    <span>({$top_cat['qun_num']})</span>
+			  </div>
+			</div>
+			<!--{/loop}-->
+			<div style="clear:both"></div>
+		</div>		
+	<!--微群分类 End-->
+		<!--{/if}-->
+	
+	
+	
+	<!--{if $code == 'my_follow_qun'}-->
+	<!--我关注的微群 Begin-->
+	<div id="interestUid">
+	  <!--{if $follow_qun_list}-->
+	  <ul class="followList" style="overflow:hidden">
+		<!--{loop $follow_qun_list $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		 
+		  <div class="fBox_R "> 
+		    <p><span class="name"><a href="index.php?mod=qun&qid={$val[qid]}">{$val[name]}</a></span> </p>
+			<p>{$val[member_num]}人&nbsp;&nbsp;|&nbsp;&nbsp;{$val[thread_num]}条微博</p>
+		  </div>
+		</li>
+		<!--{/loop}-->
+	  </ul>
+	  <!--{/if}-->
+	</div>
+	<!--我关注的微群 End-->
+	<!--{/if}-->
+	
+		
+	<!--{if $code == 'hot_weiqun'}-->
+	<!--热门微群-->
+	<div id="interestUid">
+	  <!--{if $hot_qun}-->
+	  <ul class="followList" style="overflow:hidden">
+		<!--{loop $hot_qun $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[icon]}"/> </div>
+		  <div class="fBox_R "> 
+          <p><span class="name"><a href="index.php?mod=qun&qid={$val[qid]}">{$val[name]}</a></span> </p>
+		  <p>{$val['member_num']}人&nbsp;&nbsp;|&nbsp;&nbsp;{$val['thread_num']}条微博</p>
+		  <a class="wq_joinbtn" href="javascript:;" onclick="joinQun({$val[qid]})"></a>
+		  </div>
+		</li>
+		<!--{/loop}-->
+	  </ul>
+	  <!--{/if}-->
+	</div>
+	<!--热门微群-->
+	<!--{/if}-->
+	
+	
+	<!--{if $code == 'city_qun'}-->
+	<!--同城微群-->
+	<div>
+		<ul>
+		<!--{loop $city_qun $val}-->
+		  <li>
+			<p><a href="#">{$val[name]}</a><span title="成员">({$val[member_num]})</span></p>
+		  </li>
+		<!--{/loop}-->  
+		</ul>
+	  </div>
+	<!--同城微群-->
+	  <!--{/if}-->
+	
+	
+	<!--{if $code == 'hot_follow_tag'}-->
+	<!--最受关注话题-->
+	<div>
+		<ul class="hot_follow">
+		<!--{loop $tag_guanzu $val}-->
+		  <li style="width:100%;">
+			<a href="index.php?mod=tag&code={$val[name]}">{$val[name]}</a>
+			<span><a href="javascript:viod(0);" onclick="favoriteTag('{$val[name]}'); return false;" title="加关注">+</a></span>
+		  </li>
+		<!--{/loop}-->  
+		</ul>
+	  </div>
+	<!--最受关注话题-->
+	<!--{/if}-->
+	
+	<!--{if in_array($code,array('common_interest','at_me_user'))}-->
+	<div id="interestUid">
+	  <!--{if $user_list}-->
+	  <ul class="followList" style="overflow:hidden">
+		<!--{loop $user_list $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_right_user',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>
+		  <div class="fBox_R ">
+			<span class="name"><a href="index.php?mod={$val[username]}" onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a></span> 
+		    <span id="follow_{$val[uid]}"> 	{$val[follow_html]} </span> 
+		    <span class="ff_1">
+		      <!--{if $val['at_count']}-->@我{$val['at_count']}次
+		      <!--{elseif $val['common_count']}-->有{$val['common_count']}个共同话题
+		      <!--{elseif $val['c_count']}-->评论了{$val['c_count']}次
+		      <!--{elseif $val['mc_count']}-->评论了{$val['mc_count']}次
+		      <!--{elseif $val['m_count']}-->分享音乐{$val['m_count']}次
+		      <!--{/if}-->
+		    </span>
+		  </div>
+ 		<div id="user_{$val[uid]}_right_user" class="layS"></div>
+		</li>
+		
+		<div id="alert_follower_menu_{$val[uid]}"></div>
+		<div id="Pmsend_to_user_area"></div>
+		<div id="global_select_{$val[uid]}" class="alertBox alertBox_2" style="display:none"></div>
+		<div id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});"></div>
+		<!--{/loop}-->
+	  </ul>
+	  <!--{/if}-->
+	</div>
+	<!--{/if}-->
+	
+	<!--{if 'photo' == $code}-->
+	<div class="photo_right">
+	<!--{if $photo_list['list']}-->
+    <ul class="photo_right_ul">
+	<!--{loop $photo_list['list'] $val}-->
+	    <li class="photo_right_li">
+	      <a href="index.php?mod=topic&code={$val[0]['tid']}" target="_blank" title="{$val[0]['nickname']}"><img src="{$val[0]['photo']}"></a>
+	    </li>
+
+	<!--{/loop}-->
+    </ul>
+	<!--{else}-->
+	  <ul class="photo_right_ul">
+	    <li>暂无相关内容</li>
+	    <li style="float:right"><a href="index.php?mod=topic&code=photo">点击查看更多</a></li>
+	  </ul>
+	<!--{/if}-->
+	</div>
+	<!--{/if}-->
+	
+	<!--{if 'video_list' == $code}-->
+	  <!--{if $video_list}-->
+<style type="text/css">
+.feedUservideo {
+    float: left !important;
+    overflow: hidden;
+    position: relative;
+    width: 195px;
+}
+.feedUservideo .vP{margin: 32px 46px;
+    position: absolute;}
+</style>
+        <!--{loop $video_list $val}-->
+        <li>
+          <div class="feedUservideo">
+            <a id="a{$val[id]}" onClick="javascript:showFlash('{$val[video_hosts]}', '{$val[video_link]}', this, '{$val[id]}','{$val[video_url]}',1);" >
+            <div id="play_{$val[id]}" class="vP"><img src="images/feedvideoplay.gif"  /></div>
+            <!--{if $val[video_img]}-->
+            <img src="{$val[video_img]}" style="border:none" />
+            <!--{else}-->
+            <img src="images/feedvideoplay.gif"  />
+            <!--{/if}-->
+            </a>
+          </div>
+        </li>
+        <li style="float:left"><a href="index.php?mod={$val['username']}" target="_blank">{$val['nickname']}</a></li>
+        <li style="float:right"><a href="index.php?mod=topic&code={$val['tid']}" target="_blank">查看原文</a></li>
+        <div class="mBlog_linedot"></div>
+        <!--{/loop}-->
+    <!--{else}--><li>暂无相关内容</li><!--{/if}-->
+	<!--{/if}-->

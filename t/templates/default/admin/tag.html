@@ -1,0 +1,70 @@
+<!--{template admin/header}-->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+  <tr class="header">
+    <td><div style="float:left;">技巧提示 
+	</div>
+      <div style="float:right;">
+	  <span style="float:right;"><a href="#" onclick="collapse_change('tip')">收缩/展开</a></span></div>
+	  </td>
+  </tr>
+  <tbody id="menu_tip" style="display:">
+    <tr>
+      <td><ul>
+          <li>微博内容中#关键词#中的关键词会被解析为话题，话题是一种内容分类，方便用户关注等。</li>
+        </ul></td>
+    </tr>
+</table>
+
+<form action="admin.php" method="get" name="search">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td>搜索已有话题</td>
+    </tr>
+    <input name="mod" type="hidden" value="tag">
+    <tr>
+      <td class="altbg2"><input type="text" name="keyword" value="{$keyword}" size="40">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button name="do" value='' type="submit" class="button">搜索一下</button></td>
+    </tr>
+  </table>
+</form>
+<form method="post" action="admin.php?mod=tag&code=delete">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+    <tr class="header">
+      <td width="8%">
+	  <input class="checkbox" type="checkbox" name="chkall"  onclick="checkall(this.form,'delete')">
+        删</td>
+      <td width="20%">话题名称</td>
+      <td width="15%">微博数量</td>
+      <td width="15%">关注人数</td>
+      <td width="20%">添加时间</td>
+      <td >相关操作</td>
+    </tr>
+    <!-- <tr class="category">
+      <td colspan="6" style="text-align:right">排序:$order_condition[html]</td>
+    </tr> -->
+    <!--{loop $tag_list $tag}-->
+    <tr align="center">
+      <td class="altbg1"><input class="checkbox" type="checkbox" name="delete[]" value="$tag[id]" >
+        删</td>
+      <td class="altbg2"><a href="index.php?mod=tag&code={$tag[name]}" target="_blank">{$tag[name]}</a></td>
+      <td class="altbg2">{$tag[topic_count]} 次 </td>
+      <td class="altbg2">{$tag[tag_count]}  人 </td>
+      <td class="altbg2">{$tag[dateline]}</td>
+      <td class="altbg1"><a href="index.php?mod=tag&amp;code={$tag[name]}" target="_blank">查看话题</a>&nbsp;-&nbsp; <a onclick="return confirm('确定要删除 {$tag[name]} 么？');" href="admin.php?mod=tag&amp;code=delete&amp;id={$tag[id]}">删除</a>&nbsp; </td>
+    </tr>
+    <!--{/loop}-->
+    <!--{if $pages}-->
+    <tr align="center">
+      <td colspan="6" class="altbg1"> {$pages} </td>
+    </tr>
+    <!--{/if}-->
+  </table>
+  <center>
+    <input class="button" type="submit" name="cronssubmit" value="提 交">
+  </center>
+</form>
+<br />
+ 

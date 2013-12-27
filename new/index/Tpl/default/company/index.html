@@ -1,0 +1,48 @@
+<include file='public:header' />
+<style>
+.services_rightt .imgList {
+	width:51px;
+	height:50px;
+	margin:0 5px 0 0;
+}
+p.fontstyle {
+}
+</style>
+<body>
+<div class="select_bg">
+    <div class="select_content">
+           <div class="select_toptxt">  <a href="">线下监理 </a><a href="">> 服务机构</a></div>
+           <div class="select_conleft">
+
+	<volist name="data" id="val" empty="还没有任何记录！" >
+               <div class="services_o">
+                    <div class="services_left"><a href="{:U('company/company?cid=')}{$val.id}"><img src="__IMAGES__{$val.logo}" width="160" heigth="160" /></a></div>
+                    <div class="services_right">
+                        <h2><a href="{:U('company/company?cid=')}{$val.id}">{$val.name}</a></h2>
+                        <p class="fontstyle">{$val.info}</p>
+               		<div class="services_rightt">
+                         <img src="__ROOT__/statics/index/images/anli.gif" />		
+						 
+                         <volist name="val[img]" id="img" >
+                         <a href="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" rel="lightbox[{$val.id}]" title="点击查看大图"><img src="{$Think.config.TMPL_PARSE_STRING.__IMAGES__}{$img.url}" class="imgList"/></a>
+						</volist>
+						
+                    	</div>
+                    	<div id="service_rig">
+                         <p>月预约量：{$val.reserve_month}<br />
+                           累计预约量：{$val.reserve_total}
+                         <a href="{:U('reserve/index?cid=')}{$val.id}"> <img src="__ROOT__/statics/index/images/button2.jpg" /></a></p>
+                   	</div>
+                   </div>
+               </div>
+	</volist>
+	
+	<div id="pages">{$page}</div>
+
+            </div>
+			<include file='public:sidebar' />
+          </div>
+    </div>
+</div>
+
+<include file='public:footer' />

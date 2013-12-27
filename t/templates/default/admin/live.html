@@ -1,0 +1,166 @@
+<!--{template admin/header}-->
+
+<!--{if $setting}-->
+<form action="admin.php?mod=live&code=doconfig" method="post" enctype="multipart/form-data" name="form1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">直播配置</td>
+    </tr>
+	<tr>
+      <td colspan="2">此处内容将显示在直播首页右侧部位，用于介绍和宣传之用。</td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">官方主持人：</td>
+      <td bgcolor="#FFFFFF">
+	  	<span style="margin-right:15px;"><input type="text" name="config[user]" id="user" value="{$config['user']}" size="40"/><br>(填写在微博中已经注册的昵称，没有注册的请先<a href="admin.php?mod=member&code=add" target="_blank"><font color="red">注册</font></a>一个该帐号。)</span>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">直播简介：</td>
+      <td bgcolor="#FFFFFF">
+	  	<textarea name="config[des]" id="des" style="width:480px; height:80px;" >{$config['des']}</textarea>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">直播合作方式：</td>
+      <td bgcolor="#FFFFFF">
+	  	<textarea name="config[ads]" id="ads" style="width:480px; height:80px;" >{$config['ads']}</textarea>
+	  </td>
+    </tr>
+	    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+	  	<input type="submit" class="button" name="groupsubmit" value="提 交" />&nbsp;
+		<input name="reset" type="reset"class="button" onClick="history.go(-1)" value="取 消" />
+		<input name="lid" type="hidden" id="lid" value="{$lid}">
+	</td>
+    </tr>
+  </table>
+</form>
+<!--{else}-->
+<script src="templates/default/js/date/WdatePicker.js" type="text/javascript"></script>
+<script>var user = new Array();var ui=0;</script>
+<script>
+function checkinput(){
+var checknames = new Array('livename','description','uid_host[]','uid_guest[]','starttime','endtime');
+var notices = new Array('直播主题','直播说明','主持人','嘉宾','直播开始时间','直播结束时间');
+for(var i=0;i<checknames.length;i++){
+var e=document.getElementsByName(checknames[i]);var eo=document.getElementsByName('old_'+checknames[i]);
+if((eo.length==0&&e.length==0)||e[0].value==null||e[0].value==''){MessageBox('notice', notices[i]+"不能为空！", '提示');return false;}
+}
+if(document.getElementsByName('starttime')[0].value >= document.getElementsByName('endtime')[0].value){MessageBox('notice', "直播结束时间不能早于或等于开始时间！", '提示');return false;}
+}
+</script>
+<form action="admin.php?mod=live&code={$do}" method="post" enctype="multipart/form-data" name="form1" onsubmit="return checkinput()">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2"><!--{if $lid}-->编辑<!--{else}-->添加<!--{/if}-->直播</td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">直播主题(必须填写)：</td>
+      <td bgcolor="#FFFFFF">
+	  	<span style="margin-right:15px;"><input type="text" name="livename" id="livename" value="{$live['livename']}" size="40"/></span>
+	  </td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">直播说明(必须填写)：</td>
+      <td bgcolor="#FFFFFF">
+	  <textarea name="description" id="description" style="width:500px; height:80px;" >{$live['description']}</textarea></td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">主持人(至少一个)：
+	  </td>
+      <td bgcolor="#FFFFFF">
+	  <table class="itemtable" cellpadding="0">
+      <tr>
+      <td class="tdd_1">用户昵称(已经注册的微博用户)</td>
+      <td class="tdd_1">个人介绍</th>
+      <td class="tdd_1">操作</td>
+      </tr>
+	  <!--{if $hosts}--><!--{loop $hosts $value}-->
+	  <tr>
+      <td valign="top"><input type="hidden" name="old_uid_host[]" value="{$value[uid]}">{$value[nickname]}</td>
+      <td>{$value[description]}</td>
+      <td valign="top"><a href="javascript:;" onclick="del_item(this,{$value[iid]});return false;" class="icon-del">删除</a></td>
+      </tr>
+	  <!--{/loop}--><!--{/if}-->
+	  <tr>
+      <td valign="top"><input type="text"/><br>填写后单击添加按钮进行验证</td>
+      <td valign="top"><textarea></textarea></td>
+      <td valign="top"><a href="javascript:;" onclick="add_item(this,'live',{$lid},'host');return false;" class="icon-add">添加</a></td>
+      </tr>
+	  </table>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">嘉宾(至少一个)：</td>
+      <td bgcolor="#FFFFFF">
+	  <table class="itemtable" cellpadding="0">
+      <tr>
+      <td class="tdd_1">用户昵称(已经注册的微博用户)</td>
+      <td class="tdd_1">嘉宾介绍</th>
+      <td class="tdd_1">操作</td>
+      </tr>
+
+	  <!--{if $guests}--><!--{loop $guests $value}-->
+	  <tr>
+      <td valign="top"><input type="hidden" name="old_uid_guest[]" value="{$value[uid]}">{$value[nickname]}</td>
+      <td>{$value[description]}</td>
+      <td valign="top"><a href="javascript:;" onclick="del_item(this,{$value[iid]});return false;" class="icon-del">删除</a></td>
+      </tr>
+	  <!--{/loop}--><!--{/if}-->
+	  <tr>
+      <td valign="top"><input type="text"/><br>填写后单击添加按钮进行验证</td>
+      <td><textarea></textarea></td>
+      <td valign="top"><a href="javascript:;" onclick="add_item(this,'live',{$lid},'guest');return false;" class="icon-add">添加</a></td>
+      </tr>
+	  </table>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">合作媒体：</td>
+      <td bgcolor="#FFFFFF">
+	  <table class="itemtable" cellpadding="0">
+      <tr>
+      <td class="tdd_1">用户昵称(已经注册的微博用户)</td>
+      <td class="tdd_1">媒体简介</th>
+      <td class="tdd_1">操作</td>
+      </tr>
+	  <!--{if $medias}--><!--{loop $medias $value}-->
+	  <tr>
+      <td valign="top"><input type="hidden" name="old_uid_media[]" value="{$value[uid]}">{$value[nickname]}</td>
+      <td>{$value[description]}</td>
+      <td valign="top"><a href="javascript:;" onclick="del_item(this,{$value[iid]});return false;" class="icon-del">删除</a></td>
+      </tr>
+	  <!--{/loop}--><!--{/if}-->
+	  <tr>
+      <td valign="top"><input type="text"/><br>填写后单击添加按钮进行验证</td>
+      <td><textarea></textarea></td>
+      <td valign="top"><a href="javascript:;" onclick="add_item(this,'live',{$lid},'media');return false;" class="icon-add">添加</a></td></tr>
+	  </table>
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">形象图地址：</td>
+      <td bgcolor="#FFFFFF">
+	  <input type="file" name="image">（大小：800*100 px）
+	  <!--{if $live['image']}--><br><img src="{$live['image']}" width="800" height="100"><!--{/if}-->
+	  </td>
+    </tr>
+	<tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">直播时间(必须填写)：</td>
+      <td bgcolor="#FFFFFF">
+	  		<input id="starttime" name="starttime" value="{$live['starttime']}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd  HH:mm'})" class="Wdate" type="text" readonly="readonly" style="width:130px">至<input id="endtime" name="endtime" value="{$live['endtime']}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd  HH:mm'})" class="Wdate" type="text" readonly="readonly" style="width:130px">
+	  </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+	  	<input type="submit" class="button" name="groupsubmit" value="提 交" />&nbsp;
+		<input name="reset" type="reset"class="button" onClick="history.go(-1)" value="取 消" />
+		<input name="lid" type="hidden" id="lid" value="{$lid}">
+	</td>
+    </tr>
+  </table>
+</form>
+<!--{/if}-->

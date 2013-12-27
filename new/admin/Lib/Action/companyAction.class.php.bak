@@ -1,0 +1,48 @@
+<?php 
+class companyAction extends baseAction{
+function index(){
+
+$big_menu = array('javascript:window.top.art.dialog({id:\'add\',iframe:\'?m=company&a=add\', title:\'添加公司\', width:\'700px\', height:\'600px\', lock:true}, function(){var d = window.top.art.dialog({id:\'add\'}).data.iframe;var form = d.document.getElementById(\'dosubmit\');form.click();return false;}, function(){window.top.art.dialog({id:\'add\'}).close()});void(0);', '添加公司');
+$company_mod=D('company');
+$p=getpage();
+$param['page']=$p;
+$param['length']='10';
+$company=$company_mod->getlist($param);
+
+$ass['company']=$company['data']['data'];
+$ass['big_menu']=$big_menu;
+
+$this->assign($ass);
+
+$this->display();
+}
+
+
+function add(){
+	if($_POST){
+	$company_mod=D('company');
+	
+	$param=$_POST;
+	$param['add_time']=date('Y-m-d H:i:s');
+	$su=$company_mod->add($param);
+	if($su['status']==1){
+	$this->success('新增成功','','','add');
+	}else{
+	$this->error('新增失败');
+	}
+		}else{
+	$this->display('edit');
+	}
+}
+function edit(){
+$id=$_GET['id'];
+	$company_mod=D('company');
+	if($_POST){
+
+	}else{
+	
+	$this->display();
+	}
+}
+
+}

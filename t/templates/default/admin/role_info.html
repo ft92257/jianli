@@ -1,0 +1,193 @@
+<!--{template admin/header}-->
+<form method="post" action="{$action}"><input type="hidden"
+	name="id" value="{$role_info[id]}">
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">{$title}角色 - {$role_info[name]}</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%" bgcolor="#F8F8F8"><b>角色名称:</b></td>
+		<td bgcolor="#FFFFFF"><input type="text" size="30" name="name"
+			value="{$role_info[name]}"></td>
+	</tr>
+	<!--{if $type_select!=false}-->
+	<tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>角色分类:</b></td>
+		<td bgcolor="#FFFFFF">{$type_select}</td>
+	</tr>
+	<!--{/if}-->
+	<!-- 
+    <tr>
+    	<td width="30%" bgcolor="#F8F8F8"><b>角色图标:</b></td>
+      	<td bgcolor="#FFFFFF"><input type="text" size="30" name="icon" value="{$role_info[icon]}" /></td>
+    </tr>
+    -->
+</table>
+<br />
+<center><input type="submit" class="button" name="groupsubmit"
+	value="提 交"> &nbsp; <INPUT TYPE="reset" class="button"
+	value="取 消" onclick="history.go(-1)"></center>
+<br />
+
+<!--{if $role_info['type']=='normal'}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">用户积分- {$role_info[name]}</td>
+	</tr>
+	<tr class="altbg1">
+		<td colspan="2">
+		<ul>
+			<li>1、下面积分是根据用户的总积分值计算的，您可以<a
+				href="admin.php?mod=setting&code=modify_credits"><b>点此进行设置总积分规则</b></a>。</li>
+			<li>2、如果已经启用积分，具体的积分规则您可以<a
+				href="admin.php?mod=setting&code=list_credits_rule"><b>点此进行设置</b></a>。</li>
+		</ul>
+		</td>
+	</tr>
+	<tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>积分大于:</b></td>
+		<td bgcolor="#FFFFFF"><input type="text" size="30"
+			name="creditshigher" value="{$role_info[creditshigher]}"></td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%" bgcolor="#F8F8F8"><b>积分小于:</b></td>
+		<td bgcolor="#FFFFFF"><input type="text" size="30"
+			name="creditslower" value="{$role_info[creditslower]}"></td>
+	</tr>
+</table>
+<br />
+<center><input type="submit" class="button" name="groupsubmit"
+	value="提 交"> &nbsp; <INPUT TYPE="reset" class="button"
+	value="取 消" onclick="history.go(-1)"></center>
+<br />
+<!--{/if}-->
+
+<a name="编辑角色权限 - {$role_info[name]}"></a> <!--{loop $module_list $_k $_m_l}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">{$_k} - {$role_info[name]}</td>
+	</tr>
+	<!--{loop $_m_l $name $privilege_list}-->
+	<!--{eval $iii++;$tr_class = $iii %2 ? 'altbg1' : 'altbg2';}-->
+	<tr class="{$tr_class}">
+		<td width="30%" bgcolor="#F8F8F8"><b>$name:</b><br>
+		<span class="smalltxt">模块权限</span></td>
+		<td bgcolor="#FFFFFF"><!--{loop $privilege_list $key $privilege}-->
+		<label><input type="checkbox" name="privilege[]" value="{$privilege[id]}"{$privilege[checked]} {$privilege[disabled]}>
+		<!--{if true===JISHIGOU_FOUNDER}--><a href="{$privilege[link]}">{$privilege[name]}</a><!--{else}-->{$privilege[name]}<!--{/if}--></label> &nbsp; <!--{if $key%4==0 and $key!=0}-->
+		<br />
+		<!--{/if}--> <!--{/loop}--></td>
+	</tr>
+	<!--{/loop}-->
+</table>
+<br />
+
+<center><input type="submit" class="button" name="groupsubmit"
+	value="提 交"> &nbsp; <INPUT TYPE="reset" class="button"
+	value="取 消" onclick="history.go(-1)"></center>
+<br />
+<!--{/loop}--> <br />
+
+<!--{if $role_list && $FormHandler}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">扩展权限- {$role_info[name]}</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="30%" bgcolor="#F8F8F8"><b>私信发送</b><br />
+			一、“<b>0、不限制，允许所有</b>”表示本用户组内的用户可以给任何用户组（即任何人）发送私信<br />
+			二、“-1、限制，只允许自身”表示本用户组内的用户只可以给跟自己在同一用户组中的用户发送私信<br />
+			三、“-2、不允许，限制所有”表示本用户组内的用户不能使用私信发送功能<br />
+			四、例如您勾选了“普通用户”表示本用户组内的用户可以给“普通用户”组内的用户发送私信<br />
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_sendpm_to[]', $role_list_default, $role_info[allow_sendpm_to]);}
+			{eval echo $FormHandler->CheckBox('allow_sendpm_to[]', $role_list, $role_info[allow_sendpm_to]);}</td>
+	</tr>
+	<!-- <tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>私信接收（被发送）</b><br />
+			一、“<b>0、不限制，允许所有</b>”表示本用户组内的用户可以接收任何用户组（即任何人）发送的私信<br />
+			二、“-1、限制，只允许自身”表示本用户组内的用户只可以接收跟自己在同一用户组中用户发送的私信<br />
+			三、“-2、不允许，限制所有”表示本用户组内的用户不能使用私信接收功能（即任何人都不能发私信给本用户组内的用户）<br />
+			四、例如您勾选了“普通用户”表示本用户组内的用户可以接收到“普通用户”组内用户发送的私信<br />
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_sendpm_from[]', $role_list_default, $role_info[allow_sendpm_from]);}
+			{eval echo $FormHandler->CheckBox('allow_sendpm_from[]', $role_list, $role_info[allow_sendpm_from]);}</td>
+	</tr>
+ -->	<tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>转发微博</b><br />
+			说明见“私信发送”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_forward_to[]', $role_list_default, $role_info[allow_topic_forward_to]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_forward_to[]', $role_list, $role_info[allow_topic_forward_to]);}</td>
+	</tr>
+	<!-- <tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>被转发</b><br />
+			说明见“私信接收（被发送）”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_forward_from[]', $role_list_default, $role_info[allow_topic_forward_from]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_forward_from[]', $role_list, $role_info[allow_topic_forward_from]);}</td>
+	</tr>
+ -->	<tr class="altbg1">
+		<td width="30%" bgcolor="#F8F8F8"><b>评论微博</b><br />
+			说明见“私信发送”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_reply_to[]', $role_list_default, $role_info[allow_topic_reply_to]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_reply_to[]', $role_list, $role_info[allow_topic_reply_to]);}</td>
+	</tr>
+	<!-- <tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>被评论</b><br />
+			说明见“私信接收（被发送）”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_reply_from[]', $role_list_default, $role_info[allow_topic_reply_from]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_reply_from[]', $role_list, $role_info[allow_topic_reply_from]);}</td>
+	</tr>
+ -->	<tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>微博AT</b><br />
+			说明见“私信发送”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_at_to[]', $role_list_default, $role_info[allow_topic_at_to]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_at_to[]', $role_list, $role_info[allow_topic_at_to]);}</td>
+	</tr>
+	<!-- <tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>被AT</b><br />
+			说明见“私信接收（被发送）”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_topic_at_from[]', $role_list_default, $role_info[allow_topic_at_from]);}
+			{eval echo $FormHandler->CheckBox('allow_topic_at_from[]', $role_list, $role_info[allow_topic_at_from]);}</td>
+	</tr>
+ -->	<tr class="altbg1">
+		<td width="30%" bgcolor="#F8F8F8"><b>关注</b><br />
+			说明见“私信发送”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_follow_to[]', $role_list_default, $role_info[allow_follow_to]);}
+			{eval echo $FormHandler->CheckBox('allow_follow_to[]', $role_list, $role_info[allow_follow_to]);}</td>
+	</tr>
+	<!-- <tr class="altbg2">
+		<td width="30%" bgcolor="#F8F8F8"><b>被关注</b><br />
+			说明见“私信接收（被发送）”项
+		</td>
+		<td bgcolor="#FFFFFF">
+			{eval echo $FormHandler->Radio('allow_follow_from[]', $role_list_default, $role_info[allow_follow_from]);}
+			{eval echo $FormHandler->CheckBox('allow_follow_from[]', $role_list, $role_info[allow_follow_from]);}</td>
+	</tr>
+ --></table>
+<br />
+<center><input type="submit" class="button" name="groupsubmit"
+	value="提 交"> &nbsp; <INPUT TYPE="reset" class="button"
+	value="取 消" onclick="history.go(-1)"></center>
+<br />
+<!--{/if}-->
+</form>

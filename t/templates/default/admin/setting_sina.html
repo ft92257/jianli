@@ -1,0 +1,126 @@
+<!--{template admin/header}-->
+
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td>技巧提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>启用新浪微博，可以使用新浪微博帐户登录{$this->Config['site_name']}({$this->Config['site_url']})、不再担心忘记密码；</li>
+			<li>还可实现与{$this->Config['site_name']}新浪微博平台内容的双向同步，吸引更多人关注；</li>
+		</ul>
+		</td>
+	</tr>
+</table>
+<br>
+<form method="post" name="settings"
+	action="admin.php?mod=setting&code=do_modify_sina"><a
+	name="新浪微博设置"></a>
+<table cellspacing="1" cellpadding="4" width="100%" align="center"
+	class="tableborder">
+	<tr class="header">
+		<td colspan="2">新浪微博设置</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>是否启用？</b><br>
+		这是下面所有功能的总开关</td>
+		<td>{$sina_enable_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>启用OAuth2？</b><br>
+		新浪微博新的新认证接口OAuth2，默认不启用<br>
+		（启用此项需要<br />
+			1、新站可以在 open.weibo.com/connect 中，申请“开始接入”<br />
+			2、需要通过新浪审核通过后的App Key才能让网站用户使用<br />
+			3、第一次启用此项时，前台用户需要重新绑定才能发微博到新浪<br />
+			4、启用OAuth2，需要更换默认的App Key（3015840342）及App Secret为您自己申请的App Key和相应的App Secret<br />
+			5、启用OAuth2，需要服务器支持OpenSSL，您的服务器目前 <font color="red"><!--{eval echo(function_exists("openssl_open") ? "支持" : "不支持");}--></font> OpenSSL）<br />
+			6、更多帮助，<a target="_blank" href="http://cenwor.com/go.php?w=jsg.help.sina.oauth2">点此查看</a></td>
+		<td>{$sina_oauth2_enable_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>App Key</b><br>
+		默认 “3015840342”，可正常使用；<BR>
+		如需全新申请，请访问<A HREF="http://open.t.sina.com.cn/" target=_blank>http://open.weibo.com/</A><br />
+		注意：切换App Key会解除原先的用户绑定关系，需要重新绑定</td>
+		<td><input type="text" name="sina[app_key]"
+			value="{$sina[app_key]}" /></td>
+	</tr>
+	<tr>
+		<td width="45%"><b>App Secret</b><br>
+		默认 “484175eda3cf0da583d7e7231c405988”，同上；</td>
+		<td><input type="text" name="sina[app_secret]"
+			value="{$sina[app_secret]}" /></td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许新浪微博帐号绑定和登录本站？</b><br>
+		建议选是，可吸引新浪微博用户</td>
+		<td>{$sina_is_account_binding_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>用新浪微博帐号登录后，是否向用户展示本站的昵称/密码注册页面？</b><br>
+		建议选是，因为新浪API提供的信息不包括email</td>
+		<td>{$sina_reg_pwd_display_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>用新浪微博帐号登录后，是否同步新浪微博的头像？</b><br>
+		建议选是</td>
+		<td>{$sina_is_sync_face_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许将微博同步到发布者的新浪微博上？</b><br>
+		建议选是，可将内容推广到新浪微博平台</td>
+		<td>{$sina_is_synctopic_toweibo_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>同步内容到新浪微博时，是否包括图片？</b><br>
+		建议选是，假如此功能导致服务器反应缓慢，则可以将其关闭。</td>
+		<td>{$sina_is_upload_image_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>同步到新浪微博的时间限制</b><br>
+		单位为秒，默认为 “15”</td>
+		<td><input type="text" name="sina[wbx_share_time]"
+			value="{$sina[wbx_share_time]}" /> 秒</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许从绑定的新浪微博帐户获取微博到本站？</b><br>
+		选是，将有助于从新浪获取微博内容，但会轻微增加网站的负担</td>
+		<td>{$sina_is_synctopic_tojishigou_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许获取新浪微博的评论读取到本站？</b><br>
+		前提是评论者已在本站绑定了微博帐户，会轻微增加网站负担；</td>
+		<td>{$sina_is_syncreply_tojishigou_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许获取新浪微博内容时读取图片到本站？</b><br>
+		选是，那么微博中有图片也会同步过来，会增加网站的负担；</td>
+		<td>{$sina_is_syncimage_tojishigou_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>从新浪获取微博内容的时间限制</b><br>
+		在满足时间限制的前提下，用户在访问时会触发内容同步；</td>
+		<td><input type="text" name="sina[syncweibo_tojishigou_time]"
+			value="{$sina[syncweibo_tojishigou_time]}" /> 秒</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许推送回复内容到相关联的新浪微博中？</b><br>
+		前提是回复者已经绑定了新浪微博，并且要求被回复的微博已经推送到新浪微博中。</td>
+		<td>{$sina_is_syncreply_toweibo_radio}</td>
+	</tr>
+	<tr>
+		<td width="45%"><b>允许微博详情页显示转发到新浪微博按钮？</b><br>
+		建议选择是，不会增加网站负担；</td>
+		<td>{$sina_is_rebutton_display_radio}</td>
+	</tr>
+</table>
+<br>
+<center><input type="submit" class="button"
+	name="settingsubmit" value="提 交"></center>
+<br>
+</form>
+<br>

@@ -1,0 +1,93 @@
+<!--{template "header"}-->
+<div data-role="content" >
+	<div class="profile">
+		<div class="user_info">
+			<div class="vf s_info">
+				<div class="b_author"><img src="{$member['face_original']}" style="width:128px; height:128px;"/></div>
+				<div class="b_info">
+					<span class="u_name">{$member['nickname']}</span>
+					<span class="u_sex"><!--{if $member['gender'] == 1}--><img src="./images/icon_male.png"/><!--{else}--><img src="./images/icon_female.png"/><!--{/if}--></span>
+                    <!--{if $member['uid'] == MEMBER_ID}-->
+                    	<!--{if $this->Config['is_mobile_client']}-->
+							<span class="u_edit"><a href="javascript:goToEditProfile('{$member[uid]}');" class="btn_edit">编辑</a></span>
+                    	<!--{/if}-->
+                    <!--{else}-->
+                    	<span class="u_edit">
+                        	<!--{if $is_follow}-->
+                        		<a href="javascript:;" class="btn_y" onclick="delFollow(this, {$member['uid']})">取消关注</a>
+                            <!--{else}-->
+                            	<!--{if $is_blacklist}-->
+                            		<a href="javascript:;" class="btn_y" onclick="delFromBlackList(this, {$member['uid']})">解除黑名单</a>
+                              	<!--{else}-->
+                                	<a href="javascript:;" class="btn_g" onclick="addFollow(this, {$member['uid']})">关注</a>
+                                <!--{/if}-->
+                            <!--{/if}-->
+                     	</span>
+                    <!--{/if}-->
+				</div>
+			</div>
+			<div class="other">
+				<ul class="lv_1"> 
+				  <li><span class="t">个性签名：</span><span class="c"><!--{if $member['signature']}-->{$member['signature']}<!--{else}--><!--{/if}--></span></li> 
+				  <li><span class="t">常住地址：</span><span class="c">{$member['province']} {$member['city']}</span></li> 
+				  <li class="nb"><span class="t">电子邮件：</span><span class="c">{$member['email']}</span></li> 
+				</ul> 
+			</div>
+		</div>
+		
+		<div class="topic_info">
+			<ul class="lv_2"> 
+			  <li>
+				<div class="col bl" onClick="goToFwList('{$member[uid]}');">
+					<div class="mid">
+						<span class="ct">{$member['follow_count']}</span>
+						<span class="t">关注</span>
+					</div>
+				</div>
+				<div class="col" onClick="goToMyMbList('{$member[uid]}');">
+					<div class="mid">
+						<span class="ct">{$member['topic_count']}</span>
+						<span class="t">微博</span>
+					</div>
+				</div>
+			  </li> 
+			  <li class="nb">
+				<div class="col bl" onClick="goToFansList('{$member[uid]}');">
+					<div class="mid">
+						<span class="ct">{$member['fans_count']}</span>
+						<span class="t">粉丝</span>
+					</div>
+				</div>
+				<div class="col" onclick="goToTagList('{$member[uid]}');">
+					<div class="mid">
+						<span class="ct">{$member['tag_favorite_count']}</span>
+						<span class="t">话题</span>
+					</div>
+				</div>
+			  </li> 
+			</ul> 
+		</div>
+        
+        <!--{if $member['uid'] == MEMBER_ID}-->
+            <div class="topic_info">
+                <ul class="lv_4">
+                    <li onclick="goToMyFavList();">
+                        <div class="col_b">我的收藏</div>
+                        <div class="arrow"></div>
+                    </li>
+                    <li class="nb" onclick="goToBlackList('{$member[uid]}');">
+                        <div class="col_b">黑名单</div>
+                        <div class="arrow"></div>
+                    </li>
+                </ul> 
+            </div>
+        <!--{/if}-->
+        
+	</div>
+</div>
+<script language="javascript">
+	$(document).ready(function(){
+		setTmpNick("{$member['nickname']}");
+	});
+</script>
+<!--{template "footer"}-->

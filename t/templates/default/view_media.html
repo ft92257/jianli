@@ -1,0 +1,28 @@
+{template "topic_header"}
+<div class="main_2"> 
+
+
+ <div class="main3Box_m">
+<iframe id="media_form_frame" name="media_form_frame" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+<form action="ajax.php?mod=topic&code=add_user_follow&__to=iframe" method="post" enctype="multipart/form-data" name="media_form" id="media_form" target="media_form_frame">
+  <div style="margin:0 0 0 30px;" >
+	 <!--{loop $media_user $media_val}-->
+	  <div style="float:left; width:120px;">
+	   <ul style="margin-top:10px;"> 
+		 <div >
+		    <img src="{$media_val[face]}" onerror="javascript:faceError(this);" /><br />
+		     <input name="follow_uid[]" type="checkbox" id="follow_uid[]" value="{$media_val[uid]}" />
+			 <a href="index.php?mod={$media_val[username]}" target="_blank">
+	         {$media_val[nickname]}
+		     </a>
+		 </div>
+	   </ul>
+	  </div>
+	<!--{/loop}-->
+   </div>
+ </form>
+ <div><input type="submit" name="Submit" value="批量加关注加关注" /></div>
+ </div>
+
+</div>
+{template "topic_footer"}

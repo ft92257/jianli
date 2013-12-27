@@ -1,0 +1,10 @@
+<!--{if $qun_list}-->
+<ul style="overflow:hidden;">
+	<!--{loop $qun_list $key $value}-->	  
+		<li style="border-bottom: dotted 1px #CCCCCC; padding-bottom:5px;">
+			<!--{eval echo $key+1;}-->.<a href="index.php?mod=qun&qid={$value['qid']}">{$value['name']}</a>
+			<span style="margin-left:10px;">({$value['member_num']})</span>
+		</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->

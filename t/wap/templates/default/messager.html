@@ -1,0 +1,39 @@
+{template "topic_header"}
+<div class="m">
+	<div class="t_list_c">
+		<!--{if is_array($message)==false}-->
+			<span>提示： <a href="{$redirectto}">{$message}</a></span>
+		<!--{/if}-->
+	</div>
+	
+	<div class="t_list_c">
+	<!--{if MEMBER_ID}-->
+		<!--{if $returntype == 'pms'}-->
+			<span><a href="index.php?mod=pm">我的私信</a></span> |
+			<span><a href="index.php?mod=pm&amp;code=pmsend">再发一条</a></span> |
+			
+		<!--{elseif $returntype == 'follow'}-->
+			<span><a href="{$redirectto}">返回上页</a></span> |
+			
+		<!--{elseif $returntype == 'del'}-->
+			<span><a href="{$redirectto}">确认删除</a></span> |
+			<span><a href="{$return_Url}">返 回 </a></span> |
+			
+		<!--{elseif $returntype == 'addpm'}-->
+			<span><a href="{$redirectto}">继续发送</a></span> |
+			<span><a href="index.php?mod=pm">我的私信</a></span> |
+			
+		<!--{elseif $returntype == 'favorite'}-->
+		<span class="{$my_favorite}"><a href="index.php?mod=topic&amp;code=myfavorite">我收藏的</a></span> |
+		<span class="{$favoritemy}"><a href="index.php?mod=topic&amp;code=favoritemy">谁收藏我的</a></span> |
+		<span><a href="{$return_Url}">返回上一页 </a></span> |	
+		<!--{else}-->
+	   <!--{/if}-->
+	   
+ <!--{/if}-->
+   	</div>
+
+</div>
+
+
+{template "topic_footer"}

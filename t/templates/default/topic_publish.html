@@ -1,0 +1,629 @@
+<style type="text/css">ul.mycon li{ width:65px;}</style>
+<script type="text/javascript" src="js/publishbox.js"></script>
+<div id="zz_main_publish">
+<div id="tigBox_2" class="tigBox_2">点<a href="javascript:" onClick="thread_insert()" style="cursor:pointer">#插入自定义话题#</a>给微博添加话题，方便关注</div>
+<div class="issueBox">
+<div class="fbqCount">
+<div class="fLeft">
+<!--{if $this->Get[mod] == 'member'}-->
+<!--{eval $content = '#新人报到# 我是'.$this->Config[site_name].'新加入的成员@'.MEMBER_NICKNAME.' ，欢迎大家来关注我！';}-->
+所有关注我的人将看到我分享的信息
+<!--{elseif $defaust_value}-->
+{$defaust_value}
+<!--{else}-->
+<span>
+	<!--{eval $__member_fans_count=(int)($GLOBALS[_J][member][fans_count]?$GLOBALS[_J][member][fans_count]:$member[fans_count]);}-->
+	<!--{if $__member_fans_count>0}-->{$__member_fans_count}<!--{else}-->0<!--{/if}--> 
+</span>人在关注我，
+<A href="index.php?mod=profile&code=invite" style="cursor:pointer">邀请</A>更多人
+<!--{/if}-->
+</div>
+<ul class="mycon">
+<!--{if $this->Config[topic_input_length]>0}-->
+<li>还可以输入</li><li style="width:auto"><span id="wordCheck{$h_key}" style='font-family:Georgia;font-size:24px;'>{conf topic_input_length}</span></li><li style="width:14px;">字</li>
+<!--{/if}-->
+</ul>
+</div>
+<div class="box_1" style="display:block">
+<!--{eval $i_already_value = $content ? $content : $this->Config[today_topic];$this->totid = $this->totid ? $this->totid : 0;}-->
+<script type="text/javascript">
+var __I_ALREADY_VALUE__ = '{$i_already_value}';
+var __ALERT__='{$this->Config[verify_alert]}';
+</script>
+<textarea name="content" id="i_already{$h_key}"  onkeyup="javascript:checkWord('{conf topic_input_length}',event,'wordCheck{$h_key}')" onkeydown="ctrlEnter(event, 'publishSubmit{$h_key}')">{$i_already_value}</textarea>
+<!--{eval $_get_type=str_safe($this->Get[type]);}-->
+<input name="topic_type" type="hidden" id="topic_type{$h_key}" value="{$_get_type}" />
+<input name="totid" type="hidden" id="totid{$h_key}" value="{$this->totid}" />
+<input name="touid" type="hidden" id="touid{$h_key}" value="{$this->touid}" />
+<!--应用 Begin-->
+<input name="item" type="hidden" id="mapp_item{$h_key}" value="{$this->item}" />
+<input name="item_id" type="hidden" id="mapp_item_id{$h_key}" value="{$this->item_id}" />
+<input name="xiami_id" type="hidden" id="xiami_id" value="" />
+<!--应用 End-->
+
+</div>
+<!--{if !($type == 'design' || $type == 'btn_wyfx')}-->
+<div class="box_3">
+	<script type="text/javascript">
+	 $(document).ready(function() {	 	
+		
+	 //表情
+	 $(".menu_bqb_c").click(function(){
+	 $("#showface{$h_key}").show();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $(".menu_spb").hide();
+	 $('.menu_htb').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $('#showface{$h_key}').click(function(){return false;});
+	 //图片 
+	 $(".menu_tqb_c").click(function(){
+	 $(".menu_tqb").show();
+	 $(".menu_fjb").hide();
+	 $(".menu_spb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_htb').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $('#pubImg').click(function(){
+	 $("#publisher_file").style.posLeft=event.x-offsetWidth/2;$("#publisher_file").style.posTop=event.y-offsetHeight/2;});
+	 $(".menu_tqb_c1").click(function(){$(".menu_tqb").hide();});
+	 $("#publishSubmit").click(function(){$(".menu_tqb").hide();});
+	 //附件 
+	 $(".menu_fjb_c").click(function(){
+	 $(".menu_fjb").show();
+	 $(".menu_tqb").hide();
+	 $(".menu_spb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_htb').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $('#pubAttach').click(function(){
+	 $("#publisher_file_attach").style.posLeft=event.x-offsetWidth/2;$("#publisher_file_attach").style.posTop=event.y-offsetHeight/2;});
+	 $(".menu_fjb_c1").click(function(){$(".menu_fjb").hide();});
+	 $("#publishSubmit").click(function(){$(".menu_fjb").hide();});
+	 //视频
+	 $(".menu_spb_c").click(function(){
+	 $(".menu_spb").show();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_htb').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $(".menu_spb_c1").click(function(){$(".menu_spb").hide();});
+
+	 //音乐
+	 $(".menu_m_c").click(function(){
+		 $(".menu_music").show();
+		 $(".menu_wqb").hide();
+		 $(".menu_tqb").hide();
+		 $(".menu_spb").hide();
+		 $('#showface').hide();
+		 $('.menu_htb').hide();
+		 $(".menu_vsb").hide();
+		 $(".menu_hdb").hide();
+		 $(".menu_cwb").hide();
+		 $(".menu_hts").hide();
+		 $(".menu_fjb").hide();
+	 });
+	 $(".menu_music_c1").click(function(){$(".menu_music").hide();});
+	 //话题
+	 $(".menu_htb_c").click(function(){
+	 $(".menu_htb").show();
+	 $(".menu_spb").hide();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $('.menu_htb').click(function(){return false;});
+	 //签到
+	 $(".menu_hts_c").click(function(){
+	 $(".menu_hts").show();
+	 $(".menu_htb").hide();
+	 $(".menu_spb").hide();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_vsb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_music").hide();
+	 });
+	 $(".menu_hts_c1").click(function(){$(".menu_hts").hide();});
+	 //投票
+	 $(".menu_vsb_c").click(function(){
+	 getVoteAvtivityFromIndex('vote_publish', 'con_vote_content_1');
+	 $(".menu_vsb").show();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $(".menu_spb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_htb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_hdb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $(".menu_vsb_c1").click(function(){$(".menu_vsb").hide();});
+	 //活动
+	 $(".menu_hdb_c").click(function(){
+	 getEventPost();
+	 $(".menu_hdb").show();
+	 $(".menu_vsb").hide();
+	 $(".menu_tqb").hide();
+	 $(".menu_fjb").hide();
+	 $(".menu_spb").hide();
+	 $('#showface{$h_key}').hide();
+	 $('.menu_htb').hide();
+	 $(".menu_wqb").hide();
+	 $(".menu_cwb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $(".menu_hdb_c1").click(function(){$(".menu_hdb").hide();});
+	 
+	 //微群
+	 $(".menu_wqb_c").click(function(){
+		 getMyQun();
+		 $(".menu_wqb").show();
+		 $(".menu_tqb").hide();
+		 $(".menu_fjb").hide();
+		 $(".menu_spb").hide();
+		 $('#showface{$h_key}').hide();
+		 $('.menu_htb').hide();
+		 $(".menu_vsb").hide();
+		 $(".menu_hdb").hide();
+		 $(".menu_cwb").hide();
+		 $(".menu_hts").hide();
+		 $(".menu_music").hide();
+	 });
+	 $(".menu_wqb_c1").click(function(){$(".menu_wqb").hide();});
+	 
+	 //长文本
+	 $(".menu_cwb_c").click(function(){
+		 initKindEditor();
+		 /*
+		 get_longtext_info();
+		 $(".menu_cwb").show();
+		 $(".menu_tqb").hide();
+		 $(".menu_spb").hide();
+		 $('#showface').hide();
+		 $('.menu_htb').hide();
+		 $(".menu_vsb").hide();
+		 $(".menu_hdb").hide();
+		 $(".menu_wqb").hide();
+		 $(".menu_hts").hide();
+		 $(".menu_music").hide();
+		 //*/
+	 });
+	 $(".menu_cwb_c1").click(function(){$(".menu_cwb").hide();});
+	 
+	 $(".menu_xb_c").click(function(){
+	 getClassPost();
+	 $(".menu_xb").show();
+	 $(".menu_wqb").hide();
+	 $(".menu_tqb").hide();
+	 $(".menu_spb").hide();
+	 $('#showface').hide();
+	 $('.menu_htb').hide();
+	 $(".menu_vsb").hide();
+	 $(".menu_hts").hide();
+	 $(".menu_music").hide();
+	 });
+	 $(".menu_xb_c1").click(function(){$(".menu_xb").hide();});
+	 
+	 //同步
+	 $(".box_4_open_span").click(function(){
+		 $(".box_4_open_Box").show();
+		 $(".menu_wqb").hide();
+		 $(".menu_tqb").hide();
+		 $(".menu_spb").hide();
+		 $('#showface').hide();
+		 $('.menu_htb').hide();
+		 $(".menu_vsb").hide();
+		 $(".menu_hdb").hide();
+		 $(".menu_cwb").hide();
+		 $(".menu_hts").hide();
+		 $(".menu_fjb").hide();
+	 });
+	 $(".box_4_open_span_c1").click(function(){$(".box_4_open_Box").hide();});
+	 //$(".box_4_open_Box").mouseout(function(){$(".box_4_open_Box").hide();});
+});
+
+//-----------------------------------
+function setTab(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"vhover":"";
+	con.style.display=i==cursel?"block":"none";
+}
+}
+
+function setTab1(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu=document.getElementById(name+i);
+	var con=document.getElementById("con_"+name+"_"+i);
+	menu.className=i==cursel?"vhover":"";
+	con.style.display=i==cursel?"block":"none";
+}
+}
+
+function setTab2(name,cursel,n){
+	for(i=1;i<=n;i++){
+	var menu2=document.getElementById(name+i);
+	var con2=document.getElementById("con2_"+name+"_"+i);
+	menu2.className=i==cursel?"vhover2":"";
+	con2.style.display=i==cursel?"block":"none";
+}
+}
+
+
+</script>
+
+	<!--{if $this->Config[sign][sign_enable]}-->
+	<div class="menu" >
+	  <div class="menu_ht menu_qd" id="sign_{MEMBER_ID}"><span onclick="getSignTag({MEMBER_ID});return false;" class="menu_hts_c">签到</span>
+	    <div class="menu_hts">
+	      <div id="sign_tag_{MEMBER_ID}"></div>
+	    </div>
+	  </div>
+	</div>
+	<!--{/if}-->
+
+	<div class="menu">
+	<div class="menu_bq" id="editface" ><b class="menu_bqb_c"><a href="javascript:void(0);" onclick="topic_face('showface{$h_key}','i_already{$h_key}','topic_face');return false;">表情</a></b>
+	<div id="showface{$h_key}" class="showface"></div>
+	</div></div>
+
+
+	<!-- 图片区块 开始 -->
+	<!-- JS引用 开始 -->	   
+	<!--{eval $image_uploadify_topic = array();}-->
+	<!--{eval $image_uploadify_from = 'topic_publish';}-->
+	<!--{eval $image_uploadify_only_js = 1;}-->
+	{template "image_uploadify.inc"}
+	<!-- JS引用 结束 -->
+	<div class="menu">
+	<div class="menu_tq" ><b class="menu_tqb_c">图片</b>
+	<div class="menu_tqb">
+	    <div class="menu_pi insertImgDiv" id="insertImgDiv">
+		    <div id="swfUploadDiv"><input type="file" id="publisher_file" name="publisher_file" style="display:none;" />（按ctrl键可一次选多图上传）</div>
+		    <iframe id="imageUploadifyIframe" name="imageUploadifyIframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank" style="display:none;"></iframe>
+		    <div id="normalUploadDiv" style="display:none;">
+				<form id="normalUploadForm" method="post" action="ajax.php?mod=uploadify&code=image&type=normal&iitem={$img_item}&iitemid={$img_itemid}" enctype="multipart/form-data" target="imageUploadifyIframe" onsubmit="return normalUploadFormSubmit()">
+		    		<input type="file" id="normalUploadFile" name="topic" />
+		    		<input type="submit" value="上传" class="tul" />
+		    	</form>
+		    </div>
+		    <i class="menu_tqb_c1"><img src="images/imgdel.gif" title="关闭" /></i>
+			<em>
+				1、如您不能上传图片，请<a href="javascript:;" onclick="imageUploadifyModuleSwitch();">点击这里</a>用<span id="uploadDescModuleSpan">普通</span>模式上传 ；<br />
+				2、网上图片URL地址可直接复制到上面发布框来发布。
+			</em>
+			<span id="uploading"></span>
+			
+			<div class="viewImgDiv" id="viewImgDiv"></div>
+		</div>
+		<div id="uploadifyQueueDiv" style="display:none;"></div>		
+	</div>
+	</div>
+	</div>
+	<!-- 图片区块 结束 -->
+	<!-- 文件区块 开始 -->
+	<!-- JS引用 开始 -->
+	<!--{eval if(($this->Config['attach_enable'] && $this->Module!='qun') || ($this->Config['qun_attach_enable'] && $this->Module=='qun')) $allow_attach = 1; else $allow_attach = 0 }-->
+	<!--{eval $attach_uploadify_topic = array();}-->
+	<!--{eval $attach_uploadify_from = 'topic_publish';}-->
+	<!--{eval $attach_uploadify_only_js = 1;}-->
+	<!--{eval $attach_num = min(max(1,(int)$this->Config['attach_files_limit']),5);}-->
+	<!--{eval $attach_size = min(max(1,(int)$this->Config['attach_size_limit']),5120);}-->
+	<!--{eval $attach_size = $attach_size >= 1024 ? round(($attach_size/1024),1).'M' : $attach_size.'KB';}-->
+	<!--{if $allow_attach}-->
+	{template "attach_uploadify.inc"}
+	<!--{/if}-->
+	<!-- JS引用 结束 -->
+
+	<div class="menu">
+	<div class="menu_sp"><b class="menu_spb_c">视频</b>
+	<div class="menu_spb" id="upload_ajax_video">
+	<div class="menu_tb"><span style="float:left; padding-left:5px;">支持如下视频的站内播放</span><div class="menu_spb_c1"></div></div>
+	<p class="menu_p"><a href="http://video.sina.com.cn/" rel="nofollow" target="_blank">新浪</a>、<a href="http://www.youku.com/" rel="nofollow" target="_blank">优酷</a>、<a href="http://v.blog.sohu.com/" rel="nofollow" target="_blank">搜狐</a>、<a href="http://www.ku6.com/" rel="nofollow" target="_blank">酷6</a>、<a href="http://www.tudou.com/" rel="nofollow" target="_blank">土豆</a><br>请复制视频播放页网站地址即可</p>
+	  <div id="upload_video_list" class="menu_p" style="display:none;">
+		<span id="return_ajax_video_title"></span>
+		<span><img id="video_img" width="130" /></span>
+		<p>
+		<input id="videoid" type="hidden" name="video_id" />
+		<span><a href="" onclick="DelVideo('videoid','video_ajax'); return false;" title="删除视频">删除视频</a></span>
+		</p>
+	  </div>
+	  <div id="add_video" class="menu_p" style=" margin-bottom:6px; padding-top:0">
+	  <iframe id="upload_video_frame" name="upload_video_frame" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+	   <form action="ajax.php?mod=topic&code=dovideo" method="post" enctype="multipart/form-data" name="upload_video" id="upload_video" target="upload_video_frame">
+		<input name="url" type="text" id="url" class="sc_r_t_a" style=" width:220px; display:inline;"/>
+		<input type="submit" name="Submit" value="提交" class="c_b1" />
+	   </form>
+	  </div>
+	</div></div>
+	</div>
+
+	<div class="menu">
+      <div class="menu_m">
+        <b class="menu_m_c">音乐</b>
+        <div class="menu_music">
+		  <div class="menu_tb">
+		    <span style="float:left; padding-left:10px;">请在下面输入歌曲名或歌手名字搜索</span>
+		    <sub class="menu_music_c1"></sub>
+	      </div>
+	      <div id="add_music" class="menu_m_s" style=" margin-bottom:6px; padding:15px 10px 0; float:left;">
+	      <form action="javascript:void(0);" method="post" enctype="multipart/form-data" name="upload_music" id="upload_music">
+	          <input name="url" type="text" id="music_name" class="sc_r_t_a" style=" width:220px;">
+	          <input type="submit" name="Submit" value="搜索" class="c_b1" onclick="music_serach();">
+	      </form>
+	      </div>
+	      <p class="menu_p" style="padding:0 10px;">音乐后缀的url请直接粘贴到上面的发布框中</p>
+	      <div id="music_list" class="menu_m_l"></div>
+	    </div>
+	  </div>
+    </div>
+
+	<!--{if $allow_attach}-->
+	<div class="menu">
+	<div class="menu_fj" ><b class="menu_fjb_c">附件</b>
+	<div class="menu_fjb">
+	    <div class="menu_pi insertImgDiv" id="insertAttachDiv">
+		    <div id="swfUploadDivAttach"><input type="file" id="publisher_file_attach" name="publisher_file" style="display:none;" />（按ctrl键可一次选多个文件）</div>
+		    <iframe id="attachUploadifyIframe" name="attachUploadifyIframe" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank" style="display:none;"></iframe>
+		    <div id="normalAttachUploadDiv" style="display:none;">
+				<form id="normalAttachUploadForm" method="post" action="ajax.php?mod=uploadattach&code=attach&type=normal&aitem={$attach_item}&aitemid={$attach_itemid}" enctype="multipart/form-data" target="attachUploadifyIframe" onsubmit="return normalAttachUploadFormSubmit()">
+		    		<input type="file" id="normalAttachUploadFile" name="topic" />
+		    		<input type="submit" value="上传" class="tul" />
+		    	</form>
+		    </div>
+		    <i class="menu_fjb_c1"><img src="images/imgdel.gif" title="关闭" /></i>
+			<em>
+				1、如您不能上传文件，请<a href="javascript:;" onclick="attachUploadifyModuleSwitch();">点击这里</a>用<span id="uploadDescModuleSpanAttach">普通</span>模式上传.<br />
+				2、一次最多可上传{$attach_num}个文件，单个文件大小不超过{$attach_size}。
+			</em>
+			<span id="uploadingAttach"></span>
+			<div class="viewImgDiv" id="viewAttachDiv"></div>
+		</div>
+		<div id="uploadifyQueueDivAttach" style="display:none;"></div>		
+	</div>
+	</div>
+	</div>
+	<!--{/if}-->
+	<!-- 文件区块 结束 -->
+	
+	<div class="menu" >
+	<div class="menu_ht" id="button_{MEMBER_ID}"><span onclick="get_tag_choose({MEMBER_ID},'my_tag','{$h_key}');return false;" class="menu_htb_c">话题</span>
+	<div class="menu_htb"><div id="{$h_key}tag_{MEMBER_ID}"></div></div>
+	</div>
+	</div>
+
+	<!--{if $this->Config['vote_open'] && !$set_vote_closed && !($this->Get[mod] == 'talk' || $this->Get[mod] == 'live' || $type == 'answer' || $type == 'ask')}-->
+	<div class="menu">
+	<div class="menu_vs"><b class="menu_vsb_c">投票</b>
+	<div class="menu_vsb">
+	<div class="menu_vsbox">
+	<p class="stitle">
+	<b id="vote_content1" class="vhover" onclick="setTab('vote_content',1,3)">创建新的投票</b>
+	<b id="vote_content2" onclick="setTab('vote_content',2,3);getMyVoteList(1);">我发起的</b>
+	<b id="vote_content3" onclick="setTab('vote_content',3,3);getMyJoinList(1);">我参与的</b>
+	<sub class="menu_vsb_c1"></sub>
+	</p>
+	
+	<div class="vcontent" id="con_vote_content_1">
+	<p>正在加载...</p>
+	</div>
+	<div class="vcontent vote_conLi" id="con_vote_content_2" style="display:none;">
+	<p>正在加载...</p>
+	</div>
+	<div class="vcontent vote_conLi" id="con_vote_content_3" style="display:none;">
+	<p>正在加载...</p>
+	</div>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	<!--{/if}-->
+
+	<!--{if $this->Config['event_open'] == 1 && !$set_event_closed && !($this->Get[mod] == 'talk' || $this->Get[mod] == 'live' || $type == 'answer' || $type == 'ask')}-->
+	<div class="menu">
+	<div class="menu_hd"><b class="menu_hdb_c">活动</b>
+	<div class="menu_hdb">
+	<div class="menu_hdbox">
+	<p class="stitle">
+	<b id="event_content1" class="vhover" onclick="setTab1('event_content',1,3)">发起新的活动</b>
+	<b id="event_content2" onclick="setTab1('event_content',2,3);getMyEventList(1);">我发起的</b>
+	<b id="event_content3" onclick="setTab1('event_content',3,3);getJoinEventList(1);">我参与的</b>
+	<sub class="menu_hdb_c1"></sub>
+	</p>
+	
+	<div class="vcontent" id="con_event_content_1">
+	<p>正在加载...</p>
+	</div>
+	<div class="vcontent vote_conLi" id="con_event_content_2" style="display:none;">
+	<p>正在加载...</p>
+	</div>
+	<div class="vcontent vote_conLi" id="con_event_content_3" style="display:none;">
+	<p>正在加载...</p>
+	</div>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	<!--{/if}-->
+
+	<!--{if $this->Config['qun_setting']['qun_open'] && !$set_qun_closed && !($this->Get[mod] == 'talk' || $this->Get[mod] == 'live' || $type == 'answer' || $type == 'ask')}-->
+	<div class="menu">
+		<div class="menu_wq">
+			<b class="menu_wqb_c">微群</b>
+			<div class="menu_wqb">
+				<div class="menu_wqbox" style="width:210px;">
+					<div class="menu_tb" style="width:210px;">
+						<span style="float:left; padding-left:5px;">选择你要发布到的群</span>
+						<sub class="menu_wqb_c1"></sub>
+					</div>
+					<div class="wcontent" id="wcontent_wp"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--{/if}-->	
+
+	<!--{if $this->Config['fenlei_open'] == 1 && !$set_fenlei_closed}-->
+	<div class="menu">
+		<div class="menu_x">
+			<b class="menu_xb_c">分类</b>
+			<div class="menu_xb">
+				<div class="menu_xbox">
+					<p class="stitle">
+					<b id="vote2_content1" class="vhover2" onclick="setTab2('vote2_content',1,2)">新的分类</b>
+					<b id="vote2_content2" onclick="setTab2('vote2_content',2,2);getMyFenleiList(1);">我发布的分类</b>
+					<sub class="menu_xb_c1"></sub>
+					</p>
+					<div class="vcontent" id="con2_vote2_content_1">
+					<p>正在加载...</p>
+					</div>
+					<div class="vcontent vote_conLi" id="con2_vote2_content_2" style="display:none;">
+					<p>正在加载...</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--{/if}-->
+	
+<!--{hook/global_publish_extra1}-->
+<!--{else}-->
+<div class="box_3ajax">
+<!--{/if}-->
+</div>
+
+
+<div class="box_4">
+<!--{eval if ($this->Get[mod] == 'tag') $type = 'tagview' ;elseif ($this->Get[mod] == 'member') $type = 'tohome';elseif ($this->Get[mod] == 'vote') $type='vote';elseif ($this->Get[mod] == 'live') $type='live';elseif ($this->Get[mod] == 'talk') $type='talk';elseif ($this->Get[mod] == 'fenlei') $type='fenlei';elseif ($this->Get[mod] == 'event') $type='event';elseif ($this->Get[mod] == 'reward') $type='reward'; else $type = $params[code];}-->
+	<!--{eval $type = $type ? $type : $this->Code;}-->
+	<input type="button" class="indexBtn" id="publishSubmit{$h_key}" title="按Ctrl+Enter快捷发布"/>
+	<!--这边的判断主要是为了在应用中使用微博发布框-->
+	<!--{if in_array($this->Get[mod], array('qun','live','talk','event','vote','fenlei','reward')) || $this->Get[type] == 'ask'}-->
+	<!--{eval $topic_type_value = $this->Get[type] == 'ask' ? $this->Get[item] : $this->Get[mod];}-->
+		<div class="box_4_open">
+        <b class="box_4_open_span" style="padding:0;"> <label><input id="chk_toweibo{$h_key}" type="checkbox" checked="checked" onclick="selectAppTopicType(this.id, {toid:'topic_type{$h_key}', defTopicType:'{$topic_type_value}'})">同步发作微博</label></b>
+        </div>
+	<!--{else}-->
+		<div class="box_4_open" id="weibo_syn_wp">
+        <b class="box_4_open_span">同步发到</b>
+        <div class="box_4_open_Box">
+        <sub class="box_4_open_span_c1"></sub>
+		<!--{if $this->Config[sina_enable] && sina_weibo_init()}-->
+		<p>{eval echo sina_weibo_syn();}</p>
+		<!--{/if}-->
+		<!--{if $this->Config[qqwb_enable] && qqwb_init()}-->
+		<p>{eval echo qqwb_syn();}</p>
+		<!--{/if}-->
+		<!--{if $this->Config[kaixin_enable] && kaixin_init()}-->
+		<p>{eval echo kaixin_syn_html();}</p>
+		<!--{/if}-->
+		<!--{if $this->Config[renren_enable] && renren_init()}-->
+		<p>{eval echo renren_syn_html();}</p>
+		<!--{/if}-->
+		</div>
+        </div>
+		<!--{if $this->Channel_enable}-->
+		<script>
+		$(document).ready(function(){
+		$("#p_channel,#t_pb").bind('mouseover', function(){$('#p_channel').show();$('#t_pb').addClass('hover');});
+		$("#p_channel,#t_pb").bind('mouseout', function(){$('#p_channel').hide();$('#t_pb').removeClass('hover');});
+		});
+		function c_hide(){$('#p_channel').hide();$('#t_pb').removeClass('hover');}
+		function c_cut(){$('#t_channel').html('');$('#mapp_item{$h_key}').val('{$this->item}');$('#mapp_item_id{$h_key}').val('{$this->item_id}');}
+		function c_int(n,s){$('#p_channel').hide();$('#t_pb').removeClass('hover');$('#t_channel').html(s+'<em onclick="c_cut();">×</em>');$('#mapp_item{$h_key}').val('channel');$('#mapp_item_id{$h_key}').val(n);}
+		</script>
+		<div class="box_4_channel">
+		<span class="select" id="t_pb">发布到频道</span><span class="channel" id="t_channel"></span>
+		<div class="channels" id="p_channel">
+		<span class="close" onclick="c_hide();">×</span>
+		<!--{if $this->Channels}-->
+		<!--{loop $this->Channels $val}-->
+		<dl>
+		<dt><a onclick="c_int({$val['ch_id']},'{$val['ch_name']}');">{$val['ch_name']}</a></dt>
+		<dd>
+		<!--{if $val['child']}-->
+		<!--{loop $val['child'] $v}-->
+		<a onclick="c_int({$v['ch_id']},'{$v['ch_name']}');">{$v['ch_name']}</a>
+		<!--{/loop}-->
+		<!--{else}-->
+		<a href="javascript:void(0);">&nbsp;</a>
+		<!--{/if}-->
+		</dd>
+		</dl>
+		<!--{/loop}-->
+		<!--{else}-->
+		<p>没有频道可供发布</p>
+		<!--{/if}-->
+		</div>
+		</div>
+		<!--{/if}-->
+	<!--{/if}-->	
+</div>
+
+</div>
+</div>
+<script type="text/javascript">		
+		$("#i_already{$h_key}").bind('focus', function(){
+		   $('#tigBox_2').css('visibility', 'visible');
+		   var i=0;
+		   setTimeout(function(){i+=1; $('#tigBox_2').css('visibility', 'hidden'); },5000);
+		});
+		
+		$("#publishSubmit{$h_key}").bind('click',function() {
+			publishSubmit('i_already{$h_key}','totid{$h_key}','{$type}','topic_type{$h_key}','','',$('#mapp_item{$h_key}').val(),$('#mapp_item_id{$h_key}').val(),$('#xiami_id').val(),$('#touid{$h_key}').val());
+			return false;
+		});
+		$(document).ready(function(){
+			initAiInput('i_already{$h_key}');
+			checkWord('{conf topic_input_length}','i_already{$h_key}','wordCheck{$h_key}');
+		});
+		/*
+		$("#i_already").bind('keydown',function(event) {
+			event = event || window.event;
+			if (event.keyCode == 13 && event.ctrlKey) {
+				$("#publishSubmit").click();
+			};
+		});*/
+</script>
+

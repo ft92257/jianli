@@ -1,0 +1,87 @@
+<include file="public:header" />
+<form id="myform" name="myform" action="{:u('setting/edit')}" method="post">
+  <div class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        	<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',3,1);">瀑布流显示</li>
+        	<li id="tab_setting_2" onclick="SwapTab('setting','on','',3,2);">URL模式</li>
+        	<li id="tab_setting_3" onclick="SwapTab('setting','on','',3,3);">采集设置</li>
+      </ul>
+      
+      <div id="div_setting_1" class="contentList pad-10">
+          <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+              <th width="120">每页显示数量 :</th>
+              <td><input type="text" name="site[waterfall_sp]" value="{$set.waterfall_sp}"/></td>
+            </tr>
+            <tr>
+              <th>瀑布流单次显示数量 :</th>
+              <td><input type="text" name="site[waterfall_items_num]" value="{$set.waterfall_items_num}"/></td>
+            </tr>            
+        </table>
+      </div>
+      
+      <div id="div_setting_2" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">       
+            <tr>
+              <th width="120">URL显示模式 :</th>
+              <td width="120"><input type="radio" <if condition="$set.url_model eq '0'">checked="checked"</if> value="0" name="site[url_model]">&nbsp;普通模式 &nbsp;&nbsp;</td>
+              <td><font color=red>(注：普通模式是最基本的URL模式，为系统的默认模式！)</font></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td width="150"><input type="radio" <if condition="$set.url_model eq '1'">checked="checked"</if> value="1" name="site[url_model]">&nbsp;PATHINFO 模式 &nbsp;&nbsp;</td>
+              <td><font color=red>(注：PATHINFO模式需要Web服务器支持，如果Web服务器没有开启相关的功能，则无法正常运行！)</font></td>            
+            </tr>
+            <tr>
+              <th></th>
+              <td><input type="radio" <if condition="$set.url_model eq '2'">checked="checked"</if> value="2" name="site[url_model]">&nbsp;REWRITE 模式 &nbsp;&nbsp;</td>
+              <td><font color=red>(注：Rewrite模式需要通过配置Apache、Nginx、IIS服务器才能正常使用，不同的Web服务器配置选项也不同!)</font></td>            
+            </tr>
+            <tr>
+              <th></th>
+              <td><input type="radio" <if condition="$set.url_model eq '3'">checked="checked"</if> value="3" name="site[url_model]">&nbsp;兼容模式&nbsp;&nbsp;</td>
+              <td><font color=red>(注：兼容模式是普通模式和PATHINFO模式的结合。)</font></td>
+            </tr>
+            
+         </table>      
+      </div>
+      
+      <div id="div_setting_3" class="contentList pad-10 hidden">
+      	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">       
+            <tr>
+              <th width="100">喜欢数 :</th>
+              <td>
+                <input type="radio" <if condition="$set.likes_status eq '1'">checked="checked"</if> value="1" name="site[likes_status]"> 采集喜欢数 &nbsp;&nbsp;
+                <input type="radio" <if condition="$set.likes_status eq '0'">checked="checked"</if> value="0" name="site[likes_status]"> 默认为0 &nbsp;&nbsp;
+              </td>
+            </tr>            
+         </table>      
+      </div>
+
+      <div class="bk15"></div>
+
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();" name="dosubmit" class="button" id="dosubmit"></div>
+
+    </div>
+
+  </div>
+
+</form>
+
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			 $('#div_'+name+'_'+i).show();
+			 $('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			 $('#div_'+name+'_'+i).hide();
+			 $('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+</script>
+
+</body></html>

@@ -1,0 +1,319 @@
+{template "topic_header"}
+
+<!--本地浮动框中的内容 Begin-->
+<!--邀请加入 Begin-->
+<!--{if $perm==-1 && $qun_info[join_type] == 1}-->
+<!--{template qun/response_apply}-->
+<!--{/if}-->
+<!--邀请加入 End-->
+<!--本地浮动框中的内容 End-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+  <div class="mainL">	
+    <div id="topNews_1" class="Hotwarp qun_Hotwarp">
+	  <!--群信息 Begin-->  
+	  <div id="qun_info_wp">
+	  	<div id="qun_info_left">
+			<div id="qun_icon">
+				<a href="index.php?mod=qun&qid={$qun_info['qid']}" title="{$qun_info['name']}"><img src="{$qun_info['icon']}" /></a>
+			</div>
+
+		</div>
+		<div id="qun_info_right">
+			<div id="info_title">
+				<span class="qun_s2"><a href="index.php?mod=qun&qid={$qun_info['qid']}" title="{$qun_info['name']}">{$qun_info['name']}</a></span>
+				<span class="qun_s3">(群ID：{$qun_info['qid']})</span>
+				<!--{if $perm==0}-->
+				<span class="qun_s1">已申请加入，请等待审核</span>
+				<!--{elseif $perm==1}-->
+				<span class="qun_s1">我是群主</span>
+				<!--{elseif $perm==2}-->
+				<span class="qun_s1">
+				<span>我是管理员</span>
+				<span>|</span>
+				<span><a href="javascript:;" onclick="quitQun({$qun_info['qid']})">退出群</a></span>
+				</span>
+				<!--{elseif $perm==-1}-->
+				<span class="qun_s1" id="join_wp">
+					<!--{if $qun_info[join_type] != 1}-->
+						<a href="javascript:;" onclick="joinQun({$qun_info['qid']})"><img src="images/qun/qun_add_menber.gif" /></a>
+					<!--{else}-->
+						<a href="javascript:;" onclick="showApplyQunDialog({$qun_info['qid']})"><img src="images/qun/qun_add_menber.gif" /></a>
+					<!--{/if}-->
+				</span>
+				<!--{elseif $perm==4}-->
+					<span class="qun_s1">
+					<span>已经加入</span>
+					<span>|</span>
+					<span><a href="javascript:;" onclick="quitQun({$qun_info['qid']})">退出群</a></span>
+					</span>
+				<!--{/if}-->
+				<span style="clear:both"></span>
+			</div>
+			<div style="margin-left:0; color:#999; clear:both;">
+			群创建于<!--{eval echo my_date_format($qun_info['dateline'], 'Y年m月d日');}-->
+				<div style="color:#999; text-align:left;">
+					<!--{if $qun_info['gview_perm'] == 0}-->
+						公开群
+					<!--{elseif $qun_info['gview_perm'] == 1}-->
+						私密群
+					<!--{/if}-->
+				</div>
+			</div>
+			<div style="margin-top:33px; text-align: right;">
+				<a href="javascript:;" onclick="showRecommendQunDialog($qun_info['qid'])">推荐到微博</a>
+				<!--{if in_array($perm, array(1, 2)) || MEMBER_ROLE_TYPE == 'admin'}-->
+				<span class="sp">|</span>
+				<a href="index.php?mod=qun&code=manage&op=members&qid={$qun_info['qid']}">成员管理</a>
+				<span class="sp">|</span>
+				<a href="index.php?mod=qun&code=manage&qid={$qun_info['qid']}">群管理</a>
+				<!--{/if}-->
+				<!--{if in_array($perm, array(1, 2, 4))  || MEMBER_ROLE_TYPE == 'admin'}-->
+				<span class="sp">|</span>
+				<a href="index.php?mod=qun&code=invite&qid={$qun_info['qid']}">邀请好友入群</a>
+				<!--{/if}-->
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	  </div>
+	  <!--群信息 End-->
+	  
+	  <!--{if $qun_info['gview_perm'] == 1 && $status!='isgroupuser'}-->
+	  <div style="text-align:center;">
+	  	<span>这是一个私密的群组哦，只有成员才能浏览群内内容</span>
+		<br />
+		<span>
+			<!--{if $perm==0}-->
+				<span style="color:#999999;">已申请加入，请等待审核</span>
+			<!--{else}-->
+				<a href="javascript:;" onclick="showApplyQunDialog({$qun_info['qid']})">申请加入</a>
+			<!--{/if}-->
+		</span>
+	  </div>
+	  <!--{else}-->
+	  <!--群公告 Begin-->
+	  <div id="qun_notice_wp" class="qun_notic">
+	  	<div id="content">
+			<span style="font-weight:700;">群公告：</span>
+			<span style="color:#666666;">
+				<!--{if $announcement}-->
+					{$announcement}
+				<!--{else}-->
+				本群暂无公告。
+				<!--{/if}-->
+			</span>
+		</div>
+	  </div>
+	  <!--群公告 End-->
+	  
+	<!--微博发布框 Begin-->
+	<!--{if $status=='isgroupuser'}-->  
+	<div id="qtp_wp" class="topic_new_add qun_pub">
+		<script language="javascript">
+			__APPITEM__ = 'qun';
+			__APPITEM_ID__ = {$qid};
+		</script>
+		<!--{template 'topic_publish'}-->
+	</div>
+	<!--{else}-->
+	<div class="qun_notic_2">
+		开始发言吧..
+		<!--{if $perm==0}-->
+			<span style="color:#999999;">已申请加入，请等待审核</span>
+		<!--{else}-->
+			<!--{if $qun_info[join_type] != 1}-->
+				<a href="javascript:;" onclick="joinQun({$qun_info['qid']})">加入群</a>
+			<!--{else}-->
+				<a href="javascript:;" onclick="showApplyQunDialog({$qun_info['qid']})">加入群</a>
+			<!--{/if}-->
+		<!--{/if}-->
+	</div>
+	<!--{/if}-->
+	<!--微博发布框 End-->
+	
+	<div class="TopicMan">
+	<!--微博大分类 Begin-->
+	<div class="nfTagB qun_nva_p">
+		<ul>  
+			<li {$active['newtopic']}>
+				<span><a href="index.php?mod=qun&view=newtopic&qid={$qun_info['qid']}" title="最新微博">最新微博</a></span>
+			</li>
+			<li {$active['newreply']}>
+				<span><a href="index.php?mod=qun&view=newreply&qid={$qun_info['qid']}" title="最新评论">最新评论</a></span>
+			</li>
+			<!--{if $this->Config['qun_attach_enable']}-->
+			<li {$active['attach']}>
+				<span>
+					<a href="index.php?mod=qun&view=attach&qid={$qun_info['qid']}" title="群内附件">群内附件</a>
+				</span>
+			</li>
+			<!--{/if}-->
+			<!--{if $this->Config['event_open']}-->
+			<li {$active['event']}>
+				<span>
+					<a href="index.php?mod=qun&view=event&qid={$qun_info['qid']}" title="群内活动">群内活动</a>
+				</span>
+			</li>
+			<!--{/if}-->
+			<!--{if $this->Config['vote_open']}-->
+			<li {$active['vote']}>
+				<span>
+					<a href="index.php?mod=qun&view=vote&qid={$qun_info['qid']}" title="群内投票">群内投票</a>
+				</span>
+			</li>
+			<!--{/if}-->
+			<li {$active['recd']}>
+				<span>
+					<a href="index.php?mod=qun&view=recd&qid={$qun_info['qid']}" title="官方推荐的微博">官方推荐</a>
+					<em class="navNew"></em>
+				</span>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<!--微博大分类 End-->
+	
+	<!--{if !in_array($view,array('event','vote','attach','image'))}-->
+	<!--微博筛选器 Begin-->
+	<div class="nfBox index_m">
+		<div class="left" style="position:relative;">
+			<!--{eval if(empty($this->Get[type])) 	$all = "current";}-->
+			<!--{eval if($this->Get[type] == 'pic') 	$pic = "current";}-->
+			<!--{eval if($this->Get[type] == 'video') $video = "current";}-->
+			<!--{eval if($this->Get[type] == 'music') $music = "current";}-->
+			<!--{eval if($this->Get[gid]) $gid = '&gid='.$this->Get[gid];}-->
+			<a title="全部" href="index.php?mod=qun&view={$view}&qid={$qid}" class="{$all}">全部</a>
+			<a title="含图片" href="index.php?mod=qun&view={$view}&qid={$qid}&type=pic" class="{$pic}">图片</a>
+			<a title="含视频" href="index.php?mod=qun&view={$view}&qid={$qid}&type=video" class="{$video}">视频</a>
+			<a title="含音乐" href="index.php?mod=qun&view={$view}&qid={$qid}&type=music" class="{$music}">音乐</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+	<!--微博筛选器 End-->
+	<!--{if in_array($view,array('attach'))}-->
+	<div class="nfBox index_m">
+		<div class="left" style="position:relative;">
+			<!--{eval if(empty($this->Get[type])) 	$all = "current";}-->
+			<!--{eval if($this->Get[type] == 'hot') 	$hot = "current";}-->
+			<!--{eval if($this->Get[type] == 'new') $new = "current";}-->
+			<!--{eval if($this->Get[gid]) $gid = '&gid='.$this->Get[gid];}-->
+			<a title="全部" href="index.php?mod=qun&view={$view}&qid={$qid}" class="{$all}">全部</a>
+			<a title="下载最多附件" href="index.php?mod=qun&view={$view}&qid={$qid}&type=hot" class="{$hot}">热门</a>
+			<a title="最近上传附件" href="index.php?mod=qun&view={$view}&qid={$qid}&type=new" class="{$new}">最新</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+	</div>
+	<script language="Javascript">
+		function listTopic( s,lh ) {	
+			var s = 'undefined' == typeof(s) ? 0 : s;
+			var lh = 'undefined' == typeof(lh) ? 1 : lh;
+			if(lh) {
+				window.location.hash="#listTopicArea";
+			}
+			var myAjax = $.post(
+				"ajax.php?mod=app&code=list_topic",
+				{
+					<!--{loop $gets $k $v}-->
+					{$k}:"{$v}",
+					<!--{/loop}-->
+					start:s
+				},
+				function (d) {
+					$("#listTopicArea").html(d);
+					$("#listTopicMsgArea").hide();			
+				}
+			); 
+		}
+		
+	</script>
+	
+	<!--{if $view == 'event'}-->
+	<!--活动列表begin-->
+	<!--{template 'event_list_ajax'}-->
+	<!--活动列表end-->
+	
+	<!--{elseif $view == 'vote'}-->
+	<!--投票列表begin-->
+	<div class="Listmain">
+        <!--{if $count}-->
+        {template vote_list}
+        <!--{else}-->
+        <div style="margin-left:5px;">还没有投票。</div>
+        <!--{/if}-->
+    </div>
+	<!--投票列表end-->
+
+	<!--{elseif $view == 'image'}-->
+	<!--图片列表begin-->
+	<div class="Listmain">
+        <!--{if $count}-->
+        {template image_list}
+        <!--{else}-->
+        <div style="margin-left:5px;">还没有图片。</div>
+        <!--{/if}-->
+    </div>
+	<!--图片列表end-->
+
+	<!--{elseif $view == 'attach'}-->
+	<!--附件列表begin-->
+	<div class="Listmain">
+        <!--{if $count}-->
+        {template attach_list}
+        <!--{else}-->
+        <div style="margin-left:5px;">还没有附件。</div>
+        <!--{/if}-->
+    </div>
+	<!--附件列表end-->
+	
+	<!--{else}-->
+	<!--微博列表 Begin-->
+	<div id="listTopicMsgArea"></div>
+	<div id="listTopicArea">
+		<!--{if !empty($topic_list)}-->
+			{template "qun/topic_list_ajax"}
+		<!--{else}-->
+			<div id="empty_list_tips" class="error_tips">
+			
+				<div class="hint ht_err">
+					<p class="ht_t">
+						<i class="i"></i>
+						<em>
+							<!--{if $view == 'newreply'}-->
+								还没有发表评论
+							<!--{elseif $view == 'recd'}-->
+								还没有被推荐的微博
+							<!--{else}-->
+								群内暂时还没有人发言哦，
+								<a href="javascript:;" onclick="$('#i_already').focus();" class="fuc1b"><b>快去说两句</b></a>
+							<!--{/if}-->
+						</em>
+					</p>
+				</div>
+				
+			</div>
+		<!--{/if}-->
+	</div>
+	<!--微博列表 End-->
+	
+	<!--{/if}-->
+	
+	<!--{/if}-->
+	</div>
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+	</div>
+	<!--{subtemplate qun/qun_right}-->
+   </div>
+{template "topic_footer"}

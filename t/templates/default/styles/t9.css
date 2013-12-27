@@ -1,0 +1,48 @@
+/* CSS Document */
+body{ background-color:#c0deed;background-image:url(../images/theme/t9/themebg.jpg);background-position:center 0px;background-repeat:no-repeat;}
+a:link{color:#2E75BC;text-decoration:none;}
+a:visited{color:#2E75BC;text-decoration:none;}
+a:hover{color:#2E75BC;text-decoration:underline;}
+.headerBg { background:#C4DEF0;}
+.headerNav{ color:#fff;}
+.headerNav a:link {color:#fff;text-decoration:none;}
+.headerNav a:hover {color:#fff;text-decoration:underline;}
+.headerNav a:visited {color:#fff;text-decoration:none;}
+.main{ background:url(../images/theme/t9/rightbg.gif) repeat-y right center #FFFFFF;}
+.top_nav2 { background:#c4def0;}
+.top_nav2 li .m_r0 a{ color:#fff;}
+.person_atten_l{ border-right:#95CEE0 1px solid;}
+.sideBox .sTitle{ background:url(../images/theme/t9/side_bg.gif) no-repeat 0 0;}
+.boxRNav2 li,.boxRNav2 li a{background:url(../images/theme/t9/sideLb.gif) 0 -126px no-repeat;}
+.boxRNav2 li.current{height:34px;z-index:2;background:url(../images/theme/t9/sideLb.gif) 0 -90px no-repeat;}
+.sendMail{ width:100%;background:url(../images/theme/t9/sideLb.gif) -334px -200px no-repeat; text-indent:21px; padding-top:5px;}
+.boxRNav2 li.myfav .anoTh{color:#2E75BC;}
+.boxRNav2 li.letter .anoTf{color:#2E75BC;}
+.boxRNav2 li.mailBox .anoTv{ color:#2E75BC;}
+.ts_menu_2{background:url(../images/theme/t3/hotb_1.gif) repeat-x bottom;}
+.ts3_mbtn1{border:1px solid #6699CC; border-bottom:none;}
+.ts3_mbtn2{border:1px solid #6699CC; border-bottom:none;background:#b2d2ec;}
+.bottomLinks{ background:#ddeef6;}
+.vDateBox{background:#E9F9FF; border:1px solid #A1C7DD;}
+.rbt_2{ background:url(../images/rbg_r2_c1.gif) no-repeat; width:180px; height:30px;}
+.rbt_2 a{ color:#fff;}
+.boxRNav3 li,.boxRNav3 li a{background:url(../images/theme/t9/sideLb.gif) 0 -126px no-repeat;}
+.boxRNav3 li.current{height:34px;z-index:2;background:url(../images/theme/t9/sideLb.gif) 0 -90px no-repeat;}
+/*新增侧栏部分*/
+.SC{border-top:1px solid #a3e0f5;}
+.SC h3{border-top:1px solid #e4f8ff;}
+.rught_tj_box{background:url(../images/theme/t9/right_tj_t.gif) no-repeat; color:#666666;}
+.rught_tj_box span{ background:#e9f9ff;border:#a1c7dd 1px solid; border-top:none;}
+.follow_html2_1{ background:#80BAC4; padding:2px;}
+.SC .btn{background:url(../images/theme/t9/b1_c2.gif) no-repeat;}
+/*三栏部分*/
+.t_col_main{background:url(../images/theme/t9/rightbg2.gif) repeat-y;}
+/*三栏左边导航*/
+.t_col_main_fl .boxRNav2 li,.boxRNav2 li a{background:url(../images/theme/t9/sideLb.png) 0 -126px no-repeat;_background:url(../images/theme/t9/sideLb.gif) 0 -126px no-repeat;}
+.t_col_main_fl .boxRNav2 li.current{height:34px;z-index:2;background:url(../images/theme/t9/sideLb.gif) 10px -462px no-repeat;}
+.t_col_main_fl .sendMail{ width:100%;background:url(../images/theme/t9/sideLb.gif) -334px -200px no-repeat; text-indent:21px; padding-top:5px;}
+.t_col_main_fl .boxRNav2 li.myfav .anoTh{color:#2E75BC;}
+.t_col_main_fl .boxRNav2 li.letter .anoTf{color:#2E75BC;}
+.t_col_main_fl .boxRNav2 li.mailBox .anoTv{ color:#2E75BC;}
+.t_col_main_fl .boxRNav2 li:hover,.t_col_main_fl .boxRNav2 li.hover{background-position:10px -428px;}
+.t_col_main_fl .boxRNav2 li.index:hover,.t_col_main_fl .boxRNav2 #x1.hover{background-position:10px -428px;}

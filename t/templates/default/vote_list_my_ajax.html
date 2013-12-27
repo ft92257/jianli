@@ -1,0 +1,40 @@
+<!--{if $this->Code=='my_vote'}-->
+	<h3>下面是你发起的投票，可以选择某个投票添加到微博：</h3>
+<!--{elseif $this->Code=='my_join'}-->
+	<h3>下面是你参与的投票，可以选择某个投票添加到微博：</h3>
+<!--{/if}-->
+<!--{if $count}-->
+	<div id="myvote_list_wp">
+		<ul>
+			<!--{loop $list $value}-->
+				<li>
+					<div class="myvote_item_l">
+						<input name="vote_subject" type="radio" value="{$value['radio_value']}" id="{$value['vid']}"/><label for="{$value['vid']}">{$value['subject']}</label>
+					</div>
+					<div class="myvote_item_r">
+						<a href="$value['vote_url']" target="_blank">查看</a>
+					</div>
+				</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<!--{if $multi}-->
+		<div class="myvote_multi">$multi</div>
+	<!--{/if}-->
+	<div>
+		<input onclick="addVoteUrl2Publish();" type="button" value="添 加" class="shareI"/>
+	</div>
+	<script language="javascript">
+		function addVoteUrl2Publish()
+		{
+			var voteUrl = $("input[name='vote_subject']:checked").val();
+			$('#i_already').val(voteUrl);
+		}
+	</script>
+<!--{else}-->
+	<!--{if $this->Code=='my_vote'}-->
+		你还没有发起投票呢!
+	<!--{elseif $this->Code=='my_join'}-->
+		你还没有参与投票呢!
+	<!--{/if}-->
+<!--{/if}-->

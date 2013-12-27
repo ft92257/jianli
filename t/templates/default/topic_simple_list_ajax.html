@@ -1,0 +1,30 @@
+<div class="Listmain">
+  <!--{if $topic_list}-->
+  <!--微博列表 Begin-->
+    <!--{loop $topic_list $val}-->
+      <!--{eval $counts++;}-->
+	  <div class="feedCell" id="topic_list_{$val[tid]}">
+			<!--{if $this->Config[ad_enable]}-->
+				<!--{if $counts == 3 && $this->Config[ad][ad_list][group_myhome][middle_center]}-->
+					<div class="L_AD">{$this->Config[ad][ad_list][group_myhome][middle_center]}</div>
+				<!--{/if}-->				
+				<!--{if $counts == 10 && $this->Config[ad][ad_list][group_myhome][middle_center1]}-->
+					<div class="L_AD">{$this->Config[ad][ad_list][group_myhome][middle_center1]}</div>
+				<!--{/if}-->			
+			<!--{/if}-->
+			<!--{subtemplate topic_item_ajax}-->
+                  <div class="mBlog_linedot" style=""></div>
+	  </div>
+	<!--{/loop}-->
+  <!--微博列表 End-->
+			  
+    <!--{if $page_arr['html']}-->
+    <div class="pageStyle">
+      <li>{$page_arr['html']}</li>
+    </div>
+    <!--{/if}-->
+  {else}
+  <div>暂时没有可显示的内容</div>
+  <!--{/if}-->
+</div>
+{eval echo $this->js_show_msg();}

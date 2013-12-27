@@ -1,0 +1,113 @@
+{template "topic_header"}
+
+<!--本地浮动框中的内容 Begin-->
+<!--邀请加入 Begin-->
+<!--{if $perm==-1&&$qun_info[join_type] == 1}-->
+	<!--{template qun/response_apply}-->
+<!--{/if}-->
+<!--邀请加入 End-->
+<!--本地浮动框中的内容 End-->
+<div class="main_2">
+  <div class="main3Box_m HotW">	
+    <div id="topNews_1" class="Hotwarp qun_Hotwarp">
+	  <!--群信息 Begin-->  
+		<!--{template qun/widgets_simple_desc}-->
+	  <!--群信息 End-->
+	  
+	  <!--{if $qun_info['gview_perm'] == 1&&$status!='isgroupuser'}-->
+	  <div style="text-align:center;">
+	  	<span>这是一个私密的群组哦，只有成员才能浏览群内内容</span>
+		<br />
+		<span>
+			<!--{if $perm==0}-->
+				<span style="color:#666;">已申请加入，请等待审核</span>
+			<!--{else}-->
+				<a href="javascript:;" onclick="showApplyQunDialog({$qun_info['qid']})">申请加入</a>
+			<!--{/if}-->
+		</span>
+	  </div>
+	  <!--{else}-->
+	  
+	  <!--话题 Begin-->
+	  <div id="qun_topic_wp" style="font-size:20px; margin-left:25px; width:540px; margin-top:10px;">
+			话题：<a href="index.php?mod=qun&qid={$qid}&tag={$tag}">#{$tag}#</a>
+	  </div>
+	  <!--话题 End-->
+	  
+	<!--微博发布框 Begin-->
+	<!--{if $status=='isgroupuser'}-->  
+	<div id="qtp_wp" class="topic_new_add qun_pub">
+		<script language="javascript">
+			__APPITEM__ = 'qun';
+			__APPITEM_ID__ = {$qid};
+		</script>
+		<!--{template "topic_publish"}-->
+	</div>
+	<!--{else}-->
+	<div class="qun_notic_2">
+		开始发言吧..
+		<!--{if $perm==0}-->
+			<span style="color:#999999;">已申请加入，请等待审核</span>
+		<!--{else}-->
+			<!--{if $qun_info[join_type] != 1}-->
+				<a href="javascript:;" onclick="joinQun({$qun_info['qid']})">加入群</a>
+			<!--{else}-->
+				<a href="javascript:;" onclick="showApplyQunDialog({$qun_info['qid']})">加入群</a>
+			<!--{/if}-->
+		<!--{/if}-->
+	</div>
+	<!--{/if}-->
+	<!--微博发布框 End-->
+	
+	<!--微博筛选器 Begin-->
+	<div class="nfBox qun_nfBox">
+		<div class="left" style="position:relative;">筛选：
+			<!--{eval if(empty($this->Get[type])) 	$all = "current";}-->
+			<!--{eval if($this->Get[type] == 'pic') 	$pic = "current";}-->
+			<!--{eval if($this->Get[type] == 'video') $video = "current";}-->
+			<!--{eval if($this->Get[type] == 'music') $music = "current";}-->
+			<!--{eval if($this->Get[gid]) $gid = '&gid='.$this->Get[gid];}-->
+			<a title="全部" href="index.php?mod=qun&qid={$qid}&tag={$tag}" class="{$all}">全部</a>
+			<a title="含图片" href="index.php?mod=qun&qid={$qid}&tag={$tag}&type=pic" class="{$pic}">图片</a>
+			<a title="含视频" href="index.php?mod=qun&qid={$qid}&tag={$tag}&type=video" class="{$video}">视频</a>
+			<a title="含音乐" href="index.php?mod=qun&qid={$qid}&tag={$tag}&type=music" class="{$music}">音乐</a>
+		</div>
+	</div>
+	<!--微博筛选器 End-->
+	<script language="Javascript">
+		function listTopic( s,lh ) {	
+			var s = 'undefined' == typeof(s) ? 0 : s;
+			var lh = 'undefined' == typeof(lh) ? 1 : lh;
+			if(lh) {
+				window.location.hash="#listTopicArea";
+			}
+			var myAjax = $.post(
+				"ajax.php?mod=app&code=list_topic",
+				{
+					<!--{loop $gets $k $v}-->
+					{$k}:"{$v}",
+					<!--{/loop}-->
+					start:s
+				},
+				function (d) {
+					$("#listTopicArea").html(d);
+					$("#listTopicMsgArea").hide();			
+				}
+			); 
+		}
+	</script>
+	
+	<!--微博列表 Begin-->
+	<div id="listTopicMsgArea"></div>
+	<div id="listTopicArea">
+		{template "qun/topic_list_ajax"}
+	</div>
+	<!--微博列表 End-->
+	<!--{/if}-->
+	</div>
+	
+	<!--{subtemplate qun/qun_right}-->
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][qun][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

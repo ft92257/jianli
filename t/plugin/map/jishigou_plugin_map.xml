@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[JishiGou! Plugin]]></item>
+	<item id="Version"><![CDATA[3.0.0]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[地图微博]]></item>
+			<item id="identifier"><![CDATA[map]]></item>
+			<item id="description"><![CDATA[在Google地图上显示用户发布的微博]]></item>
+			<item id="directory"><![CDATA[map/]]></item>
+			<item id="copyright"><![CDATA[Cenwor]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="modtype"><![CDATA[1]]></item>
+					<item id="mod_file"><![CDATA[map]]></item>
+					<item id="mod_name"><![CDATA[地图微博]]></item>
+					<item id="role_id"><![CDATA[all]]></item>
+				</item>
+			</item>
+		</item>
+	</item>
+</root>

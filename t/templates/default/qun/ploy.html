@@ -1,0 +1,46 @@
+{template "topic_header"}
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+<form method="post" action="index.php?mod=qun&code=docreate" autocomplete="off" id="qun_form" enctype="multipart/form-data" >
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main_2b">
+	<div class="main_t">
+		<span style=" float:left;">微群策略</span>
+		<span style="float:right; margin-right:10px;"><a href="index.php?mod=qun&code=profile"><em><<</em>返回</a></span>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		 $(".stripe_tb tr").mouseover(function(){
+		 $(this).addClass("over");}).mouseout(function(){
+		 $(this).removeClass("over");})
+		 $(".stripe_tb tr:even").addClass("alt");
+		 });
+	</script>
+	<div style="margin:15px;">
+		<table width="100%" border="0" class="stripe_tb">
+			<thead>
+			   <tr>
+					 <th>粉丝数介于</th>
+					 <th>微博数介于</th>
+					 <th>可创建微群数</th>
+				</tr>
+			</thead>
+			<!--{loop $ploys $val}-->
+				<tr>
+					<td>$val['fans_num_min'] ~ $val['fans_num_max'] 人</td>
+					<td>$val['topics_lower'] ~ $val['topics_higher'] 条</td>
+					<td>$val['qun_num'] 个</td>
+				</tr>
+			<!--{/loop}-->
+		</table>
+	</div>
+</div></div>
+{template "topic_footer"}

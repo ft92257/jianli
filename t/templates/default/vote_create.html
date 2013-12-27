@@ -1,0 +1,34 @@
+{template "topic_header"}
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+<div class="main_2b">
+<div class="main_t"><span class="t_l">我的投票</span><span class="t_r"><a href="javascript:history.go(-1);">返回&rsaquo;&rsaquo;</a></span></div>
+<div class="themepwarp">
+
+{template 'vote_publish'}
+	      
+</div>
+</div>
+</div>
+
+<!--返回对话框 Begin-->
+<div id="vote_publish_ret_wp" class="Fbox" style=" display:none;">
+	<div class="dialog_inner">
+		<div id="vote_publish_tips" class="vote_success"></div>
+		{template 'topic_simple_publish'}
+	</div>
+</div>
+<!--返回对话框 End-->
+
+{template "topic_footer"}

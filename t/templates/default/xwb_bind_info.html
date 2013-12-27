@@ -1,0 +1,193 @@
+<!--{template "topic_header"}-->
+<div class="main_2">
+	<div class="main_t"><span>新浪微博帐号绑定</span></div>
+    <div class="Menubox2">
+    	<ul>
+    	   <li><div id="xwb_div_0" class="tago"><a onclick="xwb_switch_div(0);return false;" href="javascript:void(0)"><span>绑定新注册帐户</span></a></div></li>
+    	   <li><div id="xwb_div_1" class="tagn"><a onclick="xwb_switch_div(1);return false;" href="javascript:void(0)"><span>绑定已有的帐号</span></a></div></li>
+    	</ul>
+	</div>
+    <script language="javascript">
+        function xwb_switch_div(ss)
+        {
+            var ss = ('undefined'==typeof(ss) ? 0 : ss);
+            
+            if(ss)
+            {
+                $('#xwb_div_0').attr('class','tagn');
+                $('#xwb_div_1').attr('class','tago');
+                $('#xwb_user_reg').css('display','none');
+                $('#xwb_user_login').css('display','block');
+            }
+            else
+            {                
+                $('#xwb_div_0').attr('class','tago');
+                $('#xwb_div_1').attr('class','tagn');
+                $('#xwb_user_reg').css('display','block');
+                $('#xwb_user_login').css('display','none');
+            }
+            
+            return false;            
+        }
+        var reg_submit = false;
+        function xwb_user_reg_check()
+        {
+        	if(reg_submit) return ;
+        	
+            var reg_nickname = $('#reg_nickname').val();
+            var reg_email = $('#reg_email').val();
+            var reg_password = $('#reg_password').val();           
+            
+            var myAjax = $.post
+            (
+                'index.php?mod=xwb&code=reg_check&in_ajax=1',
+                {
+                    nickname:reg_nickname,
+                    email:reg_email,
+                    password:reg_password
+                },
+                function(d)
+                {
+                    if(d)
+                    {
+                    	reg_submit = false;
+                        alert(d);
+                    }
+                    else
+                    {
+                    	reg_submit = true;
+                    	if(true == reg_submit) {
+	                        $('#xwb_user_reg_form').submit();                        
+	                        return true;
+                    	}
+                    }
+                }
+            );
+            
+            return false;
+        }
+        var login_submit = false;
+        function xwb_user_login_check()
+        {
+        	if(true == login_submit) return ;
+        	
+            var login_username = $('#login_username').val();
+            var login_password = $('#login_password').val();
+            
+            var myAjax = $.post
+            (
+                'index.php?mod=xwb&code=login_check&in_ajax=1',
+                {
+                    username:login_username,
+                    password:login_password
+                },
+                function(d)
+                {
+                    if(d)
+                    {
+                    	login_submit = false;
+                        alert(d);
+                    }
+                    else
+                    {
+                    	login_submit = true;
+                    	if(true == login_submit) {
+	                        $('#xwb_user_login_form').submit();                        
+	                        return true;
+                    	}
+                    }
+                }
+            );
+            
+            return false;
+        }
+    </script>
+    <div class="set_warp" style="width:650px; margin:0 auto; padding:20px 0 50px;">    
+        <div id="xwb_user_reg" style="display: block;">
+			<!--{eval $regstatus = jsg_member_register_check_status();}-->
+            <!--{if $regstatus['error'] || (true!==JISHIGOU_FORCED_REGISTER && $regstatus['invite_enable'] && !$regstatus['normal_enable'])}-->
+            
+                非常抱歉，本站目前不支持绑定新注册用户；<a onclick="xwb_switch_div(1);return false;" href="javascript:void(0)"><span><strong>请点此绑定已有的帐号</strong></span></a>
+                
+            {else}            
+                
+        	<form id="xwb_user_reg_form" name="xwb_user_reg_form" method="POST" action="index.php?mod=xwb&code=do_reg" onsubmit="return xwb_user_reg_check();">
+                <input type="hidden" name="hash" value="{$hash}" />        		
+                <!--{loop $bind_info $k $v}-->
+            	<input type="hidden" name="bind_info[{$k}]" value="{$v}" />
+            	<!--{/loop}-->
+            	<table width="100%" border="0">
+                  <tr>
+            	    <td colspan="2">            
+            	       <div class="tagg2">新注册的帐号将会与新浪微博帐号绑定，绑定后发微博可选择同步到新浪</div>
+           	        </td>
+            	  </tr>
+                  <!--{if $reg[face]}-->
+            	  <tr>
+            	    <td width="13%" align="right" valign="top">用户头像：</td>
+            	    <td><input type="hidden" id="reg_face" name="face" value="{$reg[face]}" type="text" class="p1" />
+                        <img onerror="javascript:faceError(this);" src="{$reg[face]}" />
+                        <input type="checkbox" id="xwb_face" name="synface" value="1" checked /><label for="xwb_face">使用新浪微博头像</label>
+            		</td>
+            	  </tr>
+                  <!--{/if}-->
+            	  <tr>
+            	    <td width="15%" align="right" valign="top">帐户昵称：</td>
+            	    <td><input id="reg_nickname" name="nickname" type="text"  class="p1"  value="{$reg[nickname]}" />
+            		（用于登录、显示、@通知和发送私信）
+            		</td>
+            	  </tr>
+            	  <tr>
+            	    <td align="right" valign="top">Email：</td>
+            	    <td><input id="reg_email" name="email" type="text" value="{$reg[email]}" class="p1" />
+            		（用于登录、提醒和取回密码）
+            		</td>
+            	  </tr>
+                  <tr>
+            	    <td align="right" valign="top">登录密码：</td>
+            	    <td><input id="reg_password" name="password" type="password" value="" class="p1" />
+            		</td>
+            	  </tr>          
+            	  <tr>
+            	    <td align="right" valign="top">&nbsp;</td>
+            	    <td><input type="submit" class="save" value="注册并绑定"/></td>
+            	  </tr>
+            	</table>
+            </form>
+            
+            {/if}
+            
+        </div>        
+        <div id="xwb_user_login" style="display: none;">
+            <form id="xwb_user_login_form" name="xwb_user_login_form" method="POST" name="profile_base" action="index.php?mod=xwb&code=do_login" onsubmit="return xwb_user_login_check();">
+            	<input type="hidden" name="hash" value="{$hash}" />        		
+                <!--{loop $bind_info $k $v}-->
+            	<input type="hidden" name="bind_info[{$k}]" value="{$v}" />
+            	<!--{/loop}-->
+            	<table width="100%" border="0">
+                  <tr>
+            	    <td colspan="2">            
+            	       <div class="tagg2">登录的帐号将会与新浪微博帐号绑定，绑定后可选择发微博同步到新浪</div>
+           	        </td>
+            	  </tr>
+            	  <tr>
+            	    <td width="13%" align="right" valign="top">帐户昵称：</td>
+            	    <td><input id="login_username" name="username" type="text" value="" class="p1" />
+            		</td>
+            	  </tr>
+                  <tr>
+            	    <td align="right" valign="top">登录密码：</td>
+            	    <td><input id="login_password" name="password" type="password" value="" class="p1" />
+            		</td>
+            	  </tr>          
+            	  <tr>
+            	    <td align="right" valign="top">&nbsp;</td>
+            	    <td><input type="submit" class="save" value="登录并绑定"/></td>
+            	  </tr>
+            	</table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--{template "topic_footer"}-->

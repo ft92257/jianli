@@ -1,0 +1,130 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".mclose").click(function(){$(this).parents(".alertBox").hide();});
+	$(".modifyiew").click(function(){$(this).parents(".alertBox").hide();});
+	$(".modify_menu_bqb_c").click(function(){$("#midify_face_{$topiclist[tid]}").show();});
+});
+
+function DelMusic(musicid)
+{
+	if(musicid > 0) {
+		$.post(
+			'ajax.php?mod=topic&code=delete_music',
+			{
+				id:musicid
+			},
+			function (d) {				
+				if(''!=d) {
+					//alert(d);
+				} else {
+					;
+				}
+			}
+		);
+		musicid = 0;
+	}
+	listTopic(0,0);
+}
+</script>
+
+<div class="dialog_inner" style="margin-bottom:5px;">
+<div class="mWarp mWarpp">
+<form method="post" action="ajax.php?mod=topic&code=do_modifytopic" enctype="multipart/form-data" name="modify_form" target="modifyframe" id="modify_form">
+		 
+<div class="mWarp_f">
+<div style="float:right;">
+<!--{if $this->Config[topic_input_length]>0}-->
+<span>还可以输入</span> 
+<span id="wordCheck_{$topic_info[tid]}"> <span style="color:#ff0000;font-size:12px;">{conf topic_input_length}</span> </span>
+<span style="width:14px;">字</span> 
+<!--{/if}-->
+</div>
+
+</div>
+
+<div class="mWarp_s">
+<div class="mWarp_s_t">
+<textarea name="content"  id="contents_{$topiclist[tid]}" onkeyup="javascript:checkWord('{conf topic_input_length}', event, 'wordCheck_{$topic_info[tid]}')" class="textarea" style="width:368px; height:60px;">{$topiclist[content]}</textarea>
+<input name="tid" 		type="hidden" 		id="tids" 		value="{$topiclist[tid]}" />
+<input name="imageid" 	type="hidden" 		id="imageids" 	value="{$topiclist[imageid]}" />
+<input name="attachid" 	type="hidden" 		id="attachids" 	value="{$topiclist[attachid]}" />
+</div>
+
+<div class="modify_tool">
+<div class="modify_tool_left">		
+<div class="menuf_bq" style="position:static;">
+<b class="modify_menu_bqb_c"><a href="javascript:void(0);" onclick="topic_face('midify_face_{$topiclist[tid]}','contents_{$topiclist[tid]}');return false;">表情</a></b>
+</div>
+<div id="midify_face_{$topiclist[tid]}" class="modify_face" style="top:185px; left:20px;"></div> 
+
+
+<!--{if !$topiclist[imageid]}-->
+<div class="comment_p_b2 comment_p_b22" id="reply_image_uploadify_{$topiclist[tid]}">
+<div onclick="imageUploadifyHTML('{$topic_info[tid]}', 'contents_{$topiclist[tid]}', 'reply_image_uploadify_{$topiclist[tid]}', 1);" class="menu_tq"><b class="menu_tqb_c">图片</b></div>
+</div>
+<!--{/if}-->
+
+<!--{if $this->Config[attach_enable]}-->
+<!--{if !$topiclist[attachid]}-->
+<div class="comment_p_b2 comment_p_b22" id="reply_attach_uploadify_{$topiclist[tid]}">
+<div onclick="attachUploadifyHTML('{$topic_info[tid]}', 'contents_{$topiclist[tid]}', 'reply_attach_uploadify_{$topiclist[tid]}', 1);" class="menu_fj menu_fj_reply_style"><b class="menu_fjb_c">附件</b></div>
+</div>
+<!--{/if}-->
+<!--{/if}-->
+
+
+</div>
+<div class="modify_tool_right">
+<input name="modify_{$topiclist[tid]}" type="button" class="shareI modifyiew" id="modifySubmit" onclick="do_modifyTopic('{$topiclist[tid]}','imageids','attachids','contents_{$topiclist[tid]}','{$types}', '{$handle_key}');return false;" value="提 交" title="按Ctrl+Enter直接提交"/>
+</div>
+</div>
+
+</div>
+</form>
+<!--{if $this->Config[attach_enable] && $topiclist[attachid]}-->
+<!--上传附件-->     
+<!--{eval $attach_uploadify_topic = $topiclist;}-->
+<!--{eval $attach_uploadify_modify = 1;}--> 
+<!--{eval $attach_uploadify_topic_uid = $topiclist[uid];}--> 
+<!--{eval $topic_textarea_id = 'contents_'.$topiclist[tid];}-->
+{template "attach_uploadify.inc"}
+<style type="text/css">.insertAttachDiv_up{ display:none;}</style>
+<!--上传附件-->
+<!--{/if}-->
+
+<!--{if $topiclist[imageid]}-->
+<!--上传图片-->       
+<!--{eval $image_uploadify_topic = $topiclist;}-->
+<!--{eval $image_uploadify_modify = 1;}--> 
+<!--{eval $image_uploadify_topic_uid = $topiclist[uid];}--> 
+<!--{eval $content_textarea_id = 'contents_'.$topiclist[tid];}-->
+{template "image_uploadify.inc"}
+<style type="text/css">.insertImgDiv_up{ display:none;}</style>
+<!--上传图片-->	
+<!--{/if}-->
+
+<!--内容操作-->
+</div>	  
+</div>
+
+<script language="Javascript">
+$("#contents_{$topiclist[tid]}").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#modifySubmit").click();
+    }
+});
+
+//输入时自动提醒
+$(document).ready(function(){
+	initAiInput("contents_{$topiclist[tid]}");	
+});
+</script>
+<script language="Javascript">
+
+String.prototype.trim = function() 
+{ 
+	return this.replace(/(^\s*)|(\s*$)/g, ""); 
+}
+
+</script>

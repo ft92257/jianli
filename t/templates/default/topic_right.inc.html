@@ -1,0 +1,71 @@
+<div>
+<div class="mainR">
+
+<!--#if NEDU#-->
+<!--{if defined('NEDU_MOYO')}-->
+	<!--{echo nui('jsg')->hook('topic.right.inc.load');}-->
+<!--{/if}-->
+<!--#endif#-->
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+	<!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+	<!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<!--CMS资讯-->
+<!--{if $params[code] == 'cms'}-->
+  <div class="side">
+  <h3>使用小帮助<a class="btn SC_yijianfankui" href="javascript:void(0)"></a></h3>
+	<ul class="FTL SC_yijianfankui_box">
+	  <li>A:此栏目将直接显示<a href="{$cms_url}" target="_blank">资讯</a>的内容</li>
+	  <li>B:默认显示你关注的资讯分类的内容，请在“我的资讯”栏目下，选择关注你感兴趣的分类。</li>
+	</ul>
+  </div>
+<!--{/if}-->
+<!--CMS资讯-->
+
+<!--BBS-->
+<!--{if $params[code] == 'bbs'}-->
+  <div class="side">
+  <h3>使用小帮助<a class="btn SC_yijianfankui" href="javascript:void(0)"></a></h3>
+	<ul class="FTL SC_yijianfankui_box">
+	  <li>A:此栏目将直接显示<a href="{$bbs_url}" target="_blank">来自论坛</a>的内容</li>
+	  <li>B:默认显示你收藏的论坛版块的帖子，请访问感兴趣的论坛版块，并点击收藏，然后就可以在“我的论坛”这个栏目看到相关的帖子了</li>
+	</ul>
+  </div>
+<!--{/if}-->
+<!--BBS-->
+
+<!--CHANNEL-->
+<!--{if $params[code] == 'channel'}-->
+  <div class="side">
+  <h3>使用小帮助<a class="btn SC_channel" href="javascript:void(0)"></a></h3>
+	<ul class="FTL SC_channel_box">
+	  <li>这里显示你所关注的频道的微博</li>
+	  <li>要关注相应频道，请来<a href="index.php?mod=channel">这里</a></li>
+	</ul>
+  </div>
+<!--{/if}-->
+<!--CHANNEL-->
+
+<!--官方推荐-->
+<!--{if $params[code] == 'recd'}-->
+  <div class="side">
+  <h3>使用小帮助<a class="btn SC_yijianfankui" href="javascript:void(0)"></a></h3>
+  <ul class="FTL SC_yijianfankui_box">
+	  <li>A:此栏目显示官方推荐的内容</li>
+	  <li>B:如果您发布的信息值得推荐，请@官方相关的人员寻求推荐</li>
+	</ul>
+  </div>
+<!--{/if}-->
+<!--官方推荐-->
+
+<!--{template 'topic_right_common.ini'}-->
+
+</div>
+</div>

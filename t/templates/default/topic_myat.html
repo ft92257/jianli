@@ -1,0 +1,55 @@
+<!--{template "topic_header"}-->
+
+<!--头部广告-->
+<!--{if $this->Config[ad_enable] && $this->Config[ad][ad_list][group_myhome][header]}-->
+<div style="text-align:center" class="T_AD">{$this->Config[ad][ad_list][group_myhome][header]}</div>
+<!--{/if}-->  
+<!--头部广告-->
+
+<!--{if MEMBER_ID ==0}-->
+<div class="inventLine2"> 
+  <div class="atxt">
+	<p class="p_1"><span>{$member[nickname]}</span>在这里写微博，想收到TA的最新消息吗？</p> 
+	<p class="p_2">微博是现在最酷、最火的沟通交流工具，可以随时随地分享新鲜事，与朋友保持联络。</p> 
+	<p class="p_3">10秒注册微博就可通过网页、手机、客户端随时随地分享新鲜事、关注所需的最新消息！</p>
+  </div>
+  <div class="abtn">
+	<a href="index.php?mod=member&code&uid={$member[uid]}"><img src="images/regbtn.gif"></a>
+	<p>已有帐号，<a href="javascript:void(0);" onclick="ShowLoginDialog(); return false;">请点此登录</a></p>
+  </div> 
+</div>
+<!--{/if}-->
+<div class="main {$t_col_main}">
+
+  <!--此处三栏-->
+  <div class="t_col_main_si {$t_col_main_side}">
+    <div class="t_col_main_fl">
+	  <div id="topic_index_left_ajax_list">
+	  <!--{if MEMBER_STYLE_THREE_TOL == 1 || $member[open_extra]}-->
+	  {template "topic_member_left.inc"}
+	  <!--{/if}-->
+	  </div>
+    </div>
+  </div>
+  <!--此处三栏-->
+	
+  <!--中间栏-->
+  <!--{template 'topic_common_middle'}-->
+  <!--中间栏-->
+  
+  <!--页面右侧-->
+  <!--{template "topic_myat.inc"}-->
+  <!--页面右侧-->
+</div>
+
+<!--底部广告-->
+<!--{if $this->Config[ad_enable] && $this->Config[ad][ad_list][group_myhome][footer]}-->
+  <div style="text-align:center" class="T_AD">
+  {$this->Config[ad][ad_list][group_myhome][footer]}
+ </div>
+<!--{/if}-->
+<!--底部广告-->
+
+<!--页面底部-->
+<!--{template "topic_footer"}-->
+<!--页面底部-->

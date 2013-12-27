@@ -1,0 +1,11 @@
+</td>
+</tr>
+</table>
+<div style="color:gray;"><center>{conf tongji} 
+{eval $__server_execute_time = round(microtime(true) - $GLOBALS[_J][time_start], 5) . " Second ";}
+{eval $__gzip_tips = ((defined('GZIP') && GZIP) ? "&nbsp;Gzip Enable." : "Gzip Disable.");}
+<span title="网页执行信息：{$__server_execute_time},{$__gzip_tips}">
+&nbsp; 网页执行信息：{$__server_execute_time},{$__gzip_tips}</span></center></div>
+{eval $this->gz_hand1er();}
+</body></html>
+{$GLOBALS[iframe]}

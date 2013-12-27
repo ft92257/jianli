@@ -1,0 +1,44 @@
+<!--{template "topic_header"}--><style type="text/css">.r_title{margin: 10px 30px;width: 150px;}</style>
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+    <div class="main_2b">
+      <div class="main_t main_t23">
+        <span class="t_l">{$title}</span>
+        <span class="t_r"><a href="index.php?mod=reward&code=detail&id=$rid">返回当前有奖转发页</a></span>
+      </div>
+    <!--{if $member}-->
+    <div class="r_title"><h3>共有{$count}个参与者</h3></div>
+    <div class="themepwarp">
+      <ul class="followList" style="overflow:hidden">
+        <!--{loop $member $key $val}-->
+        <li class="pane" id="follow_user_{$val[uid]}">
+          <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val['uid']},'_user',{$val['uid']});" onmouseout="clear_user_choose();"/> </div>
+          <div id="user_{$val['uid']}_user" class="layS"></div>
+          <div class="fBox_R ">
+             <p class="name"><a href="index.php?mod={$val[username]}">{$val['nickname']}</a></p>
+             <p>{$val['province']},{$val['city']}</p>
+             <p>{$val['dateline']}</p>
+	      </div>
+        </li>
+      <!--{/loop}-->
+      </ul>
+    </div>
+
+	<!--{else}-->
+	没有{$name}的人
+	<!--{/if}-->
+	<!--{if $page_arr['html']}-->	
+	<div><ul><li>{$page_arr['html']}</li> </ul></div>
+	<!--{/if}--> 
+  </div>
+</div>
+<!--{template "topic_footer"}-->

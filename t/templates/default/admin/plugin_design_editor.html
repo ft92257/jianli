@@ -1,0 +1,201 @@
+<!--{template admin/header}-->
+
+<style>
+	.smalltxt{ margin-left:20px; color:#444043;}
+</style>
+<script>
+function setphpfile(id,value)
+{
+var vid = document.getElementById(id);
+if(value == '5'){vid.innerHTML = '.class.php';}else{vid.innerHTML = '.inc.php';}
+}
+</script>
+<div id="main_wp" class="mt10">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header"><td>设计说明</td></tr>
+	<tr><td>1、本功能仅供插件开发者使用，如果你只是安装或使用本插件，切勿修改本设置。</td></tr>
+	<tr><td>2、使用本功能前请务必阅读《<a href="http://cenwor.com/go.php?w=jsg.plugin.admin" target="_blank">记事狗插件开发文档</a>》</td></tr>
+	<tr><td>3、警告: 不正确的插件设计或安装可能危及到整个站点的正常使用。</td></tr>
+	<tr><td>4、如果把导出的插件文件放置在 plugin/插件名/ 目录下，则可以通过插件管理直接安装插件。</td></tr>
+</table>
+<!--{if $infos}-->
+<form action="admin.php?mod=plugindesign&code=adddesign" method="post" name="">
+<table cellspacing="1" width="100%" align="center" class="tableborder" id="tab_1">
+	<tr class="header">
+		<td colspan="2">插件设置</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">插件名字</td>
+		<td class="altbg2"><input type="text" name="plugin_name" id="" value="{$plugin_info['name']}" size="40" /><span class="smalltxt">插件名称为中英文字符不得超过40字符<br>
+			</span></td>
+	</tr>
+	<tr>
+	  <td class="altbg1">插件目录</td>
+	  <td class="altbg2"><input type="text" name="directory" id="" value="{$plugin_info['directory']}" size="40" readonly/><span class="smalltxt">插件对应的目录，由系统自动生成。<br>
+			</span></td>
+	  </tr>
+	<tr>
+	  <td class="altbg1">插件唯一标识符</td>
+	  <td class="altbg2"><input type="text" name="identifier" id="" value="{$plugin_info['identifier']}" size="40" /><span class="smalltxt">插件唯一标识符40以内有效字符，与现有插件不得重复<br>
+			</span></td>
+	  </tr>
+	<tr>
+		<td class="altbg1" width="150">
+		版本号		</td>
+		<td class="altbg2"><input type="text" name="version" id="" value="{$plugin_info['version']}" size="40" /><span class="smalltxt">插件版本号，用于在安装版本旧于新版本，给用户提示<br>
+			</span></td>
+	</tr>
+	<tr>
+	  <td class="altbg1">插件描述</td>
+	  <td class="altbg2"><textarea cols="48" rows="4" name="description">{$plugin_info['description']}</textarea><span class="smalltxt">描述插件的简要功能，请控制在100字符内<br>
+			</span></td>
+	  </tr>
+	<tr>
+		<td class="altbg1" width="150">&nbsp;</td>
+		<td class="altbg2">&nbsp;</td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{$id}">
+<!--{/if}-->
+<!--{if $modules}-->
+<form action="admin.php?mod=plugindesign&code=addmodules" method="post" name="">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl" id="tab_2">
+	<tr class="header">
+		<td colspan="5">插件模块</td>
+	</tr>
+	<tr class="list_h_2">
+		<td><input type="checkbox" name="chkall" class="checkbox" onclick="checkall(this.form,'delete')" />删?</td>
+		<td>模块类型</td>
+		<td>程序模块(必填)</td>
+		<td>导航名称</td>
+		<td>使用权限</td>
+	</tr>
+	<!--{loop $mod_ary $key $value}-->
+	<!--{if $value['modtype']}-->
+	<tr>
+		<td><input class="checkbox" type="checkbox" name="delete[{$key}]"></td>
+		<td><select name="modtypenew[{$key}]" onchange="setphpfile('newid_{$key}',this.value);">
+			<!--{loop $plugin['modtype'] $val}-->
+			<!--{if $value['modtype'] == $val[val]}-->
+			<option value="{$val[val]}" selected="selected">{$val[name]}</option>
+			<!--{else}-->
+			<option value="{$val[val]}">{$val[name]}</option>
+			<!--{/if}-->
+			<!--{/loop}-->
+		</select></td>
+		<td><input type="text" name="mod_filenew[{$key}]" value="{$value['mod_file']}" size="20" /><font id="newid_{$key}">{$value['phpstr']}</font></td>
+		<td><input type="text" name="mod_namenew[{$key}]" value="{$value['mod_name']}" size="40" /></td>
+		<td><select name="role_idnew[{$key}]">
+			<option value="all">无限制</option>
+			<!--{loop $role_list $role}-->
+			<!--{if $value['role_id'] == $role[value]}-->
+			<option value="{$role[value]}" selected="selected">{$role[name]}</option>
+			<!--{else}-->
+			<option value="{$role[value]}">{$role[name]}</option>
+			<!--{/if}-->
+			<!--{/loop}-->
+			</select></td>
+	</tr>
+	<!--{/if}-->
+	<!--{/loop}-->
+	<tr>
+		<td>新增</td>
+		<td><select name="newmodtype" onchange="setphpfile('newid',this.value);">
+			<!--{loop $plugin['modtype'] $val}-->
+			<option value="{$val[val]}">{$val[name]}</option>
+			<!--{/loop}-->
+		</select></td>
+		<td><input type="text" name="newmod_file" value="" size="20" /><font id="newid">.inc.php</font></td>
+		<td><input type="text" name="newmod_name" value="" size="40" /></td>
+		<td><select name="newrole_id">
+			<option value="all">无限制</option>
+			<!--{loop $role_list $role}-->
+			<option value="{$role[value]}">{$role[name]}</option>
+			<!--{/loop}-->
+		</select></td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{$id}">
+<!--{/if}-->
+<!--{if $vars}-->
+<form action="admin.php?mod=plugindesign&code=addvar" method="post" name="">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl" id="tab_3">
+	<tr class="header">
+		<td colspan="6">插件变量配置</td>
+	</tr>
+	<tr class="list_h_2">
+		<td><input type="checkbox" name="chkall" class="checkbox" onclick="checkall(this.form,'delete')" />删?</td>
+		<td>显示顺序</td>
+		<td>配置名称(必填)</td>
+		<td>配置变量名(必填)</td>
+		<td>变量类型</td>
+		<td>操作</td>
+	</tr>
+	<!--{loop $plugin_var $value}-->
+	<tr>
+		<td><input class="checkbox" type="checkbox" name="delete[]" value="{$value['pluginvarid']}"></td>
+		<td><input type="text" name="displayordernew[{$value['pluginvarid']}]" value="{$value[displayorder]}" size="20" /></td>
+		<td>{$value[title]}</td>
+		<td>{$value[variable]}</td>		
+		<td>
+			<!--{loop $plugin['vartype'] $val}-->
+			<!--{if $value['type'] == $val[val]}-->
+			{$val[name]}
+			<!--{/if}-->
+			<!--{/loop}-->
+		</td>
+		<td>
+		<a href="admin.php?mod=plugindesign&id={$id}&code=config&vid={$value['pluginvarid']}">配置</a>
+		</td>
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td>新增</td>
+		<td><input type="text" name="newdisplayorder" value="0" size="20" /></td>
+		<td><input type="text" name="newtitle" id="" value="" size="20" /></td>
+		<td><input type="text" name="newvariable" id="" value="" size="20" /></td>
+		<td>
+		<select name="newtype">
+			<!--{loop $plugin['vartype'] $val}-->
+			<option value="{$val[val]}">{$val[name]}</option>
+			<!--{/loop}-->
+		</select></td>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<input type="hidden" name="id" value="{$id}">
+<!--{/if}-->
+<!--{if $modvars}-->
+<form action="admin.php?mod=plugindesign&code=addconfig" method="post" name="">
+<table cellspacing="1" width="100%" align="center" class="tableborder" id="tab_1">
+	<tr class="header">
+		<td colspan="3">变量配置</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">变量名(必填)</td>
+		<td class="altbg2"><input type="text" name="variable" id="" value="{$pluginvar['variable']}" size="40" /></td>
+		<td class="altbg2">设置配置项目的变量名，用于插件程序中调用，可包含英文、数字和下划线，在同一个插件中需要保持变量名的唯一性，最多 40 个字节</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">名称(必填)</td>
+		<td class="altbg2"><input type="text" name="title" id="" value="{$pluginvar['title']}" size="40" /></td>
+		<td class="altbg2">中英文均可，用于显示在插件配置的菜单中，最多 100 个字节</td>
+	</tr>
+	<tr>
+	  <td class="altbg1">配置说明</td>
+	  <td class="altbg2"><textarea name="description" id="" rows="3" cols="60">{$pluginvar['description']}</textarea></td>
+	<td class="altbg2">描述此项配置的用途和取值范围，详细的描述有利于插件使用者了解这个设置的作用，最多 255 个字节。此处和配置名称类似，也支持语言定义</td>
+	  </tr>
+	  <!--{if $pluginvar['type'] == 'select' || $pluginvar['type'] == 'checkbox'}-->
+	 <tr>
+	  <td class="altbg1">扩充设置</td>
+	  <td class="altbg2"><textarea name="extra" id="" rows="8" cols="60">{$pluginvar['extra']}</textarea></td>
+		<td class="altbg2">只在变量类型为“下拉菜单”或“复选框”时有效，用于设定选项值。等号前面为选项索引(建议用数字)，后面为内容，例如:<br>1 = 光电鼠标<br>2 = 机械鼠标<br>3 = 没有鼠标<br>注意: 选项确定后请勿修改索引和内容的对应关系，但仍可以新增选项。如需调换显示顺序，可以通过移动整行的上下位置来实现</td>
+	  </tr>
+	 <!--{/if}-->
+</table>
+<input type="hidden" name="id" value="{$id}"><input type="hidden" name="vid" value="{$vid}"><input type="hidden" name="type" value="{$pluginvar['type']}">
+<!--{/if}-->
+<center><input class="button" type="submit" name="setting_submit" value="提 交"></center>
+</form>
+</div>

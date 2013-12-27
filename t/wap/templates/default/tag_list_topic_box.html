@@ -1,0 +1,73 @@
+<!--{template "topic_header"}-->
+<div class="u" style="padding:5px;">
+<!--{if $topic_count}-->
+<span>以下是关于"<a href="index.php?mod=tag&code={$tag}">{$tag}</a>"的微博{$topic_count}条</span>
+<!--{else}-->
+没有找到相关的内容
+<!--{/if}-->
+</div>
+  
+<div>
+<!--发布区块-->
+<!--列表开始-->
+<!--{if $topic_list}-->
+<!--{loop $topic_list $val}-->
+<!--列表区块开始-->
+<!--右边主体-->
+<div>
+<!--微博主体-->
+<div class="t_list_b">
+<a title="{$val[username]}" href="index.php?mod={$val[username]}">{$val[nickname]}</a><span>:{$val[content]}</span><br />
+</div>
+<!--{if $val[imageid] && $val[image_list]}-->
+<div class="Im">
+	{loop $val[image_list] $iv}
+	<img src="{$iv[image_small]}" />
+	{/loop}
+</div>
+<!--{/if}-->
+<!--{if ($tpid=$val[top_parent_id])>0}-->
+<!--{eval $pt=$parent_list[$tpid];}-->
+<div>
+<!--{if $pt}-->
+	<p><span><a href="index.php?mod={$pt[username]}">{$pt[nickname]}</a>{$pt[validate_html]} : {$pt[content]} </span></p>
+	<!--{if $pt[imageid] && $pt[image_list]}-->
+	<div class="Im">
+		{loop $pt[image_list] $iv}
+		<img src="{$iv[image_small]}" />
+		{/loop}
+	</div>
+	<!--{/if}-->
+	<a href="index.php?mod=topic&amp;code={$tpid}">原文评论({$pt[replys]})</a> <a href="index.php?mod=topic&amp;code={$tpid}">原文转发({$pt[forwards]})</a>
+<!--{else}-->
+	<!--{eval $val[reply_disable]=0;}-->
+	<p><span>原始微博已删除</span></p>
+<!--{/if}-->
+</div>
+<!--{/if}-->
+<!--微博管理-->
+<div class="t_manger">
+<span class="p_time">{$val[dateline]} {$val[from_string]}</span>
+<span>
+<!--{if MEMBER_ID>0}-->
+<!--{if !$val[reply_disable]}-->
+<a href="index.php?mod=topic&amp;code={$val[tid]}">评论</a><!--{if $val[replys]}-->({$val[replys]})<!--{/if}-->
+<!--{/if}-->
+<!--{/if}-->
+</span>
+</div>
+<div class="lineDot"></div>
+</div>
+<!--右边主体结束-->
+<!--列表区块结束-->
+<!--{/loop}-->
+<!--{/if}-->
+<!--列表结束-->
+<!--微博区块结束-->
+<!--{if $page_arr[html]}-->
+<div class="t_list_b">
+{$page_arr[html]}
+</div>
+<!--{/if}-->
+</div>
+<!--{template "topic_footer"}-->

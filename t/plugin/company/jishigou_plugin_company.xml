@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[JishiGou! Plugin]]></item>
+	<item id="Version"><![CDATA[3.0.0 alpha]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[企业微博]]></item>
+			<item id="identifier"><![CDATA[company]]></item>
+			<item id="description"><![CDATA[通过认证后的企业微博，提供多种途径宣传企业形象，例如：可以输入企业介绍，联系人，联系方式，公司地址等。]]></item>
+			<item id="directory"><![CDATA[company/]]></item>
+			<item id="copyright"><![CDATA[]]></item>
+			<item id="version"><![CDATA[1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="modtype"><![CDATA[1]]></item>
+					<item id="mod_file"><![CDATA[company]]></item>
+					<item id="mod_name"><![CDATA[企业微博]]></item>
+					<item id="role_id"><![CDATA[all]]></item>
+				</item>
+				<item id="1">
+					<item id="modtype"><![CDATA[3]]></item>
+					<item id="mod_file"><![CDATA[memcp]]></item>
+					<item id="mod_name"><![CDATA[我的公司]]></item>
+					<item id="role_id"><![CDATA[3]]></item>
+				</item>
+				<item id="2">
+					<item id="modtype"><![CDATA[5]]></item>
+					<item id="mod_file"><![CDATA[company]]></item>
+					<item id="mod_name"><![CDATA[]]></item>
+					<item id="role_id"><![CDATA[all]]></item>
+				</item>
+				<item id="3">
+					<item id="modtype"><![CDATA[4]]></item>
+					<item id="mod_file"><![CDATA[admincp]]></item>
+					<item id="mod_name"><![CDATA[管理]]></item>
+					<item id="role_id"><![CDATA[7]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[认证条件]]></item>
+				<item id="description"><![CDATA[认证时需要提供的材料]]></item>
+				<item id="variable"><![CDATA[require]]></item>
+				<item id="type"><![CDATA[checkbox]]></item>
+				<item id="extra"><![CDATA[1=营业执照
+2=法人代表证件]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[使用对象]]></item>
+				<item id="description"><![CDATA[设置具备什么等级的用户可以申请认证企业微博。]]></item>
+				<item id="variable"><![CDATA[condition]]></item>
+				<item id="type"><![CDATA[usergroup]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+	</item>
+	<item id="installfile"><![CDATA[install.php]]></item>
+	<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	<item id="license"><![CDATA[<b>感谢您选择使用JishiGou产品</b>
+杭州神话网络有限公司(<i>Cenwor.com Technology Co., Ltd.</i>)为 JishiGou产品的开发商，依法独立拥有 JishiGou产品著作权。JishiGou 产品官方网站网址为 http://www.jishigou.net。
+本授权协议适用且仅适用于JishiGou产品，杭州神话网络有限公司(<i>Cenwor.com Technology Co., Ltd.</i>)拥有对本授权协议的最终解释权。
+<b>I.协议许可的权利</b>
+1.您可以在完全遵守本授权协议的基础上，将本软件应用于非商业用途，而不必支付软件版权授权费用。
+2.您可以在本授权协议规定的约束和限制范围内修改 JishiGou 源代码(如果被提供的话)或界面风格以适应您的网站要求。
+<b>II.协议规定的约束和限制</b>
+1.未获商业授权之前，您不得将JishiGou产品软件用于商业用途（包括但不限于企业网站、经营性网站、以营利为目或实现盈利的网站）。如欲获取商业授权请访问http://www.jishigou.net了解详情。
+2.您不得对JishiGou产品软件或与之关联的商业授权进行出租、出售、抵押或发放子许可证。
+3.禁止在 JishiGou产品的整体或任何部分基础上发展任何派生版本、修改版本或第三方版本用于重新分发。
+4.不允许删除JishiGou产品版权标识（Powered by JishiGou）。
+5.如果您未能遵守本协议的条款，您的授权将被终止，所被许可的权利将被收回，并承担相应法律责任。
+<b>III.有限担保和免责声明</b>
+1.JishiGou产品软件及所附带的文件是作为不提供任何明确的或隐含的赔偿或担保的形式提供的。
+2.用户出于自愿而使用本软件，您必须了解使用本软件的风险，我们不承诺提供任何形式的技术支持、使用担保，也不承担任何因使用本软件而产生问题的相关责任。
+3.杭州神话网络有限公司不对使用本软件构建的JishiGou系统中的信息承担责任。
+<center><font color=red><b>本插件仅为一个演示插件，并无多大具体实际应用价值。</b></font></center>]]></item>
+</root>

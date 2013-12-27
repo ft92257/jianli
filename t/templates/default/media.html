@@ -1,0 +1,86 @@
+{template "topic_header"}
+  <style type="text/css">
+  .setframe .left_nav .tago{background-color: #4D9CD4;}
+  .setframe .left_nav .tagn:hover{ background-color:#e3eef2;}
+  .setframe .left_nav .tago a{ color:#fff;}
+  </style>
+<div class="setframe">
+
+<!--此处三栏-->
+<!--{template 'topic_new_left.ini'}-->
+<!--此处三栏-->
+
+<div class="main_2b">
+  <div class="main_t22">
+    <div class="main_t22l">媒体汇<span>（如果你是某区域或某领域的知名人物、媒体， 请准备好相应身份认证资料，并<a href="index.php?mod=other&code=contact">联系我们</a>，我们将在本页予以推荐。）</span></div>
+    <a href="index.php?mod=other&code=vip_intro" title="取得认证，获得推荐"><img src="images/quare/btn_rf.gif" /></a></div>
+  <div class="mediaBox">
+    <!--{loop $media_list $media_type}-->
+    <a href="index.php?mod=other&code=media_more&ids={$media_type[id]}" class="minitag" title="进入'{$media_type[media_name]}' 频道"><b>{$media_type[media_name]}</b></a>
+    <!--{/loop}-->
+  </div>
+  <div class="mediaBox">
+    <!--{if $media_list}-->
+    <!--{loop $media_list $media}-->
+    <div class="famTable">
+      <div class="famTabletop"></div>
+      <div class="famTablecenBor">
+        <div class="famTablecen">
+          <div class="titleBar">
+            <div class="lf"> <a href="index.php?mod=other&code=media_more&ids={$media[id]}">{$media[media_name]}</a></div>
+            <div class="rt">
+  			  <input type="checkbox" id="btn_all_{$media[id]}" name="mmAll"  onclick="checkAll(this, 'media_uids_{$media[id]}[]');" style="vertical-align:-2px; margin:0;"/>
+			  <label for="btn_all_{$media[id]}" style="cursor:pointer;">全选 </label> | 
+			  <span {if MEMBER_ID <1 } onclick="ShowLoginDialog(); return false;" {/if}>  
+			  <input type="submit" class="shareI" name="follow_Submit"  value="加关注" onclick="document.getElementById('follow_form_{$media[id]}').submit();"/>
+			  </span>
+            </div>
+          </div>
+		  
+		  <iframe id="user_follow_frame_{$media[id]}" name="user_follow_frame_{$media[id]}" width="0" height="0" marginwidth="0" frameborder="0" src="about:blank"></iframe>
+			<form method="POST" action="ajax.php?mod=topic&code=add_user_follow&__to=iframe" id="follow_form_{$media[id]}" name="follow_form_{$media[id]}" target="user_follow_frame_{$media[id]}">
+		
+			<div class="ulist ulist6"> 
+				<!--{loop $media_user $val}-->
+				
+				<!--{if $val[media_id] == $media[id]}-->
+					<div class="pf2 selected crPer" alt="{$val[vip_info]}" title="{$val[vip_info]}">
+						<p class="status">
+						<input type="checkbox" id="media_uids_{$val[uid]}" name="media_uids_{$media[id]}[]" value="{$val[uid]}"  onclick="checkItem(this, 'mmAll');"   />
+						<input name="media_id" type="hidden" id="media_id" value="{$media[id]}" />
+						</p> 
+						<p class="mark"></p>
+						<p class="avt"><b><label for="media_uids_{$val[uid]}" style="cursor:pointer;">
+						<img src="{$val[face]}" onerror="javascript:faceError(this);"/>
+						</label></b></p>
+						<b class="nm"><b>{$val[nickname]}{$val[validate_html]}</b></b>
+			  		</div> 
+					<!--{/if}-->
+				<!--{/loop}-->
+			</div>
+			<input type="hidden" id="type" name="type" value="add"/>
+		 </form>	
+        </div>
+      </div>
+      <div class="famTablebott"></div>
+    </div>
+    <!--{/loop}-->
+    <!--{else}-->
+    <p class="nomedia">当前暂无通过审核的名人或媒体。</p>
+    <!--{/if}-->
+    <!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+    <div class="mbTip"> 本行信息仅管理员可见：
+      上述内容可在<a href="admin.php?mod=media" target=_blank>后台：用户管理：媒体汇</a> 中进行管理操作 </div>
+    <!--{/if}-->
+  </div>
+</div>
+</div>
+
+<style type="text/css">
+.ulist6 .pf2 .nm{ float:left; width:50px; overflow:hidden;}
+.ulist6 .pf2{ height:75px;}
+.famTablecen{ width:738px;}
+.ulist6 .status, .ulist6 .mark{ margin:0 0 -32px 7px; *margin:0px 0px -30px -25px;_margin:0px 0px -34px -43px}
+</style>
+
+{template "topic_footer"} 

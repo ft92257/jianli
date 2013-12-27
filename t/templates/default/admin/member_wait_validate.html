@@ -1,0 +1,39 @@
+<!--{template admin/header}-->
+
+<div class="mt10">
+  <form method="post" action="admin.php?mod=member&code=dowaitvalidate">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr align="center" class="header">
+		    <td width="10%"><label><input type="checkbox" name="chkall" onclick="checkall(this.form, 'ids')" class="checkbox">通过</label></td>
+			<td width="15%">昵称</td>
+			<td width="15%">EMAIL</td>
+            <td width="15%">注册IP</td>
+            <td width="15%">注册时间</td>
+            <td width="15%">推荐人</td>
+            <td>操作</td>
+		</tr>
+		<!--{loop $members $user}-->
+		<tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+			<td style="border-bottom:1px dotted #EDEDED"><input type="checkbox" name="ids[]" value="{$user[uid]}" class="checkbox"></td>
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$user[username]}"  target="_blank">{$user['nickname']}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user['email']}</td>
+			<td style="border-bottom:1px dotted #EDEDED">{$user['regip']}</td>
+			<td style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($user[regdate], 'Y-m-d')}--></td>
+			<td style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$user['invite_uid']}" href="_blank">{$user['invite_name']}</a></td>
+			<td style="border-bottom:1px dotted #EDEDED">
+			  <a href="admin.php?mod=member&code=modify&id=$user[uid]">[修改资料]</a>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		
+		<!--{if $pages['html']}-->
+		<tr>
+			<td colspan="7">{$pages['html']}</td>
+		</tr>
+		<!--{/if}-->
+	</table>
+	
+	<center><input type="submit" name="editsubmit" value="通过审核" class="button" title="通过审核后自动变成普通会员组"></center>
+
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<span class="un">
+<a title="查看{$val[nickname]}的微博" href="index.php?mod={$val[username]}" class="photo_vip_t_name"  onmouseover="get_at_user_choose('{$val[nickname]}',this)">{$val[nickname]}</a>
+<!--{if $val[validate_html]}-->
+{$val[validate_html]}&nbsp;
+<!--{else}-->
+<!--{if $this->Config[topic_level_radio]}-->
+<span class="wb_l_level">
+<a class="ico_level wbL{$val[level]}" title="微博等级：{$val[level]}级" href="index.php?mod=settings&code=exp" target="_blank">{$val[level]}</a>
+</span>
+<!--{/if}-->
+<!--{/if}-->	
+
+<!--{if $this->Config[is_signature]}-->
+<!--{if !$_GET[mod_original] && 'photo'!=$this->Code}-->
+<!--{if $val[signature]}-->
+<span class="signature">
+<!--{if $val[uid] == MEMBER_ID ||  'admin' == MEMBER_ROLE_TYPE}-->
+<a href="javascript:void(0);" onclick="follower_choose({$val[uid]},'{$val[nickname]}','topic_signature');" title="点击修改个人签名">
+<em ectype="user_signature_ajax_{$val[uid]}">({$val[signature]})</em>
+</a>
+<!--{else}-->
+<em>({$val[signature]})</em>
+<!--{/if}-->
+</span>
+<!--{/if}-->
+<!--{/if}-->
+<!--{/if}-->
+
+<!--{hook/global_topiclist_extra1}-->
+</span>
+<!--{hook/global_topiclist_extra2}-->
+
+

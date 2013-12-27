@@ -1,0 +1,63 @@
+{template admin/header}
+
+
+<div>
+<form action="admin.php?mod=event&code=addevent&act=$act" method="POST">
+  <table width=100% cellspacing=1 cellpadding=3>
+    <tr>
+      <td>活动主题:</td>
+    </tr>
+    <tr> 
+      <td> 
+        <textarea name="name" cols="25" rows="5"></textarea>
+        <font color="#FF0000">注意:</font>可以同时创建多个栏目,每个栏目换一行即可.
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        <input type=submit value="提交" name="create" id="create" class="button" title="CTRL+ENTER提交">
+      </td>
+    </tr>
+  </table>
+</form>
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#create").click();
+    }
+}
+</script>
+<!--{if $event}-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+  <tr class="header">
+    <td width=30%>活动主题</td>
+    <td width="20%">活动数</td>
+    <td width=10%>删除</td>
+  </tr>
+<!--{loop $event $key $val}-->
+  <tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'">
+    <td style="border-bottom:1px dotted #ededed;">{$val[type]}</td>
+    <td style="border-bottom:1px dotted #ededed;">
+    	{$val[count]}
+      <input type="hidden" id="hid_count_{$key}" name="hid_count_{$key}" value="{$val[count]}">
+    </td>
+    <td style="border-bottom:1px dotted #ededed;">
+      <a href="admin.php?mod=event&code=delevent&id=$key" onclick="return del($key);">删除</a>
+    </td>
+  </tr>
+<!--{/loop}-->
+<!--{/if}-->
+</table>
+<script type="text/javascript">
+  function del(key){
+	  var count = document.getElementById('hid_count_'+key).value;
+	  if(count == 0){
+		  return confirm('你确实要删除吗?不可恢复');
+	  }else{
+		  alert('该主题下有活动，不能删除');
+		  return false;
+	  }
+  }
+</script>

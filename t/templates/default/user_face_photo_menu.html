@@ -1,0 +1,51 @@
+
+<div class="wb_l_face">
+<div class="avatar">
+<!--{if $this->Code && 'photo'!=$this->Code}-->
+    <!--{if MEMBER_ID != $val[uid]}-->
+    <a href="javascript:void(0)" onmouseover="get_user_choose({$val[uid]},'_user',{$val[id]});" onmouseout="clear_user_choose();">
+        <img src="{$val[face]}" onerror="javascript:faceError(this);" />
+    </a>
+    <!--{else}-->
+        <img src="{$val[face]}" onerror="javascript:faceError(this);" />
+    <!--{/if}-->
+<!--{else}-->
+<a href="index.php?mod={$val[username]}"><img src="{$val[face]}" onerror="javascript:faceError(this);" /></a>
+<!--{/if}-->
+
+<!--{if $this->Config[is_topic_user_follow] && 'photo'!=$this->Code}-->
+{$val[follow_html]}
+<!--{/if}-->
+</div>
+<!--{if $val[user_css]}-->
+<p class="{$val[user_css]}">{$val[user_str]}</p>
+<!--{/if}-->
+</div>
+
+
+<!--悬浮头像、弹出对话框-->
+<div id="user_{$val[id]}_user"></div>
+<!--悬浮头像、弹出对话框-->
+
+<!--私信对话框-->
+<div id="Pmsend_to_user_area" style="width:430px;display:none"></div>
+<!--私信对话框-->
+
+<!--AT、拉黑对话框-->
+<div id="alert_follower_menu_{$val[uid]}" style="display:none"></div>
+<!--AT、拉黑对话框-->
+
+<div id="button_{$val[uid]}" onclick="get_group_choose({$val[uid]});" style="display:none"></div>
+
+<!--分组对话框-->
+<div id="global_select_{$val[uid]}" class="alertBox" style="display:none"></div>
+<!--分组对话框-->
+
+<!--备注对话框-->
+<div id="get_remark_{$val[uid]}" style="display:none"></div>
+<!--备注对话框-->
+
+<!--微博内容中 @用户 悬浮提示-->
+<div id="at_{$val[id]}_user" class="at_style" style="display:none;"></div>
+<!--微博内容中 @用户 悬浮提示-->
+

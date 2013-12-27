@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--{eval $__my=$this->MemberHandler->MemberFields;}-->
+<base href="{$this->Config[site_url]}/" />
+<base target="_blank" />
+<title>{$this->Title} - {$this->Config[site_name]}({$this->Config[site_domain]}){conf page_title}</title>
+<meta name="Keywords" content="{$this->MetaKeywords},{conf site_name}{conf meta_keywords}" />
+<meta name="Description" content="{$this->MetaDescription},{conf site_notice}{conf meta_description}" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<script type="text/javascript">
+var thisSiteURL = '{conf site_url}/';
+var thisTopicLength = '{conf topic_input_length}';
+var thisMod = '{$this->Module}';
+var thisCode = '{$this->Code}';
+var thisFace = '{$__my[face_small]}';
+<!--{eval $qun_setting = ConfigHandler::get('qun_setting');}-->
+<!--{if $qun_setting['qun_open']}-->	
+	var isQunClosed = false;
+<!--{else}-->
+	var isQunClosed = true;
+<!--{/if}-->
+
+function faceError(imgObj)
+{
+	var errorSrc = '{conf site_url}/images/noavatar.gif';
+
+	imgObj.src = errorSrc;
+}
+</script>
+<script type="text/javascript" src="js/min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript">DD_belatedPNG.fix('.header,.pweibo,.boxRNav2 li,.boxRNav2 li a');   </script>
+<![endif]-->   
+
+<link href="styles/output.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div class="output">
+	<div id="post_form_div">
+		<script type="text/javascript">
+			function output_page_reload() {
+				// window.location.reload();
+				// window.location.href=window.location.href;
+				window.location.href = '{$page_url}';
+			}
+		
+			function post_form_submit(contentid, formid) {
+				if({MEMBER_ID} < 1) {
+					alert("请先登录或者注册一个帐号");
+					return false;
+				}
+				
+				var contentv = ($("#" + contentid).val()).trim();
+				
+				if('{$info[content_default]}' == contentv) {
+					alert('微博内容不能空');
+					return false;
+				}
+				
+				
+				$.post(
+					$('#' + formid).attr('action') + '&in_ajax=1',
+					$('#' + formid).serialize(),
+					function (r) {
+						if(r.done) {
+							// alert(r.msg);
+							output_page_reload();
+						} else {
+							alert(r.msg);
+							return false;
+						}
+					},
+					'json'
+				);
+				
+				
+				return false;
+			}
+
+			function reply_forward_click(typev, tidv) {
+				$('#reply_forward_form_div_' + tidv).show();
+				if('reply' == typev) {		
+					$('#type_input_' + tidv).val(typev);
+					$('#old_type_input_' + tidv).val(typev);
+					$('#type_both_input_' + tidv).attr('checked', false);
+					$('#reply_forward_span1_' + tidv).html('转发');
+				} else if ('forward' == typev) {
+					$('#type_input_' + tidv).val(typev);
+					$('#old_type_input_' + tidv).val(typev);
+					$('#type_both_input_' + tidv).attr('checked', false);
+					$('#reply_forward_span1_' + tidv).html('评论');
+				} else if ('both' == typev) {
+					if($('#type_both_input_' + tidv).attr('checked')) {
+						$('#type_input_' + tidv).val(typev);					
+					} else {
+						var otiv = $('#old_type_input_' + tidv).val();
+						$('#type_input_' + tidv).val(otiv);
+					}				
+				}
+			}
+
+			function reply_first_click() {
+				if($('#type_first_input').attr('checked')) {
+					$('#type_input').val('first');
+				} else {
+					var otiv = $('#old_type_input').val();
+					$('#type_input').val(otiv);
+				}
+			}
+
+			$(document).ready(function() {
+				{if $info[type_first]}
+					$("#type_first_input").click();
+					$('#type_input').val('first');
+				{/if}
+			});
+		</script>
+		<form id="post_form" method="post" target="_self" action="index.php?mod=output&code=url_iframe_post" onsubmit="return post_form_submit('content_textarea', 'post_form');">
+			<input type="hidden" name="id" value="{$id}" />
+			<input type="hidden" name="hash" value="{$hash}" />
+			<input type="hidden" name="item" value="{$item}" />
+			<input type="hidden" name="item_id" value="{$item_id}" />
+			<!--{if $info[type_first]}-->
+			<input type="hidden" id="type_input" name="type" value="first" />
+			<!--{else}-->
+			<input type="hidden" id="type_input" name="type" value="reply" />
+			<!--{/if}-->
+			<input type="hidden" id="old_type_input" name="old_type" value="reply" />
+			
+			<div class="content_textarea">
+            <div class="topic_length">
+            <!--{if $this->Config[topic_input_length]>0}--><span style="float:left">您还可以输入<span id="wordCheck">{conf topic_input_length}</span> 字</span><!--{/if}-->
+            <a href="{$page_url}" target="_self" onclick="output_page_reload();return false;" class="refresh" title="刷新"></a>
+            </div>
+            <textarea id="content_textarea" name="content" onkeyup="javascript:checkWord('{conf topic_input_length}',event,'wordCheck')" onkeydown="ctrlEnter(event, 'post_form_btn');">{$info['content_default']}</textarea>
+            </div>
+            
+            <div class="content_input">
+                <div class="content_sync">
+				<label><input type="checkbox" id="type_first_input" name="type_first" onclick="reply_first_click();" />同时发布到我的微博</label> &nbsp; 
+				<!--{if $this->Config[sina_enable] && sina_weibo_init()}-->
+				{eval echo sina_weibo_syn();} &nbsp; 
+				<!--{/if}-->
+				<!--{if $this->Config[qqwb_enable] && qqwb_init()}-->
+				{eval echo qqwb_syn();} &nbsp; 
+				<!--{/if}-->
+				<!--{if $this->Config[kaixin_enable] && kaixin_init()}-->
+				{eval echo kaixin_syn_html();} &nbsp; 
+				<!--{/if}-->
+				<!--{if $this->Config[renren_enable] && renren_init()}-->
+				{eval echo renren_syn_html();} &nbsp; 
+				<!--{/if}-->
+				</div>           
+			<!--{if MEMBER_ID < 1}-->
+			<div class="topic_length_error">请先<a href="index.php?mod=login&referer={$url_encode}&ignore_domain=1">登录</a>或者<a href="index.php?mod=member&referer={$url_encode}&ignore_domain=1">注册</a>一个帐号</div>
+			<!--{/if}-->
+			<div class="content_input_buttom"><input id="post_form_btn" type="submit" name="formsubmit" value="" class="indexBtn"/></div>
+            </div>
+            
+			</div>
+		</form>
+	</div>
+	
+	<div id="list_div">
+		<!--{loop $topic_list $val}-->
+		<div class="list_div_li">
+			<table width="100%">
+				<tr valign="top">
+					<td width="50px"><a href="index.php?mod={$val[username]}"><img style="width:50px;" src="{$val[face]}" onerror="javascript:faceError(this);" /></a></td>
+					<td>
+						<div class="list_div_li_top" style="width:100%;float:left">
+                        <span style="float:left">
+                        <a href="index.php?mod={$val[username]}" style="float:left">{$val[nickname]}</a>
+							<!--{if $val[validate_html]}-->
+								{$val[validate_html]}&nbsp;
+							<!--{else}-->
+								<!--{if $this->Config[topic_level_radio]}-->
+								<span class="wb_l_level">
+								<a class="ico_level wbL{$val[level]}" title="微博等级：{$val[level]}级" href="index.php?mod=settings&code=exp" target="_blank" style="text-indent:-10000px; width:28px;">{$val[level]}</a>
+								</span>
+								<!--{/if}-->
+							<!--{/if}-->
+                            </span>
+							<span style="float:right;"><a href="index.php?mod=topic&code={$val[tid]}">{$val[dateline]}</a></span>
+						</div>
+						<div class="list_div_li_txt">
+							{$val[content]}
+							<!--{if $val[longtextid]}--><a href="index.php?mod=topic&code={$val[tid]}">&gt;&gt;查看全文</a><!--{/if}-->
+							{template "topic_share_1"}
+							{template "topic_share_2"}
+						</div>
+						<div class="list_div_li_com">
+                        <span class="bgstyle">
+						<a href="javascript:void()" onclick="reply_forward_click('reply', '{$val[tid]}');return false;">评论</a>{if $val[replys]}<a href="index.php?mod=topic&code={$val[tid]}">({$val[replys]})</a>{/if}</span>
+                        <span class="bgstyle">
+						<a href="javascript:void()" onclick="reply_forward_click('forward', '{$val[tid]}');return false;">转发</a>{if $val[forwards]}<a href="index.php?mod=topic&code={$val[tid]}">({$val[forwards]})</a>{/if}</span>
+						</div>
+						<div id="reply_forward_form_div_{$val[tid]}" style="display: none;">
+						<form id="reply_forward_form_{$val[tid]}" method="post" target="_self" action="index.php?mod=output&code=url_iframe_post" onsubmit="return post_form_submit('content_textarea_{$val[tid]}', 'reply_forward_form_{$val[tid]}');">
+						<input type="hidden" name="id" value="{$id}" />
+						<input type="hidden" name="hash" value="{$hash}" />
+						<input type="hidden" name="item" value="{$item}" />
+						<input type="hidden" name="item_id" value="{$item_id}" />
+								
+						<input type="hidden" name="totid" value="{$val[tid]}" />
+						<input type="hidden" id="type_input_{$val[tid]}" name="type" value="" />
+						<input type="hidden" id="old_type_input_{$val[tid]}" name="old_type" value="" />
+					    <div class="list_div_li_reply">
+                        <textarea id="content_textarea_{$val[tid]}" name="content" class="text_area" onkeyup="javascript:checkWord('{conf topic_input_length}',event,'wordCheck_{$val[tid]}')" onkeydown="ctrlEnter(event, 'post_form_btn_{$val[tid]}');"></textarea>
+						<div class="list_div_li_reply_dot">
+                        <div class="list_div_li_reply_dot_left">
+                       <label><input type="checkbox" id="type_both_input_{$val[tid]}" name="type_both" onclick="reply_forward_click('both', '{$val[tid]}');" />同时<span id="reply_forward_span1_{$val[tid]}">转发</span></label>
+                       </div>
+                       <div class="list_div_li_reply_dot_right">
+						<span class="dot_statistics"><!--{if $this->Config[topic_input_length]>0}-->您还可以输入<em id="wordCheck_{$val[tid]}">{conf topic_input_length}</em>字<!--{/if}--></span>
+						<input id="post_form_btn_{$val[tid]}" type="submit" name="formsubmit" value="提交" class="dot_button" />
+                        </div>
+                        </div>
+                        </div>
+						</form>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!--{/loop}-->
+		<!--{if $page_arr[html]}-->
+		{$page_arr[html]}
+		<!--{/if}-->
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	//图片延迟加载
+	$("ul.imgList img").lazyload({
+		skip_invisible : false,
+		threshold : 200,
+		effect : "fadeIn"
+	});
+});
+</script>
+</body></html>

@@ -1,0 +1,63 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+  <div class="main3Box_m HotW ">	
+    <div id="topNews_1" class="Hotwarp">
+	  <div class="Menubox2" style=" width:540px;">
+		<ul>
+		  <li>
+		    <div  class="tagn">
+			  <a href="index.php?mod=event"><span>活动主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tago">
+			  <a href="index.php?mod=event&code=myevent"><span>{$user}的活动</span></a>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="tagn">
+			  <a href="index.php?mod=event&code=followevent"><span>我关注的人的活动</span></a>
+		    </div>
+		  </li>
+		  <!--{if MEMBER_ID>0}-->
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=event&code=pevent"><span>发起活动</span></a>
+			</div>
+		  </li>
+		  <!--{/if}-->
+		</ul>
+	  </div>
+	  <div id="vote_filter_wp" style="margin-left:15px; margin-right:15px; margin-bottom:10px; margin-top:10px;">
+	  <!--{eval if($type == 'app') $appcol = 'style="color:#FF0000"'}-->
+      <!--{eval if($type == 'part') $partcol = 'style="color:#FF0000"'}-->
+      <!--{eval if($type == 'store') $storecol = 'style="color:#FF0000"'}-->
+      <!--{eval if($type == 'new') $newcol = 'style="color:#FF0000"'}-->
+      <!--{eval if($type == '') $col = 'style="color:#FF0000"'}-->
+	    <a href="index.php?mod=event&code=myevent&uid=$uid"><span $col>{$user}管理的活动</span></a>
+		<span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+		<a href="index.php?mod=event&code=myevent&type=app&uid=$uid"><span $appcol>{$user}报名的活动</span></a>
+		<span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+		<a href="index.php?mod=event&code=myevent&type=part&uid=$uid"><span $partcol>{$user}参与的活动</span></a>
+		<span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+		<a href="index.php?mod=event&code=myevent&type=store&uid=$uid"><span $storecol>{$user}收藏的活动</span></a>
+		<!--{if $uid == MEMBER_ID}-->
+		<span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+        <a href="index.php?mod=event&code=myevent&type=new"><span $newcol>最近更新的活动</span></a>
+        <!--{/if}-->
+	  </div>
+	<!--{subtemplate 'event_common_list'}-->
+  </div>
+  <!--{subtemplate 'event_right'}-->
+</div></div>
+<!--{template "topic_footer"}-->

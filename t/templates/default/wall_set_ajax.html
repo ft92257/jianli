@@ -1,0 +1,36 @@
+<div class="wall_set_box">
+<form id="wall_set_form" method="post" action="ajax.php?mod=wall&code=do_set_wall" onsubmit="wall_set_wall();return false;">
+<input type="hidden" name="id" value="{$wall_info[id]}" />
+<table border="0" width="100%" cellspacing="10" cellpadding="10">
+	<tr>
+		<td width="30%">自动上墙的话题</td>
+		<td>
+			<input type="text" name="auto_wall_tag" value="{$wall_info[auto_wall_tag]}" />
+		</td>
+	</tr>
+	<tr>
+		<td width="30%">内容的刷新时间</td>
+		<td>
+			<input type="text" name="wall_reload_time" value="{$wall_info[wall_reload_time]}" /><br />
+			单位为秒，默认为 5 秒
+		</td>
+	</tr>
+	<tr>
+		<td>大屏幕顶部内容</td>
+		<td><textarea name="screen_ad_top">{$wall_info[screen_ad_top]}</textarea></td>
+	</tr>
+	<tr>
+		<td>大屏幕左侧内容</td>
+		<td><textarea name="screen_ad_left">{$wall_info[screen_ad_left]}</textarea></td>
+	</tr>
+	<tr>
+		<td>大屏幕佑侧内容</td>
+		<td><textarea name="screen_ad_right">{$wall_info[screen_ad_right]}</textarea></td>
+	</tr>
+	<tr>
+		<td width="30%">&nbsp;</td>
+		<td><input type="submit" value="确定" class="wall_sub" /> &nbsp; <input type="button" value="取消" onclick="close_wall_set_dialog();return false;"  class="wall_sub"/></td>
+	</tr>
+</table>
+</form>
+</div>

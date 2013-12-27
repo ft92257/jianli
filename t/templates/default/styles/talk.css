@@ -1,0 +1,127 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename talk.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 1537703572 1585447283 8285 $
+ *******************************************************************/
+
+
+/*###########################
+   @Name:记事狗微博客主样式表 
+   @Link:www.jishigou.net
+   @Date:2010.08.12
+   @Author:hoho
+#############################*/
+* html .clearfix{height:1%;}
+.clearfix{display:inline-block;}
+.clearfix{display:block;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.talkShowList li{background:url(../images/item/dot_sh.gif) repeat-x scroll 100% 100%;padding-bottom:12px;margin:20px 0px;height:80px;}
+.talkShowList li.end{background:none;}
+.talkShowList li .feed_ls{float:left;width:325px;padding-top:3px;}
+.talkShowList li .pic_ls{float:right;text-align:right;}
+.talkShowList li .f_content{font-size:14px;line-height:20px;margin-bottom:5px;overflow:hidden;}
+.talkShowList li .f_content{font-size:14px;line-height:20px;margin-bottom:5px;overflow:hidden;}
+.talkShowList li .f_content .ico_shtalk{vertical-align:middle;margin-top:-2px;}
+.talkShowList li .f_content .ico_status{margin:0 0 0 5px;vertical-align:middle;}
+.talkShowList li .f_time{color:#999;padding-bottom:7px;}
+.talkShowList li .f_name{color:#666;height:20px;overflow:hidden;}
+.talkShowList li .f_name a{color:#666;}
+.talkShowList li .f_name span{padding-right:10px;}
+.ico_shtalk{background:url(../images/item/live_shico.gif) no-repeat scroll 0 0;width:16px;height:16px;margin-right:5px;vertical-align:middle;}
+.talkShowList li .guest_lst{width:54px;height:82px;overflow:hidden;text-align:center;padding-left:15px;float:left;}
+.talkShowList li .guest_lst .photo{display:block;height:48px;width:48px; border:1px solid #ccc;margin-bottom:5px;}
+.ico_times{background-position:0 -40px;}
+.ico_talkshow{background-position:0 0;margin-top:-2px;}
+.ico_talk{background-position:0 -80px;}
+a.ico_recommed{background:url(../images/item/live_shico.gif) no-repeat scroll 0 -136px;color:#d30000;padding-left:22px;display:inline-block;}
+.address_r{text-align:right;display:block;}
+.address_r strong{font-weight:bold;}
+.ico_clock_normal,.ico_clock_gray,.ico_clock_on{background:url(../images/item/ico_clock.gif) no-repeat scroll 0 0;width:44px;height:42px;display:inline-block;margin-bottom:6px;}
+.ico_clock_gray{background-position:0 -50px;}
+.ico_clock_on{background:url(../images/item/ico_clock_on.gif) no-repeat scroll 0 0;}
+.ico_status{display:inline-block;background:url(../images/item/liveni01.gif) no-repeat scroll 0 -150px;width:50px;height:18px;margin-top:16px;*margin-top:11px;overflow:hidden;text-indent:-9999px;}
+.ico_complete{background-position:0 -210px;}
+.ico_ongoing{background-position:0 -180px;}
+.ico_notyet{background-position:0 -150px;}
+.talk_line{ color:#666; font-size:14px; font-weight:600; border-bottom:1px dashed #ccc; padding:5px 0;}
+.talk_line span a{float:right;font-size:12px;font-weight:normal;}
+.talk_top{ margin-top:20px;}
+.time_talkShowWrap{padding-top:10px;}
+.time_talkShowWrap .status_lf{float:left;width:50px;text-align:center;}
+.time_talkShowWrap .time_rt{float:right;width:120px;}
+.time_talkShowWrap .time_rt .date_ls{font-size:14px;color:#d30000;}
+.time_talkShowWrap .time_rt .time_ls{font-size:20px;color:#d30000;padding-bottom:8px;}
+.btn_tm_show{background:url(../images/item/talk_btndz.gif) no-repeat scroll 0 0;width:116px;height:33px;overflow:hidden;text-indent:-9999px;display:block;}
+.btn_wydz{background-position:0 0;}
+.btn_wycy{background-position:0 -40px;}
+.btn_dzwc{background-position:0 -80px;cursor:default;}
+.btn_wyfx{background-position:0 -120px;}
+.ico_clock_normal,.ico_clock_gray{background:url(../images/item/ico_clock.gif) no-repeat scroll 0 0;width:44px;height:42px;display:inline-block;margin-bottom:6px;}
+.ico_clock_gray{background-position:0 -50px;}
+.ico_clock_on{background:url(../images/item/ico_clock_on.gif) no-repeat scroll 0 0;}
+.talk_list_side li{padding:10px 0px;border-bottom:1px dashed #ccc;}
+p.info_img,p.info_txt,p.info_time{text-align:center;margin-top:10px;}
+p.info_img{margin-top:0;}
+.info_img1,.info_img2,.info_img3,.talk_icon_8,.talk_icon_9{background:url(../images/item/icon.png) no-repeat;}
+.info_img1,.info_img2,.info_img3{width:96px;height:57px;}
+.info_img1{background-position:0 -830px;}
+.info_img2{background-position:0 -888px;}
+.info_img3{background-position:0 -945px;}
+.talk_icon_8{background-position:0 -230px;height:28px;display:inline-block;padding-left:18px;}
+.talk_icon_9{background-position:0 -260px;height:28px;display:inline-block;padding-left:17px;margin:0px 15px 0px 30px;}
+.talk_son{ margin:0; height:35px; line-height:34px;border-bottom:#ccc 1px solid; background:#f6f6f6;}
+.talk_son_titR{float:right;width:250px;text-align:right;}
+.talk_son_titL{float:left;margin-left:15px;font-size:14px;}
+.talk_son_titL em{margin:0px 10px;color:#333;font-family:"宋体";}
+.talk_son_con1_1L h2{background:url(../images/item/title.png) no-repeat 0 -430px;width:225px;height:35px;margin:5px;}
+.talk_son_con1_1L p{line-height:22px;margin:10px 0;padding:0px 10px;overflow:hidden;color:#666;text-indent:24px;}
+.gray{color:#666;}
+.forange{color:#f4742b;}
+.btn_normal{color:#666;cursor:pointer;border:1px solid #c4c4c4;background-color:#f1f1f1;padding:5px 10px;line-height:27px;}
+.askToDiff{display:inline-block;float:right;padding-left:20px;margin-right:6px;font-weight:normal;width:63px;height:25px;line-height:23px;font-size:14px;}
+.askToDiff:link,.askToDiff:visited{background:url(../images/item/old_icon.png) no-repeat 0 -45px;color:#fff;text-decoration:none;}
+.askToDiff:hover{background:url(../images/item/old_icon.png) no-repeat 0 -70px;color:#fff;text-decoration:none;}
+.top60{margin-top:-60px;}
+.talk_nav{width:540px;overflow:hidden;font-weight:bold;font-size:14px;}
+.talk_view_pin,.talk_view_wen,.talk_view_da{background:url(../images/item/bg_app.png) no-repeat;width:45px;height:20px;}
+.talk_view_ping{border:1px solid #75c631;background-color:#fbfbfb;margin:5px 0px;}
+.talk_view_wenda{border:1px solid #77cce7;background-color:#fbfbfb;margin:5px 0px;}
+.talk_view_pin{background-position:-126px -168px;}
+.talk_view_wen{background-position:0 -168px;}
+.talk_view_da{background-position:-63px -168px;margin-top:-5px;}
+.talkhost,.talkmedia{background:url(../images/item/ic01.gif) no-repeat scroll 0 0; border:none;display:inline-block;}
+.talkhost{width:50px;height:20px;background-position:0 -80px;}
+.talkguest{color:#158eea;width:49px;height:18px;line-height:18px;text-align:center;font-size:12px;background-color:#c8ebfb;clear:both;border:1px solid #77cce7;}
+.talkmedia{width:50px;height:20px;background-position:0 -128px;}
+.jianpa{margin-top:-10px;padding-left:1px;}
+.option .talkreply{padding:2px 5px;font-weight:normal;font-size:12px;border:1px solid #e55d0c;color:#fff;background-color:#f27428;cursor:pointer;}
+.talknavone{border:1px dashed #8ec7e3;background-color:#def3ff;padding:10px;width:514px;height:20px;margin:15px 10px;}
+.talknavtwo{background-color:#def3ff;padding:10px;width:516px;height:20px;margin:15px 10px;}
+.talknavone li,.talknavtwo li{float:left;margin:0px 10px;}
+.pane{border-bottom:1px dashed #d9d9d9;}
+.user_aboutme{clear:both;margin:0px;padding:0px;line-height:16px;color:#666;padding-top:10px;}
+.ask{clear:both;font-family:"宋体";margin-left:100px;}
+.wft_icon{background:url(../images/item/wft_icon.png) no-repeat 0 0;margin-right:4px;width:16px;height:16px;vertical-align:middle;}
+.xttw{background-position:2px -169px;width:12px;}
+.askToDiffZone{background:url(../images/item/titbg4.png) repeat 0 0;padding:1px;_padding:0;_border:1px solid #FCE6D8;width:122px;z-index:999;position:absolute;}
+.askToDiffZone .laypopC{border:1px solid #EE8748;background:#fff;width:120px;}
+.askToDiffZone .laypopC li{line-height:25px;border-top:1px solid #FCD89F;background:#FFFBEB;}
+.askToDiffZone .laypopC li a{color:#585C5C;display:block;height:25px;padding-left:8px;}
+.askToDiffZone .laypopC li a:hover{color:#E65F0F;background:url(../images/item/titbg3.gif) repeat 0 0;text-decoration:none;}
+.askToDiffZone .laypopC li.noborder{border-top:none;}
+.Listmain {width:550px;}
+.ask-list {height: 600px;}
+.talk-list {margin-bottom: 20px;max-height: 600px;_height:600px;}
+.talk-list, .ask-list {left: 0;overflow-x: hidden;overflow-y: auto;padding-right: 10px;position: relative;top: 0;}
+.un{width:300px;}
+.oriTxt .from{width:460px;}
+.mycome{width:220px;}
+.oriTxt{width:460px;}

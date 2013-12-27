@@ -1,0 +1,50 @@
+    <!--{if $rs}-->
+    <!--{loop $rs $key $val}-->
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a href="index.php?mod=event&code=detail&id=$key">
+	        <img src="{$val[image]}" height="128" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info">
+	      <p class="left_t_nick_name">
+	        <a href="index.php?mod=event&code=detail&id=$key"><strong>{$val[title]}</strong></a>
+	      </p>
+	      <p class="left_t2">
+	        时间：{$val[fromt]}-{$val[tot]}
+	      </p>
+	      <p class="left_t2">
+	        地点：{$val[address]}
+	      </p>
+	      <p class="left_t2">
+	        <!--{if $type == 'part'}-->
+	        参与时间：{$val[play_time]}
+	        <!--{elseif $type == 'app'}-->
+	        报名时间：{$val[app_time]}
+	        <!--{elseif $type == 'store'}-->
+	        收藏时间：{$val[store_time]}
+	        <!--{/if}-->
+	      </p>
+	      <p>
+	        {$val[app]}
+	      </p>
+	      <p class="left_t2">
+			报名人数：{$val[app_num]} | 参与人数：{$val[play_num]}
+	      </p>
+	      <p class="left_t2">
+	        <!--{if !$type && MEMBER_ID == $uid}-->
+	       <a href="index.php?mod=event&code=editevent&id=$key"><span>修改活动</span></a>  &nbsp;&nbsp;|&nbsp;&nbsp;  
+	       <a href="index.php?mod=event&code=del&id=$key" onclick="return confirm('你确实要删除吗?不可恢复');"><span>删除活动</span></a>
+	       <!--{/if}-->
+	      </p>
+	    </div>
+	  </div>
+	</div>
+	<!--{/loop}-->
+	<!--{if $page_arr[html]}-->	
+	<div><ul><li>{$page_arr[html]}</li> </ul></div>
+	<!--{/if}--> 
+	<!--{else}-->
+	<div class="e_count">未检索到活动</div>
+	<!--{/if}-->

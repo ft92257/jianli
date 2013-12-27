@@ -1,0 +1,108 @@
+<!--{template admin/header}-->
+
+<script type="text/javascript" src="js/iColorPicker.js"></script>
+<script type="text/javascript">
+function get_tag_insert(tag_name){
+    var tag_value;
+	tag_value=document.getElementById('i_already').value;
+	tag_value=tag_value+","+tag_name;
+	document.getElementById('i_already').focus();
+	document.getElementById('i_already').value=tag_value;
+}
+
+function insert_share_type(share_type)
+{  
+	if(share_type == 'topic')
+	{	
+		document.getElementById('topic_type').style.display='block';
+		document.getElementById('tag_type').style.display='none';
+	}
+	
+	if(share_type == 'tag')
+	{	
+		document.getElementById('tag_type').style.display='block';
+		document.getElementById('topic_type').style.display='none';
+	}
+}
+</script>
+<style type="text/css">
+<!--
+.STYLE2 {color: #666666}
+.STYLE3 {color: #FF0000}
+-->
+</style>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+		<tr class="header">
+		<td><div style="float:left;">相关说明</div>
+			<span style="float:right;"><a href="#" onclick="collapse_change('tip')">收缩/展开</a></span>
+</div>
+		</td>
+		</tr>
+		<tbody id="menu_tip" style="display:">
+			<tr>
+			<td>
+			<ul>
+				<li>功能说明：将微博展示到其他地方，即将微博中指定的内容以JS代码调用并展示在其他网页；</li>
+				<li><font color=red>要点说明：如果您希望调用微博的发布框在其他网页中使用，请访问<b><a href="admin.php?mod=output&code=output_setting">微博评论模块</a></b></font>；</li>
+				<li>使用说明：记事狗支持创建多个站外显示调用项目，彼此之间独立，并可单独设置模板样式等；</li>
+				<li><font color="green">特别说明：鉴于安全考虑，微博站外展示调用模块仅允许“<b>网站创始人</b>”进行添加、编辑、删除等操作。</font></li>
+				<li>关于“<b>网站创始人</b>”，请参阅readme.txt文件中的第三条说明，<a title="点此在新窗口中打开查看关于“网站创始人”的说明及设置方法" href="{conf site_url}/readme.txt" target="_blank">点击查看&gt;&gt;</a></li>
+			</ul>
+			</td>
+			</tr>
+	</table>
+<form method="post" action="admin.php?mod=share&code=delete">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+	<tr class="header">
+		<td height="15"><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" >删</td>
+		<td width="20%">调用描述</td>
+		
+		<td width="15%">内容类别</td>
+		<td width="40%">站外调用代码</td>
+		<td align="center">管理</td>
+	</tr>
+	<!--{if $sharelist}-->
+	<!--{loop $sharelist $val}-->
+	<tr align="center">
+		<td  style="border-bottom:1px dotted #EDEDED" width="10%">
+	  <input class="checkbox" type="checkbox" name="ids[]" value="{$val[id]}" >	  </td>
+		<td align="left" style="border-bottom:1px dotted #EDEDED">
+			{$val[name]}		</td>
+		<td align="left" style="border-bottom:1px dotted #EDEDED">
+			<!--{if $val[type] == 'topic'}-->
+			 全部微博
+			<!--{elseif ($val[type] == 'tag')}-->
+			话题微博
+			<!--{elseif ($val[type] == 'img')}-->
+			图片微博
+			<!--{elseif ($val[type] == 'video')}-->
+			视频微博
+			<!--{elseif ($val[type] == 'music')}-->
+			音乐微博
+			<!--{/if}-->		
+		</td>
+		<td align="left" style="border-bottom:1px dotted #EDEDED"><textarea name="textarea" rows="2" style="width:90%"><script type="text/javascript" src="{$this->Config[site_url]}/index.php?mod=share&code=recommend&ids={$val[id]}"></script></textarea></td>
+		<td width="12%"  style="border-bottom:1px dotted #EDEDED">
+		<a href="admin.php?mod=share&code=modify&ids={$val[id]}">编辑</a>&nbsp;
+		<a onclick="return confirm('删除后的内容不可恢复，确认删除？');" href="admin.php?mod=share&code=delete&ids={$val[id]}">删除</a></td>
+	</tr>
+	<!--{/loop}-->
+	<!--{else}-->		
+	<tr><td align="center" colspan=4>暂无站外调用项目，点下面下面的"添加站外调用"按钮</td></tr>
+
+	<!--{/if}-->		
+	
+	<!--{if $page_arr[html]}-->
+	<tr align="center">
+		<td colspan="11" class="altbg1">
+		{$page_arr[html]}</td>
+	</tr>
+	<!--{/if}-->
+	<tr align="center">
+		<td colspan="11">
+		<button name="do" value='' type="submit" class="button">删除选定</button>&nbsp;
+		<button class="button" type="button" onclick="window.location.href='admin.php?mod=share&code=add';return false;">添加站外调用</button>	</td>
+	</tr>
+</table>
+</form>
+

@@ -1,0 +1,75 @@
+<!--{template admin/header}-->
+
+<form action="admin.php?mod=user_tag&code=add" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="4"> 添加个人标签 </td>
+    </tr>
+    <tr>
+      <td class="altbg1" width="119">名称: </td>
+      <td width="300" class="altbg2"><input name="tagname" type="text" id="tagname" value="{$name}" size="40">      </td>
+	  
+      <td width="942" class="altbg2"><button name="do" value='' type="submit" class="button">添加</button></td>
+    </tr>
+  </table>
+</form>
+
+	<form action="admin.php" method="get" name="search">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">搜索标签</td>
+		</tr>
+		<input name="mod" type="hidden" value="user_tag">
+		<tr>
+			<td class="altbg1" width="118">
+			标签名称:			</td>
+			<td width="1252" class="altbg2">
+			<input name="tagname" type="text" id="tagname" value="{$tagname}" size="40">			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="118">&nbsp;			</td>
+			<td class="altbg2">
+			<button name="do" value='' type="submit" class="button">搜索一下</button>&nbsp;&nbsp;
+			<button class="button" type="button" onclick="window.location.href='admin.php?mod=user_tag';return false;">全部标签</button> 
+			</td>
+		</tr>
+	</table>
+	</form>
+
+<form method="post" action="admin.php?mod=user_tag&code=delete">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="30">
+				<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" ></td>	
+				<td width="406">标签</td>
+				<td width="461">使用人数</td>
+				<td width="340">&nbsp;</td>
+				<td width="154">操作</td>
+			</tr>
+			<!--{loop $user_tag_list $val}-->
+			<tr align="center">
+				<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+				<input class="checkbox" type="checkbox" name="ids[]" value="$val[id]" ></td>
+				<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><span class="altbg1" style="border-bottom:1px dotted #EDEDED">
+				<a href="index.php?mod=search&code=usertag&usertag={$val[name]}" target="_blank">{$val[name]}</a></span></td>
+				<td align="left" class="altbg1" style="border-bottom:1px dotted #EDEDED"><span class="altbg1" style="border-bottom:1px dotted #EDEDED">{$val[count]}</span></td>
+				<td align="left" class="altbg1" style="border-bottom:1px dotted #EDEDED">&nbsp;</td>
+				<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><a href="admin.php?mod=user_tag&amp;code=modify&amp;ids={$val[id]}">编辑</a>&nbsp;&nbsp;
+				<A href="admin.php?mod=user_tag&amp;code=delete&amp;ids={$val[id]}">删除</A>&nbsp;				</td>
+			</tr>
+			<!--{/loop}-->
+			
+			
+			<!--{if $page_arr[html]}-->
+			<tr align="center">
+				<td colspan="5" class="altbg1">
+				{$page_arr[html]}				</td>
+			</tr>
+			<!--{/if}-->
+		</table>
+
+
+<center>
+  <button type="submit" class="button"> 提 交 </button>
+</center>
+</form>

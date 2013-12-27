@@ -1,0 +1,10 @@
+<!--{if $vote_darens}-->
+	<ul class="sideul2">
+	  <!--{loop $vote_darens $val}-->
+		  <li class="h_h2"><a href="index.php?mod={$val[username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$val[face]}" title="{$val[nickname]}" class="manface" onmouseover="get_user_choose({$val[uid]},'_user',{$val[uid]})" onmouseout="clear_user_choose()"/></a>
+		  <b><a href="index.php?mod={$val[username]}" target="_blank">{$val[nickname]}</a></b>
+		  <div id="user_{$val[uid]}_user" class="layS2"></div>
+		  </li>
+	  <!--{/loop}-->
+	</ul>
+<!--{/if}-->

@@ -1,0 +1,86 @@
+<script type="text/javascript"> var __TOPIC_VIEW__ = '{$topic_view}'; </script>
+<!--{if ($tpid=$val[top_parent_id])>0 && !in_array($this->Code, array('forward', 'reply'))}-->
+<!--{if ('mycomment'==$this->Code || $topic_view) && 'reply'==$val[type] && $tpid!=($pid=$val[parent_id]) && $parent_list[$pid]}-->
+<p class="feedP">回复{<a
+	href="index.php?mod={$parent_list[$pid][username]}">{$parent_list[$pid][nickname]}：</a><span>{$parent_list[$pid][content]}</span>}</p>
+<!--{/if}-->
+<!--{if !$topic_view}-->
+<!--{eval $pt=$parent_list[$tpid];}-->
+<div class="blogTxt">
+<div class="top"></div>
+<div class="mid"><p><!--{if $pt}--> <span> <a
+	href="index.php?mod={$pt[username]}"
+	onmouseover="get_user_choose({$pt[uid]},'_reply_user',{$val[tid]});"
+	onmouseout="clear_user_choose();"> {$pt[nickname]} </a>
+{$pt[validate_html]} : <!--悬浮头像、弹出对话框--> <span
+	id="user_{$val[tid]}_reply_user"></span> <!--悬浮头像、弹出对话框--> </span> <!--{eval $TPT_ = $TPT_ ? $TPT_ : 'TPT_';}-->
+<span id="topic_content_{$TPT_}{$pt[tid]}_short">{$pt[content]}</span> <span
+	id="topic_content_{$TPT_}{$pt[tid]}_full"></span> <!--{if $pt[longtextid] > 0}-->
+<span> <a href="javascript:;"
+	onclick="view_longtext('{$pt[longtextid]}', '{$pt[tid]}', this, '{$TPT_}', '{$val[tid]}');return false;">查看全文</a>
+</span> <!--{/if}--> <!--{if $pt[attachid] && $pt[attach_list]}-->
+<table class="attachst" style="width:440px;">
+	<!--{loop $pt[attach_list] $iv}-->
+	<tr>
+		<td class="attachst_img"><img src="{$iv[attach_img]}" /></td>
+		<td class="attachst_att">
+		<p class="attachList_att_name"><b>{$iv[attach_name]}</b>&nbsp;（{$iv[attach_size]}）</p>
+		<p class="attachList_att_doc"><a href="javascript:void(0);"
+		onclick="downattach({$iv[id]});">点此下载</a>（需{$iv[attach_score]}积分，已下载{$iv[attach_down]}次）</p>
+
+		</td>
+	</tr>
+	<!--{/loop}-->
+</table>
+<!--{/if}--> <!--{if $pt[imageid] && $pt[image_list]}--> <!--{eval $pt[image_key]=$pt[tid].'_'.mt_rand();}-->
+<ul class="imgList" id="image_area_{$pt[image_key]}">
+	<!--{loop $pt[image_list] $iv}-->
+	<!--{eval $ivw=min(440, $iv[image_width]);}-->
+	<li><a href="{$iv[image_original]}" class="artZoomAll"
+		rel="{$iv[image_small]}" rev="{$pt[image_key]}"><img
+		src="./images/grey.gif" data-original="{$iv[image_small]}" /></a>
+	<div class="artZoomBox" style="display:none;">
+	<div class="tool"><a title="向左转" href="#" class="imgLeft">向左转</a><a 
+		title="向右转" href="#" class="imgRight">向右转</a><a title="查看原图"
+		href="{$iv[image_original]}" class="viewImg">查看原图</a></div>
+	<a class="maxImgLinkAll" href="{$iv[image_original]}"> <img
+		 src="./images/grey.gif" data-original="{$iv[image_original]}" maxWidth="440" width="$ivw" class="maxImg"></a></div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}--> 
+
+<!--投票 Begin--> <!--{if $pt['is_vote'] > 0}--> <!--{eval $__vote_key = $pt['tid'].'_'.$pt['random']}-->
+<ul class="imgList" id="vote_detail_{$__vote_key}">
+<li><a href="javascript:;" onclick="getVoteDetailWidgets('{$__vote_key}', {$pt['is_vote']});"><img src='./images/vote_pic_01.gif' /></a></li>
+</ul>
+<div id="vote_area_{$__vote_key}" style="display: none;">
+<div class="vote_zf_box" id="vote_content_{$__vote_key}"></div>
+</div>
+<!--{/if}--> <!--投票 End--> <!--{if $pt[videoid] and $this->Config[video_status]}-->
+<div class="feedUservideo">
+<a onClick="javascript:showFlash('{$pt[VideoHosts]}', '{$pt[VideoLink]}', this, '{$pt[VideoID]}','{$pt[VideoUrl]}');">
+<div id="play_{$pt[VideoID]}" class="vP"><img src="images/feedvideoplay.gif" /></div>
+<img src="{$pt[VideoImg]}" style="border: none" /> </a></div>
+<!--{/if}--> <!--{if $pt[musicid]}--> <!--{if $pt[xiami_id]}-->
+<div class="feedUserImg">
+<embed width="257" height="33" wmode="transparent" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_{$pt[xiami_id]}/singlePlayer.swf"></embed></div>
+<!--{else}-->
+<div class="feedUserImg">
+<div id="play_{$pt[MusicID]}"></div>
+<img src="images/music.gif" title="点击播放音乐" onClick="javascript:showFlash('music', '{$pt[MusicUrl]}', this, '{$pt['MusicID']}');" style="cursor: pointer; border: none;" /></div>
+<!--{/if}--> <!--{/if}-->
+</p>
+
+<div style="float:left; padding:5px 0; margin:0;">
+<a href="index.php?mod=topic&code={$tpid}" target="_blank">原文评论({$pt[replys]})</a>&nbsp;
+<a onclick="get_forward_choose($tpid);return false;"href="index.php?mod=topic&code={$tpid}" target="_blank">转发原文({$pt[forwards]})</a>&nbsp;
+{$pt[from_html]}</div>
+
+<!--{else}--> <!--{eval $val[reply_disable]=0;}-->
+<p><span>原始微博已删除</span></p>
+<!--{/if}--></div>
+<div class="bottom"></div>
+</div>
+<!--{/if}-->
+<!--{/if}-->

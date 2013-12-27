@@ -1,0 +1,122 @@
+<script type="text/javascript" src="js/jsgst.js"></script>
+<!--
+<script type="text/javascript" src="js/jsgst_autocomplete.js"></script>
+<script type="text/javascript" src="js/ai.js"></script>
+<script type="text/javascript" src="js/combobox.js"></script>
+-->
+<!-- JS消息提示层 show_message('发布成功') -->
+<div id="show_message_area"></div>
+{eval echo $this->js_show_msg();}
+{$GLOBALS[schedule_html]}
+<!--{eval if($GLOBALS['jsg_schedule_mark'] || jsg_getcookie('jsg_schedule')) echo jsg_schedule();}-->
+<!-- Ajax端内容返回 -->
+<div id="ajax_output_area"></div>
+
+<!--{if MEMBER_ID ==0}-->
+<style type="text/css">
+.bottomLinks{width:930px;}
+.bottomLinks .bL_info{width:180px;}
+
+</style>
+<!--{/if}-->
+<div class="bottomLinks_R">
+<div class="bottomLinks {$t_col_foot} bottomLinks_reg">
+<div class="bL_List">
+<div class="bL_info bL_io1 {$bL_info_three}">  
+        <h4 class="MIB_txtar">找感兴趣的人</h4>
+        <ul>
+			<li class="MIB_linkar"><a href="index.php?mod=people">名人堂</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=other&code=media">媒体汇</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=topic&code=top">排行榜</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=profile&code=maybe_friend" rel="nofollow">猜你喜欢的</a></li>
+        </ul>
+    </div>
+	<div class="bL_info bL_io2 {$bL_info_three}">  
+        <h4 class="MIB_txtar">精彩内容</h4>
+        <ul>
+            <li class="MIB_linkar"><a href="index.php?mod=live">微直播</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=talk">微访谈</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=topic&code=new">最新微博</a></li>
+			<li class="MIB_linkar"><a href="index.php?mod=topic&code=recd">官方推荐</a></li>
+        </ul>
+    </div>
+	<div class="bL_info bL_io3 {$bL_info_three}">  
+        <h4 class="MIB_txtar">应用热门</h4>
+        <ul>
+            <li class="MIB_linkar"><a href="index.php?mod=show&code=show">微博秀</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=topic&code=photo">图片墙</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=wall&code=control">上墙</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=tools&code=qmd">图片签名档</a></li>
+        </ul>
+    </div>
+	<div class="bL_info bL_io4 {$bL_info_three}">  
+        <h4 class="MIB_txtar">手机玩微博</h4>
+        <ul>
+            <li class="MIB_linkar"><a href="index.php?mod=other&code=wap">WAP访问</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=other&code=mobile" target=_blank>3G网页</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=other&code=android">android客户端</a></li>
+            <li class="MIB_linkar"><a href="index.php?mod=other&code=iphone">iphone客户端</a></li>
+        </ul>
+    </div>
+
+	<div class="bL_info bL_io5 {$bL_info_three}">  
+        <h4 class="MIB_txtar">关于我们</h4>
+        <ul>
+		    <li class="MIB_linkar"><a href="index.php?mod=other&code=contact">联系我们</a></li>
+			<li class="MIB_linkar"><a href="index.php?mod=other&code=vip_intro">申请V认证</a></li>
+			<!--{if !empty($navigation_config[pluginmenu])}-->
+			<!--{loop $navigation_config[pluginmenu] $pmenus}-->
+			<!--{loop $pmenus $pmenu}-->
+			<!--{if $pmenu[type] == 2}-->
+			<li><a href="{$pmenu[url]}" target="{$pmenu[target]}">{$pmenu[name]}</a></li>
+			<!--{/if}-->
+			<!--{/loop}-->
+			<!--{/loop}-->
+			<!--{/if}-->
+			<li><!--{conf tongji}--></li>
+            <li class="MIB_linkar">
+				<a href="http://www.miibeian.gov.cn/" target="_blank" title="网站备案" rel="nofollow">{conf icp}</a></li>
+            <li class="MIB_linkar">
+				<!--{eval $__server_execute_time = round(microtime(true) - $GLOBALS[_J][time_start], 5) . " Second ";}-->	
+				<!--{eval $__gzip_tips = ((defined('GZIP') && GZIP) ? "&nbsp;Gzip Enable." : "Gzip Disable.");}-->
+				<span title="{$__server_execute_time},{$__gzip_tips}">网页执行信息</span>
+                <!--{echo upsCtrl()->Comlic()}-->
+			</li>
+			<li>{conf copyright}</li>
+        </ul>
+    </div>
+</div>
+</div></div>
+<script type="text/javascript">
+$(document).ready(function(){
+	//图片延迟加载
+	$("ul.imgList img, div.avatar img.lazyload").lazyload({
+		skip_invisible : false,
+		threshold : 200,
+		effect : "fadeIn"
+	});
+
+$('.goTop').click(function(e){
+e.stopPropagation();
+$('html, body').animate({scrollTop: 0},300);
+backTop();
+return false;
+});
+});
+</script>
+<div id="backtop" class="backTop"><a href="/#" class="goTop" title="返回顶部"></a></div>
+<script type="text/javascript">
+window.onscroll=backTop;
+function backTop(){
+var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  if(scrollTop==0){
+   document.getElementById('backtop').style.display="none";
+   }else{
+   document.getElementById('backtop').style.display="block";
+    }
+  }
+backTop();
+</script>
+</body>
+</html>
+{$GLOBALS[iframe]}

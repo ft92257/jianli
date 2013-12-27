@@ -1,0 +1,89 @@
+<!--右边栏目 Begin-->
+<div class="Hotright">
+	<!--{if MEMBER_ID}-->
+		<div class="HboxR">
+			<!--{if $this->Code != 'view'}-->
+				<div class="boxRimg" style="margin:10px 0">
+				<div class="boxRimg_img">
+					<a href="index.php?mod={$member[username]}" title="{$member[username]}"><img onerror="javascript:faceError(this);" src="{$member[face]}" title="{$member[nickname]}" /></a>
+				</div>
+				
+				<div class="boxRimg_txt">
+				<p><span class="spanimg">{$member[nickname]} {$member[validate_html]}</span>
+				<!--{if $member[gender] == 1}-->
+				<img src="images/user.gif"  title="{$member[nickname]}" style="width:15px; height:15px; margin:0;"/>
+				<!--{elseif $member[gender] == 2}-->
+				<img src="images/user_female.gif"  title="{$member[nickname]}" style="width:15px; height:15px; margin:0"/>
+				<!--{/if}-->
+				</p>
+				
+				<p>
+				<span>{$member[province]}&nbsp;{$member[city]}</span>
+				</p>
+				<p><a href="index.php?mod={$member[username]}" title="{$member[username]}">我的微博</a></p>
+				</div>
+				</div>
+			<!--{/if}-->
+			<div class="create_qun_b">
+				<a class="create_button" href="index.php?mod=vote&code=create">发起投票</a>
+			</div>
+		</div>
+	<!--{else}-->
+		<div class="HboxR">
+			<span>还没有微博客帐号？<a href="index.php?mod=member">注册</a></span>
+			<br />
+			<span>已有帐号，<a href="index.php?mod=login">请点此登录</a></span>
+		</div>
+	<!--{/if}-->
+	
+	<!--投票菜单 Begin-->
+	<!--{if $this->Code=='view'}-->
+		<div class="HboxR">
+			<div class="vote_line"></div>
+				<ul class="vote_r_nav">
+					<li class="vote_home_ico"><a href="index.php?mod=vote">投票首页</a></li>
+					<!--{if MEMBER_ID>0}-->
+					<li class="vote_my_ico"><a href="index.php?mod=vote&view=me">我的投票</a></li>
+					<li class="vote_her_ico"><a href="index.php?mod=vote&view=fllow">我关注的人的投票</a></li>
+					<!--{/if}-->
+				</ul>
+		</div>
+	<!--{/if}--> 
+	<!--投票菜单 End-->
+	  
+	<!--热点推荐 Begin-->
+	<div class="HboxR">
+		<div class="vote_line">热点推荐</div>
+			<ul>
+			<!--{loop $recd_list $val}-->
+				<li>
+					<span class="boxRl listyle"><a href="index.php?mod=vote&code=view&vid={$val[vid]}">{$val[subject]}</a></span>
+					<span style="float:right;">(共{$val[voter_num]}票)</span>
+				</li>
+			<!--{/loop}-->
+			</ul>
+		</div>
+	<!--热点推荐 End-->
+	
+	<!--投票达人 Begin-->
+	
+	<div class="HboxR">
+		<div class="vote_line">投票达人</div>
+		<div id="vote_daren_wp"></div>
+	</div>
+	<script language="javascript">
+		getVoteDaRen('vote_daren_wp');
+	</script>
+	
+	<!--投票达人 End-->
+	
+	<div class="HboxR">
+		<!--{if $this->Config[ad_enable]}-->
+			<div class="R_AD">
+			 {$this->Config[ad][ad_list][vote][middle_right]}
+			</div>
+		<!--{/if}-->
+	</div>
+</div>
+</div>
+</div>

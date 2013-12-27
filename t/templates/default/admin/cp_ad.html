@@ -1,0 +1,46 @@
+<!--{template admin/header}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td>功能说明</td>
+		</tr>
+		<tr>
+			<td class="altbg1">这是企业2.0应用模块，供在企业内部搭建互动交流平台使用</td>
+		</tr>
+		<tr class="header">
+			<td>功能介绍</td>
+		</tr>
+		<!--{if $cp_not_install}-->
+		<tr>
+            <td class="altbg1">
+			1、开启此模块后，每个用户都将归属到相应的单位和部门，可方便的一键查看所在单位和所在部门的微博，也可查看单位和部门排行榜等。<br>
+			2、如需此模块请与企业<b>QQ：800058566</b>联系，或者电话垂询<b>0571-88800819</b>。
+			</td>
+		</tr>
+		<!--{else}-->
+		<!--{if !$this->Config[company_enable]}-->
+		<tr>
+		<td class="altbg1">
+		您还没有开启单位微博功能，请到“后台->全局设置->注册访问控制->是否启用单位功能模块->选择'是'".
+		</td>
+		</tr>
+		<!--{else}-->
+		<!--{if !$this->Config[department_enable] && $_GET[mod] == 'department'}-->
+		<tr>
+		<td class="altbg1">
+		您还没有开启部门微博功能，请到“后台->全局设置->注册访问控制->是否启用部门功能->选择'是'".
+		</td>
+		</tr>
+		<!--{else}-->
+		<tr>
+		<td class="altbg1">
+		1、首先在后台添加单位，第一次添加的单位为最顶层的单位。<br>
+		2、顶层单位添加好后，再为其添加下属单位或平级单位和下属部门。<br>
+		3、编辑相应用户资料（前后台均可操作），使其加入某单位和某部门。<br>
+		4、编辑单位和部门，加入该单位或部门的主管领导和负责人（用于前台显示和发布公告功能）。<br>
+		说明：添加部门，首先要添加好单位，然后再在单位管理页，选择添加下属部门，进行部门添加操作。<br>
+		</td>
+		</tr>
+		<!--{/if}-->
+		<!--{/if}-->
+		<!--{/if}-->
+	</table>

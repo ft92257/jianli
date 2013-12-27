@@ -1,0 +1,90 @@
+{template admin/header}
+
+<br>
+<div>
+  <span style="color:#FF0000">注意：</span><span>请保持模板的数据与你创建的css样式一致。</span>
+</div>
+<div id="main_wp" class="mt10">
+	<form action="admin.php?mod=qun&code=add_module" method="post" name="forminfo" id="forminfo">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+		<tr class="header">
+			<td colspan="6">群模板</td>
+		</tr>
+		<tr class="list_h">
+			<td width="5%"><label><input type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'chk')">删?</label></td>
+		    <td width="12%">模板ID</td>
+			<td width="25%">背景颜色</td>
+			<td width="15%">字体颜色</td>
+			<td>链接颜色</td>
+			<td>对齐方式</td>
+		</tr>
+		<!--{loop $qun_module $key $val}-->
+		<tr id="$val[theme_id]">
+			<td class="td2"><input type="checkbox" name="chk[$key]" value="{$key}" /></td>
+			<td class="td2"><input type="text" name="theme[$key][theme_id]" value="{$val[theme_id]}" size="1" /></td>
+			<td class="td2"><input type="text" name="theme[$key][theme_bg_color]" value="{$val[theme_bg_color]}" size="6" /></td>
+			<td class="td2"><input type="text" name="theme[$key][theme_text_color]" value="{$val[theme_text_color]}" size="6" /></td>
+			<td class="td2"><input type="text" name="theme[$key][theme_link_color]" value="{$val[theme_link_color]}" size="6" /></td>
+			<td class="td2">
+			  <!--{eval if($val[theme_bg_image_type]=='left') $left[$val[theme_id]]='selected'}-->
+			  <!--{eval if($val[theme_bg_image_type]=='center') $center[$val[theme_id]]='selected'}-->
+			  <!--{eval if($val[theme_bg_image_type]=='right') $rigth[$val[theme_id]]='selected'}-->
+			  <!--{eval if($val[theme_bg_image_type]=='bottom') $bottom[$val[theme_id]]='selected'}-->
+			  <select name="theme[$key][theme_bg_image_type]">
+			    <option value="left" $left[$val[theme_id]]>左对齐</option>
+			    <option value="center" $center[$val[theme_id]]>居中</option>
+			    <option value="right" $rigth[$val[theme_id]]>右对齐</option>
+			    <option value="bottom" $bottom[$val[theme_id]]>居下</option>
+			  </select>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		<tr>
+			<td colspan="6" class="td2"><a href="javascript:;" onclick="addrow(this, 0)" class="addtr">添加一级导航</a></td>
+		</tr>
+		<tr>
+			<td class="td2"></td>
+			<td colspan="6" class="td2">
+				<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+				<input type="hidden" id="maxid" name="maxid" value="{$max_id}">
+			</td>
+		</tr>
+	  </table>
+	</form>
+</div>
+	<script type="text/JavaScript">		
+		var addrowdirect = 0;
+		function addrow(obj, type) {
+			var maxid = $('#maxid').val();
+			var rowtypedata = [
+				[
+					[1, '', 'td2'],
+					[1, '<input type="text" name="theme['+maxid+'][theme_id]" size="1" />', 'td2'],
+					[1, '<input type="text" name="theme['+maxid+'][theme_bg_color]" size="6" />', 'td2'],
+					[1, '<input type="text" name="theme['+maxid+'][theme_text_color]" size="6" />', 'td2'],
+					[1, '<input type="text" name="theme['+maxid+'][theme_link_color]" size="6" />', 'td2'],
+					[1,'<select name="theme['+maxid+'][theme_bg_image_type]"><option value="left">左对齐</option><option value="center">居中</option><option value="right">右对齐</option><option value="bottom">居下</option></select>','td2']
+				],
+			];
+			var table = obj.parentNode.parentNode.parentNode;
+			if(!addrowdirect) {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex);
+			} else {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex + 1);
+			}
+			var typedata = rowtypedata[type];
+			for(var i = 0; i <= typedata.length - 1; i++) {
+				var cell = row.insertCell(i);
+				cell.colSpan = typedata[i][0];
+				var tmp = typedata[i][1];
+				if(typedata[i][2]) {
+					cell.className = typedata[i][2];
+				}
+
+				tmp = tmp.replace(/\{(\d+)\}/g, function($1, $2) {return addrow.arguments[parseInt($2) + 1];});
+				cell.innerHTML = tmp;
+			}
+			addrowdirect = 0;
+			$('#maxid').val(parseFloat(maxid)+1);
+		}
+	</script>

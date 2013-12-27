@@ -1,0 +1,33 @@
+<!--{template admin/header}-->
+<form action="admin.php?mod=verify&code=doedit" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">用户：</td>
+      <td bgcolor="#FFFFFF">{$member_verify[nickname]}</td>
+    </tr>
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">签名内容:</td>
+      <td bgcolor="#FFFFFF">
+	  <input type="text" name="signature" id="signature" size="60" maxlength="30" value="{$member_verify[signature]}"></input></td>
+    </tr>
+
+	<!--{if $member_verify[face]}-->
+    <tr>
+      <td width="13%" align="center" bgcolor="#F8F8F8">图片:</td>
+      <td bgcolor="#FFFFFF">
+	    <img src="{$member_verify[face]}" border="0"/>
+	    <A href="admin.php?mod=verify&code=deletepic&uid=$member_verify[uid]}">删除</A>&nbsp;	
+	  </td>
+    </tr>
+	<!--{/if}-->
+    <tr>
+      <td align="center" bgcolor="#F8F8F8">&nbsp;</td>
+      <td bgcolor="#FFFFFF">
+		<button name="do" value='' type="submit" class="button">提 交</button>
+		&nbsp;
+		<button class="button" type="button" onclick="window.location.href='admin.php?mod=verify';return false;">返回</button>
+		<input name="uid" type="hidden" id="uid" value="{$member_verify[uid]}">
+    </tr>
+  </table>
+
+</form>

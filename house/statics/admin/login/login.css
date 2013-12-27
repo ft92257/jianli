@@ -1,0 +1,27 @@
+BODY {
+	BACKGROUND-POSITION: 50% bottom; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(bg_login.png); MARGIN: 0px; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #a2d5f0
+}
+TD {
+	FONT-SIZE: 12px
+}
+DIV {
+	FONT-SIZE: 12px
+}
+#login {
+	BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(bg_login.png); COLOR: white; BACKGROUND-REPEAT: repeat-x; BACKGROUND-COLOR: #a2d5f0
+}
+#login #root {
+	BACKGROUND-IMAGE: url(login_root.png)
+}
+#login #main {
+	BACKGROUND-IMAGE: url(login_main.png)
+}
+#login  TD {
+	COLOR: white
+}
+#login A {
+	COLOR: white; TEXT-DECORATION: none
+}
+#login .textbox {
+	WIDTH: 180px
+}

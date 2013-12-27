@@ -1,0 +1,155 @@
+<!--{template "topic_header"}-->
+
+<div class="u2">
+	<div style="padding:2px;">
+		<!--{if $params[code] == myblog }-->
+		<!--{eval if(MEMBER_ID == $member[uid]) $_my = '我'; else $_my = $member[nickname];}-->
+		<!--{/if}-->
+		<!--{if $this->Code == 'myhome'}-->
+		<span>我的首页</span>
+		<!--{elseif $this->Code == 'myat'}-->
+		<span>提到我的</span>
+		<!--{/if}-->
+	
+		<!--{if in_array($this->Code,array('mycomment','tocomment'))}-->
+		<!--{eval if($this->Code == 'mycomment') $mycomment = 'hb';}--> 
+		<!--{eval if($this->Code == 'tocomment') $tocomment = 'hb';}--> 
+		<span class="{$mycomment}"><a href="index.php?mod=topic&code=mycomment">评论我的</a></span>
+		<span class="{$tocomment}" style="margin-left:10px;"><a href="index.php?mod=topic&code=tocomment">我的评论</a></span>
+		<!--{/if}-->
+		
+		<!--{if in_array($this->Code,array('myfavorite','favoritemy'))}-->
+		<!--{eval if($this->Code == 'myfavorite') $my_favorite = 'hb';}--> 
+		<!--{eval if($this->Code == 'favoritemy') $favoritemy = 'hb';}--> 
+		<span class="{$my_favorite}"><a href="index.php?mod=topic&amp;code=myfavorite">我的收藏</a></span>
+		<span class="{$favoritemy}"><a href="index.php?mod=topic&amp;code=favoritemy">收藏我的</a></span>
+		<!--{/if}-->
+	</div>
+</div>	
+
+<div class="m">
+  <div>
+    <!--列表开始-->
+    <div>
+      <!--{if $topic_list}-->
+      <!-- 收藏我的开始 -->
+      <!--{if 'favoritemy'==$this->
+      Code}-->
+      <!--{loop $topic_list $val}-->
+      <!--{eval $counts++;}-->
+      <!--列表区块开始-->
+      <div>
+        <div>
+          <!--右边主体-->
+          <div>
+            <!--微博主体-->
+            <div>
+              <div> <span><a href="index.php?mod={$val[username]}">{$val[nickname]}</a>
+                <!--{if $val[validate_html]}-->
+                <img class='vipImg' title='{$val[vip_info]}' src='{conf site_url}/images/vip.gif' />
+                <!--{/if}-->
+                {$val[content]}</span> <a href="index.php?mod=topic&amp;code={$val[tid]}" target="_blank">原文评论
+                <!--{if $val[replys]}-->
+                {$val[replys]}
+                <!--{/if}-->
+                </a> <a href="index.php?mod=topic&amp;code={$val[tid]}" target="_blank">原文转发
+                <!--{if $val[forward]}-->
+                {$val[forward]}
+                <!--{/if}-->
+                </a> </div>
+            </div>
+            <!--微博管理-->
+          </div>
+          <!--右边主体结束-->
+        </div>
+      </div>
+      <!--列表区块结束-->
+      <!--{/loop}-->
+      <!-- 收藏我的结束 -->
+      <!--{else}-->
+      <!--{loop $topic_list $val}-->
+      <!--{eval $counts++;}-->
+      <!--列表区块开始-->
+      <div>
+        <div style="padding:2px;">
+          <div class="t_list_b">
+            <!--微博主体-->
+            <div> <a title="{$val[username]}" href="index.php?mod={$val[username]}">{$val[nickname]}</a>
+              <!--{if $val[validate_html]}-->
+              <img class='vipImg' title='{$val[vip_info]}' src='{conf site_url}/images/vip.gif' />
+              <!--{/if}-->
+              :<span>{$val[content]}</span> <!--{if $val[longtextid]}--> <a href="index.php?mod=topic&amp;code={$val[tid]}">[查看全文]</a><!--{/if}--><br />
+            </div>
+            <!--{if $val[imageid] && $val[image_list]}-->
+            <div class="t_list_b"> 
+				{loop $val[image_list] $iv}
+				<a href="index.php?mod=topic&code={$val[tid]}"><img src="{$iv[image_small]}" /></a> 
+				{/loop}
+			</div>
+            <!--{/if}-->
+            <!--{if ($tpid=$val[top_parent_id])>0}-->
+            <div class="t_list_b">
+              <div class="transpond">
+                <!--{if ($pt=$parent_list[$tpid])}-->
+					<p>
+						<span>
+						<a href="index.php?mod={$pt[username]}">{$pt[nickname]}</a>
+						<!--{if $pt[validate_html]}--><img class='vipImg' title='{$pt[vip_info]}' src='{conf site_url}/images/vip.gif' /><!--{/if}-->: 
+						{$pt[content]} 
+						</span>
+					</p>
+					<!--{if $pt[imageid] && $pt[image_list]}-->
+					<div class="Im">
+						{loop $pt[image_list] $iv}
+						<img src="{$iv[image_small]}" />
+						{/loop}
+					</div>
+					<!--{/if}-->
+					<a href="index.php?mod=topic&amp;code={$tpid}">原文评论({$pt[replys]})</a> <a href="index.php?mod=topic&amp;code={$tpid}">原文转发({$pt[forwards]})</a>
+                <!--{else}-->
+					<!--{eval $val[reply_disable]=0;}-->
+					<span>原始微博已删除</span>
+                <!--{/if}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <!--微博管理-->
+            {template "topic_list_manage"}
+            <!--微博管理-->
+          </div>
+          <!--右边主体结束-->
+        </div>
+      </div>
+      <div class="lineDot"></div>
+      <!--列表区块结束-->
+      <!--{/loop}-->
+      <!--{/if}-->
+      <!--{if $page_arr[html]}-->
+      <div style="margin-top:15px; "> <span>{$page_arr[html]}</span> </div>
+      <!--{/if}-->
+      <!--{/if}-->
+      <!-- 正文列表结束 -->
+    </div>
+  </div>
+  <!--微博区块结束-->
+  <div id="topic_list_{$counts++}" class="t_list_b">
+    <!--{if 'myat'== $this->
+    Code}--> 
+    这里会显示含有"@<!--{echo wap_iconv($__my[nickname])}-->"的微博。<BR />
+    <!--{elseif 'mycomment' == $this->
+    Code}--> 
+    这里会显示他人对你微博所做的评论。<BR />
+    <!--{elseif 'myfavorite' == $this->
+    Code}--> 
+    这里会显示你所收藏的微博。<BR />
+    在登录状态下，每个微博的下方都有一个收藏连接，点击即可自动完成收藏，然后你就可以在这里看到了。你可以访问<A HREF="index.php?mod=topic&code=hot">热门微博</A>来发现有收藏价值的内容；
+    <!--{elseif 'favoritemy' == $this->
+    Code}--> 
+    这里会显示谁收藏了你的微博。<BR />
+    赶快分享些有价值的新鲜事吧，当有人收藏后，你就会在这里看到。<BR />
+    <!--{/if}-->
+  </div>
+  <!-- 显示帮助信息结束 -->
+</div>
+</div>
+<!--{template "topic_footer"}-->

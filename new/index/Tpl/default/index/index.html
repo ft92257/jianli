@@ -1,0 +1,29 @@
+<include file='public:header' />
+<script type="text/javascript" src="__ROOT__/includes/kindeditor/kindeditor-min.js"></script>
+<script>	//±à¼­Æ÷
+KE.show({
+id : 'info',
+imageUploadJson : '__ROOT__/includes/kindeditor/php/upload_json.php',
+fileManagerJson : '__ROOT__/includes/kindeditor/php/file_manager_json.php',
+allowFileManager : true,
+afterCreate : function(id) {
+KE.event.ctrl(document, 13, function() {
+KE.util.setData(id);
+document.forms['myform'].submit();
+});
+KE.event.ctrl(KE.g[id].iframeDoc, 13, function() {
+KE.util.setData(id);
+document.forms['myform'].submit();
+});
+}
+});
+$(function(){
+$("#add_attatch").click(function(){
+$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+});
+}) 
+</script>
+<form  method="post" action="">
+<div><textarea id='info' name="text" style=" width:600px; height:500px"></textarea></div>
+<input type="submit" />
+</form>

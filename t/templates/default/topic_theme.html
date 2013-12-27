@@ -1,0 +1,170 @@
+{template "topic_header"}
+
+<link href="styles/theme.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+var theme_bg_color="$theme_bg_color";
+var theme_text_color="$theme_text_color";
+var theme_link_color="$theme_link_color";
+var theme_id="$theme_id";
+if (!theme_bg_color) {theme_bg_color="#B0E0FA";}
+if (!theme_text_color) {theme_text_color="#333333";}
+if (!theme_link_color) {theme_link_color="#0078B6";}
+if (!theme_id) {theme_id="t1";}
+</script>
+<script type="text/javascript" src="js/colorpicker/colorpicker.js"></script>
+<script type="text/javascript" src="js/theme.js"></script>
+<script type="text/javascript">
+	function pre(act){
+		//总共数目
+		var count = parseInt($('#count').val());
+		//页面数
+		var page_count = parseInt($('#page_count').val());
+		//当前页面
+		var page = parseInt($('#page').val());
+		//每页显示数目
+		var prepage = parseInt($('#prepage').val());
+		var num = 0;
+		var first = 0;
+		if(act == 'next'){
+			if(page >= page_count){
+				show_message("已经是最后一页");
+				return false;
+			}
+			if((count-page*prepage)<prepage){
+				num = count;
+			}else{
+				num = (page+1)*prepage;
+			}
+
+			for(var i=page*prepage+1;i<num+1;i++){
+				document.getElementById("theme_"+i).style.display = 'block';
+			}
+			first = page == 1? 1 : (page-1)*prepage+1;
+			for(var j=page*prepage;j>first-1;j--){
+				document.getElementById("theme_"+j).style.display = 'none';
+			}
+			
+			$('#page').val(page+1);
+			$('#showpage').html(page+1);
+		}else if(act == 'pre'){
+			if(page == 1){
+				show_message("已经是第一页");
+				return false;
+			}
+			if((count-page*prepage)<0){
+				num = count;
+			}else{
+				num = page*prepage;
+			}
+			for(var i=(page-1)*prepage+1;i<num+1;i++){
+				document.getElementById("theme_"+i).style.display = 'none';
+			}
+			first = page == 2? 1 : (page-2)*prepage+1;
+			for(var j=(page-1)*prepage;j>first-1;j--){
+				document.getElementById("theme_"+j).style.display = 'block';
+			}
+
+			$('#page').val(page-1);
+			$('#showpage').html(page-1);
+		}
+	}
+</script>
+<style>
+.farbtastic {position: relative;}
+.farbtastic * {position: absolute;cursor: crosshair;}
+.farbtastic, .farbtastic .wheel {width: 195px;height: 195px;}
+.farbtastic .colors, .farbtastic .overlay {top: 47px;left: 47px;width: 101px;height: 101px;}
+.farbtastic .wheel {background: url(js/colorpicker/wheel.png) no-repeat;width: 195px;height: 195px;}
+.farbtastic .overlay {background: url(js/colorpicker/mask.png) no-repeat;}
+.farbtastic .marker {width: 17px;height: 17px;margin: -8px 0 0 -8px;overflow: hidden; background: url(js/colorpicker/marker.png) no-repeat;}
+</style>
+
+<form method="post" action="index.php?mod=skin&code=do_modify" enctype="multipart/form-data" name="theme">
+<input type="hidden" name="theme_bg_image" id="theme_bg_image" value="{$theme_bg_image}" />
+<input type="hidden" name="theme_id" id="theme_id" value="{$theme_id}">
+<div class="setframe">
+  <!--{template 'settings_main_left.inc'}-->
+
+<div class="main_2b">
+<div class="main_t" style="width:758px;"><span>更换皮肤</span></div>
+<div class="themepwarp">
+<p class="tBlod">1、选择已有的皮肤 &raquo;</p>
+<ul class="themelist">
+	<!--{eval $i = 1}-->
+	<!--{loop $themelist $key $val}-->
+	<!--{eval if($i > $prepage) $style='style="display:none"'}-->
+	<li id="theme_{$i}" {$style}>
+    <a href="javascript:void(0)" onclick="usertheme('$val[element]')">
+	<img alt="" src="theme/{$val[theme_id]}/themebg_preview.jpg" title="{$val[title]}"/></a>
+	</li>
+	<!--{eval $i++}-->
+    <!--{/loop}-->
+</ul>
+    <div style="float:right">
+	<!--{if $multi}-->
+	{$multi}
+	<!--{/if}-->
+	当前第<span id="showpage">$page</span>页/共<span>$page_count</span>页
+	</div>
+	<input type="hidden" id="prepage" name="prepage" value="{$prepage}">
+	<input type="hidden" id="page" name="page" value="{$page}">
+	<input type="hidden" id="page_count" name="page_count" value="{$page_count}">
+	<input type="hidden" id="count" name="count" value="{$count}">
+	
+<p class="tBlod">2、更换背景图片（可选） &raquo;{conf my_bg_image}</p>
+        <div class="upload">
+            可选择上传自定义背景图片：<input id="file" name="theme" class="input_file" size="30" type="file">
+        </div>
+        <div class="images" id="themeimages">
+        <p>
+         <a href="javascript:void(0);" id="setbgyes" class="yesbg"  style="background-image: url('{conf theme_bg_image}');" title="已使用的背景图片"></a>
+
+         <a href="javascript:void(0);" id="setbgno" class="nobg" title="不使用背景图片"><img src="templates/default/images/theme_nobg.gif"></a> 
+		 </p>
+         <p><dl class="setii"><dt>设置背景图</dt><dd>
+            <label for="user-background-left"><input id="user-background-left" name="theme_bg_image_type" onclick='leftclick()' type="radio" value="left" <!--{if ($theme_bg_image_type=="left")}-->checked<!--{/if}-->> 左对齐</label>&nbsp;&nbsp;
+            <label for="user-background-center"><input id="user-background-center" name="theme_bg_image_type" onclick='centerclick()' type="radio" value="center" <!--{if ($theme_bg_image_type=="center")}-->checked<!--{/if}-->> 背景居中</label>&nbsp;&nbsp;
+            <label for="user-background-right"><input id="user-background-right" name="theme_bg_image_type" onclick='rightclick()' type="radio" value="right" <!--{if ($theme_bg_image_type=="right")}-->checked<!--{/if}-->> 右对齐</label></dd>
+            <dd><label for="user-background-repeat"><input id="user-background-repeat" name="theme_bg_repeat" onclick='repeatclick()' type="checkbox" value="1" <!--{if ($theme_bg_repeat)}-->checked<!--{/if}-->> 背景平铺</label>&nbsp;&nbsp;<label for="user-background-fixed"><input id="user-background-fixed" name="theme_bg_fixed" onclick='fixedclick()' type="checkbox" value="1" <!--{if ($theme_bg_fixed)}-->checked<!--{/if}-->> 背景固定</label>&nbsp;&nbsp;</dd></dl>
+		</p>
+        </div>
+		 <img id="mybgimage" src="{$my_bg_image}" style="display:none;">
+<!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+<p class="manss"><b><i>*</i>管理员选项:</b><input type="radio" name="set_default" value="1" id="set_default_1" onclick="alert_check()" /><label for="set_default_1">设置为网站默认的皮肤样式</label></p>
+<!--{/if}-->
+<br />
+<p class="tBlod">3、更换皮肤颜色（可选） &raquo;</p>
+
+ <div id="settings-color" class="color">
+        <div id="color-inputs" class="inputs">
+            <table>
+                <tr>
+                    <td><label for="color-background">背景颜色：</label></td>
+                    <td><input id="color-background" name="theme_bg_color" value="{$theme_bg_color}" type="text"></td>
+					<td></td> 
+                </tr>
+                <tr>
+                    <td><label for="color-text">文字颜色：</label></td>
+                    <td><input id="color-text" name="theme_text_color" value="{$theme_text_color}" type="text"></td>
+					<td></td>
+                </tr>
+				<tr>
+                    <td><label for="color-links">链接颜色：</label></td>
+					<td><input id="color-links" name="theme_link_color" value="{$theme_link_color}" type="text"></td>
+                </tr>
+            </table>
+        </div>
+		<div id="colorpicker" style="margin-left:320px"></div>
+        <div style="clear:both;"></div>
+</div>
+    <p class="act">
+    	<span>（修改皮肤样式后如果没有立即生效，请按Ctrl+F5强制刷新即可。）</span><br /><br />
+        <input type="submit" class="shareI" id="save" value="保存" />
+        <input type="button" class="shareI" id="cencel" value="取消"/>
+    </p>
+	</div>      
+</div>
+</div>
+</form>
+
+{template "topic_footer"}

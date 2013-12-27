@@ -1,0 +1,124 @@
+{template admin/header}
+
+<script language="javascript">
+function check_all(type, form, value, checkall, changestyle) {
+	var checkall = checkall ? checkall : 'chkall';
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(type == 'option' && e.type == 'radio' && e.value == value && e.disabled != true) {
+			e.checked = true;
+		} else if(type == 'value' && e.type == 'checkbox' && e.getAttribute('chkvalue') == value) {
+			e.checked = form.elements[checkall].checked;
+			if(changestyle) {
+				multiupdate(e);
+			}
+		} else if(type == 'prefix' && e.name && e.name != checkall && (!value || (value && e.name.match(value)))) {
+			e.checked = form.elements[checkall].checked;
+			if(changestyle && e.parentNode && e.parentNode.tagName.toLowerCase() == 'li') {
+				e.parentNode.className = e.checked ? 'checked' : '';
+			}
+		}
+	}
+}
+</script>
+<div id="main_wp" class="mt10">
+	<form action="admin.php" method="get" name="search">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">搜索投票</td>
+		</tr>
+		<!--<input name="per_page_num" type="hidden" value="{$per_page_num}">-->
+		<tr>
+			<td class="altbg1" width="150">
+			投票ID:
+			</td>
+			<td class="altbg2">
+			<input name="vid" type="text" id="vid" value="{$vid}" size="40">		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">
+			投票主题:
+			</td>
+			<td class="altbg2">
+			<input type="text" name="subject" value="{$subject}" size="40">		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">&nbsp;
+			
+			</td>
+			<td class="altbg2">
+			  <button name="do" value='' type="submit" class="button">搜索一下</button> &nbsp;
+			  <input name="mod" type="hidden" value="vote">
+			  <input type="hidden" name="code" value="{$this->Code}">
+			  <button class="button" type="button" onclick="window.location.href='admin.php?mod=vote&code={$this->Code}';return false;">全部投票</button>
+			</td>
+		</tr>
+		
+	</table>
+	</form>
+
+	<form method="post" action="{$action}">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="50">
+				  <label><input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'del_ids')" >
+				  <!--{if $this->Code == 'index'}-->删<!--{else}-->通过<!--{/if}--></label>
+				</td>	
+				<td>投票主题</td>
+				<td width="80">发起人</td>
+				<td width="80">参与人数</td>
+				<td width="140">时间</td>
+				<!--{if $this->Code == 'index'}-->
+				<td width="80">推荐</td>
+				<!--{/if}-->
+				<td width="80">操作</td>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $list $value}-->
+				<tr align="center">
+					<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+					<input type="hidden" name="vids[]" value="$value[vid]" >
+					<input class="checkbox" type="checkbox" name="del_ids[]" value="$value[vid]" ></td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+						<a href="index.php?mod=vote&code=view&vid={$value[vid]}" target="_blank">{$value[subject]}</a>
+					</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod={$value['username']}" target="_blank">{$value['nickname']}</a></td>
+					<td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$value[voter_num]}</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($value[dateline], 'Y-m-d')}--></td>
+					<!--{if $this->Code == 'index'}-->
+					<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+						<input class="checkbox" type="checkbox" name="recd_ids[{$value[vid]}]" value="1" {$value[recd_checked]}>
+					</td>
+					<!--{/if}-->
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<!--{if $this->Code == 'index'}-->
+					<a href="admin.php?mod=vote&amp;code=edit&amp;vid={$value[vid]}">编辑</a>&nbsp;&nbsp;
+					<!--{/if}-->
+					<A href="admin.php?mod=vote&code=delete&ids={$value[vid]}">删除</A>&nbsp;				</td>
+				</tr>
+				<!--{/loop}-->
+				
+				
+				<!--{if $page_arr[html]}-->
+				<tr align="center">
+					<td colspan="6" class="altbg1">
+					{$page_arr[html]}
+					</td>
+				</tr>
+				<!--{/if}-->
+			<!--{else}-->
+				<tr align="center">
+					<td colspan="5">
+						还没有投票记录
+					</td>
+				</tr>
+			<!--{/if}-->
+		</table>
+	
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+	<br />
+</div>
+

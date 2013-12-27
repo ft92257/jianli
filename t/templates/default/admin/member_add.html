@@ -1,0 +1,50 @@
+<!--{template admin/header}-->
+<script>
+function changedepartment(id){
+  var cid = 'undefined' == typeof(id) ? 0 : id;
+  var myAjax=$.post("ajax.php?mod=member&code=cp",{cid:cid},function(d){if(d){$('#' + "departmentselect").html(d);}});
+}
+</script>
+
+<form method="post" action="{$action}">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">添加新用户</td>
+		</tr>
+		<tr>
+			<td width="34%" bgcolor="#F8F8F8">帐户/昵称:<BR />用于登录、显示、@通知和发送站内信</td>
+			<td width="66%" align="right" bgcolor="#FFFFFF">
+		  <input type="text" name="nickname"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#F8F8F8">登录密码:</td>
+			<td align="right" bgcolor="#FFFFFF">
+			<input type="text" name="password"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#F8F8F8">Email:</td>
+			<td align="right" bgcolor="#FFFFFF">
+			<input type="text" name="email"></td>
+		</tr>
+		<!--{if $this->Config[company_enable]}-->
+		<tr>
+		<td bgcolor="#F8F8F8">所属{$d_c_name}：</td>
+	    <td>{$companyselect}</td>
+	  </tr>
+	  <!--{if $this->Config[department_enable]}-->
+	  <tr>
+	    <td bgcolor="#F8F8F8">所在{$d_d_name}：</td>
+	    <td><div id="departmentselect">{$departmentselect}</div></td>
+	  </tr>
+	  <!--{/if}-->
+	  <!--{/if}-->
+		<tr>
+			<td bgcolor="#F8F8F8">角色:</td>
+			<td align="right" bgcolor="#FFFFFF">
+			{$role_select}</td>
+		</tr>
+	</table>
+	<br>
+	<center><input type="submit" class="button" name="addsubmit" value="提 交"></center>
+</form>
+

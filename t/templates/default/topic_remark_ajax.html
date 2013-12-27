@@ -1,0 +1,32 @@
+<div class="dialog_inner" id="add_remark_{$buddy_info[buddyid]}">
+		<div class="mWarp">
+		  给朋友加个备注名，方便认出他是谁
+		  <table >
+			  <tr>
+				<td><input name="remark_name_{$buddy_info[buddyid]}" type="text" id="remark_name_{$buddy_info[buddyid]}" class="Ainp" value="{$buddy_info[remark]}" style="width:250px;"/>
+				</td>
+			  </tr>
+		   </table>
+		   <div class="tool_bar">
+				<input id="remarkSubmit" type="button" class="shareI" value="保 存" onclick="publishSubmit_remark('remark_name_{$buddy_info[buddyid]}',{$buddy_info[buddyid]});return false;"  title="按Ctrl+Enter直接提交"/>
+    			<input type="button" class="shareI" value="取 消" onclick="closeDialog('{$this->Get['handle_key']}');"/>
+			</div>
+	  </div>
+ </div>
+ 
+<script>
+$("#remark_name_{$buddy_info[buddyid]}").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#remarkSubmit").click();
+    }
+});
+/*
+$(function() {
+        $(document).find('[id!="add_remark_{$buddy_info[buddyid]}"]').click(function() {
+			$('#add_remark_{$buddy_info[buddyid]}').hide('slow');
+			$("#get_remark_{$buddy_info[buddyid]}").html('');
+        });
+});*/
+
+</script>

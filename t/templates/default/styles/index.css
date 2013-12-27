@@ -1,0 +1,113 @@
+/*###########################
+   @Name:记事狗微博客主样式表 
+   @Link:www.jishigou.net
+   @Date:2010.08.12
+   @Author:@itom
+#############################*/
+body{text-align:left;font-family:Arial,sans-serif;font-size:12px; margin:0; padding:0}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{margin:0;padding:0}
+table,td,tr,th{font-size:12px}
+li{list-style-type:none}
+table{margin:0 auto}
+img{vertical-align:top;border:0}
+ol,ul{list-style:none}
+h1,h2,h3,h4,h5,h6{font-size:12px;font-weight:400}
+input,textarea,select,option{font-family:Arial,sans-serif;font-size:14px}
+a:link{color:#336699;text-decoration:none;}
+a:visited{color:#336699;text-decoration:none;}
+a:hover{color:#336699;text-decoration:none;}
+body{color:#333;height:100%;}
+#headWrap{height:88px;position:relative;width:950px;z-index:2;margin:0 auto;}
+#logo{height:84px;width:232px;overflow:hidden;position:absolute;top:2px;overflow:hidden;}
+#logo a{display:block;height:84px;text-decoration:none;width:232px;background:url(../../../images/logo.png) no-repeat;_background:url(../../../images/logo.gif) no-repeat;}
+#logo a:hover{ background-position:0 -83px;}
+#mainWrapper{ width:950px;background:#fff; margin:0 auto; overflow:hidden;box-shadow:1px 0 5px #333;}
+#topbox{ width:950px; height:255px;}
+#tleft{ width:680px; height:255px; float:left;}
+#swfContent{float:left;height:220px;line-height:100em;overflow:hidden;width:680px}
+.talking{float:left;width:680px;height:35px;background:#48a901 url(../images/index/talkingbg.jpg) no-repeat left}
+.talking strong{float:left;height:35px;line-height:35px;color:#fff;font-weight:400;padding:0 10px 0 45px}
+.acticle{float:left;height:36px;line-height:36px;overflow:hidden;width:550px}
+.loginbox{background:url(../images/index/mr.jpg) no-repeat;float:right;height:295px;padding-top:25px;position:absolute;width:255px; padding-left:15px; margin:0 0 0 680px; *margin:0 0 0 0;}
+.tlb_P{ width:165px; overflow:hidden;margin:0 0 5px 56px;}
+.btn_reg { background:url(../images/index/index_100806.png) no-repeat left top; cursor:pointer}
+.btn_reg{background-position:0 0;display:block;height:55px;margin-left:24px;overflow:hidden;text-indent:-9999px;width:197px;}
+.btn_reg:hover{background-position:0 -55px;}
+.login_area{margin-top:15px;}
+.login_area .item{height:25px;padding:6px 0}
+.login_area .pos_rel{ padding:0}
+.login_area .labelTag{display:block;float:left;font-size:14px;line-height:25px;text-align:right;white-space:nowrap;width:56px;}
+.login_area .enterInput{float:left;}
+.login_area .enterInput img{ margin:6px 0 0 6px;}
+.login_area .inputcheckTag{margin-right:1px;vertical-align:middle;}
+.login_area .inputtextTag{background-position:0 -267px;border-left:1px solid #949494;font-size:12px;height:20px;line-height:17px;padding-left:2px;padding-top:2px; padding-bottom:2px;width:160px;border-color:#949494 #cacaca #cacaca #949494;border-style:solid;border-width:1px;}
+.btn_login{background:url(../images/index/index_100806.png) 0 -167px;border:none;cursor:pointer;font-size:14px;height:32px;overflow:hidden;text-align:center;width:96px;padding:0; display:inline; margin-right:10px;}
+.btn_login:hover{ background-position:0 -199px}
+#midBox{ width:950px; margin:10px 0 15px; clear:both; overflow:hidden;}
+.mleft{ float:left; display:inline; overflow:hidden; width:224px; padding:0 0 0 18px;}
+.mcenter{float:left;display:inline; width:418px; height:580px;border-left:#ebebeb 1px solid;border-right:#ebebeb 1px solid;padding:0 0 0 18px; overflow:hidden}
+.mright{ float:left;display:inline; width:230px; height:515px;overflow:hidden;padding:65px 0 0 18px; overflow:hidden; background:url(../images/index/wapban.gif) bottom right no-repeat; overflow:hidden;}
+.userlist{float:left; margin-bottom:15px;}
+.userlist li{float:left;height:73px;margin-right:10px;overflow:hidden;text-align:center;width:60px;padding:11px 0 0}
+.userlist li a{color:#6EAFD5;display:block;white-space:nowrap;line-height:20px; font-weight:500}
+.userlist li img{display:block;height:46px;width:46px; border:1px solid #ddd; padding:1px; margin:0 auto 4px; background:#fff;}
+.htitle{background:url(../images/index/bubble.png) no-repeat left 4px;border-bottom:1px solid #EBEBEB;font-weight:600;line-height:22px;margin-right:18px;padding:0 0 8px 25px;}
+.htitle2{background:url(../images/index/users.gif) no-repeat left 4px;border-bottom:1px solid #EBEBEB;font-weight:600;line-height:22px;margin-right:20px;padding:0 0 8px 25px;}
+.htitle3{background:url(../images/index/micro.gif) no-repeat left 2px;border-bottom:1px solid #EBEBEB;font-weight:600;line-height:22px;padding:0 0 8px 25px;}
+.igg{width:130px;border:#F60 1px solid;background:#FFC;clear:both;margin:0 auto;padding:10px 5px}
+.comBox{margin:10px 0}
+.Contant { margin-left:60px;*margin-top:0; line-height:20px;}
+#indemo{float:left;width:800%}
+#Tacticle_s,#demo2{float:left}
+.Ts,a.Ts:link,a.Ts:visited{color:#fff; margin-right:10px;}
+.forgetPass{ margin-left:10px; display:inline;}
+.dlblank{clear:both;}
+.dlblank p{ line-height:20px; padding:2px 0 2px 2px;}
+.htitle4{background:url(../images/index/newuser.gif) no-repeat left 2px;border-bottom:1px solid #EBEBEB;font-weight:700;line-height:22px;margin-right:20px;padding:0 0 8px 25px; clear:both}
+.mlink{ width:920px; line-height:25px; overflow:hidden;margin:0; background:#29a9cc; padding:10px 15px; color:#fff;}
+.mlink a,.mlink a:link,.mlink a:visited,.mlink a:hover{ color:#fff;}
+/*新首页*/
+.blogTxt .top{ width:336px; height:18px; background:url(../images/vispt1.gif) no-repeat; overflow:hidden;margin:0;}
+.blogTxt .mid{ width:314px; border-left:#dadada 1px solid; border-right:#dadada 1px solid;margin:0; padding:0 10px 7px; float:left; display:block; background:#f8f8f8; _overflow:hidden}
+.blogTxt .bottom{ width:336px; height:6px; background:url(../images/vispb1.gif) no-repeat; overflow:hidden;margin:0;clear:both; _float:right; _margin-right:1px;}
+.oriTxt{ width:336px;}
+ul.imgList{ width:336px;}
+.feedCell .from{ width:336px;}
+.feedCell .from .mycome{ width:160px;}
+.feedCell .from .option{ width:100px;}
+.oriTxt p { line-height:20px; font-size:12px;}
+.indexrow{ width:404px; line-height:20px; margin:0;}
+.mBlog_linedot{ margin:0;}
+.feedCell{ padding:9px 0;}
+.feedCell .wb_l_face{ float:left; width:50px; display:inline;}
+.feedCell .avatar{ border:none; padding:0; margin:4px 0;}
+.feedCell .avatar img{height:46px;width:46px; padding:1px; border:1px solid #ddd;}
+.feedCell .from{ padding-top:5px;}
+.visBox{ width:230px; margin:0 auto 5px;}
+.visBox p{ line-height:20px; padding:2px; margin:15px auto;}
+.visBox p b{ color:#336699; font-size:14px;}
+.lf{ width:680px;}
+.blogTxt{ width:336px;}
+.indexrow .vipImg{ margin-top:4px;*margin-top:2px;}
+.clearfix{ float:left; height:35px;}
+.clearfix2{ margin:10px 0 0; width:250px; float:left; display:inline;}
+
+.mcenter{ position:relative}
+.feedCell .feedUservideo {position:relative;*position:static;}
+.feedCell .feedUservideo img {}
+.feedCell .feedUservideo .vP{ position:absolute;}
+.guest_table .tabmenu h3{ font-weight:600; width:98px; float:left; color:#666; padding-top:2px; display:inline;}
+.guest_table{ width:230px; overflow:hidden; margin:15px auto 0;}
+.guest_table .tabmenu{ border-bottom:1px solid #ebebeb; width:230px;}
+.guest_table .tabmenu .cli{ border-color:#ebebeb;}
+.guest_table #tabcontent{ width:230px;}
+.guest_table #tabcontent ul{ padding:9px 0 0; height:60px; overflow:hidden; line-height:20px;}
+
+
+
+
+/*通行宝部分*/
+#logo_nedu{height:80px;width:324px;overflow:hidden;position:absolute;top:2px;overflow:hidden;}
+#logo_nedu a{display:block;height:80px;text-decoration:none;width:324px;background:url(../../../images/nedu_logo_g.png) no-repeat;_background:url(../../../images/nedu_logo_g.gif) no-repeat;}
+#logo_nedu a:hover{ background-position:0 0;}
+

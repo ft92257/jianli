@@ -1,0 +1,48 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td>技巧提示</td>
+    </tr>
+    <tr class="altbg1">
+      <td><ul>
+          <li>1、添加格式： 每行一个昵称。例如：<br />
+            admin<br />
+            记事狗小秘书<br />
+			</li>
+        <li>2、显示的推荐用户数按照“界面与显示设置”中的“注册完成关注人数”,如果下面实际人数多于设定，则系统随机获取</li>
+      </ul></td>
+    </tr>
+  </table>
+  <form method="post" action="admin.php?mod=setting&code=do_regfollow">
+  <br />
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="6">推荐关注用户：在注册页或达人榜页面，推荐用户来关注，可用于推广等</td>
+	</tr>
+	<tr>
+		<td class="td2">
+		<textarea name="nicks" cols="50" rows="5">{$str_nickname}</textarea>
+		<input class="button" type="submit" name="regfollow_submit" value="提 交">
+  <input name="regfollow_type" type="hidden" id="regfollow_type" value="recommend" />
+		</td>
+	</tr>
+</table>
+</form>
+
+<form method="post" action="admin.php?mod=setting&code=do_regfollow">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+	<tr class="header">
+		<td colspan="6">自动关注用户：用户注册后会自动关注的用户，比如官方的客服帐户等；</td>
+	</tr>
+	<tr>
+		<td class="td2">
+		<textarea name="nicks" cols="50" rows="5">{$default_nickname}</textarea>
+		<input class="button" type="submit" name="regfollow_submit" value="提 交">
+  <input name="regfollow_type" type="hidden" id="regfollow_type" value="default" />
+		</td>
+	</tr>
+</table>
+</form>
+</div>

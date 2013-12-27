@@ -1,0 +1,60 @@
+<!--右边栏目 Begin-->
+<div class="Hotright">
+  <div class="HboxR">
+    <!--{if MEMBER_ID<1}-->
+    <span>还没有微博客帐号？<a href="index.php?mod=member">注册</a></span>
+    <br>
+    <span>已有帐号，<a href="index.php?mod=login">请点此登录</a></span>
+    <!--{else}-->
+	<div class="create_qun_b">
+	 <a class="create_button" href="index.php?mod=event&code=pevent">发起活动</a>
+	</div>
+	<!--{/if}-->
+  </div>
+	<!--热点推荐 Begin-->
+	<div class="HboxR">
+	  <div class="vote_line">活动推荐</div>
+	  <ul class="followList act_ul">
+	  <!--{eval $i = 0}-->
+      <!--{loop $hot_event $key $val}-->
+      <!--{eval $i++}-->
+      <!--{if $i<4}-->
+  	    <li class="pane">
+  	      <div class="fBox_l">
+  	        <a href="index.php?mod=event&code=detail&id=$val[id]" title="{$val[title]}">
+  	          <img src="{$val[image]}" width="60" height="60">
+  	        </a>
+  	      </div>
+  	      <div class="fBox_r">
+  	        <p class="ff_1 w_num"><a href="index.php?mod=event&code=detail&id=$val[id]" title="{$val[title]}">{$val[title]}</a></p>
+			<p class="ff_1">{$val[show]}</p>
+  	        <p class="ff_1">{$val[app_num]}人报名</p>
+  	      </div>
+  	    </li>
+	  <!--{else}-->
+	  <li>
+	    <span class="boxRl"><a href="index.php?mod=event&code=detail&id=$val[id]" title="{$val[title]}">{$val[title]}</a></span>
+	    <span style="float:right;">({$val[app_num]}人报名)</span>
+	  </li>
+	  <!--{/if}-->
+  	  <!--{/loop}-->
+			</ul>
+		</div>
+	<!--热点推荐 End-->
+	
+	<!--活动达人 Begin-->
+	
+	<div class="HboxR">
+		<div class="vote_line">活动达人</div>
+			<ul class="sideul2">
+      <!--{loop $uids $key $val}-->
+		  <li class="h_h2"><a href="index.php?mod={$hd_daren[$val][username]}" target="_blank"><img onerror="javascript:faceError(this);" src="{$hd_daren[$val][face]}" title="{$hd_daren[$val][nickname]}" class="manface" onmouseover="get_user_choose({$hd_daren[$val][uid]},'_user',{$hd_daren[$val][uid]})" onmouseout="clear_user_choose()"/></a>
+		  <b><a href="index.php?mod={$hd_daren[$val][username]}" target="_blank">{$hd_daren[$val][nickname]}</a></b>
+		  <div id="user_{$hd_daren[$val][uid]}_user" class="layS2"></div>
+		  </li>
+  	  <!--{/loop}-->
+			</ul>
+	</div>
+	<!--活动达人 End-->
+
+</div>

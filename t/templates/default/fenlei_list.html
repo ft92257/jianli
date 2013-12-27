@@ -1,0 +1,32 @@
+<h3>下面是你发起的分类信息，可以选择某个信息添加到微博：</h3>
+<!--{if $count}-->
+	<div id="myvote_list_wp">
+		<ul>
+			<!--{loop $list $value}-->
+				<li>
+					<div class="myvote_item_l">
+						<input name="fenlei_title" type="radio" value="{$value['radio_value']}" id="{$value['id']}"/><label for="{$value['id']}">{$value['title']}</label>
+					</div>
+					<div class="myvote_item_r">
+						<a href="$value['fenlei_url']" target="_blank">查看</a>
+					</div>
+				</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<!--{if $multi}-->
+		<div class="myvote_multi">$multi</div>
+	<!--{/if}-->
+	<div>
+		<input onclick="addFenleiUrl2Publish();" type="button" value="添 加" class="shareI"/>
+	</div>
+	<script language="javascript">
+		function addFenleiUrl2Publish()
+		{
+			var fenleiUrl = $("input[name='fenlei_title']:checked").val();
+			$('#i_already').val(fenleiUrl);
+		}
+	</script>
+<!--{else}-->
+	你还没有发布过分类信息呢!
+<!--{/if}-->

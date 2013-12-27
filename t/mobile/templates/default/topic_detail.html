@@ -1,0 +1,76 @@
+<!--{template "header"}-->
+
+<!--{if !empty($detail)}-->
+<div data-role="content" id="topic_view_wp">
+    <!--微博正文 Begin-->
+    <div id="wb_view">
+    
+        <!--导航 Begin-->
+        <div class="v_nav" onclick="goToUserInfo('{$detail[uid]}')">
+            <div class="n_content">
+                <img src="{$detail['face']}" />
+                <span class="n_title">{$detail['nickname']}</span>
+            </div>
+            <div class="arrow"></div>
+        </div>
+        <!--导航 End-->
+        
+        <!--微博详情 Begin-->
+        <div class="wb_detail" id="wb_detail_wp">
+            <div>
+				{$detail['content']}
+            </div>
+            
+            <!--{if $detail['image_list']}-->
+            <div class="share">
+                <!--{loop $detail['image_list'] $image}-->
+                    <a href="{$image['image_big']}"><img class="author" src="{$image['image_small']}" style="width:200px; height:200px;" /></a>
+                    <br />
+                <!--{/loop}-->
+            </div>
+            <!--{/if}-->
+            
+            <!--父级模块 Begin-->    
+            <!--{if $detail['roottid'] > 0}-->
+                <!--{eval $parent=$parent_info}-->
+                <div class="tips_ico"></div>
+                <div class="wbf">
+                	<!--{if !empty($parent)}-->
+                        <div><a href="">{$parent['nickname']}</a> : {$parent['content']}</div>
+                        <!--{if $parent['image_list']}-->
+                            <div class="share">
+                                <!--{loop $parent['image_list'] $image}-->
+                                    <img class="author" src="{$image['image_small']}" style="width:200px; height:200px;" />
+                                    <br />
+                                <!--{/loop}-->
+                            </div>
+                        <!--{/if}-->
+                    <!--{else}-->
+                    	原始微博已删除
+                    <!--{/if}-->
+                </div>
+            <!--{/if}-->
+            <!--父级模块 End-->
+            
+            <!--转发评论 Begin-->
+            <div class="btn_bc">
+                <div class="btn_forward" onclick="goToForwardEditView('{$detail[tid]}')"><div class="forward_num">{$detail['forwards']}</div></div>
+                <div class="btn_reply" onclick="goToCommentList('{$detail[tid]}');"><div class="reply_num">{$detail['replys']}</div></div>
+            </div>
+            <!--转发评论 End-->
+            
+            <!--来自 Begin-->
+            <div class="from">
+                <span style="margin-right:10px;">{$detail['detail']}</span>
+                <span>{$detail['from_string']}</span> 
+            </div>
+            <!--来自 End-->                                       
+        </div>
+        <!--微博详情 End-->
+        
+    </div>
+    <!--微博正文 End-->
+</div>
+<!--{/if}-->
+
+<!--{template "footer"}-->

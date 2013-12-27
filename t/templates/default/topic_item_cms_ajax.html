@@ -1,0 +1,37 @@
+<!--{if $val[uid]}-->
+{template "user_face_menu"}
+<!--{else}-->
+<div class="wb_l_face"><div class="avatar"><img src="{$val[face]}" title="未在微博登录的网站用户" onerror="javascript:faceError(this);" /></div></div>
+<!--{/if}-->
+<div class="Contant">
+	<div style="_overflow:hidden">
+		<div class="oriTxt">
+			<p class="utitle">
+			<!--{if $val[uid]}-->
+			{template "user_signature"}
+			<!--{else}-->
+			<span class="un"><a title="未在微博登录的网站用户" href="javascript:;" >{$val[nickname]}</a></span>
+			<!--{/if}-->
+			<span class="ut"><a href="{$val[cmsurl]}" target="_blank">{$val[dateline]}</a></span>
+			</p>
+			<!--{if $val[title]}-->
+			<p>〖{$val[title]}〗</p>
+			<!--{/if}-->
+			<span id="c_{$val[pid]}_short">{$val[content]}</span>
+			<span id="c_{$val[pid]}_full" style="display:none;">{$val[content_full]}</span>
+			<!--{if $val[longtext]}-->
+				<span>
+				<a id="linktext_{$val[pid]}" href="javascript:;" onclick="item_longtext('{$val[pid]}');return false;">查看全文</a>
+				</span>
+			<!--{/if}-->
+			<div class="from"><div class="option"><ul><li><span>
+			<!--{if $val[replys]}-->
+			<a id="topic_list_reply_{$val[tid]}_aid" href="javascript:void(0)" onclick="replyTopic({$val[tid]},'reply_area_{$val[tid]}','{$val[replys]}',0,0,{item:'cms'});return false;">评论 ({$val[replys]})</a></span></li><li><span><a href="{$val[replyurl]}" target="_blank">{$val[replytime]}</a>
+			<!--{else}-->
+			评论 ({$val[replys]})&nbsp;&nbsp;</span></li><li><span>{$val[replytime]}
+			<!--{/if}-->
+			</span></li></ul></div><div class="mycome">来自<a href="{$val[typeurl]}" target="_blank">网站 - {$val[typetitle]}</a></div></div>
+		</div>
+	</div>
+	<div id="reply_area_{$val[tid]}"></div>
+</div>

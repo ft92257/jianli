@@ -1,0 +1,168 @@
+<!--{if IN_FRAME}-->
+<script type="text/javascript" src="./templates/default/js/share.js"></script>
+<script type="text/javascript" src="./templates/default/js/validate.js"></script>
+<style type="text/css">
+html,body{background:transparent;margin:0px;width:100%}
+td{font-size:12px; line-height:20px;}
+</style>
+<!--{/if}-->
+<div id="main_warp">
+<ul id="#login_register" class="shadetabs laleft6">
+<li class="selected"><a href="index.php?mod=login" rel="loginTab">用户登录</a></li>
+<li><a href="index.php?mod=member" rel="registerTab">用户注册</a></li>
+</ul>
+<div class="mContain mContain_B3" style="margin-top:-1px;">
+<div class="clearer">
+<div id="loginTab">
+<form action="index.php?mod=login&code=dologin" method="post" onsubmit="return Validator.Validate(this,3);">
+<input type="hidden" name="referer" value="{$referer}">
+				<table border="0" cellspacing="7" cellpadding="0" width="100%" >
+					<!--{if $question_error==false}--><tr>
+					<td width="200" align="right" valign="middle">帐户/昵称：</td>
+					<td width="770" valign="middle" class="desc">
+					<input name="username" id='username_login' type="text"  class="clear_input" datatype="LimitB" min="1" msg="用户名不能为空" />
+					</td>
+					</tr>
+					<tr>
+					<td align="right">密 码：</td>
+					<td><input name="password" type="password" id='password_login' class="clear_input" datatype="LimitB" min="1" msg="密码不能为空" />&nbsp;&nbsp;<a href="index.php?mod=forget" target="_top" class="cRed4">取回密码</a>
+					</td>
+					</tr>
+					<tr>
+					<!--{else}--><input type="hidden" name="username" value="{$this-&gt;Post[username]}"><input type="hidden" name="password" value="{$this-&gt;Post[password]}">
+					<!--{/if}--><td align="right" valign="top">安全提问：</td>
+					<td>{$question_select}<br>
+					<span class="desc">如果您设置了安全提问，请在此输入正确的问题和回答<span></span></span></td>
+					</tr>
+					<tr>
+					<td align="right">答案：</td>
+					<td><input name="answer" type="text" class="clear_input" /> 　</td>
+					</tr>
+					<tr>
+					<td align="right"><input name="setcookie" type="checkbox" value="1" checked="checked" style="border:0" /></td>
+					<td class="desc">记住我，下次自动登录 </td>
+					</tr>
+					<tr>
+					<td colspan="2" align="center">
+					<button type="submit" >确定</button>
+					&nbsp;&nbsp;
+					</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="registerTab" style="display:none">
+			<form method="post" action="index.php?mod=member&code=doregister" name="reg" id="member_register" onsubmit="return Validator.Validate(this,3);">
+				<input type="hidden" name="referer" value="{$referer}">
+				<table width="100%" border="0" cellspacing="0" cellpadding="5">
+	<input name='role_type' id='role_type_normal' type='hidden' value='normal'>
+					<tr>
+					<td width="200" align="right" valign="middle">帐户/昵称：</td>
+					<td width="770" valign="middle" class="desc">
+					<input name="username" type="text" id="username_register" class="clear_input" maxlength="50" /> 由3-15位字母、数字和下划线组成 
+					<div id="check_username_result" style="display:none;"></div>
+					</td>
+					</tr>
+					<tr>
+					<td align="right" valign="middle">登录密码：</td>
+					<td valign="middle" class="desc"><input type="password" name="password" id="password_register" maxlength="12" class="clear_input" /> 需5位以上 </td>
+					</tr>
+					<tr>
+					<td align="right" valign="middle">重复密码：</td>
+					<td valign="middle" class="desc">
+					<input type="password" name="password2" id="password2" maxlength="12" class="clear_input" onblur="Validator.Validate($('member_register'),3,this.name)" />&nbsp;&nbsp;
+					<!--onblur="Validator.Validate($('member_register'),4,this.name)"--></td>
+					</tr>
+					<tr>
+					<td align="right" valign="middle">联系Email：</td>
+					<td valign="middle" class="desc"><input type="text" name="email" id="email_input" value class="clear_input" /> 用于验证及找回密码 
+					<div id="check_email_result" class="error" style="display:none">
+					</div>
+					</td>
+					</tr>
+				</table>
+				<div>
+					<table width="100%" border="0" cellspacing="0" cellpadding="2">
+						<tr>
+						<td colspan="2" align="center"><br>
+					<button type="submit" >确定</button>
+					&nbsp;&nbsp;
+					</td>
+						</tr>
+					</table>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<script language="JavaScript" type="text/javascript">
+var validateRegularList={
+		username:{dataType:"LimitB",min:'3',max:'15',msg:"用户名必须在3至15个字节以内"},
+		password:{dataType:"LimitB",min:"5",msg:"密码过短，请设成5位以上。"},
+		password2:{dataType:"Repeat",to:"password",msg:"两次输入的密码不一致"},
+		email:{dataType:"Email",msg:"信箱格式不正确"},
+		truename:{require:false,dataType:"Truename",msg:"请填写真实姓名"}
+}
+Validator.SetRegular("member_register",validateRegularList);
+</script>
+
+<script language="JavaScript" type="text/javascript">
+Event.observe('username_register','blur',function (){check('username')});
+Event.observe('email_input','blur',function (){check('email')});
+function syn()
+{
+	Event.observe('username_register','keyup',function (){$('username_login').value=$('username_register').value;});
+	Event.observe('password_register','keyup',function (){$('password_login').value=$('password_register').value;});
+	Event.observe('username_login','keyup',function (){$('username_register').value=$('username_login').value;});
+	Event.observe('password_login','keyup',function (){$('password_register').value=$('password_login').value;});
+}
+syn();
+function check(obj)
+{
+	var _objList={username:'用户名',email:'E-MAIL地址'};
+	var _objValue=$(obj+'_register').value;
+	if(_objValue.length==0)
+	{
+		return false;
+	}
+	if(Validator.Validate($('member_register'),3,obj)!=true)
+	{
+		Element.hide($("check_"+obj+"_result"));
+		return false;
+	}
+
+	var _onComplete=function(r)
+	{
+		var response=r.responseText.evalJson();
+		if(response.result!=true)
+		{
+			$("check_"+obj+"_result").className="error";
+		}
+		else
+		{
+			$("check_"+obj+"_result").className="succeed";
+		}
+		Element.update("check_"+obj+"_result",response.msg);
+		Element.show("check_"+obj+"_result");
+	};
+	var _onLoading=function()
+	{
+		Element.show('loadingMessage');
+		Element.update('loadingMessage','正在检查'+_objList[obj]+'是否可注册...');
+	};
+	if(Cache.get(obj)==_objValue)return false;
+	new Ajax.Request(
+		'ajax.php?mod=member&code=check_'+obj,
+		{
+			parameters:Form.Element.serialize($(obj+'_register')),
+			onComplete:_onComplete
+		}
+	)
+	Cache.save(obj,_objValue);
+}
+</script>
+
+<script type="text/javascript">
+	initializetabcontent("#login_register");
+</script>

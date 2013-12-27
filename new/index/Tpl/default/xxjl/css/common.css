@@ -1,0 +1,7 @@
+body{font-size:12px;font-family:"宋体";color:#1F1813;}
+*{padding:0;margin:0;}
+a{outline: none;color:#2097DD;}
+a img{border:0;}
+a:active {star:expression(this.onFocus=this.blur());}
+:focus {outline:0;}
+li{list-style-type:none;}

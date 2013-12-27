@@ -1,0 +1,19 @@
+<!--{template "header"}-->
+
+<div data-role="content" id="message_wp">
+<script language="javascript">
+	<!--{if $code == 404 || $code == 411}-->
+		accessError(parseInt("{$code}"));
+	<!--{elseif $code == 400}-->
+		showTips("没有数据", 0);
+	<!--{elseif $code == 410}-->
+		goToLogin();
+	<!--{elseif $code == 300}-->
+		showTips("用户不存在或者已经被删除了", 0);
+	<!--{else}-->
+		showTips("未知错误", 0);
+	<!--{/if}-->
+</script>
+</div>
+
+<!--{template "footer"}-->

@@ -1,0 +1,133 @@
+{template admin/header}
+<!--{eval if($this->Code == 'manage') $manage='current'}-->
+<!--{eval if($this->Code == 'setting') $setting='current'}-->
+<div class="nav3">
+  <ul class="cc">
+    <li class="{$fenlei}">
+      <a href="admin.php?mod=fenlei" class='{$fenlei}'>栏目管理</a>
+    </li>
+    <li class="$module">
+      <a href="admin.php?mod=module" class='{$module}'>模块管理</a>
+    </li>
+    <li class="$newmodule">
+      <a href="admin.php?mod=module&code=newmodule" class='{$module}'>创建模块</a>
+    </li>
+	<li class="{$setting}">
+	  <a href="admin.php?mod=fenlei&code=setting">基本设置</a>
+	</li>
+	<li class="{$manage}">
+	  <a href="admin.php?mod=fenlei&code=manage">分类管理</a>
+	</li>
+  </ul>
+</div>
+<!--{if $this->Code == 'setting'}-->
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=fenlei&code=dosetting" method="post" name="setting">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">基本设置</td>
+	</tr>
+	<tr>
+		<td class="altbg1" width="150">
+		是非开启分类应用
+		</td>
+		<td class="altbg2">
+			<input name='config' id='open' type='radio' value='1' class="radio" {$checked['open'][1]} >
+			<label for='open_1'>是</label>
+			<input name='config' id='open' type='radio' value='0' class="radio" {$checked['open'][0]} >
+			<label for='open_0'>否</label>	
+		</td>
+	</tr>
+</table>
+<center><input class="button" type="submit" name="setting_submit" value="提 交"></center>
+</form>
+</div>
+<!--{/if}-->
+<!--{if $this->Code == 'manage'}-->
+	<form action="admin.php" method="get" name="search">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="2">搜索分类信息</td>
+		</tr>
+		<!--<input name="per_page_num" type="hidden" value="{$per_page_num}">-->
+		<tr>
+			<td class="altbg1" width="150">
+			分类信息ID:
+			</td>
+			<td class="altbg2">
+			<input name="id" type="text" id="id" value="{$id}" size="40">		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">
+			分类信息标题:
+			</td>
+			<td class="altbg2">
+			<input type="text" name="title" value="{$title}" size="40">		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">&nbsp;</td>
+			<td class="altbg2">
+			  <button name="do" value='' type="submit" class="button">搜索一下</button> &nbsp;
+			  <button class="button" type="button" onclick="window.location.href='admin.php?mod=fenlei&code=manage';return false;">全部信息</button>
+			  <input name="mod" type="hidden" value="fenlei">
+			  <input name="code" type="hidden" value="manage">
+			</td>
+		</tr>
+		
+	</table>
+	</form>
+
+	<form method="post" action="admin.php?mod=fenlei&code=delete">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<!--<td width="30">
+				<input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'ids')" ></td>-->
+				<td>信息标题</td>
+				<td width="140">信息主题</td>
+				<td width="140">时间</td>
+				<!--<td width="120" align="center">推荐</td>-->
+				<td width="140"><label><input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'ids')" >操作</label></td>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $rs $value}-->
+				<tr align="center">
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+						<a href="index.php?mod=event&code=detail&id={$value[id]}" target="_blank">{$value[title]}</a>
+						<input type="hidden" name="vid[]" value="$value[id]" >
+					</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">{$value[fname]}</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED"><!--{eval echo my_date_format($value[edittime], 'Y-m-d')}--></td>
+					<!--<td class="altbg1" style="border-bottom:1px dotted #EDEDED" align="center">
+					  <input class="checkbox" type="checkbox" name="up_id[]" value="$value[id]" {$value[recd_checked]}>
+					</td>-->
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					  <a href="index.php?mod=fenlei&code=edit&fid=$value[fid]&id=$value[id]" target="_blank">编辑</a>
+					  <span>&nbsp;|&nbsp;</span>
+					  <label>
+					    <input class="checkbox" type="checkbox" name="ids[]" value="$value[id]" >
+					    <A href="admin.php?mod=fenlei&code=delete&id={$value[id]}" onclick="return confirm('你确实要删除吗?不可恢复');">删除</A>&nbsp;
+					  </label>
+					</td>
+				</tr>
+				<!--{/loop}-->
+				<!--{if $page_arr[html]}-->
+				<tr align="center">
+					<td colspan="6" class="altbg1">
+					{$page_arr[html]}
+					</td>
+				</tr>
+				<!--{/if}-->
+			<!--{else}-->
+				<tr align="center">
+					<td colspan="5">
+						还没有分类信息记录
+					</td>
+				</tr>
+			<!--{/if}-->
+		</table>
+	
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+<!--{/if}-->

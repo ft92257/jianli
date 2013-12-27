@@ -1,0 +1,122 @@
+<!--{template admin/header}-->
+
+<form method="post" action="admin.php?mod=dzbbs&code=dzbbs_save">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="3">使用说明</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="altbg1">
+			1、功能介绍：在微博中直接显示论坛帖子，开启后在我的首页增加一个“我的论坛”的tab，点击会显示Discuz论坛相应的帖子！<br>
+			2、配置说明：进行此配置前请先通过“UCenter整合”完成记事狗微博与论坛的用户整合！</td>
+		</tr>
+		<tr class="header">
+			<td colspan="3">Discuz!论坛帖子调用</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>开启Discuz!论坛帖子调用:</b>
+			</td>
+            <td class="altbg1" width="20%">{$dzbbs_enable}			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">开启后在我的首页增加一Tab“我的论坛”显示论坛的帖子</span><br />             
+			</td>
+		</tr>
+		<tr class="header">
+			<td colspan="3">参数设置</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>论坛数据库地址:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_host]" value="{$dzbbs[db_host]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">如果Discuz!论坛与微博在同一服务器上填：localhost，否则请填写IP地址</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>论坛数据库编码类型:</b>
+            </td>
+            <td class="altbg1" width="20%">{$dzbbs_charset}		
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库字符集编码类型（gbk或utf-8）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库名:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_name]" value="{$dzbbs[db_name]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库名称</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库用户名:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_user]" value="{$dzbbs[db_user]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库用户名称</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库密码:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="password" name="dzbbs[db_pass]" value="{$dzbbs[db_pass]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库用户密码</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库端口:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_port]" value="{$dzbbs[db_port]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库连接端口号（默认3306，无需修改）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>数据库表前缀:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_pre]" value="{$dzbbs[db_pre]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛数据库表前缀符号，（Discuz!系列默认是:cdb_，Discuz!X系列默认是:pre_）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>论坛访问地址:</b>
+            </td>
+            <td class="altbg1" width="20%"><input type="text" name="dzbbs[db_url]" value="{$dzbbs[db_url]}" />			
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛URL访问地址（结尾不要加“/”，例如：http://www.discuz.net）</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="20%">
+                <b>论坛版本类型:</b>
+            </td>
+            <td class="altbg1" width="20%">{$dzbbs_dzver}
+			</td>
+			<td class="altbg2">
+                <span class="smalltxt">Discuz!论坛程序版本号（目前只支持：discuz! 6.0以上版本 和 discuz X系列）</span><br />
+			</td>
+		</tr>
+	</table>
+	<br />
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交" /></center>
+</form>

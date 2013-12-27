@@ -1,0 +1,74 @@
+<!--{if $val[attachid] && $val[attach_list]}-->
+<!--{eval $val[attach_key]=$val[tid].'_'.mt_rand();}-->
+<ul class="attachList" id="attach_area_{$val['attach_key']}">
+	<!--{loop $val[attach_list] $iv}-->
+	<li><img src="{$iv[attach_img]}" class="attachList_img" />
+	<div class="attachList_att">
+	<p class="attachList_att_name"><b>{$iv[attach_name]}</b>
+	&nbsp;（{$iv[attach_size]}）</p>
+	<p class="attachList_att_doc"><a href="javascript:void(0);"
+		onclick="downattach({$iv[id]});">点此下载</a>（需{$iv[attach_score]}积分，已下载{$iv[attach_down]}次）</p>
+	</div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->
+<!--{if $val[imageid] && $val[image_list]}-->
+<!--{eval $val[image_key]=$val[tid].'_'.mt_rand();}-->
+<ul class="imgList" id="image_area_{$val['image_key']}">
+	<!--{loop $val[image_list] $iv}-->
+	<!--{eval $ivw=min(460, $iv[image_width]);}-->
+	<li><a href="{$iv[image_original]}" class="artZoomAll"
+		rel="{$iv[image_small]}" rev="{$val[image_key]}"><img
+		src="./images/grey.gif" data-original="{$iv[image_small]}" /></a>
+	<div class="artZoomBox" style="display: none;">
+	<div class="tool"><a title="向左转" href="#" class="imgLeft">向左转</a><a 
+		title="向右转" href="#" class="imgRight">向右转</a><a title="查看原图"
+		href="{$iv[image_original]}" class="viewImg">查看原图</a></div>
+	<a class="maxImgLinkAll" href="{$iv[image_original]}"><img
+		 src="./images/grey.gif" data-original="{$iv[image_original]}" maxWidth="460" width="$ivw" class="maxImg"></a></div>
+	</li>
+	<!--{/loop}-->
+</ul>
+<!--{/if}-->
+
+<!--投票 Begin-->
+<!--{if $val['is_vote'] > 0}-->
+<!--{eval $val['vote_key']=$val['tid'].'_'.$val['random']}-->
+<ul class="imgList" id="vote_detail_{$val['vote_key']}">
+	<li><a href="javascript:;"
+		onclick="getVoteDetailWidgets('{$val['vote_key']}', {$val['is_vote']});"><img
+		src='./images/vote_pic_01.gif' /></a></li>
+</ul>
+<div id="vote_area_{$val['vote_key']}" style="display: none;">
+<div class="blogTxt">
+<div class="top"></div>
+<div class="mid" id="vote_content_{$val['vote_key']}"></div>
+<div class="bottom"></div>
+</div>
+</div>
+<!--{/if}-->
+<!--投票 End-->
+
+
+<!--{if $val[videoid] and $this->Config[video_status]}-->
+<div class="feedUservideo"><a
+	onClick="javascript:showFlash('{$val[VideoHosts]}', '{$val[VideoLink]}', this, '{$val[VideoID]}','{$val[VideoUrl]}');">
+<div id="play_{$val[VideoID]}" class="vP"><img
+	src="images/feedvideoplay.gif" /></div>
+<img src="{$val[VideoImg]}" style="border: none" /> </a></div>
+<!--{/if}-->
+
+<!--{if $val[musicid]}-->
+<!--{if $val[xiami_id]}-->
+<div class="feedUserImg"><embed width="257" height="33"
+	wmode="transparent" type="application/x-shockwave-flash"
+	src="http://www.xiami.com/widget/0_{$val[xiami_id]}/singlePlayer.swf"></embed></div>
+<!--{else}-->
+<div class="feedUserImg">
+<div id="play_{$val[MusicID]}"></div>
+<img src="images/music.gif" title="点击播放音乐"
+	onClick="javascript:showFlash('music', '{$val[MusicUrl]}', this, '{$val['MusicID']}');"
+	style="cursor: pointer; border: none;" /></div>
+<!--{/if}-->
+<!--{/if}-->

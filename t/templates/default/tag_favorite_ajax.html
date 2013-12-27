@@ -1,0 +1,6 @@
+<!--{loop $my_favorite_tags $val}-->
+<span id="favorite_{$val[tag]}">
+ <a href="index.php?mod=tag&code={$val[tag]}" target="_blank">{$val[tag]}</a>
+ <a href="javascript:void(0);" onclick="favoriteTag('{$val[tag]}','delete');return false;" title="取消关注">x</a>
+</span>
+<!--{/loop}-->

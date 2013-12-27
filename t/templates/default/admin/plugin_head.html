@@ -1,0 +1,15 @@
+<div class="nav3">
+	<ul class="cc">
+			<!--{if $config}-->
+			<li><a href="admin.php?mod=plugin&code=config&id={$pluginid}">设置</a></li>
+			<!--{/if}-->
+			<!--{if $pluginmenu}-->
+			<!--{loop $pluginmenu $managemenu}-->
+			<li <!--{if $managemenu['url'] == $filename}-->class="current"<!--{/if}-->><a href="admin.php?mod=plugin&code=manage&id={$pluginid}&identifier={$managemenu['identifier']}&pmod={$managemenu['pmod']}">{$managemenu['name']}</a></li>
+			<!--{/loop}-->
+			<!--{/if}-->
+	</ul>
+</div>
+<style>
+	.smalltxt{ margin-left:20px; color:#444043;}
+</style>

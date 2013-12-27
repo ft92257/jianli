@@ -1,0 +1,102 @@
+<!--{template "topic_header"}-->
+<style type="text/css">
+ul.mycon li{ width:65px;}
+.tabnav{ margin:5px auto; width:540px; height:40px; border-bottom:1px solid #e2e2e2;}
+.tabnav h2{ float:left;}
+.tabnav .em_send{ display:inline; font-size:12px; margin-left:10px; font-weight:500;}
+.tabnav .em_right{ float:right; margin-top:17px;}
+.sendBox .text-area{ width:532px;}
+.sendBox .sendBox_b .save{ float:right; margin:10px 0 0 0;}
+</style>
+<div class="main {$t_col_main}">
+
+<!--此处三栏-->
+<div class="t_col_main_si {$t_col_main_side}">
+<div class="t_col_main_fl">
+	<div id="topic_index_left_ajax_list">
+	<!--{if MEMBER_STYLE_THREE_TOL == 1}-->
+	 {template "topic_member_left.inc"}
+	<!--{/if}-->
+	</div>
+</div>
+</div>
+<!--此处三栏-->    
+  <div class="mainL">
+    <div class="tabnav">
+      <h2>我和&nbsp;{$nickname}&nbsp;的对话<a href="index.php?mod=pm&code=send&folder=send" class="em_send">发私信</a></h2>
+      
+      <span class="em_right"><a href="index.php?mod=pm&code=list">返回我的私信</a></span>
+    </div>
+    
+    
+    <!--{if $touid > 0}-->
+    <!--此处发布框-->
+    <div class="sendBox">
+      <div class="sendBox_b">
+        <p>发私信给&nbsp;{$nickname}</p>
+        <p>
+      	  <input type="hidden" id="to_user" name="to_user" value="{$nickname}">
+          <textarea id="message" class="text-area" name="message" rows="3" cols="50"></textarea>
+          <button id="submit" class="save" onclick="sendMsg();">发送</button>
+        </p>
+      </div>
+    </div>
+    <!--此处发布框-->
+    <!--{/if}-->
+    
+    <div id="msg"></div>
+    <div id="msgList">
+	  {template "msg_list_ajax"}
+    </div>
+  </div>
+<!--{template "topic_right.inc"}-->
+</div>
+<!--{template "topic_footer"}-->
+<script type="text/javascript">
+function sendMsg(){
+	var to_user = $('#to_user').val();
+	if('' == to_user){
+		show_message("没有发送对象哦");return false;
+	}
+	var message = $('#message').val();
+	if('' == message){
+		show_message("没有发送内容哦");return false;
+	}
+	$('#msg').val('私信发送中，请稍等...');
+	$.post(
+		'ajax.php?mod=pm&code=do_add',
+		{
+			to_user:to_user,
+			message:message
+		 },
+		function(d){
+			if(''!=d)
+			{
+				show_message(d);return false;
+			}else{
+				msgList();
+			}
+		}
+	);
+}
+
+function msgList(){
+	$.post(
+		'ajax.php?mod=pm&code=msglist&uid=$touid',
+		function(d){
+			$('#msgList').html(d);
+			show_message('私信发送成功',1);
+			$('#msg').val('');
+			$('#message').val('');
+			$('#message').focus();
+		}
+	);
+}
+
+$("#message").bind('keydown',function(event){
+	event = event || window.event;
+    if (event.keyCode == 13 && event.ctrlKey) {
+        $("#submit").click();
+    }
+});
+</script>

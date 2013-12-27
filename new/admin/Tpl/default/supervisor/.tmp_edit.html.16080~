@@ -1,0 +1,93 @@
+<include file="public:header" />
+<script type="text/javascript"   src="__ROOT__/statics/js/kindeditor/kindeditor-min.js"></script>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/kindeditor/skins/default.css" />
+<form action="" method="post" name="myform" id="myform"   enctype="multipart/form-data" style="margin-top:10px;">
+  <div  class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',6,1);">基本信息</li>
+   	<li id="tab_setting_2" class="" onclick="SwapTab('setting','on','',6,2);">案例</li>
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          <tr>
+            <th></th>
+            <td></td>
+          </tr>
+        <tr>
+          <th width="100">姓名 :</th>
+          	<td>
+            	<input type="text" name="name" id="name" rel="title_color" class="input-text iColorPicker" size="53" value="{$data.name}" /> *
+			</td>
+		</tr>
+		<tr>
+          <th width="100">所属公司 :</th>
+          	<td>
+            	<input type="text" name="company" id="company" rel="title_color" class="input-text iColorPicker" value="{$data.company}" /> *
+			</td>
+		</tr> 
+		<tr>
+          <th width="100">头像 :</th>
+          	<td>
+				<img src='{$IMAGE_ROOT}{$data.avatar}' width="120" height="120" />
+            	<input type="file" name="avatar" id="avatar" rel="title_color" class="input-text iColorPicker" />
+			</td>
+		</tr>
+		<tr>
+            <th width="100">介绍 :</th>
+            <td><textarea class="input-text iColorPicker"  style=" width:400px; height:100px" name="introduction">{$data.introduction}</textarea>
+					</td>
+        </tr> 
+		<tr>
+          <th width="100">职位 :</th>
+          	<td>
+		{$profession_options} *
+		</td>
+		</tr> 
+		<tr>
+          <th width="100">联系电话 :</th>
+          	<td>
+            	<input type="text" name="telephone" id="telephone" rel="title_color" class="input-text iColorPicker" value="{$data.telephone}" />
+			</td>
+		</tr>          
+		<tr>
+		  <th>状态</th>
+		  <td>显示:<input type="radio" name="status" value="1" <if condition="$data.status eq 1">checked="checked"</if> />隐藏:<input type="radio" name="status" value="0" <if condition="$data.status eq 0">checked="checked"</if> /></td>
+		</tr>
+        </table>
+      </div>
+	
+	<div id="div_setting_2" class="contentList pad-10" style="display:none;">
+		<textarea id="case_info" name="case_info" style="width:700px;height:300px;">{$data.case_info}</textarea>
+	</div>
+      
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}"  name="dosubmit" class="button" id="dosubmit"></div>
+
+  
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			$('#div_'+name+'_'+i).show();
+			$('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			$('#div_'+name+'_'+i).hide();
+			$('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+function KE_show(id) {
+	KE.show({
+		id : id,
+		imageUploadJson : "{:U('company/KE_upload')}"
+	});
+}
+
+KE_show('case_info');
+
+</script>
+</body></html>

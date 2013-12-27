@@ -1,0 +1,45 @@
+<!--{template admin/header}-->
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>邮件提醒通知</td>
+	</tr>
+	<tr class="altbg1">
+      <td><ul>
+          <li>用户设定单条即时通知时显示的邮件标题及内容。</li>
+        <li>本页面的内容信息都保存在/setting/email_notice.php中，可以通过ftp直接修改</li>
+      </ul></td>
+  </tr>
+</table>
+<form method="post" action="{$action}"  enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+
+    <tr class="altbg1">
+      <td>开启邮件通知：<span class="altbg2">$open_notice_email</span> (开启前确认邮件发送设置,开启后用户可以设置邮@、评论、站内短信通知)</td>
+    </tr>
+  </table>
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+<tr align="center">
+  <td width="9%" rowspan="2" class="altbg2">@通知</td>
+  
+</tr>
+<tr align="center">
+  <td width="91%" height="30" align="left" class="altbg1"><textarea name="notice[at][content]" type="text" id="notice[at][content]" style="width:420px; height:80px;">{$notice[at][content]}</textarea></td>
+</tr>
+<tr align="center">
+  <td rowspan="2" class="altbg2">短信通知</td>
+  
+</tr>
+<tr align="center">
+  <td height="30" align="left" class="altbg1"><textarea name="notice[pm][content]" type="text" id="notice[pm][content]" style="width:420px; height:80px;">{$notice[pm][content]}</textarea></td>
+</tr>
+<tr align="center">
+ <td rowspan="2" class="altbg2">评论通知</td>
+ 
+</tr>
+<tr align="center">
+  <td height="30" align="left" class="altbg1"><textarea name="notice[reply][content]" type="text" id="notice[reply][content]" style="width:420px; height:80px;">{$notice[reply][content]}</textarea>    </td></tr>
+</table>
+<center>
+<input class="button" type="submit" name="cronssubmit" value="提 交">
+</center>
+</form>

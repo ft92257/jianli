@@ -1,0 +1,50 @@
+<!--我的首页 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<!--{hook/global_usernav_extra2}-->
+  <script type="text/javascript">
+	$(document).ready(function(){
+		<!--{if 'created' == $filter}-->
+		right_show_ajax('{$member[uid]}','buddys_create_event','buddys_create_event');
+		<!--{/if}-->
+		<!--{if 'joined' == $filter}-->
+		right_show_ajax('{$member[uid]}','buddys_joined_event','buddys_joined_event');
+		<!--{/if}-->
+
+		right_show_ajax('{$member[uid]}','recd_event','recd_event');
+	});
+  </script>
+	<!--关注人发起的活动-->
+	<!--{if 'created' == $filter}-->
+	<div class="side">
+		<h3><!--{if $member['uid']==MEMBER_ID}-->我关注人发起的活动<!--{ELSE}-->{$member[gender_ta]}关注人发起的活动<!--{/if}--></h3>
+		<ul id="{$member[uid]}_buddys_create_event" class="FTL"></ul>
+	</div>
+	<!--{/if}-->
+	<!--关注人参与的活动-->
+	<!--{if 'joined' == $filter}-->
+	<div class="side">
+		<h3><!--{if $member['uid']==MEMBER_ID}-->我关注人参与的活动<!--{ELSE}-->{$member[gender_ta]}关注人参与的活动<!--{/if}--></h3>
+		<ul id="{$member[uid]}_buddys_joined_event" class="FTL"></ul>
+	</div>
+	<!--{/if}-->
+	<!--推荐活动-->
+	<div class="side">
+		<h3>热点推荐活动</h3>
+		<ul id="{$member[uid]}_recd_event" class="FTL"></ul>
+	</div>
+  <!--{template 'topic_right_common.ini'}-->
+  
+</div>
+</div>

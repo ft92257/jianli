@@ -1,0 +1,85 @@
+<include file='public:header' />
+
+<style>
+.parent img {
+	width:201px;
+	height:201px;
+	border:none;
+}
+.children img {
+	width:45px;
+	height:44px;
+	border:none;
+}
+</style>
+<div class="select_bg">
+	 <div class="select_content">
+	<div class="select_toptxt">  <a href="">线下监理 </a><a href="{:U('supervisor/index')}">> 选监理师</a><a href=""> > {$supervisor.name}</a><a href="#top"></a></div>
+     <div class="supervising">
+          <div class="supeivising_top">
+                <img src="__IMAGES__{$supervisor.avatar}" width=120 height=120 /> 
+                <div class="supeivising_top_right">
+   				  <p><span>{$supervisor.name}</span>[{$supervisor.profession}]</p>
+                     <div class="select_dianping"></div>
+                     <p>
+                       {$supervisor.introduction}
+                     </p>
+                     <p>所属监理公司：{$supervisor.company}   &nbsp;&nbsp;&nbsp;&nbsp;  本月预约：{$supervisor.reserve_month} &nbsp;     &nbsp;&nbsp;&nbsp;      累计预约：{$supervisor.reserve_total}</p>
+                     <p>服务区域：{$supervisor.service_area}  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;    <!--<a href="">67</a>条点评 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; -->     负责建立的项目：<a href="">{$supervisor.project_count}</a>    </p>
+					  <a href="{:U('reserve/index?sid=')}{$supervisor.id}" >  <img src="__ROOT__/statics/index/images/button2.png" id="super_img"  /></a>
+				 </div>
+          </div>
+          <div class="supeivising_bottom">
+               <h2>监理项目</h2>
+			   <volist name="caselist" id="val">
+               <div class="supeivising_bottom_one">
+                   <div class="super_t"><img src="__ROOT__/statics/index/resources/jls1.jpg" /></div>
+                   <div class="super_t">
+                        <a href=""><img src="__ROOT__/statics/index/resources/jls10.jpg" /></a>
+                        <a href=""><img src="__ROOT__/statics/index/resources/jls11.jpg" /></a>
+                        <a href=""><img src="__ROOT__/statics/index/resources/jls10.jpg" /></a>
+                        <a href=""><img src="__ROOT__/statics/index/resources/jls11.jpg" /></a>
+                   </div>
+     <div class="super_txt">
+                       <h3>净胜参请</h3>
+                       <p>易监理创立于1994年，汇聚大量来自统计大学的室内设计惊异昂，凭借专业的假装设计实力和惊异求精的施工记忆。
+</p>
+<!--<p><a href="">67</a>条点评  1523人浏览</p>-->
+                   </div>
+               </div>
+          	   </volist>
+          </div>
+		  
+		  
+		  <!--项目列表!!!! -->
+		<volist name="projectList" id="vo">
+		<div class="supeivising_bottom_one">
+			<div class="super_t parent">
+				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" title="点击查看大图 "><img id="middle_image_{$vo.pid}" src="{$url}{$vo[img][0]}" /></a></div>
+			<div class="super_t children">
+				<a href="{$url}{$vo[img][0]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][0]}" /></a>
+		        <a href="{$url}{$vo[img][1]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][1]}" /></a>
+				<a href="{$url}{$vo[img][2]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][2]}" /></a>
+		 		<a href="{$url}{$vo[img][3]}" rel="lightbox[{$vo.pid}]" onclick="showMiddleImage(this, {$vo.pid});return false;" title="点击查看中图 "><img src="{$url}{$vo[img][3]}" /></a>
+			</div>
+			<div class="super_txt">
+				<h3>{$vo.title}</h3>
+				<p>{$vo.content}</p>
+				<p><a href="">67</a>条点评  1523人浏览</p>
+			</div>
+		</div>
+		</volist>
+		 <!-- 项目列表结束 -->
+     </div>
+	 
+</div>
+</div>
+
+<script>
+function showMiddleImage(obj, pid) {
+	document.getElementById("middle_image_" + pid).src = obj.href;
+}
+	
+</script>	
+
+<include file='public:footer' />

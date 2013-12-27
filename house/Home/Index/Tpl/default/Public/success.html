@@ -1,0 +1,32 @@
+<include file="Public:header" />
+<title>操作成功</title>
+</head><body>
+
+<div class="showMsg"><h5>{$msgTitle}</h5>
+	<div class="main clearfix">
+		<present name="message" ><span style="font-size:24px;color:#0a0;">{$message}</span>
+		</present><br><br><br><br>
+		<present name="closeWin" >
+		<input type="button" name="close" value="{$lang.close}" onClick="window.close();">
+		</present>
+		<present name="jumpUrl" >
+		<p style="color:#666;">
+		系统将在  <span style="color:blue;font-weight:bold">{$waitSecond}</span>秒后自动跳转，如果不想等待，直接点击<a href="{$jumpUrl}">这里</a>
+		</p>
+		<script language="javascript">setTimeout("location.href = '{$jumpUrl}';",{$waitSecond*1000});</script>
+		</present>
+		<present name="returnjs" >
+		<script style="text/javascript">{$returnjs};</script>
+		</present>
+		<present name="dialog" >
+		<script style="text/javascript">
+		var dialog = "{$dialog}";
+		if (dialog!='') {
+			window.top.right.location.reload();window.top.art.dialog({id:dialog}).close();
+		}
+		</script>
+		</present>
+	</div>
+</div>
+
+<include file="Public:bottom" />

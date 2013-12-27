@@ -1,0 +1,64 @@
+{template "topic_header"}
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main3Box_m HotW HotW_vote">
+  <div id="topNews_1" class="Hotwarp">
+    <div class="Menubox2" style="width:540px;">
+    <ul>
+    <li><div  class="<!--{if $active['hot']}-->tago<!--{else}-->tagn<!--{/if}-->" > <A HREF="index.php?mod=vote&view=hot"><span>热门投票</span></A> </div></li>
+    <li><div class="<!--{if $active['new']}-->tago<!--{else}-->tagn<!--{/if}-->"> <A HREF="index.php?mod=vote&view=new"><span>最新投票</span></A> </div></li>
+    <!--{if MEMBER_ID > 0}-->
+    <li><div class="<!--{if $active['me']}-->tago<!--{else}-->tagn<!--{/if}-->"> <A HREF="index.php?mod=vote&view=me"><span>我的投票</span></A> </div></li>
+    <li><div class="<!--{if $active['fllow']}-->tago<!--{else}-->tagn<!--{/if}-->"> <A HREF="index.php?mod=vote&view=fllow"><span>我关注的人的投票</span></A> </div></li>
+    <!--{/if}-->
+    </ul>
+    </div>
+
+      <div id="listTopicArea">
+	  
+	  	<!--过滤器 Begin-->
+	  	<!--{if !empty($filter)}-->
+	  	<div style="margin:15px auto; width:540px;" id="vote_filter_wp">
+			<!--{if $view=='hot'}-->
+				<a href="index.php?mod=vote&view=hot&filter=t" {$filter_on['t']} >24小时</a>
+				<span style="color:#ccc; margin-right:5px; margin-left:5px;">|</span>
+				<a href="index.php?mod=vote&view=hot&filter=w" {$filter_on['w']} >7天</a>
+				<span style="color:#ccc; margin-right:5px; margin-left:5px;">|</span>
+				<a href="index.php?mod=vote&view=hot&filter=m" {$filter_on['m']} >30天</a>
+			<!--{elseif $view=='me'}-->
+				<a href="index.php?mod=vote&view=me&filter=created&uid={$uid}" {$filter_on['created']} >我发起的投票</a>
+				<span style="color:#ccc; margin-right:5px; margin-left:5px;">|</span>
+				<a href="index.php?mod=vote&view=me&filter=joined&uid={$uid}" {$filter_on['joined']} >我参与的投票</a>
+				<span style="color:#ccc; margin-right:5px; margin-left:5px;">|</span>
+				<a href="index.php?mod=vote&view=me&filter=new_update&uid={$uid}" {$filter_on['new_update']} >最近更新的投票</a>
+			<!--{elseif $view=='fllow'}-->
+				<a href="index.php?mod=vote&view=fllow&filter=created" {$filter_on['created']} >他们发起的投票</a>
+				<span style="color:#ccc; margin-right:5px; margin-left:5px;">|</span>
+				<a href="index.php?mod=vote&view=fllow&filter=joined" {$filter_on['joined']} >他们参与的投票</a>
+			<!--{/if}-->
+		</div>
+		<!--{/if}-->
+		<!--过滤器 End-->
+      <div class="Listmain">
+        <!--{if $count}-->
+        {template vote_list}
+        <!--{else}-->
+        <div style="margin-left:5px;">还没有投票。</div>
+        <!--{/if}-->
+      </div>
+    </div>
+  </div>
+  <!--{subtemplate 'vote_right'}-->
+</div>
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][vote][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

@@ -1,0 +1,36 @@
+<!--举报窗口 Begin-->
+<div class="dialog_inner">
+	<!--
+	<div class="T" > <span class="T_1" onmousedown="ReportDrag(this.parentNode.parentNode)">举报不良信息</span> <span class="T_2" onclick="ReportHidden()" title="关闭"></span> </div>-->
+	<div class="content">
+	  <form action="ajax.php?mod=topic&code=doreport" method="POST" enctype="multipart/form-data">
+		<table>
+		  <tr>
+			<td colspan="2">
+			<input id="report_tid" name="report_tid" style="display:none;" value="{$tid}"/>
+			<textarea name="report_content" id="report_content" class="textBox" style="width:340px;" onkeydown="ctrlEnter(event, 'report_btn');"></textarea></td>
+		  </tr>
+		  <tr>
+			<td><select name="report_reason" id="report_reason" style="width:200px">
+				<!--{eval $report_config = ConfigHandler::get('report');}-->
+				<option selected="" value="0">--请选择不良信息的类型--</option>
+				<!--{loop $report_config[reason_list] $key $val}-->
+				<option value="{$key}">{$val}</option>
+				<!--{/loop}-->
+			  </select></td>
+		  </tr>
+		</table>
+		<table style="width:100%">
+		  <tr>
+			<td><p style="color:#666;font-size:12px;">如果您在微博中发现有色情、暴力或者其它违规的内容,请提交上述表格，我们将尽快处理。您的隐私会得到严格的保护.</p></td>
+		  </tr>
+		</table>
+		<input type="hidden" id="report_url" name="report_url" value="" />
+		<div class="mIput" style="text-align:center;">
+		<input type="button" class="shareI" value="确 定" id="report_btn" onclick="ReportSub('report_tid','report_content','report_reason');return false;"/>
+		<input type="button" class="shareI" value="取 消" onclick="closeDialog('$this->Get[handle_key]');"/>
+		</div>
+	  </form>
+	</div>
+</div>
+<!--举报窗口 End-->

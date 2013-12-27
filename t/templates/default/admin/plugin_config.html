@@ -1,0 +1,34 @@
+{template admin/header}
+<div class="nav3">
+	<ul class="cc">
+			<li class="current"><a href="javascript:;">设置</a></li>
+			<!--{if $pluginmenu}-->
+			<!--{loop $pluginmenu $managemenu}-->
+			<li><a href="admin.php?mod=plugin&code=manage&id={$pluginid}&identifier={$managemenu['identifier']}&pmod={$managemenu['pmod']}">{$managemenu['name']}</a></li>
+			<!--{/loop}-->
+			<!--{/if}-->
+	</ul>
+</div>
+<style>
+	.smalltxt{ margin-left:20px; color:#444043;}
+</style>
+<div id="main_wp" class="mt10">
+<form action="admin.php?mod=plugin&code=configsave&id={$id}" method="post" name="">
+<table cellspacing="1" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="3">插件参数设置</td>
+	</tr>
+	<!--{loop $pluginvar $value}-->
+	<tr>
+		<td class="altbg1" width="150">{$value['title']}</td>
+		<td class="altbg2">{$value['pluginvar']}</td>
+		<td class="altbg2">说明：{$value['description']}</td>
+	</tr>
+	<!--{/loop}-->
+	<tr>
+		<td class="altbg2" colspan="3">&nbsp;</td>
+	</tr>
+</table>
+<center><input type="hidden" name="id" value="{$value['pluginid']}"><input class="button" type="submit" name="setting_submit" value="提 交"></center>
+</form>
+</div>

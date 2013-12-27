@@ -1,0 +1,42 @@
+<!--微博管理-->
+<div class="t_manger"> 
+  <span class="p_time">
+  {$val[dateline]} {$val[from_string]}
+  </span> 
+  <br>
+  <span>
+  <!--{if MEMBER_ID>0}-->
+  <!--{if !$val[reply_disable]}-->
+   <a href="index.php?mod=topic&amp;code={$val[tid]}">评论({$val[replys]})</a>
+  <!--{/if}-->
+  <!--{eval $tpid=$val[top_parent_id]; if ($tpid&&$parent_list[$tpid]) $root_type=$parent_list[$tpid]['type'];}-->
+  <!--{if (!isset($root_type)) || (isset($root_type) && in_array($root_type, get_topic_type('forward')))}-->
+	  <!--{if in_array($val[type], get_topic_type('forward'))}-->
+		<a href="index.php?mod=topic&amp;code=forward&tid={$val[tid]}">(转发{$val[forwards]})</a>
+	  <!--{else}-->
+		<!--{if isset($val['fansgroup'])}-->
+		<span>{$val['fansgroup']}</span>
+		<!--{else}-->
+		<span title="设置了特殊的权限，不允许转发">转发</span>
+		<!--{/if}-->
+	  <!--{/if}-->
+  <!--{/if}-->
+  
+ <!--{/if}-->
+  <!--{if $val[uid]==MEMBER_ID || 'admin'==MEMBER_ROLE_TYPE}-->
+  <a href="index.php?mod=topic&amp;code=del&amp;tid={$val[tid]}">删除</a>   
+  <!--{if  time() - $val[addtime] < 3600 || 'admin'==MEMBER_ROLE_TYPE}-->
+  <!--{if $val[replys] <= 0 && $val[forwards] <= 0 || 'admin'==MEMBER_ROLE_TYPE}-->
+  <a href="index.php?mod=topic&amp;code=modify&amp;tid={$val[tid]}">编辑</a>
+  <!--{/if}-->
+  <!--{/if}-->
+  <!--{/if}-->
+  
+  <!--{if $this->Code == 'myfavorite'}-->
+  <a href="index.php?mod=topic&amp;code=favorite&amp;tid={$val[tid]}&amp;act=delete">取消收藏</a>
+  <!--{else}-->
+  <a href="index.php?mod=topic&amp;code=favorite&amp;tid={$val[tid]}&amp;act=add">收藏</a>
+  <!--{/if}-->
+  </span>
+</div>
+<!--微博管理-->

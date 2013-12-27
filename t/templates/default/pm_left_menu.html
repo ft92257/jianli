@@ -1,0 +1,30 @@
+<!--左边结束，右边开始-->
+<style type="text/css">
+#tabnav{ margin:0 auto;width:540px;height:30px; border-bottom:1px solid #e2e2e2;}
+#tabnav ul{width:540px;overflow:hidden;}
+#tabnav ul li { display:inline;text-align:center; overflow:hidden; float:left; margin-right:2px;} 
+#tabnav ul li{ background:#fff;line-height:29px;height:29px; padding:0 6px; border:1px solid #e5e5e5; border-radius:3px 3px 0 0; border-bottom:none;}
+#tabnav ul li.here {  background:#ccc; padding:0 6px;height:30px;line-height:30px; border:none;}
+#tabnav ul li.here a{ color:#333;}
+</style>
+<div id="tabnav">
+  <ul>
+    <!--{loop $left_menu_list $name $sub_menu_list}-->
+    <!--{loop $sub_menu_list $sub_name $sub_menu}-->
+    <!--{eval $icon=$sub_menu[icon];}-->
+    <!--{eval $sub_menu['unread']=$sub_menu['unread']?"(".$sub_menu['unread'].")":"";}-->
+    
+      <!--{if $sub_name==$folder}-->
+      <li class="here">
+      <a href="{$sub_menu[link]}"> <strong>{$sub_menu[name]}</strong></a>
+      </li>
+      <!--{else}-->
+      <li>
+      <a href="{$sub_menu[link]}"> {$sub_menu[name]}</a>
+      </li>
+      <!--{/if}-->
+    
+    <!--{/loop}-->
+    <!--{/loop}-->
+  </ul>
+</div>

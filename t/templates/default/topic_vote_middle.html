@@ -1,0 +1,93 @@
+<div class="mainL">
+    <!--{eval $__my_link_='index.php?mod='.$member[username];$__my_link_=get_invite_url($__my_link_,$this->Config['site_url']);}-->
+	<div class="member_list_top">
+	   <div class="left_user_info">
+		  <div class="avatar2_info">
+			 <p class="left_t_nick_name">
+			 <strong title="{$member[nickname]}">{$member[nickname]}{$member[validate_html]} </strong>
+			  <!--备注-->
+			  <span id="remarklist_{$member[uid]}">{$buddys[remark]}</span>
+			  <!--备注-->
+			 
+			   <!--{if $member[gender] == 1}-->
+			  <img src="images/user.gif"  title="男"/>
+			  <!--{else}-->
+			  <img src="images/user_female.gif"  title="女"/>
+			  <!--{/if}--> 
+			  </p>
+			 <p class="left_t2"><a href="index.php?mod={$member[username]}">{$__my_link_}</a></p>
+			{if $member[invite_uid]}
+			<p class="left_t2">推荐人：<!--{eval $_invite_member=jsg_member_info($member[invite_uid]);}--><a href="index.php?mod={$_invite_member[username]}"><span title="推荐人：{$_invite_member[nickname]}">{$_invite_member[nickname]}</span></a></p>
+			{/if}
+			<!-- 关注 拉黑 等操作选项-->
+                <!--{if MEMBER_ID && MEMBER_ID!=$member[uid]}-->
+				<div id="topic_index_blacklist_{$member[uid]}">
+					<!--{if $member[uid] == $list_blacklist[touid]}-->
+						<div class="blacklist">
+							他在你的黑名单里 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','del','topic_black_ajax');"> [取消拉黑] </a>
+						</div>
+					<!--{else}-->
+						<div class="dialogue">
+						 {$member[follow_html]}
+						 <span>
+							 | <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'','lahei','topic_black_ajax');">拉黑</a> |
+						 <!--判断是否是好友-->
+						 <!--{if $buddys}-->
+							 <a href="javascript:void(0)" onclick="get_group_choose({$member[uid]});">分组</a> |
+							 <a href="javascript:void(0)" onclick="get_remark({$member[uid]});return false;">备注</a> |
+							 <a href="javascript:void(0)" onclick="follower_choose({$member[uid]},'{$member[nickname]}','buddys','');">推荐给朋友</a> |
+							 <!--{/if}--> 	
+							 <a href="javascript:void(0)" onclick="PmSend({$member[uid]},'{$member[nickname]}');return false;" >私信</a>
+						 <!--判断是否是好友-->
+						 </span>
+						</div>
+					
+						<div id="Pmsend_to_user_area"></div>
+						<div id="alert_follower_menu_{$member[uid]}"></div>
+						<span id="button_{$member[uid]}" onclick="get_group_choose({$member[uid]});"></span>
+						<div id="global_select_{$member[uid]}" class="alertBox" style="display:none"></div>
+						<div id="get_remark_{$member[uid]}" ></div>
+					<!--{/if}-->
+				</div> 
+				<!--{/if}--> 
+			<!-- 关注 拉黑 等操作选项-->
+			<!--{if MEMBER_ID>0 && 'admin'==MEMBER_ROLE_TYPE && MEMBER_ID!=$member[uid]}-->
+				<div style="float:right;">
+				  <!--<a href="index.php?mod=member&code=delete&id={$member[uid]}" onclick="return confirm('确认删除该用户？');"><font color="red">删除该用户</font></a>&nbsp;&nbsp;|&nbsp;&nbsp;-->
+				  <a href="admin.php?mod=member&code=dosearch&uid={$member[uid]}" target="_blank"><font color="red">删除该用户</font></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				  <a href="javascript:void(0);" onclick="force_out({$member[uid]});"><font color="red">封杀</font></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				  <a href="javascript:void(0);" onclick="force_ip('{$member[lastip]}');"><font color="red">封IP</font></a>
+				</div>
+			<!--{/if}-->
+			<!--{hook/global_usernav_extra1}-->
+			</div>
+	   </div>
+	</div>
+ <div class="listBox">
+	  <div class="listBoxNav">
+	   <div class="nleftL3">
+ 	   <!--{eval if(MEMBER_ID == $member[uid]) $_my = '我'; elseif(1==$member[gender]) $_my = '他';else $_my = '她';}-->
+	    <!--{eval if ('joined' == $filter) $joined = 'current2';elseif ('new_update' == $filter) $new_update = 'current2';else $create = 'current2'}-->
+	    <li>
+	      <span class="{$create}"><a href="index.php?mod={$member[uid]}&type=vote">{$_my}发起的投票</a></span>
+	      <span class="{$joined}"><a href="index.php?mod={$member[uid]}&type=vote&filter=joined">{$_my}参与的投票</a></span>
+	      <!--{if MEMBER_ID == $member[uid]}-->
+	      <span class="{$new_update}"><a href="index.php?mod={$member[uid]}&type=vote&filter=new_update">最近更新的投票</a></span>
+	      <!--{/if}-->
+	    </li> 
+	  </div>
+	</div>
+ 
+      <div id="listTopicArea">	
+        <div class="Listmain">
+			<!--{if $count}-->
+				{template vote_list}        
+			<!--{else}-->
+				<div style="margin-left:5px;">还没有投票。</div>
+		  	<!--{/if}-->
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>

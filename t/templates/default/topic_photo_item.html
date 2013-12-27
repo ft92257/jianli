@@ -1,0 +1,22 @@
+<li class="vg_line">
+
+<div class="item_photo">
+<a target="_blank" href="index.php?mod=topic&code={$val[tid]}"><img src="{$val[photo]}" width="{$val[width]}" height="{$val[height]}"></a>
+</div>
+<div class="vg_line_solid"></div>
+
+<div class="ws_bd">
+{template "user_face_photo_menu"}
+<h5><span class="photo_vip">{template "user_signature"}</span>{$val[content]} <a href="index.php?mod=topic&code={$val[tid]}" class="creply" target="_blank">查看详细&gt;&gt;</a></h5>
+</div>
+
+
+<div class="favorite">
+<div style="float:left">{$val[follow_html]}</div> 
+<div class="creply">
+<dd><a href="index.php?mod=topic&code={$val[tid]}"title="已有{$val[replys]}人评论" target="_blank">评论</a>({$val[replys]})</dd>
+<dt><a href="javascript:void(0)" title="已有{$val[forwards]}人转发" onclick="get_forward_choose({$val[tid]},{$allow_attach});return false;">转发</a>({$val[forwards]}) | </dt>
+</div>
+</div>
+
+</li>

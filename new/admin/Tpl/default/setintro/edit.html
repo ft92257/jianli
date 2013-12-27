@@ -1,0 +1,64 @@
+<include file="public:header" />
+<style type="text/css">#allmap {width: 400px;height: 400px;overflow: hidden;margin:0;}#l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}#r-result{height:100%;width:20%;float:left;}</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var map = new BMap.Map("allmap");
+	var point = new BMap.Point(116.331398,39.897445);
+	var myGeo = new BMap.Geocoder();
+	map.enableScrollWheelZoom();
+	map.centerAndZoom(point,12);
+	
+	$("[name='address']").change(function(){
+	var address =this.value;
+// 将地址解析结果显示在地图上,并调整地图视野
+  myGeo.getPoint(address, function(point){
+  if (point) {
+    map.centerAndZoom(point, 17);
+    map.addOverlay(new BMap.Marker(point));
+  }
+}, );
+
+	
+	var gc = new BMap.Geocoder(); 
+	map.addEventListener("click", function(e){
+	alert(e.point.lng+','+e.point.lat);
+   });
+
+	
+	});
+
+})
+</script>
+<form action=""  method="post">
+<table width="">
+<tr>
+<th>名称</th><td><input name="name"  value="{$info.name}" type="text"/></td>
+</tr>
+
+<tr>
+<th>地区</th>
+<td>
+<select name="area">
+<volist name='area'  id='val'>
+<option  <if condition='$val.area_name eq $info.area'>selected="selected"</if> value="{$val.area_name}">{$val.area_name}</option>
+</volist>
+</select>
+</td>
+</tr>
+
+<tr>
+<th>地址</th><td><input name="address"  value="{$info.address}"  type="text"/></td>
+</tr>
+
+<tr>
+<th>电话</th><td><input name="phone"  value="{$info.phone}" type="text"/></td>
+</tr>
+
+<tr>
+<th>邮箱</th><td><input  name="email" value="{$info.email}" type="text"/></td>
+</tr>
+</table><div id="allmap"></div>
+<input name="dosubmit" type="submit" value="提交" />
+
+</form>

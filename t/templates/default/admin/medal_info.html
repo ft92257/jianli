@@ -1,0 +1,86 @@
+<!--{template admin/header}-->
+<form action="{$action}" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="4"> 编辑<span class="altbg1">勋章</span> </td>
+    </tr>
+   <!--{if $medal_info[medal_img]}-->
+    <tr>
+      <td width="10%" bgcolor="#F8F8F8">&nbsp;</td>
+      <td colspan="2" bgcolor="#FFFFFF"><span class="altbg2"><img src="{$medal_info[medal_img]}" /></span></td>
+    </tr>
+	<!--{/if}-->
+    <tr>
+      <td align="right" class="altbg1">勋章图片:</td>
+      <td colspan="2" class="altbg2"><input name="medal" type="file" id="medal"/></td>
+    </tr>
+    <tr>
+      <td align="right" class="altbg1">勋章名称: </td>
+      <td colspan="2" class="altbg2"><input name="medal_name" type="text" id="medal_name" value="{$medal_info['medal_name']}" size="40" />      </td>
+    </tr>
+	<tr>
+      <td align="right" class="altbg1">勋章描述: </td>
+      <td colspan="2" class="altbg2"><textarea name="medal_depict" id="medal_depict" style="width:300px; height:60px;">{$medal_info['medal_depict']}</textarea></td>
+    </tr>
+    <!--{if in_array($this->Post,array('topic','reply')) || in_array($chactype,array('topic','reply'))}-->
+	<tr>
+      <td align="right" class="altbg1">连续天数：</td>
+      <td class="altbg2"><input name="day" type="text" id="day" value="{$chackvalue[day]}" /> 
+        天 </td>
+      <td class="altbg2">&nbsp;</td>
+    </tr>
+	<!--{/if}-->
+	 <!--{if in_array($this->Post,array('invite')) || in_array($chactype,array('invite'))}-->
+	<tr>
+      <td align="right" class="altbg1">邀请数：</td>
+      <td class="altbg2"><input name="invite" type="text" id="invite" value="{$chackvalue[invite]}" /> 
+        个</td>
+      <td class="altbg2">&nbsp;</td>
+    </tr>
+	<!--{/if}-->
+	 <!--{if in_array($this->Post,array('tag')) || in_array($chactype,array('tag'))}-->
+	 <tr>
+      <td align="right" class="altbg1">指定话题：</td>
+      <td class="altbg2"><input name="tagname" type="text" id="endday" value="{$chackvalue[tagname]}" /> 
+       </td>
+      <td class="altbg2">&nbsp;</td>
+    </tr>
+	<!--{/if}-->
+	 <!--{if in_array($this->Post,array('fans')) || in_array($chactype,array('fans'))}-->
+	 <tr>
+      <td align="right" class="altbg1">粉丝数：</td>
+      <td class="altbg2"><input name="fans" type="text" id="fans" value="{$chackvalue[fans]}" /> 
+       </td>
+      <td class="altbg2">&nbsp;</td>
+    </tr>
+	<!--{/if}-->
+	<!--{if in_array($this->Post,array('sign')) || in_array($chactype,array('sign'))}-->
+	<!--<tr>
+      <td align="right" class="altbg1">是否自动发放：</td>
+      <td class="altbg2">
+        <label><input type="radio" name="auto">是</label>
+        <label><input type="radio" name="auto">否</label>
+      </td>
+      <td class="altbg2">&nbsp;</td>
+	</tr>-->
+	<tr>
+      <td align="right" class="altbg1">积分指数：</td>
+      <td class="altbg2"><input name="sign" type="text" id="sign" value="{$chackvalue[sign]}" /></td>
+      <td class="altbg2">&nbsp;</td>
+    </tr>
+	<!--{/if}-->
+	    <tr>
+	      <td class="altbg1">&nbsp;</td>
+	      <td align="left" >    
+			<button name="do" value='' type="submit" class="button">{$TITLE_LIST}</button>&nbsp;
+			<button class="button" type="button" onclick="window.location.href='admin.php?mod=medal';return false;">返回</button>
+		  <input name="medal_id" type="hidden" id="medal_id" value="{$medal_info[id]}" />
+		  <input name="type" type="hidden" id="type" value="{$chactype}" />
+		  <input name="postFlag" type="hidden" id="postFlag" value="1" /></td>
+          <td width="59%" align="left" >&nbsp;</td>
+    </tr>
+  </table>
+
+</form>
+
+

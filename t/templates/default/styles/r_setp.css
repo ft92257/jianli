@@ -1,0 +1,107 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename r_setp.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:36 753046976 1458276779 7117 $
+ *******************************************************************/
+
+
+h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,th,td,form,fieldset,legend,button,input,textarea,blockquote,address,pre {margin:0;padding:0}
+body,input,button,textarea,select {font:normal 12px/1.667 Tahoma,Arial,"\5b8b\4f53",sans-serif;color:#333}
+h1,h2,h3,h4,h5,h6,b {font-size:1em;font-weight:normal}
+a {text-decoration:none;outline:0}/*exp~*/
+.c,.c0,.c1,.tab,.ap,.apt,.apc,.apb,.apo,.twi,.twipost_c,.twipost .post,.frm,.AP,.WG {*zoom:1}
+.c:after,.c0:after,.c1:after,.tab:after,.ap:after,.apt:after,.apc:after,.apb:after,.apo:after,.twi:after,.twipost_c:after,.twipost .post:after,.frm:after,.AP:after,.WG:after {overflow:hidden;clear:both;display:block;height:0;content:"\20"}
+.tray .c0,.header .c0,.footer .c0,.bdy .c0,.neck .c0,.B1,.B2 {width:754px;margin:0 auto}
+.avt {width:53px;height:53px;vertical-align:top}
+.avt a,.avt b {text-decoration:none!important}
+.avt img {display:inline-block;width:48px;height:48px;padding:2px 3px 3px 2px;vertical-align:top;background:url(../images/reg/avt2.png) no-repeat}
+.avt24 {width:24px;height:24px;margin-right:5px;vertical-align:middle}
+.avt24 img {width:24px;height:24px;padding:0;margin:0 0 0.25em;vertical-align:middle;background:none}
+.avt_q {width:57px;height:44px;margin:0 0 -44px -67px!important}
+.avt_q img {width:52px;height:39px;background-position:-120px -210px!important}
+.avt_q2 {width:85px;height:65px}
+.avt_q2 img {width:80px;height:60px;background-position:0 -280px!important}
+.pf .oper {height:21px;margin:-4px 4px 0 0}
+.pf .oper .btn,.pf .oper .added {margin-left:3px}
+.pf .avt {display:block}
+.pf .status {position:relative}
+.pf2 .avt,.pf3 .avt {top:3px;z-index:2;position:relative;margin:0 0 -53px -63px}
+.pf2 {margin:0 0 0 70px}
+.pf2 .nm {margin:3px 0}
+.pf2 .nm a {*zoom:1;_zoom:normal}
+.pf2 .ugc {display:block}
+.pf3 {*zoom:1;min-height:60px;_height:60px;padding:0 0 3px;margin:0 12px 5px 68px}
+.pf3 .oper2 {left:100%;top:-1px;*top:2px;position:relative;width:20px;height:20px;margin:0 0 -20px -20px}
+.pf3 .nm {overflow:hidden;width:7em;height:20px;vertical-align:top;white-space:normal}
+.ulist .pf2 {*zoom:1;min-height:53px;_height:53px;margin:0;padding:10px 14px 15px 79px;background:url(../images/reg/hr_dt_d8.gif) repeat-x bottom}
+.ulist .pf2 .nm {overflow:hidden;display:block;width:180px;margin:0 0 3px;font-size:12px;height:20px;line-height:20px}
+.ulist .pf2 .oper {margin-top:-2px;float:right;height:40px;text-align:right;}
+.ulist .pf2 .stat {position:relative;left:185px;width:80px;height:20px;margin:0 0 -20px;color:#999;}
+.ulist .pf2 .stat .i {margin:4px 0 0;vertical-align:top;}
+.ulist .pf2 .ugc {min-height:20px;_height:20px;margin:3px 0;color:#666;}
+.ulist .pf2 .oper2 {left:-71px;top:19px;*top:21px;position:relative;width:20px;height:20px;margin:0 0 -20px -20px;}
+.ulistln,.ulist4 {overflow:hidden;_zoom:1;height:auto;}
+.ulistln .pf2,.ulist4 .pf2 {margin-top:-1px;background:url(../images/reg/hr_dt_d8.gif) repeat-x}
+.ulist4 .pf2 .oper {float:right;width:50px;height:auto;margin:0;text-align:center}
+.ulist4 .pf2 .ugc {margin-right:60px}
+.ulist4 .pf2 .oper .btn {margin-left:0}
+.ulist2 .pf2 {border:0;background:none}
+.ulist2 .pf2 .nm,
+.ulist5 .pf2 .nm {width:auto;margin-top:3px}
+.ulist5 .pf2 {display:inline-block;*display:inline;*zoom:1;width:60px;padding-left:70px;vertical-align:top;background:none}
+.ulist6 {margin:8px auto 14px; overflow:hidden;}
+.ulist6 .pf2,.ulist6 .pf,.ulist6 .status {background:url('') no-repeat -99px -99px}
+.ulist6 .pf2 {position:relative;display:inline-block;*display:inline;width:90px;height:64px;padding:6px 5px 0 2px;margin:0 0 12px 2px;*margin-right:4px;vertical-align:top;cursor:pointer}
+.ulist6 .pf2 .avt { top:1px; margin:0 0 0 21px;}
+.ulist6 .status,.ulist6 .mark {left:-48px;top:38px;*top:34px;z-index:5;position:relative;display:block;width:13px;height:14px;margin:0 0 -15px -13px;background-position:0 0}
+.ulist6 .pf2 .nm {width:100%;font-size:14px;white-space:normal}
+.ulist6 .ps {overflow:hidden;height:32px;margin:4px 0 0;line-height:16px;font-size:12px;}
+.ulist6 .selected .status {background-position:-15px 0; left:34px; *left:-6px; }
+.ulist6 .mark {top:-6px;left:116px;width:40px;height:40px;margin:0 0 -40px -40px;background-position:-99px -99px;}
+.bgs {background:url(../images/reg/324.png) repeat-x top;}
+.step3 li,.ulist6 .pf2 {display:inline-block;*display:inline;*zoom:1;}
+.bdy .ht_sp,.bdy .ht_sp2 {min-height:48px;_height:48px;background-image:url(images/321.png);}
+.bdy .ht_sp2 {background-image:url(images/020.png);background-position:0 -44px;}
+.bdy .ht_sp3 {background-image:url(images/020.png);background-position:0 -100px;}
+.ht2 .opt2 {float:right;margin:20px 0 0;color:#999;padding-right:20px;}
+.ht2 .opt2 a {margin-left:5px}
+.recom_nav,.recom_sel {background:url(../images/reg/331.png) no-repeat}
+.step3 {margin:18px 20px 1px 25px}
+.step3 li {width:230px;height:23px;padding:9px 0 0;margin:0 -9px 0 0;*margin-right:-5px;font-size:14px;line-height:14px;text-align:center;color:#666;background:url(../images/reg/327.png) no-repeat}
+.step3 b {position:relative;overflow:hidden;display:inline-block;width:16px;height:15px;margin:0 6px 0.2em 0;vertical-align:middle}
+.step3 .ii {background:url(../images/reg/326.png) no-repeat}
+.step3 .ii {position:relative;display:block;width:32px;height:45px}
+.step3 .t1 {}
+.step3 .t2 {width:236px;background-image:url(../images/reg/328.png)}
+.step3 .t2 .ii {top:-15px}
+.step3 .t3 {position:relative;width:244px;background-image:url(../images/reg/329.png)}
+.step3 .t3 .ii {top:-30px}
+.step3 .on {font-weight:bold;color:#fff;background-position:0 -32px}
+.step3 .on .ii {left:-16px}
+.recom_sel .t1 .num {display:inline-block;*display:inline;*zoom:1;width:30px;text-align:center}
+.recom_nav {display:inline;float:left;overflow:hidden;width:103px;margin:0 -103px 0 0}
+.recom_nav ul {zoom:1;padding:15px 0 0}
+.recom_nav li {text-align:right}
+.recom_nav li a {position:relative;display:block;height:36px;line-height:36px;padding:0 17px 0 0;background:url(../images/reg/332.png) no-repeat right 0;color:#117bb8}
+.recom_nav li b {color:#117bb8}
+.recom_nav .on a {z-index:1;margin-top:-2px;padding-top:2px;background-position:right bottom;cursor:default;text-decoration:none}
+.recom_nav .on b {font-weight:bold;color:#333;text-decoration:none}
+.recom_sel {overflow:hidden;padding:0 0 0 125px;background-position:-103px bottom}
+.recom_sel .apt,.recom_sel .apb,.recom_sel .t5 {margin:0 0 0 6px;border:0;font-size:14px;background:url(../images/reg/hr_dt_ba.gif) repeat-x}
+.recom_sel .apt {padding:0 0 9px;background-position:bottom}
+.recom_sel .apb {padding:15px 0 0}
+.recom_sel .t2 {margin:9px 6px;color:#333;}
+.recom_sel .t2 input{vertical-align:-2px; margin-right:10px;}
+.recom_sel .t2 a {margin:0 4px 0 3px}
+.recom_sel .t5 {padding:7px 3px;font-size:12px;color:#999}
+.recom_att {display:inline-block;width:163px;height:36px;margin:0 0 0.25em 18px;vertical-align:middle;background:url(../images/reg/333.png) no-repeat}
+.recom_best {*zoom:1;overflow:hidden;margin:30px 20px 30px 25px;background:url(../images/reg/330.gif) repeat-y}
+.recom_sel .apb{ background:none;}

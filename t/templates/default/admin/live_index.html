@@ -1,0 +1,77 @@
+{template admin/header}
+
+<script language="javascript">
+function check_all(type, form, value, checkall, changestyle) {
+	var checkall = checkall ? checkall : 'chkall';
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(type == 'option' && e.type == 'radio' && e.value == value && e.disabled != true) {
+			e.checked = true;
+		} else if(type == 'value' && e.type == 'checkbox' && e.getAttribute('chkvalue') == value) {
+			e.checked = form.elements[checkall].checked;
+			if(changestyle) {
+				multiupdate(e);
+			}
+		} else if(type == 'prefix' && e.name && e.name != checkall && (!value || (value && e.name.match(value)))) {
+			e.checked = form.elements[checkall].checked;
+			if(changestyle && e.parentNode && e.parentNode.tagName.toLowerCase() == 'li') {
+				e.parentNode.className = e.checked ? 'checked' : '';
+			}
+		}
+	}
+}
+</script>
+<div id="main_wp" class="mt10">
+	<form method="post" action="admin.php?mod=live&code=batch">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="30">
+				<input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form, 'del_ids')" ></td>	
+				<td width="140">直播主题</td>
+				<td>主题简介</td>
+				<td width="220" align="center">直播时间</td>
+				<td width="150" align="center">主持人</td>
+				<td width="80" align="center">操作</td>
+			</tr>
+			<!--{if $count}-->
+				<!--{loop $list $value}-->
+				<tr align="center">
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<input type="hidden" name="lids[]" value="$value[lid]" >
+					<input class="checkbox" type="checkbox" name="del_ids[]" value="$value[lid]" ></td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+						<a href="index.php?mod=live&code=view&id={$value[lid]}" target="_blank">{$value[livename]}</a>
+					</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">{$value[description]}</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">{$value[datetime]}</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">{$value[hosts]}</td>
+					<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+					<a href="admin.php?mod=live&amp;code=edit&amp;lid={$value[lid]}">编辑</a>&nbsp;&nbsp;
+					<A href="admin.php?mod=live&code=delete&ids={$value[lid]}">删除</A>&nbsp;
+					</td>
+				</tr>
+				<!--{/loop}-->
+				
+				
+				<!--{if $page_arr[html]}-->
+				<tr align="center">
+					<td colspan="6" class="altbg1">
+					{$page_arr[html]}
+					</td>
+				</tr>
+				<!--{/if}-->
+			<!--{else}-->
+				<tr align="center">
+					<td colspan="6">
+						还没有直播记录
+					</td>
+				</tr>
+			<!--{/if}-->
+		</table>
+	
+		<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+	</form>
+	
+	<br />
+</div>
+

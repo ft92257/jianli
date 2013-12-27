@@ -1,0 +1,21 @@
+<div class="dialog_inner">
+	{template 'topic_simple_publish'}
+</div>
+<script language="javascript">
+	$(document).ready(function(){
+		$('#topic_simple_close_btn{$__handle_key}').click(
+			function() {
+				closeDialog('{$this->Get[handle_key]}');
+			}
+		);
+		$('#topic_simple_share_btn{$__handle_key}').click(
+			function() {
+				var response = function() {
+					MessageBox('notice', '成功推荐到微博');
+				}
+				publishSimpleTopic($('#topic_simple_content{$__handle_key}').val(), '', 0, {response:response})
+				closeDialog('{$this->Get[handle_key]}');
+			}
+		);
+	});
+</script>

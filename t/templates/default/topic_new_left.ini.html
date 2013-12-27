@@ -1,0 +1,51 @@
+<!--{if MEMBER_ID ==0}-->
+<div class="inventLine2">
+  <div class="atxt">
+    <p class="p_2">微博是现在最酷、最火的沟通交流工具，可以随时随地分享新鲜事，与朋友保持联络。</p>
+    <p class="p_3">10秒注册微博就可通过网页、手机、客户端随时随地分享新鲜事、关注所需的最新消息！</p>
+  </div>
+  <div class="abtn"> <a href="index.php?mod=member&code&uid={$member[uid]}"><img src="images/regbtn.gif"></a>
+    <p>已有帐号，<a href="javascript:void(0);" onclick="ShowLoginDialog(); return false;">请点此登录</a></p>
+  </div>
+</div>
+<!--{/if}-->
+
+<div class="W_main_l"> 
+  <!--{if $this->All_company}-->
+  <div class="left_nav">
+    <h4>{$d_c_name}微博</h4>
+    <ul class="topic_New">
+      <!--{loop $this->All_company  $val}-->
+      <li class="tagnone {$val[css]}"><a href="index.php?mod=company&id={$val[id]}" title="{$val[name]}">{$val[shortname]}</a></li>
+      <!--{/loop}-->
+    </ul>
+  </div>
+  <!--{/if}-->
+  <div class="left_nav"> 
+    <!--{eval $new_class=('new'==$this->Code && $this->Get[type]!='pic')?"tago":"tagn";}--> 
+    <!--{eval $pic_class=('new'==$this->Code && 'pic'==$this->Get[type])?"tago":"tagn";}--> 
+    <!--{eval $tc_class=('tc'==$this->Code)?"tago":"tagn";}--> 
+    <!--{eval $newreply_class=('newreply'==$this->Code)?"tago":"tagn";}--> 
+    <!--{eval $hotforward_class=('hotforward'==$this->Code)?"tago":"tagn";}--> 
+    <!--{eval $hotreply_class=('hotreply'==$this->Code)?"tago":"tagn";}--> 
+    
+    <!--{eval $top_class=('top'==$this->Code)?"tago":"tagn";}--> 
+    <!--{eval $tag_class=('tag'==$this->Code)?"tago":"tagn";}--> 
+    <!--{eval $media_class=('media'==$this->Code || 'media_more'==$this->Code)?"tago":"tagn";}--> 
+    
+    <!--{eval $people_class=(in_array($this->Code,array('people','view','province','city')))?"tago":"tagn";}-->
+    <ul class="topic_New">
+      <li class="{$tc_class} new_tc"><a href="index.php?mod=topic&code=tc">同城微博</a></li>
+      <li class="{$new_class} new_new"><a href="index.php?mod=topic&code=new"><!--{if $this->Config['only_show_vip_topic']}-->最新V博<!--{else}-->最新微博<!--{/if}--></a></li>
+      <li class="{$pic_class} new_photo"><a href="index.php?mod=topic&code=photo">图片墙</a></li>
+      <li class="{$newreply_class} new_newreply"><a href="index.php?mod=topic&code=newreply">最新评论</a></li>
+      <li class="{$hotforward_class} new_forword"><a href="index.php?mod=topic&code=hotforward">热门转发</a></li>
+      <li class="{$hotreply_class} new_hotreply"><a href="index.php?mod=topic&code=hotreply">热门评论</a></li>
+      <li class="{$top_class} new_top"><a href="index.php?mod=topic&code=top" title="查看和关注微博达人">达人榜</a></li>
+      <li class="{$tag_class} new_keyword"><a href="index.php?mod=tag" title="寻找和关注话题">话题榜</a></li>
+      <li class="{$media_class} new_media"><a href="index.php?mod=other&code=media" title="查看名人或媒体">媒体汇</a></li>
+      <li class="{$people_class} new_Masters"><a href="index.php?mod=people" title="查看名人堂">名人堂</a></li>
+    </ul>
+  </div>
+  <div class="AD_LEFT">{$this->Config['ad']['ad_list']['group_new']['middle_left']}</div>
+</div>

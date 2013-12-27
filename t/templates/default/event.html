@@ -1,0 +1,108 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+ <div class="main3Box_m HotW ">
+    <div id="topNews_1" class="Hotwarp">
+	  <div class="Menubox2" style="width:540px;">
+		<ul>
+		  <li>
+		    <div  class="tago">
+			  <a href="index.php?mod=event"><span>活动主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=event&code=myevent"><span>我的活动</span></a>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="tagn">
+			  <a href="index.php?mod=event&code=followevent"><span>我关注的人的活动</span></a>
+		    </div>
+		  </li>
+		  <!--{if MEMBER_ID>0}-->
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=event&code=pevent"><span>发起活动</span></a>
+			</div>
+		  </li>
+		  <!--{/if}-->
+		</ul>
+	  </div>
+
+    <div class="cp_box">
+      <div class="cp_select">
+        <div class="cp_select_con">
+          <div class="cp_h">
+            <div class="cp_h_l">类型：</div>
+            <div class="cp_h_r">
+            <a href="index.php?mod=event&province=$hid_province&city=$hid_city&area=$hid_area&type=&nocity=$nocity"><span {$tclass[0]}>不限</span></a>
+            <!--{loop $event_type $key $val}-->
+            <a href="index.php?mod=event&province=$hid_province&city=$hid_city&area=$hid_area&type=$key&nocity=$nocity"><span {$tclass[$key]}>$val[type]($val[count])</span></a>
+            <!--{/loop}-->
+            <input type="hidden" id="hid_type" name="hid_type" value="{$hid_type}">
+			</div>
+          </div>
+          <div class="cp_h">
+            <div class="cp_h_l">同城：</div>
+			<div class="cp_h_r">
+            <a href="index.php?mod=event&province=$hid_province&city=$hid_city&type={$hid_type}&nocity=no"><span {$cclass[no]}>不限</span></a>
+            <input type="hidden" id="hid_no_city" name="hid_no_city" value="$hid_no_city">
+            <a href="index.php?mod=event&province=$hid_province&city=$hid_city&type={$hid_type}"><span {$cclass[$city_id]}>{$city_name}</span></a>
+            <!--{loop $area $key $val}-->
+            <a href="index.php?mod=event&province=$hid_province&city=$hid_city&area=$key&type={$hid_type}"><span {$cclass[$key]}>{$val}</span></a>
+            <!--{/loop}-->
+			
+            <p class="cp_h_p">
+            <a href="javascript:void(0);" onclick="choose();">[切换地域]</a>
+            {$province_list}
+            {$city_list}
+            <input type="hidden" id="hid_province" name="hid_province" value="{$hid_province}">
+            <input type="hidden" id="hid_city" name="hid_city" value="{$hid_city}">
+            <input type="hidden" id="hid_area" name="hid_area" value="{$hid_area}">
+			</p>
+          </div>
+		  </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    function choose(){
+	  document.getElementById('province').style.display = "block";
+	  document.getElementById('city').style.display = "block";
+    }
+    
+    function changeProvince(){
+      var province = document.getElementById('province').value;
+      document.getElementById('hid_province').value = province;
+      var url = "ajax.php?mod=member&code=sel&province="+province;
+      $.post(
+		url,
+		function(r){
+		  $('#city').html(r);
+		}
+      );
+    }
+    function changeCity(){
+    	var province = document.getElementById('hid_province').value;
+        var city = document.getElementById('city').value;
+        document.getElementById('hid_city').value = city;
+        var url = "index.php?mod=event&province="+province+"&city="+city+"&type={$hid_type}";
+        location.href=url
+      }
+    </script>
+	<!--{template 'event_list_ajax'}-->
+  </div>
+  <!--{subtemplate 'event_right'}-->
+</div>
+</div>
+<!--{template "topic_footer"}-->

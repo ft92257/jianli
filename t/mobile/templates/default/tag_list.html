@@ -1,0 +1,20 @@
+<!--{template "header"}-->
+<div data-role="content" >
+    	<!--话题列表 Begin-->
+    	<div id="topic_list">
+        	<!--{if !empty($tag_list)}-->                                    
+        	  <ul class="tag_list" id="tag_ul">
+              	<!--{loop $tag_list $tag}-->
+              	<li onclick="goToTopicList('{$tag[tag]}')">
+                	<a href="javascript:;">{$tag['tag']}</a>
+                </li>
+                <!--{/loop}-->
+              </ul>
+              <!--{if $list_count == Mobile::config('perpage_def')}-->
+					<div class="wb_more" onclick="getMoreTagList({'max_id':{$max_id}, 'code':'{$this->Code}', 'uid':{$uid}})" id="btn_more">更多...</div>
+              <!--{/if}-->
+             <!--{/if}-->  
+        </div>
+        <!--话题列表 End-->
+</div>
+<!--{template "footer"}-->

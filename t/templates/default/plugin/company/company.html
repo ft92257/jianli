@@ -1,0 +1,30 @@
+<!--{if $cominfo}-->
+<div class="plugintop">{$cominfo['companyname']}</div>
+<div style="padding:15px;">
+<table width="100%" border="1">
+<tr><td width="120">用户名</td><td>{$cominfo['username']}</td></tr>
+<tr><td width="120">公司名称</td><td>{$cominfo['companyname']}</td></tr>
+<tr><td>法人代表</td><td>{$cominfo['ceoname']}</td></tr>
+<tr><td>营业执照</td><td>{$cominfo['companyid']}</td></tr>
+<tr><td>法人证件号码</td><td>{$cominfo['userid']}</td></tr>
+<tr><td>联系电话</td><td>{$cominfo['tel']}</td></tr>
+<tr><td>公司地址</td><td>{$cominfo['address']}</td></tr>
+<tr><td>是否认证</td><td><!--{if $cominfo['ison']}-->已认证<!--{else}-->未认证<!--{/if}--></td></tr>
+<tr><td>申请时间</td><td>{$cominfo['ptime']}</td></tr>
+<tr><td>企业介绍</td><td>{$cominfo['descripction']}</td></tr>
+</table>
+</div>
+<!--{else}-->
+<div class="plugintop">企业微博</div>
+<div class="ulist6"> 
+<!--{loop $companys $val}-->				
+<div class="pf2 selected crPer">
+	<p class="mark"></p>
+	<p class="avt"><a href="index.php?mod={$val[username]}"><img src="{$val[face]}" /></a></p> 
+	<p class="nm"><a href="index.php?mod={$val[username]}">{$val[username]}</a></p> 
+	<p class="nm"><a href="index.php?mod={$val[username]}">{$val[companyname]}</a></p>
+	<p class="ps"><!--{if $val['ison']}-->已认证<!--{else}-->未认证<!--{/if}--></p>
+</div>
+<!--{/loop}-->
+</div>
+<!--{/if}-->

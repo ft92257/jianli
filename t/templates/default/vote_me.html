@@ -1,0 +1,48 @@
+{template "topic_header"}
+<div class="main_2">
+  <div class="main3Box_m HotW HotW_vote">	
+    <div id="topNews_1" class="Hotwarp">
+		 <div class="vote_user_desc">
+			<div class="boxRimg">
+			<a href="index.php?mod=vote&view=me&uid={$user_info[uid]}" title="{$user_info[username]}"><img onerror="javascript:faceError(this);" src="{$user_info[face]}" title="{$user_info[nickname]}" /></a>
+			<span class="spanimg"><strong><a href="index.php?mod={$user_info[username]}">{$user_info[nickname]} {$user_info[validate_html]}</a></strong></span>发起的投票
+			<br />
+			<span><a href="index.php?mod={$user_info[username]}" title="{$user_info[username]}">他的微博</a></span>
+			</div>
+		</div>
+	<div class="Menubox2" style="width:540px;">
+		<ul>
+			<li>
+				<div class="<!--{if $filter_on['created']}-->tago<!--{else}-->tagn<!--{/if}-->" >
+				<a href="index.php?mod=vote&view=me&filter=created&uid={$uid}"><span>他发起的投票</span></a>
+				</div>
+			</li>
+			<li>
+				<div class="<!--{if $filter_on['joined']}-->tago<!--{else}-->tagn<!--{/if}-->">
+				<a href="index.php?mod=vote&view=me&filter=joined&uid={$uid}"><span>他参与的投票</span></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+      <div id="listTopicArea">	
+        <div class="Listmain">
+			<!--{if $count}-->
+				{template vote_list}        
+			<!--{else}-->
+				<div style="margin-left:5px;">还没有投票。</div>
+		  	<!--{/if}-->
+        </div>
+      </div>
+</div>
+
+
+
+<!--右边栏目 Begin-->
+	<!--{subtemplate 'vote_right'}-->
+<!--右边栏目 End-->
+ </div>
+<!--{if $this->Config[ad_enable]}-->
+<div align="center" class="T_AD"> {$this->Config[ad][ad_list][vote][footer]} </div>
+<!--{/if}-->
+{template "topic_footer"}

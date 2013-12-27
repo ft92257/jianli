@@ -1,0 +1,39 @@
+{template "topic_header"}
+<div class="main_2">
+	<div class="u2">
+		<!--{if $this->Get['return']}--><div class="t_tips"><!--{if $this->Get['return'] == 'addtopic'}-->请输入微博内容<!--{/if}--></div><!--{/if}-->
+		<div class="set_warp">
+			<div>
+				<form action="index.php?mod=topic&amp;code=do_add" method="post" enctype="multipart/form-data" name="form1" id="form1">
+				<div>		
+					<p>发表微博({conf topic_length}字以内)</p>
+					<span>
+					<!--{eval $i_already_value = $getvalue ? $getvalue : '';}-->
+					<textarea name="content" id="content" style="width:99%;" rows="2" cols="" />{$i_already_value}</textarea>
+					</span>
+					<p>选择要上传的图片：<input name="topic" type="file" id="topic"/></p>
+					 <!--{if $this->Config[sina_enable] && sina_weibo_init()}-->
+						{eval echo array_iconv($this->Config['charset'],'utf-8',sina_weibo_syn());}
+					<!--{/if}-->
+					<!--{if $this->Config[qqwb_enable] && qqwb_init()}-->
+						{eval echo array_iconv($this->Config['charset'],'utf-8',qqwb_syn());}
+					<!--{/if}-->
+					<!--{if $this->Config[kaixin_enable] && kaixin_init()}-->
+						{eval echo array_iconv($this->Config['charset'],'utf-8',kaixin_syn_html());}
+					<!--{/if}-->
+					<!--{if $this->Config[renren_enable] && renren_init()}-->
+						{eval echo array_iconv($this->Config['charset'],'utf-8',renren_syn_html());}
+					<!--{/if}-->
+					<span><p><input type="submit" name="Submit" value="提交" />
+					  <input name="topictype" type="hidden" id="topictype" value="first" />
+					</p></span>
+				</div>
+				</form>
+			</div>
+			<div>注意：</div>
+			<div>1.图片上传速度及大小限制视各地网络情况而定，建议500K以内，如果照片太大，建议压缩后再上传，支持JPG、GIF格式。</div>
+			<div>2.目前只支持wap2.0的手机上传，图片文件名请勿包含中文。</div>
+		</div>
+	</div>
+</div>
+{template "topic_footer"}

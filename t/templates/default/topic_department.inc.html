@@ -1,0 +1,175 @@
+<!--我的部门 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<!--{if MEMBER_ID != $member[uid]}-->
+<!--开启三栏显示 访问他人时 显示他相关信息  begin -->
+<div id="topic_right_user_info">
+<!--{if MEMBER_STYLE_THREE_TOL == 1 || $member[open_extra]}-->
+	<div class="sideBox">
+		<div class="person_atten_l">
+			<p><span class="num"><a href="index.php?mod={$member[username]}&code=follow" title="{$member[nickname]}关注的">{$member[follow_count]}</a></span></p>
+			<p><a href="index.php?mod={$member[username]}&code=follow" title="{$member[nickname]}关注的">关注</a> </p>
+		</div>
+		<div class="person_atten_l">
+		<p><span class="num"><a href="index.php?mod={$member[username]}&code=fans" title="关注{$member[nickname]}的">{$member[fans_count]}</a></span></p>
+		<p><a href="index.php?mod={$member[username]}&code=fans" title="关注{$member[nickname]}的">粉丝</a> </p>
+		</div>
+		<div class="person_atten_r">
+			<p><span class="num"><a href="index.php?mod={$member[username]}" title="{$member[nickname]}的微博">{$member[topic_count]}</a></span></p>
+			<p><a href="index.php?mod={$member[username]}" title="{$member[nickname]}的微博">微博</a> </p>
+		</div>
+	</div>
+<!--{/if}-->
+</div>
+<!--开启三栏显示 访问他人时 显示他相关信息  end -->
+<!--{/if}-->
+
+<!--{hook/global_usernav_extra2}-->
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".SC_leader").click(function(){$(this).parent().toggleClass("fold_leader");$(".SC_leader_box").toggle();});
+	});
+	</script>
+	<div class="SC">
+	<h3>分管领导<a class="btn SC_leader" href="javascript:void(0)" onclick="right_show_ajax('{$member[departmentid]}','leader','leader'); return false;"></a></h3>
+	<div class="FTL SC_leader_box">
+	<div id="interestUid">
+	<!--{if $leader_list}-->
+	<ul class="followList" style="overflow:hidden">
+		<!--{loop $leader_list $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_right_user_l',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>		 
+		  <div class="fBox_R "> <span class="name"><a href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}</span> 
+		  <span id="follow_{$val[uid]}"> 	{$val[follow_html]} </span> 
+		  <span class="ff_1">{$val[here_name]}</span>
+		  </div>
+ 		<div id="user_{$val[uid]}_right_user_l" class="layS"></div>
+		</li>
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".SC_manager").click(function(){$(this).parent().toggleClass("fold_manager");$(".SC_manager_box").toggle();});
+	});
+	</script>
+	<div class="SC">
+	<h3>{$d_d_name}负责人<a class="btn SC_manager" href="javascript:void(0)" onclick="right_show_ajax('{$member[departmentid]}','manager','manager'); return false;"></a></h3>
+	<div class="FTL SC_manager_box">
+	<div id="interestUid">
+	<!--{if $manager_list}-->
+	<ul class="followList" style="overflow:hidden">
+		<!--{loop $manager_list $val}-->
+		<li class="pane" id="follow_user_{$val[uid]}">
+		  <div class="fBox_l"><img onerror="javascript:faceError(this);" src="{$val[face]}" onmouseover="get_user_choose({$val[uid]},'_right_user_m',{$val[uid]});" onmouseout="clear_user_choose();"/> </div>		 
+		  <div class="fBox_R "> <span class="name"><a href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}</span> 
+		  <span id="follow_{$val[uid]}"> 	{$val[follow_html]} </span> 
+		  <span class="ff_1">{$val[here_name]}</span>
+		  </div>
+ 		<div id="user_{$val[uid]}_right_user_m" class="layS"></div>
+		</li>
+		<!--{/loop}-->
+	</ul>
+	<!--{/if}-->
+	</div>
+	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".SC_department").click(function(){$(this).parent().toggleClass("fold_department");$(".SC_department_box").toggle();});
+	});
+	</script>
+	<div class="SC">
+	<h3>本{$d_c_name}其它{$d_d_name}<a class="btn SC_department" href="javascript:void(0)" onclick="right_show_ajax('{$member[companyid]}','department','department'); return false;"></a></h3>
+	<div class="FTL SC_department_box">
+	<!--{if $department_list}-->
+	<div class="followList" style="overflow:hidden">
+	{$department_list}
+	</div>
+	<!--{/if}-->
+	</div>
+	</div>
+  <div class="SC">
+  <h3>怎样玩转{$this->Config[site_name]}？</h3>
+  <ul class="FTL">
+	  <li class="icon_platform">
+      <a href="javascript:void(0)" class="W_linecolor current"><img src="images/transparents.gif" class="icon_pf icpf_message"></a>
+      <a href="javascript:void(0)" class="W_linecolor"><img src="images/transparents.gif" class="icon_pf icpf_mphone"></a>
+      <a href="javascript:void(0)" class="W_linecolor"><img src="images/transparents.gif" class="icon_pf icpf_mclient"></a>
+      </li>
+	  <li class="icpf_message_box">短信版：免费绑定手机后，通过短信/彩信更新微博</li>
+      <li class="icpf_mphone_box">手机版：手机输入{$this->Config['site_url']}即可使用现有帐号登录</li>
+      <li class="icpf_mclient_box">手机客户端：支持众多机型即拍即传，最多节约流量达80%</li>
+	</ul>
+  </div>  
+
+<!-- 意见反馈-->
+<script type="text/javascript">
+	$(document).ready(function(){
+	$(".SC_yijianfankui").click(function(){$(this).parent().toggleClass("fold_yijianfankui");$(".SC_yijianfankui_box").toggle();});
+	});
+  </script>
+  <div class="SC">
+  <h3>{$this->Config[site_name]}意见反馈<a class="btn SC_yijianfankui" href="javascript:void(0)"></a></h3>
+  <ul class="FTL SC_yijianfankui_box">
+	  <li>众人拾柴火焰高，如您有任何建议欢迎点<a href="index.php?mod=tag&code=意见反馈" target="_blank">意见反馈</a>告诉我们。</li>
+	  <li>&nbsp;</li>
+	</ul>
+  </div>
+<!--意见反馈-->
+
+
+
+<!--{if $member[uid]}-->
+<div id="add_remark_{$member[uid]}" class="alertBox" style="display:none" >
+	<ul class="manBox">
+	 <li>
+		<div class="tt1">
+			<span>设置备注名</span>
+			<div class="mclose" onclick="getElementById('add_remark_{$member[uid]}').style.display=(getElementById('add_remark_{$member[uid]}').style.display=='none')?'':'none'"></div>
+		</div>
+		<div class="mWarp">
+			 <form action="ajax.php?mod=topic&code=add_remark" method="POST" name="remarkform"   onsubmit="publishSubmit_remark('remark_{$member[uid]}',{$member[uid]});return false;">
+			  给朋友加个备注名，方便认出他是谁（0~6个字符）
+					<table >
+					  <tr>
+						<td><input name="remark_{$member[uid]}" type="text" id="remark_{$member[uid]}" class="text-area2" value="{$buddys[remark]}" size="6" maxlength="6"/>
+						</td>
+						<td align="left">
+						<input type="button" class="shareI" value="保 存" onclick="publishSubmit_remark('remark_{$member[uid]}',{$member[uid]});return false;" /> 
+						</td>
+					  </tr>
+					</table>
+			  </form>
+		  </div>
+		</li>
+	 </ul>
+ </div>
+<!--{/if}--> 
+	
+<!--{if $this->Config[ad_enable]}-->
+<div class="R_AD"> 
+  {if 'myhome'== $this->Code}
+  {$this->Config[ad][ad_list][group_myhome][middle_right1]}
+  <!--右2-->
+  {elseif 'tag'== $this->Get['mod']}
+  {$this->Config[ad][ad_list][tag_view][middle_right1]}
+  {/if}
+</div>
+<!--{/if}-->
+
+</div>
+</div>

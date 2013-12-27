@@ -1,0 +1,65 @@
+<style>
+body{ overflow:hidden;margin:0;font-size:14px;}
+</style>
+
+	<form id="form1" action="index.php?mod=report&code=do" method="post">
+    	<table style="width:100%;">
+<!--             <tr>
+                <td>举报对象：
+                	<!--{loop $report_config[type_list] $key $val}-->
+               	 	<input type="radio" id="type{$key}" name="type" value={$key} /><label for="type{$key}">{$val}</label>&nbsp;&nbsp;
+               	 	<!--{/loop}-->
+				</td>
+            </tr> -->
+            <tr>
+                <td><textarea class="inputType" name="content" id="content"  style="height:100px; line-height:18px;width:98%"></textarea></td>
+            </tr>
+			<tr>
+                <td>
+					<select name="reason" id="reason" style="width:200px">
+						<option selected="" value="0">--请选择不良信息的类型--</option>
+						<!--{loop $report_config[reason_list] $key $val}-->
+						<option value="{$key}">{$val}</option>
+						<!--{/loop}-->
+					</select>
+				</td>
+            </tr>
+            <tr>
+				<td><a href="javascript:void(0);" onclick="sub();return false;">确定</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="self.parent.tb_remove();">取消</a></td>
+            </tr>  
+        </table>
+		<table style="width:100%">
+			<tr>
+                <td><p style="color:#666">如果您在微博中发现有色情、暴力或者其它违规的内容,请提交上述表格，我们将尽快处理。您的隐私会得到严格的保护.</p></td>
+            </tr>
+		</table>
+		<input type="hidden" name="url" value="{$url}" />
+       </form>
+
+
+
+<script type="text/javascript">
+
+	function sub(){
+		//document.getElementById('form1').onsubmit= function(){
+			//return false;
+			if(!document.getElementById('type1').checked && !document.getElementById('type2').checked && !document.getElementById('type3').checked){
+				alert('请选择举报对象!');
+				return false;
+			}else if(document.getElementById('reason').value == '0'){
+				alert('请选择不良信息的类型!');
+				return false;
+			}else if(document.getElementById('content').value == ''){
+				alert('请填写原因!');
+				return false;
+			} else{
+				document.getElementById('form1').submit();
+			}
+		//}
+	}
+	document.getElementById('content').focus();
+	if('v' != '\v'){
+		document.getElementById('content').setSelectionRange(0,0);
+	}
+
+</script>

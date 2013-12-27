@@ -1,0 +1,89 @@
+<!--{template "topic_header"}-->
+<div class="main t_col_main">
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+
+  <div class="main3Box_m HotW ">	
+    <div id="topNews_1" class="Hotwarp">
+	  <div class="Menubox2" style=" width:540px;">
+		<ul>
+		  <li>
+		    <div  class="tagn">
+			  <a href="index.php?mod=event"><span>活动主页</span></a>
+			</div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=event&code=myevent"><span>我的活动</span></a>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="tago">
+			  <a href="index.php?mod=event&code=followevent"><span>我关注的人的活动</span></a>
+		    </div>
+		  </li>
+		  <li>
+			<div class="tagn">
+			  <a href="index.php?mod=event&code=pevent"><span>发起活动</span></a>
+			</div>
+		  </li>
+		</ul>
+	  </div>
+
+	  <div id="vote_filter_wp" style="margin-left:15px; margin-right:15px; margin-bottom:10px; margin-top:10px;">
+      <!--{eval if($type == 'part') $partcol = 'style="color:#FF0000"'}-->
+      <!--{eval if($type == '') $col = 'style="color:#FF0000"'}-->
+        <a href="index.php?mod=event&code=followevent"><span $col>他们管理的活动</span></a>
+        <span style="color:#CCCCCC; margin-right:5px; margin-left:5px;">|</span>
+        <a href="index.php?mod=event&code=followevent&type=part"><span $partcol>他们参与的活动</span></a>
+    </div>
+
+    <!--{if $rs}-->
+    <!--{loop $rs $key $val}-->
+	<div class="e_list_box">
+	  <div class="left_user_info">
+	    <div class="avatar_left">
+	      <a href="index.php?mod=event&code=detail&id=$key">
+	        <img src="{$val[image]}" height="128" width="100"></img>
+	      </a>
+	    </div>
+	    <div class="avatar2_info">
+	      <p class="left_t_nick_name">
+	        <a href="index.php?mod=event&code=detail&id=$key"><strong>{$val[title]}</strong></a>
+	      </p>
+	      <p class="left_t2">
+	        时间：{$val[fromt]}-{$val[tot]}
+	      </p>
+	      <p class="left_t2">
+	        地点：{$val[address]}
+	      </p>
+	      <p class="left_t2">
+	        发起人：<a href="index.php?mod=$val[username]" target="_blank">{$val[nickname]}</a>
+	      </p>
+	      <p>
+	        {$val[app]}
+	      </p>
+	      <p class="left_t2">
+			报名人数：{$val[app_num]} | 参与人数：{$val[play_num]}
+	      </p>
+	    </div>
+	  </div>
+	</div>
+	<!--{/loop}-->
+	<!--{else}-->
+	<div class="e_count">未检索到活动</div>
+	<!--{/if}-->
+	<!--{if $page_arr[html]}-->	
+	<div><ul><li>{$page_arr[html]}</li> </ul></div>
+	<!--{/if}--> 
+  </div>
+    <!--{subtemplate 'event_right'}-->
+</div></div>
+<!--{template "topic_footer"}-->

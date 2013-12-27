@@ -1,0 +1,165 @@
+<!--{eval $pagehtml_not = $pagehtml_not ? $pagehtml_not : false;}-->
+<div class="Listmain">
+
+          <!--{if $topic_list}-->
+		  	<!--{if 'favoritemy'==$this->Code}-->
+			
+				<!--收藏我的列表 Begin-->
+				<!--{loop $topic_list $val}-->
+					<!--{eval $counts++;}-->
+					<script type="text/javascript">
+						$(document).ready(function(){
+							var objStr = "#topic_lists_{$val[tid]}";
+							$(objStr).mouseover(function(){$(objStr + " i").show();});
+							$(objStr).mouseout(function(){$(objStr + " i").hide();});
+						});
+					</script>
+					<div class="feedCell" id="topic_list_{$val[tid]}">
+						<!--{subtemplate topic_favoritemy_item}-->	
+					</div>
+				<!--{/loop}-->
+		  		<!--收藏我的列表 End-->
+		  
+          <!--{else}-->
+		  	<!--微博列表 Begin-->
+				<!--{if $this->Code=='bbs' || $this->Code=='cms'}-->
+					<script type="text/javascript">
+					function item_longtext(pidval){
+					var full_id = 'c_' + pidval + '_full';
+					var short_id = 'c_' + pidval + '_short';
+					var link_id = 'linktext_' + pidval;
+					if (document.getElementById(full_id).style.display == 'none'){
+					document.getElementById(full_id).style.display = 'block';
+					document.getElementById(short_id).style.display = 'none';
+					document.getElementById(link_id).innerHTML = '收起全文';
+					}else{
+					document.getElementById(full_id).style.display = 'none';
+					document.getElementById(short_id).style.display = 'block';
+					document.getElementById(link_id).innerHTML = '查看全文';
+					}
+					}
+					</script>
+				<!--{/if}-->
+			
+			<!--{loop $topic_list $val}-->
+				<!--{eval $counts++;}-->
+				<div class="feedCell" id="topic_list_{$val[tid]}">
+					<!--{if $this->Config[ad_enable]}-->
+						<!--{if $counts == 3 && $this->Config[ad][ad_list][group_myhome][middle_center]}-->
+							<div class="L_AD">{$this->Config[ad][ad_list][group_myhome][middle_center]}</div>
+						<!--{/if}-->				
+						<!--{if $counts == 10 && $this->Config[ad][ad_list][group_myhome][middle_center1]}-->
+							<div class="L_AD">{$this->Config[ad][ad_list][group_myhome][middle_center1]}</div>
+						<!--{/if}-->			
+					<!--{/if}-->
+					<!--{if $this->Code=='bbs'}-->
+					<!--{subtemplate topic_item_bbs_ajax}-->
+					<!--{elseif $this->Code=='cms'}-->
+					<!--{subtemplate topic_item_cms_ajax}-->
+					<!--{else}-->
+					<!--{subtemplate topic_item_ajax}-->
+					<!--{/if}-->
+                    <div class="mBlog_linedot" style=""></div>
+				</div>
+		  	<!--{/loop}-->
+		 
+			<!--微博列表 End-->
+		<!--{/if}-->
+			  
+		  <!--{if $page_arr[html] && !$pagehtml_not}-->
+          <div class="pageStyle">
+            <li>{$page_arr[html]}</li>
+          </div>
+          <!--{/if}-->
+  	<!--{else}-->
+    
+	<!--{if 'bbs' == $this->Code || 'cms' == $this->Code || 'department' == $this->Code || 'company' == $this->Get[mod]}-->
+	<br>暂时没有可显示的微博或数据
+	<!--{elseif 'channel' == $this->Code && !$my_buddy_channel}-->
+	<br>您还没有关注任何频道，请先进入<a href="index.php?mod=channel">频道页</a>，对你所感兴趣的频道进行关注。<br><br>关注后，该频道的微博将显示在这里！
+	<!--{else}-->
+	<br>分类下暂时没有发布微博。
+	<!--{/if}-->
+  	<!--{/if}-->
+	
+        
+        
+         
+		  <!--{if 'groupview'== $this->Code && $counts <=0}-->
+		   <BR />
+			"<strong>{$groupname}</strong>" 分组下的用户暂时没有发布微博。
+		  <!--{/if}-->
+          <!--{if $counts <=5}-->
+          <div id="topic_list_{$counts}" >
+            <!--{if 'myat'== $this->Code}--> <BR />
+            这里会显示含有"@{MEMBER_NICKNAME}"的微博。<BR />
+            <BR />
+            <span>@昵称 </span>技巧：注意昵称后面有“空格”，可以理解为向某人说，被@昵称 提到的人如果在系统中存在，那么TA就可在其个人首页“@提到我的”的栏目中看到你发布的内容。
+            <!--{elseif 'mycomment' == $this->Code}--> <BR />
+            <BR />
+            <BR />
+            这里会显示他人对你微博所做的评论。<BR />
+            <BR />
+            <A HREF="index.php?mod={$member[username]}&code=fans" title="关注{$member[nickname]}的">关注你的</A>人越多，就会有越多人参与你分享内容的讨论，尝试通过<A HREF="index.php?mod=profile&code=invite">邀请好友</A>来让更多人关注你；<BR />
+			<!--{elseif 'tocomment' == $this->Code}--> <BR />
+            <BR />
+            <BR />
+            这里会显示你对他人微博所做的评论。<BR />
+            <BR />
+            <!--{elseif 'myfavorite' == $this->Code}--> <BR />
+            这里会显示你所收藏的微博。<BR />
+            <BR />
+            在登录状态下，每个微博的下方都有一个收藏连接，点击即可自动完成收藏，然后你就可以在这里看到了。你可以访问<A HREF="index.php?mod=topic&code=hot">热门微博</A>来发现有收藏价值的内容；<BR />
+            <!--{elseif 'favoritemy' == $this->Code}--> <BR />
+            这里会显示谁收藏了你的微博。<BR />
+            <BR />
+            赶快分享些有价值的新鲜事吧，当有人收藏后，你就会在这里看到。<BR />
+			
+			<!--{elseif 'myhome' == $this->Code }-->
+			<BR /><BR />
+			这里显示我和我关注人的微博。<BR /><BR />
+			关注你喜欢的人，你就可以在这看到他们分享的内容，尝试通过<A HREF="index.php?mod=topic&code=top">达人榜</A>、<A HREF="index.php?mod=profile&code=search">找人</A>选择用户加关注；<BR />
+			
+			<!--{elseif 'tag' == $this->Code }-->
+			<BR /><BR />
+			这里显示我关注话题的相关微博。<BR /><BR />
+			对你感兴趣的话题进行关注，就可以在这里直接查看相关微博，还可以结识有共同话题的人，尝试通过<A HREF="index.php?mod=tag">话题榜</A> 选择话题关注；<BR />	
+			<!--{elseif 'event' == $view }-->
+			<BR />
+			这里显示我关注活动的相关微博。<BR />
+			对你感兴趣的活动进行关注，就可以在这里直接查看相关微博，还可以结识有共同话题的人。<BR />
+			<!--{elseif 'qun' == $this->Code }-->
+			<BR /><BR />
+			这里显示我加入的群相关的微博。<BR /><BR />
+			加入你感兴趣的群，就可以在这里直接查看相关微博，还可以结识有共同话题的人。<a href="index.php?mod=qun" target="_blank">去群里逛逛吧~~</a><BR />
+			<!--{elseif 'recd' == $this->Code }-->
+			<BR /><BR />
+			这里显示推荐的微博。<BR /><BR />
+			<!--{elseif 'cms' == $this->Code }-->
+			<BR /><BR />
+			这里显示来自<a href="{$cms_url}" target="_blank">网站资讯</a>的内容。<BR /><BR />
+			<!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+			前提条件是：微博必须整合了DedeCMS系统。<BR /><BR />
+			<!--{/if}-->
+			<!--{elseif 'bbs' == $this->Code }-->
+			<BR /><BR />
+			<!--{if $this->Config[dzbbs_enable]}-->
+			这里显示来自<a href="{$bbs_url}" target="_blank">论坛</a>的帖子。<BR /><BR />
+			<!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+			前提条件是：微博必须整合了Ucenter系统和Discuz论坛。<BR /><BR />
+			<!--{/if}-->
+			<!--{elseif $this->Config[phpwind_enable]}-->
+			这里显示来自<a href="{$bbs_url}" target="_blank">论坛</a>的帖子。<BR /><BR />
+			<!--{if 'admin'==MEMBER_ROLE_TYPE}-->
+			前提条件是：微博必须整合了PhpWind论坛，且同时开启了调用phpwind论坛帖子。<BR /><BR />
+			<!--{/if}-->
+			<!--{/if}-->
+			<!--{elseif 'fenlei' == $view }-->
+			<BR />
+			这里显示我关注分类的相关微博。<BR />
+			对你感兴趣的分类进行关注，就可以在这里直接查看相关微博。<BR />	
+			<!--{/if}-->
+          </div>
+          <!--{/if}-->
+        </div>
+{eval echo $this->js_show_msg();}

@@ -1,0 +1,117 @@
+<!--{if $this->Code == 'force_out'}-->
+<div class="dialog_inner">
+  <div>
+    <form action="ajax.php" id="force" name="force" method="post">
+      <table>
+        <tr>
+          <td>封杀对象：</td>
+          <td><input type="text" id="name" name="name" value="{$name}"></td>
+        </tr>
+        <tr>
+          <td>封杀类型：</td>
+          <td>
+            <input type="radio" id="role_id" name="role_id" value="4" checked>禁止言论
+            <input type="radio" id="role_id" name="role_id" value="118">禁止访问
+          </td>
+        </tr>
+        <tr>
+          <td>封杀理由：</td>
+          <td>
+            <input type="text" id="cause" name="cause" value="{$cause}">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input class="button" type="button" name="Submit" onclick="do_force_out();" value="提交">
+            <input class="button" type="button" name="docancel" onclick="closeDialog('{$this->Get['handle_key']}');" value="取消">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<!--{elseif $this->Code == 'sendemail'}-->
+<div class="dialog_inner">
+  <div>
+    <form action="ajax.php" id="email" name="email" method="post">
+      <table>
+      <tr>
+          <td>报备名单</td>
+          <td>
+            <!--{if $leader_list}-->
+            <!--{loop $leader_list $key $val}-->
+            <label><input type="checkbox" name="leader[$key]" value="{$val[email]}" checked>{$val[name]}</label>
+            <!--{/loop}-->
+            <!--{else}-->
+            <span>没有需要报备的领导、可以到<a href="admin.php?mod=member&code=leaderlist" target="_blank">报备用户列表</a>处添加需要报备的领导email</span>
+            <!--{/if}-->
+          </td>
+        </tr>
+        <tr>
+          <td>报备理由：</td>
+          <td>
+            <textarea name="message" id="message" rows="5" cols="30">{$message}</textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input class="button" type="button" name="Submit" onclick="dosendemail();" value="提交">
+            <input class="button" type="button" name="docancel" onclick="closeDialog('{$this->Get['handle_key']}');" value="取消">
+            <sup id="sendshow" style="display:none"><img src="./images/loading.gif"><span style="color:red">正在发送邮件，请稍等...</span></sup>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<!--{/if}-->
+      <script type="text/javascript">	
+      function do_force_out(){
+        var nickname = document.getElementById('name').value;
+        var cause = document.getElementById('cause').value;
+        if(!nickname){
+        	show_message('请输入要封杀的对象');
+            document.getElementById('nickname').focus();
+            return false;
+        }
+        if(!cause){
+        	show_message('请输入封杀理由');
+            document.getElementById('cause').focus();
+            return false;
+        }
+        var post_data = $('#force').serialize();
+		$.post(
+			'ajax.php?mod=topic_manage&code=do_force_out',
+			post_data,
+			function(d){
+				if(d.msg){
+					show_message(d.msg,2);
+				}
+				closeDialog('{$this->Get['handle_key']}');
+			},
+			'json'
+		);
+      }
+      
+      function dosendemail(){
+          var message = document.getElementById('message').value;
+          if(!message){
+          	  show_message('请输入报备理由');
+              document.getElementById('message').focus();
+              return false;
+          }
+          document.getElementById('sendshow').style.display = 'block';
+          var post_data = $('#email').serialize();
+  		  $.post(
+  			'ajax.php?mod=topic_manage&code=dosendemail',
+  			post_data,
+  			function(d){
+  				if(d.msg){
+  					show_message(d.msg,3);
+  				}
+  				closeDialog('{$this->Get['handle_key']}');
+  			},
+  			'json'
+  		);
+        }
+      </script>

@@ -1,0 +1,117 @@
+<!--{template admin/header}-->
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.init({
+	id : 'content',
+	width : '50%',
+	height : '200px',
+	resizeMode : 1,
+	filterMode : true,
+	skinsPath : '{conf site_url}/templates/default/js/kind/skins/',
+	items : [
+'justifyleft', 'justifycenter', 'justifyright','insertorderedlist', 'insertunorderedlist','title', 'fontname','textcolor','bold','italic', 'underline',
+	]
+});
+setTimeout("KE.create('content');",100);
+</script>
+<div class="event_pbox">
+  <form name="FORM" id="FORM" method="post" action="admin.php?mod=event&code=doeditevent" enctype="multipart/form-data">
+    <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+        <tr class="header">
+      	  <td colspan="2">编辑活动</td>
+   		</tr>
+        <tr>
+          <td width="13%" align="center" bgcolor="#F8F8F8">标题:</td>
+          <td bgcolor="#FFFFFF"><input type="text"  size="30" maxlength="50" id="title" name="title" value="{$val[title]}"></td>
+        </tr>
+        <tr>
+          <td width="13%" align="center" bgcolor="#F8F8F8">活动具体描述:</td>
+          <td bgcolor="#FFFFFF">
+		    <textarea name="content" id="content">{$val[content]}</textarea>
+		  </td>
+		</tr>
+        <tr>
+          <td width="13%" align="center" bgcolor="#F8F8F8">活动具体地址:</td>
+          <td bgcolor="#FFFFFF">
+		    <input type="text" name="address" id="address" size="30" maxlength="50" value="{$val[address]}">
+		  </td>
+		</tr>
+        <tr>
+          <td width="13%" align="center" bgcolor="#F8F8F8">上传活动海报:
+          <td bgcolor="#FFFFFF">
+          <!--{if $val[image]}-->
+            <img id="showimg" name="showimg" src="{$val[image]}" height="50" width="30"></img>
+            <label><input type="checkbox" id="del_pic" name="del_pic" value=1>删除图片</label>
+          <!--{else}-->
+            没有活动海报
+          <!--{/if}-->
+          </td>
+        </tr>
+        <tr>
+          <td width="13%" align="center" bgcolor="#F8F8F8"></td>
+          <td align="center">
+	  		<input type="submit" class="button" name="groupsubmit" value="提 交" />&nbsp;
+			<input name="reset" type="reset"class="button" onClick="location.href='admin.php?mod=event&code=manage'" value="取 消" />
+            <input type="hidden" id="id" name="id" value="{$id}">
+          </td>
+        </tr>
+      </table>
+    </form>
+<script type="text/javascript">
+function formSubmit(){
+
+	document.FORM.target="";
+	var top = document.getElementById('top').value;
+	var post_data = $('#FORM').serialize();
+	$.post(
+		"ajax.php?mod=event&code=create", 
+		post_data, 
+		function(r){
+			if(!is_json(r)){
+				var handle_key = 'publish_share';
+				showDialog(handle_key, 'local', '分享到微博', {html:r}, 500);
+				
+				$('#topic_simple_close_btn').click(
+					function() {
+						location.href = "index.php?mod=event&code=detail&id="+$("#topic_simple_item_id").val();
+					}
+				);
+				$('#topic_simple_share_btn').click(
+					function () {
+						var response = function() {
+							location.href = "index.php?mod=event&code=detail&id="+$("#topic_simple_item_id").val();
+						}
+						publishSimpleTopic($('#topic_simple_content').val(), 'event', $("#topic_simple_item_id").val(), {response:response})
+					}
+				);
+			}else{
+				var json = eval('('+r.toString()+')');
+				if (json.done) {
+					if(top){
+					    MessageBox('notice',json.msg);
+						$('#i_already').val(json.retval.content);
+						$('#mapp_item').val(json.retval.from);
+						$('#mapp_item_id').val(json.retval.id);
+						$(".menu_hdb").hide();
+					}else{
+						MessageBox('notice',json.msg);
+						location.href = "index.php?mod=event&code=detail&id="+json.retval.id;
+					}
+				} else {
+					MessageBox('warning', json.msg);
+				}
+			}
+		}
+	);
+}
+
+<!--{if $image}-->
+function setStyle(){
+  document.getElementById("img").style.display = 'block';
+}
+$(document).ready(function() {
+setStyle();
+})
+<!--{/if}-->
+</script>
+</div>

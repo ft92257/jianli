@@ -1,0 +1,77 @@
+/*******************************************************************
+ * [JishiGou] (C)2005 - 2099 Cenwor Inc.
+ *
+ * This is NOT a freeware, use is subject to license terms
+ *
+ * @Package JishiGou $
+ *
+ * @Filename style.css $
+ *
+ * @Author http://www.jishigou.net $
+ *
+ * @Date 2012-04-23 17:49:35 1768810404 1678573005 908 $
+ *******************************************************************/
+
+
+a {
+	color: #3A4273;
+	text-decoration: none
+}
+
+a:hover {
+	color: #3A4273;
+	text-decoration: underline
+}
+
+body, table, td {
+	color: #3A4273;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 12px;
+	line-height: 20px;
+	scrollbar-base-color: #E3E3EA;
+	scrollbar-arrow-color: #5C5C8D
+}
+
+input {
+	color: #085878;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 12px;
+	background-color: #3A4273;
+	color: #FFFFFF;
+	scrollbar-base-color: #E3E3EA;
+	scrollbar-arrow-color: #5C5C8D
+}
+
+.install {
+	font-family: Arial, Verdana;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000
+}
+
+.message {
+	background: #E3E3EA;
+	padding: 20px;
+}
+
+.altbg1 {
+	background: #E3E3EA;
+}
+
+.altbg2 {
+	background: #EEEEF6;
+}
+
+.header td {
+	color: #FFFFFF;
+	background-color: #3A4273;	
+	text-align: center;
+}
+
+.option td {
+	text-align: center;
+}
+
+.redfont {
+	color: #FF0000;
+}

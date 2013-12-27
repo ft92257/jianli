@@ -1,0 +1,53 @@
+
+<!--{loop $vote_list $val}-->
+<div id="topic_list_25">
+<div class="feedCell vote_list" id="topic_list_25"> 
+	<div class="avatarL"> 
+		<div class="avatar">
+			<a href="index.php?mod=vote&view=me&uid=$val[uid]"><img src="{$members[$val[uid]]['face']}" onerror="javascript:faceError(this);" /></a>
+		</div>
+		<div class="vText"><a href="index.php?mod=$val[uid]&type=vote">{$members[$val[uid]]['nickname']}{$members[$val[uid]]['validate_html']}</a></div>
+	</div>
+	<div id="user_25_user"></div>
+	<div id="Pmsend_to_user_area" style="width:430px; display:none"></div>
+	<div id="global_select_4" class="alertBox" style="display:none"></div>
+	<div class="Contant">
+	<div id="topic_lists_25" style="_overflow:hidden">
+	<div class="oriTxt">
+		<p class="vote_l_1">
+		<span><a title="$val[subject]" href="index.php?mod=vote&code=view&vid=$val['vid']" target="_blank" >$val[subject]</a><span>
+		<!--{if $val['is_expiration']}-->
+			<span style="color:#666;">(已结束)</span>
+		<!--{/if}-->
+		<!--{if $val['is_vote']}-->
+			<span  style="color:#00CC00;">(已投票)</span>
+		<!--{/if}-->
+		</p>
+		<p style="font-size:12px; color:#666;" class="vote_l_1">
+			<!--{loop $val['vote_show'] $it $item}-->
+			<!--{if $it<$val['vi_count']}--><img src="templates/default/images/accept.png" /><!--{else}-->
+			<input type="{$val['input_type']}" disabled="disabled"/><!--{/if}--> $item
+			<br />
+			<!--{/loop}-->
+			...
+		</p>
+		<div class="vote_num"><b>{$val[voter_num]}</b></div>
+	</div>
+	<div class="from">
+	<div class="option"></div>
+	<div class="mycome">
+	<span style="color:#666;">最后更新时间：<!--{$val['last_update_time']}--></span>
+	<span style="margin-left:5px;"><a href="index.php?mod=vote&code=view&vid=$val['vid']" target="_blank" >查看投票&rsaquo;&rsaquo;</a></span>
+	</div>
+
+</div>        
+</div>
+</div>
+</div>
+</div>
+<!--{/loop}-->
+<!--{if $page_arr[html]}-->
+<div class="pageStyle">
+<li>{$page_arr[html]}</li>
+</div>
+<!--{/if}-->

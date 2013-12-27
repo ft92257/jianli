@@ -1,0 +1,98 @@
+{template admin/header}
+
+
+<div>
+<form name="FORM" method="post" action="admin.php?mod=event&code=event">
+  <table width=100% cellspacing=1 cellpadding=3 border=0>
+    <tr>
+      <td width=20%>栏目名称:</td>
+      <td width=80%><input type="text" id="name" name="name" value="{$name}"></td>
+    </tr>
+    <tr>
+      <td width=20%>英文名称:</td>
+      <td width=80%>
+        <input type="text" id="ename" name="ename" value="{$ename}">
+        <input type="hidden" id="hid_ename" name="hid_ename" value="{$ename}">
+      </td>
+    </tr>
+    <tr>
+      <td width=20%>表单类型:</td>
+      <td width=80%>
+        <select id="form_type" name="form_type" onchange="set();">
+          <option value="text" {$text}>文本框</option>
+          <option value="select" {$select}>下拉框</option>
+        </select>
+      </td>
+    </tr>
+    <tr id="set">
+      <td width=20%>可选值:</td>
+      <td width=80%><textarea name="form_set" id="form_set" cols="25" rows="5">{$form_set}</textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <!--{if $act == 'new'}-->
+ 	    <input type="submit" name="add" value="添加新可选项" class="button">
+  	    <!--{else}-->
+  	    <input type="submit" name="edit" value="修改可选项" class="button">
+        <!--{/if}-->
+      </td>
+    </tr>
+  </table>
+  <input type="hidden" id="act" name="act" value="{$act}">
+  <input type="hidden" id="id" name="id" value="{$id}">
+  <script type="text/javascript">
+  function set(){
+	var type = document.getElementById('form_type').value;
+	if(type == 'text'){
+	  document.getElementById('set').style.display='none';
+	}else{
+	  document.getElementById('set').style.display='block';
+	}
+  }
+  set();
+  </script>
+</form>
+</div>
+
+<div>
+  <form action="admin.php?mod=event&code=chooseinfo" method="POST">
+  <table width=100% cellspacing=1 cellpadding=3 class="tableborder">
+    <tr class="header">
+      <td width=20%>活动发起者可选的必填资料</td>
+      <td width=30%>项目名</td>
+      <td width=20%>项目类型</td>
+      <td width=20%>操作</td>
+    </tr>
+    <!--{loop $info $key $val}-->
+    <tr class="altbg2" onmouseover="this.className='altbg1'" onmouseout="this.className='altbg2'"> 
+      <td style="border-bottom:1px dotted #ededed;"><input type="checkbox" name="che[{$val[id]}]" $val[che]></td>
+      <td style="border-bottom:1px dotted #ededed;">{$val['name']}</td>
+      <td style="border-bottom:1px dotted #ededed;">{$val['form_type']}</td>
+      <td style="border-bottom:1px dotted #ededed;">
+        <a href="admin.php?mod=event&code=info&id=$key">编辑</a>
+        <span>&nbsp;|&nbsp;</span>
+        <a href="javascript:void(0);" onclick="delete_info($key,'$val[che]');">删除</a>
+      </td>
+    </tr>
+    <!--{/loop}-->
+    <tr>
+      <td colspan="4">
+        <center><input type="submit" class="button" name="Submit" value="提交"></center>
+      </td>
+    </tr>
+  </table>
+  </form>
+  <script type="text/javascript">
+function delete_info(key,t){
+	if(t){
+		alert('已选择、不能删除');
+		return false;
+	}
+	if(confirm('你确实要删除吗?不可恢复')){
+		location.href="admin.php?mod=event&code=del&id="+key;
+	}else{
+		return false;
+	}
+}
+  </script>
+</div>

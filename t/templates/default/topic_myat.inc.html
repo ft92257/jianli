@@ -1,0 +1,64 @@
+<!--@我的 右侧导航-->
+<div>
+<div class="mainR">
+
+<!--右侧顶部广告-->
+<!--{if $this->Config[ad_enable]}-->
+  <!--{if 'myhome'== $this->Code}-->
+    <!--{if $this->Config[ad][ad_list][group_myhome][middle_right]}--><div class="R_AD"> {$this->Config[ad][ad_list][group_myhome][middle_right]}</div>	<!--{/if}-->
+  <!--{elseif 'tag'== $this->Get['mod']}-->
+    <!--{if $this->Config[ad][ad_list][tag_view][middle_right]}--><div class="R_AD">{$this->Config[ad][ad_list][tag_view][middle_right]}</div><!--{/if}-->
+  <!--{/if}-->
+<!--{/if}-->
+<!--右侧顶部广告-->
+
+<div id="topic_right_ajax_list"></div>
+
+<!--{hook/global_usernav_extra2}-->
+
+<!--@我的 右侧-->
+<script language="javascript">
+	$(document).ready(function(){
+		//本周常@我的用户
+		<!--{if MEMBER_ID > 0}-->	
+		get_atmy_user();
+		<!--{/if}-->
+	});
+	function get_atmy_user(){			
+		right_show_ajax('{$member[uid]}','atmy_user','atmy_user');
+	}
+</script>
+	
+
+  <script type="text/javascript">
+	$(document).ready(function(){
+	$(".SC_rementuijian").click(function(){$(this).parent().toggleClass("fold_rementuijian");$(".SC_rementuijian_box").toggle();});
+	});
+  </script>
+  
+   <div class="side">
+	<h3>使用小帮助<a class="btn SC_rementuijian_box" href="javascript:void(0);"></a></h3>
+    <ul class="FTL SC_rementuijian_box">
+	  <li>在微博中@他人的昵称，如"@小秘书"，他就会收到@提醒。同样别人在微博中<a href="index.php?mod={$member[uid]}" target="_blank">@{$member['nickname']}</a>，你就会在本页面看到相关微博内容</li>
+	</ul>
+  </div>
+  
+	<!--{if MEMBER_ID > 0}-->
+ 	<!--本周常@我的用户 begin-->
+	<script type="text/javascript">
+			$(document).ready(function(){
+				$(".SC_renqituijian").click(function(){$(this).parent().toggleClass("fold_renqituijian");$(".SC_renqituijian_box").toggle();});
+			});
+		</script>
+	<div class="side" id="atmy_user_div">
+	  <h3>本周常@我的人<a class="btn SC_renqituijian" href="javascript:void(0);" onclick="right_show_ajax('{$member[uid]}','atmy_user','atmy_user')"></a></h3>
+	  <ul class="FTL3 SC_renqituijian_box">
+		<div id="{$member[uid]}_atmy_user"></div>
+	  </ul>
+	</div>
+	<!--本周常@我的用户 end-->
+   <!--{/if}-->
+
+<!--{template 'topic_right_common.ini'}-->
+</div>
+</div>

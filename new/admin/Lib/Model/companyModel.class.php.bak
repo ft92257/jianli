@@ -1,0 +1,69 @@
+<?php 
+class companyModel{
+function add($param){
+	
+$company_mod=M('company');
+foreach($param as $k=>$v){
+$param[$k]=trim($v);
+}
+
+$su=$company_mod->add($param);
+
+if($su){
+	
+	$info['status']=1;
+	$info['data']['id']=$su;
+	$info['msg']='添加成功';
+	}else{
+	$info['msg']='添加失败';
+	}
+return($info);
+}
+
+function update($param){
+$id=$param['id'];
+
+	if(is_numeric($id)&&!empty($id)){
+	unset($param['id']);
+    $company_mod=M('company');
+	$map['id']=$id;
+	$data=$param;
+	$su=$company_mod->where($map)->data($data)->save();
+		if($su){
+		$info['status']=1;
+		}else{
+		$info['msg']=$company_mod->getlastsql();
+		}
+	
+	}else{
+	$info['msg']='参数错误';
+	}
+
+	return($info);
+}
+function getone($param){
+if($param['id']>0&&floor($param['id'])==$param['id']){
+$company_mod=M('company');
+$map['id']=$param['id'];
+$info=$company_mod->where($map)->find();
+return $info;
+}
+
+}
+
+function getlist($param){
+
+$param['page']?$page=$param['page']:$page=1;
+$param['length']?$length=$param['length']:$length=4;
+$company_mod=M('company');
+$count=$company_mod->count();
+$info=$company_mod->page($page.','.$length)->select();
+$data['data']['data']=$info;
+$data['data']['length']=$length;
+$data['data']['count']=$count;
+return($data);
+}
+
+
+
+}

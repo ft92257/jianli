@@ -1,0 +1,230 @@
+<!--三栏切换处-->
+<div class="t_col_main_ln {$t_col_main_lb}">
+
+<!------用户头像等信息------->
+<!--{if $member}-->
+
+	<div class="sideBox">
+		<div class="avatar2">
+		<a href="index.php?mod={$member[username]}" title="{$member[username]}"><img src="{$member[face]}" alt="{$member[nickname]}" onerror="javascript:faceError(this);"/></a>    
+	</div>
+		<div class="avatar2_info">
+		<a href="index.php?mod={$member[username]}" title="@{$member[nickname]}"><b>{$member[nickname]}</b></a>{$member[validate_html]}
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(".member_exp").mouseover(function(){$(".member_exp_c").show();});
+				$(".member_exp").mouseout(function(){$(".member_exp_c").hide();});
+			});
+		</script>
+		<div class="member_exp">
+			<!--{if $this->Config[level_radio]}-->
+				<!--{if $this->Config[topic_level_radio]}-->
+				<a href="index.php?mod=settings&code=exp" title="点击查看微博等级"  target="_blank" class="ico_level wbL{$member[level]}">{$member[level]}</a>
+				<!--{/if}-->
+			 <!--{/if}-->
+			{if $member[credits]}积分：<a title="点击查看我的积分" href="index.php?mod=settings&code=extcredits"><b>{$member[credits]}</b></a>{/if}
+
+		</div>
+	</div>
+		<div class="edit_sign">
+		<!--{eval $member_signature = cut_str($member[signature],20);}-->
+		<!--{if $member[uid] == MEMBER_ID }-->
+			<span  title="个人签名：{$member[signature]}">
+			<a href="javascript:viod(0);" onclick="follower_choose({$member[uid]},'{$member[nickname]}','topic_signature'); return false;" >
+			<!--{if $member[signature]}-->{$member_signature}<!--{else}-->编辑个人签名<!--{/if}-->
+			</a></span>
+		<!--{else}-->
+			<span  title="个人签名：{$member[signature]}">
+			<!--{if $member[signature]}-->
+				<!--{if 'admin' == MEMBER_ROLE_TYPE}-->
+					<a href="javascript:void(0);" onclick="follower_choose({$member[uid]},'{$member[nickname]}','topic_signature');" title="点击修改个人签名">
+					<em ectype="user_signature_ajax_{$member[uid]}">({$member_signature})</em>
+					</a>
+				<!--{/if}-->
+			<!--{else}-->{$member[gender_ta]}没有填写个人签名<!--{/if}-->
+			</span>
+			
+		<!--{/if}-->
+		</div>
+	</div>
+
+	<div class="sideBox">
+		<div class="person_atten_l">
+			<p><span class="num"><a href="index.php?mod={$member[username]}&code=follow" title="{$member[nickname]}关注的">{$member[follow_count]}</a></span></p>
+			<p><a href="index.php?mod={$member[username]}&code=follow" title="{$member[nickname]}关注的">关注</a> </p>
+		</div>
+		<div class="person_atten_l">
+			<p><span class="num"><a href="index.php?mod={$member[username]}&code=fans" title="关注{$member[nickname]}的">{$member[fans_count]}</a></span></p>
+			<p><a href="index.php?mod={$member[username]}&code=fans" title="关注{$member[nickname]}的">粉丝</a> </p>
+		</div>
+		<div class="person_atten_r">
+			<p><span class="num"><a href="index.php?mod={$member[username]}" title="{$member[nickname]}的微博">{$member[topic_count]}</a></span></p>
+			<p><a href="index.php?mod={$member[username]}" title="{$member[nickname]}的微博">微博</a> </p>
+		</div>
+	</div>
+<!--{/if}-->
+<!------用户头像等信息------->
+
+
+<!------用户勋章信息------->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".sina_weibo").mouseover(function(){$(".sina_weibo_c").show();});
+	$(".sina_weibo").mouseout(function(){$(".sina_weibo_c").hide();});
+	$(".qqwb").mouseover(function(){$(".qqwb_c").show();});
+	$(".qqwb").mouseout(function(){$(".qqwb_c").hide();});
+	$(".qqim").mouseover(function(){$(".qqim_c").show();});
+	$(".qqim").mouseout(function(){$(".qqim_c").hide();});
+	$(".tel").mouseover(function(){$(".tel_c").show();});
+	$(".tel").mouseout(function(){$(".tel_c").hide();});
+
+	<!--{loop $medal_list $v}-->
+		$(".medal_$v[id]").mouseover(function(){$(".medal_c_$v[id]").show();});
+		$(".medal_$v[id]").mouseout(function(){$(".medal_c_$v[id]").hide();});
+	<!--{/loop}-->
+});
+</script>
+
+<ul class="Vimg">
+
+<!--{if 'tag'!=$this->Get['mod']}-->
+	<!--{if $this->Config[sina_enable] && sina_weibo_init($this->Config)}-->
+	<li class="sina_weibo">{eval echo sina_weibo_bind_icon($member[uid]);} &nbsp; 
+		<div class="sina_weibo_c">
+			<div class="VM_box">
+				<div class="VM_top">
+					<div class="med_img"><img src="./templates/default/images/medal/M_sina.gif"></div>
+					<div class="med_intro">
+						<p>新浪微博</p>
+						 绑定后，可以使用新浪微博帐号进行登录，在本站发的微博可以同步发到新浪微博<br />
+						{eval $sina_return  = sina_weibo_has_bind($member[uid]);}
+						<!--{if !$sina_return}-->
+						<a href="index.php?mod=account&code=sina">绑定新浪微博</a> |
+						<!--{/if}-->
+						<a target="_blank" href="index.php?mod=settings&code=user_medal">查看我的勋章</a>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[qqwb_enable] && qqwb_init($this->Config)}-->
+	<li class="qqwb">{eval echo qqwb_bind_icon($member[uid]);} &nbsp; 
+		<div class="qqwb_c">
+			<div class="VM_box">
+				<div class="VM_top">
+					<div class="med_img"><img src="./templates/default/images/medal/qqwb.png"></div>
+					<div class="med_intro">
+						<p>腾讯微博</p>
+						 绑定后，可以使用腾讯微博帐号进行登录，在本站发的微博可以同步发到腾讯微博<br />
+						{eval $qqwb_return  = qqwb_bind_icon($member[uid]);}
+						<!--{if !$qqwb_return}-->
+						<a href="index.php?mod=account&code=qqwb">绑定腾讯微博</a> |
+						<!--{/if}-->
+						<a target="_blank" href="index.php?mod=settings&code=user_medal">查看我的勋章</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[imjiqiren_enable] && imjiqiren_init($this->Config)}-->
+	<li class="qqim">{eval echo imjiqiren_bind_icon($member[uid]);} &nbsp; 
+		<div class="qqim_c">
+			<div class="VM_box">
+				<div class="VM_top">
+					<div class="med_img"><img src="./templates/default/images/medal/M_qq.gif"></div>
+					<div class="med_intro">
+					<p>QQ机器人</p>
+					用自己的QQ发微博、通过QQ签名发微博，如果有人@你、评论你、关注你、给你发私信，你都可以第一时间收到QQ机器人的通知<br />
+					{eval $imjiqiren_return  = imjiqiren_has_bind($member[uid]);}
+					<!--{if !$imjiqiren_return}-->
+					<a href="index.php?mod=tools&code=imjiqiren">绑定QQ机器人</a> |
+					<!--{/if}-->
+					<a target="_blank" href="index.php?mod=settings&code=user_medal">查看我的勋章</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[sms_enable] && sms_init($this->Config)}-->
+	<li class="tel">{eval echo sms_bind_icon($member[uid]);} &nbsp; 
+		<div class="tel_c">
+			<div class="VM_box">
+				<div class="VM_top">
+					<div class="med_img"><img src="./templates/default/images/medal/Tel.gif"></div>
+					<div class="med_intro">
+					<p>手机短信</p>
+					用自己的手机发微博、通过手机签名发微博，如果有人@你、评论你、关注你、给你发私信，你都可以第一时间收到手机短信的通知<br />
+					{eval $sms_return  = sms_has_bind($member[uid]);}
+					<!--{if !$sms_return}-->
+					<a href="index.php?mod=other&code=sms">绑定手机短信</a> |
+					<!--{/if}-->
+					<a target="_blank" href="index.php?mod=settings&code=user_medal">查看我的勋章</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!--{/if}-->
+
+
+	<!--{if $this->Config[yy_enable] && yy_init($this->Config)}-->
+	<li class="yy">{eval echo yy_bind_icon($_mymember[uid]);} &nbsp;</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[renren_enable] && renren_init($this->Config)}-->
+	<li class="renren">{eval echo renren_bind_icon($_mymember[uid]);} &nbsp;</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[kaixin_enable] && kaixin_init($this->Config)}-->
+	<li class="kaixin">{eval echo kaixin_bind_icon($_mymember[uid]);} &nbsp;</li>
+	<!--{/if}-->
+
+	<!--{if $this->Config[fjau_enable] && fjau_init($this->Config)}-->
+	<li class="fjau">{eval echo fjau_bind_icon($_mymember[uid]);} &nbsp;</li>
+	<!--{/if}-->
+<!--{/if}-->
+
+	<!--{if $member[validate] || $medal_list}-->
+	<!--{loop $medal_list $val}-->
+	<!--{eval $medal_type = unserialize($val[conditions]);}-->
+	<li class="medal_$val[id]"><a href="index.php?mod=other&code=medal" target="_blank"><img src="{$val[medal_img]}"/></a> &nbsp; 
+		<div class="medal_c medal_c_$val[id]">
+			<div class="VM_box">
+				<div class="VM_top">
+				<div class="med_img"><img src="{$val[medal_img]}"/></div>
+					<div class="med_intro">
+					<p>{$val[medal_name]}</p>
+					{$val[medal_depict]} <br />
+					<!--{if MEMBER_ID != $member[uid]}-->(他于：{$val[dateline]} 获得) <br />
+					<!--{if $medal_type[type] == 'topic'}-->
+					<a href="index.php?mod=topic&code=myhome" target="_blank">我要发微博</a> |	
+					<!--{elseif $medal_type[type] == 'reply'}-->
+					<a href="index.php?mod=topic&code=new" target="_blank">我要发评论</a> |	
+					<!--{elseif $medal_type[type] == 'tag'}-->
+					<a href="index.php?mod=tag&code=$medal_type[tagname]" target="_blank">我要发话题</a> |	
+					<!--{elseif $medal_type[type] == 'invite'}-->
+					<a href="index.php?mod=profile&code=invite" target="_blank">马上去邀请好友</a> |	
+					<!--{elseif $medal_type[type] == 'shoudong'}-->
+					管理员手动发放  |	
+					<!--{/if}-->
+					<!--{else}-->
+					(我于：{$val[dateline]} 获得) <br />
+					<!--{/if}-->
+					<a target="_blank" href="index.php?mod=settings&code=user_medal">查看我的勋章</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!--{/loop}-->
+	<!--{/if}-->
+</ul>
+</div>
+<!--三栏切换处-->

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".tabcontainer div:gt(0)").hide();
+        $(".home_txt a").each(function (i, e) {
+            $(this).click(function () {
+                $(".home_txt a").removeClass("home_txtahove").eq(i).addClass("home_txtahove");
+                $(".tabcontainer div").hide().eq(i).show();
+            });
+        });
+    });
+</script>
+
+</head>
+
+<body style="position:relative;">
+<div class="select_bg">
+    <div class="select_content">
+               <div class="select_toptxt">  <a href="">线下监理 </a><a href="">> 家装监理</a><a href="#top"></a></div>
+                <div class="home_txt">
+                   <a href="javascript:void(0);" class="home_txta home_txtahove" >公寓监理</a>
+                   <a href="javascript:void(0);" class="home_txta">别墅监理</a>
+               </div>
+                <div class="tabcontainer">
+                       <div class="homebg"></div>
+                       <div class="homebg">别墅监理</div>
+                 
+                 <a href="" id="top" class="hometop"><img src="images/top.png" /></a>
+                </div>
+    </div>
+</div>
+</body>
+</html>

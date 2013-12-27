@@ -1,0 +1,23 @@
+<li class="vg_line">
+<!--{if $val[imageid] && $val[image_list]}-->
+<!--{loop $val[image_list] $iv}-->
+<div class="item_photo"><a target="_blank" href="index.php?mod=topic&code={$val[tid]}"><img src="{$iv[image_middle]}"></a></div>
+<!--{/loop}-->
+<div class="vg_line_solid"></div>
+<!--{/if}-->
+<div class="ws_bd">
+<div class="wb_l_face">
+<div class="avatar">
+<a href="index.php?mod={$val[username]}"><img src="{$val[face]}" onerror="javascript:faceError(this);" /></a>
+</div>
+</div>
+<h5><span class="photo_vip">{template "user_signature"}</span>{$val[content]}</h5>
+</div>
+<div class="favorite">
+<div style="float:left">{$val[follow_html]}</div> 
+<div class="creply"><dl>
+<dd><a href="index.php?mod=topic&code={$val[tid]}" title="已有{$val[replys]}人评论" target="_blank">评论</a>({$val[replys]})</dd>
+<dt><a href="javascript:void(0)" title="已有{$val[forwards]}人转发" onclick="get_forward_choose({$val[tid]});return false;">转发</a>({$val[forwards]}) | </dt>
+</dl></div>
+</div>
+</li>

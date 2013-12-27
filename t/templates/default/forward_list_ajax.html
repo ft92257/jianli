@@ -1,0 +1,37 @@
+<div class="Listmain">
+<!--{loop $topic_list $val}-->
+<script type="text/javascript">
+$(document).ready(function(){
+	var objStr = "#topic_lists_{$val[tid]}";
+	$(objStr).mouseover(function(){$(objStr + " i").show();});
+	$(objStr).mouseout(function(){$(objStr + " i").hide();});
+});
+</script>
+ 
+      <div class="feedCell">
+      <div class="avatar"><a href="index.php?mod={$val[username]}"><img onerror="javascript:faceError(this);" src="{$val[face]}" /></a></div>
+        <div class="Contant">
+	    <div id="topic_lists_{$val[tid]}">
+        <div class="oriTxt">
+		<!--{if 'myfavorite'==$this->Code && $val[favorite_time]}-->
+		<p style="color:#666; font-size:12px;">收藏于：{$val[favorite_time]}</p>
+		<!--{/if}-->
+        	 <p class="utitle">
+			    <span class="un"><a title="{$val[nickname]}(@{$val[nickname]})" href="index.php?mod={$val[username]}" >{$val[nickname]}</a>{$val[validate_html]}
+			    </span>
+				<span class="ut"><a href="index.php?mod=topic&code={$val[tid]}" >{$val[dateline]} </a></span>
+			   </p>
+			   <p>{$val[content]}</p>
+		
+        </div>
+		{template "topic_share_1"}
+		{template "topic_share_2"}
+		{template "topic_list_manage"}
+      </div>
+	  <div id="reply_area_{$val[tid]}"></div>
+      <div id="modify_topic_{$val[tid]}"></div>
+      <div id="forward_menu_{$val[tid]}" class="Fbox"></div>
+	  </div>
+    </div>
+  <!--{/loop}-->
+</div>

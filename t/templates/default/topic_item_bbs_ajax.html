@@ -1,0 +1,59 @@
+<!--{if $val[uid]}-->
+{template "user_face_menu"}
+<!--{else}-->
+<div class="wb_l_face"><div class="avatar"><img src="{$val[face]}" title="未在微博登录的论坛用户" onerror="javascript:faceError(this);" /></div></div>
+<!--{/if}-->
+<div class="Contant">
+	<div style="_overflow:hidden">
+		<div class="oriTxt">
+			<p class="utitle">
+			<!--{if $val[uid]}-->
+			{template "user_signature"}
+			<!--{else}-->
+			<span class="un"><a title="未在微博登录的论坛用户" href="javascript:;" >{$val[nickname]}</a></span>
+			<!--{/if}-->
+			<span class="ut"><a href="{$val[bbsurl]}" target="_blank">{$val[dateline]}</a></span>
+			</p>
+			<!--{if $val[title]}-->
+			<p><b>{$val[title]}</b></p>
+			<!--{/if}-->
+			<span id="c_{$val[pid]}_short">{$val[content]}</span>
+			<span id="c_{$val[pid]}_full" style="display:none;">{$val[content_full]}</span>
+			<!--{if $val[longtext]}-->
+				<span>
+				<a id="linktext_{$val[pid]}" href="javascript:;" onclick="item_longtext('{$val[pid]}');return false;">查看全文</a>
+				</span>
+			<!--{/if}-->
+			<!--{if $val[first] == 0}-->
+			<div class="blogTxt">
+				<div class="top"></div>
+				<div class="mid">
+					<!--{if $val[tuid]}-->
+					<span>
+					<a href="index.php?mod={$val[t_username]}" onmouseover="get_user_choose({$val[tuid]},'_reply_user',{$val[tid]});" onmouseout="clear_user_choose();">{$val[t_nickname]}</a>{$val[t_validate_html]} : 
+					<!--悬浮头像、弹出对话框-->
+					<span id="user_{$val[tid]}_reply_user"></span>
+					<!--悬浮头像、弹出对话框-->
+					</span>
+					<!--{else}-->
+					<span><a title="未在微博登录的论坛用户" href="javascript:;">{$val[t_nickname]}</a>: </span>
+					<!--{/if}-->
+					<span>{$val[t_title]}</span>
+					<div>发布于：{$val[t_dateline]}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$val[bbsurl]}" target="_blank">回帖({$val[replys]})</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{$val[lasturl]}" target="_blank">{$val[lastpost]}</a></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="from"><div class="option"><ul><li></li></ul></div><div class="mycome">来自<a href="{$val[forumurl]}" target="_blank">论坛 - {$val[forumtitle]}</a></div></div>
+			<!--{else}-->
+			<div class="from"><div class="option"><ul><li><span>
+			<!--{if $val[replys]}-->
+			<a id="topic_list_reply_{$val[tid]}_aid" href="javascript:void(0)" onclick="replyTopic({$val[rid]},'reply_area_{$val[tid]}','{$val[replys]}',0,0,{item:'bbs'});return false;">回帖 ({$val[replys]})</a></span></li><li><span><a href="{$val[lasturl]}" target="_blank">{$val[lastpost]}</a>
+			<!--{else}-->
+			回帖 ({$val[replys]})&nbsp;&nbsp;</span></li><li><span>{$val[lastpost]}
+			<!--{/if}-->
+			</span></li></ul></div><div class="mycome">来自<a href="{$val[forumurl]}" target="_blank">论坛 - {$val[forumtitle]}</a></div></div>
+			<!--{/if}-->
+		</div>
+	</div>
+	<div id="reply_area_{$val[tid]}"></div>
+</div>

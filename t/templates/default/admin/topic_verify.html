@@ -1,0 +1,191 @@
+{template admin/header}
+
+<script src="./js/date/WdatePicker.js" type="text/javascript"></script>
+<script src="./js/topicManage.js" type="text/javascript"></script>
+<div class="mt10">
+	<form action="admin.php" method="get" name="search">
+	<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+		<tr class="header">
+			<td colspan="4">搜索待审微博</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="80">
+			关键词语：
+			</td>
+			<td class="altbg2">
+			<input type="text" name="keyword" value="{$keyword}" size="30">		
+			</td>
+			<td class="altbg1">
+			微博ID：
+			</td>
+			<td class="altbg2">
+			<input name="tid" type="text" id="tid" value="{$tid}" size="30">多个ID用空格隔开		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1">
+			用户昵称：
+			</td>
+			<td class="altbg2">
+			<input name="nickname" type="text" id="nickname" value="{$nickname}" size="30">		
+			</td>
+			<td class="altbg1">
+			空间地址：
+			</td>
+			<td class="altbg2">
+			<input name="username" type="text" id="username" value="{$username}" size="30">		
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1">
+			发布时间：
+			</td>
+			<td class="altbg2">
+		  	  <input type="text" id="timefrom" name="timefrom" value="{$timefrom}" readonly onFocus="WdatePicker({startDate:'%y-%M-%d 00:00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true})"/>
+			  &nbsp;&nbsp;至&nbsp;&nbsp;
+			  <input type="text" id="timeto" name="timeto" value="{$timeto}" readonly onFocus="var fromt=document.getElementById('timefrom').value;WdatePicker({startDate:'%y-%M-%d 00:00:00',dateFmt:'yyyy-MM-dd HH:mm',alwaysUseStartDate:true,minDate:fromt})"/>
+			</td>
+			<td class="altbg1">内容类型：</td>
+			<td class="altbg2">
+			  <select name="type">
+			    <option value="">请选择...</option>
+			    <option value="first" $type_arr[first]>首发</option>
+			    <option value="forward" $type_arr[forward]>转发</option>
+			    <option value="reply" $type_arr[reply]>评论</option>
+			  </select>
+			</td>
+		</tr>
+		<tr>
+			<td class="altbg1" width="150">&nbsp;</td>
+			<td class="altbg2">
+			<button name="do" value='' type="submit" class="button">搜索指定</button>
+			&nbsp;
+			<button class="button" type="button" onclick="window.location.href='admin.php?mod=topic&code=$this->Code&del=$del';return false;">全部待审微博</button>
+			<input type="hidden" id="code" name="code" value="{$this->Code}">
+			<input name="mod" type="hidden" value="topic">
+			<input name="per_page_num" type="hidden" value="{$per_page_num}">
+			<input name="del" type="hidden" value="$del">&nbsp;&nbsp;&nbsp;&nbsp;
+			<button class="button" type="button" <!--{if $topic_list}-->onclick="setFilterRed();return false;"<!--{/if}-->>高亮当前页违法词语</button>
+			<span style="display:none;color:red" id="setfiledmsg"><img src="./images/loading.gif">正在高亮违法关键词，请稍等...</span>
+
+			  <!--{IF $del}-->
+			  <button class="button" type="button" onclick="window.location.href='admin.php?mod=topic&code=delrecycling';return false;">清空回收站</button>
+			  <!--{/if}-->
+			</td>
+		</tr>
+		
+	</table>
+	</form>
+
+	<form method="post" action="$action">
+	  <div class="Ptitle">
+	      <span>批量预选处理结果：</span>
+	      <label title="不作处理"><input type="radio" name="acttype" id="keep" onclick="setactall(this.form,'keep');">不处理&nbsp;</label>
+		  <label title="允许微博正常显示"><input type="radio" id="pass" name="acttype" onclick="setactall(this.form,'yes');">显示</label>
+		  <!--{IF $del}-->
+		  <label title="把微博从数据库中删除"><input type="radio" id="dodel" name="acttype" onclick="setactall(this.form,'dodel');">彻底删除</label>
+		  <!--{else}-->
+		  <label title="允许显示，但禁止转发和评论"><input type="radio" id="stop" name="acttype" onclick="setactall(this.form,2);">禁止</label>
+		  <label title="审核不通过、删除到回收站"><input type="radio" id="tobox" name="acttype" onclick="setactall(this.form,'no');">删除</label>
+		  <!--{/if}-->
+</div>
+<script type="text/javascript">
+function setactall(form,type){
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(e.name.match('manage') && e.value == type) {
+			e.checked = ' checked ';
+		}
+	}
+}
+</script>
+      <div class="PcomBox">
+	    <ul class="followList" style="overflow:hidden" id="topic_verify_list">
+	    <!--{loop $topic_list $key $topic}-->
+        <li>
+          <div class="fBox_l" style="margin-top:13px"><img src="{$topic[face]}"/> </div>
+          <div class="fBox_R3">
+            <p class="utitle2">
+             <span>
+               <a href="index.php?mod=$topic[uid]" target="_blank"><b>{$topic[nickname]}</b></a>&nbsp;&nbsp;
+			   <A href="javascript:void(0);" onclick="force_out('$topic[uid]');" title="禁言或者禁止登录，可在用户管理中解封">[封杀此用户]</A>
+             </span>
+             
+             <span style="float: right"><!--{echo my_date_format($topic[lastupdate],'Y-m-d H:i:s')}--></span>
+			 </p>
+             <span>
+               {$topic[content]}
+			   <!--{if $topic[imageid] && $topic[image_list]}-->
+					{loop $topic[image_list] $iv}
+					<a href="{$iv[image_original]}" target="_blank"><img src="{$iv[image_small]}" width="30" border="0" /></a>
+					{/loop}
+				<!--{/if}-->
+
+				<!--{if $topic[videoid]}-->                 
+                <div class="feedUservideo">
+                 <a onClick="javascript:showFlash('{$topic[VideoHosts]}', '{$topic[VideoLink]}', this, '{$topic[VideoID]}');" >
+				 <div id="play_{$topic[VideoID]}" class="vP"><img src="images/feedvideoplay.gif"  /></div>
+				 <img src="{$topic[VideoImg]}" style="border:none; width:130px; "/>
+                </a>
+				</div>
+				<!--{/if}-->
+
+				
+<!--{if $topic[musicid]}-->
+<!--{if $topic[xiami_id]}-->
+<div class="feedUserImg"><embed width="257" height="33" wmode="transparent" type="application/x-shockwave-flash" src="http://www.xiami.com/widget/0_{$topic[xiami_id]}/singlePlayer.swf"></embed></div>
+<!--{else}-->
+<div class="feedUserImg"><div id="play_{$topic[MusicID]}"></div><img src="images/music.gif" title="点击播放音乐" onClick="javascript:showFlash('music', '{$topic[MusicUrl]}', this, '{$topic['MusicID']}');" style="cursor:pointer; border:none;" /> </div>
+<!--{/if}-->
+<!--{/if}-->
+				<!--{if $topic[root_topic][content]}-->
+				//[原微博]<a href="index.php?mod=topic&code={$topic[root_topic][tid]}" target="_blank">{$topic[root_topic][content]}</a>
+				<!--{/if}-->
+			 </span>
+             <p>
+               <span>$topic[from_html]</span>
+               <span>
+                 <!--{if $topic[postip]}-->
+			     {$topic[postip]}&nbsp;
+			     <a href="admin.php?mod=setting&code=modify_access" target=_blank title="新开窗口进入IP访问设置页面">[封IP]</a>
+			     <!--{else}-->未知IP<!--{/if}-->
+			   </span>
+               <span style="float: right">
+			     <!--{if $topic[type] == 'reply'}--><span style="color:#b5ce4c">此内容是评论</span><!--{/if}-->
+			     <label title="不作处理"><input type="radio" name="manage[$key]" checked value="keep">不处理&nbsp;</label>
+               	 <!--{IF $del}-->
+				 <label title="通过审核，显示在微博页面"><input type="radio" name="manage[$key]"  value="yes">还原&nbsp;</label>
+				 <label title="从数据库中删除"><input type="radio" name="manage[$key]" value="dodel">彻底删除&nbsp;</label>
+				  <!--{else}-->
+				 <label title="通过审核，显示在微博页面"><input type="radio" name="manage[$key]"  value="yes">显示&nbsp;</label>
+				 <label title="允许显示，但禁止转发评论"><input type="radio" name="manage[$key]" value="2">禁止&nbsp;</label>
+				 <label title="审核不通过，删除到回收站"><input type="radio" name="manage[$key]" value="no">删除&nbsp;</label>
+				 <!--{/if}-->
+			   </span>
+             </p>
+	      </div>
+        </li>
+	    <!--{/loop}-->
+	    </ul>
+	    <!--{if $page_arr[html]}-->
+	    <ul>
+		  <li class="altbg3" >
+		    {$page_arr[html]}
+		  </li>
+		</ul>
+		<!--{/if}-->
+	  </div>
+		<center>
+		  <input class="button" type="submit" name="crons" id="crons" value="提交" title="CTRL+ENTER提交">
+		</center>
+	</form>
+	
+</div>
+<script type="text/javascript">	
+document.onkeydown=function(event){
+	event = event || window.event;
+    if(event.ctrlKey==true && event.keyCode==13){
+    	$("#crons").click();
+    }
+}
+</script>

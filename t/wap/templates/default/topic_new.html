@@ -1,0 +1,80 @@
+<!--{template "topic_header"}-->
+<div style="padding:2px;">
+
+    <!--{eval if($hb_type == 'topic_new') $_topic_hb = 'hb'}-->
+    <!--{eval if($hb_type == 'recd') $_recd_hb = 'hb'}-->
+
+	<span class="{$_topic_hb}"><a href="index.php?mod=topic&code=new">微博广场</a></span>
+    <span class="{$_recd_hb}"><a href="index.php?mod=topic&code=new&type=recd">官方推荐</a></span>
+	<span class="{$tag_hb}"><a href="index.php?mod=tag">话题</a></span>
+    
+</div>
+<div>
+<!-- 热门微博开始 -->
+<div>
+<!--列表开始-->
+<div>
+	<!--{loop $topics $val}-->
+	<!--列表区块开始-->
+	<div>
+	<div>
+	<!--右边主体-->	
+	<div>
+	<!--微博主体-->
+	<div class="t_list_b">
+	<span><a href="index.php?mod={$val[username]}" >{$val[nickname]}</a>
+	<!--{if $val[validate_html]}-->$val[validate_html]<!--{/if}-->
+	：{$val[content]}</span> <!--{if $val[longtextid]}--> <a href="index.php?mod=topic&amp;code={$val[tid]}">[查看全文]</a><!--{/if}--><br />
+	</div>
+	<!--{if $val[imageid] && $val[image_list]}-->
+	<div class="Im">
+		{loop $val[image_list] $iv}
+		<img src="{$iv[image_small]}" />
+		{/loop}
+	</div>
+	<!--{/if}-->
+	<!--{if ($tpid=$val[top_parent_id])>0}-->
+	<!--{eval $pt=$parent_list[$tpid];}-->
+	<div class="t_list_b">
+	<div class="transpond">
+		<!--{if $pt}-->
+			<span><a href="index.php?mod={$pt[username]}">{$pt[nickname]}</a>：{$pt[content]} 
+			<a href="index.php?mod=topic&amp;code={$tpid}" >原文评论({$pt[replys]})</a>
+			原文转发({$pt[forwards]})
+			</span>
+			<!--{if $pt[imageid] && $pt[image_list]}-->
+			<div class="Im">
+				{loop $pt[image_list] $iv}
+				<img src="{$iv[image_small]}" />
+				{/loop}
+			</div>
+			<!--{/if}-->	
+		<!--{else}-->
+			<!--{eval $val[reply_disable]=0;}-->
+			<span>原始微博已删除</span>
+		<!--{/if}-->
+	</div>
+	</div>
+	<!--{/if}-->
+	</div>
+	<!--微博管理-->
+	{template "topic_list_manage"}
+	<!--微博管理-->
+	<div class="lineDot"></div>
+	<!--右边主体结束-->
+	</div>
+	</div>
+	<!--列表区块结束-->
+	<!--{/loop}-->
+</div>
+<!--列表结束-->
+</div>
+<!-- 热门微博结束 -->
+
+<!--{if $page_arr[html]}-->
+  <div class="t_list_b">
+	<span>{$page_arr[html]}</span>
+  </div>
+<!--{/if}-->
+</div>
+<!--{template "topic_footer"}-->

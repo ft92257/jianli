@@ -1,0 +1,53 @@
+<script type="text/javascript">
+var _recommendCount = parseInt("{$recommend_count}");
+function action()
+{
+	var strhtml;
+	strhtml = $('#ajaxcontent .indexrow').eq(_recommendCount-1).html();
+	if(strhtml == null){
+		return false;
+	}
+	//$('#ajaxcontent .indexrow').eq(0).appendTo("#ajaxcontent");
+	$('#ajaxcontent .indexrow').eq(_recommendCount-1).remove();
+	$('#ajaxcontent').prepend('<div class="indexrow" style="display:none;" id="indexrowid">'+strhtml+'</div>');
+	$('#ajaxcontent .indexrow').eq(0).slideDown(500);
+}
+$(document).ready(function(){
+	var Interval;
+	Interval = setInterval('action()', 4000);
+	$("#ajaxcontent").hover(
+		function(){clearInterval(Interval);},
+		function(){Interval = setInterval('action()',4000);}
+	);
+});
+</script>
+<style type="text/css">
+.oriTxt{ margin:0;}
+.feedCell .from{ padding:0;}
+.option{ width:10px; display:none; overflow:hidden;}
+</style>
+<!--{if $recommend_topics}-->
+<div class="comBox" id="ajaxcontent" style="margin:10px 0; overflow:hidden;">
+  <!--{loop $recommend_topics $val}-->
+  <!--{eval $_ad++;}-->
+  <div class="indexrow" id="topic_list_{$val[tid]}">
+    <div class="feedCell" style="width:404px; overflow:hidden">
+      <div class="avatar"><a href="index.php?mod={$val[username]}"><img onerror="javascript:faceError(this);" src="{$val[face]}" /></a></div>
+      <div class="Contant">
+        <div class="oriTxt">
+          <p><a title="{$val[username]}" href="index.php?mod={$val[username]}">{$val[nickname]}</a>{$val[validate_html]}: <span>{$val[content]}</span></p>
+        </div>
+        {template "topic_guest_index_share"}
+        {template "topic_share_2"}
+		<div class="from"> 
+		<div class="mycome">{if !$no_from}{$val[from_html]}{/if}</div>
+		<span style="float:right;"><a href="index.php?mod=topic&code={$val[tid]}">{$val[dateline]}</a></span>
+		</div>
+	 </div>
+    </div>
+    <div class="mBlog_linedot" style="width:404px; overflow:hidden"></div>
+  </div>
+  <!--{/loop}-->
+</div>
+<!--{/if}-->
+<div id="Pcontent" style="z-index:100; position:absolute; height:550px; overflow:hidden; margin:0;"></div>

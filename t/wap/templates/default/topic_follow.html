@@ -1,0 +1,44 @@
+<!--{template "topic_header"}-->
+<div class="m">
+
+
+   	  
+
+<!--{loop $member_list $val}-->
+
+   
+      
+      
+<div style="padding:2px;">
+	<div class="t_list_b" >
+		 <div class="base_u">
+		<span>
+			<img src="{$val[face]}" style="width:45px; height:45px;padding:1px;border:1px solid #ccc; background:#fff;"/></a>
+			<a href="index.php?mod={$val[username]}">{$val[nickname]}</a> 
+        </span>
+        {$val[validate_html]} <!--{if $val[gender] == 1}-->(男)<!--{else}-->(女)<!--{/if}-->
+		<br />
+        <span><a href="index.php?mod={$val[username]}&code=follow">关注{$val[follow_count]}人</a> |</span> 
+		  <span><a href="index.php?mod={$val[username]}">微博:{$val[topic_count]}条</a> | 
+          <a href="index.php?mod={$val[username]}&code=fans">粉丝:{$val[fans_count]}人</a></span><br />
+          <span>
+		<!--{if MEMBER_ID!=$val[uid]}-->
+			{$val[follow_html]}
+		<!--{elseif MEMBER_ID==$val[uid]}-->
+			（这是我自己）
+		<!--{/if}-->
+		</span> | 
+        <span><a href="index.php?mod=pm&code=pmsend&amp;nickname={$val[nickname]}">发私信</a></span>
+
+	  </div>
+		
+	</div>	 
+
+ </div>
+ <div class="lineDot"></div>
+<!--{/loop}-->
+<!--{if $page_arr[html]}-->
+<span>{$page_arr[html]}</span>
+<!--{/if}-->
+</div>
+<!--{template "topic_footer"}-->

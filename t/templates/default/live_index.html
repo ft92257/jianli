@@ -1,0 +1,110 @@
+{template "topic_header"}
+<link href="templates/default/styles/live.css" rel="stylesheet" type="text/css" />
+<div class="main t_col_main">
+
+<img src='images/live_banner.png' width='1000' height='120'>
+
+<!--此处三栏-->
+<div class="t_col_main_si t_col_main_side">
+  <div class="t_col_main_fl">
+    <div id="topic_index_left_ajax_list">
+      {template "topic_member_left.inc"}
+    </div>
+  </div>
+</div>
+<!--此处三栏-->
+<div class="main3Box_m HotW ">
+  <div id="topNews_1" class="Hotwarp">
+    <div class="Menubox2" style="width:556px;">
+    <ul>
+    <li><div  class="<!--{if $view =='all'}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=live"><span>全 部</span></A> </div></li>
+    <li><div class="<!--{if $view =='on'}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=live&view=on"><span>进行中</span></A> </div></li>
+    <li><div class="<!--{if $view =='go'}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=live&view=go"><span>未开始</span></A> </div></li>
+    <li><div class="<!--{if $view =='no'}-->tago<!--{else}-->tagn<!--{/if}-->"> <A href="index.php?mod=live&view=no"><span>已完成</span></A> </div></li>
+    </ul>
+    </div>
+ <ul class="liveShowList">
+<!--{loop $live_list $val}-->	
+	<li class="clearFix">
+	<div class="feed_ls">
+	<p class="f_content">
+	<img src="images/transparents.gif" class="ico_shlive ico_liveshow" />
+	<a href="index.php?mod=live&code=view&id={$val[lid]}" target="_blank" title="{$val[livename]}">{$val[livename]}</a>
+	<span class="ico_status {$val[status_css]}">{$val[status]}</span>
+	</p>
+	<p class="f_time">
+	<img src="images/transparents.gif" class="ico_shlive ico_times" />
+	时间：({$val[datetime]})
+	</p>
+	<p class="f_name">
+	<img src="images/transparents.gif" class="ico_shlive ico_talk" />嘉宾：
+	<!--{loop $val[guest] $user}-->
+	<span><a href="index.php?mod={$user[username]}" title="{$user[nickname]}" target="_blank">{$user[nickname]}</a>{$user[validate_html]}</span>
+	<!--{/loop}-->
+	</p>
+	</div>
+	<div class="pic_ls">
+	<!--{loop $val[guest] $user}-->
+	<div class="guest_lst"> 
+	<a href="index.php?mod={$user[username]}" target="_blank"><img height="50" width="50" src="{$user[face]}" title="{$user[description]}" onerror="javascript:faceError(this);" class="photo" /></a>
+	<a class="chead04_A" href="index.php?mod={$user[username]}" title="{$user[nickname]}" target="_blank">{$user[nickname]}<img src="images/transparents.gif" class="small_icon vip" title=""/></a>
+	</div>
+	<!--{/loop}-->
+	</li>
+<!--{/loop}-->
+	</ul>
+	<!--{if $page_arr[html]}-->
+    <div class="pageStyle">
+       <li>{$page_arr[html]}</li>
+    </div>
+    <!--{/if}-->	
+  </div>
+<!--右边栏目 Begin-->
+<div class="Hotright">
+
+<div class="HboxR">
+	<div class="live_line">微直播简介</div>
+	<ul class="sideul2">
+	<!--{if $live_config[des]}-->{$live_config[des]}<!--{/if}-->
+	</ul>
+</div>
+<div class="HboxR">
+<div class="live_line live_top">微直播主持人</div>
+<ul class="followList act_ul">
+  <!--{if $live_config[user]}-->
+  <li class="pane">
+     <div class="fBox_l">
+      <a href="index.php?mod={$user_host[username]}" title="{$live_config[user]}">
+      <img src="{$user_host[face]}" title="{$live_config[user]}" onerror="javascript:faceError(this);" width="60" height="60">
+  	  </a>
+  	 </div>
+  	 <div class="fBox_r">
+  	   <p class="ff_1 w_num"><a href="index.php?mod={$user_host[username]}" title="{$live_config[user]}">{$live_config[user]}</a>{$user_host[validate_html]}</p>
+	   <p class="ff_1 w_num">粉丝{$user_host[fans_count]}人</p>
+	   <p class="ff_1">
+	   <!--{if $live_config[uid] != MEMBER_ID}-->
+	   <!--{if $user_host[followed]}-->
+	   <span class="follow_{$live_config[uid]}"><a href="javascript:void(0)" onclick="follow({$live_config[uid]},'follow_{$live_config[uid]}','');return false;" class="attention_del"></a></span>
+	   <!--{else}-->
+	   <span class="follow_{$live_config[uid]}"><a href="javascript:void(0)" onclick="follow({$live_config[uid]},'follow_{$live_config[uid]}','add');return false;" class="attention"></a></span>
+	   <!--{/if}-->
+	   <!--{else}-->
+	   <span class="btn_normal">我自己</span>
+	   <!--{/if}-->
+	   </p>
+  	 </div>
+	 <p class="user_aboutme"><b>主持人介绍</b>：<br>微直播官方主持人</p>
+  </li>
+ <!--{/if}-->
+</ul>
+</div>
+<div class="HboxR">
+	<div class="live_line live_top">微直播合作</div>
+	<ul class="sideul2">
+	<!--{if $live_config[ads]}-->{$live_config[ads]}<!--{/if}-->
+	</ul>
+</div>
+</div>
+  </div>
+</div>
+{template "topic_footer"}

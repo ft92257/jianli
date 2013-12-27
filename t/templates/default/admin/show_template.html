@@ -1,0 +1,36 @@
+<!--{template admin/header}-->
+
+
+<form action="admin.php?mod=show&code=domodify" method="post" name="search">
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">模板风格设置</td>
+    </tr>
+    <tr class="altbg1">
+      <td width="40%"><b>默认模板套系:</b><br>
+        <span class="smalltxt">
+		模板是一个网站的内容展示骨架，如果只是更改显示颜色背景请<a href="admin.php?mod=show&code=modify_theme"><font color=red>点此使用皮肤设置</font></a>；<br>
+		默认模板决定从指定目录读取模板文件，指定目录缺少的模板会从default目录中读取；<BR>
+		注意：如要新建模板套系，请新建一个目录，而不要直接修改default目录模板文件。</span></td>
+      <td> {$template_select} 
+      <a target="_blank" href="http://cenwor.com/go.php?w=jsg.template.admin"><font color="red">点击查看模板开发说明</font></a></td>
+    </tr>
+    <tr class="altbg2">
+      <td width="40%"><b>开启模板开发模式？</b><br>
+        <span class="smalltxt">选择“是”，系统发现模板有变化时会自动清空原编译模板目录，并重新读取模板并编译，方便调试新模板界面；选择“否”需手工点导航条小的“清空缓存”才会重新编译模板；<br>注意：选择“是”后会造成额外系统资源消耗。</span></td>
+      <td> {$templatedeveloper_radio} （网站正常运行时，请设置为否）</td>
+    </tr>
+    <tr class="altbg1">
+      <td width="40%"><b>默认开启三栏架构显示？</b><br>
+        <span class="smalltxt">选择“是”，那么新注册用户使用默认左中右三栏显示；<br>选择否，则默认使用两栏，用户可在顶部导航“帐号”下自行切换</span></td>
+      <td> {$style_three_tol_radio} </td>
+    </tr>
+  </table>
+  <br>
+  <center>
+    <button name="do" value='' type="submit" class="button">提交</button>
+  </center>
+  <br>
+  
+</form>
+<br>

@@ -1,0 +1,223 @@
+<!--{template admin/header}-->
+<script type="text/javascript" src="js/iColorPicker.js"></script>
+<script type="text/javascript">
+function get_tag_insert(tag_name){
+    var tag_value;
+	tag_value=document.getElementById('i_already').value;
+	tag_value=tag_value+","+tag_name;
+	document.getElementById('i_already').focus();
+	document.getElementById('i_already').value=tag_value;
+}
+
+function insert_share_type(share_type)
+{  
+	if(share_type == 'tag')
+	{	
+		document.getElementById('tag_type').style.display='block';
+		document.getElementById('topic_type').style.display='none';
+	}
+	else
+	{
+		document.getElementById('topic_type').style.display='block';
+		document.getElementById('tag_type').style.display='none';
+	}
+}
+
+
+</script>
+
+
+
+<style type="text/css">
+<!--
+.STYLE2 {color: #666666}
+.STYLE3 {color: #FF0000}
+-->
+</style>
+
+<table width="100%" align="center" cellpadding="4" cellspacing="1" class="tableborder">
+  <tr>
+    <td width="14%"><span class="STYLE3">提示：以下是系统默认选项，必须点保存按钮才可以创建站外调用。</span></td>
+  </tr>
+  <!--{if $this->
+  Code == 'modify'}-->
+  <!--{/if}-->
+</table>
+
+<div class="nav3">
+  <ul class="cc">
+    <li class="current" id="li1"><a href="javascript:void(0);" onclick="setTable(1);">站外调用设置</a></li>
+    <li id="li2"><a href="javascript:void(0);" onclick="setTable(2);">站外调用页面调整</a></li>
+  </ul>
+</div>
+<script type="text/javascript">
+function setTable(table){
+	if(table == 1){
+		document.getElementById('li1').className='current';
+		document.getElementById("table1").style.display = "block";
+		document.getElementById("table2").style.display = "none";
+		document.getElementById('li2').className='';
+	}else{
+		document.getElementById('li2').className='current';
+		document.getElementById("table2").style.display = "block";
+		document.getElementById("table1").style.display = "none";
+		document.getElementById('li1').className='';
+	}
+
+}
+</script>
+<form method="post" action="{$action}" enctype="multipart/form-data" name="add_share"  id="add_share">
+<table id="table1" cellspacing="1" cellpadding="4" width="100%" align="center">
+<tr>
+<td>
+
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+	  <td  colspan="2">1、基本设置</td>
+	</tr>
+	<tr>
+	  <td width="157">调用描述</td>
+	  <td width="88%"><input name="name" type="text" id="name" value="{$sharelist[name]}" /> 
+	    &nbsp;
+	    <input name="ids" type="hidden" id="ids" value="{$ids}" />	    
+	    &nbsp;（仅用于区分不同的调用，不在站外调用中显示）</td>
+	</tr>
+  </table>
+
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">2、显示设置</td>
+	</tr>
+	<tr>
+	  <td width="180" align="right">页面编码类型：</td>
+	  <td>
+		<input type="radio" name="share[show][topic_charset]" value="gbk" {eval if($share[topic_charset] != "utf-8") echo "checked=checkbox";}/>
+	  gbk&nbsp;&nbsp;
+	  <input type="radio" name="share[show][topic_charset]" value="utf-8" {eval if($share[topic_charset] == "utf-8") echo "checked=checkbox";}/>
+	  utf-8</td>
+	</tr>
+
+	<tr>
+	  <td width="180" align="right">微博显示字符：</td>
+	  <td><input name="share[show][string]" id="topic_string" type="text" value="{$share[string]}" style="width:100px; " />
+	  &nbsp;/ 字符 （避免内容显示过长，为空则显示全部） </td>
+	</tr>
+	<tr>
+	  <td width="180" align="right">微博显示条数：</td>
+	  <td><input name="share[show][limit]" id="topic_limit"  type="text" value="{$share[limit]}" style="width:100px; "> 
+	  / 条 </td>
+	</tr>
+	<tr>
+	  <td width="180" align="right">指定内容类型：</td>
+	  <td>
+	  	<select name="type" id="type" onchange="insert_share_type(this.value);">
+		  <option value="" selected="selected">全部微博类型</option>
+	  	  <option value="topic" {eval if($sharelist[type] == 'topic') echo 'selected="selected"';}>指定用户</option>
+	  	  <option value="tag" {eval if($sharelist[type] == 'tag') echo 'selected="selected"';}>指定话题</option>
+	    </select> 
+	  	&nbsp;&nbsp;（可显示指定用户或指定话题相关的微博） </td>
+	</tr>
+	<!--{eval if($sharelist[type] == 'topic') $topic_display = 'block'; else $topic_display = 'none';}-->
+	<tr id="topic_type" style="display:{$topic_display};">
+	  <td width="180" align="right">指定用户：</td>
+	  <td><textarea name="share[nickname]" style="width:500px; height:40px;">{$sharelist[nickname]}</textarea>
+		<br />
+	  <span class="STYLE2">提示：可填写指定用户昵称,为空则调用全部的微博。多个用户请用 | 隔开。</span>
+	  <br />		</td>
+    </tr>
+	
+	
+	<!--{eval if ($sharelist[type] == 'tag') $tag_display = 'block'; else $tag_display = 'none'; }-->
+	<tr id="tag_type" style="display:{$tag_display};">
+	  <td  width="180" align="right">指定话题：</td>
+	  <td><textarea name="share[tag]"  style="width:500px; height:40px;">{$sharelist[tag]}</textarea>
+          <br />
+          <span class="STYLE2">提示：可填写指定话题,为空则调用全部的话题。多个话题请用 | 隔开。</span><br />		 </td>
+    </tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td><button name="do" value='' type="submit" class="button">保 存</button>
+	     <button class="button" type="button" onclick="window.location.href='admin.php?mod=share';return false;">返回</button>	</td>
+    </tr>
+    <!--{if $this->Code == 'modify'}-->
+	<tr>
+	  <td width="157">调用代码：</td>
+	  <td><textarea name="textarea2" rows="2" id="textarea5" style="width:500px;">
+	  <script type="text/javascript" src="{$this->Config[site_url]}/index.php?mod=share&code=recommend&ids={$ids}"></script></textarea></td>
+	</tr>
+<!--{/if}-->
+  </table>
+
+</td>
+</tr>
+</table>
+<table id="table2" style="display:none" cellspacing="1" cellpadding="4" width="100%" align="center">
+<tr>
+<td>
+
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="2">1、模板标签说明</td>
+    </tr>
+    <tr class="">
+      <td width="22%"><p>
+          <!--{{$_loop} $_arrlist {$_val}}-->
+        </p>
+        <p>&lt;span&gt; {{$_val}[nickname] &lt;/span&gt;</p>
+        <p>
+            <!--{{$_loop2}}-->
+          </p>
+      </td>
+      <td><p><span class="STYLE3">{{$_loop} $_arrlist {$_val}}&nbsp;&nbsp; {{$_loop2}}</span> &nbsp;&nbsp;(循环数据标签)</p>
+          <p><span class="STYLE3">&lt;span&gt; {{$_val}[nickname] &lt;/span&gt;</span> &nbsp;&nbsp;(数据显示字段，可根据参考字段进行添加需要显示的微博相关信息) </p>
+        <p>&nbsp;</p></td>
+    </tr>
+    <tr class="">
+      <td>{$site_url}</td>
+      <td >网站路径：$this->Config[site_url]&nbsp;。 如：调用图片地址 <span class="STYLE3">{$site_url}/images/xx.gif </span></td>
+    </tr>
+  </table>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="5">2、字段意义说明（鼠标悬浮查看）</td>
+    </tr>
+    <tr>
+      <td width="12%" height="30"><span title="用户昵称">{{$_val}[nickname]}</span></td>
+      <td width="12%" height="30"> <span title="用户帐号">{{$_val}[username]}</span></td>
+      <td width="15%" height="30"><span title="用户头像">{{$_val}[face_original]}</span></td>
+      <td width="9%"><span title="微博ID">{{$_val}[tid]}</span></td>
+      <td width="52%"><span title="微博内容">{{$_val}[content]}</span></td>
+    </tr>
+    <tr>
+      <td height="30"><span title="微博时间">{{$_val}[dateline]}</span></td>
+      <td height="30"><span title="微博评论数">{{$_val}[replys]}</span></td>
+      <td height="30"><span title="微博转发数">{{$_val}[forwords]}</span></td>
+      <td height="30"><span title="微博视频图片">{{$_val}[VideoImg]}</span></td>
+      <td height="30">&nbsp;</td>
+    </tr>
+  </table>
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+  <tr class="header">
+	  <td>3、可自定义模板</td>
+	</tr>
+    <tr>
+      <td valign="top"><textarea name="sharetemp" id="sharetemp" cols="45" rows="5" style="width:90%; height:300px;">{$web_share_temp}</textarea></td>
+    </tr>
+	<tr>
+	  <td><button name="do" value='' type="submit" class="button">保 存</button>&nbsp;
+	     <button class="button" type="button" onclick="window.location.href='admin.php?mod=share';return false;">返回</button>	</td>
+    </tr>
+  </table>
+      <!--{if $this->Code == 'modify'}-->
+      <table>
+	<tr>
+	  <td width="157">调用代码：</td>
+	  <td><textarea name="textarea2" rows="2" id="textarea5" style="width:500px;">
+	  <script type="text/javascript" src="{$this->Config[site_url]}/index.php?mod=share&code=recommend&ids={$ids}"></script></textarea></td>
+	</tr>
+	</table>
+<!--{/if}-->
+
+</tr>
+</table>
+</form>

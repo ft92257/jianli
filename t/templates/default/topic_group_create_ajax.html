@@ -1,0 +1,23 @@
+<!--添加分组对话框 Begin-->
+<div class="dialog_inner">
+	<div class="mWarp">
+		<form action="ajax.php?mod=topic&code=do_group" method="POST" name="publisher_group_form"  target="groupframe" id="publisher_group_form" onsubmit="GroupSubmit('groupName',0,'add');return false;">
+		<span>分组名称：</span>
+		<input name="groupName" type="text" id="groupName" class="Ainp" style="width:170px;" maxlength="8"/>
+		<div class="tool_bar">
+			<input id="groupSubmit"type="button" class="shareI" value="确定" onclick="GroupSubmit('groupName',0,'add');return false;" title="按Ctrl+Enter直接创建"/>	
+			&nbsp;&nbsp;
+			<button type="button" class="shareI" onclick="closeDialog('$this->Get['handle_key']');">取消</button>
+		</div>
+		</form>
+	</div>
+</div>
+<!--添加分组对话框 End-->	
+<script language="Javascript">
+	$("#groupName").bind('keydown',function(event){
+		event = event || window.event;
+		if (event.keyCode == 13 && event.ctrlKey) {
+			$("#groupSubmit").click();
+		}
+	});
+</script>

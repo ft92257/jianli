@@ -1,0 +1,134 @@
+<!--{template "topic_header"}-->
+<div class="setframe">
+
+  <!--{template 'settings_main_left.inc'}-->
+  
+  <div class="main_2b">
+  
+	<div class="Menubox2">
+	  <ul>
+	    <!--{eval  $wap = ('wap' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+	    <!--{eval  $mobile = ('mobile' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+	    <!--{eval  $sms = ('sms' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+	    <!--{eval  $iphone = ('iphone' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+	    <!--{eval  $android = ('android' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+	    <!--{eval  $pad = ('pad' == $this->Code ? 'class="tago"' :'class="tagn"');}-->
+		<li><div {$wap}><a href="index.php?mod=other&code=wap"><span>WAP版</span></a></div></li>
+		<li><div {$mobile}><a href="index.php?mod=other&code=mobile"><span>3G版</span></a></div></li>
+		<li><div {$sms}><a href="index.php?mod=other&code=sms"><span>短·彩信</span></a></div></li>
+		<li><div {$iphone}><a href="index.php?mod=other&code=iphone"><span>iPhone</span></a></div></li>
+		<li><div {$android}><a href="index.php?mod=other&code=android"><span>Android</span></a></div></li>
+		<!--<li><div {$pad}><a href="index.php?mod=other&code=pad"><span>Android平板</span></a></div></li>-->
+	  </ul>
+	</div>
+  
+	<div class="main3Box_t"> 
+	  <div class="main3Box_t2"> 
+		<div class="ts_menu_22"> </div>
+	  </div>
+	</div>
+	<div class="main3Box_m">
+	  <div class="ts_m3">
+		<div class="feedCell" style="padding-top:0;">
+		  <!--{if 'wap' == $this->Code}-->
+		  <div class="wap">
+			<div class="wapF"><iframe frameborder="0" src="{conf wap_url}/"></iframe></div>
+		  </div>
+		  <div class="wapT">
+		    <div class="wapT_1"><div class="wapspan1">{conf wap_url}</div></div>
+		    <div class="ts_m4">
+		      <li>手机访问{conf site_name}，享受与网页版同样的内容与服务，可用户登录、查看微博、查看我关注的人、关注我的人、发微博、评论转发微博等，让你随时随地分享。</li>
+			  <li>手机访问{conf site_name}是<b>完全免费</b>的，网站不收取任何费用，GPRS流量费由运营商收取。建议您开通手机上网包月套餐，更省钱，详情请咨询当地运营商 10086（移动）、10010（联通）或10000（电信）。</li>
+		    </div>
+		  </div>
+		  <!--{elseif 'mobile' == $this->Code}-->
+		  <div class="wap3">
+			<div class="wapF"></div>
+		  </div>
+		  <div class="wapT">
+		    <div class="wapT_1"><div class="wapspan1">{conf mobile_url}</div></div>
+		    <div class="ts_m4">
+		      <li>3G手机访问{conf site_name}，享受与网页版同样的内容与服务，可用户登录、查看微博、查看我关注的人、关注我的人、发微博、评论转发微博等，让你随时随地分享。</li>
+			  <li>3G手机访问{conf site_name}是<b>完全免费</b>的，网站不收取任何费用，GPRS流量费由运营商收取。建议您开通手机上网包月套餐，更省钱，详情请咨询当地运营商 10086（移动）、10010（联通）或10000（电信）。</li>
+		    </div>
+		  </div>
+		  <!--{elseif 'sms' == $this->Code}-->
+		  {$smsHTML}
+		  <!--{elseif 'iphone' == $this->Code}-->
+		  <div class="wap2">
+			<div class="wapF"></div>
+		  </div>
+		  <div class="wapT">
+		    <div class="ts_m4">
+		      <p class="iphone_bg">iPhone 客户端</p>
+		      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于iPhone、iPod touch平台的iPhone版手机客户端，实现了阅读、发布、评论、转发、私信、关注等各主要功能，支持本地相机即拍即传和新消息提醒，记录点滴生活，分享精彩瞬间。</p>
+			  <p class="W_hline"></p>
+			  <p>
+			  <!--{if {$this->Config['iphone_download_url']}}-->
+			  <a href="{conf iphone_download_url}" target="_blank">点击直接访问APP Store下载应用</a>
+			  <!--{else}-->如需客户端操作，请联系管理员开通此服务。
+			  <!--{/if}-->
+			  </p>
+			  <p class="W_hline"></p>
+			  <p style="font-size:16px;font-weight:600">特点</p>
+			  <ul>
+			    <li>1.手机拍照一键发送。 </li>
+				<li>2.对话模式的私信，让你拥有即时聊天的体验。 </li>
+				<li>3.数据量小，强劲的本地缓存功能为您节省流量。 </li>
+				<li>4.同时添加多个帐号，保存多个帐号信息随心切换。 </li>
+				<li>5.支持客户端帐号注册。 </li>
+				<li>6.支持iPhone4 Retina 屏幕高清显示。</li>
+			  </ul>
+		    </div>
+		  </div>
+		  <!--{elseif 'android' == $this->Code}-->
+		  <div class="wap2">
+			<div class="wapF"></div>
+		  </div>
+		  <div class="wapT">
+		    <div class="ts_m4">
+		      <p class="android_bg">Android 客户端</p>
+		      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于Android平台的微博手机客户端，集阅读、发布、评论、转发、私信、关注等主要功能为一体，本地相机即拍即传，随时随地同朋友分享身边的新鲜事。</p>
+			  <p class="W_hline"></p>
+			  <p>
+			    <!--{if {$this->Config['android_download_url']}}-->
+			    <a href="{conf android_download_url}" target="_blank">点击直接下载应用</a>
+			    <!--{else}-->如需客户端操作，请联系管理员开通此服务。
+			    <!--{/if}-->
+			  </p>
+			  <p class="W_hline"></p>
+			  <p style="font-size:16px;font-weight:600">特点</p>
+			  <ul>
+			    <li>1.手机拍照一键发送。 </li>
+				<li>2.同时添加多个帐号，保存多个帐号信息随心切换。 </li>
+				<li>3.支持客户端帐号注册。 </li>
+			  </ul>
+		    </div>
+		  </div>
+		  <!--{elseif 'pad' == $this->Code}-->
+		  <div class="wap2">
+			<div class="wapF"></div>
+		  </div>
+		  <div class="wapT">
+		    <div class="ts_m4">
+		      <p class="android_bg">Android平板 客户端</p>
+		      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于Android平台的微博平板客户端，集阅读、发布、评论、转发、私信、关注等主要功能为一体，本地相机即拍即传，随时随地同朋友分享身边的新鲜事。</p>
+			  <p class="W_hline"></p>
+			  <p><a href="#">点击直接下载应用</a></p>
+			  <p class="W_hline"></p>
+			  <p style="font-size:16px;font-weight:600">特点</p>
+			  <ul>
+			    <li>1.手机拍照一键发送。 </li>
+				<li>2.同时添加多个帐号，保存多个帐号信息随心切换。 </li>
+				<li>3.支持客户端帐号注册。 </li>
+			  </ul>
+		    </div>
+		  </div>
+		  <!--{/if}-->
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+{template "topic_footer"}

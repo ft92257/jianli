@@ -1,0 +1,40 @@
+<!--{if $type=='event'}-->
+	<h3>下面是你发起的活动，可以选择某个活动添加到微博：</h3>
+<!--{elseif $type=='join'}-->
+	<h3>下面是你参与的活动，可以选择某个活动添加到微博：</h3>
+<!--{/if}-->
+<!--{if $count}-->
+	<div id="myvote_list_wp">
+		<ul>
+			<!--{loop $list $value}-->
+				<li>
+					<div class="myvote_item_l">
+						<input name="event_title" type="radio" value="{$value['radio_value']}" id="{$value['id']}"/><label for="{$value['id']}">{$value['title']}</label>
+					</div>
+					<div class="myvote_item_r">
+						<a href="$value['event_url']" target="_blank">查看</a>
+					</div>
+				</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<!--{if $multi}-->
+		<div class="myvote_multi">$multi</div>
+	<!--{/if}-->
+	<div>
+		<input onclick="addEventUrl2Publish();" type="button" value="添 加" class="shareI"/>
+	</div>
+	<script language="javascript">
+		function addEventUrl2Publish()
+		{
+			var voteUrl = $("input[name='event_title']:checked").val();
+			$('#i_already').val(voteUrl);
+		}
+	</script>
+<!--{else}-->
+	<!--{if $type=='event'}-->
+		你还没有发起活动呢!
+	<!--{elseif $type=='join'}-->
+		你还没有参与活动呢!
+	<!--{/if}-->
+<!--{/if}-->

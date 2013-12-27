@@ -1,0 +1,84 @@
+{template admin/header}
+
+<div id="main_wp" class="mt10">
+<script type="text/JavaScript">
+var rowtypedata = [
+	[[1,'<input type="text" size=5 name="new_tcat_order[]" value="0" />', 'td2'], [3, '<input name="new_tcat[]" value="一级分类" type="text"/>', 'td2']],
+	[[1,'<input type="text" size=5 class="txt" name="new_scat_order[{1}][]" value="0" />', 'td2'], [3, '<i class="lower"></i><input name="new_scat[{1}][]" value="新子分类" size="20" type="text"/>', 'td2']],
+];
+
+var addrowdirect = 0;
+function addrow(obj, type) {
+	var table = obj.parentNode.parentNode.parentNode;
+	if(!addrowdirect) {
+		var row = table.insertRow(obj.parentNode.parentNode.rowIndex);
+	} else {
+		var row = table.insertRow(obj.parentNode.parentNode.rowIndex + 1);
+	}
+	var typedata = rowtypedata[type];
+	for(var i = 0; i <= typedata.length - 1; i++) {
+		var cell = row.insertCell(i);
+		cell.colSpan = typedata[i][0];
+		var tmp = typedata[i][1];
+		if(typedata[i][2]) {
+			cell.className = typedata[i][2];
+		}
+		tmp = tmp.replace(/\{(\d+)\}/g, function($1, $2) {return addrow.arguments[parseInt($2) + 1];});
+		cell.innerHTML = tmp;
+	}
+	addrowdirect = 0;
+}
+</script>
+	<form action="admin.php?mod=talk&code=docategory" method="post" name="qcat_form">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+		<tr class="header">
+			<td colspan="4">访谈分类</td>
+		</tr>
+		<tr class="list_h">
+			<td width="7%" >显示顺序</td>
+			<td>分类名称</td>
+			<td>访谈个数</td>
+			<td>操作</td>
+		</tr>
+		<!--{loop $tree $key $value}-->
+			<tr>
+				<td class="td2">
+					<input type="text" name="cat_order[{$value[cat_id]}]" size="5" value="{$value[display_order]}"/>
+				</td>
+				<td class="td2">
+					<!--{if $value['parent_id'] !=0}-->
+						<i class="lower"></i>
+					<!--{/if}-->
+					<input type="text" name="cat[{$value[cat_id]}]" value="{$value[cat_name]}"/>
+				</td>
+				<td class="td2">{$value['talk_num']}</td>
+				<td class="td2"><a href="admin.php?mod=talk&code=delcat&cat_id={$value['cat_id']}">删除</a></td>
+			</tr>
+			<!--{loop $value['child'] $child}-->
+				<tr>
+					<td class="td2">
+						<input type="text" name="cat_order[{$child[cat_id]}]" size="5" value="{$child[display_order]}"/>
+					</td>
+					<td class="td2">
+						<i class="lower"></i>
+						<input type="text" name="cat[{$child[cat_id]}]" value="{$child[cat_name]}"/>
+					</td>
+					<td class="td2">{$child['talk_num']}</td>
+					<td class="td2"><a href="admin.php?mod=talk&code=delcat&cat_id={$child['cat_id']}">删除</a></td>
+				</tr>
+			<!--{/loop}-->
+			<tr>
+				<td class="td2">
+				</td>
+				<td colspan="3" class="td2">
+					<i class="lower_b"></i>
+					<a href="javascript:;" onclick="addrow(this, 1, {$value[cat_id]})" class="addtr">新子分类</a>
+				</td>
+			</tr>
+		<!--{/loop}-->
+		<tr>
+			<td colspan="4" class="td2"><a href="javascript:;" onclick="addrow(this, 0)" class="addtr">添加一级分类</a></td>
+		</tr>
+  </table>
+	<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+</div>

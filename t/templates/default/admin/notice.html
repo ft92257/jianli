@@ -1,0 +1,68 @@
+<!--{template admin/header}-->
+
+<script type="text/javascript" charset="utf-8" src="js/kind/kindeditor.js"></script>
+<script type="text/javascript">
+KE.show({
+id : 'content'
+});
+</script>
+
+
+<form action="admin.php?mod=notice&code=add" method="post" enctype="multipart/form-data">
+  <table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+    <tr class="header">
+      <td colspan="3"> {$ButtonTitle}网站公告</td>
+    </tr>
+    <tr>
+       <td width="13%" bgcolor="#F8F8F8"><span class="altbg1">标题: </span></td>
+       <td bgcolor="#FFFFFF"><span class="altbg2">
+        <input name="title" type="text" id="title" value="{$title}" size="60" />
+      </span>
+	  </td>
+    </tr>
+	    <tr>
+       <td width="13%" bgcolor="#F8F8F8"><span class="altbg1">内容: </span></td>
+       <td bgcolor="#FFFFFF"><textarea name="content" cols="100" rows="10" id="content">{$content}</textarea></td>
+    </tr>
+	</tr>
+	  <td rowspan="3" class="altbg1" width="200"></td>
+      <td rowspan="3" class="altbg1" width="200"><button name="do" value='' type="submit" class="button">{$ButtonTitle}</button></td>
+    </tr>
+  </table>
+</form>
+
+<form action="admin.php?mod=notice&code=delete" method="post" enctype="multipart/form-data">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tableborder">
+			<tr class="header">
+				<td width="70">
+			  <input class="checkbox" type="checkbox" name="chkall" onclick="checkall(this.form,'ids')" >全选</td>	
+				<td width="914">标题</td>
+				<td width="320">发布时间</td>
+				<td width="87">操作</td>
+			</tr>
+			<!--{loop $notice_list $notice}-->
+			<tr align="center">
+				<td class="altbg1" style="border-bottom:1px dotted #EDEDED">
+				<input class="checkbox" type="checkbox" name="ids[]" id="ids" value="{$notice[id]}" ></td>
+				<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+				<span class="altbg1" style="border-bottom:1px dotted #EDEDED"><a href="index.php?mod=other&code=notice&ids={$notice[id]}" target="_blank">{$notice[title]}</a></span></td>
+				<td class="altbg1" style="border-bottom:1px dotted #EDEDED">{$notice[dateline]}</td>
+				<td class="altbg2" style="border-bottom:1px dotted #EDEDED">
+				<a href="admin.php?mod=notice&code=modify&ids={$notice[id]}">编辑</a>&nbsp;&nbsp;
+				<A href="admin.php?mod=notice&code=delete&ids={$notice[id]}">删除</A>&nbsp;				</td>
+			</tr>
+			<!--{/loop}-->
+			
+			
+			<!--{if $page_arr[html]}-->
+			<tr align="center">
+				<td colspan="4" class="altbg1">
+				{$page_arr[html]}				</td>
+			</tr>
+			<!--{/if}-->
+		</table>
+<center>
+  <button type="submit" class="button"> 删除选定 </button>&nbsp;&nbsp;
+</center>
+
+</form>

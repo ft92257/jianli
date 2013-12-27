@@ -1,0 +1,58 @@
+{template "topic_header"}
+<div class="main_2 {$t_col_logo}">
+<div class="main_t main_t23">
+<span style=" float:left;">邀请加入微群</span>
+<span style="float:right; margin-right:10px;"><a href="index.php?mod=qun&qid={$qid}"><em><<</em>进入微群主页</a></span>
+</div>
+<div class="qun_warp qun_sub">
+ <div class="qun_box">
+	<!--通过链接邀请 Begin-->
+	<div class="qun_p">
+	  <div><cite>1、通过链接发邀请</cite></div>
+	  <div style="margin-top:15px;">
+		<input type="text" id="invite_url" value="{$invite_url}" size="40" class="inputs" style="padding:5px;"/>
+		<button onclick="copyText($('#invite_url').val());" type="button" class="qun_button">复制链接</button>
+	  </div>
+	</div>
+	<!--通过链接邀请 End-->
+	
+	<!--邀请粉丝加入吧 Begin-->
+	<div class="qun_p">
+	  <form action="" method="post" onsubmit="return false;">
+		<div><cite>2、通过微博发邀请</cite><label style="float:right"><input type="checkbox" name="chkall" id='chkall' onclick="checkall(this.form,'uid');">反选</label></div>
+		<div style="margin:15px auto;" id="userfans_wp"></div>
+		<div><cite>微博的邀请内容</cite></div>
+		<div><textarea name="topic_simple_content" id="topic_simple_content" cols="90" rows="3" class="inputs" style="padding:6px;width:98%;height:50px; font-size:12px; margin:10px 0 0;">我觉得这个群({$qun_info['name']}: {$invite_url} )不错哦，赶快接受我的邀请加入吧~</textarea></div>
+		<div class="qun_s_b_box">
+		  <input type="button" onclick="sendQunInvite({$qid});" value="发送邀请并进入群" class="qun_button">
+		  <input type="button" onclick="goQun({$qid});" value="直接进入群" class="qun_button">
+		  <input type="hidden" id="hid_qid" value="{$qid}" />
+		</div>
+	  </form>
+	</div>	
+  </div>
+	<script language="javascript">
+		getUserFans(1, {'qid':{$qid}});
+
+		function checkall(form, prefix, checkall) {
+			var checkall = checkall ? checkall : 'chkall';
+			var checked = '';
+			for(var i = 0; i < form.elements.length; i++) {
+				var e = form.elements[i];
+				if(e.name != checkall && (!prefix || (prefix && e.name.match(prefix)))) {
+					//e.checked = form.elements[checkall].checked;
+					
+					e.checked = e.checked ? '' : 'checked';
+					$('#checked_'+e.value).click();
+					e.checked = e.checked ? '' : 'checked';
+					checked = e.checked;
+				}
+			}
+			form.elements[checkall].checked = checked;
+		}
+	</script>
+	<!--邀请粉丝加入吧 End-->
+	
+</div>    
+</div>
+{template "topic_footer"}

@@ -1,0 +1,78 @@
+<!--{template admin/header}-->
+
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td>说明提示</td>
+	</tr>
+	<tr class="altbg1">
+		<td>
+		<ul>
+			<li>使用其他网站的帐户登录{conf site_name}({conf site_url})、吸引其他网站用户的使用；</li>
+			<!--{if !$item_list_config}-->
+			<li>您还没有开启任何一项帐户绑定的功能，请先设置</li>
+			<!--{/if}-->
+        </ul>
+		</td>
+	</tr>
+</table>
+<br />
+
+<!--{if $item_list_config}-->
+<form method="post" action="admin.php?mod=account&code=index">
+<br />
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td colspan="2">搜索选项</td>
+	</tr>
+	<tr class="altbg1">
+		<td width="40%">用户昵称</td>
+		<td><input type="text" name="s_nickname" value="{$s_nickname}" size="60" /></td>
+	</tr>
+	<tr class="altbg2">
+		<td width="40%">选择类型</td>
+		<td>{$item_list_radio}</td>
+	</tr>
+</table>
+<center><input type="submit" value=" 搜 索 " class="button" /> &nbsp; <a href="admin.php?mod=account&code=index">查看全部</a> </center>
+<br />
+</form>
+
+<br />
+<table cellspacing="1" cellpadding="4" width="100%" align="center" class="tableborder">
+	<tr class="header">
+		<td width="100px">用户昵称</td>
+		<!--{loop $item_list_config $v}-->
+		<td>{$v[name]}</td>
+		<!--{/loop}-->
+	</tr>
+	<!--{loop $member_list $m}-->
+	<!--{eval $_tr_class = ++$_tr_class_count % 2 ? 'altbg1' : 'altbg2';}-->
+	<tr class="{$_tr_class}">
+		<td><a href="index.php?mod={$m[username]}" target="_blank">{$m[nickname]}</a></td>
+		<!--{loop $item_list_config $k $vs}-->
+		<!--{eval $_item_vs=$item_list[$k][$m[uid]];}-->
+		<td>
+			<!--{if !$_item_vs}-->
+			未绑定
+			<!--{else}-->
+				<!--{loop $vs[field] $vf}-->
+				<!--{if $_item_vs[$vf]}-->
+				{$_item_vs[$vf]} &nbsp; 
+				<!--{/if}--> 
+				<!--{/loop}-->
+				
+				<!--{if $vs[dateline] && $_item_vs[$vs[dateline]]}-->
+				<br />[<!--{eval echo my_date_format($_item_vs[$vs[dateline]]);}-->]
+				<!--{/if}-->
+			<!--{/if}-->
+		</td>
+		<!--{/loop}-->		
+	</tr>
+	<!--{/loop}-->
+</table>
+<br />
+	<!--{if $page_arr[html]}-->
+	{$page_arr[html]}
+	<br />
+	<!--{/if}-->
+<!--{/if}-->

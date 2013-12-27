@@ -1,0 +1,249 @@
+<!--{template "topic_header"}-->
+<div class="setframe">
+  <!--{template 'settings_main_left.inc'}-->
+  
+	<div class="main_2b" style="padding-top:20px;">
+		<div class="main_t main_t23"><span>帐号管理</span></div>
+		<div class="Menubox2">
+			<ul>
+				<!--{loop $act_list $key $val}-->
+				<!--{eval $_hoverCLS = ($key==$act ? ' class="tago" ' : 'class="tagn"');}-->
+					<!--{if !is_array($val)}-->
+						<li><div {$_hoverCLS}><A HREF="index.php?mod=account&code={$key}"><span>{$val}</span></A></div></li>
+					<!--{else}-->
+						<li><div {$_hoverCLS}><A HREF="index.php?mod={$val[link_mod]}&code={$val[link_code]}"><span>{$val[name]}</span></A></div></li>
+					<!--{/if}-->
+				<!--{/loop}-->
+			</ul>
+		</div>
+		<div class="set_warp" style="width:650px; margin:0 auto; padding:20px 0 50px;">
+			
+			<!-- 腾讯微博 -->
+			<!--{if 'qqwb'==$act}-->
+			<form method="post" action="index.php?mod=qqwb&code=do_modify_bind_info">
+			<table width="100%" border="0">
+				<!--{if $qqwb_init}-->
+					<!--{if $qqwb_bind_info}-->
+						<!--{if $qqwb[is_synctopic_toweibo]}--> 
+						<tr>
+							<td align="right">新发微博是否自动发到腾讯微博？</td>
+							<td>{$synctoqq_radio}</td>
+						</tr>
+						<!--{/if}-->            
+					<tr>
+						<td width="40%" align="right" valign="top">&nbsp;</td>
+						<td><input type="submit" class="save" value="保存设置"/></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							您已绑定的腾讯微博帐号为：<a target="_blank" href="http://t.qq.com/{$qqwb_bind_info[qqwb_username]}"><font color="red">{$qqwb_bind_info[qqwb_username]}</font></a>;<br />
+							<a onclick="return confirm('您在 {$this->Config[site_name]} 发表的内容将不再同步到腾讯微博，确定解除绑定？');" href="index.php?mod=qqwb&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 发表的内容将不再同步到腾讯微博</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，可以使用腾讯微博帐号进行登录，在本站发的微博可以同步发到腾讯微博</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=qqwb&code=login';return false;" type="button" class="button" value="点此绑定腾讯微博帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">腾讯微博功能未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			</form>
+		
+		
+			<!-- 新浪微博 -->
+			<!--{elseif 'sina'==$act}-->
+			
+			<!--{if $sina[oauth2_enable]}-->
+			<form method="post" action="index.php?mod=xwb&code=do_modify_bind_info">
+			<table width="100%" border="0">
+				<!--{if $sina_init}-->
+					<!--{if $sina_bind_info}-->
+						<!--{if $sina[is_synctopic_toweibo]}--> 
+						<tr>
+							<td align="right">新发微博是否自动发到新浪微博？</td>
+							<td>{$synctoweibo_radio}</td>
+						</tr>
+						<!--{/if}--> 
+						<!--{if $sina[is_synctopic_tojishigou] && $this->MemberHandler->HasPermission('xwb','__synctopic')}--> 
+						<tr>
+							<td align="right">读取新浪微博的内容到本站？</td>
+							<td>{$synctopic_tojishigou_radio}</td>
+						</tr>
+						<!--{/if}-->
+						<!--{if $sina[is_syncreply_tojishigou] && $this->MemberHandler->HasPermission('xwb','__syncreply')}--> 
+						<tr>
+							<td align="right">读取新浪微博的评论内容到本站？</td>
+							<td>{$syncreply_tojishigou_radio}</td>
+						</tr>
+						<!--{/if}-->
+					<tr>
+						<td width="40%" align="right" valign="top">&nbsp;</td>
+						<td><input type="submit" class="save" value="保存设置"/></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							您已绑定的新浪微博帐号为：<a target="_blank" href="http://weibo.com/{$sina_bind_info[domain]}"><font color="red">{$sina_bind_info[screen_name]}</font></a>;<br />
+							<a onclick="return confirm('您在 {$this->Config[site_name]} 发表的内容将不再同步到新浪微博，确定解除绑定？');" href="index.php?mod=xwb&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 发表的内容将不再同步到新浪微博</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，可以使用新浪微博帐号进行登录，在本站发的微博可以同步发到新浪微博</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=xwb&code=login';return false;" type="button" class="button" value="点此绑定新浪微博帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">新浪微博功能未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			</form>	
+			<!--{else}-->
+			{$profile_bind_message}
+			<!--{/if}-->
+			
+			<!-- YY -->
+			<!--{elseif 'yy'==$act}-->
+			<table width="100%" border="0">
+				<!--{if $yy_init}-->
+					<!--{if $yy_bind_info}-->
+					<tr>
+						<td colspan="2">
+							您已绑定的YY帐号为：<font color="red">{$yy_bind_info[yy_nick]}({$yy_bind_info[yy_no]})</font>;<br />
+							<a onclick="return confirm('您在 {conf site_name} 将不能使用YY帐号进行登录，确定解除绑定？');" href="index.php?mod=yy&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 将不能使用YY帐号进行登录</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，您可以在 {conf site_name} 使用YY帐号进行登录</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=yy&code=login';return false;" type="button" class="button" value="点此绑定YY帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">YY帐号登录未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			
+			
+			<!-- 人人 -->
+			<!--{elseif 'renren'==$act}-->
+			<table width="100%" border="0">
+				<!--{if $renren_init}-->
+					<!--{if $renren_bind_info}-->
+					<tr>
+						<td colspan="2">
+							您已绑定的人人帐号为：<font color="red">{$renren_bind_info[renren_name]}({$renren_bind_info[renren_uid]})</font>;<br />
+							<a onclick="return confirm('您在 {conf site_name} 将不能使用人人帐号进行登录，确定解除绑定？');" href="index.php?mod=renren&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 将不能使用人人帐号进行登录</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，您可以在 {conf site_name} 使用人人帐号进行登录</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=renren&code=login';return false;" type="button" class="button" value="点此绑定人人帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">人人帐号登录未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			
+			
+			<!-- 开心 -->
+			<!--{elseif 'kaixin'==$act}-->
+			<table width="100%" border="0">
+				<!--{if $kaixin_init}-->
+					<!--{if $kaixin_bind_info}-->
+					<tr>
+						<td colspan="2">
+							您已绑定的开心帐号为：<font color="red">{$kaixin_bind_info[kaixin_name]}({$kaixin_bind_info[kaixin_uid]})</font>;<br />
+							<a onclick="return confirm('您在 {conf site_name} 将不能使用开心帐号进行登录，确定解除绑定？');" href="index.php?mod=kaixin&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 将不能使用开心帐号进行登录</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，您可以在 {conf site_name} 使用开心帐号进行登录</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=kaixin&code=login';return false;" type="button" class="button" value="点此绑定开心帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">开心帐号登录未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			
+			
+			<!-- FJAU -->
+			<!--{elseif 'fjau'==$act}-->
+			<table width="100%" border="0">
+				<!--{if $fjau_init}-->
+					<!--{if $fjau_bind_info}-->
+					<tr>
+						<td colspan="2">
+							您已绑定的FJAU帐号为：<font color="red">{$fjau_bind_info[fjau_uid]}</font>;<br />
+							<a onclick="return confirm('您在 {conf site_name} 将不能使用FJAU帐号进行登录，确定解除绑定？');" href="index.php?mod=fjau&code=unbind">点此可解除绑定</a>
+							(<font color="gray">解除绑定后，您在 {conf site_name} 将不能使用FJAU帐号进行登录</font>)
+						</td>
+					</tr>
+					<!--{else}-->
+					<tr>
+						<td colspan="2"><div class="tagg2">绑定后，您可以在 {conf site_name} 使用FJAU帐号进行登录</div></td>
+					</tr>
+					<tr>
+						<td align="right">&nbsp;</td>
+						<td><input onclick="window.location.href='index.php?mod=fjau&code=login';return false;" type="button" class="button" value="点此绑定FJAU帐号" /></td>
+					</tr>
+					<!--{/if}-->
+				<!--{else}-->
+				<tr>
+					<td colspan="2"><div class="tagg2">FJAU帐号登录未启用，请联系管理员</div></td>
+				</tr>
+				<!--{/if}-->
+			</table>
+			
+			
+			<!--{/if}-->
+		</div>		
+	</div>
+	
+</div>
+<!--{template "topic_footer"}-->
+

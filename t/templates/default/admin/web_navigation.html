@@ -1,0 +1,130 @@
+<!--{template admin/header}-->
+
+
+<div id="main_wp" class="mt10">
+	<script type="text/JavaScript">
+		var rowtypedata = [
+			[
+				[1,'', 'td2'],
+				[1,'<input type="text" name="slide_new_order[]" value="0" size="1"/>', 'td2'], 
+				[1, '<input name="slide_new_name[]" value="" type="text" style="width:80px; height:15px;"/>', 'td2'],
+				[1, '<input name="slide_new_code[]" value="" type="text" style="width:80px; height:15px;"/>', 'td2'],
+				[1, '<input name="slide_new_url[]" value="" type="text" style="width:300px; height:15px;"/>', 'td2'],
+				[1,'<select name="slide_new_target[]"style="width:80px;"><option value="_parent">本窗口</option><option value="_blank">新窗口</option></select>','td2'],
+				[1,'<input type="checkbox" name="slide_new_avaliable[]" checked value="1"/>','td2']
+			],
+			[
+				[1,'', 'td2'],
+				[1,'<input type="text" name="type_new_order[{1}][]" value="0" size="1"/>', 'td2'], 
+				[1, '<i class="lower"></i><input name="type_new_name[{1}][]" value="" type="text" style="width:80px; height:15px;"/>', 'td2'],
+				[1, '<input name="type_new_code[{1}][]" value="" type="text" style="width:80px; height:15px;"/>', 'td2'],
+				[1, '<input name="type_new_url[{1}][]" value="" type="text" style="width:300px; height:15px;"/>', 'td2'],
+				[1,'<select name="type_new_target[{1}][]"style="width:80px;"><option value="_parent">本窗口</option><option value="_blank">新窗口</option></select>','td2'],
+				[1,'<input type="checkbox" name="type_new_avaliable[{1}][]" checked value="1"/>','td2']
+			],
+		];
+		
+		var addrowdirect = 0;
+		function addrow(obj, type) {
+			var table = obj.parentNode.parentNode.parentNode;
+			if(!addrowdirect) {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex);
+			} else {
+				var row = table.insertRow(obj.parentNode.parentNode.rowIndex + 1);
+			}
+			var typedata = rowtypedata[type];
+			for(var i = 0; i <= typedata.length - 1; i++) {
+				var cell = row.insertCell(i);
+				cell.colSpan = typedata[i][0];
+				var tmp = typedata[i][1];
+				if(typedata[i][2]) {
+					cell.className = typedata[i][2];
+				}
+
+				tmp = tmp.replace(/\{(\d+)\}/g, function($1, $2) {return addrow.arguments[parseInt($2) + 1];});
+				cell.innerHTML = tmp;
+			}
+			addrowdirect = 0;
+		}
+	</script>
+	<form action="admin.php?mod=setting&code=do_navigation" method="post" name="forminfo" id="forminfo">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="tableborder tl">
+		<tr class="header">
+			<td colspan="7">顶部导航菜单设置</td>
+		</tr>
+		<tr class="list_h">
+			<td width="5%">删?</td>
+		    <td width="12%" title="数值大的优先显示">显示顺序</td>
+			<td width="25%">导航菜单名称</td>
+			<td width="15%">唯一英文名称</td>
+			<td>链接地址（站内以index.php开头，站外url以http://开头）</td>
+			<td>打开方式</td>
+			<td width="5%">可用</td>
+		</tr>
+		<!--{loop $slide_list $slide}-->
+		<!--{eval $k=$slide['code'];}-->
+		<tr>
+			<td class="td2"><input type="checkbox" name="chk[]" value="{$k}" /></td>
+			<td class="td2"><input type="text" name="slide[list][{$k}][order]" value="{$slide[order]}" size="1" /></td>
+			<td class="td2">
+				<input type="text" name="slide[list][{$k}][name]" value="{$slide[name]}" style="width:80px; height:15px;"/>
+			</td>
+			<td class="td2">
+				<input type="text" name="slide[list][{$k}][code]" value="{$slide[code]}" style="width:80px; height:15px;" readonly/>
+			</td>
+			<td class="td2">
+				<input type="text" name="slide[list][{$k}][url]" value="{$slide[url]}" style="width:300px; height:15px;"/>
+			</td>
+			<td class="td2">
+				<select name="slide[list][{$k}][target]" id="slide[list][{$k}][target]" style="width:80px;">
+					<option value="_parent"  {eval if({$slide[target]} =="_parent") echo "selected=selected";} >本窗口</option>
+					<option value="_blank"  {eval if({$slide[target]} =="_blank") echo "selected=selected";} >新窗口</option>
+		  		</select>
+			</td>
+			<td class="td2"><input type="checkbox" name="slide[list][{$k}][avaliable]" {eval $echo=''; if($slide[avaliable] == 1) $echo="checked";} $echo value="1"/></td>
+		</tr>
+		<!--{loop $slide[type_list]  $val}-->
+			<tr>
+				<td class="td2"><input type="checkbox" name="chk[]" value="{$val[code]}" /></td>
+				<td class="td2"><input type="text" name="type[list][{$k}][{$val[code]}][order]" value="{$val[order]}" size="1" /></td>
+				<td class="td2" align="left">
+					<i class="lower"></i>
+					<input type="text" name="type[list][{$k}][{$val[code]}][name]"  style="width:80px; height:15px;" value="{$val[name]}"/>
+					<input type="hidden" name="type[list][{$k}][{$val[code]}][code]" value="{$val[code]}"/>					
+				</td>
+				<td class="td2">
+					<input type="text" name="type[list][{$k}][{$val[code]}][code]"  style="width:80px; height:15px;"  value="{$val[code]}"/>					
+				</td>
+				<td class="td2">
+					<input type="text" name="type[list][{$k}][{$val[code]}][url]"  style="width:300px; height:15px;"  value="{$val[url]}"/>					
+				</td>
+				<td class="td2">
+					<select name="type[list][{$k}][{$val[code]}][target]" style="width:80px;">
+						<option value="_parent"  {eval if({$val[target]} =="_parent") echo "selected=selected";} >本窗口</option>
+						<option value="_blank"  {eval if({$val[target]} =="_blank") echo "selected=selected";} >新窗口</option>
+					 </select>					
+				</td>
+				<td class="td2"><input type="checkbox" name="type[list][{$k}][{$val[code]}][avaliable]" {eval $echo='';if({$val[avaliable]} == 1) $echo="checked";} $echo value="1"/></td>
+			</tr>
+		<!--{/loop}-->
+		<tr>
+			<td class="td2"></td>
+			<td class="td2"></td>
+			<td colspan="6" class="td2">
+				<i class="lower_b"></i>
+				<a href="javascript:;" onclick="addrow(this, 1, '{$k}')" class="addtr">二级导航</a>
+			</td>
+		</tr>
+		<!--{/loop}-->
+		<tr>
+			<td colspan="6" class="td2"><a href="javascript:;" onclick="addrow(this, 0)" class="addtr">添加一级导航</a></td>
+		</tr>
+		<tr>
+			<td class="td2"><!-- <input class="checkbox" type="checkbox" id="chkall" name="chkall" onclick="checkall(this.form, 'chk')" ><label for="chkall">删</label> --></td>
+			<td colspan="6" class="td2">
+				<center><input class="button" type="submit" name="cronssubmit" value="提 交"></center>
+			</td>
+		<tr>
+	  </table>
+	</form>
+</div>

@@ -1,0 +1,79 @@
+<include file='public:header' />
+<div class="select_bg">
+<style>
+/* 其他设施样式 */
+.style-two {
+	width:980px;
+	margin:auto;
+	line-height:30px;
+	color:#999;
+}
+.style-two a {
+	width:60px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	color:#666;
+	
+	text-decoration:none;
+	display:inline-block;
+	float:left;
+	margin:0 0 0 0;
+}
+a.select {
+	color:#ffffff;
+	background:#ff8000;
+}
+</style>
+
+<script type="text/javascript">
+	
+//获取URL后的类型
+function setUrl($url) {
+	var url = $url.split('/');
+	return url[url.length-1];
+}
+
+	
+$(function () {
+	
+
+	//1、为当前选中的链接加上首选
+	(function () {
+		var location = window.location.search;	//当前网页地址
+		var field = setUrl(location);					//当前网页后的类型
+		var arrStyle = $('div.style-two a');			
+		arrStyle.each(function (i) {
+			var _this = $(this);
+			var iField = setUrl(_this.attr('href'));		//解析当前URL中的地址参数
+			if (field == iField) {	
+				_this.addClass("select");	//添加样式
+				return false;	//退出循环
+			}
+		});
+		
+	})();
+
+});	
+	
+</script>
+
+<div class="style-two">
+	<a href="?s=/supervisor/consult/type/3" >连锁店</a>
+	<a href="?s=/supervisor/consult/type/4" >品牌店</a>
+	<a href="?s=/supervisor/consult/type/5" >餐饮连锁</a>
+	<a href="?s=/supervisor/consult/type/6" >办公室</a>
+	<a href="?s=/supervisor/consult/type/7" >实验室</a>
+	<a href="?s=/supervisor/consult/type/8" >酒店会所</a>
+	<a href="?s=/supervisor/consult/type/9" >金融机构</a>
+	<a href="?s=/supervisor/consult/type/10" >厂房</a>
+	<a href="?s=/supervisor/consult/type/11" >土建监理</a>
+	<a href="?s=/supervisor/consult/type/12" >其他</a>
+</div>
+
+	
+    <div class="select_content">
+           {$html}
+    </div>
+</div>
+<include file='public:footer' />

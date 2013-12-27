@@ -1,0 +1,24 @@
+<include file="public:header" />
+<form action="{:u(MODULE_NAME.'/'.ACTION_NAME)}" method="post" name="myform" id="myform" style="margin-top:10px;">
+    <div class="pad-10">
+        <div class="col-tab">
+            <ul class="tabBut cu-li">
+                <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">执行sql</li>
+            </ul>
+            <div id="div_setting_1" class="contentList pad-10">
+                <table>
+                    <tr>
+                    	<th>sql：</th>
+                        <td>
+                			<textarea name="sql" id="sql" cols="100" rows="10"></textarea>        
+                        </td>
+                    </tr>                   
+                </table>
+            </div>
+            <div class="btn">
+                <input type="submit" value="执行" name="dosubmit" class="button">
+            </div>
+        </div>
+    </div>
+</form>
+</body></html>

@@ -1,0 +1,41 @@
+/*################################
+   @Name:记事狗微博客注册页样式表 
+   @Link:www.jishigou.net
+   @Date:2011.01.05
+   @Author:@itom
+##################################*/
+body{background:#AFE1F0 url(../images/member/reg_bg.png) repeat-x center top;}
+.Rlogo{ width:800px; height:100px; margin:0 auto;}
+.logo{height:84px;width:232px;overflow:hidden;position:absolute;top:2px;overflow:hidden;}
+.logo a{display:block;height:84px;text-decoration:none;width:232px;background:url(../../../images/logo.png) no-repeat;}
+.logo a:hover{ background-position:0 -83px;}
+.main_2{ clear:both;background:#fff url(../images/member/foot_bg.gif) bottom no-repeat; padding-bottom:120px;}
+.main_t{background:url(../images/member/nav_bg.gif); width:800px; height:48px; overflow:hidden; margin:0;}
+.main_t2{background:url(../images/member/nav_bg2.gif); width:800px; height:48px; overflow:hidden}
+.main_t3{background:url(../images/member/nav_bg3.gif); width:800px; height:48px; overflow:hidden}
+.R_L{ float:left;width:580px; font-size:14px;}
+.R_L img{ vertical-align:middle}
+.R_R{ float: left;padding-left: 20px;width:132px; height:550px;border-left:1px solid #ECECEC;}
+.Reg_b{background:url(../images/member/regb.gif) no-repeat left top; cursor:pointer; border:none}
+.Reg_b{background-position:0 0;display:block;overflow:hidden;text-indent:-299px;width:209px;height:62px;}
+.Reg_b:hover{background-position:0 -62px}
+.R_treaty{border:1px dashed #666;color:#CCC;font-size:12px;height:50px;overflow-x:hidden;overflow-y:scroll;width:430px;margin:5px 0;padding:10px}
+.r_tit{color:#666;line-height:18px}
+a.r_loginbtn{background:url(../images/member/rbtn2.gif) no-repeat;color:#333;display:block;font-size:14px;height:30px;line-height:30px;margin-left:20px;margin-top:10px;text-align:center;width:97px; text-decoration:none}
+.R_linedot{ clear:both; height:1px; margin:30px auto; border-bottom:1px dashed #ccc;}
+.R_logoList{ margin-top:2px;line-height:1px;}
+.R_logoList .sinaweiboLogin,.R_logoList .qqweiboLogin,.R_logoList .yyLogin,.R_logoList .renrenLogin,.R_logoList .kaixinLogin.R_logoList ,.fjauLogin{ width:126px; height:30px; border:none; float:left; margin-right:10px; text-decoration:none;}
+
+.regP{ float:left; font-size:14px; margin-bottom:3px;}
+.R_tt0,.R_tt1,.R_tt2,.R_tt3,.R_tt4,.error{background:#FDFFD2;border:1px solid #FFECB0;overflow:hidden;padding:1px 5px 2px; width:240px; float:left; margin-left:200px;*margin-left:10px;*margin-top:5px; display:none; position:absolute; color:#666666; font-size:12px;}
+.R_tt2{*margin-top:0px; }
+.error{ z-index:1;*margin-top:0px;}
+.flo_b{background:url(../images/member/flob.gif) no-repeat left top; cursor:pointer; border:none; *float:left}
+.flo_b{background-position:0 0;display:block;overflow:hidden;text-indent:-290px;width:150px;height:45px;}
+.flo_b:hover{ background-position:0 -46px;}
+.memberStep{ margin:20px auto; width:717px;text-align:right;clear:both;padding-right:5px; border:#d8eaf8 1px solid; background:#eaf3fa; padding:10px 0;-moz-border-radius:4px;-webkit-border-radius:4px;}
+.memberStep .HOHOL{ width:300px; text-align:right; float:left; display:inline; padding:10px 20px 0 0;}
+.R3_hor{ height:181px;background:url(../images/member/Rhr.gif) repeat-x;}
+.bottomLinks{ background:#eaf9ff;}
+.bottomLinks_R .bottomLinks_reg{ width:780px;}
+.bottomLinks_R .bottomLinks .bL_info{ width:150px;}

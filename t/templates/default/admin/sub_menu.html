@@ -1,0 +1,18 @@
+<!--{eval $sub_menu_list = $_sub_menu_list?$_sub_menu_list:get_sub_menu();}-->
+<!--{if $sub_menu_list}-->
+<div class="nav3">
+	<ul class="cc">
+		<!--{loop $sub_menu_list $value}-->
+		<!--{eval if($value['type'] == '1' && PLUGINDEVELOPER < 1)continue;}-->
+			<li {if $value['current']}class="current"{/if}>
+			<!--{if $this->pluginid}-->
+				<a href="{$value['link']}&id={$this->pluginid}">
+			<!--{else}-->
+				<a href="{$value['link']}">
+			<!--{/if}-->
+			{$value['name']}</a>
+			</li>
+		<!--{/loop}-->
+	</ul>
+</div>
+<!--{/if}-->
