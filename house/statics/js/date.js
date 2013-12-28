@@ -27,7 +27,7 @@ function HS_calender(){
 	var lis = "";
 	var style = "";
 	style +="<style type=\'text/css\'>";
-	style +=".calender { width:170px; height:auto; font-size:12px; margin-right:14px; background:url(calenderbg.gif) no-repeat right center #fff; border:1px solid #397EAE; padding:1px}";
+	style +=".calender { width:170px; height:auto; font-size:12px; margin-right:14px; background:#fff; border:1px solid #397EAE; padding:1px}";
 	style +=".calender ul {list-style-type:none; margin:0; padding:0;}";
 	style +=".calender .day { background-color:#EDF5FF; height:20px;}";
 	style +=".calender .day li,.calender .date li{ float:left; width:14%; height:20px; line-height:20px; text-align:center}";
@@ -146,6 +146,8 @@ function selectThisMonth(obj){
 	HS_calender(obj.parentNode.parentNode.getElementsByTagName("span")[0].getElementsByTagName("a")[0].innerHTML+"-"+obj.value+"-1",obj.parentNode);
 }
 function HS_setDate(inputObj){
+	$(".calender").remove();
+	
 	var calenderObj = document.createElement("span");
 	calenderObj.innerHTML = HS_calender(new Date());
 	calenderObj.style.position = "absolute";
