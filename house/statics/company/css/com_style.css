@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin:0; font-size:14px;}
+.header { background:url(com_img/header.jpg) repeat-x; height:60px;color:#FFF; font-size:12px;}
+.head { width:1000px; margin:0 auto; height:60px;}
+.head a { color:#FFF;}
+.head h2 { display:inline; margin:0 8px 0 8px; font-size:24px;}
+.logo { float:left; margin-top:8px;}
+.headmenu { float:right; margin:16px;}
+.content { width:1000px; margin:0 auto; }
+.content a {color:#006699;}
+.left { float:left;border-right:1px solid #8bbd74; width:150px;  padding-right:20px;}
+.left h3 { margin:0 0 0 20px; padding-top:16px;}
+.left ul {padding:0; margin:0 0 10px 20px;}
+.left ul li{ list-style-type:none; margin:14px 0; font-size:14px;}
+.left ul li a { text-decoration:none;}
+.left ul li .current { color:#06f;}
+.b { border-bottom:1px dashed #8bbd74; padding-bottom:20px;}
+.l {border-bottom:1px solid #8bbd74;}
+.right { float:right; width:800px;}
+.right h2 { color:#006697; background:#e8f3e2; margin:10px 0; padding-left:16px; font-size:17px; padding:10px 0 2px 16px;}
+.basic { margin:24px 0;}
+.basic div { display:inline;}
+.basic h4 { display:inline;}
+.lacuna { margin:10px 0; }
+.info { padding-bottom:12px;}
+.frame h3 { color:#8dbd71; fomt-size:16px;}
+.Tevents table { border-top:1px solid #ddd; border-left:1px solid #ddd;}
+.Tevents tr,.Tevents td {border-bottom:1px solid #ddd;border-right:1px solid #ddd; padding:8px; text-align:center;}
+.link { margin:16px;}
+.minfo { border-top:1px solid #ddd; border-left:1px solid #ddd;}
+
+
+/* .show
+    {
+      display:block;
+    }
+.hide { display:none;}
+*/
+
+
+
+
+
+
+
+
+
+
+
+.both { clear:both;}

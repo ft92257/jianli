@@ -72,7 +72,7 @@ class Session {
 		$cSql = "SELECT * FROM tb_session WHERE uid = '$uid'";
 		$session = $this->oDb->fetchFirstArray($cSql);
 		if (empty($session)) {
-			$data['appid'] = $this->oApp->id;
+			$data['appid'] = 1;
 			$data['uid'] = $oUser->id;
 			$data['createtime'] = time();
 			$this->oDb->insert('tb_session', $data);

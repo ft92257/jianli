@@ -35,11 +35,11 @@ class BaseAction extends Action {
 		}
 
 		//对免验证模块，不进行登录验证。
-		/*if (in_array(ACTION_NAME,$this->aVerify)) {
+		if (in_array(ACTION_NAME,$this->aVerify)) {
 			if (!$this->isLogin()) {
-				$this->error('您尚未登录！', U('User/login'));
+				redirect(C('TMPL_PARSE_STRING.__HOST__') . '/login.php');
 			}
-		}*/
+		}
 	}
 	
 	/*

@@ -36,6 +36,8 @@ class UserAction extends BaseAction {
 	 * 登录
 	 */
 	public function login() {
+		redirect(C('TMPL_PARSE_STRING.__HOST__') . '/login.php');
+		/*
 		if ($this->isLogin()) {
 			$this->error('您已经登录了', U('/User/center'));
 		}
@@ -49,7 +51,7 @@ class UserAction extends BaseAction {
 			$this->success('登录成功！', U('/User/center'));
 		} else {
 			$this->error($this->model->getError());
-		}
+		}*/
 	}
 	
 	/*
