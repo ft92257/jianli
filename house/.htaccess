@@ -1,2 +1,0 @@
-RewriteEngine ON
-RewriteRule ^sdcms.cn.php$ index.php?s=User/face 
