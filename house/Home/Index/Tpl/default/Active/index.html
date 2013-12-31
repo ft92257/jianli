@@ -11,8 +11,8 @@
 <div class="center">
   <div class="topnav">
     <ul>
-      <li class="current"><a href=""><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
-      <li><a href=""><span>样板工地</span></a></li>
+      <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
+      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
@@ -47,7 +47,7 @@
      <div class="tableft"><img src="__STATICS__/images/Construction/tableftimg.png" /></div>
      <div class="tabcenter">
       <ul style="position:absolute; left:0; top:0; width:3396px">
-      <volist name="active" id="vo"><li><a href="#"><img src="{$vo['focus']}" /></a></li></volist>
+      <volist name="active" id="vo"><li><a href="__URL__/detail/id/{$vo.id}"><img width="749" src="{$vo['focus']}" /></a></li></volist>
       </ul>
      </div>
      <div class="tabright"><img src="__STATICS__/images/Construction/tabrightimg.png" /></div>
@@ -62,21 +62,21 @@
    </div><!--/tabImg-->
    <div class="jianjie_list">
     <dl class=" dlcler borright">
-     <dt><a href="#"><img src="{$recommend[0]['focus']}" width="180" height="180" /></a></dt>
+     <dt><a href="__URL__/detail/id/{$recommend[0].id}"><img src="{$recommend[0]['focus']}" width="180" height="180" /></a></dt>
      <dd>
-      <h3><a href="#">{$recommend[0]['title']}</a></h3>
+      <h3><a href="__URL__/detail/id/{$recommend[0].id}">{$recommend[0]['title']}</a></h3>
       <p class="say">{$recommend[0]['info']}</p>
-      <p class="say">时间：{$recommend[0]['observe_date']|date='Y-m-d',###}-{$recommend[0]['observe_end']|date='Y-m-d',###}</p>
-      <p style="margin-top:5px">地点：{$recommend[0]['adrress']}</p>
+      <p class="say">时间：{$recommend[0]['observe_date']|date='Y-m-d',###} 至 {$recommend[0]['observe_end']|date='Y-m-d',###}</p>
+      <p style="margin-top:5px">地点：{$recommend[0]['address']}</p>
      </dd>
     </dl>
     <dl class=" dlcler">
-     <dt><a href="#"><img src="{$recommend[1]['focus']}" width="180" height="180" /></a></dt>
+     <dt><a href="__URL__/detail/id/{$recommend[1].id}"><img src="{$recommend[1]['focus']}" width="180" height="180" /></a></dt>
      <dd>
-      <h3><a href="#">{$recommend[1]['title']}</a></h3>
+      <h3><a href="__URL__/detail/id/{$recommend[1].id}">{$recommend[1]['title']}</a></h3>
       <p class="say">{$recommend[1]['info']}</p>
-      <p class="say">时间：{$recommend[1]['observe_date']|date='Y-m-d',###}-{$recommend[1]['observe_end']|date='Y-m-d',###}</p>
-      <p style="margin-top:5px">地点：{$recommend[1]['adrress']}</p>
+      <p class="say">时间：{$recommend[1]['observe_date']|date='Y-m-d',###} 至 {$recommend[1]['observe_end']|date='Y-m-d',###}</p>
+      <p style="margin-top:5px">地点：{$recommend[1]['address']}</p>
      </dd>
     </dl>
     <div class="clear"></div>
@@ -85,16 +85,16 @@
   <div class="boxbackcolor martop10 padding_bottom">
    <div>
     <h4 class="title_yangban">样板工地</h4>
-    <p class="more_yangban"><a href="#">更多</a></p>
+    <p class="more_yangban"><a href="{:U('/Case/index')}">更多</a></p>
     <div class="clear"></div>
    </div>
    <div class=" yangban_list">
     <foreach name="case" item="vo">
     <dl>
-     <dt><a href="#"><img src="{$vo.focus}" width="200" height="200" /></a></dt>
+     <dt><a href="{:U('/Case/detail')}/id/{$vo.id}"><img src="{$vo.focus}" width="200" height="200" /></a></dt>
      <dd>
-      <p class="styles_jg"><a href="#">[{$vo.housetype}]{$vo.name}</a></p>
-      <p class="jindu_pinglun">进度{$vo['schedule']*100/6|round=###,0}%)&nbsp;|&nbsp;<a href="#">评论({$vo['score_owner_count']+$vo['score_expert_count']}条)</a></p>
+      <p class="styles_jg"><a href="{:U('/Case/detail')}/id/{$vo.id}">[{$vo.housetype}]{$vo.name}</a></p>
+      <p class="jindu_pinglun">进度({$vo['schedule']*100/6|round=###,0}%)&nbsp;|&nbsp;<a href="{:U('/Case/detail')}/id/{$vo.id}#score">评论({$vo['score_owner_count']+$vo['score_expert_count']}条)</a></p>
      </dd>
     </dl>
     </foreach>

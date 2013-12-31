@@ -72,10 +72,10 @@ $(document).ready(function(){
 					.($iswc>0 ? '<a href="msg.php"><span class="hd_ico ico05" style="vertical-align: bottom;">&nbsp;</span>'.($udb['newpm']>0?'<small style="color: #f00;">'.($udb['newpm']>9?'9+':$udb['newpm']).'</small>':'').'</a>':'').'
 					<a href="user-'.$udb['uid'].'.html">'.($udb['nc']!=''?$udb['nc']:$udb['email']).'</a>
 					<a href="profile.php">个人中心</a>
-					<a href="logout.php">退出登录</a><span rel="#overlay_login"></span>
+					<a href="logout.php">退出登录</a>
 			</div>';	
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php">免费注册</a></span></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php">免费注册</a></span></div>';
 	}
 	
   $s .='</div>

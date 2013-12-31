@@ -168,7 +168,7 @@ ul,li{
  .current{
 	height:42px;
 	line-height:42px;
-	border-bottom:1px solid #fff;
+	/*border-bottom:1px solid #fff;*/
 }
  .cur{
 	border-top:4px solid #fe7a28;
@@ -355,7 +355,7 @@ ul,li{
 }
 .casestep ul li span{
 	background-image:url('../images/Construction/all.gif');
-	background-position:-430px 0px;
+	background-position:-432px 0px;
 	margin-right:8px;
 }
 
@@ -593,6 +593,9 @@ ul,li{
 .my_ta .my_ri{
 	width:600px;
 	text-align:left;
+}
+.my_ri img {
+	cursor:pointer;
 }
 .my_ri input{
 	height:120px;

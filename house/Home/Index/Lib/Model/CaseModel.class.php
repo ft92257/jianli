@@ -57,10 +57,10 @@ class CaseModel extends BaseModel {
 	public function getTotalTop($limit) {
 		$condition = array(
 			//大于结束时间
-			'observe_end' => array('gt', time()),
+			//'observe_end' => array('gt', time()),
 		);
 		//TODO 排序方式待确认？
-		return $this->where($condition)->order('omment_count DESC')->limit($limit)->select();
+		return $this->where($condition)->order('score_owner_count DESC')->limit($limit)->select();
 	}
 }
 
