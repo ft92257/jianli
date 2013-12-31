@@ -1,0 +1,31 @@
+<include file="Public:header" />
+<include file="Public:left" />
+      <div class="right">
+      <div class="frame">
+          <h2>首页</h2>
+          <div class="info b">
+            <div class="basic">
+                <div><img src="{$com.logo}" width="50" height="50"></div>
+                <h4>{$com.name}</h4>&nbsp;&nbsp;&nbsp;
+                <span><a href="index.php?s=/Company/index/cid/{$com.id}" target="_blank">公司前台页面</a></span>
+            </div>
+        
+          <div class="warn">
+            <h3>预约单提醒</h3>
+            <if condition="$num neq 0">
+            	<span>当前有 <a href="{:U('/Reserve/index/handle/0')}">{$num}</a> 个未处理预约单。</span>
+            <else />
+            	<span>当前没有预约单提醒。</span>
+			</if>
+          </div>
+          
+          
+        </div>
+        
+        
+        
+      </div> <!--s_right 结束标签-->
+    </div>
+  </div>
+</body>
+</html>

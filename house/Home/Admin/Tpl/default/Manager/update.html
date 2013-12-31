@@ -1,0 +1,69 @@
+<include file="Public:header" />
+<STYLE type=text/css> 
+{
+	FONT-SIZE: 12px
+}
+input{
+	width:100%;
+	height:30px;
+	border-style:none
+}
+.gridView {
+	BORDER-RIGHT: #bad6ec 1px; BORDER-TOP: #bad6ec 1px; BORDER-LEFT: #bad6ec 1px; COLOR: #566984; BORDER-BOTTOM: #bad6ec 1px; FONT-FAMILY: Courier New
+}
+.gridViewHeader {
+	BORDER-RIGHT: #bad6ec 1px solid; BORDER-TOP: #bad6ec 1px solid; BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_th.gif); BORDER-LEFT: #bad6ec 1px solid; LINE-HEIGHT: 27px; BORDER-BOTTOM: #bad6ec 1px solid
+}
+.gridViewItem {
+	BORDER-RIGHT: #bad6ec 1px solid; BORDER-TOP: #bad6ec 1px solid; BORDER-LEFT: #bad6ec 1px solid; LINE-HEIGHT: 32px; BORDER-BOTTOM: #bad6ec 1px solid; TEXT-ALIGN: center
+}
+.cmdField {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_rectbtn.png); OVERFLOW: hidden; BORDER-LEFT: 0px; WIDTH: 67px; COLOR: #364c6d; LINE-HEIGHT: 27px; BORDER-BOTTOM: 0px; BACKGROUND-REPEAT: repeat-x; HEIGHT: 27px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+.buttonBlue {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_button_blue.gif); BORDER-LEFT: 0px; WIDTH: 78px; COLOR: white; BORDER-BOTTOM: 0px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 21px
+}
+</STYLE>
+</head>
+<body>
+<TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+    <TBODY>
+      <TR 
+  style="BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_header.gif); BACKGROUND-REPEAT: repeat-x" 
+  height=47>
+        <TD width=10><SPAN 
+      style="FLOAT: left; BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_hl.gif); WIDTH: 15px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 47px"></SPAN></TD>
+        <TD><SPAN 
+      style="FLOAT: left; BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_hl2.gif); WIDTH: 15px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 47px"></SPAN><SPAN 
+      style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FLOAT: left; BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_hb.gif); PADDING-BOTTOM: 10px; COLOR: white; PADDING-TOP: 10px; BACKGROUND-REPEAT: repeat-x; HEIGHT: 47px; TEXT-ALIGN: center; 0px: ">更新公司 </SPAN><SPAN 
+      style="FLOAT: left; BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_hr.gif); WIDTH: 60px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 47px"></SPAN></TD>
+        <TD 
+    style="BACKGROUND-POSITION: 50% bottom; BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_rc.gif)" 
+    width=10></TD>
+      </TR>
+      <TR>
+        <TD style="BACKGROUND-IMAGE: url(__STATICS__/admin/images/main_ls.gif)">&nbsp;</TD>
+        <TD 
+    style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; COLOR: #566984; PADDING-TOP: 10px; BACKGROUND-COLOR: white" 
+    vAlign=top align=middle>
+          <DIV>
+            <TABLE class=gridView id=ctl00_ContentPlaceHolder2_GridView1 
+      style="WIDTH: 100%; BORDER-COLLAPSE: collapse" cellSpacing=0 rules=all 
+      border=1>
+              <TBODY>
+                <TR>
+                  <TH class=gridViewHeader scope=col>公司账号</TH>
+                  <TH class=gridViewHeader scope=col>公司名称</TH>
+                  <TH class=gridViewHeader scope=col>更新密码</TH>
+                  <TH class=gridViewHeader scope=col>确认密码</TH>  
+                  <TH class=gridViewHeader scope=col>确认提交</TH>                
+                </TR>
+                <form method="post">
+				<tr>
+					 <td class=gridViewItem>公司账号: {$manager.account}</td>
+				     <td class=gridViewItem><input id="user" type="text" name="name" value="{$company.name}" /></td>
+				     <td class=gridViewItem><input type="password" name="password" /></td>
+				     <td class=gridViewItem><input type="password" name="repassword" /></td>
+				     <td class=gridViewItem> <input type="submit" value="提交" style="cursor:pointer" onmouseover="this.style.backgroundColor='#FF0000'" onmouseout="this.style.backgroundColor='#cccccc'"/></form></td>
+				</tr></form>
+<include file="Public:bottom" />

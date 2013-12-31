@@ -1,0 +1,124 @@
+<include file="Public:header" />
+<div class="part">
+  <div class="topnav">
+	<ul>
+      <li class="current"><a href=""><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li><a href=""><span>样板工地</span></a></li>
+      <li><a href=""><span>监理公正保</span></a></li>
+      <li><a href=""><span>施工质量认证</span></a></li>
+    </ul>
+	</div>
+  <div>
+  <div class="left_content left">
+    <dl class="left_content_dl">
+     <dt><a href="#"><img src="{$active.focus}" width="200" height="200" /></a></dt>
+     <dd>
+      <h1 class="titleone"><a href="#">{$active.title}</a></h1>
+      <table class="tabcont">
+       <tr>
+        <td>区域：</td>
+        <td>{$active['case']['area']}</td>
+       </tr>
+       <tr>
+        <td>户型：</td>
+        <td>{$active['case']['housetype']}</td>
+       </tr>
+       <tr>
+        <td>楼盘：</td>
+        <td>{$active['case']['property']}</td>
+       </tr>
+       <tr>
+        <td>主办方：</td>
+        <td>{$active['organizer']}</td>
+       </tr>
+       <tr>
+        <td>地址：</td>
+        <td>{$active['address']}</td>
+       </tr>
+       <tr>
+        <td>参观时间：</td>
+        <td>{$active.observe_date|date='Y年m月d日',###}-{$active.observe_end|date='Y年m月d日',###}</td>
+       </tr>
+      </table>
+      <div style="margin-top:20px"><img src="__STATICS__/images/Construction/_r3_c4.jpg" width="170" height="50" /></div>
+     </dd>
+     <div class="clear"></div>
+    </dl>
+    <h2 class="h2style">参观行程</h2>
+    <table class="visit_liucheng">
+     <tr>
+      <td class="wids">预约参观</td>
+      <td class="widfuhao">></td>
+      <td class="wids">填写申请</td>
+      <td class="widfuhao">></td>
+      <td class="wids">预约参观</td>
+      <td class="widfuhao">></td>
+      <td class="wids">填写申请</td>
+      <td class="widfuhao">></td>
+      <td class="wids">预约参观</td>
+      <td class="widfuhao">></td>
+      <td class="wids">完成</td>
+     </tr>
+    </table>
+    <h2 class="h2style">参观亮点</h2>
+    <div class="liangdian_list">
+     <p>{$active.spot}</p>
+
+    </div>
+    <h2 class="h2style">往期参观会</h2>
+    <div class="wangqi_list">
+    <volist name="oactive" id="vo">
+     <dl>
+      <dt><a href="#"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
+      <dd>
+       <h4><a href="#">[{$vo['case']['area']}]{$vo['title']}</a></h4>
+       <p class="jianjie">{$vo['style']} {$vo['property']} {$vo['housetype']}</p>
+       <div class="visit_p_jianjie">
+        <p>主办方：{$vo['organizer']}</p>
+        <p>地址：{$vo['address']}</p>
+        <p>参观时间：{$vo.observe_date|date='Y年m月d日',###}-{$vo.observe_end|date='Y年m月d日',###}</p>
+       </div>
+      </dd>
+      <div class="clear"></div>
+     </dl>
+     </volist>
+    </div>
+  </div><!--left_content end-->
+  <div class="reservation_right right">
+   <div style="border-bottom:#E2E2E2 1px solid; padding:20px 0">
+    <p style="text-align:center; font-size:14px">已有{$reserve['count']}人预约</p>
+    <div class="yuyue"><a href="#"><img src="__STATICS__/images/Construction/yuyue_r3_c6.jpg" width="160" height="40" /></a></div>
+   </div>
+   <h5 class="yiyuyue">已预约名单</h5>
+   <table class="yiyuyue_list">
+   <volist name="reserve" id="vo">
+    <tr>
+     <td>{$vo['name']}&nbsp;&nbsp;&nbsp;</td>
+     <td>{$vo['telephone']}</td>
+    </tr>
+    </volist>
+   </table>
+  </div><!--reservation end-->
+  <div class="clear"></div>
+  </div>
+    <div class="footer right">
+    <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
+    <div class="clear"></div>
+  </div><!-- footer end-->
+</div><!--part end-->
+</div>
+</body>
+</html>
+<script>
+$("#my_star img").bind("click", function() {
+      $(this).attr("src","images/star1.gif");
+});
+
+</script>
+<script>
+ $(".yuyue").click(function(){
+	  var halfPopHeight=$(".center").height();
+	  $(".halfPop").show().css({"height":halfPopHeight});
+	  $(".pop_chuang").show();
+	 });
+</script>

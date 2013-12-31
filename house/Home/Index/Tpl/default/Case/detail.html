@@ -1,0 +1,369 @@
+<include file="Public:header" />
+
+<link rel="stylesheet" type="text/css" href="__STATICS__/css/carousel.css" />
+<link rel="stylesheet" type="text/css" href="__STATICS__/css/zzsc.css" />
+<script type="text/javascript" src="__STATICS__/js/zzsc.js"></script>
+<script type="text/javascript" src="__STATICS__/js/jquery.jcarousellite.min.js"></script>
+
+<div class="halfPop"></div>
+<div class="pop_chuang">
+ <iframe src="reserve.html" style="border:0; width:410px; height:300px" scrolling="no"></iframe>
+</div>
+
+<div class="center">
+  <div class="topnav">
+    <ul>
+      <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
+      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li><a href=""><span>监理公正保</span></a></li>
+      <li><a href=""><span>施工质量认证</span></a></li>
+    </ul>
+  </div>
+  <div class="casetitle">
+    <h4>{$case['name']} &nbsp;<span>({$case['schedule']})</span></h4>
+    <div>分享到&nbsp;<span><a href=""><img src="__STATICS__/images/Construction/fen1.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen2.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen3.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen4.gif"></a><span></div>
+  </div>
+  <div class="topline">&nbsp;</div>
+  <div class="casestep">
+    <ul>
+      <li> <a href="" class="step1">隐蔽</a>
+        <div><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
+      </li>
+      <li> <a href="" class="step2">泥木</a>
+        <div><span>&nbsp;</span><span>&nbsp;</span></div>
+      </li>
+      <li> <a href="" class="step3">油漆</a>
+        <div><span>&nbsp;</span><span>&nbsp;</span></div>
+      </li>
+      <li><a href="" class="stepgray4">安装</a></li>
+      <li><a href="" class="stepgray5">软装</a></li>
+      <li><a href="" class="stepgray6">竣工</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="leftpart">
+      <div class="casepic">
+        <div class="MainBg">
+          <div class="Title">
+            <h1>隐藏阶段</h1>
+            <span class="Counter">（<span class="CounterCurrent">1</span>/7）</span> </div>
+          <div class="ThumbPicBorder"> <img src="__STATICS__/images/Construction/ArrowL.png" id="btnPrev" class="FlLeft" style="cursor:pointer; margin-top:30px" />
+            <div class="jCarouselLite FlLeft">
+              <ul id="ThumbPic"><volist name="thumbs" id="vo">
+                <li rel='{$i}'><img src="{$vo.thumb}" /></li>
+            		</volist>
+              </ul>
+              <div class="Clearer"></div>
+            </div>
+            <img src="{$vo.}" id="btnNext" class="FlLeft" style="cursor:pointer; margin-top:30px" />
+            <div class="Clearer"></div>
+          </div>
+          
+         <div class="OriginalPicBorder">
+            <div id="OriginalPic">
+             <volist name="thumbs" id="vo"><p class="Hidden"> <span class="SliderPicBorder FlRight"><img src="__STATICS__/pic/127e5101-309d-4699-9e14-93150b1eb36f.jpg" /></span> <span class="Summary FlLeft"> <$vo.title> </span> <span class="Clearer"></span> <span class="More"> <a href="">大娜多</a>&nbsp;&nbsp;上传于两分钟前 </span> </p>
+            </volist>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="case_p">
+        <div id="zzsc" class="zzsc1">
+          <span class="z_span moren">平面图</span>
+          <span class="z_span qhuan1">效果图</span>
+          <div class="nav"> <a href="javascript:void(0)" class="now"></a> <a href="javascript:void(0)"></a> <a href="javascript:void(0)"></a> </div>
+          <div id="wai_box">
+            <div class="zzsc_box zzsc_box1">
+              <ul>
+               <volist name="flat" id="vo" offset="1" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+              <ul style="display:none">
+              <volist name="flat" id="vo" offset="7" length="5">  <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+              <ul style="display:none">
+               <volist name="flat" id="vo" offset="13" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+		<div id="zzsc" style=" display:none" class="zzsc2">
+          <span class="z_span qhuan2">平面图</span>
+          <span class="z_span moren">效果图</span>
+          <div class="nav nav2"> <a href="javascript:void(0)" class="now"></a> <a href="javascript:void(0)"></a> <a href="javascript:void(0)"></a> </div>
+          <div id="wai_box">
+            <div class="zzsc_box zzsc_box2">
+              <ul>
+               <volist name="effect" id="vo" offset="1" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+              <ul style="display:none">
+              <volist name="effect" id="vo" offset="7" length="5">  <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+              <ul style="display:none">
+               <volist name="effect" id="vo" offset="13" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
+               
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="case_shi">
+          <div class="yu yumoren">施工团队</div>
+          <div class="yu">监理团队</div>
+          <div class="yu">设计团队</div>
+          <div class="case_s">
+            <table class="ca_ta">
+              <tr>
+                <td class="case_le">施工队：</td>
+                <td class="case_ri">{$construcion.name}</td>
+              </tr>
+              <tr>
+                <td class="case_le">所属公司：</td>
+                <td class="case_ri">{$construcion.cid}</td>
+              </tr>
+              <tr>
+                <td class="case_le">擅长：</td>
+                <td class="case_ri">{$construction.specialty}</td>
+              </tr>
+              <tr>
+                <td class="case_le">施工简介：</td>
+                <td class="case_ri">{$construction.info}</td>
+              </tr>
+            </table>
+            <table class="ca_ta" style="display:none">
+              <tr>
+                <td class="case_le">监理团队：</td>
+                <td class="case_ri">{$jlgroup.name}</td>
+              </tr>
+              <tr>
+                <td class="case_le">所属公司：</td>
+                <td class="case_ri">{$jlgroup.cid}</td>
+              </tr>
+              <tr>
+                <td class="case_le">擅长：</td>
+                <td class="case_ri">{$jlgroup.specialty}</td>
+              </tr>
+              <tr>
+                <td class="case_le">团队简介：</td>
+                <td class="case_ri">{$jlgroup.info}</td>
+              </tr>
+            </table>
+            <table class="ca_ta" style="display:none">
+              <tr>
+                <td class="case_le">设计团队:</td>
+                <td class="case_ri">{$design.name}</td>
+              </tr>
+              <tr>
+                <td class="case_le">所属公司：</td>
+                <td class="case_ri">{$design.cid}</td>
+              </tr>
+              <tr>
+                <td class="case_le">擅长：</td>
+                <td class="case_ri">{$design.specialty}</td>
+              </tr>
+              <tr>
+                <td class="case_le">团队简介：</td>
+                <td class="case_ri">{$design.info}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="case_zh">
+          <div class="case_t"><a href="">装修费用</a></div>
+          <div class="case_z">
+            <p>{$case.fee_info} </p>
+          </div>
+        </div>
+        <div class="case_pi">
+          <div class="case_pt"><a href="">业主评论</a></div>
+          <div class="ping">
+              <foreach name="score" item="vo">
+            <div class="case_l">
+              <div class="sp1"> <span><img class="tou" src="{$vo.uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;{$vo.score}分</span> <span class="sp2">{$vo.createtime}</span> </div>
+              <p>{$vo.comment} </p>
+            </div>
+    		</foreach>
+
+            <div class="case_l">
+              <div class="case_my"><a href="">我要评论</a></div>
+              <table class="my_ta">
+                <tr>
+                  <td class="my_le">评分：</td>
+                  <td class="my_ri" id="my_star"><img src="__STATICS__/images/Construction/star2.gif" id="s1" onclick="change"> <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > &nbsp;&nbsp; <span>一般</span></td>
+                </tr>
+                <tr>
+                  <td class="my_le">评论：</td>
+                  <td class="my_ri"><input type="text" /></td>
+                </tr>
+              </table>
+              <div class="my_foot"><a href=""><img src="__STATICS__/images/Construction/pinglun.gif" /></a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rightpart">
+      <div class="reserve">
+        <div class="title">
+          <h4>推荐预约理由</h4>
+          <img src="__STATICS__/images/Construction/clock.gif" /> </div>
+        <div class="reason">
+          <ul>
+          <volist name="case['tags']" id="vo">
+            <li><span>&nbsp;&nbsp;</span>{$vo}</li>
+           </volist>
+          </ul>
+        </div>
+        <div class="bottom">
+          <p>可参观时间：<br>
+            {$case.observe_date|date='Y-m-d',###}-{$case.observe_end|date='Y-m-d',###}</p>
+          <p><a href="javascript:void(0)" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="footer right">
+    <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
+    <div class="clear"></div>
+  </div><!-- footer end-->
+</div>
+
+<!-- 底部 -->
+</body>
+</html>
+<script>
+ $(".nav a").click(function(){
+	  $(this).addClass("now").siblings("a").removeClass("now");
+	  var insdx=$(this).index();
+	  $(".zzsc_box ul").eq(insdx).show().siblings("ul").hide();
+	 });
+</script>
+<script>
+ $(".yuyue").click(function(){
+	  var halfPopHeight=$(".center").height();
+	  $(".halfPop").show().css({"height":halfPopHeight});
+	  $(".pop_chuang").show();
+	 });
+</script>
+<script>
+$("#my_star img").bind("click", function() {
+      $(this).attr("src","__STATICS__/images/Construction/star1.gif");
+});
+
+</script>
+<script type="text/javascript">
+//缩略图滚动事件
+$(".jCarouselLite").jCarouselLite({
+	btnNext: "#btnNext",
+	btnPrev: "#btnPrev",
+	scroll: 1,
+	speed: 240,
+	circular: false,
+	visible: 6
+});
+</script>
+<script type="text/javascript">
+var currentImage;
+var currentIndex = -1;
+
+//显示大图(参数index从0开始计数)
+function showImage(index){
+
+	//更新当前图片页码
+	$(".CounterCurrent").html(index + 1);
+
+
+	//显示大图            
+	if(index < $('#OriginalPic img').length){
+		var indexImage = $('#OriginalPic p')[index];
+
+		//隐藏当前的图
+		if(currentImage){
+			if(currentImage != indexImage){
+				$(currentImage).css('z-index', 2);	
+				$(currentImage).fadeOut(0,function(){
+					$(this).css({'display':'none','z-index':1})
+				});
+			}
+		}
+
+		//显示用户选择的图
+		$(indexImage).show().css({'opacity': 0.4});
+		$(indexImage).animate({opacity:1},{duration:200});
+
+		//更新变量
+		currentImage = indexImage;
+		currentIndex = index;
+
+		//移除并添加高亮
+		$('#ThumbPic img').removeClass('active');
+		$($('#ThumbPic img')[index]).addClass('active');
+
+		//设置向左向右鼠标手势区域的高度                        
+		//var tempHeight = $($('#OriginalPic img')[index]).height();
+		//$('#aPrev').height(tempHeight);
+		//$('#aNext').height(tempHeight);                        
+	}
+}
+
+//下一张
+function ShowNext(){
+	var len = $('#OriginalPic img').length;
+	var next = currentIndex < (len - 1) ? currentIndex + 1 : 0;
+	showImage(next);
+}
+
+//上一张
+function ShowPrep(){
+	var len = $('#OriginalPic img').length;
+	var next = currentIndex == 0 ? (len - 1) : currentIndex - 1;
+	showImage(next);
+}
+
+
+//初始化事件
+$(".OriginalPicBorder").ready(function(){
+	ShowNext();
+
+	//绑定缩略图点击事件
+	$('#ThumbPic li').bind('click',function(e){
+		var count = $(this).attr('rel');
+		showImage(parseInt(count) - 1);
+	});
+});
+</script>
+<script>
+ $(".qhuan1").click(function(){
+	  $(".case_tu").show();
+	  $("#zzsc").hide();
+	 });
+ $(".qhuan2").click(function(){
+	  $("#zzsc").show();
+	  $(".case_tu").hide();
+	 });
+ $(".yu").click(function(){
+	  var tableindex=$(this).index();
+	  $(this).addClass("yumoren").siblings(".yu").removeClass("yumoren");
+	  $(".ca_ta").eq(tableindex).show().siblings(".ca_ta").hide();
+	 });
+</script>
+<script>
+
+  
+  var a={$case['schedule']};
+  var j=1;
+  for(i=0;i<a;i++){
+
+   $(".casestep a").eq(i).removeClass("stepgray"+j).addClass("step"+j);
+   j++;
+  }
+  
+
+</script>

@@ -1,0 +1,53 @@
+<body>
+ <div class="header">
+      <div class="head">
+        <div class="logo">
+          <img src="__STATICS__/css/com_img/logo.png" width="158" height="40" />
+          <h2>易设计管理系统</h2>
+          <span>&lt;&lt;&nbsp;<a href="{:U('Index/index')}">返回首页</a></span>
+        </div>
+        
+        <div class="headmenu">
+          欢迎您：<span id="userName">{$user.account}</span>
+          <a  id="logoutLink" href="{:U('User/logout')}">退出</a>
+          <a href="">修改密码</a>
+          <a href="">使用帮助</a>
+          <a href="">网站公告</a>
+        </div>
+        <div class="both"></div>
+      </div>
+    </div>
+    
+    <div class="content" id="left_nav">
+      <div class="left">
+        <div class="booking b">
+          <h3>预约</h3>
+          <ul>
+            <li><a href="{:U('Reserve/index')}" data-match="/Reserve/">预约单管理</a></li>
+            <li><a href="{:U('Pay/index')}" data-match="/Pay/">预约款查询</a></li>
+          </ul>
+        </div>
+        
+        <div class="storesettings b">
+          <h3>公司信息管理</h3>
+          <ul>
+            <li><a href="{:U('Company/edit')}" data-match="/Company/">基本资料</a></li>
+            <if condition="$isCompany eq 1"><li><a href="{:U('Construction/index')}" data-match="/Construction/">施工队管理</a></li></if>
+            <li><a href="{:U('Case/index')}" data-match="/Case/">案例管理</a></li>
+            <li><a href="{:U('Score/index')}" data-match="/Score/">评分管理</a></li>
+            <li><a href="{:U('Case_team/index')}" data-match="/Case_team/">监理/设计团队管理</a></li>
+          </ul>
+        </div>
+        
+        <div class="promotions l">
+          <h3>促销活动</h3>
+          <ul>
+            <li><a href="{:U('Active/index')}" data-match="/Active/">活动管理</a></li>
+            <li><a href="{:U('Active/add')}" data-match="/Active/add">发布活动</a></li>
+          </ul>
+        </div>
+      </div>
+	  
+	  <script>
+	  	selectNav('left_nav', 'current');
+	  </script>

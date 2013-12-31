@@ -1,0 +1,97 @@
+
+#zzsc {
+	height: 440px;
+	width: 650px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom:30px;
+}
+#zzsc .yuan{
+margin-left: 20px;
+border-radius: 15px;
+display: inline-block;
+padding: 6px 17px;
+background-color: #ff6b24;
+overflow: hidden;
+}
+#zzsc .yuan a{
+	font-weight: bold;
+	font-size: 15px;
+	color: white;
+}
+#zzsc h5{
+	margin-left: 130px;
+	margin-top: -20px;
+}
+#zzsc h5 a{
+	font-size: 17px;
+	color: black;
+}
+
+#zzsc #wai_box {
+	margin-top:15px;
+	border-top:2px solid  #e2e2e2;
+	height: 440px;
+	width: 650px;
+	overflow: hidden;
+	position: relative;
+}
+#zzsc .zzsc_box{
+	padding-top:10px;
+	width: 650px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+#zzsc .zzsc_box a.img:hover{
+	-moz-opacity:0.9;
+	-khtml-opacity:0.9;
+	Opacity:0.9;
+	Filter:alpha(opacity=90);
+	outline:none;
+}
+#zzsc .zzsc_box .img{
+	display: block;
+}
+#zzsc .zzsc_box ul {
+	float: left;
+	display: block;
+	height: 440px;
+	width: 650px;
+}
+#zzsc .zzsc_box li img{
+	height:200px;
+	width:200px;
+}
+#zzsc .zzsc_box li {
+	padding-right:16px;
+	padding-top:15px;
+	float: left;
+	font-size: 0px;
+	line-height: 0px;
+	position: relative;
+}
+#zzsc .nav {
+	float:right;
+	margin-top: 10px;
+	margin-right:-10px;
+	}
+#zzsc .nav a {
+	background:rgb(100, 100, 100);
+	display: block;
+	float: left;
+	height: 8px;
+	width: 8px;
+	border-radius: 4px;
+	line-height: 0px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+#zzsc .nav a:hover{
+	background-color: #F9B766;
+}
+#zzsc .nav .now{
+	background-color: #F9B766;
+}

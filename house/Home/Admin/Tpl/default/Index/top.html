@@ -1,0 +1,59 @@
+﻿<include file="Public:header" />
+<STYLE type=text/css> 
+*{
+  FONT-SIZE: 12px; COLOR: white
+}
+#logo {
+  COLOR: white
+}
+#logo A {
+  COLOR: white
+}
+FORM {
+  MARGIN: 0px
+}
+</STYLE>
+<SCRIPT src="__STATICS__/admin/index/Top/Clock.js" type=text/javascript></SCRIPT>
+<META content="MSHTML 6.00.2900.5848" name=GENERATOR>
+</HEAD>
+<BODY 
+style="BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg.gif); MARGIN: 0px; BACKGROUND-REPEAT: repeat-x">
+<form id="form1">
+  <DIV id=logo 
+style="BACKGROUND-IMAGE: url(__STATICS__/admin/images/logo.png); BACKGROUND-REPEAT: no-repeat">
+    <DIV 
+style="PADDING-RIGHT: 50px; BACKGROUND-POSITION: right 50%; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_banner_menu.gif); PADDING-BOTTOM: 0px; PADDING-TOP: 3px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 30px; TEXT-ALIGN: right"><A 
+href="http://localhost:1479/Web/sys/Top.aspx#">
+<img src="__STATICS__/admin/index/Top/menu_seprator.gif" align=absMiddle> <A id=HyperLink2 
+href="http://www.yijianli.cn/new/index.php?a=index&m=supervisor" target="_top">返回首页</A> <IMG 
+src="__STATICS__/admin/index/Top/menu_seprator.gif" align=absMiddle> <A id=HyperLink3 
+href="{:U('Manager/loginout')}" target="_top">退出系统</A> </DIV>
+    <DIV style="DISPLAY: block; HEIGHT: 54px"></DIV>
+    <DIV 
+style="BACKGROUND-IMAGE: url(__STATICS__/admin/images/bg_nav.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 30px">
+      <TABLE cellSpacing=0 cellPadding=0 width="100%">
+        <TBODY>
+          <TR>
+            <TD>
+              <DIV><IMG src="__STATICS__/admin/index/Top/nav_pre.gif" align=absMiddle> 欢迎 <SPAN 
+      id=lblBra>易监理</SPAN> <SPAN id=lblDep>工程监理部</SPAN> [系统管理员 ] 光临 &nbsp;&nbsp;您上次登录时间是：{$last}
+    </DIV>
+            </TD>
+            <TD align=right width="70%"><SPAN style="PADDING-RIGHT: 50px"><A 
+      href="javascript:history.go(-1);"><IMG src="__STATICS__/admin/index/Top/nav_back.gif" 
+      align=absMiddle border=0>后退</A> <A href="javascript:history.go(1);"><IMG 
+      src="__STATICS__/admin/index/Top/nav_forward.gif" align=absMiddle border=0>前进</A>   <IMG 
+      src="__STATICS__/admin/index/Top/menu_seprator.gif" align=absMiddle> <SPAN 
+      id=clock></SPAN></SPAN></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+    </DIV>
+  </DIV>
+  <SCRIPT type=text/javascript>
+    var clock = new Clock();
+    clock.display(document.getElementById("clock"));
+</SCRIPT>
+</form>
+</BODY>
+</HTML>

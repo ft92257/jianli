@@ -1,0 +1,31 @@
+<include file="Public:header" />
+<include file="Public:left" />
+<div class="right">
+	<h2><a href="{:U('index')}">评分管理</a></h2>
+	<div class="b frame">
+		<h3>填写回复内容</h3>
+
+<form method="post" action="">
+	<table width="100%">
+	<tr><td width="120"></td><td></td></tr>
+	<tr><td class="Caption">项目名称</td><td><span>{$data.case_name}</span></td></tr>
+	<tr><td class="Caption">项目开始</td><td><span>{$data.case_begin}</span></td></tr>
+	<tr><td class="Caption">项目结束</td><td><span>{$data.case_end}</span></td></tr>
+	<tr><td class="Caption">技能评分</td><td><span>{$data.score_skill}</span></td></tr>
+	<tr><td class="Caption">服务评分</td><td><span>{$data.score_service}</span></td></tr>
+	<if condition="$data.comment neq ''">
+	<tr><td class="Caption">业主评论</td><td><span>{$data.comment}</span></td></tr>
+	<tr><td class="Caption">我的回复</td><td><textarea <if condition="$reply_disable eq 1">disabled="disabled"</if> name="reply" id="FM_reply" rows="6" cols="50">{$data.reply}</textarea></td></tr>
+	</if>
+	<if condition="$data.additional neq ''">
+	<tr><td class="Caption">业主追评</td><td><span>{$data.additional}</span></td></tr>
+	<tr><td class="Caption">追评回复</td><td><textarea <if condition="$additional_disable eq 1">disabled="disabled"</if> name="additional_reply" id="FM_additional_reply" rows="6" cols="50">{$data.additional_reply}</textarea></td></tr>
+	</if>
+	<tr><td class="Caption"></td><td><input type="submit" value=" 保 存 " /></td></tr>
+	</table>
+</form>
+	</div>
+	
+</div>
+</body>
+</html>

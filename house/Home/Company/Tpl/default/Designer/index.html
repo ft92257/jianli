@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<include file="Public:left" />
+      <div class="right">
+        <div class="frame hide" id="menu2">
+          <h2>设计师管理</h2>
+          <div class="">
+            <h3>设计师列表</h3>
+				<p><a href="{:U('Designer/add')}">+添加设计师</a></p>
+			
+			  <div class="Tevents">
+                <table width="100%">
+                  <tr><td>编号</td><td>帐号</td><td>姓名</td><td>昵称</td><td>操作</td></tr>
+                   <volist name="data" id="vo">
+                  <tr>
+                  	<td>{$vo.uid}</td><td>{$vo.account}</td><td>{$vo.realname}</td><td>{$vo.nickname}</td>
+				  	<td><a href="{:U('/Designer/delete/uid')}/{$vo.uid}" onclick="if(!confirm('确定删除该记录？')){return false;}">删除</a></td>
+				  </tr>
+                	</volist>
+                </table>
+              </div>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+
+</body>
+</html>

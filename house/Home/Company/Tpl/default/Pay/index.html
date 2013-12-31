@@ -1,0 +1,33 @@
+<include file="Public:header" />
+<include file="Public:left" />
+      <div class="right">
+        <div class="frame hide" id="menu2">
+          <h2>预付款查询</h2>
+          <div class="">
+            <h3>预付款概况</h3>
+			<div class="b">
+              <span><b>当前余额：<em>{$user.money}</em>元</b></span><br /><br />
+            </div>
+            <br /><br />
+            <h3>预付款明细</h3>
+            <form method="POST" action="">
+             <table>
+                {$searchHtml}
+             </table>
+            </form>
+			<div class="link">充值记录
+              <a href="{:U('Pay/charge')}">扣款记录</a>
+            </div>
+            <div class="Tevents">
+              <table width="100%">
+				{$listHtml}
+              </table>
+              {$page}
+            </div>
+          </div>
+        </div>
+       </div> <!--s_right 结束标签-->
+    </div>
+  </div>
+</body>
+</html>

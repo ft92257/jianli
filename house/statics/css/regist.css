@@ -1,0 +1,32 @@
+#pbody_regist{border:5px solid #EDEDE7;width:650px; margin:50px auto;}
+#pbody_regist h2{display:block;height:60px; line-height:60px; background-color:#F9F9F9; font-size:16px;padding:0 15px;border:1px solid #e6e6e6;}
+.more_login{color:#666;float:right;margin:-60px 15px 0 0;height:60px; line-height:60px;width:260px;}
+*html .more_login{ position:relative; z-index:1;}
+.more_login a{margin:12px 5px 0; display:inline-block; width:32px; height:32px; background:url(../images/regist.jpg) no-repeat;float:right; overflow:hidden;}
+.more_login a span{ display:block; text-indent:-10000px; height:32px;cursor:pointer;}
+a.tencent{ background-position:left top;}
+.tencent:hover{background-position:-84px top;}
+a.sina{background-position:-42px top;}
+a.sina:hover{background-position:-126px top;}
+#pbody_regist .main{border:1px solid #DADCDC;border-top:none;background-color:#fff;padding:40px 0;}
+#pbody_regist .main .text{width:200px;height:14px;}
+#pbody_regist .main .codetext{width:80px;height:14px;}
+#pbody_regist .main .left{ width:490px;}
+#pbody_regist .form_tip .color_gray{text-decoration:underline;}
+#pbody_regist .main .right{width:140px;line-height:24px;}
+
+.regist_step{ background:#F9F9F9 url(../images/regist.jpg) 180px -42px no-repeat;height:60px; line-height:60px;border:1px solid #e6e6e6;}
+.regist_step .step{width:180px;margin:0 25px 0 35px;float:left;color:#ccc;}
+*html .regist_step .step{margin:0 13px 0 17px;}
+.regist_step .step span{ font-size:30px; font-family:Arial, Helvetica,sans-serif; float:left; font-weight:bold;margin-right:15px;}
+.regist_step .current{color:#4DAFC9;}
+.regist_step .right{ line-height:18px;margin:10px;width:140px;}
+.jump_step{float:right;margin-right:30px;margin-top:-30px;}
+.jump_step a{margin:0 5px;}
+.list_community li{ float:left;margin-right:15px;height:22px;line-height:22px; width:100px;}
+.list_style li{width:100px;margin-right:15px;float:left;}
+.find_emil{ background:url(../images/emil.png) left top no-repeat;padding:10px 0 29px 114px; line-height:24px;font-size:14px;border-bottom:1px dotted #e6e6e6;margin:0 50px 20px;}
+.find_emil .bt_wdgray{margin-top:20px;}
+.not_find{padding-left:50px; line-height:22px;}
+.not_find b{ font-weight:normal;}
+.not_find p{color:#999;}

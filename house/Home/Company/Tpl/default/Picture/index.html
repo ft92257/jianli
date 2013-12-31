@@ -1,0 +1,23 @@
+<include file="Public:header" />
+<include file="Public:left" />
+      <div class="right">
+        <div class="frame hide" id="menu2">
+          <h2>图片管理</h2>
+          <div class="">
+          	<p>{$tabTitle}</p>
+            <h3>图片信息</h3>
+			<div class="link">
+                <a href="{:U('/Picture/add/')}{$condition}">+添加图片</a>
+            </div>
+            <div class="Tevents">
+              <table width="100%">
+				{$listHtml}
+              </table>
+            </div>
+          </div>
+        </div>
+       </div> <!--s_right 结束标签-->
+    </div>
+  </div>
+</body>
+</html>
