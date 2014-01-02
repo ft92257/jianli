@@ -14,18 +14,22 @@ class CompanyModel extends BaseModel {
 	public function __construct() {
 		parent::__construct();
 	}
-	
+	protected $aOptions = array(
+			'comtype' => array('1' => '设计型公司', '2' => '综合性公司'),
+			
+	);
 	/*
 	 * 查询结果处理
 	 */
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {
-			$value['logo'] = getFileUrl($value['logo']);
+			$value['logo'] = getFileUrl($value['logo'],'200-200');
 			$value['tags'] = array_diff(explode('|',$value['tags']),array(''));
+			$value['comtype'] = $this->getOptions('comtype', $value['comtype']);
 		}
 	}
 	protected function _after_find(&$data,$options) {
-		 $data['logo'] = getFileUrl($data['logo']);
+		 $data['logo'] = getFileUrl($data['logo'],'200-200');
 	}
 	
 	/*
@@ -54,7 +58,7 @@ class CompanyModel extends BaseModel {
 	 */
 	public function getTopByType($type, $limit) {
 		$aWhere = array(
-			'type' => $type,
+			'comtype' => $type,
 		);
 		
 		return $this->where($aWhere)->order('ord DESC')->limit($limit)->select();

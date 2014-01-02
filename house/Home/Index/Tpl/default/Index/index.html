@@ -24,27 +24,27 @@
 <div class="clear"></div>
   <div class="box">
   <div class="bth">
-    <h3>公司排行榜</h3>
-    <div class="sort right"><b>排序</b><span><a href="{:U('/Index/index/cmpord/3')}">综合</a></span><span><a href="{:U('/Index/index/cmpord/1')}">专家评分</a></span><span><a href="{:U('/Index/index/cmpord/2')}">业主评分</a></span></div></div>
+    <h3 id="gs">公司排行榜</h3>
+    <div class="sort right"><b>排序</b><span><a href="{:U('/Index/index/cmpord/3#gs')}">综合</a></span><span><a href="{:U('/Index/index/cmpord/1#gs')}">专家评分</a></span><span><a href="{:U('/Index/index/cmpord/2#gs')}">业主评分</a></span></div></div>
     <table class="g_list">
      <thead>
         <tr><td width="65"></td><td width="120">公司名称</td><td width="135">公司类型</td><td width="140">认证施工队</td><td width="140">预约量</td><td width="120">口碑</td><td width="208">评分</td></tr>
       </thead>
       <tbody>
        <if condition="$cmpord eq 1"><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['type']}</td><td>32</td><td>{$company[$i]['reserve_total']}</td><td>{$company[$i]['score_owner_count']+$company[$i]['socre_expert_count']}条</td><td>{$company[$i]['score_expert']}</td></tr>
-        </for><elseif condition="$cmpord eq 2"><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['type']}</td><td>32</td><td>{$company[$i]['reserve_total']}</td><td>{$company[$i]['score_owner_count']+$company[$i]['socre_expert_count']}条</td><td>{$company[$i]['owner_expert']}</td></tr>
+        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['comtype']}</td><td>{$company[$i]['auth_count']}</td><td>{$company[$i]['reserve_count']}</td><td>{$company[$i]['score_owner_count']}条</td><td>{$company[$i]['score_expert']}</td></tr>
+        </for><elseif condition="$cmpord eq 2"/><for start="0" end="10">
+        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['comtype']}</td><td>{$company[$i]['auth_count']}</td><td>{$company[$i]['reserve_count']}</td><td>{$company[$i]['score_owner_count']}条</td><td>{$company[$i]['score_owner']}</td></tr>
         </for><else/><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['type']}</td><td>32</td><td>{$company[$i]['reserve_total']}</td><td>{$company[$i]['score_owner_count']+$company[$i]['socre_expert_count']}条</td><td>{$company[$i]['complex_expert']}</td></tr>
+        <tr><td>{$i+1}</td><td>{$company[$i]['name']}</td><td>{$company[$i]['comtype']}</td><td>{$company[$i]['auth_count']}</td><td>{$company[$i]['reserve_count']}</td><td>{$company[$i]['score_owner_count']}条</td><td>{$company[$i]['score_complex']}</td></tr>
         </for></if>
       </tbody>
     </table>
   </div>
    <div class="box">
    <div class="bth">
-    <h3>施工队排行榜</h3>
-    <div class="sort right"><b>排序</b><span><a href="{:U('/Index/index/cnsord/3')}">综合</a></span><span><a href="{:U('/Index/index/cnsord/1')}">专家评分</a></span><span><a href="{:U('/Index/index/cnsord/2')}">业主评分</a></span></div></div>
+    <h3 id='sgd'>施工队排行榜</h3>
+    <div class="sort right"><b>排序</b><span><a href="{:U('/Index/index/cnsord/3#sgd')}">综合</a></span><span><a href="{:U('/Index/index/cnsord/1/#sgd')}">专家评分</a></span><span><a href="{:U('/Index/index/cnsord/2#sgd')}">业主评分</a></span></div></div>
     <table class="s_list">
       <thead>
         <tr><td width="65"></td>
@@ -56,11 +56,11 @@
       </thead>
       <tbody>
          <if condition="$cnsord eq 1"><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>32</td><td>{$costruction[$i]['reserve_total']}</td><td>486条</td><td>{$construction[$i]['score_expert']}</td></tr>
-        </for><elseif condition="$cmpord eq 2"><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>32</td><td>{$costruction[$i]['reserve_total']}</td><td>486条</td><td>{$construction[$i]['owner_expert']}</td></tr>
+        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>{$construction[$i]['reserve_count']}</td><td>{$construction[$i]['score_owner_count']}</td><td>{$construction[$i]['score_expert']}</td></tr>
+        </for><elseif condition="$cnsord eq 2"/><for start="0" end="10">
+        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>{$construction[$i]['reserve_count']}</td><td>{$construction[$i]['score_owner_count']}</td><td>{$construction[$i]['score_owner']}</td></tr>
         </for><else/><for start="0" end="10">
-        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>32</td><td>{$costruction[$i]['reserve_total']}</td><td>486条</td><td>{$construction[$i]['complex_expert']}</td></tr>
+        <tr><td>{$i+1}</td><td>{$construction[$i]['captain']}</td><td>{$construction[$i]['cid']}</td><td>{$construction[$i]['reserve_count']}</td><td>{$construction[$i]['score_owner_count']}</td><td>{$construction[$i]['score_complex']}</td></tr>
         </for>
         </if>
       </tbody>

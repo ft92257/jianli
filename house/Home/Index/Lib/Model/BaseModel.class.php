@@ -144,7 +144,6 @@ class BaseModel extends Model {
 						'appid' => $this->oApp->id,
 						'status' => 0,
 					);
-
 			$condition = array_merge($base, $condition);
 		}
 		

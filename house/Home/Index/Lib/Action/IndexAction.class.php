@@ -21,11 +21,9 @@ class IndexAction extends BaseAction {
 	public function index() {
 		$Company = D('Company');
 		$Construction = D('Construction');
-		
 		//读取置顶的装修公司，组成菜单，排序方式：后台自定义
 		$aComplex = $Company->getTopByType(1, 25);
 		$aDesign =  $Company->getTopByType(2, 25);
-		
 		//公司排行榜
 		$iCompOrder = getRequest('cmpord');
 		$aCompany = $Company->getIndexTop(10, $iCompOrder);
