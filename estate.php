@@ -17,8 +17,11 @@ $c='';
 $c_l1id=(isset($_GET['s']) && intval($_GET['s'])>0)?intval($_GET['s']):$d_l1id;
 $a_t=array('square-[xqid].html', 'photo-[xqid].html', 'active-[xqid].html', 'photo_create.php?xqid=[xqid]', 'active_create.php?xqid=[xqid]');
 $tid=(isset($_GET['t']) && isset($a_t[$_GET['t']]))?$_GET['t']:0;
-$q_res=sprintf('select name from %s where id=%s limit 1', $dbprefix.'common_district', $c_l1id);
-//$q_res=sprintf('select name from %s where level=1 and upid=0 and id=%s limit 1', $dbprefix.'common_district', $c_l1id);
+if ($c_l1id == 9) {
+	$q_res=sprintf('select name from %s where level=1 and upid=0 and id=%s limit 1', $dbprefix.'common_district', $c_l1id);
+} else {
+	$q_res=sprintf('select name from %s where id=%s limit 1', $dbprefix.'common_district', $c_l1id);
+}
 $res=mysql_query($q_res) or die('');
 $r_res=mysql_fetch_assoc($res);
 if(mysql_num_rows($res)>0){
@@ -46,8 +49,11 @@ if(mysql_num_rows($res)>0){
 			</form>';
 	$l2id=0;
 	$a_l2[0]='全部';
-	$q_rep=sprintf('select id, name from %s where upid=%s order by list', $dbprefix.'common_district', $c_l1id);
-	//$q_rep=sprintf('select id, name from %s where level=2 and upid=%s order by list', $dbprefix.'common_district', $c_l1id);
+	if ($c_l1id == 9) {
+		$q_rep=sprintf('select id, name from %s where level=2 and upid=%s order by list', $dbprefix.'common_district', $c_l1id);
+	}  else {
+		$q_rep=sprintf('select id, name from %s where upid=%s order by list', $dbprefix.'common_district', $c_l1id);
+	}
 	$rep=mysql_query($q_rep) or die('');
 	$r_rep=mysql_fetch_assoc($rep);
 	if(mysql_num_rows($rep)>0){
@@ -62,10 +68,14 @@ if(mysql_num_rows($res)>0){
 	$c.='</ul><h3 class="pytit">拼音索引筛选<span>'.($pyid>0?$a_py[$pyid]:'全部').'</span></h3><ul class="pinyin"><li><a href="estate-'.$tid.'-'.$c_l1id.'-'.$l2id.'-0.html"'.($pyid>0?'':' class="current"').'>全部</a></li>';
 	foreach($a_py as $k=>$v)$c.='<li><a href="estate-'.$tid.'-'.$c_l1id.'-'.$l2id.'-'.$k.'.html"'.($pyid==$k?' class="current"':'').'>'.$v.'</a></li>';
 	$c.='</ul></div>';
-	//$ldb=$l2id>0?' and l2id='.$l2id:'';
-	$ldb=$l2id>0?' and l3id='.$l2id:'';
-	//$q_rep=sprintf('select xqid, name, c_user, c_user+c_wb+c_jl+c_xz+c_hd as c_hot from %s where c_user+c_wb+c_jl+c_xz+c_hd>0 and iskf=1%s order by c_hot desc limit 12', $yjl_dbprefix.'xq', $ldb);
-	$q_rep=sprintf('select xqid, name, c_user, c_user+c_wb+c_jl+c_xz+c_hd as c_hot from %s where l2id = 175 and c_user+c_wb+c_jl+c_xz+c_hd>0 and iskf=1%s order by c_hot desc limit 12', $yjl_dbprefix.'xq', $ldb);
+	if ($c_l1id == 9) {
+		$ldb=$l2id>0?' and l2id='.$l2id:'';
+		$q_rep=sprintf('select xqid, name, c_user, c_user+c_wb+c_jl+c_xz+c_hd as c_hot from %s where c_user+c_wb+c_jl+c_xz+c_hd>0 and iskf=1%s order by c_hot desc limit 12', $yjl_dbprefix.'xq', $ldb);
+	} else {
+		$ldb=$l2id>0?' and l3id='.$l2id:'';
+		$q_rep=sprintf('select xqid, name, c_user, c_user+c_wb+c_jl+c_xz+c_hd as c_hot from %s where l2id = 175 and c_user+c_wb+c_jl+c_xz+c_hd>0 and iskf=1%s order by c_hot desc limit 12', $yjl_dbprefix.'xq', $ldb);
+	}
+
 	$rep=mysql_query($q_rep) or die('');
 	$r_rep=mysql_fetch_assoc($rep);
 	if(mysql_num_rows($rep)>0){
@@ -80,8 +90,11 @@ if(mysql_num_rows($res)>0){
 	$pydb=$pyid>0?' and pyid='.$pyid:'';
 	$qdb=$q!=''?' and (name like '.yjl_SQLString($q, 'search').' or address like '.yjl_SQLString($q, 'search').')':'';
 	
-	$q_rep=sprintf('select xqid, name, c_user from %s where l2id=%s%s%s%s and iskf=1 order by name', $yjl_dbprefix.'xq', $c_l1id, $ldb, $pydb, $qdb);
-	//$q_rep=sprintf('select xqid, name, c_user from %s where l1id=%s%s%s%s and iskf=1 order by name', $yjl_dbprefix.'xq', $c_l1id, $ldb, $pydb, $qdb);
+	if ($c_l1id == 9) {
+		$q_rep=sprintf('select xqid, name, c_user from %s where l1id=%s%s%s%s and iskf=1 order by name', $yjl_dbprefix.'xq', $c_l1id, $ldb, $pydb, $qdb);
+	} else {
+		$q_rep=sprintf('select xqid, name, c_user from %s where l2id=%s%s%s%s and iskf=1 order by name', $yjl_dbprefix.'xq', $c_l1id, $ldb, $pydb, $qdb);
+	}
 	$rep=mysql_query($q_rep) or die(mysql_error());
 	$r_rep=mysql_fetch_assoc($rep);
 	$c_rep=mysql_num_rows($rep);

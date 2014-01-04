@@ -226,17 +226,7 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 .search_index .search_text{margin:0;width:195px; background:url(../images/search_bg.gif) left top no-repeat;padding:5px;}
 .search_index .search_submit{background:url(../images/search_bg.gif) right top no-repeat;}
 
-.photo_report_head {
-	border-left:1px solid #ddd;
-	border-right:1px solid #ddd;
-	line-height:30px;
-	background:#ffffff;
-	padding-left:60px;
-	padding-top:5px;
-}
-.photo_report_head a {
-	font-size:13px;
-}
+
 .report_score {
 	width:100%;
 }
@@ -249,7 +239,7 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 }
 .report_score tr td{
 	border-bottom:1px dashed #ddd;
-	line-height:24px;
+	line-height:30px;
 	background:#ffffff;
 	text-align:center;
 	color:#555;
@@ -258,6 +248,18 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 	line-height:18px;
 	padding:5px;
 	margin-bottom:6px;
+	color:#666;
+}
+.dafen{
+	padding:10px !important;margin-bottom:10px;
+	color:#666;
+	font-weight:bold;
+}
+.dafen select{
+	width:70px;
+}
+.report_total a {
+	color:#2097DD;
 }
 .report_total span{
 	color:#FF6600;
@@ -301,7 +303,8 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 	padding:30px;
 }
 .reportImage {
-	border:1px solid #e6e6e6;
+	width:612px;
+	border:1px solid #E2E2E2;
 	border-top:none;
 }
 .reportImage img{
@@ -313,3 +316,27 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 	color:#aaa;
 	font-family:Arial;
 }
+
+.photo_report_head {
+	border-left:1px solid #ddd;
+	border-right:1px solid #ddd;
+	background:#ffffff;
+	padding-bottom:10px;
+}
+.tab_qh{ overflow:auto; zoom:1; margin-left:40px; }
+.tab_qh li{ float:left; width:80px; padding:3px 0; text-align:center; margin-right:10px; cursor:pointer; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px}
+.tab_qh li.bg_color{ background-color:#3BB2F2; color:#FFF}
+
+.yuefen{ border:#E2E2E2 1px solid; height:40px; background:url(../images/bg_jianli_baogao.png) repeat-x}
+.lefbox_yuefen{ width:30px; height:22px; margin-top:8px;
+	padding-left:15px; 
+	font-family:"宋体";
+	line-height:22px;
+ 	position:relative; z-index:333333; cursor:pointer; margin-right:10px
+}
+.rightbox_yuefen{ overflow:auto; zoom:1; margin-top:12px}
+.widyufen{ margin-left:10px; margin-right:10px; overflow:hidden; zoom:1}
+.bximg{ margin-top:3px; cursor:pointer}
+.widyufen_ul{  overflow:auto; zoom:1}
+.widyufen_ul li{ float:left; margin-right:6px; font-size:14px; font-family:"宋体"; font-weight:500; color:#666; cursor:pointer}
+.widyufen_ul li.colorli{ color:#2186C1}

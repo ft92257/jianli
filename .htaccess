@@ -3,6 +3,7 @@ RewriteEngine On
 RewriteBase /jianli
 
 RewriteRule ^photo-(.+)\.html$ photo.php?rg=$1
+RewriteRule ^photo_gz-(.+)\.html$ photo_gz.php?rg=$1
 
 RewriteRule ^active-(.+)\.html$ active.php?rg=$1
 RewriteRule ^activeimg-(.+)\.html$ active_img.php?rg=$1
