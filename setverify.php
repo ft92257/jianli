@@ -56,7 +56,7 @@ if(mysql_num_rows($res)>0){
 			<div class="find_emil">
 			确认信已经发到你的邮箱'.($is_br>0?' '.$r_res['email']:'').'，<br />
 			你需要点击邮件中的确认链接来完成注册。<br />
-			<a href="'.$eu.'" class="btn bt_wdgray">去邮箱查收确认信 </a>
+			<a href="'.$eu.'" class="btn bt_wdgray" target="_blank">去邮箱查收确认信 </a>
 			</div>
 			<div class="not_find">
 				<b>没有收到确认信怎么办？</b>
