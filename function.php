@@ -713,6 +713,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="user-'.$udb['uid'].'.html">'.($udb['nc']!=''?$udb['nc']:$udb['email']).'</a>
 		<a href="profile.php">设置</a>
 		<a href="user_decoration.php?id='.$udb['uid'].'">个人中心</a>
+		'.(($udb['qx']==10 || $udb['isxg']>0)?'<a href="admin.php">后台管理</a>':'').'
 		<a href="logout.php">退出登录</a>
 		</div>';
 	}else{
@@ -837,6 +838,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="user-'.$udb['uid'].'.html">'.($udb['nc']!=''?$udb['nc']:$udb['email']).'</a>
 		<a href="profile.php">设置</a>
 		<a href="user_decoration.php?id='.$udb['uid'].'">个人中心</a>
+		'.(($udb['qx']==10 || $udb['isxg']>0)?'<a href="admin.php">后台管理</a>':'').'
 		<a href="logout.php">退出登录</a>
 		</div>';
 	}else{
