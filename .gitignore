@@ -14,5 +14,4 @@ house/Home/Admin/Runtime
 house/config.inc.php
 house/data
 house/pay/tenpay_config.php
-function.php
 .htaccess

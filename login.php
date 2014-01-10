@@ -160,7 +160,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			exit();
 		}
 	}
-	header('Location:'.(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'./'));
+	//header('Location:'.(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'./'));
+	header('Location:user_decoration.php');
 }elseif(isset($_GET['t']) && $_GET['t']=='tqq'){
 	if(isset($_SESSION['user_sync_m']) && trim($_SESSION['user_sync_m'])!='' && isset($_SESSION['user_sync_id']) && trim($_SESSION['user_sync_id'])!='' && isset($_SESSION['user_sync_t']) && trim($_SESSION['user_sync_t'])!='' && isset($_SESSION['user_sync_s']) && trim($_SESSION['user_sync_s'])!=''){
 		$_SESSION['user_sync_m']='';
