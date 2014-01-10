@@ -4,7 +4,6 @@ require_once('../'.$yjl_tpath.'setting/settings.php');
 require_once('../function.php');
 
 //db
-require_once "../lib/dbmysql.class.php";
 $oDb = DbMysql::getInstance($aDbConfig);
 
 $f='uploadjlimg_m.php';
