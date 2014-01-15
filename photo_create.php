@@ -60,8 +60,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$fg,
 				$udb['uid']);
 			$result=mysql_query($uSQL) or die(mysql_error());
-			$iSQL=sprintf('insert into %s (dtype, hzid, hzqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+			$iSQL=sprintf('insert into %s (dtype, htype, hzid, hzqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
 				intval($_POST['dtype']),
+				intval($_POST['htype']),
 				$user_id,
 				$xqid,
 				yjl_SQLString($udb['nc'].'的家', 'text'),
@@ -116,8 +117,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				}else{
 					$hzqr=1;
 				}
-				$iSQL=sprintf('insert into %s (dtype, hzid, hzqr, uid, jlqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+				$iSQL=sprintf('insert into %s (dtype, htype, hzid, hzqr, uid, jlqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
 					intval($_POST['dtype']),
+					intval($_POST['htype']),
 					$hzuid,
 					$hzqr,
 					$user_id,
@@ -161,6 +163,13 @@ if($udb['qx']==0){
 							<option value="">选择装修类型</option>
 								<option value="1">家装</option>
 								<option value="2">工装</option>
+							</select></td></tr>
+							<tr><th>工装房型：</th><td><select name="htype">
+							<option value="">选择工装房型</option>
+								<option value="1">连锁店</option>
+								<option value="2">办公室</option>
+								<option value="3">实验室</option>
+								<option value="4">公共空间</option>
 							</select></td></tr>
 							<tr>
 								<th>预算：</th>
@@ -222,6 +231,13 @@ if($udb['qx']==0){
 								<option value="1">家装</option>
 								<option value="2">工装</option>
 							</select></td></tr>
+							<tr><th>工装房型：</th><td><select name="htype">
+							<option value="">选择工装房型</option>
+								<option value="1">连锁店</option>
+								<option value="2">办公室</option>
+								<option value="3">实验室</option>
+								<option value="4">公共空间</option>
+							</select></td></tr>
 							<tr>
 								<th>小区：</th>
 								<td><input type="text" class="text" style="background: url(images/ibg.gif) no-repeat left center;" id="chki_1"><span id="msg_1"></span><input type="hidden" id="is_er_1" value="0"/><input type="hidden" id="xqid" value="0" name="xqid"/><input type="hidden" id="xqname" value=""/></td>
@@ -257,6 +273,13 @@ if($udb['qx']==0){
 <option value="">选择装修类型</option>
 <option value="1">家装</option>
 <option value="2">工装</option>
+</select></div>
+<div style="padding-top:10px;">工装房型：<select name="htype">
+	<option value="">选择工装房型</option>
+	<option value="1">连锁店</option>
+	<option value="2">办公室</option>
+	<option value="3">实验室</option>
+	<option value="4">公共空间</option>
 </select></div>
 	<div style="height: 250px;padding: 5px;overflow: auto;" id="jl_jlsdiv"></div><div style="clear: both;"></div><input type="submit" value="创 建" id="submit_bt" class="submit sub_reg" />';
 }
