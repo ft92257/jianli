@@ -8,7 +8,7 @@ a { color:#1f1813; text-decoration:none;}
 .h{ border-bottom:1px solid #ddd; margin-top:15px}
 
 
-.pbar{ height:35px; background:url(../img/Construction/top1.png) repeat-x; color:#FFF;}
+.pbar{ height:35px; background:url(../images/Construction/top1.png) repeat-x; color:#FFF;}
 .top{ width:960px; margin:0 auto; color:#999; font-family:"宋体"}
 .top a{ color:#999}
 .top ul {margin-top:6px;padding:0;}
@@ -29,7 +29,7 @@ a { color:#1f1813; text-decoration:none;}
 
 .orange a{ color:#FF6B24;}
 .login { margin-top:11px;}
-.phead { height:95px; background:url(../img/Construction/head_barbg.png) repeat-x; box-shadow:0px 2px 2px #D7D1CE}
+.phead { height:95px; background:url(../images/Construction/head_barbg.png) repeat-x; box-shadow:0px 2px 2px #D7D1CE}
 .head { width:960px; margin:0 auto; height:95px; }
 
 .logo { background:url(../images/Construction/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
