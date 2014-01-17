@@ -697,6 +697,17 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	<div class="wrap">
 	<div class="pbar">
 	<div class="top clearfix">
+	<div class="left city_list">
+     '.$d_l1title.'&nbsp;<a href="javascript:$(\'#city_list_box\').show();" class="open_clos">[请选择地区]</a>
+     <div id="city_list_box" class="city_list_box">
+      <div style="position:relative"><em class="cityem_t"></em><em onclick="$(\'#city_list_box\').hide();" class="off_cityList"></em></div>
+      <div>进入：<span style="font-size:20px; font-weight:bold">上海</span></div>
+      <h2 class="citytitle">选择您的对应地区</h2>
+      <div class="city_content">
+       <a href="http://www.yijianli.com/index.php" class="am_addstyle">上海</a><a href="http://sz.yijianli.com/index.php">苏州</a><a href="http://nj.yijianli.com/index.php">南京</a><a href="http://wx.yijianli.com/index.php">无锡</a><a href="http://hz.yijianli.com/index.php">杭州</a><a href="http://nb.yijianli.com/index.php">宁波</a><a href="http://sx.yijianli.com/index.php">绍兴</a>
+      </div>
+     </div>
+    </div>
 	<div class="left">
 	<ul>
 	<li><span><img src="house/statics/index/images/Construction/top1.fw.png" class="hmiddle"></span><span class="hmiddle">100%服务品质</span></li>
@@ -822,6 +833,17 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	<div class="wrap">
 	<div class="pbar">
 	<div class="top clearfix">
+	<div class="left city_list">
+     '.$d_l1title.'&nbsp;<a href="javascript:$(\'#city_list_box\').show();" class="open_clos">[请选择地区]</a>
+     <div id="city_list_box" class="city_list_box">
+      <div style="position:relative"><em class="cityem_t"></em><em onclick="$(\'#city_list_box\').hide();" class="off_cityList"></em></div>
+      <div>进入：<span style="font-size:20px; font-weight:bold">上海</span></div>
+      <h2 class="citytitle">选择您的对应地区</h2>
+      <div class="city_content">
+       <a href="http://www.yijianli.com/gz.php" class="am_addstyle">上海</a><a href="http://sz.yijianli.com/gz.php">苏州</a><a href="http://nj.yijianli.com/gz.php">南京</a><a href="http://wx.yijianli.com/gz.php">无锡</a><a href="http://hz.yijianli.com/gz.php">杭州</a><a href="http://nb.yijianli.com/gz.php">宁波</a><a href="http://sx.yijianli.com/gz.php">绍兴</a>
+      </div>
+     </div>
+    </div>
 	<div class="left">
 	<ul>
 	<li><span><img src="house/statics/index/images/Construction/top1.fw.png" class="hmiddle"></span><span class="hmiddle">100%服务品质</span></li>

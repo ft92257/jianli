@@ -15,6 +15,18 @@ a { color:#1f1813; text-decoration:none;}
 .top ul li {float:left; margin-right:30px; list-style:none; height:24px; line-height:24px; }
 .top ul li span { margin-right:5px;}
 .top ul li .hmiddle{ vertical-align:middle}
+
+.top .city_list{ line-height:35px; margin-right:20px; position:relative; z-index:3}
+.top .city_list a{ color:#FF6B24}
+.top .city_list_box{ display:none; width:240px; padding:18px 10px 10px 10px; border-radius:4px; box-shadow:0 0 10px rgba(0,0,0,.12); line-height:15px; border:#E2E2E2 1px solid; z-index:3; background-color:#fff; position:absolute; left:-15px; top:45px}
+.top .cityem_t{ width:23px; height:10px; background:url(../images/lo_lo_img1.png) no-repeat; display:block; position:absolute; left:15px; top:-28px}
+.top .off_cityList{ width:17px; height:17px; display:block; cursor:pointer; background:url(../images/off-0.png) no-repeat; position:absolute; right:-18px; top:-25px}
+.top .citytitle{ font-size:12px; color:#000; margin-top:12px}
+.top .city_content{ margin-top:8px}
+.top .city_content a{ margin-right:10px; display:inline-block; margin-bottom:10px}
+.top .city_content a.am_addstyle{ background-color:#FF6B24; color:#FFF}
+.top .city_content a:hover{ text-decoration:underline}
+
 .orange a{ color:#FF6B24;}
 .login { margin-top:11px;}
 .phead { height:95px; background:url(../images/Construction/head_barbg.png) repeat-x; box-shadow:0px 2px 2px #D7D1CE}
