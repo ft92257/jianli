@@ -3,16 +3,14 @@
 function _getStepPage($step, $aJpids) {
 	global $r_res;
 	$s = '';
-	//$s = '&nbsp;<a href="#">首次</a>';
-	//$s .= '&nbsp;<a href="#">末次</a>';
 	foreach ($aJpids as $iKey => $aValue) {
 		if ($iKey == $step) {
-			$s .= '&nbsp;&nbsp;' . $iKey;
+			$s .= '<li class="colorli">'.$iKey.'</li>';
 		} else {
-			$s .= '&nbsp;&nbsp;<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-'.$aValue['jpid'].'.html">'. $iKey .'</a>';
+			$s .= '<li><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-'.$aValue['jpid'].'.html">'. $iKey .'</a></li>';
 		}
 	}
-
+	
 	return $s;
 }
 
@@ -50,9 +48,8 @@ if(mysql_num_rows($res)>0){
 		if(isset($_GET['t']) && $_GET['t']=='top'){
 			echo yjl_jlimgrightu($r_rep, $r_res, 'photo.php');
 		} elseif (isset($_GET['t']) && $_GET['t']=='report') {
-			//获取报告内容
 			
-			require_once "../lib/dbmysql.class.php";
+			//获取报告内容
 			$oDb = DbMysql::getInstance($aDbConfig);
 			
 			//只获取评论数量
@@ -81,10 +78,21 @@ if(mysql_num_rows($res)>0){
 			$aJpids = $oDb->fetchAllArrayWithKey($cSql, 'step');
 			$stepPage = _getStepPage($step, $aJpids);
 			
-			echo '<div class="report_page">
-			<span>阶段</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="reportPageArrow"><</span>'. $stepPage .'&nbsp;&nbsp;<span class="reportPageArrow">></span>
-			</div>';
+			echo '<div class="yuefen">
+					<div class="left lefbox_yuefen">
+       					 <span>阶段</span>
+       				</div>
+						
+					<div class="left rightbox_yuefen">
+						<img src="images/left_bgimg0.png" width="7" height="8" class="left bximg prev1">
+						<div class="left widyufen">
+							<ul class="widyufen_ul" style="margin-left:0">
+							'. $stepPage .'
+							</ul>
+						</div>
+						<img src="images/right_bgimg0.png" width="7" height="8" class="left bximg next1">
+					</div>
+				</div>';
 			if (isset($cReport)) {
 				echo '<textarea name="report_content" '. ($bAuth ? '' : 'readonly') .' class="reportContent">'.$cReport.'</textarea>';
 			} else {

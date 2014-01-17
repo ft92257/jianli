@@ -929,7 +929,8 @@ $a_lelist[]=array('photo', '修改头像');
 $a_lelist[]=array('privacy', '隐私设置');
 $a_lelist[]=array('sync', '绑定账号');
 $a_lelist[]=array('password', '帐号设置');
-$l='<h2>设置</h2><ul class="list_centnav hover">';
+
+$l ='<h2>设置</h2><ul class="list_centnav hover">';
 foreach($a_lelist as $v){
 	$l.='<li'.($d_v0==$v[0]?' class="current"':'').'><a href="'.($v[0]!=''?'?'.$v[0].'=1':$f).'">'.$v[1].'</a></li>';
 	if($d_v0==$v[0]){
@@ -938,5 +939,6 @@ foreach($a_lelist as $v){
 	}
 }
 $l.='</ul>';
+
 echo yjl_gehtml($l, $c, $page_t);
 ?>

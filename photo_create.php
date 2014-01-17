@@ -60,7 +60,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				$fg,
 				$udb['uid']);
 			$result=mysql_query($uSQL) or die(mysql_error());
-			$iSQL=sprintf('insert into %s (hzid, hzqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+			$iSQL=sprintf('insert into %s (dtype, htype, hzid, hzqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+				intval($_POST['dtype']),
+				intval($_POST['htype']),
 				$user_id,
 				$xqid,
 				yjl_SQLString($udb['nc'].'的家', 'text'),
@@ -115,7 +117,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				}else{
 					$hzqr=1;
 				}
-				$iSQL=sprintf('insert into %s (hzid, hzqr, uid, jlqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+				$iSQL=sprintf('insert into %s (dtype, htype, hzid, hzqr, uid, jlqr, xqid, name, ys, fg, fxid, mj, datetime, lasttime) values (%s, %s, %s, %s, %s, 1, %s, %s, %s, %s, %s, %s, %s, %s)', $yjl_dbprefix.'jl',
+					intval($_POST['dtype']),
+					intval($_POST['htype']),
 					$hzuid,
 					$hzqr,
 					$user_id,
@@ -155,6 +159,18 @@ if($udb['qx']==0){
 	if($udb['xqid']>0){
 		$fxc=yjl_fxop($udb['xqid'], $udb['fxid']);
 		$c.='<form method="post" class="main_form" action=""><table>
+							<tr><th>类型：</th><td><select name="dtype">
+							<option value="">选择装修类型</option>
+								<option value="1">家装</option>
+								<option value="2">工装</option>
+							</select></td></tr>
+							<tr><th>工装房型：</th><td><select name="htype">
+							<option value="">选择工装房型</option>
+								<option value="1">连锁店</option>
+								<option value="2">办公室</option>
+								<option value="3">实验室</option>
+								<option value="4">公共空间</option>
+							</select></td></tr>
 							<tr>
 								<th>预算：</th>
 								<td><select name="ys"><option value="0">选择预算</option>';
@@ -210,6 +226,18 @@ if($udb['qx']==0){
 		setTimeout("if($(\'#is_showsdiv\').val()==\'0\' && $(\'#sr_c\').length>0){$(\'#xqs_sdiv\').hide();if($(\'#is_iblur\').val()==\'0\')$(\'#chki_1\').blur();}",101);
 	});';
 		$c.='<form method="post" class="main_form" action=""><table>
+							<tr><th>类型：</th><td><select name="dtype">
+							<option value="">选择装修类型</option>
+								<option value="1">家装</option>
+								<option value="2">工装</option>
+							</select></td></tr>
+							<tr><th>工装房型：</th><td><select name="htype">
+							<option value="">选择工装房型</option>
+								<option value="1">连锁店</option>
+								<option value="2">办公室</option>
+								<option value="3">实验室</option>
+								<option value="4">公共空间</option>
+							</select></td></tr>
 							<tr>
 								<th>小区：</th>
 								<td><input type="text" class="text" style="background: url(images/ibg.gif) no-repeat left center;" id="chki_1"><span id="msg_1"></span><input type="hidden" id="is_er_1" value="0"/><input type="hidden" id="xqid" value="0" name="xqid"/><input type="hidden" id="xqname" value=""/></td>
@@ -240,7 +268,20 @@ if($udb['qx']==0){
 			return false;
 		}
 	});';
-	$c.='<input class="text" id="q"/> <a href="#" onclick="var c=$.trim($(\'#q\').val());if(c!=\'\')$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\', {q:c});return false;">搜索</a> <a href="#"" onclick="$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\');return false;">显示本小区全部业主</a><form method="post" id="aform" action=""><div style="height: 250px;padding: 5px;overflow: auto;" id="jl_jlsdiv"></div><div style="clear: both;"></div><input type="submit" value="创 建" id="submit_bt" class="submit sub_reg" />';
+	$c.='<input class="text" id="q"/> <a href="#" onclick="var c=$.trim($(\'#q\').val());if(c!=\'\')$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\', {q:c});return false;">搜索</a> <a href="#"" onclick="$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\');return false;">显示本小区全部业主</a><form method="post" id="aform" action="">
+	<div style="padding-top:10px;">装修类型：<select name="dtype">
+<option value="">选择装修类型</option>
+<option value="1">家装</option>
+<option value="2">工装</option>
+</select></div>
+<div style="padding-top:10px;">工装房型：<select name="htype">
+	<option value="">选择工装房型</option>
+	<option value="1">连锁店</option>
+	<option value="2">办公室</option>
+	<option value="3">实验室</option>
+	<option value="4">公共空间</option>
+</select></div>
+	<div style="height: 250px;padding: 5px;overflow: auto;" id="jl_jlsdiv"></div><div style="clear: both;"></div><input type="submit" value="创 建" id="submit_bt" class="submit sub_reg" />';
 }
 $c.='</form>
 				<br /><br />

@@ -97,39 +97,8 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 		$jlc.='</ul>';
 	}
 	mysql_free_result($res);
-	$c='<div class="top_row clearfix">
-			<div class="slide">
-				<div class="slidetabs">
-				<a href="#faq"><span class="mn_ico ico08"></span><strong>咨询监理</strong><br />你身边的精英监理，免费咨询！</a>
-				<a href="'.($jlu!=''?$jlu:'login.php?u='.urlencode('photo-[xqid].html').'" rel="#overlay_login').'"><span class="mn_ico ico09"></span><strong>在线照片式监理</strong><br />随时随地看工地，你的专属监理师！</a>
-				<a href="'.($hdu!=''?$hdu:'login.php?u='.urlencode('active-[xqid].html').'" rel="#overlay_login').'"><span class="mn_ico ico10"></span><strong>小区活动</strong><br />自己小区的活动，看一下吧！</a>
-				</div>
-				<ul>
-					<li><a href="#faq"><img src="images/home_1.jpg" alt="" /></a></li>
-					<li><a href="'.($jlu!=''?$jlu:'login.php?u='.urlencode('photo-[xqid].html').'" rel="#overlay_login').'"><img src="images/home_2.jpg" alt="" /></a></li>
-					<li><a href="'.($hdu!=''?$hdu:'login.php?u='.urlencode('active-[xqid].html').'" rel="#overlay_login').'"><img src="images/home_3.jpg" alt="" /></a></li>
-				</ul>
-			</div>
-			<div class="right">
-				<a href="reg.php" class="btn bt_lgblue"><span>快速注册</span></a>
-				<div class="regtip">10秒注册，即有机会获免费验房服务</div>
-				<form method="post" action="login.php" class="main_form" id="login_form">
-				<table>
-				<tr>
-					<td><input type="text" class="text" name="username" id="login_u" value="用户名" jq_ise="1" /></td>
-				</tr>
-				<tr>
-					<td><input type="password" class="text" name="password" id="login_p" style="background: url(images/pwbg.gif) no-repeat 6px center;" /></td>
-				</tr>
-				<tr class="login">
-					<td><input type="submit" class="submit" id="submit_bt" value="登 陆"/><input type="checkbox" class="checkbox" name="rem" value="1" checked="checked" /><span class="form_tip">自动登录&nbsp;&nbsp;<a href="getpwd.php">忘记密码？</a></span></td>
-				</tr>
-				<tr class="other_login">
-					<td><a href="login.php?t=sina"><span class="mn_ico ico11"></span>微博登录</a><a href="login.php?t=tqq"><span class="mn_ico ico12"></span>QQ登录</a></td>
-				</tr>
-				</table>
-				</form>
-			</div>
+	$c='<div class="top_row clearfix" style="padding:0px;">
+			<img src="images/banimg_ban0.png" width="" />
 		</div>
 		<div class="row_bg clearfix">
 			<div class="left">

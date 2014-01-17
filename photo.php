@@ -308,9 +308,10 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	if($fgid>0)$sdb[]='fg='.$fgid;
 	$smdb=isset($sdb)?' and '.join(' and ', $sdb):'';
 	$jddb=$jdid>0?' and lid>'.$jdid:'';
+	$dtype = ' dtype IN (0,1) AND';
 	if($xqid>0){
 		if($jdid>0){
-			$q_res=sprintf('select * from %s where xqid=%s and hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
+			$q_res=sprintf('select * from %s where xqid=%s and'.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
 			$res=mysql_query($q_res) or die('');
 			$r_res=mysql_fetch_assoc($res);
 			if(mysql_num_rows($res)>0){
@@ -322,7 +323,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			}
 			mysql_free_result($res);
 		}
-		$q_res=sprintf('select * from %s where xqid=%s and hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+		$q_res=sprintf('select * from %s where xqid=%s and'.$dtype.' hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
 		$res=mysql_query($q_res) or die('');
 		$r_res=mysql_fetch_assoc($res);
 		if(mysql_num_rows($res)>0){
@@ -335,7 +336,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		mysql_free_result($res);
 	}
 	if($jdid>0){
-		$q_res=sprintf('select * from %s where xqid<>%s and hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
+		$q_res=sprintf('select * from %s where xqid<>%s and'.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
 		$res=mysql_query($q_res) or die('');
 		$r_res=mysql_fetch_assoc($res);
 		if(mysql_num_rows($res)>0){
@@ -347,7 +348,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		mysql_free_result($res);
 	}
-	$q_res=sprintf('select * from %s where xqid<>%s and hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+	$q_res=sprintf('select * from %s where xqid<>%s and'.$dtype.' hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
 	$res=mysql_query($q_res) or die('');
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){

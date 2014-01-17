@@ -15,33 +15,58 @@ a { color:#1f1813; text-decoration:none;}
 .top ul li {float:left; margin-right:30px; list-style:none; height:24px; line-height:24px; }
 .top ul li span { margin-right:5px;}
 .top ul li .hmiddle{ vertical-align:middle}
+
+.top .city_list{ line-height:35px; margin-right:20px; position:relative; z-index:3}
+.top .city_list a{ color:#FF6B24}
+.top .city_list_box{ display:none; width:240px; padding:18px 10px 10px 10px; border-radius:4px; box-shadow:0 0 10px rgba(0,0,0,.12); line-height:15px; border:#E2E2E2 1px solid; z-index:3; background-color:#fff; position:absolute; left:-15px; top:45px}
+.top .cityem_t{ width:23px; height:10px; background:url(../images/lo_lo_img1.png) no-repeat; display:block; position:absolute; left:15px; top:-28px}
+.top .off_cityList{ width:17px; height:17px; display:block; cursor:pointer; background:url(../images/off-0.png) no-repeat; position:absolute; right:-18px; top:-25px}
+.top .citytitle{ font-size:12px; color:#000; margin-top:12px}
+.top .city_content{ margin-top:8px}
+.top .city_content a{ margin-right:10px; display:inline-block; margin-bottom:10px}
+.top .city_content a.am_addstyle{ background-color:#FF6B24; color:#FFF}
+.top .city_content a:hover{ text-decoration:underline}
+
 .orange a{ color:#FF6B24;}
 .login { margin-top:11px;}
 .phead { height:95px; background:url(../img/Construction/head_barbg.png) repeat-x; box-shadow:0px 2px 2px #D7D1CE}
 .head { width:960px; margin:0 auto; height:95px; }
-.logo { background:url(../img/Construction/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
 
-
-
+.logo { background:url(../images/Construction/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
 
 /*导航修改 start*/
 .menu a{color:#FF6B24; font-weight:bold;width:73px; height:70px; float:left;text-align:center; padding:25px 7px 0;}
-.menu a:hover,.menu a.mmoren{ background-color:#FF6B24; color:#FFF}
+.menu a.mmoren{ background-color:#FF6B24; color:#FFF}
 .menu a img{ border:0 none}
-.menu span{ width:26px; height:26px; display:block; background:url(../img/Construction/navstp.png) no-repeat; padding-bottom:5px; cursor:pointer; margin:0 auto}
+.menu span{ width:26px; height:26px; display:block; background:url(../images/navstp.png) no-repeat; padding-bottom:5px; cursor:pointer; margin:0 auto}
 
-.menu span.oco01{ background-position:left top}
+
 .menu span.ico01{ background-position:left -36px}
-.menu a:hover .oco01{ background-position:left -36px}
+.menu .mmoren .oco01{ background-position:left -36px}
 
 .menu span.oco02{ background-position:-86px top}
 .menu span.ico02{ background-position:-86px -36px}
-.menu a:hover .oco02{ background-position:-86px -36px}
+.menu .mmoren .oco02{ background-position:-86px -36px}
 
 .menu span.oco03{ background-position:-46px top}
 .menu span.ico03{ background-position:-46px -36px}
-.menu a:hover .oco03{ background-position:-46px -36px}
+.menu .mmoren .oco03{ background-position:-46px -36px}
 
+
+.menu span.oco04{ background-position:-131px top}
+.menu span.ico04{ background-position:-131px -36px}
+.menu .mmoren .oco04{ background-position:-131px -36px}
+.menu span.oco05{ background-position:-176px top}
+.menu span.ico05{ background-position:-176px -36px}
+.menu .mmoren .oco05{ background-position:-176px -36px}
+/*导航修改 end*/
+
+
+.select_kuang{ background:url(../images/Construction/select_img1.png) no-repeat; width:195px; height:30px; line-height:30px; margin-top:30px}
+#select_input{ height:24px; vertical-align:top; line-height:24px; margin-top:3px; color:#BFBFBF; margin-left:5px; width:151px; border:0 none}
+#select_input:focus{ outline:none}
+#sub0{ margin-top:3px; vertical-align:top; margin-left:5px}
+#sub0:focus{ outline:none}
 
 .menu span.oco04{ background-position:-131px top}
 .menu span.ico04{ background-position:-131px -36px}

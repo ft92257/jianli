@@ -1,19 +1,16 @@
 <?php
 
 //db
-require_once "./lib/dbmysql.class.php";
 $oDb = DbMysql::getInstance($aDbConfig);
 
 function _getStepPage($step, $aJpids) {
 	global $r_res;
 	$s = '';
-	//$s = '&nbsp;<a href="#">首次</a>';
-	//$s .= '&nbsp;<a href="#">末次</a>';
 	foreach ($aJpids as $iKey => $aValue) {
 		if ($iKey == $step) {
-			$s .= '&nbsp;&nbsp;' . $iKey;
+			$s .= '<li class="colorli">'.$iKey.'</li>';
 		} else {
-			$s .= '&nbsp;&nbsp;<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-'.$aValue['jpid'].'.html">'. $iKey .'</a>';
+			$s .= '<li><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-'.$aValue['jpid'].'.html">'. $iKey .'</a></li>';
 		}
 	}
 	
@@ -225,16 +222,34 @@ function _getStepPage($step, $aJpids) {
 			$cSql = "SELECT count(*) FROM ".$yjl_dbprefix."jl_topic WHERE jpid = " . $d_jpdb['jpid'];
 			$comment_count = $oDb->fetchFirstField($cSql);
 			
-			$c .= '<div class="photo_report_head"><a href="javascript:showReport(false)" class="reportTab" >评论(<span id="comment_count">'.$comment_count.'</span>)</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:showReport(true)" class="reportTabSelected">监理报告</a></div>';
+			//$c .= '<div class="photo_report_head"><a href="javascript:showReport(false)" class="reportTab" >评论(<span id="comment_count">'.$comment_count.'</span>)</a>
+			//&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:showReport(true)" class="reportTabSelected">监理报告</a></div>';
+			
+			$c .= '<div class="photo_report_head"><ul class="tab_qh">
+			<li class="" onclick="showReport(false)">评论(<span id="comment_count">'.$comment_count.'</span>)</li>
+			<li class="bg_color" onclick="showReport(true)">监理报告</li>
+			</ul></div>';
 			
 			$c.='<form method="post" enctype="multipart/form-data" id="form_report">
 					<input type="hidden" name="save_report" value="1" />
 					<div id="div_report">
-					<div class="report_page">
-						<span>阶段</span>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="reportPageArrow"><</span>'. $stepPage .'&nbsp;&nbsp;<span class="reportPageArrow">></span>
-					</div>';
+					<div class="yuefen">
+						<div class="left lefbox_yuefen">
+       					 <span>阶段</span>
+       					</div>
+						
+						<div class="left rightbox_yuefen">
+						<img src="images/left_bgimg0.png" width="7" height="8" class="left bximg prev1">
+						<div class="left widyufen">
+						<ul class="widyufen_ul" style="margin-left:0">
+						'. $stepPage .'
+						</ul>
+						</div>
+						<img src="images/right_bgimg0.png" width="7" height="8" class="left bximg next1">
+					</div>
+					
+			</div>';
+			
 				//文字或图片内容
 				if (isset($cReport)) {
 					$c .= '<textarea name="report_content" '. ($user_id==$r_res['uid'] ? '' : 'readonly') .' class="reportContent">'.$cReport.'</textarea>';
@@ -250,20 +265,19 @@ function _getStepPage($step, $aJpids) {
 			<input style="" type="submit" value="保 存" class="submit sub_smbe" />
 			</div>';
 			}elseif ($user_id==$r_res['hzid'] || $udb['qx']==10) {
-				$c .='<div style="padding:10px;margin-bottom:10px;" class="comm_wrap clearfix" >
-			对本次服务打分：<select name="report_score">
-				<option value="10">10</option>
-				<option value="9">9</option>
-				<option value="8">8</option>
-				<option value="7">7</option>
-				<option value="6">6</option>
-				<option value="5">5</option>
-				<option value="4">4</option>
-				<option value="3">3</option>
-				<option value="2">2</option>
-				<option value="1">1</option>
-			</select> 分
-			<input style="" type="submit" value="评 分" class="submit sub_smbe" />
+				$c .='<div class="dafen comm_wrap clearfix" >对本次服务打分：<select name="report_score">
+				<option value="10">10分</option>
+				<option value="9">9分</option>
+				<option value="8">8分</option>
+				<option value="7">7分</option>
+				<option value="6">6分</option>
+				<option value="5">5分</option>
+				<option value="4">4分</option>
+				<option value="3">3分</option>
+				<option value="2">2分</option>
+				<option value="1">1分</option>
+			</select> 
+			<input type="submit" value="评 分" class="submit sub_smbe" />
 			</div>';
 			} else {
 				$c .= '<div style="height:10px;">&nbsp;</div>';
