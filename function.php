@@ -731,6 +731,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php">免费注册</a></span></div>';
 	}
 
+	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
 	$s .='</div>
 	</div><!-- pbar结束 -->
 	<div class="phead">
@@ -742,7 +743,6 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
       <a href="new" data-match="/new"><span class="oco02"></span>选监理</a>
       <a href="photo-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
       <a href="house/?s=/Active" data-match="/Active"><span class="oco04"></span>样板参观</a>
-      <a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
     </div>
 	
 	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
