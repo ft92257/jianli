@@ -4,7 +4,6 @@
  * 	装修公司相关页面
  */
 class CompanyAction extends BaseAction {
-
 	//需要验证的方法
 	protected $aVerify = array(
 	);
@@ -28,20 +27,17 @@ class CompanyAction extends BaseAction {
 		}
 		
 		//首页展示的活动
-		$aActive = D('Active')->getById($aCompany['homeshow']);
-		
+		$aActive = D('Active')->where(array('cid'=>$aCompany['id']))->order('ord desc')->find();
+		//$aActive = D('Active')->where(array('ord'=>$maxId))->find();
 		//样板工地
 		$aCase = D('Case')->getTop($cid, 6);
-		
 		//施工队
 		$aCons = D('Construction')->getTop($cid, 6);
-		
+		//dump($aCons);die;
 		//材料
-		$aMaterial = D('Company_material')->getTop($cid, 3);
-		
+		$aMaterial = D('Picture')->getTop($cid,1,3);
 		//业主评分
 		$aScore = D('Score')->getTop($cid, 3);
-		//dump($aActive);dump($aCase);dump($aCons);dump($aMaterial);dump($aScore);die;
 		$this->assign('company', $aCompany);
 		$this->assign('active', $aActive);
 		$this->assign('case', $aCase);

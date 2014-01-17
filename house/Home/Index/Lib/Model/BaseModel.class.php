@@ -5,7 +5,8 @@ class BaseModel extends Model {
 	
 	public $oApp;
 	public $oCom;//公司信息
-	
+	//搜索配置
+	protected $searchConfig = array();
 	//选项配置数组
 	protected $aOptions = array(
 	);
@@ -139,13 +140,14 @@ class BaseModel extends Model {
 	 * 查询条件，添加基础字段
 	 */
 	public function where($condition, $parse=null) {
-		if (is_array($condition)) {
+		if (is_array($condition) && !array_key_exists('tb_case.appid',$condition)) {
 			$base = array(
 						'appid' => $this->oApp->id,
 						'status' => 0,
 					);
 			$condition = array_merge($base, $condition);
 		}
+		
 		
 		return parent::where($condition, $parse);
 	}
@@ -162,5 +164,114 @@ class BaseModel extends Model {
 			return isset($arr[$key]) ? $arr[$key] : $default;
 		}
 	}
+	/*
+	 * 获取分页列表的搜索栏html
+	*/
+	public function getSearchHtml() {
+		$s = '';
+		foreach ($this->searchConfig as $field => $config) {
+			$s .= '<div class="box_hang"><div class="tiaojian">'.$config[0].'</div>';
+			switch ($config[1]) {
+				case 'text':
+					$s .= '<input type="text" name="'.$field.'" value="'.getRequest($field).'" />';
+					break;
+				case 'text_submit':
+					$s .= '<input type="text" name="'.$field.'" value="'.getRequest($field).'" />&nbsp;<input type="submit" value="查询">';
+					break;
+				case 'date':
+					$s .= '<input type="text" name="'.$field.'_BEGIN" value="'.getRequest($field . '_BEGIN').'" style="width:68px;" onfocus="HS_setDate(this)" />至';
+					$s .= '<input type="text" name="'.$field.'_END" value="'.getRequest($field . '_END').'" style="width:68px;" onfocus="HS_setDate(this)" />&nbsp;<input type="submit" value="查询">';
+					break;
+				case 'radio':
+					$val = getRequest($field);
+					$checked = $val === '' ? ' checked="checked"' : '';
+					$s .= '<input type="radio" '.$checked.' name="' . $field . '" value="" />全部&nbsp;&nbsp;';
+					foreach ($this->getOptions($field) as $i => $option) {
+						$checked = $val !== '' && $val == $i ? ' checked="checked"' : '';
+						$s .= '<input type="radio" '.$checked.' name="' . $field . '" value="' . $i . '" />' . $option . '&nbsp;&nbsp;';
+					}
+					break;
+				case 'radio_list':
+					$s .= '<div class="tiaojian_list">';
+					$val = getRequest($field);
+					$params = array_merge($_GET, $_POST);
+					unset($params['_URL_']);unset($params['p']);
+					unset($params[$field]);
+					$url = U('', $params) . '/'.$field.'/';
+					if ($val === '') {
+						$s .= '<a class="alistmoren">全部</a>';
+					} else {
+						$s .= '<a href="'.$url.'">全部</a>';
+					}
+					foreach ($this->getOptions($field) as $i => $option) {
+						$url = U('', $params) . '/'.$field.'/'.$i;
+						if ($val !== '' && $val == $i) {
+							$s .= '<a class="alistmoren">'.$option . '</a>';
+						} else {
+							$s .= '<a href="'.$url.'">'.$option.'</a>';
+						}
+					}
+					$s .= '</div>';
+					break;
+				case 'select':
+					$val = getRequest($field);
+					$checked = $val === '' ? ' selected="selected"' : '';
+					$s .= '<select name="'.$field.'" onchange="this.parentNode.parentNode.parentNode.parentNode.parentNode.submit();">';
+					$s .= '<option value="">全部</option>';
+					foreach ($this->getOptions($field) as $i => $option) {
+						$checked = $val !== '' && $val == $i ? ' selected="selected"' : '';
+						$s .= '<option '.$checked.' value="'.$i.'">'.$option.'</option>';
+					}
+					$s .= '</select>';
+					break;
+				default:
+					$s .= $config[1];
+					break;
+			}
+			$s .= '</div>';
+		}
+	
+		return $s;
+	}
+	
+	/*
+	 * 获取搜索条件
+	*/
+	public function getSearchCondition() {
+		$search = array();
+		foreach ($this->searchConfig as $field => $config) {
+			switch ($config[1]) {
+				case 'text':
+				case 'text_submit':
+					$val = getRequest($field);
+					if ($val !== '') {
+						$search[$field] = array('like', '%' . $val . '%');
+					}
+					break;
+				case 'date':
+					$begin = getRequest($field . '_BEGIN');
+					$end = getRequest($field . '_END');
+					if ($begin || $end) {
+						$begin = (int) strtotime($begin);
+						if ($end) {
+							$end = strtotime($end . ' 23:59:59');
+						} else {
+							$end = strtotime(date('Y-m-d') . ' 23:59:59');
+						}
+						$search[$field] = array('between', array($begin, $end));
+					}
+					break;
+				default:
+					$val = getRequest($field);
+					if ($val !== '') {
+						$search[$field] = $val;
+					}
+					break;
+			}
+		}
+	
+		return $search;
+	}
+	
 }
 ?>

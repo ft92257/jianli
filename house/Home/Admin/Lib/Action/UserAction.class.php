@@ -73,7 +73,7 @@ class UserAction extends BaseAction {
     	
 	    	$this->checkPost();
 	    	 $this->compare(getRequest('password'),getRequest('repassword'));
-	         $data = array('type'=>2,
+	         $data = array('type'=>4,
 	         			  'password'=>md5(getRequest('password')),
 	    				  'account'=>getRequest('account'),
 	    				  'nickname'=>getRequest('nickname'),
@@ -97,6 +97,52 @@ class UserAction extends BaseAction {
 		}
    
    }
+    public function update() {
+     	
+	     	$id = getRequest('id');
+	     	$Comp = D("Company");
+	     	$aCompany = $Comp->getById($id);
+	    	if (!$this->isPost()) {
+				$aManager = $this->model->getById($aCompany['uid']);
+		     	$this->assign('company', $aCompany);
+				$this->assign('manager', $aManager);
+		    	$this->display();
+				die;
+			}
+			
+			$repassword = getRequest('repassword');
+			$password = getRequest('password');
+			$aWhere = array('id' => $id);
+			
+			
+			$mid= $Comp->where($aWhere)->getField('uid');
+			$name = getRequest('name');
+			if($name){
+				$data = array('name' => $name);
+				$Comp->where($aWhere)->data($data)->save();
+			}else{
+				$this->error('请输入公司名');
+			}
+	
+			$account = getRequest('account');
+			$aWhere = array('id' => $aCompany['uid']);
+			if($account){
+			 	$data = array('account' => getRequest('account'));
+				$this->model->where($aWhere)->data($data)->save();
+			}
+			$password = getRequest('password');
+	        if($this->compare($password,$repassword)){
+		    	
+		    	$data = array('password' => md5(getRequest('password')));
+	            
+				$this->model->where($aWhere)->data($data)->save();
+		    
+		    }
+	        
+		    $this->success('修改成功', U('/Company/company'));
+     
+	}
+	
 }
 
 ?>

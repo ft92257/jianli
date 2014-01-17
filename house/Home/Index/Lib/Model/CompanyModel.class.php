@@ -69,9 +69,21 @@ class CompanyModel extends BaseModel {
 	/*
 	 * 获取一页4个公司
 	 */
-	public function getPage($size = 4) {
+	public function getPage($size = 4,$condition) {
 		$p = getRequest(C('VAR_PAGE'));
-		return $this->where(array())->order('ord DESC')->page($p.','.$size)->select();
+		return $this->where($condition)->order('ord DESC')->page($p.','.$size)->select();
+	}
+	public function getFieldById($id,$name) {
+		if(!$name){
+			return $this->where(array('id'=>$id))->getField('name');
+		}else {
+			return $this->where(array())->limit(13)->getField('id,name');
+		}
+		
+	}
+	public function getNameById($id) {
+	
+		return $this->where(array('id'=>$id))->getField('name');
 	}
 }
 

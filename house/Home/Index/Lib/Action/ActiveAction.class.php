@@ -19,25 +19,22 @@ class ActiveAction extends BaseAction {
 	 * 参观会首页列表未完成
 	 */
 	public function lists() {
-		$aWhere = array(
-			'region' => (int) getRequest('region'),
-			'cid' => (int) getRequest('cid'),
-			'style' => (int) getRequest('style'),
-			'apartment' => (int) getRequest('apartment'),
-		);
-		$aWhere = array_diff($aWhere,array(0));
+		$this->model->getCondition();
+		$aWhere = $this->model->getConditionArray();
 		import('ORG.Util.Page');
-		$count  = $this->model->where($aWhere)->count();
+		$count = $this->model->join('tb_case ON tb_active.caseid = tb_case.id')->where($aWhere)->count();
 		$Page = new Page($count,4);
 		$Page->setConfig('theme'," %upPage% %downPage% %first% %prePage% %linkPage% %nextPage% %end%");
 		//分页html
 		$show = $Page->show();
-		//列表数据
-		$aData = $this->model->where($aWhere)->limit($Page->firstRow.','.$Page->listRows)->select();
+		$aData  = $this->model->join('tb_case ON tb_active.caseid = tb_case.id')->where($aWhere)->limit($Page->firstRow.','.$Page->listRows)->field('tb_active.id,tb_active.focus,tb_case.county,tb_case.style,tb_case.housetype,tb_case.name,tb_active.cid,tb_active.title,tb_active.address')->select();
+		//dump($aData);die;
 		$this->assign('show', $show);
+		$this->assign('searchHtml', $this->model->getSearchHtml());
 		$this->assign('data', $aData);
 		$this->display();
 	}
+	
 	
 	/*
 	 * 参观会详细内容canguanhuixiangqing
@@ -51,7 +48,11 @@ class ActiveAction extends BaseAction {
 		}
 		//公司推荐的样板工地,6个
 		$oActive = D('Active')->getTop($aActive['cid'], 6);
+		//echo D('Active')->getLastSql();
+		//dump($oActive);
 		$aReserve = D('Reserve')->getHasReserve(3,$aActive['id'],5);
+		$count = $aReserve['count'];unset($aReserve['count']);
+		$this->assign('count',$count);
 		$this->assign('active', $aActive);
 		$this->assign('oactive', $oActive);
 		$this->assign('reserve',$aReserve);

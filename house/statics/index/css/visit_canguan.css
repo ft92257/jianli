@@ -19,7 +19,7 @@
 .tabcenter{ width:749px; height:469px; overflow:hidden; position:relative}
 .tabcenter li{ float:left}
 .tabImg{ position:relative}
-.xiabiao{ position:absolute; left:450px; bottom:10px}
+.xiabiao{ position:absolute; left:450px; bottom:10px;background:none}
 .xiabiao li{ width:10px; height:10px; cursor:pointer; background:url(../images/Construction/aahui.png) no-repeat; margin-right:10px}
 .xiabiao li.lamoren{ background:url(../images/Construction/aahuang.png) no-repeat}
 .jianjie_list{ border-top:#E2E2E2 1px solid; margin-top:25px}

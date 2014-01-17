@@ -20,7 +20,7 @@ class CompanyAction extends BaseAction {
 				$this->error('修改失败！');
 			}
 		} else {
-			$data['logo'] = getFileUrl($data['logo'], '120-120');
+			$data['logo'] = getFileUrl($data['logo'], '200-200');
 			$this->_display_form($data);
 		}
 	}

@@ -17,16 +17,16 @@ class ConstructionModel extends BaseModel {
 	 */
 	protected function _after_select(&$resultSet,$options) {
 		foreach($resultSet as &$value) {
-			$value['cid'] = D('Company')->where(array('id'=>$value['cid']))->getField('name');
+			$value['cid'] = D('Company')->getNameById($value['cid']);
 			$value['tags'] = array_diff(explode('|',$value['tags']),array(''));
-			$value['focus'] = getFileUrl($value['focus']);
+			$value['focus'] = getFileUrl($value['focus'],'200-200');
 		}
 		
 		
 	}
 	protected function _after_find(&$data,$options) {
-		$data['focus'] = getFileUrl($data['focus']);
-		$data['cid'] = D('Company')->where(array('id'=>$data['cid']))->getField('name');
+		$data['focus'] = getFileUrl($data['focus'],'200-200');
+		$data['cid'] = D('Company')->getNameById($data['cid']);
 	}
 	
 	/*

@@ -18,8 +18,8 @@ class ScoreModel extends BaseModel {
 	 */
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {
-			$avatar = D('User')->where(array('id'=>$value['uid']))->getField('avatar');
-			$value['uid'] = getFileUrl($avatar, '24-24');
+			$avatar = D('User')->where(array('id'=>$value['owner_uid']))->getField('avatar');
+			$value['owner_uid'] = getFileUrl($avatar, '30-30');
 			$value['createtime'] = $this->time_tran($value['createtime']);
 		}
 	}
@@ -41,7 +41,7 @@ class ScoreModel extends BaseModel {
 					if($dur < 259200){//3天内
 						return floor($dur/86400).'天前';
 					}else{
-						$the_time = date("Y-m-d H:i:s",$value[createtime]);
+						$the_time = date("Y-m-d H:i:s",$the_time);
 						return $the_time;
 					}
 				}

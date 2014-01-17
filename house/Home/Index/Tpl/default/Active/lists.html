@@ -2,21 +2,37 @@
 
 <div class="halfPop"></div>
 <div class="pop_chuang">
-<iframe src="{:U('/Case/reserve/')}" style="border:0; width:410px; height:300px" scrolling="no"></iframe>
+<img src="../images/close.png" width="36" height="36" class="off" />
+<div class="re">
+	<div class="top">
+		<img src="__STATICS__/images/Construction/clock.gif"><h1>填写预约信息</h1>
+	</div>
+	<form action="" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name="name"></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name="telephone"></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name="region"></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name="email"></td></tr>
+	</table>
+	<div class="foot">
+		<input type="image" src="__STATICS__/images/Construction/add_reserve.gif" ></input>
+	</div>
+	</form>
+</div>
 </div>
 <div class="center" style=" overflow:auto; zoom:1">
 
 <div class="part">
   <div class="topnav">
 	<ul>
-      <li class="current"><a href="{:U('/Active/lists')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
-      <li><a href="{:U('/Active/index')}"><span>样板工地</span></a></li>
+      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li><a href="{:U('/Case/index')}"><span>样板工地</span></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
 	</div>
   <div><div class="clear"></div>
-  <div class="banner_box">
+ <div class="banner_box">
    <ul class="banner_ul_list">
     <li><a href="#"><img src="__STATICS__/images/Construction/banner_0_img0.png" width="960" height="320" /></a></li>
     <li><a href="#"><img src="__STATICS__/images/Construction/banner_0_img0.png" width="960" height="320" /></a></li>
@@ -33,63 +49,18 @@
     </div><div class="clear"></div>
   </div><!--/banner_box-->
   <div class="content_box">
-   <h1 class="content_box_title">参观会筛选</h1>
+   <h1 class="content_box_title">参观会筛选{$doudou[0]}</h1>
    <div class="shaixuan_box">
-    <div class="box_hang">
-     <div class="tiaojian">区域：</div>
-     <div class="tiaojian_list">
-      <a href="#" class="alistmoren">全部</a>
-      <a href="#">闵行</a>
-      <a href="#">徐汇</a>
-      <a href="#">杨浦</a>
-      <a href="#">浦东</a>
-      <a href="#">闵行</a>
-      <a href="#">徐汇</a>
-      <a href="#">杨浦</a>
-      <a href="#">浦东</a>
-      <a href="#">闵行</a>
-      <a href="#">徐汇</a>
-      <a href="#">杨浦</a>
-      <a href="#">浦东</a>
-      <div class="clear"></div>
-     </div><!--/tiaojian_list-->
-    </div><!--/box_hang-->
-    <div class="box_hang">
-     <div class="tiaojian">公司：</div>
-     <div class="tiaojian_list">
-      <a href="#" class="alistmoren">全部</a>
-      <a href="#">申远</a>
-      <a href="#">其他</a>
-      <div class="clear"></div>
-     </div><!--/tiaojian_list-->
-    </div><!--/box_hang-->
-    <div class="box_hang">
-     <div class="tiaojian">主题：</div>
-     <div class="tiaojian_list">
-      <a href="#" class="alistmoren">全部</a>
-      <a href="#">美式乡村</a>
-      <a href="#">日式</a>
-      <div class="clear"></div>
-     </div><!--/tiaojian_list-->
-    </div><!--/box_hang-->
-    <div class="box_hang">
-     <div class="tiaojian">房型：</div>
-     <div class="tiaojian_list">
-      <a href="#" class="alistmoren">全部</a>
-      <a href="#">联体别墅</a>
-      <a href="#">三房两厅</a>
-      <div class="clear"></div>
-     </div><!--/tiaojian_list-->
-    </div><!--/box_hang-->
+   {$searchHtml}
    </div><!--/shaixuan_box-->
    <div style="margin-top:15px">
    <volist name="data" id="vo">
     <div class="list_tuijian">
      <dl>
-      <dt><a href="#"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
+      <dt><a href="{:U('/Active/detail/id')}/{$vo['id']}"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
       <dd class="leftdd">
-       <h2 class="teititle"><a href="#">[{$vo['case']['area']}]{$vo['title']}</a></h2>
-       <p class="asead_p">{$vo['case']['style']} {$vo['case']['name']} {$vo['case']['housetype']}</p>
+       <h2 class="teititle"><a href="#">[{$vo['county']}]{$vo['title']}</a></h2>
+       <p class="asead_p">{$vo['style']} {$vo['name']} {$vo['housetype']}</p>
        <div class="jianjie_san">
         <p>公司：{$vo['cid']}</p>
         <p>地址：{$vo['address']}</p>
@@ -98,7 +69,7 @@
       </dd>
       <dd class="rightdd">
        <p>已有{$vo['reserve']['count']}人预约</p>
-       <div class="martopdiv"><a href="#"><img src="__STATICS__/images/Construction/yuyue_r3_c6.jpg" width="160" height="40" /></a></div>
+       <div class="martopdiv" link={:U('/Reserve/add')}/type/3/id/{$vo['id']}><a href="#"><img src="__STATICS__/images/Construction/yuyue_r3_c6.jpg" width="160" height="40" /></a></div>
       </dd>
       <div class="clear"></div>
      </dl>
@@ -108,7 +79,7 @@
    </div>
    <div class="ui_page">
       <div class="ui_page_center">
-      {$show}
+      {$show}&nbsp;
       </div>
      </div><!--/ui_page-->
   </div><!--/content_box-->
@@ -119,8 +90,10 @@
   </div><!-- footer end-->
 </div><!--part end-->
 </div>
+</div>
 </body>
 </html>
+<literal>
 <script>
 $("#my_star img").bind("click", function() {
       $(this).attr("src","images/star1.gif");
@@ -129,14 +102,19 @@ $("#my_star img").bind("click", function() {
 </script>
 <script>
  $(".martopdiv").click(function(){
-	  var halfPopHeight=$(".center").height();
+	  var halfPopHeight=$(".pop_t").height();
 	  $(".halfPop").show().css({"height":halfPopHeight});
+	  $(".pop_chuang form").attr('action',$(this).attr("link"));
 	  $(".pop_chuang").show();
+	 });
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
 	 });
 </script>
 <script type="text/javascript" language="javascript">
-	var oneulli=$(".banner_ul_list li").length;
-	var dwidth=$(".banner_ul_list li").width();
+	var oneulli=$ (".banner_ul_list li").length;
+	var dwidth=$ (".banner_ul_list li").width();
 	var index=0;
 	$(".banner_ul_list").css("width",dwidth*oneulli);
 	function dong(index){//开始滚动函数，获取滚动的距离，以及添加当前数字的默认效果
@@ -163,3 +141,4 @@ $("#my_star img").bind("click", function() {
 				 },3000);
 			}).trigger("mouseout");
 </script>
+</literal>

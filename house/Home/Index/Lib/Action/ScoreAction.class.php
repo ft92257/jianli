@@ -7,7 +7,6 @@ class ScoreAction extends BaseAction {
 
 	//需要验证的方法
 	protected $aVerify = array(
-			'add',
 	);
 	
 	public function __construct() {
@@ -29,7 +28,7 @@ class ScoreAction extends BaseAction {
 			
 			$updata['score_complex'] = ($updata['score_owner'] + $aCom['score_expert'])/2;
 			$updata['score_complex'] = round($updata['score_complex'], 2);
-		} elseif ($this->oUser->type == 2) {
+		} elseif ($this->oUser->type == 4) {
 			//监理师
 			$updata['score_expert_count'] = $aCom['score_expert_count'] + 1;
 			$updata['score_expert'] = ($aCom['score_expert_count'] * $aCom['score_expert'] + $score)/$updata['score_expert_count'];
@@ -37,6 +36,8 @@ class ScoreAction extends BaseAction {
 			
 			$updata['score_complex'] = ($aCom['score_owner'] + $updata['score_expert'])/2;
 			$updata['score_complex'] = round($updata['score_complex'], 2);
+		} else {
+			$this->error('您不能评论');
 		}
 		
 		return $updata;
@@ -51,6 +52,7 @@ class ScoreAction extends BaseAction {
 		$type = (int) getRequest('type');
 		$score = (int) getRequest('score');
 		$comment = getRequest('comment');
+		$username = $this->oUser->nickname;
 		$isreal = $this->oUser->isreal;//是否真实客户
 		
 		if ($type == 1) {
@@ -112,6 +114,7 @@ class ScoreAction extends BaseAction {
 					'uid' => $this->oUser->id,
 					'score' => $score,
 					'comment' => $comment,
+					'username' =>	$username,
 					'isreal' => $this->oUser->isreal,
 					'usertype' => $this->oUser->type,
 				);

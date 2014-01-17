@@ -1,5 +1,4 @@
 <include file="Public:header" />
-
 <link rel="stylesheet" type="text/css" href="__STATICS__/css/carousel.css" />
 <link rel="stylesheet" type="text/css" href="__STATICS__/css/zzsc.css" />
 <script type="text/javascript" src="__STATICS__/js/zzsc.js"></script>
@@ -7,32 +6,48 @@
 
 <div class="halfPop"></div>
 <div class="pop_chuang">
- <iframe src="reserve.html" style="border:0; width:410px; height:300px" scrolling="no"></iframe>
+<img src="../images/close.png" width="36" height="36" class="off" />
+<div class="re">
+	<div class="top">
+		<img src="__STATICS__/images/Construction/clock.gif"><h1>填写预约信息</h1>
+	</div>
+	<form action="{:U('/Reserve/add')}/type/3/id/{$active['id']}" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name=""></td></tr>
+	</table>
+	<div class="foot">
+		<a href=""><button><img src="__STATICS__/images/Construction/add_reserve.gif"></button></a>
+	</div>
+	</form>
+</div>
 </div>
 
 <div class="center">
   <div class="topnav">
     <ul>
       <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
-      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li class="current"><a href="{:U('/Case/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
   </div>
   <div class="casetitle">
-    <h4>{$case['name']} &nbsp;<span>({$case['schedule']})</span></h4>
-    <div>分享到&nbsp;<span><a href=""><img src="__STATICS__/images/Construction/fen1.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen2.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen3.gif"></a>&nbsp;<a href=""><img src="__STATICS__/images/Construction/fen4.gif"></a><span></div>
+    <h4>{$case['name']} &nbsp;<span>({$case['schedule']*100/6|round=###,0}%)</span></h4>
+    <div>分享到&nbsp;<span><a href="http://v.t.sina.com.cn/share/share.php?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen1.gif"></a>&nbsp;<a href="http://v.t.qq.com/share/share.php?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen2.gif"></a>&nbsp;<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen3.gif"></a>&nbsp;<a href="http://widget.renren.com/dialog/share?resourceUrl=[u]&amp;srcUrl=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen4.gif"></a><span></div>
   </div>
   <div class="topline">&nbsp;</div>
   <div class="casestep">
     <ul>
-      <li> <a href="" class="step1">隐蔽</a>
+      <li> <a href="" class="stepgray1">隐蔽</a>
         <div><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
       </li>
-      <li> <a href="" class="step2">泥木</a>
+      <li> <a href="" class="stepgray2">泥木</a>
         <div><span>&nbsp;</span><span>&nbsp;</span></div>
       </li>
-      <li> <a href="" class="step3">油漆</a>
+      <li> <a href="" class="stepgray3">油漆</a>
         <div><span>&nbsp;</span><span>&nbsp;</span></div>
       </li>
       <li><a href="" class="stepgray4">安装</a></li>
@@ -45,95 +60,96 @@
       <div class="casepic">
         <div class="MainBg">
           <div class="Title">
-            <h1>隐藏阶段</h1>
-            <span class="Counter">（<span class="CounterCurrent">1</span>/7）</span> </div>
+            <h1>{$step}</h1>
+            <span class="Counter">（<span class="CounterCurrent">1</span>/{$count}）</span> </div>
           <div class="ThumbPicBorder"> <img src="__STATICS__/images/Construction/ArrowL.png" id="btnPrev" class="FlLeft" style="cursor:pointer; margin-top:30px" />
             <div class="jCarouselLite FlLeft">
-              <ul id="ThumbPic"><volist name="thumbs" id="vo">
-                <li rel='{$i}'><img src="{$vo.thumb}" /></li>
+              <ul id="ThumbPic"><volist name="apic" id="vo">
+                <li rel='{$i}'><img src="{$vo['tfid']}" add="{$vo['bfid']}" tit="{$vo['title']}"/></li>
             		</volist>
               </ul>
               <div class="Clearer"></div>
             </div>
-            <img src="{$vo.}" id="btnNext" class="FlLeft" style="cursor:pointer; margin-top:30px" />
+            <img src="__STATICS__/images/Construction/ArrowR.png" id="btnNext" class="FlLeft" style="cursor:pointer; margin-top:30px" />
             <div class="Clearer"></div>
           </div>
           
-         <div class="OriginalPicBorder">
+         <div class="OriginalPicBorder" style="position: relative">
+         <div id="lbigpic" style="cursor:pointer; background:url(__STATICS__/images/Construction/ArrowL.png) no-repeat; width:13px; height:19px; position:absolute; left:-20px; top:200px"></div>
+         <div id="rbigpic" style="cursor:pointer; background:url(__STATICS__/images/Construction/ArrowR.png) no-repeat; width:13px; height:19px; position:absolute; right:-20px; top:200px"></div>
+         
             <div id="OriginalPic">
-             <volist name="thumbs" id="vo"><p class="Hidden"> <span class="SliderPicBorder FlRight"><img src="__STATICS__/pic/127e5101-309d-4699-9e14-93150b1eb36f.jpg" /></span> <span class="Summary FlLeft"> <$vo.title> </span> <span class="Clearer"></span> <span class="More"> <a href="">大娜多</a>&nbsp;&nbsp;上传于两分钟前 </span> </p>
-            </volist>
+            <p class="Hidden"> <span class="SliderPicBorder FlRight"><img src="{$apic[0]['ofid']}" /></span> <span class="Summary FlLeft"> {$apic[0]['title']} </span> <span class="Clearer"></span></p>
+         
              
             </div>
           </div>
         </div>
       </div>
-      <div class="case_p">
-        <div id="zzsc" class="zzsc1">
+     <div class="case_p">
+        <div id="zzsc"  class="zzsc1">
           <span class="z_span moren">平面图</span>
           <span class="z_span qhuan1">效果图</span>
-          <div class="nav"> <a href="javascript:void(0)" class="now"></a> <a href="javascript:void(0)"></a> <a href="javascript:void(0)"></a> </div>
+          <div class="nav nav1"> <a href="javascript:void(0)" class="now">1</a> <a href="javascript:void(0)">2</a> <a href="javascript:void(0)">3</a> </div>
+          <div class="clear"></div>
           <div id="wai_box">
             <div class="zzsc_box zzsc_box1">
               <ul>
-               <volist name="flat" id="vo" offset="1" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+               <volist name="fpic" id="vo" offset="0" length="6"> <li><a href=""><img src="{$vo['pfid']}" /></a></li></volist>
               </ul>
               <ul style="display:none">
-              <volist name="flat" id="vo" offset="7" length="5">  <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+              <volist name="fpic" id="vo" offset="6" length="6">  <li><a href=""><img src="{$vo['pfid']}" /></a></li></volist>
               </ul>
               <ul style="display:none">
-               <volist name="flat" id="vo" offset="13" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+               <volist name="fpic" id="vo" offset="12" length="6"> <li><a href=""><img src="{$vo['pfid']}" /></a></li></volist>
               </ul>
             </div>
           </div>
-        </div>
-		<div id="zzsc" style=" display:none" class="zzsc2">
+          </div>
+     
+      
+	<div id="zzsc" style=" display:none" class="zzsc2">
           <span class="z_span qhuan2">平面图</span>
           <span class="z_span moren">效果图</span>
-          <div class="nav nav2"> <a href="javascript:void(0)" class="now"></a> <a href="javascript:void(0)"></a> <a href="javascript:void(0)"></a> </div>
+          <div class="nav nav2"> <a href="javascript:void(0)" class="now">1</a> <a href="javascript:void(0)">2</a> <a href="javascript:void(0)">3</a> </div>
+          <div class="clear"></div>
           <div id="wai_box">
             <div class="zzsc_box zzsc_box2">
               <ul>
-               <volist name="effect" id="vo" offset="1" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+               <volist name="epic" id="vo" offset="0" length="6"> <li><a href=""><img src="{$vo['pfid']}" />gfsd</a></li></volist>
               </ul>
               <ul style="display:none">
-              <volist name="effect" id="vo" offset="7" length="5">  <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+              <volist name="epic" id="vo" offset="6" length="6">  <li><a href=""><img src="{$vo['pfid']}" /></a></li></volist>
               </ul>
               <ul style="display:none">
-               <volist name="effect" id="vo" offset="13" length="5"> <li><a href=""><img src="{$vo.fid}" /></a></li></volist>
-               
+               <volist name="epic" id="vo" offset="12" length="6"> <li><a href=""><img src="{$vo['pfid']}" /></a></li></volist>
               </ul>
             </div>
           </div>
-        </div>
-        
+       </div> 
         
         <div class="case_shi">
           <div class="yu yumoren">施工团队</div>
           <div class="yu">监理团队</div>
           <div class="yu">设计团队</div>
+          <div class="clear"></div>
           <div class="case_s">
             <table class="ca_ta">
               <tr>
                 <td class="case_le">施工队：</td>
-                <td class="case_ri">{$construcion.name}</td>
+                <td class="case_ri">{$construction['name']}</td>
               </tr>
               <tr>
                 <td class="case_le">所属公司：</td>
-                <td class="case_ri">{$construcion.cid}</td>
+                <td class="case_ri">{$construction['cid']}</td>
               </tr>
               <tr>
                 <td class="case_le">擅长：</td>
-                <td class="case_ri">{$construction.specialty}</td>
+                <td class="case_ri">{$construction['specialty']}</td>
               </tr>
               <tr>
                 <td class="case_le">施工简介：</td>
-                <td class="case_ri">{$construction.info}</td>
+                <td class="case_ri">{$construction['info']}</td>
               </tr>
             </table>
             <table class="ca_ta" style="display:none">
@@ -147,7 +163,7 @@
               </tr>
               <tr>
                 <td class="case_le">擅长：</td>
-                <td class="case_ri">{$jlgroup.specialty}</td>
+                <td class="case_ri">{$jlgroup.speciality}</td>
               </tr>
               <tr>
                 <td class="case_le">团队简介：</td>
@@ -165,7 +181,7 @@
               </tr>
               <tr>
                 <td class="case_le">擅长：</td>
-                <td class="case_ri">{$design.specialty}</td>
+                <td class="case_ri">{$design.speciality}</td>
               </tr>
               <tr>
                 <td class="case_le">团队简介：</td>
@@ -185,24 +201,26 @@
           <div class="ping">
               <foreach name="score" item="vo">
             <div class="case_l">
-              <div class="sp1"> <span><img class="tou" src="{$vo.uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;{$vo.score}分</span> <span class="sp2">{$vo.createtime}</span> </div>
+              <div class="sp1"> <span><img class="tou" src="{$vo.owner_uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;<sp>{$vo.score}</sp>分</span> <span class="sp2">{$vo.createtime}</span> </div>
               <p>{$vo.comment} </p>
             </div>
     		</foreach>
 
             <div class="case_l">
+              <form action="{:U('/Score/add/type/3/')}/id/{$case['id']}" method="post">
               <div class="case_my"><a href="">我要评论</a></div>
               <table class="my_ta">
                 <tr>
                   <td class="my_le">评分：</td>
-                  <td class="my_ri" id="my_star"><img src="__STATICS__/images/Construction/star2.gif" id="s1" onclick="change"> <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > &nbsp;&nbsp; <span>一般</span></td>
+                  <td class="my_ri" id="my_star"><img src="__STATICS__/images/Construction/star2.gif" id="s1" onclick="change"> <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > <img src="__STATICS__/images/Construction/star2.gif" > &nbsp;&nbsp; <span>一般</span><input type="hidden" name="score"></td>
                 </tr>
                 <tr>
                   <td class="my_le">评论：</td>
-                  <td class="my_ri"><input type="text" /></td>
+                  <td class="my_ri"><textarea class="inputsa"></textarea></td>
                 </tr>
               </table>
-              <div class="my_foot"><a href=""><img src="__STATICS__/images/Construction/pinglun.gif" /></a> </div>
+              <div class="my_foot"><input type="image" src="__STATICS__/images/Construction/pinglun.gif"></input> </div>
+                 </form>
             </div>
           </div>
         </div>
@@ -221,9 +239,9 @@
           </ul>
         </div>
         <div class="bottom">
-          <p>可参观时间：<br>
+         <!--  <p>可参观时间：<br>
             {$case.observe_date|date='Y-m-d',###}-{$case.observe_end|date='Y-m-d',###}</p>
-          <p><a href="javascript:void(0)" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></p>
+          <p> <a href="javascript:void(0)" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></p>-->
         </div>
       </div>
     </div>
@@ -234,30 +252,24 @@
     <div class="clear"></div>
   </div><!-- footer end-->
 </div>
-
+</div>
+</div>
 <!-- 底部 -->
 </body>
 </html>
-<script>
- $(".nav a").click(function(){
-	  $(this).addClass("now").siblings("a").removeClass("now");
-	  var insdx=$(this).index();
-	  $(".zzsc_box ul").eq(insdx).show().siblings("ul").hide();
-	 });
-</script>
+
 <script>
  $(".yuyue").click(function(){
-	  var halfPopHeight=$(".center").height();
+	  var halfPopHeight=$(".pop_t").height();
 	  $(".halfPop").show().css({"height":halfPopHeight});
 	  $(".pop_chuang").show();
 	 });
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
+	 });
 </script>
-<script>
-$("#my_star img").bind("click", function() {
-      $(this).attr("src","__STATICS__/images/Construction/star1.gif");
-});
 
-</script>
 <script type="text/javascript">
 //缩略图滚动事件
 $(".jCarouselLite").jCarouselLite({
@@ -340,30 +352,169 @@ $(".OriginalPicBorder").ready(function(){
 });
 </script>
 <script>
+var B;
+var C;
+var j=0;
+var i=0;
+$(document).ready(function(){
+	i=0;
+	 j=0;
+	 B = setInterval(function(){
+		  $(".nav1 a:eq("+j+")").trigger("click");j++;
+		  if(j==3) {j=0};
+	},1500);
+	C = setInterval(function(){
+		  $(".nav2 a:eq("+i+")").trigger("click");i++;
+		  if(i==3) {i=0};
+	},1500);
+	});
+$(".zzsc_box1").mouseover(function(){
+	clearInterval(B);
+});
+$(".zzsc_box1").mouseout(function(){
+	B = setInterval(function(){
+		  $(".nav1 a:eq("+j+")").trigger("click");j++;
+		  if(j==3) {j=0};
+	},1500);
+});
+$(".zzsc_box2").mouseout(function(){
+	
+	C = setInterval(function(){
+		  $(".nav2 a:eq("+i+")").trigger("click");i++;
+		  if(i==3) {i=0};
+	},1500);
+});
+$(".zzsc_box2").mouseover(function(){
+	clearInterval(C);
+});
+$(".nav1 a").mouseover(function(){
+	clearInterval(B);
+});
+$(".nav1 a").mouseout(function(){
+	B = setInterval(function(){
+		  $(".nav1 a:eq("+j+")").trigger("click");j++;
+		  if(j==3) {j=0};
+	},1500);
+});
+$(".nav2 a").mouseover(function(){
+	clearInterval(C);
+});
+$(".nav2 a").mouseout(function(){
+	C = setInterval(function(){
+		  $(".nav2 a:eq("+i+")").trigger("click");i++;
+		  if(i==3) {i=0};
+	},1500);
+});
+$(".nav1 a").click(function(){
+	  $(this).addClass("now").siblings(".nav1 a").removeClass("now");
+	  var insdx=$(this).index();
+	  $(".zzsc_box1 ul").eq(insdx).show().siblings("ul").hide();
+	 });
+
+$(".nav2 a").click(function(){
+	  $(this).addClass("now").siblings(".nav2 a").removeClass("now");
+	  var insdx=$(this).index();
+	  $(".zzsc_box2 ul").eq(insdx).show().siblings("ul").hide();
+	 });
+
  $(".qhuan1").click(function(){
-	  $(".case_tu").show();
-	  $("#zzsc").hide();
+	
+	  $(".zzsc2").show();
+	  $(".zzsc1").hide();
+	
 	 });
  $(".qhuan2").click(function(){
-	  $("#zzsc").show();
-	  $(".case_tu").hide();
+	  $(".zzsc1").show();
+	  $(".zzsc2").hide();
 	 });
+
  $(".yu").click(function(){
 	  var tableindex=$(this).index();
 	  $(this).addClass("yumoren").siblings(".yu").removeClass("yumoren");
 	  $(".ca_ta").eq(tableindex).show().siblings(".ca_ta").hide();
 	 });
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
+	 });
 </script>
+
 <script>
 
-  
+
   var a={$case['schedule']};
   var j=1;
   for(i=0;i<a;i++){
-
-   $(".casestep a").eq(i).removeClass("stepgray"+j).addClass("step"+j);
+   $(".casestep a").eq(i).removeClass("stepgray"+j).addClass("step"+j).attr("href","{:U('/Case/detail/id')}/"+{$id}+"/step/"+j);
    j++;
   }
+  for(i=a;i<6;i++){
+	  $(".casestep a").eq(i).attr("href","javascript:void(0)") ;
+  }
   
+
+</script>
+<script>
+$("#ThumbPic img").bind("click",function(){
+	var add = $(this).attr("add");
+	var tit = $(this).attr("tit");
+	$("#ThumbPic img").removeClass('active');
+	$(this).addClass('active');
+	$(".OriginalPicBorder img").attr("src",add);
+	$("#OriginalPic span:eq(1)").text(tit);
+})
+$("#rbigpic").bind("click",function() {
+	$("#ThumbPic img[class='active']").parent().next().find("img").trigger("click");
+	if($("#ThumbPic img[class='active']").parent().index()>2){
+		$("#btnNext").trigger("click");
+	}
+});
+$("#lbigpic").bind("click",function() {
+	$("#ThumbPic img.active").parent().prev().find("img").trigger("click");
+	if($("#ThumbPic img[class='active']").parent().index()<{$count-3}){
+		$("#btnPrev").trigger("click");
+	}
+});
+
+</script>
+
+		
+</script>
+ <script>
+ for(i=0 ;i<=2;i++){
+var sp1 = (($(".sp1:eq("+i+") sp").text())/2).toFixed();
+  $(".sp1:eq("+i+") img[class!=tou]:lt("+sp1+")").attr("src","__STATICS__/images/Construction/star1.gif");
+}
+</script>
+<script>
+var a = 0;
+$("#my_star img").bind("mouseover", function() {
+	  $("#my_star img").attr("src","__STATICS__/images/Construction/star2.gif");
+	    var b = $(this).index()+1;
+	     $("#my_star img:lt("+b+")").attr("src","__STATICS__/images/Construction/star1.gif");
+	     if(b <=1)
+	     $("#my_star span").text('不好');
+	     if(b<=3&b>1) $("#my_star span").text('一般');
+	     if(b>3)$("#my_star span").text('很好');
+	});
+	$("#my_star img").bind("click", function() {
+	  $("#my_star img").attr("src","__STATICS__/images/Construction/star2.gif");
+	     a = $(this).index()+1;$("#my_star input").val(a*2);
+	     $("#my_star img:lt("+a+")").attr("src","__STATICS__/images/Construction/star1.gif");
+	     if(a <=1)
+	     $("#my_star span").text('不好');
+	     if(a<=3&a>1) $("#my_star span").text('一般');
+	     if(a>3)$("#my_star span").text('很好');
+	     
+	});
+	$("#my_star img").bind("mouseout", function() {
+		 $("#my_star img").attr("src","__STATICS__/images/Construction/star2.gif");
+		 $("#my_star img:lt("+a+")").attr("src","__STATICS__/images/Construction/star1.gif");
+	});
+
+
+
+</script>
+<script>
 
 </script>

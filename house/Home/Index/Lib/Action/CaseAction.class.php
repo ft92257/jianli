@@ -19,17 +19,46 @@ class CaseAction extends BaseAction {
 	 * 样板工地列表页list.html
 	 */
 	public function index() {
-		
+		import('ORG.Util.Page');// 导入分页类
+		$aCounty = (int)getRequest('county');
+		$aWhere = $this->model->getConditionArray();
+		$aTown = $this->model->getTownName($aCounty);
 		//查询4家公司信息（瀑布流分页）
-		$aCompany = D('Company')->getPage(4);
+		$count = D('Company')->where($aWhere)->count();
+		$Page = new page($count,2);
+		$Page->setConfig('theme'," %upPage% %downPage% %first% %prePage% %linkPage% %nextPage% %end%");
+		$show = $Page->show();
+		//$aCompany = D('Company')->where($aWhere)->order('ord DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
+		if($_GET['caseord']){
+			unset($_GET['caseord']);
+			$aCompany = D('Company')->where($aWhere)->order('reserve_count DESC,ord DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
+		}else 
+				$aCompany = D('Company')->where($aWhere)->order('ord DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 		//每家公司查询5条记录
-		foreach ($aCompany as $aValue) {
-			$case = $this->model->getTop($aValue['id'], 5, getRequest('area'));
-			$aCompany['cases'] = $case;
+		foreach ($aCompany as $key=>$aValue) {
+			$case = $this->model->getTop($aValue['id'], 5);
+			$aCompany[$key]['case'] = $case;
 		}
-		
+		//dump($aCompany);die;
+		$comtype = getRequest('comtype');
+		$aDistrict = D("District")->getFieldById(9);
+		unset($_GET['_URL_']);
+		$Acondition = $_GET;$Bcondition = $_GET;$Ccondition = $_GET;
+		unset($Acondition['comtype']);unset($Acondition['p']);
+		$comtypeurl = U("",$Acondition);
+		unset($Bcondition['county']);unset($Bcondition['p']);
+		$countyurl = U("",$Bcondition);
+		unset($Ccondition['town']);unset($Ccondition['p']);
+		$townurl = U("",$Ccondition);
+		$this->assign('page',$show);
+		$this->assign('comtypeurl',$comtypeurl);
+		$this->assign('countyurl',$countyurl);
+		$this->assign('townurl',$townurl);
+		$this->assign('town',$aTown);
+		$this->assign('comtype',$comtype);
+		$this->assign('district',$aDistrict);
 		$this->assign('company', $aCompany);
-		
+		$this->assign('county',$aCounty);
 		$this->display();
 	}
 	
@@ -37,48 +66,37 @@ class CaseAction extends BaseAction {
 	 * 具体样板工地detail.html
 	 */
 	public function detail() {
-		$Case_pic = D('Case_pic');
 		//当前图片信息
-		$pid = getRequest('pid');
-		$aPic = $Case_pic->getById($pid);
-		if (empty($aPic)) {
-			//项目信息
-			$caseid = getRequest('id');
-			$aCase = $this->model->getById($caseid);
-			//选择第一张图片
-			$aPic = $Case_pic->getFirst($id);
-		} else {
-			$caseid = $aPic['caseid'];
-			$aCase = $this->model->getById($aPic['caseid']);
+		$id = getRequest('id');
+		$step = getRequest('step');
+		if(empty($step)){
+			$step = 1;
 		}
-		//所有该项目的缩略图信息
-		$aThumbs = $Case_pic->getAllThumbs($caseid);
-		
-		$Case_drawing = D('Case_drawing');
-		//平面图
-		$aFlat = $Case_drawing->getAllByType($caseid, 1);
-		
-		//效果图
-		$aEffect = $Case_drawing->getAllByType($caseid, 2);
-		
+		$aStep = $this->model->getStep($step);
+		$aCase = D('Case')->getById($id);
+		//dump($aCase);die;
+		$aPic = D('Picture')->getPicture(2,$id,$step);
+		$aCount = count($aPic);
+		$fPic = D('Picture')->getPicture(3,$id,0);
+		//dump($fPic);die;
+		$ePic = D('Picture')->getPicture(4,$id,0);
 		//施工队
 		$aConstruction = D('Construction')->getById($aCase['consid']);
-		
 		$Case_team = D('Case_team');
 		//监理团队
 		$aJlgroup = $Case_team->getById($aCase['jlgroup']);
 		
 		//设计团队
 		$aDesign = $Case_team->getById($aCase['design']);
-		
 		//评分
-		$aScore = D('Score')->getCaseTop($caseid, 3);
-		
-		$this->assign('pic', $aPic);
+		$aScore = D('Score')->getCaseTop($aCase['id'], 3);
+		$this->assign('step',$aStep);
+		$this->assign('id',$id);
+		$this->assign('apic', $aPic);
+		$this->assign('count',$aCount);
+		$this->assign('fpic', $fPic);
+		$this->assign('epic', $ePic);
 		$this->assign('case', $aCase);
-		$this->assign('thumbs', $aThumbs);
-		$this->assign('flat', $aFlat);
-		$this->assign('effect', $aEffect);
 		$this->assign('construction', $aConstruction);
 		$this->assign('jlgroup', $aJlgroup);
 		$this->assign('design', $aDesign);
@@ -86,9 +104,7 @@ class CaseAction extends BaseAction {
 		
 		$this->display();
 	}
-	public function reserve(){
-		$this->display();
-	} 
+
 }
 
 ?>

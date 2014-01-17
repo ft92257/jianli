@@ -50,14 +50,14 @@ class ReserveAction extends BaseAction {
 		} else {
 			$this->error('type参数不正确！');
 		}
-		
+		/*
 		if (!isset($aCom)) {
-			$aCom = D('Company')->getById($cid);
+			$aCom = D('Company')->getById($target);
 			if (empty($aCom)) {
 				$this->error('装修公司不存在！');
 			}
 		}
-		
+		*/
 		//装修公司需支付金额
 		$cost = C('RESERVE_MONEY');
 		
@@ -72,12 +72,12 @@ class ReserveAction extends BaseAction {
 		
 		if (!$this->isPost()) {
 			//模版显示
-			$this->assign('user', (array) $this->oUser);
-			$this->assign('project', $project);
-			$this->assign('user_cost', $user_cost);
-			$this->assign('reserve_count', $reserve_count);
+			//$this->assign('user', (array) $this->oUser);
+			//$this->assign('project', $project);
+			//$this->assign('user_cost', $user_cost);
+			//$this->assign('reserve_count', $reserve_count);
 			
-			$this->display();
+		//	$this->display();
 			die;
 		}
 		
@@ -90,14 +90,16 @@ class ReserveAction extends BaseAction {
 		if (!checkMobile($telephone)) {
 			$this->error('手机号码格式不正确！');
 		}
+		$email = getRequest('email');
 		
-		if ($telephone != $this->oUser->mobile) {
+		
+		/*if ($telephone != $this->oUser->mobile) {
 			//验证手机号
 			$code = getRequest('code');
 			if (D('Code')->check($telephone, $code)) {
 				$this->error('验证码不正确！');
 			}
-		}
+		}*/
 		
 		if (!$this->model->checkValidUnique($this->oUser->id, $type, $target)) {
 			//重复预约，不扣款
@@ -107,15 +109,18 @@ class ReserveAction extends BaseAction {
 		//添加预约记录
 		$data = array(
 					'cid' => $cid,
-					'uid' => $this->oUser->id,
+					'own_uid' => $this->oUser->id,
 					'type' => $type,
 					'target' => $target,
 					'sex' => $this->oUser->sex,
-					'message' => getRequest('message'),
+					'region_area'=> getRequest('region'),
+					'email' => $email,
+					//'message' => getRequest('message'),
 					'money' => $cost,
 					'name' => $name,
 					'telephone' => $telephone,
 				);
+			//	dump($data);die;
 		//需更新的用户数据
 		$updata = array();
 		if ($this->oUser->realname == '') {
@@ -124,7 +129,7 @@ class ReserveAction extends BaseAction {
 		if ($this->oUser->mobile == '') {
 			$updata['mobile'] = $data['telephone'];
 		}
-
+		//dump($data);die;
 		//添加记录并验证数据
 		$rid = $this->model->addData($data);
 		if ($rid) {

@@ -13,6 +13,20 @@ class PictureModel extends BaseModel {
 			array('', 'submit'),
 	);
 
+
+	
+	protected $listConfig = array(
+				'id' => '编号',
+				'fid' => array('图片', array('img')),
+				'title' => '说明',
+				'type' => '类型',
+				'createtime' => '添加时间',
+				array('操作', array(
+						array('/Picture/edit/id/{id}', '编辑'),
+						array('/Picture/delete/id/{id}', '删除', array('confirm' => '确定要删除该图片吗？')), 
+						array('__URL__/focus/id/{id}', '设为焦点图', array('checked' => "'{fid_o}'=='[focus]'")),
+						)),
+				);
 	public function setConfig($type) {
 		if($type == 2){
 			$this->aOptions['step'] = array('1'=>'隐蔽','2'=>'泥木','3'=>'油漆','4'=>'安装','5'=>'软装','6'=>'竣工');
@@ -20,19 +34,6 @@ class PictureModel extends BaseModel {
 			$this->listConfig = insertArray($this->listConfig, 'fid', array('step' => '阶段'));
 		}
 	} 
-	
-	protected $listConfig = array(
-				'id' => '编号',
-				'fid' => array('图片', array('img')),
-				'title' => '说明',
-				'createtime' => '添加时间',
-				array('操作', array(
-						array('/Picture/edit/id/{id}', '编辑'),
-						array('/Picture/delete/id/{id}', '删除', array('confirm' => '确定要删除该图片吗？')), 
-						array('__URL__/focus/id/{id}', '设为焦点图', array('checked' => "'{fid_o}'=='[focus]'")),
-						)),
-			);
-	
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {
 			$value['fid_o'] = $value['fid'];
@@ -61,7 +62,7 @@ class PictureModel extends BaseModel {
 		}
 		return $data;
 	}
-	
+
 	public function getTabTitle($type, $target, $data) {
 		$tab = '';
 		if ($type == 1) {

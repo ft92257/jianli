@@ -11,11 +11,12 @@ class ActiveModel extends BaseModel {
 	protected $formConfig = array(
 			'title' => array('活动标题', 'text'),
 			'organizer' => array('主办方', 'text'),
-			'focus' =>array('活动焦点图','file','',array('thumbs' => '120-120')),
+			'focus' =>array('活动焦点图','file','',array('thumbs' => '200-150')),
 			'caseid' =>array('选择活动关联案列','select',array('all')),
 			'spot' => array('亮点','text',array('long')),
 			'address' => array('详细地址','text',array('long')),
 			'info' => array('详细信息', 'textarea'),
+			'ord'=>array('排序值','text',array('int', '数值大的优先出现在首页')),
 			'observe_date' => array('开始时间','date'),
 			'observe_end' => array('结束时间','date'),
 			array('', 'submit'),

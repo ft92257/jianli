@@ -162,6 +162,10 @@ function htmlString ($_date) {
 function checkMobile($mobile) {
 	return preg_match("/^1[358]\d{9}$/", $mobile);
 }
+function checkEmail($emial) {
+	$pregEmail = "/([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?/i";
+    return preg_match($pregEmail,$email);  
+}
 
 function Url($url) {
 	//TODO 获取重写后的url

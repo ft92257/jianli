@@ -22,7 +22,7 @@ class ConstructionModel extends BaseModel {
 	
 	protected $formConfig = array(
 			'name' => array('施工队名称', 'text'),
-			'focus' =>array('队长头像','file','',array('thumbs' => '200-200')),
+			'focus' =>array('队长头像','file','',array('thumbs' => '200-200',)),
 			'info' => array('介绍', 'textarea'),
 			'captain' => array('施工队长','text'),
 			'memcount' => array('人数','text',array('int')),

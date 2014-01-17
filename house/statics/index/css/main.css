@@ -165,11 +165,13 @@ ul,li{
 	text-align:center;
 	background:#fff;
 }
- .current{
+
+ .topnav .current{
 	height:42px;
 	line-height:42px;
 	/*border-bottom:1px solid #fff;*/
 }
+
  .cur{
 	border-top:4px solid #fe7a28;
 	height:42px;
@@ -247,6 +249,7 @@ ul,li{
 .piclist .picinfo .gray{
 	color:#999;
 }
+
 .center{ position:relative}
 .ads{
 	text-align:center;
@@ -330,22 +333,22 @@ ul,li{
 	background-position:-180px 0px;
 }
 .casestep .stepgray1{
-	background-position:-216px 0px;
+	background-position:-216px 0px;cursor:default;
 }
 .casestep .stepgray2{
-	background-position:-252px 0px;
+	background-position:-252px 0px;cursor:default;
 }
 .casestep .stepgray3{
-	background-position:-288px 0px;
+	background-position:-288px 0px;cursor:default;
 }
 .casestep .stepgray4{
-	background-position:-324px 0px;
+	background-position:-324px 0px;cursor:default;
 }
 .casestep .stepgray5{
-	background-position:-359px 0px;
+	background-position:-359px 0px;cursor:default;
 }
 .casestep .stepgray6{
-	background-position:-396px 0px;
+	background-position:-396px 0px;cursor:default;
 }
 .casestep ul li div{
 	float:left;
@@ -636,7 +639,7 @@ text-align:left;
 .re .cen tr td input{
 	width:170px;
 	height:30px;
-	color:#BFBFBF;
+	color:#1F1813;
 }
 .re .foot{
 	text-align:center;

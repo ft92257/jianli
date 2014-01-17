@@ -11,16 +11,9 @@ class Case_teamModel extends BaseModel {
 	 */
 	protected $aValidate = array(
 	);
-	
-	/*
-	 * 查询结果处理
-	 */
-	protected function _after_select(&$resultSet,$options) {
-		foreach ($resultSet as &$value) {
-			//$value['avatar'] = getFileUrl($value['avatar']);
-		}
+	protected function _after_find(&$data,$options) {
+		$data['cid'] = D('Company')->getNameById($data['cid']);
 	}
-	
 }
 
 

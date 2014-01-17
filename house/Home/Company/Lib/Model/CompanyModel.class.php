@@ -9,7 +9,7 @@ class CompanyModel extends BaseModel {
 	
 	protected $formConfig = array(
 			'name' => array('公司名称：', 'span'),
-			'logo' => array('公司logo：', 'file', '', array('thumbs' => '120-120')),
+			'logo' => array('公司logo：', 'file', '', array('thumbs' => '200-200')),
 			'info' => array('公司介绍：', 'textarea'),
 			'region' => array('服务区域：', 'text'),
 			'contact' => array('联系人姓名：', 'text'),

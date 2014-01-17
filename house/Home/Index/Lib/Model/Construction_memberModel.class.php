@@ -17,7 +17,7 @@ class Construction_memberModel extends BaseModel {
 	 */
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {
-			$value['pic'] = getFileUrl($value['pic']);
+			$value['pic'] = getFileUrl($value['pic'],'60-60');
 		}
 	}
 	

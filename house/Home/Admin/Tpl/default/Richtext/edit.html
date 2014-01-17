@@ -1,4 +1,13 @@
 ﻿<include file="Public:header" />
+<script charset="utf-8" src="__STATICS__/index/js/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__STATICS__/index/js/kindeditor/lang/zh_CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id', {
+				'uploadJson' : "{:U('/Richtext/upload')}"
+			});
+        });
+</script>
 <STYLE type=text/css> 
 .current{
 		color:red;

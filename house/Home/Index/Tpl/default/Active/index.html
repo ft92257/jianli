@@ -2,17 +2,32 @@
 <link rel="stylesheet" type="text/css" href="__STATICS__/css/carousel.css" />
 <link rel="stylesheet" type="text/css" href="__STATICS__/css/zzsc.css" />
 <link rel="stylesheet" type="text/css" href="__STATICS__/css/visit_canguan.css" />
-
 <div class="halfPop"></div>
 <div class="pop_chuang">
- <iframe src="{:U('Case/reserve')}" style="border:0; width:410px; height:300px" scrolling="no"></iframe>
+<img src="../images/close.png" width="36" height="36" class="off" />
+<div class="re">
+	<div class="top">
+		<img src="__STATICS__/images/Construction/clock.gif"><h1>填写预约信息</h1>
+	</div>
+	<form action="{:U('/Reserve/add')}/type/3/id/{$active['id']}" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name="name"></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name="telephone"></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name="region"></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name="email"></td></tr>
+	</table>
+	<div class="foot">
+		<input type="image" src="__STATICS__/images/Construction/add_reserve.gif" ></input>
+	</div>
+	</form>
+</div>
 </div>
 
 <div class="center">
   <div class="topnav">
     <ul>
-      <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
-      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li ><a href="{:U('/Case/index')}"><span>样板工地</span></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
@@ -38,7 +53,7 @@
       <li><img src="__STATICS__/images/Construction/fen3.gif" /><a href="#">QQ空间</a></li>
       <li><img src="__STATICS__/images/Construction/fen4.gif" /><a href="#">人人网</a></li>
      </ul><div class="clear"></div>
-     <div style="margin-left:30px; margin-top:15px"><a href="#" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></div>
+   <div style="margin-left:30px; margin-top:15px"><a href="#" class="yuyue"><img src="__STATICS__/images/Construction/reserve.gif" /></a></div>
     </div><!--/right_yuyuecanguan-->
     <div class="clear"></div>
    </div><!--/tuijian_fenxiang-->
@@ -47,13 +62,13 @@
      <div class="tableft"><img src="__STATICS__/images/Construction/tableftimg.png" /></div>
      <div class="tabcenter">
       <ul style="position:absolute; left:0; top:0; width:3396px">
-      <volist name="active" id="vo"><li><a href="__URL__/detail/id/{$vo.id}"><img width="749" src="{$vo['focus']}" /></a></li></volist>
+      <volist name="active" id="vo"><li><a href="__URL__/detail/id/{$vo.id}"><img width="749" height="469" src="{$vo['focus']}" /></a></li></volist>
       </ul>
      </div>
      <div class="tabright"><img src="__STATICS__/images/Construction/tabrightimg.png" /></div>
      <div class="clear"></div>
     </div>
-    <ul class="xiabiao">
+    <ul class="xiabiao" style="width:80px">
      <li class="lamoren"></li>
      <li></li>
      <li></li>
@@ -106,13 +121,19 @@
     <div class="clear"></div>
   </div><!-- footer end-->
 </div>
+</div>
 </body>
 </html>
 <script>
  $(".yuyue").click(function(){
-	  var halfPopHeight=$(".center").height();
+	  var halfPopHeight=$(".pop_t").height();
 	  $(".halfPop").show().css({"height":halfPopHeight});
 	  $(".pop_chuang").show();
+	 });
+
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
 	 });
 </script>
 
@@ -160,9 +181,8 @@
             }
         }
     });
-	</literal>
-	/*谷歌中有bug，未改成功*/
-	/*var index=0;
+	
+	var index=0;
 	var dwidth=$(".tabcenter ul li").width();
 	function dong(index){//开始滚动函数，获取滚动的距离，以及添加当前数字的默认效果
 		 var nowleft=-index*dwidth;
@@ -173,8 +193,10 @@
 		 var index=$(this).index();
 		 $(this).addClass("lamoren").siblings("li").removeClass("lamoren");
 		 dong(index);//执行滚动函数，实现滚动函数
+		 page = $(this).index()+1;
 		}).eq(0).trigger("mouseover");//第一个数字模拟执行鼠标经过数字时的默认
-	*/
+	
+     </literal>
 </script>
 <script>
 

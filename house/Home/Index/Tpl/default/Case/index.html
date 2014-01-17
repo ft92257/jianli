@@ -3,20 +3,15 @@
 
 $(document).ready(function() {
 
-    //Default Action
-    $(".piclist").hide(); //Hide all content
-    $("ul.tabs li:first").addClass("cur").show(); //Activate first tab
-    $(".piclist:first").show(); //Show first tab content
     
     //On Click Event
-    $("ul.tabs li").click(function() {
         $("ul.tabs li").removeClass("cur"); //Remove any "active" class
-        $(this).addClass("cur"); //Add "active" class to selected tab
-        $(".piclist").hide(); //Hide all tab content
-        var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
-        $(activeTab).fadeIn(); //Fade in the active content
-        return false;
-    });
+       $("ul.tabs li:eq("+{$comtype}+")").addClass("cur"); //Add "active" class to selected tab
+       // $(".piclist").hide(); //Hide all tab content
+     //   var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+        //$(activeTab).fadeIn(); //Fade in the active content
+        
+
 
 });
 </script>
@@ -26,7 +21,7 @@ $(document).ready(function() {
 	<div class="topnav">
 	<ul>
       <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
-      <li class="current"><a href="{:U('/Active/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li class="current"><a href="{:U('/Case/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
@@ -35,306 +30,57 @@ $(document).ready(function() {
 	<div class="topline">&nbsp;</div>
 
 	<div class="search_area">
-		<span>筛选区域：</span>
-		<a href="" class="current">全部区域</a>
-		<a href="">浦东</a>
-		<a href="">闵行</a>
-		<a href="">徐汇</a>
-		<a href="">杨浦</a>
-		<a href="">虹口</a>
-		<a href="">浦东</a>
-		<a href="">闵行</a>
-		<a href="">徐汇</a>
-		<a href="">杨浦</a>
-		<a href="">虹口</a>
-		<a href="">浦东</a>
-		<a href="">闵行</a>
-		<a href="">徐汇</a>
-		<a href="">杨浦</a>
-		<a href="">虹口</a>
+	 	<span>筛选区域：</span>
+		<a href="{:U('/Case/index')}" <if condition="$county eq 0">class="current"</if>>全部区域</a>
+		<foreach name="district" item="vo">
+			 <a href="{$countyurl}/county/{$key}"<if condition="$county eq $key"> class="current"><else/>></if>{$vo}</a>
+		</foreach>
+	
 	</div>
 	
 	<div class="tabnav">
 		<ul  class="tabs">
-			<li class="cur"><a href="#tab1">全部样板工地</a></li>
-			<li><a href="#tab2">品牌公司</a></li>
-			<li><a href="#tab3">设计型公司</a></li>
+			<li class="cur"><a href="{$comtypeurl}">全部样板工地</a></li>
+			<li><a href="{$comtypeurl}/comtype/1">设计型公司</a></li>
+			<li><a href="{$comtypeurl}/comtype/2">品牌公司</a></li>
 		</ul>
 	</div>
 
 	<div class="piclist" id="tab1" style="display:block;">
-		<div class="order"><span class="left">选择地区：<select name=""><option value="">浦东</option><option value="">杨浦区</option></select></span><a href="" class="right">按预约量排列</a></div>
+		<span class="left"><if condition="$county gt 0">选择地区：<select name="" onchange="window.location.href=this.options[selectedIndex].value"><option value="">请选择</option></option><foreach name="town" item="vo"><option value="{$townurl}/town/{$key}" >{$vo}</option></foreach></select></if></span><a href="{:U('/Case/index/caseord/3')}" class="right">按预约量排列</a>
+	<foreach name="company" item="vo">
 		<div class="picline">
 			<div class="piclinehead">
-				<img src="__STATICS__/images/Construction/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
+				<img src="{$vo.logo}" width="20" height="20" />
+				<h6>{$vo.name}</h6>
+				<volist name="vo['tags']" id="sub"><span>{$sub}</span></volist>
+				<div class="right">预约量（{$vo.reserve_count}）&nbsp;&nbsp;<a href="">查看全部</a></div>
 			</div>
+			<for start="0" end="4">
 			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
+				<img src="{$vo['case'][$i]['focus']}" width="160" height="160" />
 				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
+					<span>{$vo['case'][$i]['county']} | {$vo['case'][$i]['name']} | {$vo['case'][$i]['housetype']}</span><br>
+					<span class="gray">进度{$vo['case'][$i]['schedule']*100/6|round=###,0}% | 预算{$vo['case'][$i]['cost']/10000}万</span>
 				</div>
 			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
+			</for>
 			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
+				<img src="{$vo['case'][4]['focus']}" width="160" height="160" />
 				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="picline">
-			<div class="piclinehead">
-				<img src="__STATICS__/images/Construction/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo lastone" >
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
+					<span>{$vo['case'][4]['county']} | {$vo['case'][4]['name']} | {$vo['case'][4]['housetype']}</span><br>
+					<span class="gray">进度{$vo['case'][4]['schedule']*100/6|round=###,0}% | 预算{$vo['case'][4]['cost']/10000}万</span>
 				</div>
 			</div>
 			
 		</div>
-	</div>
-
-	<div class="piclist" id="tab2" style="display:none;">
-		<div class="order"><span class="left">选择地区：<select name=""><option value="">浦东</option><option value="">杨浦区</option></select></span><a href="" class="right">按预约量排列</a></div>
-		<div class="picline">
-			<div class="piclinehead">
-				<img src="__STATICS__/images/Construction/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="__STATICS__/images/Construction/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
+	</foreach><div  class="clear"></div>
+	<div class="ui_page" style="margin-top:20px" >
+      <div class="ui_page_center">
+      {$page}&nbsp;
+      </div>
+     </div>
 		</div>
-
-		<div class="picline">
-			<div class="piclinehead">
-				<img src="../images/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="piclist" id="tab3" style="display:none;">
-		<div class="order"><span class="left">选择地区：<select name=""><option value="">浦东</option><option value="">杨浦区</option></select></span><a href="" class="right">按预约量排列</a></div>
-		<div class="picline">
-			<div class="piclinehead">
-				<img src="../images/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-		</div>
-
-		<div class="picline">
-			<div class="piclinehead">
-				<img src="../images/yi.gif" width="20" height="20" />
-				<h6>星杰国际设计</h6>
-				<span>速度快</span><span>设计好</span><span>服务态度好</span>
-				<div class="right">预约量（17）&nbsp;&nbsp;<a href="">查看全部</a></div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-			<div class="picone lastone">
-				<img src="../images/tu.gif" width="160" height="160" />
-				<div class="picinfo">
-					<span>浦东 | 莱茵河绿地 | 3房</span><br>
-					<span class="gray">进度75% | 预算12.5万</span>
-				</div>
-			</div>
-		</div>
-	</div>
     <div class="footer right">
     <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
     <div class="clear"></div>

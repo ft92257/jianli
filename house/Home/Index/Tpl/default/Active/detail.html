@@ -1,9 +1,30 @@
 <include file="Public:header" />
+<div class="halfPop"></div>
+<div class="pop_chuang">
+<img src="../images/close.png" width="36" height="36" class="off" />
+<div class="re">
+	<div class="top">
+		<img src="__STATICS__/images/Construction/clock.gif"><h1>填写预约信息</h1>
+	</div>
+	<form action="{:U('/Reserve/add')}/type/3/id/{$active['id']}" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name="name"></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name="telephone"></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name="region"></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name="email"></td></tr>
+	</table>
+	<div class="foot">
+		<input type="image" src="__STATICS__/images/Construction/add_reserve.gif" ></input>
+	</div>
+	</form>
+</div>
+</div>
+<div class="center">
 <div class="part">
   <div class="topnav">
 	<ul>
-      <li class="current"><a href=""><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
-      <li><a href=""><span>样板工地</span></a></li>
+      <li class="current"><a href="{:U('/Active/lists')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+      <li><a href="{:U('/Case/index')}"><span>样板工地</span></a></li>
       <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
@@ -11,13 +32,13 @@
   <div>
   <div class="left_content left">
     <dl class="left_content_dl">
-     <dt><a href="#"><img src="{$active.focus}" width="200" height="200" /></a></dt>
+     <dt><a href="{:U('Active/detail')}/id/{$active['id']}"><img src="{$active.focus}" width="200" height="200" /></a></dt>
      <dd>
-      <h1 class="titleone"><a href="#">{$active.title}</a></h1>
+      <h1 class="titleone"><a href="#">{$active['title']}</a></h1>
       <table class="tabcont">
        <tr>
         <td>区域：</td>
-        <td>{$active['case']['area']}</td>
+        <td>{$active['case']['county']}</td>
        </tr>
        <tr>
         <td>户型：</td>
@@ -69,9 +90,9 @@
     <div class="wangqi_list">
     <volist name="oactive" id="vo">
      <dl>
-      <dt><a href="#"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
+      <dt><a href="{:U('Active/detail')}/id/{$vo['id']}"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
       <dd>
-       <h4><a href="#">[{$vo['case']['area']}]{$vo['title']}</a></h4>
+       <h4><a href="{:U('Active/detail')}/id/{$vo['id']}">[{$vo['county']}]{$vo['title']}</a></h4>
        <p class="jianjie">{$vo['style']} {$vo['property']} {$vo['housetype']}</p>
        <div class="visit_p_jianjie">
         <p>主办方：{$vo['organizer']}</p>
@@ -86,9 +107,9 @@
   </div><!--left_content end-->
   <div class="reservation_right right">
    <div style="border-bottom:#E2E2E2 1px solid; padding:20px 0">
-    <p style="text-align:center; font-size:14px">已有{$reserve['count']}人预约</p>
+    <p style="text-align:center; font-size:14px">已有{$count}人预约</p>
     <div class="yuyue"><a href="#"><img src="__STATICS__/images/Construction/yuyue_r3_c6.jpg" width="160" height="40" /></a></div>
-   </div>
+   </div><if condition="$count gt 0">
    <h5 class="yiyuyue">已预约名单</h5>
    <table class="yiyuyue_list">
    <volist name="reserve" id="vo">
@@ -97,7 +118,7 @@
      <td>{$vo['telephone']}</td>
     </tr>
     </volist>
-   </table>
+   </table></if>
   </div><!--reservation end-->
   <div class="clear"></div>
   </div>
@@ -106,6 +127,7 @@
     <div class="clear"></div>
   </div><!-- footer end-->
 </div><!--part end-->
+</div>
 </div>
 </body>
 </html>
@@ -117,8 +139,12 @@ $("#my_star img").bind("click", function() {
 </script>
 <script>
  $(".yuyue").click(function(){
-	  var halfPopHeight=$(".center").height();
+	  var halfPopHeight=$(".pop_t").height();
 	  $(".halfPop").show().css({"height":halfPopHeight});
 	  $(".pop_chuang").show();
+	 });
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
 	 });
 </script>
