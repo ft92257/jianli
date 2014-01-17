@@ -235,7 +235,7 @@ class BaseAction extends Action {
 		$this->display($params['templete']);
 	}
 	
-	/*
+/*
 	 * 图片管理
 	 */
 	protected function _picture($type, $id) {
@@ -245,9 +245,10 @@ class BaseAction extends Action {
 		$tab = $this->model->getTabTitle($type, $id, $data);
 		$this->assign('tabTitle', $tab);
 		$this->assign('condition', '/type/' . $type . '/target/' . $id);
-		
+		$this->assign('condition1','/type/3'.'/target/' . $id);
+		$this->assign('condition2','/type/4'.'/target/' . $id);
 		$params = array(
-				'where' => array('type' => $type,	'target' => $id),
+				'where' => array('type' => array('in','2,3,4'),	'target' => $id),
 				'order' => 'createtime DESC',
 				'templete' => 'Picture:index',
 				'vars' => array('focus' => $data['focus']),

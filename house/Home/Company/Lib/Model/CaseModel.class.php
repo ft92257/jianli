@@ -12,19 +12,24 @@ class CaseModel extends BaseModel {
 		'style' => array('1' => '地中海风格', '2' => '简约风格', '3' => '欧美风格'),
 	);
 	protected $formConfig = array(
-			'name' => array('案列名称', 'text'),
-			'info' => array('说明', 'textarea'),
-			'jlgroup' => array('监理团队','select',array('all')),
-			'design' => array('设计团队','select',array('all')),
-			'province' => array(array('所在地区', 'BEGIN'), 'province'),
-			'city' => array(array('', 'APPEND'), 'city'),
-			'county' => array(array('', 'APPEND'), 'county'),
-			'town' => array(array('', 'END'), 'town'),
-			'place' => array('详细地址','text',array('long')),
-			'housetype' => array('户型', 'text', '例：3室1厅'),
-			'style' => array('风格', 'select', array('all')),
-			'cost' => array('费用', 'text', array('int', '元')),
-			array('', 'submit'),
+		'name' => array('案列名称', 'text'),
+		'fee_info' => array('装修费用说明', 'textarea'),
+		'property' => array('楼盘','text'),
+        'schedule' => array('阶段','select',array('all')),
+		'jlgroup' => array('监理团队','select',array('all')),
+		'design' => array('设计团队','select',array('all')),
+		'consid' =>array('施工队团队','select',array('all')),
+		'province' => array(array('所在地区', 'BEGIN'), 'province'),
+		'city' => array(array('', 'APPEND'), 'city'),
+		'county' => array(array('', 'APPEND'), 'county'),
+		'town' => array(array('', 'END'), 'town'),
+		'place' => array('详细地址','text',array('long')),
+		'housetype' => array('户型', 'text', '例：3室1厅'),
+		'style' => array('风格', 'select', array('all')),
+		'tags' => array('标签', 'tags'),
+		'cost' => array('费用', 'text', array('int', '元')),
+        'ord'=>array('排序值','text',array('int', '数值大的优先出现在首页')),
+		array('', 'submit'),
 	);
 	
 	protected $listConfig = array(
@@ -47,6 +52,7 @@ class CaseModel extends BaseModel {
 	public function setGroups() {
 		$this->aOptions['jlgroup'] = D('Case_team')->where(array('cid'=>$this->oCom->id,'type'=>1))->getField('id,name');
 		$this->aOptions['design'] = D('Case_team')->where(array('cid'=>$this->oCom->id,'type'=>2))->getField('id,name');
+		$this->aOptions['consid'] = D('Construction')->where(array('cid'=>$this->oCom->id))->getField('id,name');
 	}
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {

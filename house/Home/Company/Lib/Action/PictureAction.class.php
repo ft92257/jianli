@@ -70,6 +70,29 @@ class PictureAction extends BaseAction {
 		
 		$this->_delete(array('id' => $id));
 	}
-
+	public function addM() {
+		if ($this->isPost()) {
+			$dataBase = array(
+				'cid'=>$this->oCom->id,
+				'uid'=>$this->oUser->id,
+				'type'=>1,
+			);
+			$returl = U('Picture/material/');
+			$this->_add($dataBase,$returl);
+		} else {
+			$this->_display_form();
+		}
+	}
+	public function material() {
+		$cid = $this->oCom->id;
+		$params = array(
+				'where' =>array('cid'=>$cid,'type'=>1),
+				'order' => 'createtime DESC',
+		);
+		$this->assign('cid',$cid);
+		$this->model->setMaterialConfig();
+		$this->_getPageList($params);
+	
+	}
 }
 ?>
