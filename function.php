@@ -6,6 +6,10 @@ $charset_conn=0;
 $surl_p='url/';
 $dbprefix=$config['db_table_prefix'];
 
+if (substr($_SERVER['HTTP_REFERER'], -11) == '/yjlnew.php') {
+	$_SERVER['HTTP_REFERER'] = $_GET['referer'];
+}
+
 function select_yjl_db() {
 	global $config;
 	$hostname_conn=$config['db_host'];
@@ -725,10 +729,10 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="profile.php">设置</a>
 		<a href="user_decoration.php?id='.$udb['uid'].'">个人中心</a>
 		'.(($udb['qx']==10 || $udb['isxg']>0)?'<a href="admin.php">后台管理</a>':'').'
-		<a href="logout.php">退出登录</a>
+		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php">免费注册</a></span></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span></div>';
 	}
 
 	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
@@ -861,10 +865,10 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="profile.php">设置</a>
 		<a href="user_decoration.php?id='.$udb['uid'].'">个人中心</a>
 		'.(($udb['qx']==10 || $udb['isxg']>0)?'<a href="admin.php">后台管理</a>':'').'
-		<a href="logout.php">退出登录</a>
+		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php">免费注册</a></span></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span></div>';
 	}
 
 	$s .='</div>

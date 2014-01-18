@@ -71,7 +71,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				mysql_free_result($rep);
 			}
 
-			header('Location:'.$u);
+			header('Location:'.$_SERVER['HTTP_REFERER']);
 		}else{
 			echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">alert(\'登录信息错误！\');location.href=\''.$f.($nu!=''?'?u='.urlencode($nu):'').'\';</script>';
 		}
@@ -160,8 +160,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			exit();
 		}
 	}
-	//header('Location:'.(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'./'));
-	header('Location:user_decoration.php');
+	header('Location:'.$_SERVER['HTTP_REFERER']);
+	//header('Location:user_decoration.php');
 }elseif(isset($_GET['t']) && $_GET['t']=='tqq'){
 	if(isset($_SESSION['user_sync_m']) && trim($_SESSION['user_sync_m'])!='' && isset($_SESSION['user_sync_id']) && trim($_SESSION['user_sync_id'])!='' && isset($_SESSION['user_sync_t']) && trim($_SESSION['user_sync_t'])!='' && isset($_SESSION['user_sync_s']) && trim($_SESSION['user_sync_s'])!=''){
 		$_SESSION['user_sync_m']='';
@@ -245,8 +245,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			exit();
 		}
 	}
-	header('Location:user_decoration.php');
-	//header('Location:'.(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'./'));
+	//header('Location:user_decoration.php');
+	header('Location:'.$_SERVER['HTTP_REFERER']);
 }else{
 	if(isset($_SESSION['user_sync_m']) && trim($_SESSION['user_sync_m'])!='' && isset($_SESSION['user_sync_id']) && trim($_SESSION['user_sync_id'])!='' && isset($_SESSION['user_sync_t']) && trim($_SESSION['user_sync_t'])!='' && isset($_SESSION['user_sync_s']) && trim($_SESSION['user_sync_s'])!=''){
 		header('Location:reg_wb.php');

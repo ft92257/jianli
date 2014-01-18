@@ -185,6 +185,7 @@ if($udb['qx']==0){
 								<td><input type="submit" value="创 建" class="submit sub_reg" /></td>
 							</tr>
 						</table>';
+		$c .= '<script>selectTarget("dtype", 2)</script>';
 	}else{
 		$js_c.='
 	$(\'#chki_1\').blur(function(){
@@ -247,6 +248,7 @@ if($udb['qx']==0){
 								<td><input type="submit" value="下一步" class="submit sub_reg" /></td>
 							</tr>
 						</table>';
+		$c .= '<script>selectTarget("dtype", 2)</script>';
 	}
 }else{
 	$js_c.='
@@ -269,11 +271,11 @@ if($udb['qx']==0){
 		}
 	});';
 	$c.='<input class="text" id="q"/> <a href="#" onclick="var c=$.trim($(\'#q\').val());if(c!=\'\')$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\', {q:c});return false;">搜索</a> <a href="#"" onclick="$(\'#jl_jlsdiv\').load(\'j/yzsearch.php?xqid='.$xqid.'\');return false;">显示本小区全部业主</a><form method="post" id="aform" action="">
-	<div style="padding-top:10px;">装修类型：<select name="dtype">
+	<div style="padding-top:10px;"><div>装修类型：<select name="dtype">
 <option value="">选择装修类型</option>
 <option value="1">家装</option>
 <option value="2">工装</option>
-</select></div>
+</select></div></div>
 <div style="padding-top:10px;">工装房型：<select name="htype">
 	<option value="">选择工装房型</option>
 	<option value="1">连锁店</option>
@@ -282,6 +284,7 @@ if($udb['qx']==0){
 	<option value="4">公共空间</option>
 </select></div>
 	<div style="height: 250px;padding: 5px;overflow: auto;" id="jl_jlsdiv"></div><div style="clear: both;"></div><input type="submit" value="创 建" id="submit_bt" class="submit sub_reg" />';
+	$c .= '<script>selectTarget("dtype", 2)</script>';
 }
 $c.='</form>
 				<br /><br />

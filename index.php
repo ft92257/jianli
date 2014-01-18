@@ -113,7 +113,7 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 						<p class="sprne">高级监理师<a href="user-'.$r_res['uid'].'.html">'.$r_res['nc'].'</a></p>
 						<p>'.yjl_substrs($r_res['aboutme'], 20).'</p>
 						<div class="spr_consul">
-							<a href="faq-new-'.$r_res['uid'].'.html" class="btn bt_orangesml"><span class="mn_ico ico25"></span>向监理咨询</a>
+							<a '.($r_res['uid'] ? 'href="login.php" rel="#overlay_login"' : 'href="faq-new-'.$r_res['uid'].'.html"').' class="btn bt_orangesml"><span class="mn_ico ico25"></span>向监理咨询</a>
 							<a href="login.php?u='.urlencode('help.php').'" rel="#overlay_login" class="btn bt_bgbluesml"><span class="mn_ico ico25"></span>请监理到现场</a>
 						</div>
 					</li>';

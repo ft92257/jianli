@@ -311,7 +311,7 @@ function _getStepPage($step, $aJpids) {
 				}
 				
 				$s .= '<tr>
-					<td>第'.$aValue['step'].'次</td>
+					<td>第'.$aValue['step'].'阶段</td>
 					<td>'.($aValue['score_owner'] ? $aValue['score_owner'] : '未评') .'分</td>
 					<td>'.($aValue['score_director'] ? $aValue['score_director'] : '未评').'分</td>
 					<td>'.($aValue['score_average'] ? $aValue['score_average'] : '未评').'分</td>
