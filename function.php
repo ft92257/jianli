@@ -922,7 +922,11 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 
 function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
-	$s = yjl_html_head($c, $css, $body_id, $menu_id);
+	if ($_COOKIE['isgz']) {
+		$s = yjl_html_gz_head($c, $css, $body_id, $menu_id);
+	} else {
+		$s = yjl_html_head($c, $css, $body_id, $menu_id);
+	}
 	$s .= '<!--内容-->
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>

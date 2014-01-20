@@ -5,6 +5,8 @@ require_once($yjl_tpath.'setting/face.php');
 $no_getxq=1;
 require_once('function.php');
 
+setcookie('isgz', 1, 0, '/');
+
 echo yjl_html_gz_head($s, 'index');
 ?>
 <div style="background-color:#FFF; padding-bottom:20px">
