@@ -122,7 +122,7 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 .supeivising_top{height:auto; line-height:24px;}
 .supeivising_top img{float:left; }
 .supeivising_top span{color:#2197dd; font-size:14px;}
-.supeivising_top_right{width:750px; float:right; position:relative; height:auto; overflow:hidden; padding-right:30px;}
+.supeivising_top_right{width:750px; float:right; position:relative; height:auto; padding-right:30px;}
 #super_img{float:right; position:absolute; top:105px; right:50px;}
 .supeivising_bottom{ margin-top:20px;}
 .supeivising_bottom h2{font-family:"微软雅黑"; font-size:24px; color:#656565; margin-bottom:20px;}
