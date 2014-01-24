@@ -29,6 +29,7 @@ class ActiveAction extends BaseAction {
 		$show = $Page->show();
 		$aData  = $this->model->join('tb_case ON tb_active.caseid = tb_case.id')->where($aWhere)->limit($Page->firstRow.','.$Page->listRows)->field('tb_active.id,tb_active.focus,tb_case.county,tb_case.style,tb_case.housetype,tb_case.name,tb_active.cid,tb_active.title,tb_active.address')->select();
 		//dump($aData);die;
+		//$aData = array('ggg','sss','bbbb','uuuu');
 		$this->assign('show', $show);
 		$this->assign('searchHtml', $this->model->getSearchHtml());
 		$this->assign('data', $aData);

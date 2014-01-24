@@ -344,7 +344,7 @@ function _getStepPage($step, $aJpids) {
 						<td><input type="submit" value="评 论" class="submit sub_smbe" id="submit_fb" onclick="postjpwb();" /><input type="hidden" id="jpid" value="'.$d_jpdb['jpid'].'"/></td>
 					</tr>
 				</table>
-				<div class="spdin"><a href="#" onclick="if($(\'#imgu_div\').is(\':hidden\'))$(\'#imgu_div\').show();return false;"><span class="mn_ico ico22"></span>图片</a><a href="#" onclick="if($(\'#wb_v_div\').is(\':hidden\'))$(\'#wb_v_div\').show();return false;"><span class="mn_ico ico23"></span>视频</a><input type="checkbox" name="iszf" id="tpiszf" checked="checked" class="radio"/>同时转发微博'.($uadb[$user_id]['qx']==0?' <input type="checkbox" name="isqz" id="tpisqz" class="radio"/>咨询监理':'').'</div><div class="wb_imgv">'.yjl_uploadv_3().'</div><div id="wb_v_div" style="display: none;padding-top: 10px;">请复制视频播放页网站地址即可 <input class="text" id="vurl"/></div>
+				<div class="spdin"><a href="#" onclick="if($(\'#imgu_div\').is(\':hidden\'))$(\'#imgu_div\').show();$(\'#wb_v_div\').hide();return false;"><span class="mn_ico ico22"></span>图片</a><a href="#" onclick="if($(\'#wb_v_div\').is(\':hidden\'))$(\'#wb_v_div\').show();$(\'#imgu_div\').hide();return false;"><span class="mn_ico ico23"></span>视频</a><input type="checkbox" name="iszf" id="tpiszf" checked="checked" class="radio"/>同时转发微博'.($uadb[$user_id]['qx']==0?' <input type="checkbox" name="isqz" id="tpisqz" class="radio"/>咨询监理':'').'</div><div class="wb_imgv">'.yjl_uploadv_3().'</div><div id="wb_v_div" style="display: none;padding-top: 10px;">请复制视频播放页网站地址即可 <input class="text" id="vurl"/></div>
 			</div>';
 						}
 					}
