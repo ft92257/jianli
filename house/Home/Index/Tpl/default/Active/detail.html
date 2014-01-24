@@ -25,7 +25,6 @@
 	<ul>
       <li class="current"><a href="{:U('/Active/lists')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>参观会</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
       <li><a href="{:U('/Case/index')}"><span>样板工地</span></a></li>
-      <li><a href=""><span>监理公正保</span></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
 	</div>
@@ -90,7 +89,7 @@
     <div class="wangqi_list">
     <volist name="oactive" id="vo">
      <dl>
-      <dt><a href="{:U('Active/detail')}/id/{$vo['id']}"><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
+      <dt><a href="{:U('Active/detail')}/id/{$vo['id']}" ><img src="{$vo['focus']}" width="150" height="150" /></a></dt>
       <dd>
        <h4><a href="{:U('Active/detail')}/id/{$vo['id']}">[{$vo['county']}]{$vo['title']}</a></h4>
        <p class="jianjie">{$vo['style']} {$vo['property']} {$vo['housetype']}</p>
@@ -135,7 +134,6 @@
 $("#my_star img").bind("click", function() {
       $(this).attr("src","images/star1.gif");
 });
-
 </script>
 <script>
  $(".yuyue").click(function(){

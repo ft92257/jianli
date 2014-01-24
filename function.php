@@ -2576,7 +2576,7 @@ function yjl_jllist($r_res){
 		$q_rep=sprintf('select name, content from %s where fxid=%s limit 1', $yjl_dbprefix.'xq_fx', $r_res['fxid']);
 		$rep=mysql_query($q_rep) or die('');
 		$r_rep=mysql_fetch_assoc($rep);
-		if(mysql_num_rows($rep)>0)$c.='<a title="户型：'.$r_rep['content'].'"><span class="mn_ico ico36"></span><br />'.$r_rep['name'].'</a>';
+		if(mysql_num_rows($rep)>0)$c.='<a title="户型'.($r_rep['content'] ? ':'.$r_rep['content'] : '').'"><span class="mn_ico ico36"></span><br />'.$r_rep['name'].'</a>';
 		mysql_free_result($rep);
 	}
 	if(isset($a_fg[$r_res['fg']]))$c.='<a title="风格"><span class="mn_ico ico34"></span><br />'.$a_fg[$r_res['fg']].'</a>';

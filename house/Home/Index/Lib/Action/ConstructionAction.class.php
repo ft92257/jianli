@@ -42,6 +42,22 @@ class ConstructionAction extends BaseAction {
 		
 		$this->display();
 	}
+	/*
+	 * 施工队质量认证
+	 */
+	public function audit() {
+		import('ORG.Util.Page');// 导入分页类
+		$count = D('Construction')->where(array('is_approve'=>3))->count();
+		$Page = new page($count,3);
+		$show = $Page->show();
+		//$aConstruction = $this->model->where(array('is_approve'=>3))->order('ord')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$aConstruction = $this->model->join('tb_case on tb_construction.id=tb_case.consid' )->where(array('tb_construction.is_approve'=>3,'tb_case.is_approve'=>3,'tb_construction.status'=>0,'tb_case.status'=>0,'tb_construction.appid'=>1,'tb_case.appid'=>1))->order('tb_construction.ord')->limit($Page->firstRow.','.$Page->listRows)->select();
+		//echo $this->model->getLastSql();die;
+		dump($aConstruction);die;
+		$this->assign('aConstruction',$aConstruction);
+		$this->assign('page',$show);
+		$this->display();
+	}
 }
 
 ?>

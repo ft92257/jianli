@@ -100,7 +100,7 @@ class BaseAction extends Action {
 		$field = getRequest('FIELD');
 		$value = getRequest('VALUE');
 
-		die($this->model->ajaxValidate($field, $value));
+		die($this->model->ajaxValidate($field,$value));
 	}
 
 	/*

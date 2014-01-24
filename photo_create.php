@@ -176,8 +176,8 @@ if($udb['qx']==0){
 								<td><select name="ys"><option value="0">选择预算</option>';
 		foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($udb['ys']==$k?' selected="selected"':'').'>'.$v.'</option>';
 		$c.='</select>';
-		if($fxc[0]>0)$c.='</td></tr><tr><th>户型：</th><td>';
-		$c.=$fxc[1].'</td></tr><tr><th valign="top">风格：</th><td><select name="fg"><option value="0">选择风格</option>';
+		if($fxc[0]>0)$c.='</td></tr><tr id="huxing"><th>户型：</th><td>';
+		$c.=$fxc[1].'</td></tr><tr id="fengge"><th valign="top">风格：</th><td><select name="fg"><option value="0">选择风格</option>';
 		foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($udb['fg']==$k?' selected="selected"':'').'>'.$v.'</option>';
 		$c.='</select></td></tr>
 							<tr>
@@ -185,7 +185,7 @@ if($udb['qx']==0){
 								<td><input type="submit" value="创 建" class="submit sub_reg" /></td>
 							</tr>
 						</table>';
-		$c .= '<script>selectTarget("dtype", 2)</script>';
+		$c .= '<script>selectTarget("dtype", 2);selectShowTarget("dtype", 1, "fengge,huxing");</script>';
 	}else{
 		$js_c.='
 	$(\'#chki_1\').blur(function(){

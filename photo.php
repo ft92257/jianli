@@ -131,6 +131,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}else{
 			require_once('photo_inc_photo.php');
 		}
+		
 		$c.='</div>
 		<div class="main_right">
 			<div class="box2 clearfix">

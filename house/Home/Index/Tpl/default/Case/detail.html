@@ -29,14 +29,13 @@
   <div class="topnav">
     <ul>
       <li><a href="{:U('/Active/lists')}"><span>参观会</span></a></li>
-      <li class="current"><a href="{:U('/Case/index')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
-      <li><a href=""><span>监理公正保</span></a></li>
+      <li class="current"><a href="{:U('/Case/index/')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>样板工地</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
       <li><a href=""><span>施工质量认证</span></a></li>
     </ul>
   </div>
   <div class="casetitle">
     <h4>{$case['name']} &nbsp;<span>({$case['schedule']*100/6|round=###,0}%)</span></h4>
-    <div>分享到&nbsp;<span><a href="http://v.t.sina.com.cn/share/share.php?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen1.gif"></a>&nbsp;<a href="http://v.t.qq.com/share/share.php?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen2.gif"></a>&nbsp;<a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen3.gif"></a>&nbsp;<a href="http://widget.renren.com/dialog/share?resourceUrl=[u]&amp;srcUrl=[u]&amp;title=易监理"><img src="__STATICS__/images/Construction/fen4.gif"></a><span></div>
+    <div>分享到&nbsp;<span><a href="http://service.weibo.com/share/share.php?url=http://hz.yijianli.com/house/?s=/Case/detail/id/{$id}&title=易监理|样板房详情|推荐样板工地"><img src="__STATICS__/images/Construction/fen1.gif"></a>&nbsp;<a href="http://v.t.qq.com/share/share.php?url=[u]&amp;title=易监理|样板房详情|推荐样板工地"><img src="__STATICS__/images/Construction/fen2.gif"></a>&nbsp;<a href=http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://hz.yijianli.com/house/?s=/Case/detail/id/{$id}&title=易监理|样板房详情|推荐样板工地><img src="__STATICS__/images/Construction/fen3.gif"></a>&nbsp;<a href="http://widget.renren.com/dialog/share?resourceUrl=http://hz.yijianli.com/house/?s=/Case/detail/id/{$id}&srcUrl=[u]&title=易监理|样板房详情|推荐样板工地"><img src="__STATICS__/images/Construction/fen4.gif"></a><span></div>
   </div>
   <div class="topline">&nbsp;</div>
   <div class="casestep">
@@ -201,7 +200,7 @@
           <div class="ping">
               <foreach name="score" item="vo">
             <div class="case_l">
-              <div class="sp1"> <span><img class="tou" src="{$vo.owner_uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star1.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;<sp>{$vo.score}</sp>分</span> <span class="sp2">{$vo.createtime}</span> </div>
+              <div class="sp1"> <span><img class="tou" src="{$vo.owner_uid}">&nbsp;&nbsp;<a href="">{$vo.username}</a>&nbsp;&nbsp;<img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif"><img src="__STATICS__/images/Construction/star2.gif">&nbsp;&nbsp;<sp>{$vo.score}</sp>分</span> <span class="sp2">{$vo.createtime}</span> </div>
               <p>{$vo.comment} </p>
             </div>
     		</foreach>
