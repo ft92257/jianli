@@ -381,7 +381,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		mysql_free_result($res);
 		$c.='</ul>';
 		//if($tp_res>1)$c.=yjl_newpage($page, $tp_res, 'faq_topic');
-		if($tp_res>1)$c.=yjl_newhmpage('faq-new-p[p]', $page, $tp_res, 'faq_topic');
+		if($tp_res>1)$c.=yjl_newhmpage('faq-new-p[p].html', $page, $tp_res, 'faq_topic');
 		
 	}
 	mysql_free_result($a_res);
