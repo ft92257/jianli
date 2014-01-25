@@ -3,6 +3,7 @@ require_once('../config.php');
 require_once('../'.$yjl_tpath.'setting/settings.php');
 require_once('../function.php');
 $f='uploadjlimg.php';
+ini_set("memory_limit", "128M");
 if(isset($_POST['cookie_auth']) && trim($_POST['cookie_auth'])!=''){
 	$udb=array('uid'=>0);
 	$auth=str_replace(' ', '+', $_POST['cookie_auth']);

@@ -2,7 +2,7 @@
 require_once('../config.php');
 require_once('../'.$yjl_tpath.'setting/settings.php');
 require_once('../function.php');
-
+ini_set("memory_limit", "128M"); 
 //db
 $oDb = DbMysql::getInstance($aDbConfig);
 
@@ -48,6 +48,7 @@ if($udb['uid']>0){
 								$im=@imagecreatefrompng('../'.$photo_o);
 								break;
 						}
+						
 						$xy=yjl_imgxy($sw, $sh, $w, $h);
 						$ni=imagecreatetruecolor($xy[4],$xy[5]);
 						imagecopyresampled($ni,$im,$xy[0],$xy[1],0,0,$xy[2],$xy[3],$sw,$sh);
