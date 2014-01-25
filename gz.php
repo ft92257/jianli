@@ -45,21 +45,21 @@ echo yjl_html_gz_head($s, 'index');
    <dl>
     <dt><a href="#"><img src="images/anli_list_img3.png" width="300" height="200" /></a></dt>
     <dd>
-     <a href="#">办公室</a>
+     <a href="photo-5811-190.html">美吉生物</a>
      <p>讲座介绍小空间设计案例。从楼阁到隐藏在小巷里的联排住宅，讲座介绍小空间设计案例。从楼阁到隐藏讲座介绍小空间设计案例。从楼阁到隐藏</p>
     </dd>
    </dl>
    <dl>
     <dt><a href="#"><img src="images/anli_list_img4.png" width="300" height="200" /></a></dt>
     <dd>
-     <a href="#">办公室</a>
+     <a href="photo-5794-189.html">宝宜威机电</a>
      <p>讲座介绍小空间设计案例。从楼阁到隐藏在小巷里的联排住宅，讲座介绍小空间设计案例。从楼阁到隐藏讲座介绍小空间设计案例。从楼阁到隐藏</p>
     </dd>
    </dl>
    <dl>
     <dt><a href="#"><img src="images/anli_list_img5.png" width="300" height="200" /></a></dt>
     <dd>
-     <a href="#">办公室</a>
+     <a href="photo-5794-191.html">柯莱逊综合楼</a>
      <p>讲座介绍小空间设计案例。从楼阁到隐藏在小巷里的联排住宅，讲座介绍小空间设计案例。从楼阁到隐藏讲座介绍小空间设计案例。从楼阁到隐藏</p>
     </dd>
    </dl>
