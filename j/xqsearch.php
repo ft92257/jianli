@@ -10,8 +10,11 @@ if(isset($_GET['home']) && $_GET['home']==1){
 	if($q!=''){
 		$c='';
 		$ldb=' and (name like '.yjl_SQLString($q, 'search').' or address like '.yjl_SQLString($q, 'search').')';
-		//$q_rep=sprintf('select xqid, name from %s where l1id=%s and iskf=1%s order by name', $yjl_dbprefix.'xq', $l1id, $ldb);
-		$q_rep=sprintf('select xqid, name from %s where l2id=%s and iskf=1%s order by name', $yjl_dbprefix.'xq', $l1id, $ldb);
+		if ($l1id == 9) {
+			$q_rep=sprintf('select xqid, name from %s where l1id=%s and iskf=1%s order by name', $yjl_dbprefix.'xq', $l1id, $ldb);
+		} else {
+			$q_rep=sprintf('select xqid, name from %s where l2id=%s and iskf=1%s order by name', $yjl_dbprefix.'xq', $l1id, $ldb);
+		}
 		$rep=mysql_query($q_rep) or die('');
 		$r_rep=mysql_fetch_assoc($rep);
 		$c_rep=mysql_num_rows($rep);
