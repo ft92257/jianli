@@ -4,7 +4,8 @@
  * 	参观会相关页面
  */
 class ActiveAction extends BaseAction {
-
+	
+	
 	//需要验证的方法
 	protected $aVerify = array(
 	);
@@ -64,6 +65,7 @@ class ActiveAction extends BaseAction {
 	 * 活动首页预约visit_canguanhui
 	 */
 	public function index() {
+
 		//图片推荐4个
 		$aActive = $this->model->getTotalTop(6);
 		//二级推荐2个

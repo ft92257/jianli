@@ -1,0 +1,149 @@
+<include file="Public:header" />
+<div class="halfPop"></div>
+<div class="pop_chuang">
+ <img src="../images/close.png" width="36" height="36" class="off" />
+ <div class="re">
+	<div class="top">
+		<img src="__STATICS__/images/Construction/clock.gif" class="lefimg" /><h1>填写预约信息</h1><div class="clear"></div>
+	</div>
+	<form action="{:U('/Reserve/add')}/type/2/id/{$cons['id']}" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name=""></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name=""></td></tr>
+	</table>
+	<div class="foot">
+		<input type="image" src="__STATICS__/images/Construction/add_reserve.gif" ></input>
+	</div>
+</div>
+</div>
+
+<div class="part">
+  <div class="topnav">
+	<ul>
+      <li ><a href="{:U('/Active/index')}"><span>参观会</span></a></li>
+      <li><a href="{:U('/Case/index')}"><span>样板工地</span></a></li>
+      <li class="current"><a href="{:U('/Construction/audit')}"><img src="__STATICS__/images/Construction/leftcircle.jpg" /><span>施工质量认证</span><img src="__STATICS__/images/Construction/rightcircle.jpg" /></a></li>
+    </ul>
+	</div>
+  <div>
+
+  <div class="left_content left">
+   <dl class="shigongdui_list">
+    <dt><img src="{$case.focus}" width="125" height="125" /></dt>
+    <dd>
+     <h1 class="titles_ming">{$case.name}</h1>
+     <div class="y_n_renzheng">
+      <div class="left width_left">
+       <p>状态：已认证</p>
+       <p>当前阶段：{$case.schedule}</p>
+      </div>
+      <div class="left width_left">
+       <p>户型：{$case.housetype}</p>
+       <p>区域：{$case.county}</p>
+      </div>
+      <div class="clear"></div>
+     </div>
+    </dd>
+    <div class="clear"></div>
+   </dl><!--/shigongdui_list-->
+   <div class="renzhengjieduan">
+    <h2 class="jieduanrenzheng over">
+     <span class="left">水电阶段认证</span><a href="{:U('/Case/auditdetail/id')}/{$case['id']}/step/1" class="right_more right">更多>></a></span>
+    </h2>
+    <ul class="list_ul">
+    <foreach name="case['step1']" item="vo">
+     	<li><a href="#"><img src="{$vo.pfid}" width="125" height="125" /></a></li>
+     </foreach>
+     <div class="clear"></div>
+    </ul>
+   </div><!--/renzhengjieduan-->
+   <div class="renzhengjieduan">
+    <h2 class="jieduanrenzheng over">
+     <span class="left">泥木阶段认证</span><a href="{:U('/Case/auditdetail/id')}/{$case['id']}/step/2" class="right_more right">更多>></a></span>
+    </h2>
+    <ul class="list_ul">
+      <foreach name="case['step2']" item="vo">
+     	<li><a href="#"><img src="{$vo.pfid}" width="125" height="125" /></a></li>
+     </foreach>
+     <div class="clear"></div>
+    </ul>
+   </div><!--/renzhengjieduan-->
+   <div class="renzhengjieduan">
+    <h2 class="jieduanrenzheng over">
+     <span class="left">油漆阶段认证</span><a href="{:U('/Case/auditdetail/id')}/{$case['id']}/step/3" class="right_more right">更多>></a></span>
+    </h2>
+    <ul class="list_ul">
+       <foreach name="case['step3']" item="vo">
+     	<li><a href="#"><img src="{$vo.pfid}" width="125" height="125" /></a></li>
+     </foreach>
+     <div class="clear"></div>
+    </ul>
+   </div><!--/renzhengjieduan-->
+   <div class="renzhengjieduan">
+    <h2 class="jieduanrenzheng over">
+     <span class="left">安装阶段认证</span><a href="{:U('/Case/auditdetail/id')}/{$case['id']}/step/4" class="right_more right">更多>></a></span>
+    </h2>
+    <ul class="list_ul">
+       <foreach name="case['step4']" item="vo">
+     	<li><a href="#"><img src="{$vo.pfid}" width="125" height="125" /></a></li>
+     </foreach>
+     <div class="clear"></div>
+    </ul>
+   </div><!--/renzhengjieduan-->
+   <div class="renzhengjieduan">
+    <h2 class="jieduanrenzheng over">
+     <span class="left">软装阶段认证</span><a href="{:U('/Case/auditdetail/id')}/{$case['id']}/step/5" class="right_more right">更多>></a></span>
+    </h2>
+    <ul class="list_ul">
+     <foreach name="case['step5']" item="vo">
+     	<li><a href="#"><img src="{$vo.pfid}" width="125" height="125" /></a></li>
+     </foreach>
+     <div class="clear"></div>
+    </ul>
+   </div><!--/renzhengjieduan-->
+  </div><!--left_content end-->
+  <div class="reservation_right right">
+   <dl class="right_dl_list">
+    <dt><a href="#"><img src="{$cons.focus}" width="60" height="60" /></a></dt>
+    <dd>
+     <h3 class="shigongdui_ming"><a href="#">{$cons.name}</a></h3>
+    </dd>
+    <div class="clear"></div>
+   </dl>
+   <div style=" width:160px; margin:20px auto 30px auto"><a href="#"><img src="__STATICS__/images/Construction/reserve.gif" class="yuyuecanguan" /></a></div>
+  </div><!--reservation end-->
+  <div class="clear"></div>
+  </div>
+    <div class="footer right">
+    <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
+    <div class="clear"></div>
+  </div><!-- footer end-->
+</div><!--part end-->
+</div>
+</div>
+</body>
+</html>
+<script>
+var aa = {$case[schedule]-1};
+if(aa == -1){
+	$("div.renzhengjieduan").hide();
+}else{
+$("div.renzhengjieduan:gt("+aa+")").hide();
+}
+$("#my_star img").bind("click", function() {
+      $(this).attr("src","images/star1.gif");
+});
+</script>
+<script>
+ $(".yuyuecanguan").click(function(){
+	  var halfPopHeight=$(".pop_t").height();
+	  $(".halfPop").show().css({"height":halfPopHeight});
+	  $(".pop_chuang").show();
+	 });
+ $(".off").click(function(){
+	  $(".pop_chuang").hide();
+	  $(".halfPop").hide()
+	 });
+</script>

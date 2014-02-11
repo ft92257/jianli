@@ -20,6 +20,7 @@ class CaseModel extends BaseModel {
 	 */
 	protected function _after_select(&$resultSet,$options) {
 		foreach ($resultSet as &$value) {
+			//$value['schedule'] = $this->getOptions('schedule', $value['schedule']);
 			$value['style'] = $this->getOptions('style', $value['style']);
 			$value['focus'] = getFileUrl($value['focus'],'200-200');
 			$value['county'] = D('District')->getNameById($value['county']);
@@ -29,6 +30,7 @@ class CaseModel extends BaseModel {
 	}
 	protected function _after_find(&$data,$options) {
 		$data['county'] = D('District')->getNameById($data['county']);
+		$data['focus'] = getFileUrl($data['focus'],'200-200');
 		$data['tags'] = array_diff(explode('|',$data['tags']),array(''));
 		$data['style'] = $this->getOptions('style',$data['style']);
 	}

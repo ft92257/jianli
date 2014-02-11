@@ -42,7 +42,7 @@ class TagAction extends BaseAction {
 	 */
 	public function delete() {
 		$id = getRequest('id');
-
+		
 	}
 	
 }
