@@ -104,7 +104,56 @@ class CaseAction extends BaseAction {
 		
 		$this->display();
 	}
-
+	/*
+	 * 样板工地认证
+	 */
+	public function audit() {
+		$id = getRequest('id');
+		$aCase = D('Case')->getById($id);
+		$aCons = D('Construction')->getById($aCase['consid']);
+		for($i=1;$i<=$aCase['schedule'];$i++){
+			$step = 'step'.$i;
+			//$step = D('Picture')->getPicture(2,$id,$i,4);
+			$aCase[$step]=D('Picture')->getPicture(2,$id,$i,4);
+		}
+		//dump($aCase);die;
+		$this->assign('case',$aCase);
+		$this->assign('cons',$aCons);
+		$this->display();
+	}
+	/*
+	 * 详细质量认证
+	 */
+	public function auditdetail() {
+		$id = getRequest('id');
+		$step = getRequest('step');
+		switch ($step){
+			case 1:
+			  $detail = "水电阶段认证";
+			  break;
+			case 2:
+			  $detail = "泥木阶段认证";
+			 break;
+			case 3:
+			  $detail = "油漆阶段认证";
+			  break;
+			case 4:
+			 $detail = "软装阶段认证";
+			  break;
+			case 5:
+			 $detail = "安装阶段认证";
+			default:
+			  break;
+		}
+		$aPicture = D('Picture')->getPicture(2,$id,$step);
+		$aCase = D('Case')->getById($id);
+		$aCons = D('Construction')->getById($aCase['consid']);
+		$this->assign('cons',$aCons);
+		$this->assign('case',$aCase);
+		$this->assign('pic',$aPicture);
+		$this->assign('detail',$detail);
+		$this->display();
+	}
 }
 
 ?>

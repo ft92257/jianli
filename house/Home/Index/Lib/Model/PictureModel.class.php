@@ -29,8 +29,11 @@ class PictureModel extends BaseModel {
 	public function  getTop($cid,$type,$limit) {
 		return $this->where(array('cid'=>$cid,'type'=>$type))->limit($limit)->select();
 	}
-	public function getPicture($type,$target,$step){
-		$aPicture = $this->where(array('type'=>$type,'target'=>$target,'step'=>$step))->select();
+	public function getPicture($type,$target,$step,$limit){
+		if($limit>0){
+			$aPicture = $this->where(array('type'=>$type,'target'=>$target,'step'=>$step))->limit($limit)->select();
+		}else
+			$aPicture = $this->where(array('type'=>$type,'target'=>$target,'step'=>$step))->select();
 		
 		return $aPicture;
 	}

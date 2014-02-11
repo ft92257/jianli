@@ -29,7 +29,6 @@ class BaseAction extends Action {
 			if (empty($oUser)) {
 				$this->error('调试信息：请检查用户表数据！');
 			}
-			
 			//session有效，赋值oUser
 			$this->oUser = $oUser;
 		}

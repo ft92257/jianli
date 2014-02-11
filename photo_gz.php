@@ -376,10 +376,11 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$c.='</div><div class="main_right">';
 	if($xqid>0)$c.=yjl_newr_xq();
 	$c.=yjl_newr_jlzx();
+	//hds
 	if($xqid>0){
-		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.xqid<>%s and a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
+		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.xqid<>%s and'.$dtype.'a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
 	}else{
-		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.istj=1 and a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
+		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where '.$dtype.' a.istj=1 and a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
 	}
 	$res=mysql_query($q_res) or die('');
 	$r_res=mysql_fetch_assoc($res);
@@ -387,7 +388,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		$c.='<div class="box2 clearfix"><h3>'.($xqid>0?'其他小区的':'推荐').'项目</h3><ul class="list_visit list_proj">';
 		do{
 			$pu='images/jl_d.jpg';
-			$q_reu=sprintf('select * from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
+			$q_reu=sprintf('select * from %s where '.$dtype.'jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
 			$reu=mysql_query($q_reu) or die('');
 			$r_reu=mysql_fetch_assoc($reu);
 			if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
