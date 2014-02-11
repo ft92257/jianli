@@ -13,7 +13,7 @@ echo yjl_html_gz_head($s, 'index');
 <div class="cen_div_cen">
  <div class="banner_img_div"><img src="images/banner_0_img0.png" width="980" height="300" /></div>
  <div class="of_ls_kj_alstyle">
-  <h1 class="titles_h titles_h_tubiao0">公装服务案例 连锁店</h1>
+  <h1 class="titles_h titles_h_tubiao0">工装服务案例 连锁店</h1>
   <div class="anli_dl_list">
    <dl>
     <dt><a href="#"><img src="images/anli_list_img0.png" width="300" height="200" /></a></dt>
@@ -40,7 +40,7 @@ echo yjl_html_gz_head($s, 'index');
   </div>
  </div><!--/of_ls_kj_alstyle-->
  <div class="of_ls_kj_alstyle topmargin">
-  <h1 class="titles_h titles_h_tubiao1">公装服务案例 办公室</h1>
+  <h1 class="titles_h titles_h_tubiao1">工装服务案例 办工室</h1>
   <div class="anli_dl_list">
    <dl>
     <dt><a href="#"><img src="images/anli_list_img3.png" width="300" height="200" /></a></dt>
@@ -67,7 +67,7 @@ echo yjl_html_gz_head($s, 'index');
   </div>
  </div><!--/of_ls_kj_alstyle-->
  <div class="of_ls_kj_alstyle topmargin">
-  <h1 class="titles_h titles_h_tubiao2">公装服务案例 公共空间</h1>
+  <h1 class="titles_h titles_h_tubiao2">工装服务案例 公共空间</h1>
   <div class="anli_dl_list">
    <dl>
     <dt><a href="#"><img src="images/anli_list_img6.png" width="300" height="200" /></a></dt>

@@ -732,7 +732,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><span class="mn_ico ico11"></span></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
@@ -868,7 +868,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><span class="mn_ico ico11"></span></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	$s .='</div>
