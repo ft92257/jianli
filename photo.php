@@ -65,6 +65,8 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$q_res=sprintf('select * from %s where xqid=%s and dtype=2 and jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
 	$res=mysql_query($q_res) or die('');
 	$r_res=mysql_fetch_assoc($res);
+	//hds
+	$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
 	if(mysql_num_rows($res)>0){
 		if($r_res['xqid']!=$xqid){
 			echo '<script type="text/javascript">location.href=\'photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html\';</script>';
@@ -390,6 +392,8 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			$pu='images/jl_d.jpg';
 			$q_reu=sprintf('select * from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
 			$reu=mysql_query($q_reu) or die('');
+			//hds
+			$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
 			$r_reu=mysql_fetch_assoc($reu);
 			if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
 			mysql_free_result($reu);
