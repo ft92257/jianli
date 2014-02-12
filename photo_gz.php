@@ -277,7 +277,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			}
 		}
 	}
-	$c.='<div class="main_left"><h2 class="h2">小区监理项目</h2>';
+	$c.='<div class="main_left"><h2 class="h2">工装监理项目</h2>';
 	if($iscj>0)$c.='<div class="more_bt"><a href="photo_create.php?xqid='.$xqid.'" class="btn bt_nomgray">创建项目</a></div>';
 	$fxc=yjl_fxop($xqid, $fxid, 1, 'var u=\'photo-'.$xqid.'-p1-s\'+$(this).val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(\'#s_jd\').val()+\'.html\';location.href=u;');
 	$js_c.='
