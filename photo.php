@@ -3,7 +3,7 @@ session_start();
 require_once('config.php');
 require_once($yjl_tpath.'setting/settings.php');
 require_once($yjl_tpath.'setting/face.php');
-$dtype = ' dtype = 1 and ';
+$dtype = ' dtype in(0,1) and ';
 if(isset($_GET['rg']) && trim($_GET['rg'])!=''){
 	$a_rg=explode('-', trim($_GET['rg']));
 	if(isset($a_rg[0]))$_GET['xqid']=$a_rg[0];
@@ -63,7 +63,7 @@ $c='';
 $page=(isset($_GET['p']) && intval($_GET['p'])>0)?intval($_GET['p']):1;
 if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$jlid=intval($_GET['id']);
-	$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
+	$q_res=sprintf('select * from %s where xqid=%s and jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
 	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	//hds
@@ -312,7 +312,6 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	if($fgid>0)$sdb[]='fg='.$fgid;
 	$smdb=isset($sdb)?' and '.join(' and ', $sdb):'';
 	$jddb=$jdid>0?' and lid>'.$jdid:'';
-	$dtype = ' dtype in(0,1) AND';
 	if($xqid>0){
 		if($jdid>0){
 			$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
