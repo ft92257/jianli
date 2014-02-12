@@ -1,5 +1,6 @@
 <?php
 session_start();
+setcookie('isgz', 1, 0, '/');
 require_once('config.php');
 require_once($yjl_tpath.'setting/settings.php');
 require_once($yjl_tpath.'setting/face.php');
@@ -390,12 +391,12 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			$pu='images/jl_d.jpg';
 			$q_reu=sprintf('select * from %s where '.$dtype.'jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
 			$reu=mysql_query($q_reu) or die('');
-			$r_reu=mysql_fetch_assoc($reu);
+			$r_reu=mysql_fetch_assoc($reu);echo $r_res['name'];die;
 			if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
 			mysql_free_result($reu);
 			$c.='<li><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html"><img src="images/blank.gif" width="'.$a_wh_jltpt[0].'" height="'.$a_wh_jltpt[1].'" style="background: url('.$pu.') no-repeat center;" /></a>
 						<em class="percent'.$r_res['lid'].'"></em>
-						<p><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html">'.$r_res['name'].'</a></p>
+						<p><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html">'.substr($r_res['name'],0,strlen($r_res['name'])-6).'</a></p>
 						<p>'.$r_res['b_name'].'</p>
 					</li>';
 		}while($r_res=mysql_fetch_assoc($res));
