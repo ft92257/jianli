@@ -9,7 +9,7 @@ require_once('function.php');
 
 setcookie('isgz', 0, 0, '/');
 $_COOKIE['isgz'] = 0;
-$dtype = ' dtype = 1 AND';
+$dtype = ' dtype in(0,1) AND';
 $js_c='';
 if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb['qx']==0 && isset($_GET['ws']) && $_GET['ws']==1)) || $udb['isnc']==0)){
 	$c_l1id=(isset($_GET['s']) && intval($_GET['s'])>0)?intval($_GET['s']):$d_l1id;
