@@ -3,6 +3,7 @@ session_start();
 require_once('config.php');
 require_once($yjl_tpath.'setting/settings.php');
 require_once($yjl_tpath.'setting/face.php');
+$dtype = ' dtype = 1 and ';
 if(isset($_GET['rg']) && trim($_GET['rg'])!=''){
 	$a_rg=explode('-', trim($_GET['rg']));
 	if(isset($a_rg[0]))$_GET['xqid']=$a_rg[0];
@@ -50,7 +51,7 @@ if($udb['uid']>0){
 if($xqid>0){
 	if($user_id>0)yjl_vlog($xqid);
 	$uSQL=sprintf('update %s set c_fw=c_fw+1 where xqid=%s', $yjl_dbprefix.'xq', $xqid);
-	$result=mysql_query($uSQL) or die('');
+	$result=mysql_query($uSQL) or die();
 	$page_title=$xqdb['name'].' 监理项目';
 	$c_l1id=$xqdb['l1id'];
 }else{
@@ -62,8 +63,8 @@ $c='';
 $page=(isset($_GET['p']) && intval($_GET['p'])>0)?intval($_GET['p']):1;
 if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$jlid=intval($_GET['id']);
-	$q_res=sprintf('select * from %s where xqid=%s and dtype=2 and jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
-	$res=mysql_query($q_res) or die('');
+	$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
+	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	//hds
 	$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
@@ -74,21 +75,21 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		if($user_id>0){
 			$uSQL=sprintf('update %s set c_ck=c_ck+1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
-			$result=mysql_query($uSQL) or die('');
+			$result=mysql_query($uSQL) or die();
 		}
 		$pu='images/jl_d.jpg';
 		$q_reu=sprintf('select t_url from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
-		$reu=mysql_query($q_reu) or die('');
+		$reu=mysql_query($q_reu) or die();
 		$r_reu=mysql_fetch_assoc($reu);
 		if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
 		mysql_free_result($reu);
 		$q_reu=sprintf('select t_url from %s where jlid=%s and is_del=0', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
-		$reu=mysql_query($q_reu) or die('');
+		$reu=mysql_query($q_reu) or die();
 		$c_reu=mysql_num_rows($reu);
 		if($c_reu!=$r_res['c_zp']){
 			$r_res['c_zp']=$c_reu;
 			$uSQL=sprintf('update %s set c_zp=%s where jlid=%s', $yjl_dbprefix.'jl', $c_reu, $jlid);
-			$result=mysql_query($uSQL) or die('');
+			$result=mysql_query($uSQL) or die();
 		}
 		mysql_free_result($reu);
 		if($user_id>0 && $user_id!=$r_res['hzid'])yjl_vlog($r_res['hzid'], 1);
@@ -98,7 +99,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		$c.='<div class="main_left">';
 		if($r_res['fxid']>0){
 			$q_rep=sprintf('select name, content from %s where fxid=%s limit 1', $yjl_dbprefix.'xq_fx', $r_res['fxid']);
-			$rep=mysql_query($q_rep) or die('');
+			$rep=mysql_query($q_rep) or die();
 			$r_rep=mysql_fetch_assoc($rep);
 			if(mysql_num_rows($rep)>0)$a_jlda[]='户型：<span title="'.$r_rep['content'].'">'.$r_rep['name'].'</span>';
 			mysql_free_result($rep);
@@ -108,7 +109,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		//if(isset($a_mj[$r_res['mj']]))$a_jlda[]='面积：'.$a_mj[$r_res['mj']];
 		if($r_res['hzqr']==0 || $r_res['jlqr']==0)require_once('photo_inc_0.php');
 		$q_rep=sprintf('select app_key, app_secret from %s where id=%s limit 1', $dbprefix.'app', $r_res['app_id']);
-		$rep=mysql_query($q_rep) or die('');
+		$rep=mysql_query($q_rep) or die();
 		$r_rep=mysql_fetch_assoc($rep);
 		if(mysql_num_rows($rep)>0){
 			$app_k=$r_rep['app_key'];
@@ -116,7 +117,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}else{
 			$app_a=yjl_app('照片式监理 '.$r_res['name'], $jlid, $yjl_url.'photo-'.$xqid.'-'.$jlid.'.html');
 			$uSQL=sprintf('update %s set app_id=%s where jlid=%s', $yjl_dbprefix.'jl', $app_a[0], $jlid);
-			$result=mysql_query($uSQL) or die('');
+			$result=mysql_query($uSQL) or die();
 			$app_k=$app_a[1];
 			$app_s=$app_a[2];
 		}
@@ -147,16 +148,16 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 				<div class="share clearfix"><div style="float: left;" onmouseover="$(\'#fx_id\').val(\'0\');">'.yjl_fxdiv().'</div>';
 		if($user_id>0 && $user_id!=$r_res['hzid'] && $user_id!=$r_res['uid']){
 			$q_rep=sprintf('select uid from %s where jlid=%s and uid=%s', $yjl_dbprefix.'jl_gz', $jlid, $user_id);
-			$rep=mysql_query($q_rep) or die('');
+			$rep=mysql_query($q_rep) or die();
 			if(mysql_num_rows($rep)==0){
 				if(isset($_GET['gz']) && $_GET['gz']==1){
 					$iSQL=sprintf('insert into %s (uid, jlid, datetime) values (%s, %s, %s)', $yjl_dbprefix.'jl_gz',
 						$user_id,
 						$jlid,
 						time());
-					$result=mysql_query($iSQL) or die('');
+					$result=mysql_query($iSQL) or die();
 					$uSQL=sprintf('update %s set c_gz=c_gz+1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
-					$result=mysql_query($uSQL) or die('');
+					$result=mysql_query($uSQL) or die();
 					if($udb['tsgz']==0){
 						yjl_follow($user_id, $r_res['hzid']);
 						yjl_follow($user_id, $r_res['uid']);
@@ -198,7 +199,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 							time(),
 							$jlqr,
 							$r_res['jlid']);
-						$result=mysql_query($uSQL) or die('');
+						$result=mysql_query($uSQL) or die();
 						yjl_addlog('[uid]的监理项目选择监理师[luid]：<a href="photo-'.$xqid.'-'.$jlid.'.html">'.$r_res['name'].'</a>', md5('jlxzjls|'.$jluid.'|'.$r_res['hzid'].'|'.$jlid), 0, $jluid, $r_res['hzid']);
 						if($jlqr==0)echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">alert(\'请等待监理师确认。\');</script>';
 					}
@@ -218,7 +219,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			if($r_main['d_jlid']!=$jlid){
 				if(isset($_GET['mr']) && $_GET['mr']==1){
 					$uSQL=sprintf('update %s set d_jlid=%s, d_jlxqid=%s', $yjl_dbprefix.'main', $jlid, $xqid);
-					$result=mysql_query($uSQL) or die('');
+					$result=mysql_query($uSQL) or die();
 					echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
 					exit();
 				}
@@ -227,7 +228,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			if($r_res['istj']==0){
 				if(isset($_GET['tj']) && $_GET['tj']==1){
 					$uSQL=sprintf('update %s set istj=1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
-					$result=mysql_query($uSQL) or die('');
+					$result=mysql_query($uSQL) or die();
 					echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
 					exit();
 				}
@@ -242,7 +243,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-video.html"><span class="ico40"></span><br />监理视频</a>
 			</div>'.yjl_newr_jltj(1);
 		$q_rep=sprintf('select b.uid, b.face, c.nc from %s as a, %s as b, %s as c where a.uid=b.uid and a.vuid=%s and a.tid=1 and b.uid=c.uid and c.qx<10 order by a.datetime desc limit 14', $yjl_dbprefix.'vlog', $dbprefix.'members', $yjl_dbprefix.'members', $r_res['hzid']);
-		$rep=mysql_query($q_rep) or die('');
+		$rep=mysql_query($q_rep) or die();
 		$r_rep=mysql_fetch_assoc($rep);
 		if(mysql_num_rows($rep)>0){
 			$c.='<div class="box2">
@@ -272,8 +273,8 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			$iscj=1;
 		}elseif($udb['qx']==0){
 			if($udb['xqid']==$xqid){
-				$q_res=sprintf('select hzid from %s where hzid=%s and dtype=2 and isjs=0 limit 1', $yjl_dbprefix.'jl', $udb['uid']);
-				$res=mysql_query($q_res) or die('');
+				$q_res=sprintf('select hzid from %s where hzid=%s  and isjs=0 limit 1', $yjl_dbprefix.'jl', $udb['uid']);
+				$res=mysql_query($q_res) or die();
 				if(mysql_num_rows($res)==0)$iscj=1;
 				mysql_free_result($res);
 			}
@@ -315,7 +316,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	if($xqid>0){
 		if($jdid>0){
 			$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
-			$res=mysql_query($q_res) or die('');
+			$res=mysql_query($q_res) or die();
 			$r_res=mysql_fetch_assoc($res);
 			if(mysql_num_rows($res)>0){
 				do{
@@ -327,7 +328,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			mysql_free_result($res);
 		}
 		$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
-		$res=mysql_query($q_res) or die('');
+		$res=mysql_query($q_res) or die();
 		$r_res=mysql_fetch_assoc($res);
 		if(mysql_num_rows($res)>0){
 			do{
@@ -340,7 +341,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	}
 	if($jdid>0){
 		$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
-		$res=mysql_query($q_res) or die('');
+		$res=mysql_query($q_res) or die();
 		$r_res=mysql_fetch_assoc($res);
 		if(mysql_num_rows($res)>0){
 			do{
@@ -351,8 +352,8 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		mysql_free_result($res);
 	}
-	$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
-	$res=mysql_query($q_res) or die('');
+	$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.'  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){
 		do{
@@ -384,14 +385,14 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	}else{
 		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.istj=1 and '.$dtype.' a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
 	}
-	$res=mysql_query($q_res) or die('');
+	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){
 		$c.='<div class="box2 clearfix"><h3>'.($xqid>0?'其他小区的':'推荐').'项目</h3><ul class="list_visit list_proj">';
 		do{
 			$pu='images/jl_d.jpg';
 			$q_reu=sprintf('select * from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
-			$reu=mysql_query($q_reu) or die('');
+			$reu=mysql_query($q_reu) or die('yy');
 			//hds
 			$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
 			$r_reu=mysql_fetch_assoc($reu);
