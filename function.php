@@ -2564,6 +2564,7 @@ function yjl_jllist($r_res){
 	$r_reu=mysql_fetch_assoc($reu);
 	if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
 	mysql_free_result($reu);
+	$r_res['name']=preg_replace('/的家$/', '', $r_res['name']);
 	$c='<li>
 					<div class="flt_lt">
 						<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html"><img src="images/blank.gif" width="'.$a_wh_jltpt[0].'" height="'.$a_wh_jltpt[1].'" style="background: url('.$pu.') no-repeat center;" /></a>
