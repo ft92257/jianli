@@ -16,21 +16,21 @@ echo yjl_html_gz_head($s, 'index');
   <h1 class="titles_h titles_h_tubiao0">工装服务案例 办公室</h1>
   <div class="anli_dl_list">
    <dl>
-    <dt><a href="http://yijianli.com/photo-5794-195.html"><img src="images/办公室上投摩根.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5794-195.html"><img src="images/bgsstmg.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-195.html">上投摩根 办公室</a>
       <p></p>
     </dd>
    </dl>
    <dl>
-    <dt><a href="http://yijianli.com/photo-5794-196.html"><img src="images/办公室huaaoxintuo.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5794-196.html"><img src="images/huaaoxintuo.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-196.html">华澳国际 办公室</a>
      <p></p>
     </dd>
    </dl>
    <dl>
-    <dt><a href="http://yijianli.com/photo-5794-189.html"><img src="images/办公室baoyiwei.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5794-189.html"><img src="images/baoyiwei.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-189.html">宝宜威 办公楼 </a>
      <p></p>
@@ -43,14 +43,14 @@ echo yjl_html_gz_head($s, 'index');
   <h1 class="titles_h titles_h_tubiao1">工装服务案例 实验室</h1>
   <div class="anli_dl_list">
    <dl>
-    <dt><a href="http://yijianli.com/photo-5811-190.html"><img src="images/实验室meiji.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5811-190.html"><img src="images/meiji.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5811-190.html">上海美吉生物 实验室  </a>
      <p></p>
     </dd>
    </dl>
    <dl>
-    <dt><a href="http://yijianli.com/photo-5811-197.html"><img src="images/实验室kelaixun.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5811-197.html"><img src="images/kelaixun.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5811-197.html">上海柯莱逊生物 实验室</a>
      <p></p>
