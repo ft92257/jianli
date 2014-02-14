@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /
+RewriteBase /jianli
 
 RewriteRule ^photo-(.+)\.html$ photo.php?rg=$1
 RewriteRule ^photo_gz-(.+)\.html$ photo_gz.php?rg=$1
