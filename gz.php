@@ -71,21 +71,21 @@ echo yjl_html_gz_head($s, 'index');
   <h1 class="titles_h titles_h_tubiao2">工装服务案例 连锁店</h1>
   <div class="anli_dl_list">
    <dl>
-    <dt><a href="http://yijianli.com/photo-5803-199.html"><img src="images/连锁店zanshixiaoniao.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5803-199.html"><img src="images/zanshixiaoniao.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5803-199.html">钻石小鸟 连锁品牌店</a>
      <p></p>
     </dd>
    </dl>
    <dl>
-    <dt><a href="http://yijianli.com/photo-5812-198.html"><img src="images/连锁店21shiji.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5812-198.html"><img src="images/21shiji.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5812-198.html">21世纪 连锁品牌店</a>
      <p></p>
     </dd>
    </dl>
    <dl>
-    <dt><a href="http://yijianli.com/photo-5803-200.html"><img src="images/连锁店disushangmao.jpg" width="300" height="200" /></a></dt>
+    <dt><a href="http://yijianli.com/photo-5803-200.html"><img src="images/disushangmao.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5803-200.html">某国际知名服装 连锁品牌店</a>
      <p></p>
