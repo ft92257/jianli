@@ -373,8 +373,8 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		mysql_free_result($res);
 	}
 	$_COOKIE['isgz']?$q_res=sprintf('select * from %s where   dtype=2 and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $smdb, $jddb):$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
-echo $smdb;
-	echo $q_res;
+//echo $smdb;
+//	echo $q_res;
 	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){
