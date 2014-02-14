@@ -9,7 +9,7 @@ require_once('function.php');
 
 setcookie('isgz', 0, 0, '/');
 $_COOKIE['isgz'] = 0;
-
+$dtype = ' dtype in(0,1) AND';
 $js_c='';
 if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb['qx']==0 && isset($_GET['ws']) && $_GET['ws']==1)) || $udb['isnc']==0)){
 	$c_l1id=(isset($_GET['s']) && intval($_GET['s'])>0)?intval($_GET['s']):$d_l1id;
@@ -78,7 +78,7 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 	$jlc='';
 	$jlu='';
 	if($r_main['d_jlid']>0)$jlu='photo-'.$r_main['d_jlxqid'].'-'.$r_main['d_jlid'].'.html';
-	$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.hzqr=1 and a.lid>0 and a.c_zp>4 and a.xqid=b.xqid order by a.lasttime desc limit 6', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq');
+	$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.hzqr=1 and '.$dtype.' a.lid>0 and a.c_zp>4 and a.xqid=b.xqid order by a.lasttime desc limit 6', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq');
 	$res=mysql_query($q_res) or die('');
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){

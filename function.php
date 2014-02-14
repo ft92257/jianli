@@ -197,7 +197,7 @@ $a_tsgz=array(
 $a_utv=array(2=>'监理', 1=>'业主', 0=>'友邻');
 $a_gz=array(1=>'施工队长', '油漆工', '电工', '木工', '泥瓦工');
 $a_cp=array(1=>'地板', '油漆', '饰品');
-$a_lc=array(1=>'隐蔽', '泥木', '油漆', '安装', '竣工', '软装');
+!$COOKIE['isgz']?$a_lc=array(1=>'隐蔽', '泥木', '油漆', '安装', '竣工', '软装'):$a_lc=array(4=>'安装','竣工');
 $a_tlc=array(7=>'验房', '文件储存', '视频监理');
 $a_clys=array(1=>'木制品', '油漆', '墙地砖', '电器', '其他');
 $a_file=array(1=>'效果图', '预算书', '合同', '施工图纸');
@@ -732,7 +732,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><span class="mn_ico ico11"></span></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
@@ -868,7 +868,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><span class="mn_ico ico11"></span></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	$s .='</div>
@@ -1837,10 +1837,14 @@ function yjl_fxop($xqid, $fxid=0, $t=0, $js=''){
 		mysql_free_result($res);
 	}
 	if(isset($a)){
+		if(!$_COOKIE['isgz']){
 		$i=1;
 		$c='<select name="fxid"'.($js!=''?' onchange="'.$js.'"':'').'>'.((isset($a[$fxid]) && $t==0)?'':'<option value="0">选择户型</option>');
 		foreach($a as $v)$c.='<option value="'.$v['fxid'].'"'.($fxid==$v['fxid']?' selected="selected"':'').'>'.$v['name'].($v['content']!=''?' ('.$v['content'].')':'').'</option>';
 		$c.='</select>';
+		}else{
+			$i=1;$c="";
+		}
 	}else{
 		$i=0;
 		$c='<input type="hidden" name="fxid" value="'.$fxid.'"/>';
@@ -2564,6 +2568,9 @@ function yjl_jllist($r_res){
 	$r_reu=mysql_fetch_assoc($reu);
 	if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
 	mysql_free_result($reu);
+	if ($_COOKIE['isgz']) {
+		$r_res['name']=preg_replace('/的家$/', '', $r_res['name']);
+	}
 	$c='<li>
 					<div class="flt_lt">
 						<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html"><img src="images/blank.gif" width="'.$a_wh_jltpt[0].'" height="'.$a_wh_jltpt[1].'" style="background: url('.$pu.') no-repeat center;" /></a>

@@ -1,702 +1,414 @@
-.clear{clear:both;}
-.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
-.clearfix{display:inline-block;}
-* html .clearfix{height:1%;}
-.clearfix{display:block;}
-html,body{ height:100%}
-body{
-	font-size:12px;font-family:"宋体";
-	color:#1F1813;
-	background-color:#FAFAFA;
+<?php
+session_start();
+require_once('config.php');
+require_once($yjl_tpath.'setting/settings.php');
+require_once($yjl_tpath.'setting/face.php');
+$dtype = ' dtype = 1 and';
+if(isset($_GET['rg']) && trim($_GET['rg'])!=''){
+	$a_rg=explode('-', trim($_GET['rg']));
+	if(isset($a_rg[0]))$_GET['xqid']=$a_rg[0];
+	if(isset($a_rg[1])){
+		if(substr($a_rg[1], 0, 1)=='p'){
+			$_GET['p']=substr($a_rg[1], 1);
+		}else{
+			$_GET['id']=$a_rg[1];
+		}
+	}
+	if(isset($a_rg[2])){
+		if(substr($a_rg[2], 0, 1)=='s'){
+			$s_rg=explode('_', substr($a_rg[2], 1));
+			if(isset($s_rg[0]))$_GET['fxid']=$s_rg[0];
+			if(isset($s_rg[1]))$_GET['s_ys']=$s_rg[1];
+			if(isset($s_rg[2]))$_GET['s_fg']=$s_rg[2];
+			if(isset($s_rg[3]))$_GET['s_jd']=$s_rg[3];
+		}elseif($a_rg[2]=='y' || $a_rg[2]=='j'){
+			$_GET['u']=$a_rg[2];
+		}elseif($a_rg[2]=='upload' || $a_rg[2]=='doc' || $a_rg[2]=='video' || $a_rg[2]=='home'){
+			$_GET['t']=$a_rg[2];
+		}else{
+			$_GET['jpid']=$a_rg[2];
+		}
+	}
+	if(isset($a_rg[3])){
+		if($a_rg[3]=='upload'){
+			$_GET['m']=$a_rg[3];
+		}elseif(substr($a_rg[3], 0, 1)=='p'){
+			$_GET['p']=substr($a_rg[3], 1);
+		}else{
+			$_GET['clid']=$a_rg[3];
+		}
+	}
+	if(isset($a_rg[4]) && substr($a_rg[4], 0, 1)=='p')$_GET['p']=substr($a_rg[4], 1);
 }
-*{padding:0;margin:0;}
-a{outline: none;text-decoration:none;color:#2097DD;}
-a img{border:0;}
-a:active {star:expression(this.onFocus=this.blur());}
-:focus {outline:0;}
-ul,li{
-	list-style-type:none;
-	float:left;
+require_once('function.php');
+$f='photo.php';
+if($udb['uid']>0){
+	if(($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6)) || $udb['isnc']==0){
+		echo '<script type="text/javascript">location.href=\'./\';</script>';
+		exit();
+	}
 }
+if($xqid>0){
+	if($user_id>0)yjl_vlog($xqid);
+	$uSQL=sprintf('update %s set c_fw=c_fw+1 where xqid=%s', $yjl_dbprefix.'xq', $xqid);
+	$result=mysql_query($uSQL) or die('');
+	$page_title=$xqdb['name'].' 监理项目';
+	$c_l1id=$xqdb['l1id'];
+}else{
+	$page_title='监理项目';
+}
+$c_lc=count($a_lc);
+$js_c='';
+$c='';
+$page=(isset($_GET['p']) && intval($_GET['p'])>0)?intval($_GET['p']):1;
+if(isset($_GET['id']) && intval($_GET['id'])>0){
+	$jlid=intval($_GET['id']);
+	$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' jlid=%s limit 1', $yjl_dbprefix.'jl', $xqid, $jlid);
+	$res=mysql_query($q_res) or die('');
+	$r_res=mysql_fetch_assoc($res);
+	//hds
+	$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
+	if(mysql_num_rows($res)>0){
+		if($r_res['xqid']!=$xqid){
+			echo '<script type="text/javascript">location.href=\'photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html\';</script>';
+			exit();
+		}
+		if($user_id>0){
+			$uSQL=sprintf('update %s set c_ck=c_ck+1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
+			$result=mysql_query($uSQL) or die('');
+		}
+		$pu='images/jl_d.jpg';
+		$q_reu=sprintf('select t_url from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
+		$reu=mysql_query($q_reu) or die('');
+		$r_reu=mysql_fetch_assoc($reu);
+		if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
+		mysql_free_result($reu);
+		$q_reu=sprintf('select t_url from %s where jlid=%s and is_del=0', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
+		$reu=mysql_query($q_reu) or die('');
+		$c_reu=mysql_num_rows($reu);
+		if($c_reu!=$r_res['c_zp']){
+			$r_res['c_zp']=$c_reu;
+			$uSQL=sprintf('update %s set c_zp=%s where jlid=%s', $yjl_dbprefix.'jl', $c_reu, $jlid);
+			$result=mysql_query($uSQL) or die('');
+		}
+		mysql_free_result($reu);
+		if($user_id>0 && $user_id!=$r_res['hzid'])yjl_vlog($r_res['hzid'], 1);
+		if(!isset($uadb[$r_res['hzid']]))$uadb[$r_res['hzid']]=yjl_udb($r_res['hzid']);
+		if($r_res['uid']>0 && !isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
+		$page_title.=' '.$r_res['name'];
+		$c.='<div class="main_left">';
+		if($r_res['fxid']>0){
+			$q_rep=sprintf('select name, content from %s where fxid=%s limit 1', $yjl_dbprefix.'xq_fx', $r_res['fxid']);
+			$rep=mysql_query($q_rep) or die('');
+			$r_rep=mysql_fetch_assoc($rep);
+			if(mysql_num_rows($rep)>0)$a_jlda[]='户型：<span title="'.$r_rep['content'].'">'.$r_rep['name'].'</span>';
+			mysql_free_result($rep);
+		}
+		if(isset($a_fg[$r_res['fg']]))$a_jlda[]='风格：'.$a_fg[$r_res['fg']];
+		if(isset($a_ys[$r_res['ys']]))$a_jlda[]='预算：'.$a_ys[$r_res['ys']];
+		//if(isset($a_mj[$r_res['mj']]))$a_jlda[]='面积：'.$a_mj[$r_res['mj']];
+		if($r_res['hzqr']==0 || $r_res['jlqr']==0)require_once('photo_inc_0.php');
+		$q_rep=sprintf('select app_key, app_secret from %s where id=%s limit 1', $dbprefix.'app', $r_res['app_id']);
+		$rep=mysql_query($q_rep) or die('');
+		$r_rep=mysql_fetch_assoc($rep);
+		if(mysql_num_rows($rep)>0){
+			$app_k=$r_rep['app_key'];
+			$app_s=$r_rep['app_secret'];
+		}else{
+			$app_a=yjl_app('照片式监理 '.$r_res['name'], $jlid, $yjl_url.'photo-'.$xqid.'-'.$jlid.'.html');
+			$uSQL=sprintf('update %s set app_id=%s where jlid=%s', $yjl_dbprefix.'jl', $app_a[0], $jlid);
+			$result=mysql_query($uSQL) or die('');
+			$app_k=$app_a[1];
+			$app_s=$app_a[2];
+		}
+		mysql_free_result($rep);
+		$issc=($user_id>0 && ($user_id==$r_res['uid'] || $user_id==$r_res['hzid']))?1:0;
+		if(isset($_GET['t']) && $_GET['t']=='upload' && $issc>0){
+			require_once('photo_inc_upload.php');
+		}elseif(isset($_GET['t']) && $_GET['t']=='video'){
+			require_once('photo_inc_video.php');
+		}elseif(isset($_GET['t']) && $_GET['t']=='doc'){
+			require_once('photo_inc_doc.php');
+		}elseif(isset($_GET['t']) && $_GET['t']=='home'){
+			require_once('photo_inc_home.php');
+		}else{
+			require_once('photo_inc_photo.php');
+		}
+		
+		$c.='</div>
+		<div class="main_right">
+			<div class="box2 clearfix">
+				<h2>'.$r_res['name'].'</h2>
+				<div class="pic_text02 clearfix">
+					<img src="images/blank.gif" width="'.$a_wh_jltpt[0].'" height="'.$a_wh_jltpt[1].'" style="background: url('.$pu.') no-repeat center;" />
+					<p>';
+		if(isset($a_jlda))$c.=join('<br/>', $a_jlda);
+		$c.='</p>
+				</div>
+				<div class="share clearfix"><div style="float: left;" onmouseover="$(\'#fx_id\').val(\'0\');">'.yjl_fxdiv().'</div>';
+		if($user_id>0 && $user_id!=$r_res['hzid'] && $user_id!=$r_res['uid']){
+			$q_rep=sprintf('select uid from %s where jlid=%s and uid=%s', $yjl_dbprefix.'jl_gz', $jlid, $user_id);
+			$rep=mysql_query($q_rep) or die('');
+			if(mysql_num_rows($rep)==0){
+				if(isset($_GET['gz']) && $_GET['gz']==1){
+					$iSQL=sprintf('insert into %s (uid, jlid, datetime) values (%s, %s, %s)', $yjl_dbprefix.'jl_gz',
+						$user_id,
+						$jlid,
+						time());
+					$result=mysql_query($iSQL) or die('');
+					$uSQL=sprintf('update %s set c_gz=c_gz+1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
+					$result=mysql_query($uSQL) or die('');
+					if($udb['tsgz']==0){
+						yjl_follow($user_id, $r_res['hzid']);
+						yjl_follow($user_id, $r_res['uid']);
+					}
+					echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
+					exit();
+				}
+				$c.='<div class="flt_rt"><a href="'.$f.'?xqid='.$xqid.'&amp;id='.$jlid.'&amp;gz=1" class="btn bt_smblue">关 注</a></div>';
+			}
+			mysql_free_result($rep);
+		}
+		$c.='</div>
+				<ul class="perfocus">
+					<li><a href="user-'.$r_res['hzid'].'.html"><img src="'.yjl_face($r_res['hzid'], $uadb[$r_res['hzid']]['face']).'" /></a>
+						业主<br /><a href="user-'.$r_res['hzid'].'.html">'.$uadb[$r_res['hzid']]['nc'].'</a>
+					</li>';
+		if($r_res['uid']>0){
+			$c.='<li><a href="user-'.$r_res['uid'].'.html"><img src="'.yjl_face($r_res['uid'], $uadb[$r_res['uid']]['face']).'"/></a>
+						监理师<br /><a href="user-'.$r_res['uid'].'.html">'.$uadb[$r_res['uid']]['nc'].'</a>
+					</li>';
+		}elseif($user_id>0 && !isset($htmlfjc) && ($user_id==$r_res['hzid'] || $udb['qx']==10 || $udb['isxg']>0)){
+			if(isset($_POST['is_xzjl']) && $_POST['is_xzjl']==1){
+				if(isset($_POST['jluid']) && intval($_POST['jluid'])>0){
+					$jluid=intval($_POST['jluid']);
+					if(!isset($uadb[$jluid]))$uadb[$jluid]=yjl_udb($jluid);
+					if($uadb[$jluid]['uid']>0 && $uadb[$jluid]['qx']==5 && $uadb[$jluid]['iswc']==1){
+						if($udb['qx']==10 || $udb['isxg']>0){
+							$jlqr=1;
+						}else{
+							if($user_id!=$jluid){
+								yjl_follow($jluid, $user_id);
+								$jlqr=0;
+							}else{
+								$jlqr=1;
+							}
+						}
+						$uSQL=sprintf('update %s set uid=%s, lasttime=%s, jlqr=%s where jlid=%s', $yjl_dbprefix.'jl',
+							$jluid,
+							time(),
+							$jlqr,
+							$r_res['jlid']);
+						$result=mysql_query($uSQL) or die('');
+						yjl_addlog('[uid]的监理项目选择监理师[luid]：<a href="photo-'.$xqid.'-'.$jlid.'.html">'.$r_res['name'].'</a>', md5('jlxzjls|'.$jluid.'|'.$r_res['hzid'].'|'.$jlid), 0, $jluid, $r_res['hzid']);
+						if($jlqr==0)echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">alert(\'请等待监理师确认。\');</script>';
+					}
+				}
+				echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
+				exit();
+			}
+			$htmlfjc='<div class="overlay" id="overlay_newct">
+	<h3>设置监理师</h3>
+	<div class="overlay_cont" style="height: 300px;overflow: auto;"><input class="codetext" id="q"/> <a href="#" onclick="var c=$.trim($(\'#q\').val());if(c!=\'\')$(\'#jl_jlsdiv\').load(\'j/jlsearch.php\', {q:c});return false;">搜索</a> <a href="#" onclick="$(\'#jl_jlsdiv\').load(\'j/jlsearch.php\');return false;">显示全部监理师</a><form method="post" action=""><div style="padding: 5px;height: 230px;overflow: auto;" id="jl_jlsdiv"></div><input type="submit" value="完 成" class="submit sub_reg" /><input type="hidden" name="is_xzjl" value="1"/></form></div></div>';
+			$c.='<li><img src="images/no_50.gif"/>
+						监理师<br /><a href="#" rel="#overlay_newct">选择监理师</a>
+					</li>';
+		}
+		$c.='</ul><br class="clear" />';
+		if($user_id>0 && ($udb['isxg']>0 || $udb['qx']==10)){
+			if($r_main['d_jlid']!=$jlid){
+				if(isset($_GET['mr']) && $_GET['mr']==1){
+					$uSQL=sprintf('update %s set d_jlid=%s, d_jlxqid=%s', $yjl_dbprefix.'main', $jlid, $xqid);
+					$result=mysql_query($uSQL) or die('');
+					echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
+					exit();
+				}
+				$c.='<a href="'.$f.'?xqid='.$r_res['xqid'].'&amp;id='.$r_res['jlid'].'&amp;mr=1" style="margin-left: 20px;">设置为首页默认项目</a><br />';
+			}
+			if($r_res['istj']==0){
+				if(isset($_GET['tj']) && $_GET['tj']==1){
+					$uSQL=sprintf('update %s set istj=1 where jlid=%s', $yjl_dbprefix.'jl', $jlid);
+					$result=mysql_query($uSQL) or die('');
+					echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'-'.$jlid.'.html\';</script>';
+					exit();
+				}
+				$c.='<a href="'.$f.'?xqid='.$r_res['xqid'].'&amp;id='.$r_res['jlid'].'&amp;tj=1" style="margin-left: 20px;">设置为推荐项目</a><br />';
+			}
+		}
+		$c.='<br />
+			</div>
+			<div class="per_mat">
+				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-home.html"><span class="ico38"></span><br />验房</a>
+				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-doc.html"><span class="ico39"></span><br />文档资料</a>
+				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-video.html"><span class="ico40"></span><br />监理视频</a>
+			</div>'.yjl_newr_jltj(1);
+		$q_rep=sprintf('select b.uid, b.face, c.nc from %s as a, %s as b, %s as c where a.uid=b.uid and a.vuid=%s and a.tid=1 and b.uid=c.uid and c.qx<10 order by a.datetime desc limit 14', $yjl_dbprefix.'vlog', $dbprefix.'members', $yjl_dbprefix.'members', $r_res['hzid']);
+		$rep=mysql_query($q_rep) or die('');
+		$r_rep=mysql_fetch_assoc($rep);
+		if(mysql_num_rows($rep)>0){
+			$c.='<div class="box2">
+				<h3>TA们刚刚来过</h3>
+				<ul class="friend clearfix">';
+			do{
+				$c.='<li><a href="user-'.$r_rep['uid'].'.html" title="'.$r_rep['nc'].'"><img src="'.yjl_face($r_rep['uid'], $r_rep['face']).'" /><br />'.yjl_substrs($r_rep['nc'], 4).'</a></li>';
+			}while($r_rep=mysql_fetch_assoc($rep));
+			$c.='</ul></div>';
+		}
+		mysql_free_result($rep);
+		$c.='</div><input type="hidden" id="jlid" value="'.$r_res['jlid'].'"/>';
+	}else{
+		echo '<script type="text/javascript">location.href=\'photo-'.$xqid.'.html\';</script>';
+		exit();
+	}
+	mysql_free_result($res);
+}else{
+	$fxid=(isset($_GET['fxid']) && intval($_GET['fxid'])>0)?intval($_GET['fxid']):0;
+	$ysid=(isset($_GET['s_ys']) && isset($a_ys[$_GET['s_ys']]))?$_GET['s_ys']:0;
+	$fgid=(isset($_GET['s_fg']) && isset($a_fg[$_GET['s_fg']]))?$_GET['s_fg']:0;
+	$jdid=(isset($_GET['s_jd']) && isset($a_lc[$_GET['s_jd']]))?$_GET['s_jd']:0;
 
-.title6{
-	color:#1f1313;
-	font-size:16px;
-	font-family:微软雅黑;
-	font-weight:normal;
-}
-.halfPop{
-	background-color:#000;
-	display:none;
-	position:absolute;
-	left:0;
-	top:0;
-	width:100%;
-	z-index:100;
-	opacity:0.8;
-	filter:alpha(opacity=80);       /* IE */
-   -moz-opacity:0.8;              /* 老版Mozilla */
-   -khtml-opacity:0.8;              /* 老版Safari */
-}
-.pop_chuang{
-	position:absolute;
-	left:40%;
-	top:35%;
-	display:none;
-	z-index:101;
-}
-.center {
-	width:960px;
-	margin:0px auto;
-}
-.container{
-	width:100%;
-	float:left;
-}
-.leftpart{
-	width:700px;
-	float:left;
-}
-.rightpart{
-	width:240px;
-	float:left;
-	margin-left:20px;
-	background-color:#FFF;
-}
-
-.pbar{ height:35px; background:url(../images/Construction/top1.png) repeat-x; color:#FFF;}
-.top{ width:960px; margin:0 auto; color:#999; font-family:"宋体"}
-.top a{ color:#999;}
-.top ul {margin-top:6px;padding:0;}
-.top ul li {float:left; margin-right:30px; list-style:none; height:24px; line-height:24px; }
-.top ul li span { margin-right:5px;}
-.top ul li .hmiddle{ vertical-align:middle}
-.orange a{ color:#FF6B24;}
-.login { margin-top:11px;}
-.phead { height:95px; background:url(../images/Construction/head_barbg.png) repeat-x; box-shadow:0px 2px 2px #D7D1CE}
-.head { width:960px; margin:0 auto; height:95px; }
-.logo { background:url(../images/Construction/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
-.menu a{color:#FF6B24; font-weight:bold;width:73px; height:70px; float:left;text-align:center; padding:25px 7px 0;}
-.menu a img{ border:0 none}
-.menu span{width:73px; display:inline-block; padding-bottom:5px}
-.topnav{
-	height:22px;
-	width:100%;
-	float:left;
-	padding:19px 0px;
-}
-.topnav ul li{
-	margin-left:25px;
-}
-.topnav ul .current img{
-	float:left;
-}
-.topnav ul li a{
-	color:#333;
-}
-.topnav ul li span{
-	height:22px;
-	line-height:22px;
-	display:block;
-	float:left;
-}
-.topnav ul .current span{
-	background:#ff6b24;
-	color:#fff;
-}
-
-.topline{
-	background:#252525;
-	height:3px;
-	width:100%;
-	float:left;
-}
-
-.search_area{
-	width:100%;
-	float:left;
-	padding:22px 0px;
-}
-.search_area span{
-	float:left;
-	line-height:20px;
-	height:20px;
-	display:block;
-	color:#333;
-}
-.search_area a{
-	margin-left:20px;
-	color:#333;
-	line-height:20px;
-	height:20px;
-	display:block;
-	float:left;
-	
-}
-.search_area .current{
-	color:#fff;
-	background:#ff6b24;
-	padding:0px 8px;
-}
-
-.tabnav{
-	height:46px;
-	border-bottom:1px solid #c8cdce;
-	width:100%;
-	float:left;
-}
-.tabnav ul {
-	border-right:1px solid #c8cdce;
-}
-.tabnav ul li{
-}
-.tabnav ul li a{
-	width:145px;
-	border-left:1px solid #c8cdce;
-	border-top:1px solid #c8cdce;
-	color:#1f1313;
-	font-size:16px;
-	font-family:微软雅黑;
-	display:block;
-	float:left;
-	height:45px;
-	line-height:45px;
-	font-weight:bold;
-	text-align:center;
-	background:#fff;
-}
-
- .topnav .current{
-	height:42px;
-	line-height:42px;
-	/*border-bottom:1px solid #fff;*/
-}
-
- .cur{
-	border-top:4px solid #fe7a28;
-	height:42px;
-	line-height:42px;
-	border-bottom:1px solid #fff;
-}
-.piclist{
-	background:#fff;
-	padding:20px 28px 20px 20px ;
-	border-left:1px solid #c8cdce;
-	border-right:1px solid #c8cdce;
-	border-bottom:1px solid #c8cdce;
-	float:left;
-	width:910px;
-}
-.piclist .order{
-	float:left;
-	width:100%;
-	padding:15px 0px 10px 0px;
-	border-bottom:1px solid #c8cdce;
-}
-.piclist .order a {
-	color:#333;
-}
-.left{
-	float:left;
-}
-.right{
-	float:right;
-}
-.piclist .picline{
-	float:left;
-	width:100%;
-	padding:30px 0px 15px 0px;
-	border-bottom:1px solid #c8cdce;
-}
-.piclist .piclinehead {
-	float:left;
-	width:100%;
-	height:40px;
-	line-height:20px;
-}
-.piclist .piclinehead  img{
-	float:left;
-}
-.piclist .piclinehead  h6{
-	float:left;
-	font-weight:normal;
-	font-size:16px;
-	margin-left:15px;
-	margin-right:25px;
-}
-.piclist .piclinehead  span{
-	float:left;
-	display:block;
-	border:1px solid #bdbdbd;
-	color:#bdbdbd;
-	padding:0px 5px;
-	margin-right:5px;
-}
-.piclist .picone{
-	float:left;
-	width:160px;
-	margin-right:27px;
-}
-.piclist .lastone{
-	margin-right:0px;
-}
-.piclist .picinfo{
-	padding-top:3px;
-	height:44px;
-	line-height:22px;
-	overflow:none;
-}
-.piclist .picinfo .gray{
-	color:#999;
-}
-
-.center{ position:relative}
-.ads{
-	text-align:center;
-	margin-left:10px;
-	width:150px;
-	height:320px;
-	float:left;
-	background-color:#c7c7c7;
-	position:absolute;
-	right:-160px;
-	top:175px;
-}
-.ads h2{
-	padding-top:150px;
-}
-.casetitle{
-	width:100%;
-	float:left;
-	height:30px;
-	line-height:30px;
-	margin-bottom:14px;
-}
-.casetitle h4{
-	float:left;
-	color:#1f1313;
-	font-size:18px;
-	font-family:微软雅黑;
-	font-weight:normal;
-}
-.casetitle div{
-	padding-top:5px;
-	display: block;
-	float:right;
-	color:#333;
-}
-.casetitle span{
-	float:right;
-}
-.casetitle span img{
-	 vertical-align:middle;
-}
-.casestep{
-	float:left;
-	width:100%;
-	padding-top:18px;
-	padding-bottom:18px;
-}
-.casestep li{
-	display:block;
-	float:left;
-	height:57px;
-}
-.casestep li a{
-	display:block;
-	float:left;
-	width:36px;
-	padding-top:40px;
-	background-image:url('../images/Construction/all.gif');
-	background-repeat:no-repeat;
-	margin-right:15px;
-	color:#1f1313;
-	font-family:微软雅黑;
-	text-align:center;
-}
-.casestep .step1{
-	background-position:0px 0px;
-}
-.casestep .step2{
-	background-position:-36px 0px;
-}
-.casestep .step3{
-	background-position:-72px 0px;
-}
-.casestep .step4{
-	background-position:-108px 0px;
-}
-.casestep .step5{
-	background-position:-144px 0px;
-}
-.casestep .step6{
-	background-position:-180px 0px;
-}
-.casestep .stepgray1{
-	background-position:-216px 0px;cursor:default;
-}
-.casestep .stepgray2{
-	background-position:-252px 0px;cursor:default;
-}
-.casestep .stepgray3{
-	background-position:-288px 0px;cursor:default;
-}
-.casestep .stepgray4{
-	background-position:-324px 0px;cursor:default;
-}
-.casestep .stepgray5{
-	background-position:-359px 0px;cursor:default;
-}
-.casestep .stepgray6{
-	background-position:-396px 0px;cursor:default;
-}
-.casestep ul li div{
-	float:left;
-	height:57px;
-	line-height:40px;
-	margin-right:5px;
-}
-.casestep ul li span{
-	background-image:url('../images/Construction/all.gif');
-	background-position:-432px 0px;
-	margin-right:8px;
-}
-
-.reserve{
-	border:1px solid #e2e2e2;
-	float:left;
-	width:198px;
-	padding:0px 20px 0px 20px;
-}
-.reserve .title{
-	border-bottom:1px solid #e2e2e2;
-	float:left;
-	width:100%;
-}
-.reserve .title h4{
-	float:left;
-	color:#1f1313;
-	font-size:18px;
-	font-family:微软雅黑;
-	font-weight:normal;
-	margin-top:35px;
-}
-.reserve .title img{
-	float:right;
-}
-.reserve .reason {
-	padding:10px 0px;
-	float:left;
-	width:100%;
-	border-bottom:1px solid #e2e2e2;
-}
-.reserve .reason ul li{
-	display:block;
-	width:100%;
-	font-size:14px;
-	height:24px;
-	padding-top: 5px;
-}
-.reserve .reason ul li span{
-	background-image:url('../images/Construction/all.gif');
-	background-position:0px -60px;
-	margin-right:6px;
-}
-.reserve .bottom {
-	padding-top:15px;
-	float:left;
-	width:100%;
-	line-height:20px;
-}
-.reserve .bottom p{
-	margin-bottom:52px;
-}
-
-.casepic{
-	background-color:#fff;
-	border:1px solid #e2e2e2;
-	padding:20px;
-}
-.casepic h1{
-	float:left;
-	font-size:20px;
-	color:black;
-}
-.casepic .Counter{
-	float:right;
-	font-size:13px;
-}
-.case_p{
-	height:2050px;
-	background-color:#fff;
-	border:1px solid #e2e2e2;
-	margin-top:20px;
-}
-.z_span{
-	font-size:15px;
-	font-weight:bold;
-	border-radius: 15px;
-	display: inline-block;
-	padding: 6px 17px;
-	cursor:pointer;
-	float:left;
-}
-.z_span.moren{
-	background-color: #ff6b24;
-	color:#FFF;
-}
-.case_tu .z_span{
-	margin-top: 20px;
-}
-
-
-.case_tu .case_t{
-	margin:15px auto;
-	width:650px;
-	border-top:2px solid #e2e2e2;
-}
-
-.case_t a img{
-	width:200px;
-	height:200px;
-}
-.case_t .ca1,.case_t .ca2{
-	padding-top:20px;
-}
-.case_t .i1{
-	margin-left:17px;
-}
-.case_t .i2{
-	margin-left:17px;
-}
-
-.case_shi .yu{
-	margin-left: 20px;
-	margin-top: 40px;
-	
-	display: inline-block;
-	float:left;
-	padding: 6px 17px;
-	overflow: hidden;
-	font-weight: bold;
-	font-size: 15px;
-	cursor:pointer;
-}
-.yu.yumoren{
-	border-radius: 15px;
-	background-color: #ff6b24;
-	color: white;	
-}
-.case_shi h5{
-	margin-left: 150px;
-	margin-top: -20px;
-}
-.case_shi h6{
-	margin-left: 250px;
-	margin-top: -20px;
-}
-.case_shi h5 a,.case_shi h6 a{
-	font-size: 17px;
-	color: black;
-}
-.case_shi .case_s{
-	margin:15px auto;
-	width:650px;
-	border-top:2px solid #e2e2e2;
-}
-.case_s .ca_ta{
-	margin-top:25px;
-}
-.ca_ta td{
-	padding-bottom:15px;
-}
-.ca_ta .case_le{
-	text-align:left;
-	width:70px;
-}
-.ca_ta .case_ri{
-	color:#666666;
-	text-align:left;
-	width:570px;
-}
-.case_zh .case_t{
-	margin-left: 30px;
-	margin-top: 40px;
-}
-.case_zh .case_t a{
-	font-weight: bold;
-	font-size: 17px;
-	color: black;
-}
-.case_z {
-	margin:15px auto;
-	width:650px;
-	border-top:2px solid #e2e2e2;
-}
-.case_z p{
-	line-height: 20px;
-	padding-top:20px;
-	width:650px;
-}
-
-.case_pi .case_pt{
-	margin-left: 30px;
-	margin-top: 40px;
-}
-.case_pi .case_pt a{
-	font-weight: bold;
-	font-size: 17px;
-	color: black;
-}
-.ping{
-	margin-top:15px;
-	margin:15px auto;
-	width:650px;
-	border-top:2px solid #e2e2e2;
-}
-
-.case_l .sp1{
-	margin-top:20px;
-}
-.case_l .sp1 .tou{
-	height:30px;
-	width:30px;
-}
-.case_l .sp2{
-	margin-top:10px;
-	float:right;
-}
-.case_l p{
-	line-height: 20px;
-	padding-top:20px;
-	padding-bottom:20px;
-	width:650px;
-	border-bottom:2px dashed #e2e2e2;
-}
-
-.case_l .case_my{
-	margin-top: 20px;
-}
-.case_l .case_my a{
-	font-weight: bold;
-	font-size: 17px;
-	color: black;
-}
-.case_l .my_ta{
-	margin-top:40px;
-}
-.my_ta td{
-	padding-bottom:10px;
-}
-.my_ta .my_le{
-
-	width:50px;
-	text-align: left;
-}
-.my_ta .my_ri{
-	width:600px;
-	text-align:left;
-}
-.my_ri img {
-	cursor:pointer;
-}
-.my_ri input{
-	height:120px;
-	width:600px;
-	color:#e2e2e2;
-}
-.my_foot{
-	float:right;
-}
-.re{
-	background-color:#ffffff;
-	border:1px solid #ccc;
-	margin: 0 auto;
-	width:410px;
-	height:300px;
-}
-.re .top,.cen,.foot{
-	margin: 0 auto;
-	width:245px;
-}
-.re .top h1{
-	 float: right;
-    margin-right: 25px;
-    padding-top: 40px;
-	font-size:20px;
-}
-.lefimg{
-	float:left;
-}
-.re .cen{
-	padding-left:7px;
-	padding-top:15px;
-}
-.re .cen tr td{
-	font-size:15px;
-text-align:left;
-}
-.re .cen tr td input{
-	width:170px;
-	height:30px;
-	color:#1F1813;
-}
-.re .foot{
-	text-align:center;
-	padding-top:20px;
-}
-.re .foot button{
-	border:0px;
-}
-.s_top{
-	background-color:#404040;
-	height:35px;
-}
-.headerTop{
-	 background:url(../images/Construction/headerTop.png) repeat-x;
-	 height:78px;
-	 position:absolute;
-	 left:0;
-	 top:34px;
-	 width:100%;
-	 z-index:-1;
-}
-.headerTopBanner{
-	background-color:#EC743F;
-	border-top:#BD5A31 1px solid;
-	border-bottom:#BD5A31 1px solid;
-	position:absolute;
-	left:0;
-	top:115px;
-	width:100%;
-	height:438px;
-	z-index:-1;
-}
-.shou{
-	width:1276px;
-	margin:0 auto;
-	background-image: url("../images/Construction/shou1.gif");
-	background-repeat: no-repeat;
-	min-height:100%;
-	height:auto;
-	background-color:#FFF
-}
-.re_dian{
-	padding-top:420px;
-	padding-left:0px;
-}
-.re_dian a{
-	padding-left:30px;
-}
-.er{
-	padding-top:100px;
-	padding-left:30px;
-}
-.shou p{
-	padding-right:200px;
-	color:#666666;
-	float:right;
-	padding-bottom:10px;
-}
-/*底部foot*/
-.footer { height:50px; margin-top:40px;}
+	$iscj=0;
+	if($user_id>0){
+		if($udb['qx']==5){
+			$iscj=1;
+		}elseif($udb['qx']==0){
+			if($udb['xqid']==$xqid){
+				$q_res=sprintf('select hzid from %s where hzid=%s  and isjs=0 limit 1', $yjl_dbprefix.'jl', $udb['uid']);
+				$res=mysql_query($q_res) or die('');
+				if(mysql_num_rows($res)==0)$iscj=1;
+				mysql_free_result($res);
+			}
+		}
+	}
+	$c.='<div class="main_left"><h2 class="h2">小区监理项目</h2>';
+	if($iscj>0)$c.='<div class="more_bt"><a href="photo_create.php?xqid='.$xqid.'" class="btn bt_nomgray">创建项目</a></div>';
+	$fxc=yjl_fxop($xqid, $fxid, 1, 'var u=\'photo-'.$xqid.'-p1-s\'+$(this).val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(\'#s_jd\').val()+\'.html\';location.href=u;');
+	$js_c.='
+	$(\'#s_fg\').change(function(){
+		var u=\'photo-'.$xqid.'-p1-s\'+$(\'#fxid\').val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(this).val()+\'_\'+$(\'#s_jd\').val()+\'.html\';
+		location.href=u;
+	});
+	$(\'#s_ys\').change(function(){
+		var u=\'photo-'.$xqid.'-p1-s\'+$(\'#fxid\').val()+\'_\'+$(this).val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(\'#s_jd\').val()+\'.html\';
+		location.href=u;
+	});
+	$(\'#s_jd\').change(function(){
+		var u=\'photo-'.$xqid.'-p1-s\'+$(\'#fxid\').val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(this).val()+\'.html\';
+		location.href=u;
+	});';
+	$c.='<div class="vilr_nav clearfix">
+				<div class="flt_rt">
+					'.$fxc[1].'<input type="hidden" id="fxid" value="'.$fxid.'"/> <select id="s_fg"><option value="0">选择风格</option>';
+	foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($fgid==$k?' selected="selected"':'').'>'.$v.'</option>';
+	$c.='</select> <select id="s_ys"><option value="0">选择预算</option>';
+	foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($ysid==$k?' selected="selected"':'').'>'.$v.'</option>';
+	$c.='</select> ';
+	$c.='<select id="s_jd"><option value="0">选择进度</option>';
+	foreach($a_lc as $k=>$v)$c.='<option value="'.$k.'"'.($jdid==$k?' selected="selected"':'').'>'.$v.'</option>';
+	$c.='</select>';
+	$c.='</div></div>';
+	if($fxid>0)$sdb[]='fxid='.$fxid;
+	if($ysid>0)$sdb[]='ys='.$ysid;
+	if($fgid>0)$sdb[]='fg='.$fgid;
+	$smdb=isset($sdb)?' and '.join(' and ', $sdb):'';
+	$jddb=$jdid>0?' and lid>'.$jdid:'';
+	$dtype = ' dtype = 1 AND';
+	if($xqid>0){
+		if($jdid>0){
+			$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
+			$res=mysql_query($q_res) or die('');
+			$r_res=mysql_fetch_assoc($res);
+			if(mysql_num_rows($res)>0){
+				do{
+					if($r_res['uid']>0 && !isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
+					if($r_res['hzid']>0 && !isset($uadb[$r_res['hzid']]))$uadb[$r_res['hzid']]=yjl_udb($r_res['hzid']);
+					$a_res[$r_res['jlid']]=yjl_jllist($r_res);
+				}while($r_res=mysql_fetch_assoc($res));
+			}
+			mysql_free_result($res);
+		}
+		$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+		$res=mysql_query($q_res) or die('');
+		$r_res=mysql_fetch_assoc($res);
+		if(mysql_num_rows($res)>0){
+			do{
+				if($r_res['uid']>0 && !isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
+				if($r_res['hzid']>0 && !isset($uadb[$r_res['hzid']]))$uadb[$r_res['hzid']]=yjl_udb($r_res['hzid']);
+				$a_res[$r_res['jlid']]=yjl_jllist($r_res);
+			}while($r_res=mysql_fetch_assoc($res));
+		}
+		mysql_free_result($res);
+	}
+	if($jdid>0){
+		$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
+		$res=mysql_query($q_res) or die('');
+		$r_res=mysql_fetch_assoc($res);
+		if(mysql_num_rows($res)>0){
+			do{
+				if($r_res['uid']>0 && !isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
+				if($r_res['hzid']>0 && !isset($uadb[$r_res['hzid']]))$uadb[$r_res['hzid']]=yjl_udb($r_res['hzid']);
+				$a_res[$r_res['jlid']]=yjl_jllist($r_res);
+			}while($r_res=mysql_fetch_assoc($res));
+		}
+		mysql_free_result($res);
+	}
+	$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+	$res=mysql_query($q_res) or die('');
+	$r_res=mysql_fetch_assoc($res);
+	if(mysql_num_rows($res)>0){
+		do{
+			if($r_res['uid']>0 && !isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
+			if($r_res['hzid']>0 && !isset($uadb[$r_res['hzid']]))$uadb[$r_res['hzid']]=yjl_udb($r_res['hzid']);
+			$a_res[$r_res['jlid']]=yjl_jllist($r_res);
+		}while($r_res=mysql_fetch_assoc($res));
+	}
+	mysql_free_result($res);
+	if(isset($a_res)){
+		$c.='<ul class="list_vilrspr">';
+		$tr_res=count($a_res);
+		$p_size=10;
+		$tp_res=ceil($tr_res/$p_size);
+		if($page>$tp_res)$page=$tp_res;
+		$i=0;
+		foreach($a_res as $v){
+			if($i>=($page-1)*$p_size && $i<$page*$p_size)$c.=$v;
+			$i++;
+		}
+		$c.='</ul>';
+		if($tp_res>1)$c.=yjl_newhmpage('photo-'.$xqid.'-p[p]'.(($fxid>0 || $ysid>0 || $fgid>0 || $jdid>0)?'-s'.$fxid.'_'.$ysid.'_'.$fgid.'_'.$jdid:'').'.html', $page, $tp_res);
+	}
+	$c.='</div><div class="main_right">';
+	if($xqid>0)$c.=yjl_newr_xq();
+	$c.=yjl_newr_jlzx();
+	if($xqid>0){
+		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.xqid<>%s and '.$dtype.' a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
+	}else{
+		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.istj=1 and '.$dtype.' a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
+	}
+	$res=mysql_query($q_res) or die('');
+	$r_res=mysql_fetch_assoc($res);
+	if(mysql_num_rows($res)>0){
+		$c.='<div class="box2 clearfix"><h3>'.($xqid>0?'其他小区的':'推荐').'项目</h3><ul class="list_visit list_proj">';
+		do{
+			$pu='images/jl_d.jpg';
+			$q_reu=sprintf('select * from %s where jlid=%s and is_del=0 order by datetime desc, jpid desc limit 1', $yjl_dbprefix.'jl_photo', $r_res['jlid']);
+			$reu=mysql_query($q_reu) or die('');
+			//hds
+			$_COOKIE['isgz']?$r_res['name']=substr($r_res['name'],0,strlen($r_res['name'])-6):$r_res['name']=$r_res['name'];
+			$r_reu=mysql_fetch_assoc($reu);
+			if(mysql_num_rows($reu)>0)$pu=$r_reu['t_url'];
+			mysql_free_result($reu);
+			$c.='<li><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html"><img src="images/blank.gif" width="'.$a_wh_jltpt[0].'" height="'.$a_wh_jltpt[1].'" style="background: url('.$pu.') no-repeat center;" /></a>
+						<em class="percent'.$r_res['lid'].'"></em>
+						<p><a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'.html">'.$r_res['name'].'</a></p>
+						<p>'.$r_res['b_name'].'</p>
+					</li>';
+		}while($r_res=mysql_fetch_assoc($res));
+		$c.='</ul></div>';
+	}
+	mysql_free_result($res);
+	$c.='</div>';
+}
+if(isset($htmlfjc))$c.=$htmlfjc;
+echo yjl_html($c, 'supervisor', '', 2);
+?>

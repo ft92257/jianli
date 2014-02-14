@@ -335,7 +335,7 @@ a { color:#1f1813; text-decoration:none;}
 .width_left{ width:150px}
 .renzhengjieduan{ margin-left:35px; margin-right:30px}
 .jieduanrenzheng{ font-size:16px; font-family:"微软雅黑"; line-height:20px; font-weight:normal; padding-left:30px; background:url(../images/moren_hui90.png) left center no-repeat; overflow:auto; zoom:1; margin-top:20px}
-.jieduanrenzheng.over{ background:url(../images/over_img90.png) left center no-repeat}
+.jieduanrenzheng.over{ background:url(../images/Construction/over_img90.png) left center no-repeat}
 .right_more{ font-size:12px}
 .renzhengjieduan .list_ul{ margin-right:-40px}
 .renzhengjieduan .list_ul li{ width:125px; height:125px; margin-top:10px; float:left; margin-right:40px}
