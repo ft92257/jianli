@@ -21,6 +21,7 @@ if(isset($_GET['rg']) && trim($_GET['rg'])!=''){
 			if(isset($s_rg[1]))$_GET['s_ys']=$s_rg[1];
 			if(isset($s_rg[2]))$_GET['s_fg']=$s_rg[2];
 			if(isset($s_rg[3]))$_GET['s_jd']=$s_rg[3];
+			if(isset($s_rg[4]))$_GET['s_he']=$s_rg[4];
 		}elseif($a_rg[2]=='y' || $a_rg[2]=='j'){
 			$_GET['u']=$a_rg[2];
 		}elseif($a_rg[2]=='upload' || $a_rg[2]=='doc' || $a_rg[2]=='video' || $a_rg[2]=='home'){
@@ -174,7 +175,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		if($r_res['uid']>0){
 			$c.='<li><a href="user-'.$r_res['uid'].'.html"><img src="'.yjl_face($r_res['uid'], $uadb[$r_res['uid']]['face']).'"/></a>
 						监理师<br /><a href="user-'.$r_res['uid'].'.html">'.$uadb[$r_res['uid']]['nc'].'</a>
-					</li>';
+				</li>';
 		}elseif($user_id>0 && !isset($htmlfjc) && ($user_id==$r_res['hzid'] || $udb['qx']==10 || $udb['isxg']>0)){
 			if(isset($_POST['is_xzjl']) && $_POST['is_xzjl']==1){
 				if(isset($_POST['jluid']) && intval($_POST['jluid'])>0){
@@ -292,18 +293,32 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$(\'#s_jd\').change(function(){
 		var u=\'photo-'.$xqid.'-p1-s\'+$(\'#fxid\').val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(this).val()+\'.html\';
 		location.href=u;
+	});
+	$(\'#s_he\').change(function(){
+		var u=\'photo-'.$xqid.'-p1-s\'+0+\'_\'+0+\'_\'+0+\'_\'+0+\'_\'+$(this).val()+\'.html\';
+		location.href=u;
 	});';
-	$c.='<div class="vilr_nav clearfix">
-				<div class="flt_rt">
-					'.$fxc[1].'<input type="hidden" id="fxid" value="'.$fxid.'"/> <select id="s_fg"><option value="0">选择风格</option>';
-	foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($fgid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select> <select id="s_ys"><option value="0">选择预算</option>';
-	foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($ysid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select> ';
-	$c.='<select id="s_jd"><option value="0">选择进度</option>';
-	foreach($a_lc as $k=>$v)$c.='<option value="'.$k.'"'.($jdid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select>';
-	$c.='</div></div>';
+	if(!$_COOKIE['isgz']){
+		$c.='<div class="vilr_nav clearfix">
+					<div class="flt_rt">
+						'.$fxc[1].'<input type="hidden" id="fxid" value="'.$fxid.'"/> <select id="s_fg"><option value="0">选择风格</option>';
+		foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($fgid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select> <select id="s_ys"><option value="0">选择预算</option>';
+		foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($ysid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select> ';
+		$c.='<select id="s_jd"><option value="0">选择进度</option>';
+		foreach($a_lc as $k=>$v)$c.='<option value="'.$k.'"'.($jdid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select>';
+		$c.='</div></div>';
+	}else{
+		$c.='<div class="vilr_nav clearfix">
+			<div class="flt_rt">';
+						
+		$c.=' <select id="s_he"><option value="0">选择类型</option>';
+		$c.='<option value="1">连锁店</option><option value="2">办公室</option><option value="3">实验室</option>';
+		$c.='</select>';
+		$c.='</div></div>';
+	}
 	if($fxid>0)$sdb[]='fxid='.$fxid;
 	if($ysid>0)$sdb[]='ys='.$ysid;
 	if($fgid>0)$sdb[]='fg='.$fgid;

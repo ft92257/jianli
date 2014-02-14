@@ -21,6 +21,7 @@ if(isset($_GET['rg']) && trim($_GET['rg'])!=''){
 			if(isset($s_rg[1]))$_GET['s_ys']=$s_rg[1];
 			if(isset($s_rg[2]))$_GET['s_fg']=$s_rg[2];
 			if(isset($s_rg[3]))$_GET['s_jd']=$s_rg[3];
+			if(isset($s_rg[4]))$_GET['s_he']=$s_rg[4];
 		}elseif($a_rg[2]=='y' || $a_rg[2]=='j'){
 			$_GET['u']=$a_rg[2];
 		}elseif($a_rg[2]=='upload' || $a_rg[2]=='doc' || $a_rg[2]=='video' || $a_rg[2]=='home'){
@@ -266,6 +267,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$ysid=(isset($_GET['s_ys']) && isset($a_ys[$_GET['s_ys']]))?$_GET['s_ys']:0;
 	$fgid=(isset($_GET['s_fg']) && isset($a_fg[$_GET['s_fg']]))?$_GET['s_fg']:0;
 	$jdid=(isset($_GET['s_jd']) && isset($a_lc[$_GET['s_jd']]))?$_GET['s_jd']:0;
+	$heid=(isset($_GET['s_he']) && intval($_GET['s_he'])>0)?intval($_GET['s_he']):0;
 
 	$iscj=0;
 	if($user_id>0){
@@ -295,26 +297,45 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 	$(\'#s_jd\').change(function(){
 		var u=\'photo-'.$xqid.'-p1-s\'+$(\'#fxid\').val()+\'_\'+$(\'#s_ys\').val()+\'_\'+$(\'#s_fg\').val()+\'_\'+$(this).val()+\'.html\';
 		location.href=u;
+	});
+	$(\'#s_he\').change(function(){
+		var u=\'photo-'.$xqid.'-p1-s\'+0+\'_\'+0+\'_\'+0+\'_\'+0+\'_\'+$(this).val()+\'.html\';
+		location.href=u;
 	});';
-	$c.='<div class="vilr_nav clearfix">
-				<div class="flt_rt">
-					'.$fxc[1].'<input type="hidden" id="fxid" value="'.$fxid.'"/> <select id="s_fg"><option value="0">选择风格</option>';
-	foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($fgid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select> <select id="s_ys"><option value="0">选择预算</option>';
-	foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($ysid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select> ';
-	$c.='<select id="s_jd"><option value="0">选择进度</option>';
-	foreach($a_lc as $k=>$v)$c.='<option value="'.$k.'"'.($jdid==$k?' selected="selected"':'').'>'.$v.'</option>';
-	$c.='</select>';
-	$c.='</div></div>';
+	if(!$_COOKIE['isgz']){
+		$c.='<div class="vilr_nav clearfix">
+					<div class="flt_rt">
+						'.$fxc[1].'<input type="hidden" id="fxid" value="'.$fxid.'"/> <select id="s_fg"><option value="0">选择风格</option>';
+		foreach($a_fg as $k=>$v)$c.='<option value="'.$k.'"'.($fgid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select> <select id="s_ys"><option value="0">选择预算</option>';
+		foreach($a_ys as $k=>$v)$c.='<option value="'.$k.'"'.($ysid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select> ';
+		$c.='<select id="s_jd"><option value="0">选择进度</option>';
+		foreach($a_lc as $k=>$v)$c.='<option value="'.$k.'"'.($jdid==$k?' selected="selected"':'').'>'.$v.'</option>';
+		$c.='</select>';
+		$c.='</div></div>';
+	}else{
+		
+		$c.='<div class="vilr_nav clearfix">
+			<div class="flt_rt">';
+		$c.=' <select id="s_he"><option value="0">选择类型</option>';
+		$c.='<option value="1"' .($heid==1?'selected="selected"':'').'>连锁店</option>';
+		$c.='<option value="2"' .($heid==2?'selected="selected"':'').'>办公室</option>';
+		$c.='<option value="3"' .($heid==3?'selected="selected"':'').'>实验室</option>';
+		$c.='</select>';
+		$c.='</div></div>';
+	}
 	if($fxid>0)$sdb[]='fxid='.$fxid;
 	if($ysid>0)$sdb[]='ys='.$ysid;
 	if($fgid>0)$sdb[]='fg='.$fgid;
+	if($heid>0)$sdb[]='htype='.$heid;
 	$smdb=isset($sdb)?' and '.join(' and ', $sdb):'';
 	$jddb=$jdid>0?' and lid>'.$jdid:'';
+	//echo $xqid;echo $jdid;die;
 	if($xqid>0){
 		if($jdid>0){
 			$q_res=sprintf('select * from %s where xqid=%s and '.$dtype.' hzqr=1 and c_zp>4 and lid=%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $jdid, $smdb);
+			
 			$res=mysql_query($q_res) or die();
 			$r_res=mysql_fetch_assoc($res);
 			if(mysql_num_rows($res)>0){
@@ -351,7 +372,9 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		mysql_free_result($res);
 	}
-	$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.'  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+	$_COOKIE['isgz']?$q_res=sprintf('select * from %s where   dtype=2 and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $smdb, $jddb):$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+echo $smdb;
+	echo $q_res;
 	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){
