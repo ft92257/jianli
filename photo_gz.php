@@ -371,7 +371,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 			$i++;
 		}
 		$c.='</ul>';
-		if($tp_res>1)$c.=yjl_newhmpage('photo-'.$xqid.'-p[p]'.(($fxid>0 || $ysid>0 || $fgid>0 || $jdid>0)?'-s'.$fxid.'_'.$ysid.'_'.$fgid.'_'.$jdid:'').'.html', $page, $tp_res);
+		if($tp_res>1)$c.=yjl_newhmpage('photo_gz-'.$xqid.'-p[p]'.(($fxid>0 || $ysid>0 || $fgid>0 || $jdid>0)?'-s'.$fxid.'_'.$ysid.'_'.$fgid.'_'.$jdid:'').'.html', $page, $tp_res);
 	}
 	$c.='</div><div class="main_right">';
 	if($xqid>0)$c.=yjl_newr_xq();
