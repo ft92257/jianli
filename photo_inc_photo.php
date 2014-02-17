@@ -226,8 +226,8 @@ function _getStepPage($step, $aJpids) {
 			//&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:showReport(true)" class="reportTabSelected">监理报告</a></div>';
 			
 			$c .= '<div class="photo_report_head"><ul class="tab_qh">
-			<li class="" onclick="showReport(false)">评论(<span id="comment_count">'.$comment_count.'</span>)</li>
-			<li class="bg_color" onclick="showReport(true)">监理报告</li>
+			<li class="bg_color" onclick="showReport(false)">评论(<span id="comment_count">'.$comment_count.'</span>)</li>
+			<li class="" onclick="showReport(true)">监理报告</li>
 			</ul></div>';
 			
 			$c.='<form method="post" enctype="multipart/form-data" id="form_report">
