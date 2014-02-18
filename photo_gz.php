@@ -314,7 +314,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		$c.='<div class="vilr_nav clearfix">
 			<div class="flt_rt">';
 						
-		$c.=' <select id="s_he"><option value="0">选择类型</option>';
+		$c.=' <select id="s_he" style="margin-top:8px"><option value="0">选择类型</option>';
 		$c.='<option value="1">连锁店</option><option value="2">办公室</option><option value="3">实验室</option>';
 		$c.='</select>';
 		$c.='</div></div>';

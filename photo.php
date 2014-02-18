@@ -318,7 +318,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		
 		$c.='<div class="vilr_nav clearfix">
 			<div class="flt_rt">';
-		$c.=' <select id="s_he"><option value="0">选择类型</option>';
+		$c.=' <select id="s_he" style="margin-top:8px"><option value="0">选择类型</option>';
 		$c.='<option value="1"' .($heid==1?'selected="selected"':'').'>连锁店</option>';
 		$c.='<option value="2"' .($heid==2?'selected="selected"':'').'>办公室</option>';
 		$c.='<option value="3"' .($heid==3?'selected="selected"':'').'>实验室</option>';
@@ -372,9 +372,10 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		mysql_free_result($res);
 	}
-	$_COOKIE['isgz']?$q_res=sprintf('select * from %s where   dtype=2 and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $smdb, $jddb):$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.' and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
-//echo $smdb;
-//	echo $q_res;
+	$_COOKIE['isgz']?$q_res=sprintf('select * from %s where   dtype=2 and  hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $smdb, $jddb):$q_res=sprintf('select * from %s where xqid<>%s and '.$dtype.'hzqr=1 and c_zp>4%s%s order by lasttime desc', $yjl_dbprefix.'jl', $xqid, $smdb, $jddb);
+//echo $_COOKIE['isgz'];
+//echo $q_res;
+//die('gggg');
 	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){

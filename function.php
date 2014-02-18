@@ -746,7 +746,6 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
       <a href="index.php" data-match="index.php$"><span class="oco01"></span>首页</a>
       <a href="new" data-match="/new"><span class="oco02"></span>选监理</a>
       <a href="photo-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
-      <a href="house/?s=/Active" data-match="/Active"><span class="oco04"></span>样板参观</a>
     </div>
 	
 	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
@@ -756,7 +755,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	</div>
 
 	</div>';
-
+ //<a href="house/?s=/Active" data-match="/Active"><span class="oco04"></span>样板参观</a>
 	$s.='<div class="overlay" id="overlay_login">
 	<h3>用户登录</h3>
 	<div class="overlay_cont">

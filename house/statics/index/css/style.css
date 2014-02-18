@@ -314,9 +314,9 @@ a { color:#1f1813; text-decoration:none;}
 .banner_img_div img{ display:block}
 .of_ls_kj_alstyle{ background:url(../img/Construction/gongzhuangjianli_back_bgimg0.png) #FFF repeat-x; padding-top:40px; padding-left:20px; overflow:auto; zoom:1}
 .titles_h{ font-size:22px; font-family:"微软雅黑"; font-weight:normal; height:44px; line-height:44px; padding-left:64px}
-.titles_h_tubiao0{ background:url(../img/Construction/title_bg_img0.png) no-repeat;}
-.titles_h_tubiao1{ background:url(../img/Construction/title_bg_img1.png) no-repeat;}
-.titles_h_tubiao2{ background:url(../img/Construction/title_bg_img2.png) no-repeat;}
+.titles_h_tubiao0{ background:url(../../../../images/title_bg_img1.png) no-repeat;}
+.titles_h_tubiao1{ background:url(../../../../images/title_bg_img2.png) no-repeat;}
+.titles_h_tubiao2{ background:url(../../../../images//title_bg_img0.png) no-repeat;}
 .anli_dl_list dl{ width:300px; float:left; margin-right:20px; margin-top:25px}
 .anli_dl_list dl dt img{ border:0 none; display:block}
 .anli_dl_list dl dd{ padding-top:8px}
