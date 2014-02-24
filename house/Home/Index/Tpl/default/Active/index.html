@@ -123,20 +123,21 @@
 </div>
 </body>
 </html>
+<literal>
+
 <script>
+
  $(".yuyue").click(function(){
 	  var halfPopHeight=$(".pop_t").height();
 	  $(".halfPop").show().css({"height":halfPopHeight});
 	  $(".pop_chuang").show();
 	 });
-
  $(".off").click(function(){
 	  $(".pop_chuang").hide();
 	  $(".halfPop").hide()
 	 });
 </script>
-
-<script><literal>
+<script>
 	 var page = 1;//初始化page变量
      var $pictureShow = $(".tabcenter");
      var downwidth = $pictureShow.width();//获取框架内容的宽度，既每次移动的大小
@@ -195,8 +196,6 @@
 		 page = $(this).index()+1;
 		}).eq(0).trigger("mouseover");//第一个数字模拟执行鼠标经过数字时的默认
 	
-     </literal>
+    
 </script>
-<script>
-
-</script>
+</literal>

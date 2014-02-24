@@ -340,3 +340,43 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 .widyufen_ul{  overflow:auto; zoom:1}
 .widyufen_ul li{ float:left; margin-right:6px; font-size:14px; font-family:"宋体"; font-weight:500; color:#666; cursor:pointer}
 .widyufen_ul li.colorli{ color:#2186C1}
+.re{
+	background-color:#ffffff;
+	border:1px solid #ccc;
+	margin: 0 auto;
+	width:410px;
+	height:300px;
+}
+.re .top,.cen,.foot{
+	margin: 0 auto;
+	width:245px;
+}
+.re .top h1{
+	 float: right;
+    margin-right: 25px;
+    padding-top: 40px;
+	font-size:20px;
+}
+.lefimg{
+	float:left;
+}
+.re .cen{
+	padding-left:7px;
+	padding-top:15px;
+}
+.re .cen tr td{
+	font-size:15px;
+text-align:left;
+}
+.re .cen tr td input{
+	width:170px;
+	height:30px;
+	color:#BFBFBF;
+}
+.re .foot{
+	text-align:center;
+	padding-top:20px;
+}
+.re .foot button{
+	border:0px;
+}

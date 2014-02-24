@@ -680,6 +680,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 			<link href="css/'.$css.'.css" rel="stylesheet" type="text/css" />':'').'
 			<script type="text/javascript" src="scripts/jquery.dookay.min.js"></script>
 			<script type="text/javascript" src="scripts/jquery.dookay.plugin.js"></script>
+			<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
 			<script type="text/javascript" src="lib/jquery.rotate.js"></script>
 			<script type="text/javascript" src="lib/function.js"></script>
 			'.($is_mce>0?'<script type="text/javascript" src="lib/tiny_mce/jquery.tinymce.js"></script>':'').($isupimg>0?'<script type="text/javascript" src="'.$yjl_tpath.'templates/default/js/swfobject.js"></script><script type="text/javascript" src="'.$yjl_tpath.'images/uploadify/jquery.uploadify.v2.1.4.min.js"></script><style type="text/css">@import "'.$yjl_tpath.'images/uploadify/uploadify.css";</style>':'').($js_c!=''?'<script type="text/javascript">
@@ -693,7 +694,8 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 					</script>
 					<![endif]-->
 					</head>
-					<body>';
+					<body>
+';
 	if($udb['uid']>0 && $udb['iswc']==1 && (($udb['qx']==5 && $udb['iszxjl']==1) || $udb['qx']==10 || $udb['isxg']>0))$s.='<div id="jlmsg_v" style="display: none;"><a href="#" onclick="$(\'#jlmsg_v\').hide();$(\'#jlmsg_isl\').val(\'1\');return false;"><img src="images/list_style02.gif" style="float: right;"></a><span id="msg_cs">0</span>条新咨询'.(($udb['qx']==5 && $udb['iszxjl']==1)?'，<a href="faq-no.html">查看并回答</a>':'').'<input type="hidden" id="jlmsg_isl" value="0"/><input type="hidden" id="jlmsg_v" value="0"/></div>';
 	$s.='<div id="wrap">
 
@@ -713,14 +715,28 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
      </div>
     </div>
 	<div class="left">
-	<ul>
-	<li><span><img src="house/statics/index/images/Construction/top1.fw.png" class="hmiddle"></span><span class="hmiddle">100%服务品质</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top2.fw.png" class="hmiddle"></span><span class="hmiddle">A级信誉</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top3.fw.png" class="hmiddle"></span><span class="hmiddle">提升20%质量</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top4.fw.png" class="hmiddle"></span><span class="hmiddle">100%省钱</span></li>
-	</ul>
+	
 	</div>';
-
+/*<div class="pop_t" style="overflow:auto;zoom:1"><div class="halfPop"></div>
+<div class="pop_chuang">
+<img src="images/close.png" width="36" height="36" class="off" />
+<div class="re">
+	<div class="top">
+		<img src="images/clock.gif"><h1>填写预约信息</h1>
+	</div>
+	<form action="/jianli/house/index.php?s=/Reserve/add/type/3/id/'.$_GET['id'].'" method="post">
+	<table class="cen">
+		<tr><td class="left">姓名：</td><td class="right"><input type="text" name="name"></td></tr>
+		<tr><td class="left">手机号：</td><td class="right"><input type="text" name="telephone"></td></tr>
+		<tr><td class="left">小区：</td><td class="right"><input type="text" name="region"></td></tr>
+		<tr><td class="left">邮箱：</td><td class="right"><input type="text" name="email"></td></tr>
+	</table>
+	<div class="foot">
+		<input type="image" src="images/add_reserve.gif" ></input>
+	</div>
+	</form>
+</div>
+*/
 	if($udb['uid']>0){
 		$iswc=(($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6)) || $udb['isnc']==0)?0:1;
 		$s.='<div class="right login">'
@@ -736,6 +752,9 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	}
 
 	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
+	//<a href="new" data-match="/new"><span class="oco02"></span>选监理</a>
+    //<a href="photo-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
+    //<a href="index.php" data-match="index.php$"><span class="oco01"></span>首页</a>
 	$s .='</div>
 	</div><!-- pbar结束 -->
 	<div class="phead">
@@ -743,10 +762,68 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	<div class="logo left">装修从此容易！</div>
 	
 	<div class="menu left" id="main_menu">
-      <a href="index.php" data-match="index.php$"><span class="oco01"></span>首页</a>
-      <a href="new" data-match="/new"><span class="oco02"></span>选监理</a>
-      <a href="photo-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
+      <a href="index.php"><span class="ico01"></span>监理服务</a>
+      <a href="#"><span class="oco02"></span>我要监理</a>
+      <a href="#"><span class="oco03"></span>验房360</a>
+      <a href="#"><span class="oco04"></span>样板参观</a>
+      <a href="#"><span class="oco05"></span>关于易监理</a>
+       <div class="cascade show">
+       <ul>
+        <li><a href="#">选监理师</a>
+        <div class="cascade_3">
+         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=2">别墅监理师</a></p>
+         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=3">公寓监理师</a></p>
+         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=6">维权律师</a></p>
+        </div>
+        </li>
+        <li><a href="http://www.yijianli.com/photo-0.html" class="nobackground">照片式监理</a></li>
+        <li><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=6">预算</a>
+        <div class="cascade_3">
+         <p><a href="#">在线预算服务</a></p>
+         <p><a href="#">线下预算服务</a></p>
+         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=4">预算师</a></p>
+        </div>
+        </li>
+        <li><a href="#">家装监理</a>
+        <div class="cascade_3">
+         <p><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=7">别墅监理</a></p>
+         <p><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=7">公寓监理</a></p>
+        </div>
+        </li>
+       </ul>
+      </div>
+      <div class="cascade_ck show">
+       <ul>
+        <li><a href="http://www.yijianli.com/new/index.php?a=index&m=reserve&cid=7" class="nobackground">在线预约监理</a></li>
+        <li><a href="http://www.yijianli.com/faq-new.html" class="nobackground">在线监理咨询</a></li>
+        <li><a href="http://www.yijianli.com/about-paypal.html" class="nobackground">在线支付</a></li>
+       </ul>
+      </div>
+      <div class="home360 show">
+       <ul>
+        <li><a href="http://yijianli.com/new/index.php?a=company&m=company&cid=8" class="nobackground">精装修验房</a></li>
+        <li><a href="http://yijianli.com/new/index.php?a=company&m=company&cid=9" class="nobackground">毛坯房验房</a></li>
+        <li><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=5" class="nobackground">验房师</a></li>
+       </ul>
+      </div>
+      <div class="visitModel show">
+       <ul>
+        <li><a href="#" class="nobackground">样板房参观会</a></li>
+        <li><a href="#" class="nobackground">样板工地</a></li>
+        <li><a href="#" class="nobackground">施工质量认证</a></li>
+       </ul>
+      </div>
+      <div class="aboutYijianli show">
+       <ul>
+        <li><a href="http://www.yijianli.com/new/index.php?s=/supervisor/consult/type/2" class="nobackground">选择易监理的理由</a></li>
+        <li><a href="http://yijianli.com/new/index.php?s=/supervisor/consult/type/17" class="nobackground">监理资质</a></li>
+        <li><a href="http://yijianli.com/new/index.php?s=/supervisor/consult/type/18" class="nobackground">服务保障</a></li>
+        <li><a href="http://www.yijianli.com/new/index.php?s=/supervisor/consult/type/14" class="nobackground">联系我们</a></li>
+       </ul>
+      </div>
     </div>
+    </div>
+    
 	
 	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
 	</div>
@@ -815,6 +892,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 			<link href="css/'.$css.'.css" rel="stylesheet" type="text/css" />':'').'
 			<script type="text/javascript" src="scripts/jquery.dookay.min.js"></script>
 			<script type="text/javascript" src="scripts/jquery.dookay.plugin.js"></script>
+			<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
 			<script type="text/javascript" src="lib/jquery.rotate.js"></script>
 			<script type="text/javascript" src="lib/function.js"></script>
 			'.($is_mce>0?'<script type="text/javascript" src="lib/tiny_mce/jquery.tinymce.js"></script>':'').($isupimg>0?'<script type="text/javascript" src="'.$yjl_tpath.'templates/default/js/swfobject.js"></script><script type="text/javascript" src="'.$yjl_tpath.'images/uploadify/jquery.uploadify.v2.1.4.min.js"></script><style type="text/css">@import "'.$yjl_tpath.'images/uploadify/uploadify.css";</style>':'').($js_c!=''?'<script type="text/javascript">
@@ -828,7 +906,8 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 					</script>
 					<![endif]-->
 					</head>
-					<body>';
+					<body>
+';
 	if($udb['uid']>0 && $udb['iswc']==1 && (($udb['qx']==5 && $udb['iszxjl']==1) || $udb['qx']==10 || $udb['isxg']>0))$s.='<div id="jlmsg_v" style="display: none;"><a href="#" onclick="$(\'#jlmsg_v\').hide();$(\'#jlmsg_isl\').val(\'1\');return false;"><img src="images/list_style02.gif" style="float: right;"></a><span id="msg_cs">0</span>条新咨询'.(($udb['qx']==5 && $udb['iszxjl']==1)?'，<a href="faq-no.html">查看并回答</a>':'').'<input type="hidden" id="jlmsg_isl" value="0"/><input type="hidden" id="jlmsg_v" value="0"/></div>';
 	$s.='<div id="wrap">
 
@@ -847,14 +926,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
       </div>
      </div>
     </div>
-	<div class="left">
-	<ul>
-	<li><span><img src="house/statics/index/images/Construction/top1.fw.png" class="hmiddle"></span><span class="hmiddle">100%服务品质</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top2.fw.png" class="hmiddle"></span><span class="hmiddle">A级信誉</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top3.fw.png" class="hmiddle"></span><span class="hmiddle">提升20%质量</span></li>
-	<li><span><img src="house/statics/index/images/Construction/top4.fw.png" class="hmiddle"></span><span class="hmiddle">100%省钱</span></li>
-	</ul>
-	</div>';
+	';
 
 	if($udb['uid']>0){
 		$iswc=(($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6)) || $udb['isnc']==0)?0:1;
@@ -950,7 +1022,7 @@ document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F1823814145addf5267230aa05878c1b6\' type=\'text/javascript\'%3E%3C/script%3E"));
 </script>';
-	$s.='</body></html>';
+	$s.='</div></body></html>';
 	return $s;
 }
 
@@ -981,7 +1053,7 @@ function yjl_html_gz($c, $css='', $body_id='', $menu_id=0){
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F1823814145addf5267230aa05878c1b6\' type=\'text/javascript\'%3E%3C/script%3E"));
 	</script>';
-	$s.='</body></html>';
+	$s.='</div></body></html>';
 	return $s;
 }
 

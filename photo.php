@@ -238,6 +238,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		$c.='<br />
 			</div>
+			<div class="yuyue" style="width:160px; margin:10px auto 8px auto"><a href="http://www.yijianli.com/new/index.php?a=index&m=reserve&cid=7"><img src="images/reserve.jpg"/></a></div>
 			<div class="per_mat">
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-home.html"><span class="ico38"></span><br />验房</a>
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-doc.html"><span class="ico39"></span><br />文档资料</a>
@@ -407,6 +408,7 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.xqid<>%s and '.$dtype.' a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
 	}else{
 		$q_res=sprintf('select a.*, b.name as b_name from %s as a, %s as b where a.istj=1 and '.$dtype.' a.hzqr=1 and a.xqid=b.xqid and c_zp>4 order by a.lasttime desc limit 4', $yjl_dbprefix.'jl', $yjl_dbprefix.'xq', $xqid);
+		//echo $q_res;die;
 	}
 	$res=mysql_query($q_res) or die();
 	$r_res=mysql_fetch_assoc($res);

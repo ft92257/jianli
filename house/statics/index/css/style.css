@@ -34,7 +34,7 @@ a { color:#1f1813; text-decoration:none;}
 
 .logo { background:url(../images/Construction/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
 
-/*导航修改 start*/
+/*导航修改 start
 .menu a{color:#FF6B24; font-weight:bold;width:73px; height:70px; float:left;text-align:center; padding:25px 7px 0;}
 .menu a.mmoren{ background-color:#FF6B24; color:#FFF}
 .menu a img{ border:0 none}
@@ -59,24 +59,40 @@ a { color:#1f1813; text-decoration:none;}
 .menu span.oco05{ background-position:-176px top}
 .menu span.ico05{ background-position:-176px -36px}
 .menu .mmoren .oco05{ background-position:-176px -36px}
-/*导航修改 end*/
-
-
-.select_kuang{ background:url(../images/Construction/select_img1.png) no-repeat; width:195px; height:30px; line-height:30px; margin-top:30px}
-#select_input{ height:24px; vertical-align:top; line-height:24px; margin-top:3px; color:#BFBFBF; margin-left:5px; width:151px; border:0 none}
-#select_input:focus{ outline:none}
-#sub0{ margin-top:3px; vertical-align:top; margin-left:5px}
-#sub0:focus{ outline:none}
-
+导航修改 end*/
+.logo { background:url(styles/img/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
+/*导航修改 start*/
+.menu>a{color:#FF6B24; font-weight:bold;width:65px; margin-right:5px; height:70px; float:left;text-align:center; padding:25px 7px 0;}
+.menu>a:hover,.menu a.mmoren{ background-color:#FF6B24; color:#FFF}
+.menu a img{ border:0 none}
+.menu span{ width:26px; height:26px; display:block; background:url(../images/navstp.png) no-repeat; padding-bottom:5px; cursor:pointer; margin:0 auto}
+.menu span.oco01{ background-position:left top}
+.menu span.ico01{ background-position:left -36px}
+.menu a:hover .oco01{ background-position:left -36px}
+.menu span.oco02{ background-position:-42px top}
+.menu span.ico02{ background-position:-42px -36px}
+.menu a:hover .oco02{ background-position:-42px -36px}
+.menu span.oco03{ background-position:-86px top}
+.menu span.ico03{ background-position:-86px -36px}
+.menu a:hover .oco03{ background-position:-86px -36px}
 .menu span.oco04{ background-position:-131px top}
 .menu span.ico04{ background-position:-131px -36px}
+.menu a:hover .oco04{ background-position:-131px -36px}
 .menu span.oco05{ background-position:-176px top}
 .menu span.ico05{ background-position:-176px -36px}
-
+.menu a:hover .oco05{ background-position:-176px -36px}
+.menu .cascade,.menu .cascade_ck,.menu .home360,.menu .visitModel,.menu .aboutYijianli{position:absolute; top:94px;; z-index:222; background-color:#F5F5F5; border:#E0E0E0 1px solid; padding-bottom:5px; border-top:0 none; display:none; border-radius:0 0 8px 8px}
+.menu .cascade{ left:0}
+.menu .cascade_ck{ left:84px}
+.menu .home360{ left:168px}
+.menu .visitModel{ left:252px}
+.menu .aboutYijianli{ left:336px}
+.menu .cascade li,.menu .cascade_ck li,.menu .home360 li,.menu .visitModel li,.menu .aboutYijianli li{ float:none}
+.menu .cascade li>a,.menu .cascade_ck li>a,.menu .home360 li>a,.menu .visitModel li>a,.menu .aboutYijianli li>a{ line-height:33px; color:#E86122; background:url(../images/jilianimg.png) 100px center no-repeat; width:110px; font-weight:bold; display:block; padding-left:15px}
+.menu .cascade li>a.nobackground,.menu .cascade_ck li>a.nobackground,.menu .home360 li>a.nobackground,.menu .visitModel li>a.nobackground,.menu .aboutYijianli li>a.nobackground{ background:none}
+.menu .cascade .cascade_3 a{ display:block; padding-left:20px; color:#E86122; line-height:25px}
+.menu .cascade .cascade_3 a:hover{ background-color:#F28F4C; color:#FFF}
 /*导航修改 end*/
-
-
-.part {width:960px; margin:0 auto;}
 .topnav{
 	height:22px;
 	width:100%;

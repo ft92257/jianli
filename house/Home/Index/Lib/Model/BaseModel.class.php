@@ -14,7 +14,7 @@ class BaseModel extends Model {
 	private $_aBaseOptions = array(
 		'status' => array(
 			'0' => '正常',
-			'-2' => '已删除',
+			'-2' => '删除',
 		),
 	);
 	

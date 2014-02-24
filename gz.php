@@ -19,15 +19,15 @@ echo yjl_html_gz_head($s, 'index');
     <dt><a href="http://yijianli.com/photo-5794-195.html"><img src="images/11212111.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-195.html">China International Fund Management Co., Ltd.</a>
-      <p>项目地点：陆家嘴中心黄浦江边；项目面积：1200平方米项目完成时间：2013年11月；此项目为上海最高级的办公区，施工只能在晚上和星期日，现场采用全程住场跟踪监理服务，总监每周1次,主持周工程进度及质量例会。</p>
+      <p><span style="color:#666;font-weight:bold">地点：</span>陆家嘴中心黄浦江边<br><span style="color:#666;;font-weight:bold">面积：</span>1200平方米<br><span style="color:#666;;font-weight:bold">完成时间：</span>2013年11月<br>此项目为上海最高级的办公区，施工只能在晚上和星期日，现场采用全程住场跟踪监理服务，总监每周1次,主持周工程进度及质量例会。</p>
     </dd>
    </dl>
    <dl>
     <dt><a href="http://yijianli.com/photo-5794-189.html"><img src="images/baoyiwei.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-189.html">B.I.W办公室装修项目 </a>
-     <p>项目地点：漕河泾经济开发区浦江高科技园区；项目面积：1900平方米
-项目完成时间：2013年9月；此项目为浦江高科技园区离市区有一定距离，现场采用全程住场跟踪监理服务，总监每周1次,主持周工程进度及质量例会。
+     <p><span style="color:#666;;font-weight:bold">地点：</span>漕河泾经济开发区浦江高科技园区<br><span style="color:#666;;font-weight:bold">面积：</span>1900平方米<br>
+<span style="color:#666;;font-weight:bold">完成时间：</span>2013年9月<br>此项目为浦江高科技园区离市区有一定距离，现场采用全程住场跟踪监理服务，总监每周1次,主持周工程进度及质量例会。
 </p>
     </dd>
    </dl>
@@ -35,7 +35,7 @@ echo yjl_html_gz_head($s, 'index');
     <dt><a href="http://yijianli.com/photo-5794-196.html"><img src="images/huaaoxintuo.jpg" width="300" height="200" /></a></dt>
     <dd>
      <a href="http://yijianli.com/photo-5794-196.html">中外合资非银行金融机构</a>
-     <p>项目地点：震旦大厦；项目面积：1200平方米项目完成时间：2013年12月；此项目为上海金融中心黄浦江边，施工只能在晚上和星期日。</p>
+     <p><span style="color:#666;font-weight:bold">地点：</span>震旦大厦<br><span style="color:#666;;font-weight:bold">面积：</span>1200平方米<br><span style="color:#666;;font-weight:bold">完成时间：</span>2013年12月</span><br>此项目为上海金融中心黄浦江边，施工只能在晚上和星期日。</p>
     </dd>
    </dl>
    <div class="clear"></div>
