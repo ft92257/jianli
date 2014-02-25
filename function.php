@@ -771,39 +771,39 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
        <ul>
         <li><a href="#">选监理师</a>
         <div class="cascade_3">
-         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=2">别墅监理师</a></p>
-         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=3">公寓监理师</a></p>
-         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=6">维权律师</a></p>
+         <p><a href="new/index.php?a=index&m=supervisor&f=2">别墅监理师</a></p>
+         <p><a href="new/index.php?a=index&m=supervisor&f=3">公寓监理师</a></p>
+         <p><a href="new/index.php?a=index&m=supervisor&f=6">维权律师</a></p>
         </div>
         </li>
-        <li><a href="http://www.yijianli.com/photo-0.html" class="nobackground">照片式监理</a></li>
-        <li><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=6">预算</a>
+        <li><a href="photo-0.html" class="nobackground">照片式监理</a></li>
+        <li><a href="new/index.php?a=company&m=company&cid=6">预算</a>
         <div class="cascade_3">
          <p><a href="#">在线预算服务</a></p>
          <p><a href="#">线下预算服务</a></p>
-         <p><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=4">预算师</a></p>
+         <p><a href="new/index.php?a=index&m=supervisor&f=4">预算师</a></p>
         </div>
         </li>
         <li><a href="#">家装监理</a>
         <div class="cascade_3">
-         <p><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=7">别墅监理</a></p>
-         <p><a href="http://www.yijianli.com/new/index.php?a=company&m=company&cid=7">公寓监理</a></p>
+         <p><a href="new/index.php?a=company&m=company&cid=7">别墅监理</a></p>
+         <p><a href="new/index.php?a=company&m=company&cid=7">公寓监理</a></p>
         </div>
         </li>
        </ul>
       </div>
       <div class="cascade_ck show">
        <ul>
-        <li><a href="http://www.yijianli.com/new/index.php?a=index&m=reserve&cid=7" class="nobackground">在线预约监理</a></li>
-        <li><a href="http://www.yijianli.com/faq-new.html" class="nobackground">在线监理咨询</a></li>
-        <li><a href="http://www.yijianli.com/about-paypal.html" class="nobackground">在线支付</a></li>
+        <li><a href="new/index.php?a=index&m=reserve&cid=7" class="nobackground">在线预约监理</a></li>
+        <li><a href="faq-new.html" class="nobackground">在线监理咨询</a></li>
+        <li><a href="about-paypal.html" class="nobackground">在线支付</a></li>
        </ul>
       </div>
       <div class="home360 show">
        <ul>
-        <li><a href="http://yijianli.com/new/index.php?a=company&m=company&cid=8" class="nobackground">精装修验房</a></li>
-        <li><a href="http://yijianli.com/new/index.php?a=company&m=company&cid=9" class="nobackground">毛坯房验房</a></li>
-        <li><a href="http://www.yijianli.com/new/index.php?a=index&m=supervisor&f=5" class="nobackground">验房师</a></li>
+        <li><a href="new/index.php?a=company&m=company&cid=8" class="nobackground">精装修验房</a></li>
+        <li><a href="new/index.php?a=company&m=company&cid=9" class="nobackground">毛坯房验房</a></li>
+        <li><a href="new/index.php?a=index&m=supervisor&f=5" class="nobackground">验房师</a></li>
        </ul>
       </div>
       <div class="visitModel show">
@@ -822,10 +822,13 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
        </ul>
       </div>
     </div>
-    </div>
+    
+    <div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
+    
+   </div>
     
 	
-	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
+	
 	</div>
 	</div><!-- phead 结束-->
 	<div class="clear"></div>

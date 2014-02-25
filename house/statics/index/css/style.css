@@ -60,7 +60,7 @@ a { color:#1f1813; text-decoration:none;}
 .menu span.ico05{ background-position:-176px -36px}
 .menu .mmoren .oco05{ background-position:-176px -36px}
 导航修改 end*/
-.logo { background:url(../images/logo.fw.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
+.logo { background:url(../images/logo.png) no-repeat 0 20px;line-height:60px; padding-left:130px; margin-top:13px; font-size:14px; color:#999; font-weight:bold;}
 /*导航修改 start*/
 .menu>a{color:#FF6B24; font-weight:bold;width:65px; margin-right:5px; height:70px; float:left;text-align:center; padding:25px 7px 0;}
 .menu>a:hover,.menu a.mmoren{ background-color:#FF6B24; color:#FFF}
