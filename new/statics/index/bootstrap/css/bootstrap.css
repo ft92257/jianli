@@ -131,10 +131,11 @@ textarea {
     background: transparent !important;
     box-shadow: none !important;
   }
+  /*
   a,
   a:visited {
     text-decoration: underline;
-  }
+  }*/
   a[href]:after {
     content: " (" attr(href) ")";
   }
@@ -179,7 +180,6 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
@@ -190,11 +190,12 @@ a {
   text-decoration: none;
 }
 
+/*
 a:hover,
 a:focus {
   color: #005580;
   text-decoration: underline;
-}
+}*/
 
 .img-rounded {
   -webkit-border-radius: 6px;
@@ -603,9 +604,10 @@ a:focus {
   clear: both;
 }
 
+/*
 p {
   margin: 0 0 10px;
-}
+}*/
 
 .lead {
   margin-bottom: 20px;
@@ -763,12 +765,12 @@ h4 small {
   margin: 20px 0 30px;
   border-bottom: 1px solid #eeeeee;
 }
-
+/*
 ul,
 ol {
   padding: 0;
   margin: 0 0 10px 25px;
-}
+}*/
 
 ul ul,
 ul ol,
