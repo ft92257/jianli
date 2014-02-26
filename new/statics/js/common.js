@@ -231,13 +231,15 @@ function checkForm() {
 }
 
 function showMenu(html,left,top) {
-	//alert(html);
+	html = html.replace(/ href="(?!#)/g, ' href="../');
+	
+	jQuery("#currentMenu").css("width",1);
+	jQuery("#currentMenu").css("height",1);
 	jQuery("#currentMenu").html(html);
 	jQuery("#currentMenu").show();
 	jQuery("#currentMenu").css("left",left);
 	jQuery("#currentMenu").css("top",top);
-	jQuery("#currentMenu").css("position","absolute");
-	
+
 	jQuery("#currentMenu").mouseover(function(){
 		  jQuery(this).show();}).mouseout(function(){
 		jQuery(this).hide();

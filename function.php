@@ -814,10 +814,10 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
       </div>
       <div class="aboutYijianli show">
        <ul>
-        <li><a href="/new/index.php?s=/supervisor/consult/type/2" class="nobackground">选择易监理的理由</a></li>
-        <li><a href="/new/index.php?s=/supervisor/consult/type/17" class="nobackground">监理资质</a></li>
-        <li><a href="/new/index.php?s=/supervisor/consult/type/18" class="nobackground">服务保障</a></li>
-        <li><a href="/new/index.php?s=/supervisor/consult/type/14" class="nobackground">联系我们</a></li>
+        <li><a href="new/index.php?s=/supervisor/consult/type/2" class="nobackground">选择易监理的理由</a></li>
+        <li><a href="new/index.php?s=/supervisor/consult/type/17" class="nobackground">监理资质</a></li>
+        <li><a href="new/index.php?s=/supervisor/consult/type/18" class="nobackground">服务保障</a></li>
+        <li><a href="new/index.php?s=/supervisor/consult/type/14" class="nobackground">联系我们</a></li>
        </ul>
       </div>
     </div>

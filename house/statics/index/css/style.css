@@ -92,6 +92,8 @@ a { color:#1f1813; text-decoration:none;}
 .menu .cascade li>a.nobackground,.menu .cascade_ck li>a.nobackground,.menu .home360 li>a.nobackground,.menu .visitModel li>a.nobackground,.menu .aboutYijianli li>a.nobackground{ background:none}
 .menu .cascade .cascade_3 a{ display:block; padding-left:20px; color:#E86122; line-height:25px}
 .menu .cascade .cascade_3 a:hover{ background-color:#F28F4C; color:#FFF}
+.menu .cascade li>a:hover,.menu .cascade_ck li>a:hover,.menu .home360 li>a:hover,.menu .visitModel li>a:hover,.menu .aboutYijianli li>a:hover{ background-color:#FF6B24; color:#FFF}
+.menu .cascade li>a.nobackground:hover,.menu .cascade_ck li>a.nobackground:hover,.menu .home360 li>a.nobackground:hover,.menu .visitModel li>a.nobackground:hover,.menu .aboutYijianli li>a.nobackground:hover{ background-color:#FF6B24; color:#FFF}
 /*导航修改 end*/
 .topnav{
 	height:22px;
