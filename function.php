@@ -680,7 +680,6 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 			<link href="css/'.$css.'.css" rel="stylesheet" type="text/css" />':'').'
 			<script type="text/javascript" src="scripts/jquery.dookay.min.js"></script>
 			<script type="text/javascript" src="scripts/jquery.dookay.plugin.js"></script>
-			<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
 			<script type="text/javascript" src="lib/jquery.rotate.js"></script>
 			<script type="text/javascript" src="lib/function.js"></script>
 			'.($is_mce>0?'<script type="text/javascript" src="lib/tiny_mce/jquery.tinymce.js"></script>':'').($isupimg>0?'<script type="text/javascript" src="'.$yjl_tpath.'templates/default/js/swfobject.js"></script><script type="text/javascript" src="'.$yjl_tpath.'images/uploadify/jquery.uploadify.v2.1.4.min.js"></script><style type="text/css">@import "'.$yjl_tpath.'images/uploadify/uploadify.css";</style>':'').($js_c!=''?'<script type="text/javascript">
@@ -748,7 +747,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png" width="15px" height="15px"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	//<a href="house" data-match="/house"><span class="oco05"></span>谁施工好</a>
@@ -815,10 +814,10 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
       </div>
       <div class="aboutYijianli show">
        <ul>
-        <li><a href="http://www.yijianli.com/new/index.php?s=/supervisor/consult/type/2" class="nobackground">选择易监理的理由</a></li>
-        <li><a href="http://yijianli.com/new/index.php?s=/supervisor/consult/type/17" class="nobackground">监理资质</a></li>
-        <li><a href="http://yijianli.com/new/index.php?s=/supervisor/consult/type/18" class="nobackground">服务保障</a></li>
-        <li><a href="http://www.yijianli.com/new/index.php?s=/supervisor/consult/type/14" class="nobackground">联系我们</a></li>
+        <li><a href="/new/index.php?s=/supervisor/consult/type/2" class="nobackground">选择易监理的理由</a></li>
+        <li><a href="/new/index.php?s=/supervisor/consult/type/17" class="nobackground">监理资质</a></li>
+        <li><a href="/new/index.php?s=/supervisor/consult/type/18" class="nobackground">服务保障</a></li>
+        <li><a href="/new/index.php?s=/supervisor/consult/type/14" class="nobackground">联系我们</a></li>
        </ul>
       </div>
     </div>
@@ -895,7 +894,6 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 			<link href="css/'.$css.'.css" rel="stylesheet" type="text/css" />':'').'
 			<script type="text/javascript" src="scripts/jquery.dookay.min.js"></script>
 			<script type="text/javascript" src="scripts/jquery.dookay.plugin.js"></script>
-			<script type="text/javascript" src="scripts/jquery-1.10.2.min.js"></script>
 			<script type="text/javascript" src="lib/jquery.rotate.js"></script>
 			<script type="text/javascript" src="lib/function.js"></script>
 			'.($is_mce>0?'<script type="text/javascript" src="lib/tiny_mce/jquery.tinymce.js"></script>':'').($isupimg>0?'<script type="text/javascript" src="'.$yjl_tpath.'templates/default/js/swfobject.js"></script><script type="text/javascript" src="'.$yjl_tpath.'images/uploadify/jquery.uploadify.v2.1.4.min.js"></script><style type="text/css">@import "'.$yjl_tpath.'images/uploadify/uploadify.css";</style>':'').($js_c!=''?'<script type="text/javascript">
@@ -942,7 +940,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		<a href="logout.php?referer='.$_SERVER['HTTP_REFERER'].'">退出登录</a>
 		</div>';
 	}else{
-		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
+		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png" width="15px" height="15px"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
 	$s .='</div>

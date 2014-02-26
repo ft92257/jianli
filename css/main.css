@@ -65,7 +65,7 @@ hr.dotted{border:none;border-top:1px dotted #e6e6e6;height:0;}
 #pfoot address a:hover{text-decoration:underline;}
 
 /*--ico--*/
-.hd_ico,.mn_ico{background:url(../images/head_ico.png) no-repeat;display:inline-block;width:22px;height:20px;}
+.hd_ico,.mn_ico{background:url(../images/head_ico.png) no-repeat;display:inline-block;width:16px;height:16px;}
 .mn_ico{ background:url(../images/main_ico.png) no-repeat;}
 .gd{background-position:-75px -134px;}
 .bd{background-position:-100px -134px;}
@@ -83,7 +83,7 @@ span.ico06{background-position:5px -207px;cursor:pointer;}
 .ico09{background-position:-42px -19px;}
 .ico10{background-position:-72px -20px;}
 .ico11{background-position:-120px 4px;}
-.ico12{background-position:-97px 5px;}
+.ico12{background-position:-97px 1px;}
 .ico13{background-position:left -42px;}
 .ico14{background-position:-29px -42px;}
 .ico15{background-position:-54px -42px;}

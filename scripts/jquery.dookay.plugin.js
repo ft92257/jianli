@@ -1,5 +1,5 @@
 ﻿//www.dookay.com
-;(function(){
+(function(){
 	$.fn.extend({
 		"scrollexpansion":function(options){
 				options=$.extend({
@@ -29,7 +29,7 @@
 	});
 })(jQuery);//扩展scrollable的插件
 
-;(function(){
+(function(){
 	$.fn.extend({
 		"sildeZYJ":function(options){
 				options=$.extend({
