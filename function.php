@@ -762,10 +762,10 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	
 	<div class="menu left" id="main_menu">
       <a href="index.php"><span class="ico01"></span>监理服务</a>
-      <a href="#"><span class="oco02"></span>我要监理</a>
-      <a href="#"><span class="oco03"></span>验房360</a>
-      <a href="#"><span class="oco04"></span>样板参观</a>
-      <a href="#"><span class="oco05"></span>关于易监理</a>
+      <a href="javascipt:void(0)"><span class="oco02"></span>我要监理</a>
+      <a href="javascipt:void(0)"><span class="oco03"></span>验房360</a>
+      <a href="javascipt:void(0)"><span class="oco04"></span>样板参观</a>
+      <a href="javascipt:void(0)"><span class="oco05"></span>关于易监理</a>
        <div class="cascade show">
        <ul>
         <li><a href="#">选监理师</a>
