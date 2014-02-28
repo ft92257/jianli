@@ -238,8 +238,11 @@ if(isset($_GET['id']) && intval($_GET['id'])>0){
 		}
 		$c.='<br />
 			</div>
-			<div class="yuyue" style="width:160px; margin:10px auto 8px auto"><a href="http://www.yijianli.com/new/index.php?a=index&m=reserve&cid=7"><img src="images/reserve.jpg"/></a></div>
-			<div class="per_mat">
+			<div class="yuyue" style="width:160px; margin:10px auto 8px auto">';
+		if($_COOKIE['isgz']){
+		$c.='<a href="new/gz.php?a=index&m=reserve&cid=7"><img src="images/reserve.jpg"/></a></div>';
+		}else $c.='<a href="new/index.php?a=index&m=reserve&cid=7"><img src="images/reserve.jpg"/></a></div>';
+		$c.='	<div class="per_mat">
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-home.html"><span class="ico38"></span><br />验房</a>
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-doc.html"><span class="ico39"></span><br />文档资料</a>
 				<a href="photo-'.$r_res['xqid'].'-'.$r_res['jlid'].'-video.html"><span class="ico40"></span><br />监理视频</a>
