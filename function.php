@@ -952,7 +952,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	<div class="menu left" id="main_menu">
 	<a href="gz.php" data-match="gz.php$"><span class="oco01"></span>首页</a>
 	<a href="new/gz.php" data-match="/new/gz.php"><span class="oco02"></span>选监理</a>
-	<a href="photo_gz-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
+	<a href="photo_gz-0.html" data-config="default"><span class="oco06"></span>监理项目</a>
 	</div>
 
 	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>

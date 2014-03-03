@@ -81,6 +81,9 @@ a { color:#1f1813; text-decoration:none;}
 .menu span.oco05{ background-position:-176px top}
 .menu span.ico05{ background-position:-176px -36px}
 .menu a:hover .oco05{ background-position:-176px -36px}
+.menu span.oco06{ background-position:right top}
+.menu span.ico06{ background-position:right -36px}
+.menu a:hover .oco06{ background-position:right -36px}
 .menu .cascade,.menu .cascade_ck,.menu .home360,.menu .visitModel,.menu .aboutYijianli{position:absolute; top:94px;; z-index:222; background-color:#F5F5F5; border:#E0E0E0 1px solid; padding-bottom:5px; border-top:0 none; display:none; border-radius:0 0 8px 8px}
 .menu .cascade{ left:0}
 .menu .cascade_ck{ left:84px}
