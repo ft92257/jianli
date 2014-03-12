@@ -130,24 +130,29 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 	$res=mysql_query($q_res) or die('');
 	$r_res=mysql_fetch_assoc($res);
 	if(mysql_num_rows($res)>0){
+		$c .= '<script>
+		function getMoreData() {
+			if($(\'#isloading\').val()==\'0\'){
+				$(\'#qz_ldiv\').show();
+				$(\'#isloading\').val(\'1\');
+				var p=parseInt($(\'#cp\').val());
+				p++;
+				$.get(\'j/homeqz.php?s='.$p_size.'&p=\'+p, function(data){
+					$(\'#home_qzlist\').append(data);
+					$(\'#isloading\').val(\'0\');
+					//$(\'#qz_ldiv\').hide();
+					$(\'#cp\').val(p);
+				})
+			}
+		}
+		</script>';
 		$js_scrc='
 		if($(\'#qz_iso\').length==0 || $(\'#qz_iso\').val()!=\'1\'){
 			var clienth=document.documentElement.clientHeight;
 			var scrollh=document.documentElement.scrollHeight;
 			var scrollt=document.documentElement.scrollTop+document.body.scrollTop;
-			if(clienth+scrollt+50>scrollh){
-				if($(\'#isloading\').val()==\'0\'){
-					$(\'#qz_ldiv\').show();
-					$(\'#isloading\').val(\'1\');
-					var p=parseInt($(\'#cp\').val());
-					p++;
-					$.get(\'j/homeqz.php?s='.$p_size.'&p=\'+p, function(data){
-						$(\'#home_qzlist\').append(data);
-						$(\'#isloading\').val(\'0\');
-						$(\'#qz_ldiv\').hide();
-						$(\'#cp\').val(p);
-					})
-				}
+			if(false && clienth+scrollt+50>scrollh){
+				
 			}
 		}';
 		$c.='<input type="hidden" id="isloading" value="0"><input type="hidden" id="cp" value="1"><ul id="home_qzlist" class="list_comment">';
@@ -155,7 +160,7 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 			if(!isset($uadb[$r_res['uid']]))$uadb[$r_res['uid']]=yjl_udb($r_res['uid']);
 			$c.=yjl_homeqz($r_res);
 		}while($r_res=mysql_fetch_assoc($res));
-		$c.='</ul><center style="padding-top: 20px;" id="qz_ldiv" style="display: none;">正在加载中，请稍候…</center>';
+		$c.='</ul><center style="padding-top: 20px;" id="qz_ldiv" style="display: none;"><a href="javascript:getMoreData()">查看更多</a></center>';
 	}
 	mysql_free_result($res);
 	$c.='<div class="box2 clearfix">
