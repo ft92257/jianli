@@ -1005,7 +1005,7 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 <!--底部-->
 <div id="pfoot" style="clear: both;">
 	<div class="left">
-		<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="/new/index.php?s=/supervisor/consult/type/recruit">诚聘精英</a></address>
+		<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></address>
 	</div>
 	<div class="right">Copyright &copy; '.date('Y').' '.$r_main['site_name'].'</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
 </div><div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
