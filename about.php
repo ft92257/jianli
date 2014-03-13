@@ -44,7 +44,8 @@ marker.addEventListener("click", function(){
 		$c.='公司名称：上海易至居工程监理有限公司<br/><br/>支付宝账号：5678107@qq.com';
 		break;
 	case 'pay':
-		header("Location:new/index.php?s=/supervisor/consult/type/16");exit;
+		
+		header("Location:new/".($_COOKIE['isgz'] ? 'gz' : 'index').".php?s=/supervisor/consult/type/16");exit;
 		require_once('jg.php');
 		$c.='<style>.jgtd {background: #808080;}.jgtd td {background: #fff;padding: 5px;font-size: 12px;line-height: 25px;}.jgtd th {background: #ee6c00;color: #fff;font-weight: bold;padding: 5px;font-size: 12px;line-height: 25px;}</style><h1 style="font-size:20px;padding-bottom:20px;">公寓房</h1><table width="636" cellspacing="1" class="jgtd">
 <tr>

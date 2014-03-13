@@ -109,10 +109,12 @@ echo yjl_html_gz_head($s, 'index');
    <div class="clear"></div>
   </div>
  </div><!--/of_ls_kj_alstyle-->
- <div class="footer right">
-    <p>Copyright&nbsp;&copy;&nbsp;2013&nbsp;易监理</p>
-    <div class="clear"></div>
-  </div><!-- footer end-->
+ <div id="pfoot" style="clear: both;">
+	<div class="left">
+		<address>易监理<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html?PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">关于易监理</a> |  <a href="/about-service.html?PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">服务流程</a> |  <a href="/about-pay.html?PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">收费标准</a> | <a href="/about-paypal.html?PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">支付宝支付</a> | <a href="/about-contact.html?PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">联系我们</a> | <a href="/new/index.php?s=/supervisor/consult/type/recruit&amp;PHPSESSID=5c07e251ca8640eb5be0ec39e0a50749">诚聘精英</a></address>
+	</div>
+	<div class="right">Copyright © 2014 易监理</div><br><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&amp;entyId=20130520141953244"><img src="icon.gif" border="0"></a>
+</div>
   <div class="clear"></div>
 </div><!--/cen_div_cen-->
 </div>
