@@ -1,4 +1,5 @@
 <?php
+header("Content-type:text/html;charset=utf-8;");
 error_reporting(0);
 select_yjl_db();
 $charset_conn=0;
@@ -650,7 +651,7 @@ function yjl_gehtml($l, $c, $t){
 }
 
 function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
-	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
+	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title, $d_l1id;
 	$ptitle=($page_title!=''?$page_title.' | ':'').$r_main['site_name'];
 	if($udb['uid']>0 && $udb['iswc']==1 && (($udb['qx']==5 && $udb['iszxjl']==1) || $udb['qx']==10 || $udb['isxg']>0)){
 		$js_c.='
@@ -755,8 +756,10 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
     //<a href="photo-0.html" data-config="default"><span class="oco03"></span>监理项目</a>
     //<a href="index.php" data-match="index.php$"><span class="oco01"></span>首页</a>
 	$s .='</div>
-	</div><!-- pbar结束 -->
-	<div class="phead">
+	</div><!-- pbar结束 -->';
+	
+	if ($d_l1id != 166) {
+		$s .= '<div class="phead">
 	<div class="head clearfix">
 	<div class="logo left">装修从此容易！</div>
 	
@@ -826,11 +829,44 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
     
    </div>
     
-	
-	
 	</div>
-	</div><!-- phead 结束-->
-	<div class="clear"></div>
+	</div><!-- phead 结束-->';
+	} else {
+		$s .= '
+		<link type="text/css" rel="stylesheet" href="newnav/css/screen.css" />
+		<link type="text/css" rel="stylesheet" href="newnav/css/zindex.css" />
+		<script type="text/javascript" src="newnav/js/style.js"></script>
+		<div id="lnav">
+		<div class="w-100 ml-mr-a clearfix">
+		<div class="left">
+		<a href="#"><img src="newnav/images/yijianlilogo.jpg" width="145" height="109" alt="易监理"></a>
+		</div>
+		<div class="left navBox ml-13">
+		<a href="index.php" class="mrck">
+		<p class="ckmr1"></p>
+		<strong>首页</strong>
+		</a>
+		<a href="photo-0.html">
+		<p class="nav2"></p>
+		<strong>监理项目</strong>
+		</a>
+		<a href="#">
+		<p class="nav3"></p>
+		<strong>样板房</strong>
+		</a>
+		<a href="#">
+		<p class="nav4"></p>
+		<strong>服务承诺</strong>
+		</a>
+		</div>
+		<div class="right">
+		<img src="newnav/images/poho.jpg" width="199" height="109">
+		</div>
+		</div>
+		</div>';
+	}	
+	
+	$s .='<div class="clear"></div>
 	</div>
 
 	</div>';
@@ -993,7 +1029,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 
 
 function yjl_html($c, $css='', $body_id='', $menu_id=0){
-	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
+	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title, $d_l1id;
 	if ($_COOKIE['isgz']) {
 		$s = yjl_html_gz_head($c, $css, $body_id, $menu_id);
 	} else {
@@ -1001,14 +1037,34 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	}
 	$s .= '<!--内容-->
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
-</div>
-<!--底部-->
-<div id="pfoot" style="clear: both;">
+</div>';
+//底部
+if ($d_l1id != 166 || $_COOKIE['isgz']) {
+	$s .= '
+	<div id="pfoot" style="clear: both;">
 	<div class="left">
-		<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></address>
+	<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></address>
 	</div>
 	<div class="right">Copyright &copy; '.date('Y').' '.$r_main['site_name'].'</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
-</div><div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
+	</div>';
+} else {
+	$s .= '<div style="background-color:#E9E9E9">
+	<div class="w-100 mga pb-5">
+	<p><img src="newnav/images/contact.png" width="1000" height="84" alt="地址，联系方式"></p>
+	<p class="ml-13"><img src="newnav/images/erweima.png" width="308" height="185" alt="微博，微信扫描"></p>
+	</div>
+	</div>
+	
+	<div id="footbox" class="w-100 mga">
+	<p class="left pl-13 mr-7"><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a></p>
+	<p class="left"><a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></p>
+	<p class="right">Copyright © 2014 易监理</p>
+	</div>
+	<div class="fh" style="position: fixed; right: 160px; top: 600px; cursor: pointer; display: block;"><img src="newnav/images/fh.png" width="37" height="37" title="返回顶部"></div>
+	';
+}
+
+	$s .= '<div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
 	foreach($a_fx as $k=>$v)$s.='<a title="分享到'.$v[0].'" href="#" onclick="fx_link(\''.$v[1].'\');return false;" class="fx_link" style="background-position: 3px -'.(37+($k+1)*40).'px;">'.$v[0].'</a>';
 	$ru=$_SERVER['REQUEST_URI'];
 	if(isset($_SERVER['HTTP_X_REWRITE_URL']) && trim($_SERVER['HTTP_X_REWRITE_URL'])!='')$ru=$_SERVER['HTTP_X_REWRITE_URL'];

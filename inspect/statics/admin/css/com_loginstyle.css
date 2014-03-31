@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+.login {
+	  background: #E8F3E2;
+	  text-align:center;
+	  margin:0;
+	}
+.l_header {
+	   background:url(com_img/header.gif) repeat-x;
+	   height:170px;
+	   padding-top:100px;
+	}
+/*.l_logo {
+	   background:url(com_img/logo.png) no-repeat;
+	   height:35px;
+	   width:105px;
+	   margin:0 auto;
+	}*/
+.l_header h2 {
+	   font-size:48px;
+	   color:#FFF;
+	   margin:16px 0 0 0;
+	}
+.l_content {
+	width:320px;
+	   margin:50px auto 0;
+	}
+td .l_input {
+	   width:220px;
+	   height:22px;
+	   margin-bottom:15px;
+	}
+input.l_input {
+ 	   border:1px solid #73c73b;
+	   background:#FFF;
+	   padding:2px 3px;
+	}
+.loginsbt {
+	   margin-top:50px;
+       background:url(com_img/iconBtns.png) no-repeat -244px -48px;
+	   width:96px;
+	   height:36px;
+	}
+

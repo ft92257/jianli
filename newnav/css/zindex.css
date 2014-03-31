@@ -1,0 +1,160 @@
+@charset "utf-8";
+/* CSS Document */
+body{font-size:12px;height:100%;color:#999;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif,'宋体'}
+#lnav{ height:109px; background:url(../images/topbackg.jpg) repeat-x}
+#lnav .ml-mr-a{ margin:0 auto}
+#lnav .navBox a{ float:left; height:79px; padding-top:30px; font-family:"微软雅黑"; color:#EB7B47; font-size:16px; width:115px; text-align:center; text-decoration:none}
+#lnav .navBox a:hover,#lnav .navBox a.mrck{ background-color:#EB7B47; color:#FFF}
+#lnav .navBox a p{ width:30px; height:30px; cursor:pointer; margin:0 auto; background-image:url(../images/nbg.png); background-repeat:no-repeat}
+
+#lnav .navBox a p.nav1{ background-position:2px top}
+#lnav .navBox a:hover p.nav1{ background-position:2px bottom}
+#lnav .navBox a p.ckmr1{ background-position:2px bottom}
+
+#lnav .navBox a p.nav2{ background-position:-52px top}
+#lnav .navBox a:hover p.nav2{ background-position:-52px bottom}
+#lnav .navBox a p.ckmr2{ background-position:-52px bottom}
+
+#lnav .navBox a p.nav3{ background-position:-102px top}
+#lnav .navBox a:hover p.nav3{ background-position:-102px bottom}
+#lnav .navBox a p.ckmr3{ background-position:-102px bottom}
+
+#lnav .navBox a p.nav4{ background-position:-150px top}
+#lnav .navBox a:hover p.nav4{ background-position:-150px bottom}
+#lnav .navBox a p.ckmr4{ background-position:-150px bottom}
+
+#lnav .navBox a strong{ font-weight:normal; display:block}
+/*首页banner*/
+#mt .b-box{ height:417px; position:relative; overflow:hidden}
+#mt .b-box .big-imgbox{ position:absolute; left:0; top:0}
+#mt .b-box .big-imgbox li{ float:left}
+#mt .b-box .rb-ul{ position:absolute; right:20px; bottom:25px; z-index:111111}
+#mt .b-box .rb-ul li{ width:15px; height:15px; float:left; margin-right:10px; background-color:#fff; text-indent:-9999px}
+#mt .b-box .rb-ul li.mli{ background-color:#52862E}
+#mt .b-box .list-ul-box{ position:absolute; left:0; top:0; padding-bottom:19px; background:url(../images/jjs.png) repeat}
+#mt .b-box .list-ul-box h1{ font-size:16px; line-height:22px; font-weight:normal; color:#000; font-family:"微软雅黑"}
+#mt .b-box .list-ul-box h1 span{ color:#EB7B47}
+#mt .b-box .list-ul-box p a{ margin:0 10px; display:inline-block; line-height:22px; color:#737373}
+#mt .b-box .fw-cn{ position:absolute; right:0; top:0}
+
+
+
+
+
+
+
+#crumbs{ margin:0 auto; height:50px; line-height:50px; font-family:"宋体"}
+#crumbs a{ color:#808080}
+.titPs{ line-height:35px; color:#777; padding-left:20px; font-family:"微软雅黑"; font-size:16px; background-color:#fff}
+#crumbs dl{ width:57px; float:left; margin:10px 2px 0 6px}
+#crumbs dl dd{ line-height:15px}
+#banBox{ background:url(../images/banimg.png) center repeat-x; height:439px}
+#snav{ margin:0 auto}
+#snav a{ text-decoration:none; margin:0 3px; float:left; width:160px; text-align:center; font-family:"微软雅黑"; color:#000; font-size:16px}
+#snav a p{ width:45px; height:45px; cursor:pointer; margin:0 auto; background-image:url(../images/icobg.png); background-repeat:no-repeat}
+
+#snav a p.nv1{ background-position:left top}
+#snav a p.nv2{ background-position:-45px top}
+#snav a p.nv3{ background-position:-90px top}
+#snav a p.nv4{ background-position:-135px top}
+#snav a p.nv5{ background-position:-180px top}
+#snav a p.nv6{ background-position:-225px top}
+#snav a strong{ font-weight:normal; display:block; margin-top:5px; line-height:35px}
+#snav a strong.ck_s{ background-color:#EB7C49; color:#FFF}
+
+
+.green{ background:url(../images/greens.png) center repeat-x}
+.yellow{ background-color:#FDFAEA}
+.white{ background-color:#FFF}
+.yellow h1{ font-size:24px; font-family:"微软雅黑"; font-weight:normal; color:#000; padding-left:30px; background:url(../images/bz.png) left center no-repeat; width:195px; margin:50px auto 0 auto; line-height:31px}
+.yellow dl dt,.yellow dl dd{ float:left}
+.yellow dl dd{ width:670px}
+.yellow dl h2{ font-size:24px; line-height:31px; font-family:"微软雅黑"; color:#6C6C6C; font-weight:normal}
+.yellow dl p{ font-family:"微软雅黑"; font-size:16px; line-height:30px}
+.yellow .jfan a{ font-family:"微软雅黑"; background:url(../images/icooo1.png) no-repeat; text-decoration:none; font-size:24px; color:#777; line-height:45px; padding-left:45px}
+.yellow .jfan a:hover{ color:#53BA77}
+
+.yellow .jfan a.i1{ background-position:left 8px}
+.yellow .jfan a:hover.i1{ background-position:left -426px;}
+.yellow .jfan a.i2{ background-position:left -30px}
+.yellow .jfan a:hover.i2{ background-position:left -464px;}
+.yellow .jfan a.i3{ background-position:left -70px}
+.yellow .jfan a:hover.i3{ background-position:left -504px;}
+.yellow .jfan a.i4{ background-position:left -114px}
+.yellow .jfan a:hover.i4{ background-position:left -548px;}
+.yellow .jfan a.i5{ background-position:left -158px}
+.yellow .jfan a:hover.i5{ background-position:left -592px;}
+.yellow .jfan a.i6{ background-position:left -200px}
+.yellow .jfan a:hover.i6{ background-position:left -634px;}
+.yellow .jfan a.i7{ background-position:left -242px}
+.yellow .jfan a:hover.i7{ background-position:left -676px;}
+.yellow .jfan a.i8{ background-position:left -290px}
+.yellow .jfan a:hover.i8{ background-position:left -724px;}
+.yellow .jfan a.i9{ background-position:left -336px}
+.yellow .jfan a:hover.i9{ background-position:left -770px;}
+.yellow .jfan a.i10{ background-position:left -384px}
+.yellow .jfan a:hover.i10{ background-position:left -818px;}
+.yellow .conDp{ font-size:20px; font-family:"微软雅黑"}
+.yellow .conDp p{ line-height:30px}
+.yellow .conDp p span{ color:#53BA77}
+.yellow .conDp h2{ font-size:26px; color:#464646; font-family:"微软雅黑"; font-weight:normal}
+
+.continue{ background:url(../images/continueimg.png) center repeat-x}
+dl.w-100{ margin:0 auto}
+dl.w-100 .contOne p{ font-size:16px; color:#000; line-height:30px; font-family:"微软雅黑"}
+dl.w-100 .contTwo p{ font-size:20px; line-height:30px; color:#000; font-family:"微软雅黑"}
+dl.w-100 .contTwo p span{ font-weight:bold; color:#F07328}
+dl.w-100 .contThree h3{ font-size:16px; color:#F07328; font-family:"微软雅黑"}
+dl.w-100 .contThree p{ color:#000; font-family:"微软雅黑"; font-size:14px; line-height:20px}
+dl.w-100 .contFour p{ font-size:16px; line-height:22px; color:#000; font-family:"微软雅黑"}
+dl.w-100 .contFour h4{ font-size:24px; font-family:"微软雅黑"; color:#F07328}
+dl.w-100 .contFive p{ font-size:16px; line-height:22px; color:#000; font-family:"微软雅黑"}
+
+.blue{ background:url(../images/blueimg.png) center repeat-x}
+div.align-r{ font-size:16px; font-family:"微软雅黑"; color:#000}
+div.align-r a{ color:#000}
+.red{ background:url(../images/redimg.png) center repeat-x}
+.supervisor h5{ font-size:26px; font-family:"微软雅黑"; font-weight:normal}
+.supervisor ul li{ float:left; margin-right:30px; margin-top:30px; width:205px; height:173px}
+.supervisor ul li a{ display:block; position:relative; color:#FFF; overflow:hidden}
+.supervisor ul li a .abstract{ background-color:#000; width:185px; height:173px; padding-left:10px; padding-right:10px; position:absolute; left:0; top:173px; font-family:"微软雅黑"}
+.supervisor ul .abstract .sjname{ font-size:16px; font-weight:bold}
+.supervisor ul .abstract strong{ font-weight:normal}
+
+.orange{ background:url(../images/orangeimg.png) center repeat-x}
+.yimgbg{ background:url(../images/yimgs.png) center repeat-x}
+
+#footbox{ line-height:55px}
+#footbox a{ color:#999}
+
+/*办公室*/
+#banBox1{ background:url(../images/bigbgimg.png) center repeat-x; height:439px}
+.bslook{ background:url(../images/bsimg1.png) center repeat-x}
+.why{ background:url(../images/bsimg2.png) center repeat-x}
+.bsxm{ background:url(../images/bsimg5.png) center repeat-x}
+/*3+N套餐服务*/
+#mt .fw{ margin:0 auto}
+#mt .explain{ font-size:18px; font-family:"微软雅黑"; color:#666; font-weight:normal}
+/*全程监理*/
+.bzp p{ font-size:16px; font-family:"微软雅黑"; line-height:30px}
+/*厂房*/
+#banBox2{ background:url(../images/bigbgimg2.png) center repeat-x; height:439px}
+.workshopjl{ background:url(../images/changfangjianliban.png) center repeat-x}
+#mt .cf-zx{ font-size:20px; color:#ca8815; font-family:"微软雅黑"}
+.workshopxm{ background:url(../images/changfangxm.png) center repeat-x}
+#mt .cfh1{ font-size:22px; font-family:"微软雅黑"; font-weight:normal; text-align:center; color:#000}
+#mt h2.ts{ background:url(../images/cffuwu.png) no-repeat; font-size:26px; color:#FFF; font-family:"微软雅黑"; font-weight:normal; width:811px; height:49px; line-height:49px; text-align:center; margin:0 auto}
+/*酒店会所*/
+#banBox3{ background:url(../images/bigbgimg3.png) center repeat-x; height:439px}
+.hotel{ background:url(../images/hotelbf.png) center repeat-x}
+#mt .hotelxm{ background:url(../images/hoteldf.png) center repeat-x}
+/*连锁店*/
+#banBox4{ background:url(../images/bigbgimg3.png) center repeat-x; height:439px}
+#mt .multipleShop{ background:url(../images/liansuodians.png) center repeat-x}
+#mt .multipleShopxm{ background:url(../images/liansuodianxm.png) center repeat-x}
+/*实验室*/
+#banBox5{ background:url(../images/shiyanshiban.png) center repeat-x; height:439px}
+#mt .laboratory{ background:url(../images/sysjl.png) center repeat-x}
+/*土建*/
+#mt .ciciEngineering{ background:url(../images/tujianas.png) center repeat-x}
+#mt .civiEnginneringxm{ background:url(../images/tujianxm.png) center repeat-x}

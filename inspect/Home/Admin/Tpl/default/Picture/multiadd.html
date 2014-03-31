@@ -1,0 +1,93 @@
+<include file="Public:header" />
+<include file="Public:left" />
+<div class="right">
+	<h2>图片管理</h2>
+	<div class="b frame">
+		<p>{$tabTitle}</p>
+		<h3>设置图片</h3>
+		
+		<p><a href="__URL__/add/type/{$type}/target/{$target}">普通上传</a></p>
+
+<link href="__STATICS__/js/swfupload/css/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__STATICS__/js/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="__STATICS__/js/swfupload/swfupload.queue.js"></script>
+<script type="text/javascript" src="__STATICS__/js/swfupload/fileprogress.js"></script>
+<script type="text/javascript" src="__STATICS__/js/swfupload/handlers.js"></script>		
+<script type="text/javascript">
+		var upload1;
+
+		window.onload = function() {
+			upload1 = new SWFUpload({
+				// Backend Settings
+				upload_url: "__SELF__",
+				post_params: { "PHPSESSID" : "{$session_id}"},
+				file_post_name: "fid",
+
+				// File Upload Settings
+				file_size_limit : "1024",	// 1MB
+				file_types : "*.*",
+				file_types_description : "All Files",
+				file_upload_limit : 10,
+				file_queue_limit : 0,
+
+				// Event Handler Settings (all my handlers are in the Handler.js file)
+				swfupload_preload_handler : preLoad,
+				swfupload_load_failed_handler : loadFailed,
+				file_dialog_start_handler : fileDialogStart,
+				file_queued_handler : fileQueued,
+				file_queue_error_handler : fileQueueError,
+				file_dialog_complete_handler : fileDialogComplete,
+				upload_start_handler : uploadStart,
+				upload_progress_handler : uploadProgress,
+				upload_error_handler : uploadError,
+				upload_success_handler : uploadSuccess,
+				upload_complete_handler : uploadComplete,
+
+				// Button Settings
+				button_image_url : "__STATICS__/js/swfupload/XPButtonUploadText_61x22.png",
+				button_placeholder_id : "spanButtonPlaceholder1",
+				button_width: 61,
+				button_height: 22,
+				
+				// Flash Settings
+				flash_url : "__STATICS__/js/swfupload/swfupload.swf",
+				flash9_url : "__STATICS__/js/swfupload/swfupload_fp9.swf",
+			
+
+				custom_settings : {
+					progressTarget : "fsUploadProgress1",
+					cancelButtonId : "btnCancel1"
+				},
+				
+				// Debug Settings
+				debug: false
+			});
+
+	     }
+</script>
+<div id="content">
+	<form id="form1" action="" method="post" enctype="multipart/form-data">
+		<table>
+			<tr valign="top">
+				<td>
+					<div>
+						<div class="fieldset flash" id="fsUploadProgress1">
+							<span class="legend">批量图片上传</span>
+						</div>
+						<div style="padding-left: 5px;">
+							<span id="spanButtonPlaceholder1"></span>
+							<input id="btnCancel1" type="button" value="Cancel Uploads" onclick="cancelQueue(upload1);" disabled="disabled" style="margin-left: 2px; height: 22px; font-size: 8pt;" />
+							<br />
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+	</div>
+	
+</div>
+</body>
+</html>

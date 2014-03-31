@@ -20,7 +20,7 @@ if(isset($_GET['home']) && $_GET['home']==1){
 		$c_rep=mysql_num_rows($rep);
 		if(mysql_num_rows($rep)>0){
 			do{
-				$c.='<div style="padding: 5px;"><a href="#" onclick="$(\'#xqid\').val(\''.$r_rep['xqid'].'\');$(\'#xqname\').val($(this).html());$(\'#chki_1\').val($(this).html());$(\'#xqs_sdiv\').hide();showermsg(\'\', 1);return false;">'.$r_rep['name'].'</a></div>';
+				$c.='<div style="padding: 5px;"><a href="#" data-xqid="'.$r_rep['xqid'].'" onclick="$(\'#xqid\').val(\''.$r_rep['xqid'].'\');$(\'#xqname\').val($(this).html());$(\'#chki_1\').val($(this).html());$(\'#xqs_sdiv\').hide();showermsg(\'\', 1);return false;">'.$r_rep['name'].'</a></div>';
 			}while($r_rep=mysql_fetch_assoc($rep));
 		}else{
 			$c.='<i>没有符合条件的结果<br/>请重新输入</i>';

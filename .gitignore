@@ -15,3 +15,7 @@ house/config.inc.php
 house/data
 house/pay/tenpay_config.php
 .htaccess
+inspect/Home/Index/Runtime
+inspect/Home/Admin/Runtime
+inspect/config.inc.php
+inspect/data

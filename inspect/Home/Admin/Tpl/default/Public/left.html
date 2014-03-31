@@ -1,0 +1,35 @@
+<body>
+ <div class="header">
+      <div class="head">
+        <div class="logo">
+          <img src="__STATICS__/css/com_img/logo.png" width="158" height="40" />
+          <h2>验房360管理系统</h2>
+          <span>&lt;&lt;&nbsp;<a href="{:U('Index/index')}">返回首页</a></span>
+        </div>
+        
+        <div class="headmenu">
+          欢迎您：<span id="userName">{$user.account}</span>
+          <a  id="logoutLink" href="{:U('Manager/logout')}">退出</a>
+          <a href="">修改密码</a>
+          <a href="">使用帮助</a>
+          <a href="">网站公告</a>
+        </div>
+        <div class="both"></div>
+      </div>
+    </div>
+    
+    <div class="content" id="left_nav">
+      <div class="left">
+        <div class="l">
+          <h3>后台管理</h3>
+          <ul>
+          	<li><a href="{:U('Inspect/index')}" data-match="/Inspect/">团验项目</a></li>
+            <li><a href="{:U('Report/index')}" data-match="/Report/">验房报告</a></li>
+          </ul>
+        </div>
+
+      </div>
+	  
+	  <script>
+	  	selectNav('left_nav', 'current');
+	  </script>

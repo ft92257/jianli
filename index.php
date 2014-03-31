@@ -101,9 +101,15 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 		$jlc.='</ul>';
 	}
 	mysql_free_result($res);
-	$c='<div class="top_row clearfix" style="padding:0px;">
+	if ($d_l1id == 166) {
+		$c = '';
+	} else {
+		$c = '<div class="top_row clearfix" style="padding:0px;">
 			<img src="images/banimg_ban0.png" width="" />
-		</div>
+		</div>';
+	}
+	
+	$c .= '
 		<div class="row_bg clearfix">
 			<div class="left">
 				<h2 class="hot_line">咨询监理<sub>咨询热线400-990-2013、QQ：5678107</sub></h2>
@@ -189,5 +195,10 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 				</form>
                 </div></div></div>';
 	echo yjl_html($c, 'index');
+	
+	if ($d_l1id == 166) {
+		$c = file_get_contents('newnav/7.html');
+		echo $c;
+	}
 }
 ?>

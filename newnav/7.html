@@ -1,0 +1,85 @@
+
+    <div id="mt" class="mt-0-5">
+    	<div class="mga b-box">
+        	<ul class="big-imgbox" style="z-index:-1;">
+            	<li><a href="#"><img src="newnav/images/b1111.png" width="2560" height="417" /></a></li>
+                <li><a href="#"><img src="newnav/images/b2222.png" width="2560" height="417" /></a></li>
+                <li><a href="#"><img src="newnav/images/b3333.png" width="2560" height="417" /></a></li>
+                <li><a href="#"><img src="newnav/images/b1111.png" width="2560" height="417" /></a></li>
+            </ul>
+            <div style="width:980px;margin-left:auto;margin-right:auto">
+            <div class="list-ul-box w-27-5" style="position:static;float:left;width:275px;">
+            	<h1 class="mt-1 ml-1"><span>|&nbsp;</span>监理类型</h1>
+                <p class="ml-1 mt-0-5"><a href="newnav.php?p=2">全程</a><a href="newnav.php?p=12">单次</a><a href="newnav.php?p=10">验收</a><a href="newnav.php?p=1">3+N</a><a href="new/index.php?s=/supervisor/consult/type/13">空气检测</a></p>
+                <h1 class="mt-1 ml-1"><span>|&nbsp;</span>选监理师</h1>
+                <p class="ml-1 mt-0-5"><a href="new/index.php?a=index&m=supervisor&f=2">别墅</a><a href="new/index.php?a=index&m=supervisor&f=3">公寓</a><a href="new/index.php?a=index&m=supervisor&f=5">验房师</a><a href="new/index.php?a=index&m=supervisor&f=4">预算师</a><a href="new/index.php?a=index&m=supervisor&f=6">维权律师</a><a href="new/index.php?a=index&m=supervisor&f=1">工装</a></p>
+                <h1 class="mt-1 ml-1"><span>|&nbsp;</span>验房360</h1>
+                <p class="ml-1 mt-0-5"><a href="inspect/index.php?s=/Inspect/index">团验</a><a href="inspect/index.php?s=/Card/index">验房卡</a><a href="inspect/index.php?s=/Report/detail/id/1">验房报告</a></p>
+                <h1 class="mt-1 ml-1"><span>|&nbsp;</span>预算</h1>
+                <p class="ml-1 mt-0-5"><a href="newnav.php?p=11">线下预算</a><a href="newnav.php?p=13">线上预算</a><a href="new/index.php?a=index&m=supervisor&f=4">预算师</a></p>
+                <h1 class="mt-1 ml-1"><span>|&nbsp;</span>家装监理</h1>
+                <p class="ml-1 mt-0-5"><a href="newnav.php?p=5">别墅</a><a href="new/index.php?a=company&m=company&cid=7">公寓</a></p>
+                <h1 class="mt-1 ml-1"><span>|&nbsp;</span>工装理师</h1>
+                <p class="ml-1 mt-0-5"><a href="newnav.php?p=15">办公室</a><a href="newnav.php?p=8">实验室</a><a href="newnav.php?p=9">连锁店</a><a href="newnav.php?p=6">酒店会所</a><a href="newnav.php?p=14">厂房</a><a href="newnav.php?p=4">土建</a><a href="newnav.php?p=3">招投标</a></p>
+            </div>
+			<div style="float:right;width:176px;">
+            <div class="fw-cn" style="position:static;"><img src="newnav/images/fw-cn.png" width="176" height="249" /></div>
+			<ul class="rb-ul" style="position:static;margin-top:130px;margin-left:60px;">
+            	<li class="mli">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+			</div>
+			</div>
+        </div>
+    </div>
+
+<script type="text/javascript" language="javascript">
+	var oneulli=$(".big-imgbox li").length;
+	var dwidth=$(".big-imgbox li").width();
+	var index=0;
+	var page=1;
+	$(".big-imgbox").css("width",dwidth*oneulli);
+	function dong(index){//开始滚动函数，获取滚动的距离，以及添加当前数字的默认效果
+		 var nowleft=-index*dwidth - (dwidth - $("body").width())/2;
+		 $(".big-imgbox").stop(true,false).animate({"left":nowleft},"slow");
+		 $(".rb-ul li").removeClass("mli").eq(index).addClass("mli");
+	};	
+	
+$(function(){
+	var s = "<div id=\"mt\" class=\"mt-0-5\">" + $("#mt").html() + "</div>";
+	$("#mt").detach();
+	$("#pbody").before(s);
+	$("a").each(function(){
+		if ($(this).attr("href") != '#') {
+			//$(this).attr("target", "_blank");
+		} else {
+			$(this).attr("href", "javascript:void(0)");
+		}
+	});
+	
+	dong(1);
+	
+	$(".rb-ul li").mouseover(function(){//鼠标经过数字时获取其索引值，并为其添加鼠标经过效果
+		 var index=$(this).index();
+		 $(this).addClass("mli").siblings(".rb-ul li").removeClass("mli");
+		 dong(index);//执行滚动函数，实现滚动函数
+		 page=$(this).index()+1;
+		}).eq(0).trigger("mouseover");//第一个数字模拟执行鼠标经过数字时的默认	
+	$(".b-box").hover(function(){
+		 clearInterval(clear);//实现鼠标经过banner时清除clear动作
+		},function(){
+			 clear=setInterval(function(){//将鼠标的动作赋给变量clear
+				  if(index==oneulli){//如果索引值等于图片的数量，就将index值归零
+						index=0;
+					  }else{
+						   dong(index);//如果索引值不等于图片数量，就执行滚动动作，并使索引值加1
+						   index++;
+						  }
+				 },3000);
+			}).trigger("mouseout");	
+});	
+	
+</script>
+

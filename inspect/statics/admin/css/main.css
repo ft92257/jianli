@@ -1,0 +1,20 @@
+.selectedTags, .hotTags{
+	float:left;
+	width:100%;
+	padding:10px 0px 0px 0px;
+}
+.selectedTags span, .hotTags span{
+	display:block;
+	height:22px;
+	line-height:22px;
+	float:left;
+	border:1px solid #ccc;
+	margin-right:10px;
+	padding:0px 10px;
+	cursor:pointer;
+}
+
+.hotTags .pasted{
+	background:#01ffff;
+	cursor:default;
+}
