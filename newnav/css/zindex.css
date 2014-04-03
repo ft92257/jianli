@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-body{font-size:12px;height:100%;color:#999;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif,'宋体'}
+body{font-size:12px;height:100%;color:#999;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif,'宋体'; background-color:#FFF}
 #lnav{ height:109px; background:url(../images/topbackg.jpg) repeat-x}
 #lnav .ml-mr-a{ margin:0 auto}
 #lnav .navBox a{ float:left; height:79px; padding-top:30px; font-family:"微软雅黑"; color:#EB7B47; font-size:16px; width:115px; text-align:center; text-decoration:none}
@@ -38,7 +38,29 @@ body{font-size:12px;height:100%;color:#999;font-family:"Helvetica Neue", Helveti
 #mt .b-box .fw-cn{ position:absolute; right:0; top:0}
 
 
-
+/*右侧跟随滚动菜单*/
+.r-box-move{ width:82px; border:#E4E3E5 4px solid; position:fixed; left:50%; bottom:30%; z-index:111111; margin-left:510px; background-color:#fff}
+.r-box-move .r-box-u>li{ position:relative}
+.r-box-move .r-box-u>li> a{ display:block; width:82px; height:64px; text-indent:-9999999px; background-position:left top}
+.r-box-move .r-box-u li> a.i1{ background:url(../images/i1.png) no-repeat}
+.r-box-move .r-box-u li> a.i2{ background:url(../images/i2.png) no-repeat}
+.r-box-move .r-box-u li> a.i3{ background:url(../images/i3.png) no-repeat}
+.r-box-move .r-box-u li> a.i4{ background:url(../images/i4.png) no-repeat}
+.r-box-move .r-box-u li> a.i5{ background:url(../images/i5.png) no-repeat}
+.r-box-move .r-box-u li> a.hmove.i1,.r-box-move .r-box-u li> a.hmove.i2,.r-box-move .r-box-u li> a.hmove.i3,.r-box-move .r-box-u li> a.hmove.i4,.r-box-move .r-box-u li> a.hmove.i5{ background-position:4px bottom}
+.r-box-move .r-box-u li> a.hmove{ width:86px; position:relative; margin-left:-4px; background-color:#EF833C}
+.r-box-move .r-box-u li .show-box{ position:absolute; right:86px; top:0; display:none; background-color:#fff; border:#EF833C 2px solid}
+.r-box-move .r-box-u li .show-box div.left{ border-right:#D6D6D6 1px solid; height:175px}
+.r-box-move .r-box-u li .show-box div.left.w-144{ width:144px}
+.r-box-move .r-box-u li .show-box div.left.w-132{ width:132px}
+.r-box-move .r-box-u li .show-box div.left.w-121{ width:121px}
+.r-box-move .r-box-u li .show-box div.left.w-96k{ width:96px}
+.r-box-move .r-box-u li .show-box div.left.w-94k{ width:94px}
+.r-box-move .r-box-u li .show-box div.left.w-92k{ width:92px}
+.r-box-move .r-box-u li .show-box div.left.w-147k{ width:147px}
+.r-box-move .r-box-u li .show-box .name-list li{ float:left; position:relative; line-height:23px; width:55px}
+.r-box-move .r-box-u li .show-box .name-list li a{ color:#a4a4a4}
+.r-box-move .r-box-u li .show-box .name-list li a img{ position:absolute; right:10px; top:-6px}
 
 
 
@@ -121,7 +143,7 @@ div.align-r a{ color:#000}
 .supervisor ul .abstract .sjname{ font-size:16px; font-weight:bold}
 .supervisor ul .abstract strong{ font-weight:normal}
 
-.orange{ background:url(../images/orangeimg.png) center repeat-x}
+.fwcon{ background:url(../images/orangeimg.png) center repeat-x}
 .yimgbg{ background:url(../images/yimgs.png) center repeat-x}
 
 #footbox{ line-height:55px}

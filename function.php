@@ -1060,7 +1060,115 @@ if ($d_l1id != 166 || $_COOKIE['isgz']) {
 	<p class="left"><a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></p>
 	<p class="right">Copyright © 2014 易监理</p>
 	</div>
-	<div class="fh" style="position: fixed; right: 160px; top: 600px; cursor: pointer; display: block;"><img src="newnav/images/fh.png" width="37" height="37" title="返回顶部"></div>
+
+	<div class="r-box-move"  style="display:none">
+        	<ul class="r-box-u pb-1">
+            	<li>
+                	<a href="#" class="i1">预约监理师</a>
+                    <div class="show-box w-55-5">
+                    	<div class="left w-14">
+                        	<img src="newnav/images/r_gzjls.png" width="140" height="34" alt="工装监理师" />
+                            <ul class="name-list clearfix ml-2-5 mt-1">
+                            	<li><a href="new/index.php?a=index&m=reserve&sid=3">高李俊</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=5">顾更魁</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=2">陈宏兴</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=1">王剑</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-144">
+                        	<img src="newnav/images/r_jzjls.png" width="144" height="34" alt="家装监理师" />
+                            <ul class="name-list clearfix ml-2-5 mt-1">
+                            	<li><a href="new/index.php?a=index&m=reserve&sid=13">施井德</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=7">白立国</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=9">戴英男</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=8">王文清</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=20">徐旭云</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=24">范献军</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=12">顾更魁</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=25">薛囯义</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=6">李保国</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-13-5">
+                        	<img src="newnav/images/r_yss.png" width="135" height="34" alt="预算师" />
+                            <ul class="name-list clearfix ml-2 mt-1">
+                            	<li><a href="new/index.php?a=index&m=reserve&sid=19">饶章龙</a></li>
+                                <li><a href="new/index.php?a=index&m=reserve&sid=17">杨哲</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-132">
+                        	<img src="newnav/images/r_wqls.png" width="132" height="34" alt="维权律师" />
+                            <ul class="name-list clearfix ml-2 mt-1">
+                            	<li><a href="new/index.php?a=index&m=reserve&sid=18">徐方勇</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                	<a href="#" class="i2">监理服务</a>
+                    <div class="show-box w-55-5">
+                    	<div class="left w-121">
+                        	<img src="newnav/images/r_lx.png" width="121" height="34" alt="类型" />
+                            <ul class="name-list clearfix ml-2-5 mt-1">
+                            	<li><a href="newnav.php?p=2">全程<img src="newnav/images/hot.png" width="20" height="11" /></a></li>
+                                <li><a href="newnav.php?p=12">单次</a></li>
+                                <li><a href="newnav.php?p=10">验收</a></li>
+                                <li><a href="newnav.php?p=1">3+N</a></li>
+                                <li><a href="new/index.php?s=/supervisor/consult/type/13">空气检测</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-96k">
+                        	<img src="newnav/images/r_yf.png" width="96" height="34" alt="验房" />
+                            <ul class="name-list clearfix ml-2-5 mt-1">
+                            	<li><a href="inspect/index.php?s=/Inspect/index">团验</a></li>
+                                <li><a href="inspect/index.php?s=/Card/index">验房卡</a></li>
+                                <li><a href="inspect/index.php?s=/Report/detail/id/1">验房报告</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-94k">
+                        	<img src="newnav/images/r_ys.png" width="94" height="34" alt="预算" />
+                            <ul class="name-list clearfix ml-2 mt-1">
+                            	<li><a href="newnav.php?p=13">在线预算</a></li>
+                                <li><a href="newnav.php?p=11">线下预算</a></li>
+                                <li><a href="new/index.php?a=index&m=supervisor&f=4">预算师</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-92k" >
+                        	<img src="newnav/images/r_jz.png" width="92" height="34" alt="家装" />
+                            <ul class="name-list clearfix ml-2 mt-1">
+                            	<li><a href="newnav.php?p=5">别墅<img src="newnav/images/hot.png" width="20" height="11" /></a></li>
+                                <li><a href="new/index.php?a=company&m=company&cid=7">公寓</a></li>
+                            </ul>
+                        </div>
+                        <div class="left w-147k" >
+                        	<img src="newnav/images/r_gz.png" width="147" height="34" alt="工装" />
+                            <ul class="name-list clearfix ml-2 mt-1">
+                            	<li><a href="newnav.php?p=15">办公室<img src="newnav/images/hot.png" width="20" height="11" /></a></li>
+                                <li><a href="newnav.php?p=8">实验<img src="newnav/images/hot.png" width="20" height="11" />室</a></li>
+                                <li><a href="newnav.php?p=9">连锁店<img src="newnav/images/hot.png" width="20" height="11" /></a></li>
+                                <li><a href="newnav.php?p=6">酒店会所</a></li>
+                                <li><a href="newnav.php?p=14">厂房</a></li>
+                                <li><a href="newnav.php?p=4">土建</a></li>
+                                <li><a href="newnav.php?p=3">招投标</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                	<a href="#" class="i3">服务承诺</a>
+                    <div class="show-box">
+                    	<img src="newnav/images/r_fwcn.png" width="181" height="171" />
+                    </div>
+                </li>
+                <li>
+                	<a href="#" class="i4">联系我们</a>
+                    <div class="show-box">
+                    	<img src="newnav/images/r_lxwm.png" width="242" height="240" />
+                    </div>
+                </li>
+                <li><a href="javascript:;" class="i5 mv-top">返回顶部</a></li>
+            </ul>
+        </div>
 	';
 }
 

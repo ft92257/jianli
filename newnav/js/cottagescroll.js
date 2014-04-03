@@ -2,11 +2,12 @@
 $("p[class = nv1]").css('backgroundPosition', 'left -45px');
 	$("p[class = nv1]").next("strong").css({'background':'#EB7C49','color':'#fff'});
 	$("#snav a").click(function(){
+		var sindex=$(this).index()+1;
+		var tt =$("#s"+sindex).offset().top-170;
+		$(window).scrollTop(tt);
 		var left = (-45)*($(this).attr('eq')-1);
 		$(this).find("p").css('backgroundPosition', left+'px -45').parent("a").siblings("a").find("p").css('backgroundPosition', left+'px 0');
 		$(this).find("strong").addClass("ck_s").parent("a").siblings("a").find("strong").removeClass("ck_s");
-		var mTo=$(this).attr("moveTo");
-			$(document).scrollTop(mTo);
 	});
 	var move2=$("#s2").offset().top-180;
 	var move3=$("#s3").offset().top-180;

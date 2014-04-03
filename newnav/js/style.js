@@ -27,5 +27,30 @@ $(function(){
 			}
 		});
 	}
-	
+	//右侧菜单
+	if($(".r-box-move").length>0){
+		$(".r-box-u>li").hover(function(){
+				var sbox=$(this).find(".show-box");
+				$(this).children("a").addClass("hmove");
+				if($(this).index()==$(".r-box-u>li:last").index()){
+					$(this).children("a").css({"backgroundColor":"#E4E3E5"});
+				};
+				sbox.show();
+			},function(){
+				var sbox=$(this).find(".show-box");
+				$(this).children("a").removeClass("hmove");
+				sbox.hide();
+		});
+		//返回顶部
+		$(window).scroll(function(){
+			if($(this).scrollTop()>0){
+				$(".r-box-move").fadeIn();
+			}else{
+				$(".r-box-move").hide();
+			};
+		});
+		$(".mv-top").click(function(){
+			$("html,body").animate({"scrollTop":"0"},400);
+		});
+	};
 });
