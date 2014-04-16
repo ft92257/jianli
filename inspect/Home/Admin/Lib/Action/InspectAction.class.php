@@ -15,6 +15,7 @@ class InspectAction extends BaseAction {
 		$params = array(
 			'order' => 'createtime DESC',
 			//'where' => array('status' => 0),
+			//'pagesize' => 1,
 		);
 
 		$this->_getPageList($params);

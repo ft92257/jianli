@@ -51,7 +51,7 @@ class jishigou {
 		if(!(@include_once $modules_path . 'master.mod.php') && !class_exists('MasterObject')) {
 			exit('modules path is invalid');
 		}
-		
+
 		if($this->var['config']['rewrite_enable'] && (true===IN_JISHIGOU_INDEX || true===IN_JISHIGOU_AJAX || true===IN_JISHIGOU_ADMIN)) {
 			include(ROOT_PATH . 'include/rewrite.php');
 		}

@@ -1,0 +1,60 @@
+<include file="Public:header" />
+<include file="Public:left" />
+<div class="right">
+	<h2>添加订单</h2>
+	<div class="b frame">
+		<h3>填写基本信息</h3>
+
+<form method="post" action="">
+	<table width="100%">
+	<tr><td width="120"></td><td></td></tr>
+	<tr><td class="Caption">订单内容</td><td>
+		<div id="goods_list" style="padding:5px;">
+		<foreach name="comb" item="vo">
+			<span>{$vo.name} x  {$vo.count} <button type='button' onclick='deleteGoods(this)'>删除</button><br>
+			<input type="hidden" name="ids[]" value="{$vo.id}" /><input type="hidden" name="counts[]" value="{$vo.count}" /></span>
+		</foreach>
+		</div>
+		<select id="goods_select">
+			<option value="0">请选择商品</option>
+			<foreach name="goods" item="vo">
+				<option value="{$vo.id}">{$vo.name}</option>
+			</foreach>
+		</select> 数量<input id="goods_count" type="text" style="width:20px;" value="1"> <button type="button" onclick="addGoods()">添加</button>
+	</td></tr>
+	
+	<tr><td class="Caption"></td><td><input type="submit" value=" 保 存 " /> <span></span></td></tr>
+	</table>
+</form>
+
+	</div>
+	
+</div>
+</body>
+</html>
+<script>
+function addGoods() {
+	var gid = $("#goods_select").val();
+	var count = $("#goods_count").val();
+	var name = $("#goods_select option:selected").text();
+	if (!(gid > 0)) {
+		alert("请选择商品！");return;
+	}
+	if (!(count > 0)) {
+		alert("请填写数量！");return;
+	}
+	
+	var goods_html = "<span>" + name + " x " + count + " <button type='button' onclick='deleteGoods(this)'>删除</button><br>";
+	goods_html += '<input type="hidden" name="ids[]" value="'+gid+'" /><input type="hidden" name="counts[]" value="'+count+'" /></span>';
+	
+	$("#goods_list").append(goods_html);
+	$("#goods_select").val(0);
+	$("#goods_count").val(1);
+	
+}
+
+function deleteGoods(obj) {
+	$(obj).parent().remove();
+}
+
+</script>

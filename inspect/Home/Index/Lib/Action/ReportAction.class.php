@@ -24,7 +24,10 @@ class ReportAction extends BaseAction {
 		}
 		
 		$comment = D('Comment')->where(array('target' => $id))->select();
-		
+		$picture = D('Picture')->getPicture(4, $id);
+
+		$data['createtime'] = getFormatTime($data['createtime']);
+		$this->assign('picture', $picture);
 		$this->assign('data', $data);
 		$this->assign('comment', $comment);
 		$this->display('detail');

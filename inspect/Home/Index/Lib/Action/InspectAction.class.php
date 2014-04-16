@@ -31,7 +31,12 @@ class InspectAction extends BaseAction {
 	
 	
 	public function detail() {
-
+		$data = $this->model->getBYId(getRequest('id'));
+		if (empty($data)) {
+			$this->error('没有数据！');
+		}
+		
+		$this->assign('data', $data);
 		$this->display();
 	}
 	
