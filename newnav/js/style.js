@@ -5,19 +5,7 @@ $(function(){
 	},function(){
 		$(this).find(".abstract").stop(true,false).animate({"top":"173"},300);
 	});
-	
-	$(".fh").click(function(){
-		$(window).scrollTop(0);
-	});
-	$(window).scroll(function(){
-		if($(window).scrollTop()>1){
-			$(".fh").show();
-		}else{
-			$(".fh").hide();
-		}
-	});
-	
-	if ($("#moBox").length) {
+	if($("#moBox").length>0){
 		var divFixed=$("#moBox").offset().top;
 		$(window).scroll(function(){
 			if($(window).scrollTop()>divFixed){
@@ -26,7 +14,7 @@ $(function(){
 				$("#moBox").css({"position":"relative","top":"0"});
 			}
 		});
-	}
+	};
 	//右侧菜单
 	if($(".r-box-move").length>0){
 		$(".r-box-u>li").hover(function(){
@@ -52,5 +40,14 @@ $(function(){
 		$(".mv-top").click(function(){
 			$("html,body").animate({"scrollTop":"0"},400);
 		});
+		//时时监控浏览器窗口大小变化，改变右侧菜单位置
+		window.onresize=function(){
+			var lf; if($(window).width()<=1200){
+				lf =$(window).width()-100;
+				$(".r-box-move").css({left:lf,marginLeft:0})
+			}else{
+					$(".r-box-move").css({left:"50%",marginLeft:510})
+				};
+		};
 	};
 });

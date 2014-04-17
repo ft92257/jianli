@@ -841,12 +841,12 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<div class="left">
 		<a href="#"><img src="newnav/images/yijianlilogo.jpg" width="145" height="109" alt="易监理"></a>
 		</div>
-		<div class="left navBox ml-13">
-		<a href="index.php" class="mrck">
+		<div class="left navBox ml-13" id="main_menu_new">
+		<a href="index.php" class="mrck" data-config="default">
 		<p class="ckmr1"></p>
 		<strong>首页</strong>
 		</a>
-		<a href="photo-0.html">
+		<a href="photo-0.html" data-match="photo-">
 		<p class="nav2"></p>
 		<strong>监理项目</strong>
 		</a>
@@ -854,7 +854,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 		<p class="nav3"></p>
 		<strong>样板房</strong>
 		</a>
-		<a href="#">
+		<a href="newnav.php?p=16" data-match="newnav.php\\?p=16">
 		<p class="nav4"></p>
 		<strong>服务承诺</strong>
 		</a>
