@@ -10,6 +10,7 @@ class PackageModel extends BaseModel {
 			'name' => array('套餐名称', 'text'),
 			'price' => array('套餐总价', 'text', array('元')),
 			'info' => array('套餐说明', 'textarea'),
+			'oprice' => array('原价', 'span'),
 			//array('', 'submit'),
 	);
 	
@@ -17,6 +18,7 @@ class PackageModel extends BaseModel {
 			'id' => '编号',
 			'name' => '名称',
 			'price' => '价格(元)',
+			'oprice' => '原价(元)',
 			'info' => '说明',
 			'createtime' => '添加时间',
 			array('操作', array('edit', 'delete')),

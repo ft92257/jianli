@@ -19,7 +19,10 @@ class GoodsAction extends BaseAction {
 	
 	public function add() {
 		if ($this->isPost()) {
-			$this->_add();
+			$database = array(
+					'price' => getRequest('oprice') * getRequest('discount') / 100,
+				);
+			$this->_add($database);
 		} else {
 			$this->_display_form();
 		}

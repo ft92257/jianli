@@ -479,7 +479,7 @@ class BaseModel extends Model {
 				}
 				break;
 			case 'select':
-				$html .= '<select'.$validate.' name="'.$field.'">';
+				$html .= '<select'.$validate.$once.' name="'.$field.'">';
 				$html .= $all;
 				foreach ($this->getOptions($field) as $i => $option) {
 					$selected = $val !== '' && $val == $i ? ' selected="selected"' : '';

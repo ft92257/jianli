@@ -38,7 +38,10 @@ class PackageAction extends BaseAction {
 		
 		$comb = json_encode($aGoods);
 
-		return $comb;
+		return array(
+				'oprice' => $oprice,
+				'combination' => $comb,
+				);
 	}
 	
 	protected function _getGoods() {
@@ -52,9 +55,8 @@ class PackageAction extends BaseAction {
 	
 	public function add() {
 		if ($this->isPost()) {
-			$database = array(
-				'combination' => $this->_getComb(),
-			);
+			$database = $this->_getComb();
+
 			$this->_add($database);
 		} else {
 			$this->assign('goods', $this->_getGoods());
@@ -67,9 +69,7 @@ class PackageAction extends BaseAction {
 		$data = $this->model->getById(getRequest('id'));
 	
 		if ($this->isPost()) {
-			$database = array(
-				'combination' => $this->_getComb(),
-			);
+			$database = $this->_getComb();
 			
 			$this->_edit($data, $database);
 		} else {
