@@ -31,12 +31,12 @@ body{font-size:12px;height:100%; background-color:#f4f4f4;color:#999;font-family
 #mt .b-box .rb-ul{ position:absolute; right:20px; bottom:25px; z-index:111111}
 #mt .b-box .rb-ul li{ width:15px; height:15px; float:left; margin-right:10px; background-color:#fff; text-indent:-9999px}
 #mt .b-box .rb-ul li.mli{ background-color:#EB7B47}
-#mt .b-box .list-ul-box{ position:absolute; left:0; top:0; padding-bottom:19px; background:url(../images/jjs.png) repeat}
-#mt .b-box .list-ul-box h1{ font-size:16px; line-height:22px; font-weight:normal; color:#000; font-family:"微软雅黑"}
-#mt .b-box .list-ul-box h1 span{ color:#EB7B47}
-#mt .b-box .list-ul-box p a{ margin:0 10px; display:inline-block; line-height:22px; color:#737373}
 
-
+#mt .b-box .list-ul-box{ position:absolute; left:0; top:0; background-color:#fff; padding-bottom:2px}
+#mt .b-box .list-ul-box h1{ font-size:14px; line-height:25px; padding-left:20px; background-color:#f1f1f1; font-weight:normal; color:#000; font-family:"微软雅黑"}
+#mt .b-box .list-ul-box p{ margin-left:20px}
+#mt .b-box .list-ul-box p a{ margin-right:12px; font-family:"宋体"; display:inline-block; line-height:24px; color:#737373}
+#mt .b-box .list-ul-box p a.addcolor{ color:#f58c40}
 
 /*右侧跟随滚动菜单*/
 .r-box-move{ width:85px; border:#E4E3E5 1px solid; position:fixed; left:50%; bottom:150px; z-index:111111; margin-left:510px; background-color:#fff}
