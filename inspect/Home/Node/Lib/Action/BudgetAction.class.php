@@ -12,6 +12,21 @@ class BudgetAction extends BaseAction {
 	}
 	
 	/*
+	 * 预算设置
+	 */
+	public function set() {
+		if ($this->isPost()) {
+			$this->redirect('detail');
+		} else {
+			$this->display();
+		}
+	}
+	
+	public function detail() {
+		$this->display();
+	}
+	
+	/*
 	 * 添加
 	 */
 	public function add(){

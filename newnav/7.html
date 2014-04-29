@@ -1,74 +1,20 @@
-
-    <div id="mt" class="mt-0-5">
+    <div id="mt">
     	<div class="mga b-box">
-        	<ul class="big-imgbox" style="z-index:-1;">
-            	<li><a href="#"><img src="newnav/images/b1111.png" width="2560" height="417" /></a></li>
-                <li><a href="#"><img src="newnav/images/b2222.png" width="2560" height="417" /></a></li>
-                <li><a href="#"><img src="newnav/images/b3333.png" width="2560" height="417" /></a></li>
-                <li><a href="#"><img src="newnav/images/b1111.png" width="2560" height="417" /></a></li>
+        	<ul class="big-imgbox" style="z-index:1;">
+            	<li><a href="index.php"><img src="newnav/images/b1111.jpg" width="2560" height="417" /></a></li>
+                <li><a href="index.php"><img src="newnav/images/b2222.jpg" width="2560" height="417" /></a></li>
+                <li><a href="index.php"><img src="newnav/images/b3333.png" width="2560" height="417" /></a></li>
+                <li><a href="index.php"><img src="newnav/images/b4444.png" width="2560" height="417" /></a></li>
+				<li><a href="index.php"><img src="newnav/images/b5555.jpg" width="2560" height="417" /></a></li>
             </ul>
             <div style="width:980px;margin-left:auto;margin-right:auto">
-			<div class="list-ul-box w-27-5" style="position:static;float:left;width:275px;">
-                <h1>在线视频监理</h1>
-                <p>
-                    <a href="newnav.php?p=17" class="addcolor">业主DIY监理</a>
-                    <a href="newnav.php?p=18">在线专家</a>
-                    <a href="newnav.php?p=19">视频+传统监理</a>
-                </p>
-            	<h1>传统监理</h1>
-                <p>
-                    <a href="newnav.php?p=2" class="addcolor">全程</a>
-                    <a href="newnav.php?p=12">单次</a>
-                    <a href="newnav.php?p=10">验收</a>
-                    <a href="newnav.php?p=1">3+N</a>
-                    <a href="newnav.php?p=20" class="addcolor">监理团购</a>
-                    <a href="new/index.php?s=/supervisor/consult/type/13">空气检测</a>
-                </p>
-                <h1>选监理师</h1>
-                <p>
-                    <a href="new/index.php?a=index&m=supervisor&f=2">别墅</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=3">公寓</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=5">验房师</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=4">预算师</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=6">维权律师</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=1">工装</a>
-                </p> 
-                <h1>验房360</h1>
-                <p>
-                	<a href="newnav.php?p=21">一房一验</a>
-                    <a href="inspect/index.php?s=/Inspect/index">团验</a>
-                    <a href="inspect/index.php?s=/Report/detail/id/1">验房报告</a>
-                    <a href="newnav.php?p=22">房屋检测</a>
-                </p>
-                <h1>预算</h1>
-                <p>
-                    <a href="newnav.php?p=13">在线预算</a>
-                    <a href="newnav.php?p=11">线下预算</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=4">预算师</a>
-                </p>
-                <h1>家装监理</h1>
-                <p>
-                    <a href="new/index.php?a=index&m=supervisor&f=2" class="addcolor">别墅</a>
-                    <a href="new/index.php?a=index&m=supervisor&f=3">公寓</a>
-                    <a href="newnav.php?p=23">在线视频监理</a>
-                </p>
-                <h1>工装监理</h1>
-                <p>
-                    <a href="newnav.php?p=9" class="addcolor">连锁店</a>
-                    <a href="newnav.php?p=15" class="addcolor">办公室</a>
-                    <a href="newnav.php?p=8">实验室</a>
-                    <a href="newnav.php?p=6">酒店会所</a>
-                    <a href="newnav.php?p=14">厂房</a>
-                    <a href="newnav.php?p=4">土建</a>
-                    <a href="newnav.php?p=3">招投标</a>
-                </p> 
-            </div>
-			<div style="float:right;width:176px;">
-			<ul class="rb-ul" style="position:static;margin-top:380px;margin-left:60px;">
+			<div style="float:right;width:196px;">
+			<ul class="rb-ul" style="position:relative;z-index:2;margin-top:380px;margin-left:60px;">
             	<li class="mli">1</li>
                 <li>2</li>
                 <li>3</li>
                 <li>4</li>
+				<li>5</li>
             </ul>
 			</div>
 			</div>
@@ -195,7 +141,7 @@
 	};	
 	
 $(function(){
-	var s = "<div id=\"mt\" class=\"mt-0-5\">" + $("#mt").html() + "</div>";
+	var s = "<div id=\"mt\">" + $("#mt").html() + "</div>";
 	$("#mt").detach();
 	$("#pbody").before(s);
 	$("a").each(function(){
@@ -228,5 +174,6 @@ $(function(){
 			}).trigger("mouseout");	
 });	
 	
+var isIndex = true;	
 </script>
 

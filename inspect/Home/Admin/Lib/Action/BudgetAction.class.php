@@ -20,7 +20,6 @@ class BudgetAction extends BaseAction {
 	public function add() {
 		if ($this->isPost()) {
 			$database = array(
-					'price' => getRequest('oprice') * getRequest('discount') / 100,
 				);
 			$this->_add($database);
 		} else {
@@ -34,7 +33,6 @@ class BudgetAction extends BaseAction {
 		if ($this->isPost()) {
 			$this->_edit($data);
 		} else {
-			$data['focus'] = getFileUrl($data['focus'], '80-80');
 			$this->_display_form($data, 'add');
 		}
 	}

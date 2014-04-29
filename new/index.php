@@ -1,4 +1,19 @@
 <?php
+$s = 'http://' . $_SERVER['HTTP_HOST'];
+if ($_SERVER['SERVER_PORT'] != '80') {
+	$s .= ':' . $_SERVER['SERVER_PORT'];
+}
+$s .= dirname($_SERVER['SCRIPT_NAME']);
+
+$url = dirname($s) . '/new.php';
+$url .= "?u=http://" .$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+?>
+<script>
+if (window == parent){
+	window.location.href = "<?php echo $url;?>";
+}
+</script>
+<?php 
 defined('ROOT_PATH') or define('ROOT_PATH', dirname(__FILE__));
 
 define('THINK_PATH', './includes/thinkphp/');

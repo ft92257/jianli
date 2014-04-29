@@ -832,38 +832,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	</div>
 	</div><!-- phead 结束-->';
 	} else {
-		$s .= '
-		<link type="text/css" rel="stylesheet" href="newnav/css/screen.css" />
-		<link type="text/css" rel="stylesheet" href="newnav/css/zindex.css" />
-		<script type="text/javascript" src="newnav/js/style.js"></script>
-		<div id="lnav">
-		<div class="w-100 ml-mr-a clearfix">
-		<div class="left">
-		<a href="#"><img src="newnav/images/yijianlilogo.jpg" width="145" height="109" alt="易监理"></a>
-		</div>
-		<div class="left navBox ml-13" id="main_menu_new">
-		<a href="index.php" class="mrck" data-config="default">
-		<p class="ckmr1"></p>
-		<strong>首页</strong>
-		</a>
-		<a href="photo-0.html" data-match="photo-">
-		<p class="nav2"></p>
-		<strong>监理项目</strong>
-		</a>
-		<a href="#">
-		<p class="nav3"></p>
-		<strong>样板房</strong>
-		</a>
-		<a href="newnav.php?p=16" data-match="newnav.php\\?p=16">
-		<p class="nav4"></p>
-		<strong>服务承诺</strong>
-		</a>
-		</div>
-		<div class="right">
-		<img src="newnav/images/poho.jpg" width="199" height="109">
-		</div>
-		</div>
-		</div>';
+		$s .= file_get_contents('newnav/html/head.html');
 	}	
 	
 	$s .='<div class="clear"></div>
@@ -900,7 +869,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 }
 
 function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
-	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
+	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title, $d_l1id;
 	$ptitle=($page_title!=''?$page_title.' | ':'').$r_main['site_name'];
 	if($udb['uid']>0 && $udb['iswc']==1 && (($udb['qx']==5 && $udb['iszxjl']==1) || $udb['qx']==10 || $udb['isxg']>0)){
 		$js_c.='
@@ -979,26 +948,6 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 		$s .= '<div class="right login">已有账号？&nbsp;<a href="login.php?referer='.$_SERVER['HTTP_REFERER'].'" id="link_login" rel="#overlay_login">登陆</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="orange"><a href="reg.php?referer='.$_SERVER['HTTP_REFERER'].'">免费注册</a></span>&nbsp;&nbsp;<a href="login.php?t=sina" title="新浪微博登录"><img src="images/sbutton1.png" width="15px" height="15px"></a>&nbsp;<a href="login.php?t=tqq" title="QQ登录"><span class="mn_ico ico12"></span></a></div>';
 	}
 
-	$s .='</div>
-	</div><!-- pbar结束 -->
-	<div class="phead">
-	<div class="head clearfix">
-	<div class="logo left">装修从此容易！</div>
-
-	<div class="menu left" id="main_menu">
-	<a href="gz.php" data-match="gz.php$"><span class="oco01"></span>首页</a>
-	<a href="new/gz.php" data-match="/new/gz.php"><span class="oco02"></span>选监理</a>
-	<a href="photo_gz-0.html" data-config="default"><span class="oco06"></span>监理项目</a>
-	</div>
-
-	<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
-	</div>
-	</div><!-- phead 结束-->
-	<div class="clear"></div>
-	</div>
-
-	</div>';
-
 	$s.='<div class="overlay" id="overlay_login">
 	<h3>用户登录</h3>
 	<div class="overlay_cont">
@@ -1023,6 +972,32 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	</table>
 	</form>
 	</div></div>';
+	
+	$s .='</div>
+	</div><!-- pbar结束 -->';
+	
+	if ($d_l1id == 166) {
+		$s .= file_get_contents('newnav/html/gz_head.html');
+	} else {
+		$s .='
+		<div class="phead">
+		<div class="head clearfix">
+		<div class="logo left">装修从此容易！</div>
+		
+		<div class="menu left" id="main_menu">
+		<a href="gz.php" data-match="gz.php$"><span class="oco01"></span>首页</a>
+		<a href="new/gz.php" data-match="/new/gz.php"><span class="oco02"></span>选监理</a>
+		<a href="photo_gz-0.html" data-config="default"><span class="oco06"></span>监理项目</a>
+		</div>
+		
+		<div class="right" style="margin-top:15px"><img src="house/statics/index/images/Construction/Phone.png"></div>
+		</div>
+		</div><!-- phead 结束-->
+		<div class="clear"></div>
+		</div>
+		
+		</div>';
+	}
 
 	return $s;
 }
