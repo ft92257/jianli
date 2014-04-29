@@ -17,7 +17,7 @@ a { color:#1f1813; text-decoration:none;}
 .top ul li .hmiddle{ vertical-align:middle}
 
 .top .city_list{ line-height:35px; font-weight:bold; color:#ef833b; margin-right:20px; position:relative; z-index:3}
-.top .city_list a{ color:#fff; font-weight:normal}
+.top .city_list a{  font-weight:normal}
 .top .city_list_box{ display:none; width:240px; padding:18px 10px 10px 10px; border-radius:4px; box-shadow:0 0 10px rgba(0,0,0,.12); line-height:15px; border:#E2E2E2 1px solid; z-index:3; background-color:#fff; position:absolute; left:-15px; top:45px}
 .top .cityem_t{ width:23px; height:10px; background:url(../images/lo_lo_img1.png) no-repeat; display:block; position:absolute; left:15px; top:-28px}
 .top .off_cityList{ width:17px; height:17px; display:block; cursor:pointer; background:url(../images/off-0.png) no-repeat; position:absolute; right:-18px; top:-25px}

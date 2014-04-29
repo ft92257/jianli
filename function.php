@@ -976,7 +976,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	$s .='</div>
 	</div><!-- pbar结束 -->';
 	
-	if ($d_l1id == 166) {
+	if (1 || $d_l1id == 166) {
 		$s .= file_get_contents('newnav/html/gz_head.html');
 	} else {
 		$s .='
