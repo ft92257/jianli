@@ -6,7 +6,7 @@ if ($_SERVER['SERVER_PORT'] != '80') {
 $s .= dirname($_SERVER['SCRIPT_NAME']);
 
 $url = dirname($s) . '/new.php';
-$url .= "?u=http://" .$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$url .= "?u=". urlencode("http://" .$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 <script>
 if (window == parent){
