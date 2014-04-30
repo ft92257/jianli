@@ -15,6 +15,9 @@ class AreaModel extends Model{
 			}
 			//小区范围
 			$aAreas = $this->where('upid IN ('.join(',', $ids).')')->select();
+			foreach ($aAreas as &$value) {
+				$value['fid'] = $value['upid'];
+			}
 		} else {
 			//读取数据
 			$aRegion = $this->where('level = 2')->select();
