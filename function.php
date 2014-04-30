@@ -704,7 +704,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	<div class="pbar">
 	<div class="top clearfix">
 	<div class="left city_list">
-     '.$d_l1title.'&nbsp;<a href="javascript:void(0)" onclick="$(\'#city_list_box\').show();" class="open_clos">[请选择地区]</a>
+     '.$d_l1title.'&nbsp;<a href="javascript:void(0)" onclick="$(\'#city_list_box\').show();" class="open_clos" style="color:#fff;">[请选择地区]</a> <a href="gz.php" style="color:#fff;">工装监理</a>
      <div id="city_list_box" class="city_list_box">
       <div style="position:relative"><em class="cityem_t"></em><em onclick="$(\'#city_list_box\').hide();" class="off_cityList"></em></div>
       <div>进入：<span style="font-size:20px; font-weight:bold"><a href="http://www.yijianli.com/index.php">上海</a></span></div>

@@ -36,7 +36,7 @@ echo yjl_html_gz_head($s, 'index');
 <div class="cen_div_cen">
             
  <div class="of_ls_kj_alstyle">
-  <h1 class="titles_h titles_h_tubiao0"><span>工装服务案例 办公室</span><a href="photo_gz-0.html">查看全部项目</a></h1>
+  <h1 class="titles_h titles_h_tubiao0"><span>工装服务案例 办公室</span><a href="photo-0-p1-s0_0_0_0_2.html">查看全部项目</a></h1>
   <div class="anli_dl_list">
    <dl>
     <dt><a href="http://yijianli.com/photo-5794-195.html"><img src="images/11212111.jpg" width="300" height="200" /></a></dt>
@@ -65,7 +65,7 @@ echo yjl_html_gz_head($s, 'index');
   </div>
  </div><!--/of_ls_kj_alstyle-->
  <div class="of_ls_kj_alstyle topmargin">
-  <h1 class="titles_h titles_h_tubiao1"><span>工装服务案例 连锁店</span><a href="photo_gz-0.html">查看全部项目</a></h1>
+  <h1 class="titles_h titles_h_tubiao1"><span>工装服务案例 连锁店</span><a href="photo-0-p1-s0_0_0_0_1.html">查看全部项目</a></h1>
   <div class="anli_dl_list">
   <dl> 
     <dt><a href="http://yijianli.com/photo-5803-199.html"><img src="images/zanshixiaoniao.jpg" width="300" height="200" /></a></dt>
@@ -103,7 +103,7 @@ echo yjl_html_gz_head($s, 'index');
   </div>
  </div><!--/of_ls_kj_alstyle-->
  <div class="of_ls_kj_alstyle topmargin">
-  <h1 class="titles_h titles_h_tubiao2"><span>工装服务案例 实验室及办公区域</span><a href="photo_gz-0.html">查看全部项目</a></h1>
+  <h1 class="titles_h titles_h_tubiao2"><span>工装服务案例 实验室及办公区域</span><a href="photo-0-p1-s0_0_0_0_3.html">查看全部项目</a></h1>
   <div class="anli_dl_list">
    <dl>
     <dt><a href="http://yijianli.com/photo-5811-190.html"><img src="images/meiji.jpg" width="300" height="200" /></a></dt>

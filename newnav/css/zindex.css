@@ -133,7 +133,7 @@ body{font-size:12px;height:100%; background-color:#f4f4f4;color:#999;font-family
 .titPs{ line-height:35px; color:#777; padding-left:20px; font-family:"微软雅黑"; font-size:16px; background-color:#fff}
 #crumbs dl{ width:57px; float:left; margin:10px 2px 0 6px}
 #crumbs dl dd{ line-height:15px}
-#banBox{ background:url(../images/banimg.png) center repeat-x; height:439px}
+#banBox{ background:url(../images/bg_bgs.jpg) center repeat-x; height:439px}
 #snav{ margin:0 auto}
 #snav a{ text-decoration:none; margin:0 3px; float:left; width:160px; text-align:center; font-family:"微软雅黑"; color:#000; font-size:16px}
 #snav a p{ width:45px; height:45px; cursor:pointer; margin:0 auto; background-image:url(../images/icobg.png); background-repeat:no-repeat}
@@ -393,11 +393,11 @@ ul.toll-touchstone li{ line-height:35px; padding-left:30px; background:url(../im
 .hotel{ background:url(../images/hotelbf.png) center repeat-x}
 #mt .hotelxm{ background:url(../images/hoteldf.png) center repeat-x}
 /*连锁店*/
-#banBox4{ background:url(../images/bigbgimg4.png) center repeat-x; height:439px}
+#banBox4{ background:url(../images/bg_lsd.jpg) center repeat-x; height:439px}
 #mt .multipleShop{ background:url(../images/liansuodians.png) center repeat-x}
 #mt .multipleShopxm{ background:url(../images/liansuodianxm.png) center repeat-x}
 /*实验室*/
-#banBox5{ background:url(../images/shiyanshiban.png) center repeat-x; height:439px}
+#banBox5{ background:url(../images/bg_sys.jpg) center repeat-x; height:439px}
 #mt .laboratory{ background:url(../images/sysjl.png) center repeat-x}
 /*土建*/
 #mt .ciciEngineering{ background:url(../images/tujianas.png) center repeat-x}
