@@ -758,7 +758,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	$s .='</div>
 	</div><!-- pbar结束 -->';
 	
-	if ($d_l1id != 166) {
+	if (0 && $d_l1id != 166) {
 		$s .= '<div class="phead">
 	<div class="head clearfix">
 	<div class="logo left">装修从此容易！</div>
