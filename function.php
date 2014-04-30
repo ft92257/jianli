@@ -1014,7 +1014,7 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>';
 //底部
-if ($d_l1id != 166 || $_COOKIE['isgz']) {
+if (0 && ($d_l1id != 166 || $_COOKIE['isgz'])) {
 	$s .= '
 	<div id="pfoot" style="clear: both;">
 	<div class="left">
