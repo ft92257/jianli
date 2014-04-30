@@ -1023,12 +1023,24 @@ if (0 && ($d_l1id != 166 || $_COOKIE['isgz'])) {
 	<div class="right">Copyright &copy; '.date('Y').' '.$r_main['site_name'].'</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
 	</div>';
 } else {
-	$s .= '<div style="background-color:#E9E9E9">
-	<div class="w-100 mga pb-5">
-	<p><img src="newnav/images/contact.png" width="1000" height="84" alt="地址，联系方式"></p>
-	<p class="ml-13"><img src="newnav/images/erweima.png" width="308" height="185" alt="微博，微信扫描"></p>
-	</div>
-	</div>
+	$s .= '<div class="mt-2" style="background-color:#ffffff">
+        	<div style="background-color:#f8f8f8">
+            	<div class="w-100 mga">
+                	<p><img src="newnav/images/contact.png" width="1000" height="107" alt="地址，联系方式" /></p>
+                </div>
+            </div>
+            <div class="w-100 mga pb-3 clearfix">
+                <p class="ml-6-5 mt-2 left"><img src="newnav/images/erweima.png" width="354" height="171" alt="微博，微信扫描" /></p>
+                <p class="left ml-9 mt-2">
+                	<a href="#"><img src="newnav/images/anzhuoapp.png" /></a>
+                    <span style="display:block"><img src="newnav/images/saoyisao.png" /></span>
+                </p>
+                <p class="left ml-9 mt-2">
+                	<a href="#"><img src="newnav/images/khd.png" /></a>
+                    <span style="display:block" class="mt-5"><a href="#"><img src="newnav/images/tylj.png" /></a></span>
+                </p>
+            </div>
+        </div>
 	
 	<div id="footbox" class="w-100 mga">
 	<p class="left pl-13 mr-7"><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a></p>
