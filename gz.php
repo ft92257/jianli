@@ -14,9 +14,9 @@ echo yjl_html_gz_head($s, 'index');
     	<div class="mga b-box" style="height:300px;">
         	<ul class="big-imgbox" style="z-index:0;">
             	<li><a href="newnav.php?p=8"><img src="newnav/images/1ban.jpg" width="2560" height="300" /></a></li>
-                <li><a href="gz.php"><img src="newnav/images/2ban.jpg" width="2560" height="300" /></a></li>
-                <li><a href="gz.php"><img src="newnav/images/3ban.png" width="2560" height="300" /></a></li>
-                <li><a href="gz.php"><img src="newnav/images/4ban.jpg" width="2560" height="300" /></a></li>
+                <li><a href="newnav.php?p=19"><img src="newnav/images/2ban.jpg" width="2560" height="300" /></a></li>
+                <li><a href="newnav.php?p=19"><img src="newnav/images/3ban.png" width="2560" height="300" /></a></li>
+                <li><a href="newnav.php?p=9"><img src="newnav/images/4ban.jpg" width="2560" height="300" /></a></li>
             </ul>
             <div style="width:980px;margin-left:auto;margin-right:auto">
 			<div style="float:right;width:176px;">
