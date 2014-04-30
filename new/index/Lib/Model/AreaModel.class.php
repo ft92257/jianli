@@ -3,10 +3,26 @@ class AreaModel extends Model{
     protected $trueTableName = 'yjl_area';
 
 	public function getHtml($region = 0, $area = 0) {
-		//读取数据
-		$aRegion = $this->where('level = 2')->select();
-		//小区范围
-		$aAreas = $this->where('level = 3')->select();
+		if ($_SERVER['SERVER_NAME'] == 'sz.yijianli.com') {
+			$this->trueTableName = 'jishigou_common_district';
+			$this->dbName = 'yijianli_city';
+			
+			//读取数据
+			$aRegion = $this->where('upid = 166')->select();
+			$ids = array();
+			foreach ($aRegion as $value) {
+				$ids[] = $value['id'];
+			}
+			//小区范围
+			$aAreas = $this->where('upid IN ('.join(',', $ids).')')->select();
+		} else {
+			//读取数据
+			$aRegion = $this->where('level = 2')->select();
+			//小区范围
+			$aAreas = $this->where('level = 3')->select();
+		}
+		
+		
 		$aRes = array();
 		$aRes[0][] = array('请选择范围', 0);
 		foreach ($aAreas as $aArea) {
