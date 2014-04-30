@@ -185,7 +185,7 @@ a.btn{ background-image:url(../images/button.jpg);display:inline-block;padding:0
 .free_input{width:160px; height:24px; border:1px #c9c9c9 solid;}
 .free_txt{width:300px; height:100px; border:1px #c9c9c9 solid;}
 .free_dot{background:url(../images/dot.jpg) no-repeat; padding-left:20px;line-height:15px; padding-bottom:10px;}
-.free_trtd{padding-right:10px; text-align:right;}
+.free_trtd{padding-right:10px; text-align:right;line-height:30px;}
 .free_right{float:right; background:url(../images/free_right.gif) repeat-y; width:150px; height:330px; }
 .free_rightimg{border:1px solid #c7c7c7; padding:2px; background:#FFF; margin:0px auto; width:80px; margin-top:20px;}
 .free_right h2{color:#2e99df; font-size:14px; margin-top:9px;text-align:center; }
