@@ -120,7 +120,7 @@ body{font-size:12px;height:100%; background-color:#f4f4f4;color:#999;font-family
 .r-box-move .r-box-u li .show-box .name-list li{ float:left; position:relative; line-height:23px; width:55px}
 .r-box-move .r-box-u li .show-box .name-list li a{ color:#a4a4a4}
 .r-box-move .r-box-u li .show-box .name-list li a img{ position:absolute; right:10px; top:-6px}
-
+.r-box-move .r-box-u li .show-box .name-list li a.corasd{ color:#ef833b}
 
 
 
