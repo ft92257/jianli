@@ -1014,7 +1014,7 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>';
 //底部
-if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166 || $_COOKIE['isgz'])) {
+if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166)) {
 	$s .= '
 	<div id="pfoot" style="clear: both;">
 	<div class="left">
@@ -1205,7 +1205,7 @@ function getFooter() {
 function yjl_html_gz($c, $css='', $body_id='', $menu_id=0){
 	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
 	$s = yjl_html_gz_head($c, $css, $body_id, $menu_id);
-	if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166 || $_COOKIE['isgz'])) {
+	if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166)) {
 		$s .= '<!--内容-->
 		<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 		</div>
