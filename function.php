@@ -1014,39 +1014,23 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>';
 //底部
-if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166)) {
-	$s .= '
-	<div id="pfoot" style="clear: both;">
-	<div class="left">
-	<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></address>
-	</div>
-	<div class="right">Copyright &copy; '.date('Y').' '.$r_main['site_name'].'</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
-	</div>';
-} else {
-	$s .= getFooter();
-}
-
-	$s .= '<div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
-	foreach($a_fx as $k=>$v)$s.='<a title="分享到'.$v[0].'" href="#" onclick="fx_link(\''.$v[1].'\');return false;" class="fx_link" style="background-position: 3px -'.(37+($k+1)*40).'px;">'.$v[0].'</a>';
-	$ru=$_SERVER['REQUEST_URI'];
-	if(isset($_SERVER['HTTP_X_REWRITE_URL']) && trim($_SERVER['HTTP_X_REWRITE_URL'])!='')$ru=$_SERVER['HTTP_X_REWRITE_URL'];
-	$s.='<input type="hidden" id="fx_url_0" value="'.urlencode('http://'.$_SERVER['HTTP_HOST'].$ru).'"/><input type="hidden" id="fx_title_0" value="'.urlencode($ptitle).'"/><input type="hidden" id="fx_title0_0" value="'.urlencode(@iconv('UTF-8', 'GB2312', $ptitle)).'"/><input type="hidden" id="fx_id" value="0"/><div class="clear"></div></div></div>';
-	
-	if($yjl_isdebug==0)$s.='<div style="display: none;"><script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd67b450510aefabf934d8fbd93d7aa94\' type=\'text/javascript\'%3E%3C/script%3E"));
-</script>
-<noscript><a href="http://www.51.la/?15211264" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15211264.asp" style="border:none" /></a></noscript></div>';
-	$s .= '<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F1823814145addf5267230aa05878c1b6\' type=\'text/javascript\'%3E%3C/script%3E"));
-</script>';
-	$s.='</div></body></html>';
+$s .= getFooter();
 	return $s;
 }
 
 function getFooter() {
-	return '<div class="mt-2" style="background-color:#ffffff">
+	global $d_l1id,$a_fx,$yjl_isdebug;
+	$s = '';
+	if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166)) {
+		$s .= '
+		<div id="pfoot" style="clear: both;">
+		<div class="left">
+		<address>易监理<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="new/index.php?s=/supervisor/consult/type/15">诚聘精英</a></address>
+		</div>
+		<div class="right">Copyright &copy; '.date('Y').' 易监理</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
+		</div>';
+	} else {
+		$s .= '<div class="mt-2" style="background-color:#ffffff">
         	<div style="background-color:#f8f8f8">
             	<div class="w-100 mga">
                 	<p><img src="newnav/images/contact.png" width="1000" height="107" alt="地址，联系方式" /></p>
@@ -1200,32 +1184,14 @@ function getFooter() {
             <li><a href="javascript:;" class="i5 mv-top">返回顶部</a></li>
         </ul>
     </div>';
-}
-
-function yjl_html_gz($c, $css='', $body_id='', $menu_id=0){
-	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
-	$s = yjl_html_gz_head($c, $css, $body_id, $menu_id);
-	if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166)) {
-		$s .= '<!--内容-->
-		<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
-		</div>
-		<!--底部-->
-		<div id="pfoot" style="clear: both;">
-		<div class="left">
-		<address>'.$r_main['site_name'].'<a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备12034482号</a> <a href="/about-yijianli.html">关于易监理</a> |  <a href="/about-service.html">服务流程</a> |  <a href="/about-pay.html">收费标准</a> | <a href="/about-paypal.html">支付宝支付</a> | <a href="/about-contact.html">联系我们</a> | <a href="/new/index.php?s=/supervisor/consult/type/recruit">诚聘精英</a></address>
-		</div>
-		<div class="right">Copyright &copy; '.date('Y').' '.$r_main['site_name'].'</div><br /><a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&entyId=20130520141953244"><img src="icon.gif" border=0></a>
-		</div>';
-	} else {
-		$s .= getFooter();
 	}
 	
-	$s .='<div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
+	$s .= '<div id="fx_div" style="display: none;" onmouseover="$(this).show();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).show();" onmouseout="$(this).hide();if($(\'#fx_id\').val()>0)$(\'#plike_v_\'+$(\'#fx_id\').val()).hide();"><div class="fx_title">分享到</div><div class="fx_list"><div class="clear"></div>';
 	foreach($a_fx as $k=>$v)$s.='<a title="分享到'.$v[0].'" href="#" onclick="fx_link(\''.$v[1].'\');return false;" class="fx_link" style="background-position: 3px -'.(37+($k+1)*40).'px;">'.$v[0].'</a>';
 	$ru=$_SERVER['REQUEST_URI'];
 	if(isset($_SERVER['HTTP_X_REWRITE_URL']) && trim($_SERVER['HTTP_X_REWRITE_URL'])!='')$ru=$_SERVER['HTTP_X_REWRITE_URL'];
 	$s.='<input type="hidden" id="fx_url_0" value="'.urlencode('http://'.$_SERVER['HTTP_HOST'].$ru).'"/><input type="hidden" id="fx_title_0" value="'.urlencode($ptitle).'"/><input type="hidden" id="fx_title0_0" value="'.urlencode(@iconv('UTF-8', 'GB2312', $ptitle)).'"/><input type="hidden" id="fx_id" value="0"/><div class="clear"></div></div></div>';
-
+	
 	if($yjl_isdebug==0)$s.='<div style="display: none;"><script type="text/javascript">
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd67b450510aefabf934d8fbd93d7aa94\' type=\'text/javascript\'%3E%3C/script%3E"));
@@ -1236,6 +1202,14 @@ function yjl_html_gz($c, $css='', $body_id='', $menu_id=0){
 	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F1823814145addf5267230aa05878c1b6\' type=\'text/javascript\'%3E%3C/script%3E"));
 	</script>';
 	$s.='</div></body></html>';
+
+	return $s;
+}
+
+function yjl_html_gz($c, $css='', $body_id='', $menu_id=0){
+	global $js_c, $js_scrc, $isupimg, $yjl_tpath, $xqid, $xqdb, $page_title, $r_main, $a_fx, $udb, $is_home, $is_nologin, $is_mce, $yjl_isdebug, $d_l1title;
+	$s = yjl_html_gz_head($c, $css, $body_id, $menu_id);
+	$s .= getFooter();
 	return $s;
 }
 
