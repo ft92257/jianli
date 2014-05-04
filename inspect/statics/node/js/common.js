@@ -38,7 +38,7 @@ function selectNav(id, curClass) {
 	return current;
 }
 $(function(){
-	selectNav('topNav', 'default');
+	//selectNav('topNav', 'default');
 });
 
 /*

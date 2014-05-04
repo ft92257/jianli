@@ -26,6 +26,24 @@ class BudgetAction extends BaseAction {
 		$this->display();
 	}
 	
+	public function calculate() {
+		$arr = array(
+			'status' => 0,
+			'msg' => '预估完成！',
+			'data' => array(
+				'design' => 6000,
+				'artificial' => 18000,
+				'material' => 60000,
+				'grade' => array(
+					'design' => 2,
+					'artificial' => 2,
+					'material' => 2,
+				),
+			),
+		);
+		echo json_encode($arr);
+	}
+	
 	/*
 	 * 添加
 	 */

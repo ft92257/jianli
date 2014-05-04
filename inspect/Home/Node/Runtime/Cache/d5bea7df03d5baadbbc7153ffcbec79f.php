@@ -5,9 +5,6 @@
 <script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="__STATICS__/js/common.js"></script>
 
-<link rel="stylesheet" type="text/css" href="__STATICS__/css/main.css" />
-<link rel="stylesheet" href="__STATICS__/css/style.css" />
-
 <title><?php echo ($Title); ?> | 易监理 - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理</title>
 <meta name="keywords" content="易监理,上海家装监理公司,家装监理公司,上海装修监理公司,家装监理,装潢监理,上海家装监理,上海装潢监理,上海装饰监理,上海装修监理,上海家庭装潢监理,装修监理,上海装修监理,验房,上海验房,家装监理师,装饰监理师,别墅监理,别墅装饰监理,家装工程监理,家庭装修监理,水电监理,家装监理费,家装施工监理,装修第三方监理"/>
 <meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>
@@ -28,17 +25,53 @@
 
 <div style="width:980px;margin:auto;">
 <h2>硬装费用</h2>
-<form method="post" action="">
-设置预算：<input type="text" name="hard" />元<br><br>
 
+<div style="width:200px;float:left;">
+	设计费 x% <br>
+	人工费 x% <br>
+	材料费 x% <br>
+</div>
+<div style="780px;float:left;">
+建筑面积：<input type="text" id="acreage" name="acreage" />㎡<br>
+设置预算：<input type="text" id="budget" name="budget" />元<br>
+选择档次：<select name="grade" id="grade"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
+<button type="button" onclick="calculate()">预估费用</button><br><br>
+</div>
+
+<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;">
+<form method="post" action="">
 <table>
-	<tr><td width="100">名称</td><td width="200">预算</td><td width="100">档次</td><td width="100">实际花费</td></tr>
-	<tr><td>设计费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>人工费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>材料费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
+	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
+	<tr><td>设计费</td><td><span id="design_fee">0.00</span>元</td><td><input type="text" id="design" name="design" />元</td><td><span id="grade_design_3">高</span> <span id="grade_design_2">中</span> <span id="grade_design_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>人工费</td><td><span id="artificial_fee">0.00</span>元</td><td><input type="text" id="artificial" name="artificial" />元</td><td><span id="grade_artificial_3">高</span> <span id="grade_artificial_2">中</span> <span id="grade_artificial_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>材料费</td><td><span id="material_fee">0.00</span>元</td><td><input type="text" id="material" name="material" />元</td><td><span id="grade_material_3">高</span> <span id="grade_material_2">中</span> <span id="grade_material_1">低</span></td><td>0.00元</td></tr>
 </table>
+<input type="submit" value="保 存" />
 </form>
 </div>
+
+</div>
+<script>
+function calculate(){
+	$.post(URL+'/calculate', {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
+		if (json.status == 0) {
+			var data = json.data;
+			$("#design_fee").html(data.design);
+			$("#artificial_fee").html(data.artificial);
+			$("#material_fee").html(data.material);
+			$("#design").val(data.design);
+			$("#artificial").val(data.artificial);
+			$("#material").val(data.material);
+			
+			$("#grade_design_" + data.grade.design).css("color", "red");
+			$("#grade_artificial_" + data.grade.artificial).css("color", "red");
+			$("#grade_material_" + data.grade.material).css("color", "red");
+		}
+		alert(json.msg);
+	}, 'json');
+}
+</script>
+
 
 </body>
 </html>
