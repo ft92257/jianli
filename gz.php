@@ -10,7 +10,7 @@ setcookie('isgz', 1, 0, '/');
 echo yjl_html_gz_head($s, 'index');
 ?>
 
-<?php if($GLOBALS['NEW_ALL']){ ?>
+<?php if($GLOBALS['NEW_ALL'] || $d_l1id==166){ ?>
 <div id="mt" class="mt-0-5" >
     	<div class="mga b-box" style="height:300px;">
         	<ul class="big-imgbox" style="z-index:0;">
@@ -163,7 +163,7 @@ echo yjl_html_gz_head($s, 'index');
 	};	
 
 $(function(){
-	<?php if ($GLOBALS['NEW_ALL']) {?>
+	<?php if ($GLOBALS['NEW_ALL'] || $d_l1id==166) {?>
 	var s = "<div id=\"mt\">" + $("#mt").html() + "</div>";
 	$("#mt").detach();
 	$("#pbody").before(s);
