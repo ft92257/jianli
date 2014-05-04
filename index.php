@@ -101,7 +101,7 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
 		$jlc.='</ul>';
 	}
 	mysql_free_result($res);
-	if (1 || $d_l1id == 166) {
+	if ($GLOBALS['NEW_ALL'] || $d_l1id == 166) {
 		$c = '';
 	} else {
 		$c = '<div class="top_row clearfix" style="padding:0px;">
@@ -196,7 +196,7 @@ if($udb['uid']>0 && ($udb['iswc']!=1 && ($udb['qx']==5 || $udb['qx']==6 || ($udb
                 </div></div></div>';
 	echo yjl_html($c, 'index');
 	
-	if (1 || $d_l1id == 166) {
+	if ($GLOBALS['NEW_ALL'] || $d_l1id == 166) {
 		$c = file_get_contents('newnav/7.html');
 		echo $c;
 	}

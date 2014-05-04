@@ -758,7 +758,7 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	$s .='</div>
 	</div><!-- pbar结束 -->';
 	
-	if (0 && $d_l1id != 166) {
+	if (!$GLOBALS['NEW_ALL'] && $d_l1id != 166) {
 		$s .= '<div class="phead">
 	<div class="head clearfix">
 	<div class="logo left">装修从此容易！</div>
@@ -976,7 +976,7 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	$s .='</div>
 	</div><!-- pbar结束 -->';
 	
-	if (1 || $d_l1id == 166) {
+	if ($GLOBALS['NEW_ALL'] || $d_l1id == 166) {
 		$s .= file_get_contents('newnav/html/gz_head.html');
 	} else {
 		$s .='
@@ -1014,7 +1014,7 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>';
 //底部
-if (0 && ($d_l1id != 166 || $_COOKIE['isgz'])) {
+if (!$GLOBALS['NEW_ALL'] && ($d_l1id != 166 || $_COOKIE['isgz'])) {
 	$s .= '
 	<div id="pfoot" style="clear: both;">
 	<div class="left">

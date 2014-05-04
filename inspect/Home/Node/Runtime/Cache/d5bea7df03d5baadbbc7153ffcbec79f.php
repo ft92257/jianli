@@ -26,23 +26,19 @@
 	var GROUP = '__GROUP__';
 </script>
 
+<div style="width:980px;margin:auto;">
+<h2>硬装费用</h2>
 <form method="post" action="">
-硬装预算：<?php echo ($hard); ?>元<br>
-软装预算：<?php echo ($soft); ?>元<br>
-总预算：<?php echo ($total); ?>元  <a href="<?php echo U('set');?>">重设</a><br>
+设置预算：<input type="text" name="hard" />元<br><br>
 
 <table>
 	<tr><td width="100">名称</td><td width="200">预算</td><td width="100">档次</td><td width="100">实际花费</td></tr>
 	<tr><td>设计费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
 	<tr><td>人工费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
 	<tr><td>材料费</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>家具</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>家电</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>软饰</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
-	<tr><td>其他</td><td><input type="text" name="" />元</td><td>高 中 低</td><td>0.00元</td></tr>
 </table>
-
 </form>
+</div>
 
 </body>
 </html>

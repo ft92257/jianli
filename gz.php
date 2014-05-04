@@ -10,6 +10,7 @@ setcookie('isgz', 1, 0, '/');
 echo yjl_html_gz_head($s, 'index');
 ?>
 
+<?php if($GLOBALS['NEW_ALL']){ ?>
 <div id="mt" class="mt-0-5" >
     	<div class="mga b-box" style="height:300px;">
         	<ul class="big-imgbox" style="z-index:0;">
@@ -29,9 +30,14 @@ echo yjl_html_gz_head($s, 'index');
 			</div>
 			</div>
         </div>
-    </div>
+</div>
+<?php } else { ?>
+	<div class="top_row clearfix" style="padding:0px;width:980px;margin:auto;">
+		<img src="images/banner_0_img0.png" width="">
+	</div>
+<?php } ?>
+	
 <div id="pbody" style="background-color:#FFF; padding-bottom:20px">
-
 
 <div class="cen_div_cen">
             
@@ -157,6 +163,7 @@ echo yjl_html_gz_head($s, 'index');
 	};	
 
 $(function(){
+	<?php if ($GLOBALS['NEW_ALL']) {?>
 	var s = "<div id=\"mt\">" + $("#mt").html() + "</div>";
 	$("#mt").detach();
 	$("#pbody").before(s);
@@ -169,6 +176,7 @@ $(function(){
 	});
 	
 	dong(1);
+	<?php } ?>
 	
 	$(".rb-ul li").mouseover(function(){//鼠标经过数字时获取其索引值，并为其添加鼠标经过效果
 		 var index=$(this).index();
