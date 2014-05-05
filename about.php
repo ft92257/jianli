@@ -26,8 +26,8 @@ $c.='</ul>
 					<div class="about_cnt">';
 switch($tid){
 	case 'contact':
-		$c.='上海易至居工程监理有限公司<br/><br/>地　　址：上海市国康路46号<br/>客服电话：400-990-2013<br/>电　　话：021-65975962<div id="allmap" style="width: 600px;height: 450px;margin-top: 20px;overflow: hidden;"></div><script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script><script type="text/javascript">
-var sContent="<h3>上海易至居工程监理有限公司</h3>地　　址：上海市国康路46号<br/>客服电话：400-990-2013<br/>电　　话：021-65975962";
+		$c.='上海易至居工程监理有限公司<br/><br/>地　　址：上海市国康路46号<br/>客服电话：400-990-2013<br/><div id="allmap" style="width: 600px;height: 450px;margin-top: 20px;overflow: hidden;"></div><script type="text/javascript" src="http://api.map.baidu.com/api?v=1.3"></script><script type="text/javascript">
+var sContent="<h3>上海易至居工程监理有限公司</h3>地　　址：上海市国康路46号<br/>客服电话：400-990-2013<br/>";
 var map = new BMap.Map("allmap");
 var point = new BMap.Point(121.510076,31.292237);
 var marker = new BMap.Marker(point);
