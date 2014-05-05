@@ -26,6 +26,15 @@ class BudgetAction extends BaseAction {
 		$this->display();
 	}
 	
+	/*
+	 * 大饼图
+	 */
+	public function pie() {
+		import('Public.Library.PieImage', './');
+		
+		PieImage::make();
+	}
+	
 	public function calculate() {
 		$arr = array(
 			'status' => 0,

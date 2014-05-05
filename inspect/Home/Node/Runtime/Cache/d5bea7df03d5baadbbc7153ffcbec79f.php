@@ -27,9 +27,12 @@
 <h2>硬装费用</h2>
 
 <div style="width:200px;float:left;">
-	设计费 x% <br>
-	人工费 x% <br>
-	材料费 x% <br>
+	<img src="<?php echo U('pie');?>" />
+	<div style="float:left;">
+	<span style="color:#ffffff;background:#ff0000;">设计费</span> <span id="scale_design"></span>% <br>
+	<span style="color:#ffffff;background:#00ff00;">人工费</span> <span id="scale_artificial"></span>% <br>
+	<span style="color:#ffffff;background:#0000ff;">材料费</span> <span id="scale_material"></span>% <br>
+	</div>
 </div>
 <div style="780px;float:left;">
 建筑面积：<input type="text" id="acreage" name="acreage" />㎡<br>
@@ -42,9 +45,9 @@
 <form method="post" action="">
 <table>
 	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
-	<tr><td>设计费</td><td><span id="design_fee">0.00</span>元</td><td><input type="text" id="design" name="design" />元</td><td><span id="grade_design_3">高</span> <span id="grade_design_2">中</span> <span id="grade_design_1">低</span></td><td>0.00元</td></tr>
-	<tr><td>人工费</td><td><span id="artificial_fee">0.00</span>元</td><td><input type="text" id="artificial" name="artificial" />元</td><td><span id="grade_artificial_3">高</span> <span id="grade_artificial_2">中</span> <span id="grade_artificial_1">低</span></td><td>0.00元</td></tr>
-	<tr><td>材料费</td><td><span id="material_fee">0.00</span>元</td><td><input type="text" id="material" name="material" />元</td><td><span id="grade_material_3">高</span> <span id="grade_material_2">中</span> <span id="grade_material_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>设计费</td><td><span id="fee_design">0.00</span>元</td><td><input type="text" id="design" name="design" />元</td><td><span id="grade_design_3">高</span> <span id="grade_design_2">中</span> <span id="grade_design_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>人工费</td><td><span id="fee_artificial">0.00</span>元</td><td><input type="text" id="artificial" name="artificial" />元</td><td><span id="grade_artificial_3">高</span> <span id="grade_artificial_2">中</span> <span id="grade_artificial_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>材料费</td><td><span id="fee_material">0.00</span>元</td><td><input type="text" id="material" name="material" />元</td><td><span id="grade_material_3">高</span> <span id="grade_material_2">中</span> <span id="grade_material_1">低</span></td><td>0.00元</td></tr>
 </table>
 <input type="submit" value="保 存" />
 </form>
@@ -56,9 +59,9 @@ function calculate(){
 	$.post(URL+'/calculate', {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
 		if (json.status == 0) {
 			var data = json.data;
-			$("#design_fee").html(data.design);
-			$("#artificial_fee").html(data.artificial);
-			$("#material_fee").html(data.material);
+			$("#fee_design").html(data.design);
+			$("#fee_artificial").html(data.artificial);
+			$("#fee_material").html(data.material);
 			$("#design").val(data.design);
 			$("#artificial").val(data.artificial);
 			$("#material").val(data.material);
@@ -66,6 +69,14 @@ function calculate(){
 			$("#grade_design_" + data.grade.design).css("color", "red");
 			$("#grade_artificial_" + data.grade.artificial).css("color", "red");
 			$("#grade_material_" + data.grade.material).css("color", "red");
+			
+			var total = (data.design + data.artificial + data.material) / 100;
+			var scale_design = Math.round(data.design/total);
+			var scale_artificial = Math.round(data.artificial/total);
+			var scale_material = 100 - scale_design - scale_artificial;
+			$("#scale_design").html(scale_design);
+			$("#scale_artificial").html(scale_artificial);
+			$("#scale_material").html(scale_material);
 		}
 		alert(json.msg);
 	}, 'json');
