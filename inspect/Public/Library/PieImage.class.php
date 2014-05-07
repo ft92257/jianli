@@ -28,12 +28,17 @@ class PieImage {
 		return (array($x, $y));
 	}
 
-	public function make() {
+	public function make($data = array()) {
 		// 填充图表的参数
 		$ChartDiameter = 150; //图表直径
 		$ChartFont = 2; //图表字体
 		$ChartFontHeight = imagefontheight($ChartFont);//图表字体的大小
-		$ChartData = array( "6000", "18000", "60000");//用于生成图表的数据，可通过数据库来取得来确定
+		//用于生成图表的数据，可通过数据库来取得来确定
+		if (empty($data)) {
+			$ChartData = array("1", "1", "1");
+		} else {
+			$ChartData = $data;
+		}
 		//$ChartLabel = array("ssss", "ffff", "eee"); //数据对应的名称
 
 		//确定图形的大小
@@ -62,6 +67,7 @@ class PieImage {
 		$colorSlice[] = imagecolorallocate($image, 0xFF, 0x00, 0x00);
 		$colorSlice[] = imagecolorallocate($image, 0x00, 0xFF, 0x00);
 		$colorSlice[] = imagecolorallocate($image, 0x00, 0x00, 0xff);
+		//$colorSlice[] = imagecolorallocate($image, 0xff, 0x00, 0xff);
 
 		//填充背境
 		imagefill($image, 0, 0, $colorBody);
