@@ -25,34 +25,45 @@
 
 <div style="width:980px;margin:auto;">
 <h2>硬装费用</h2>
-
-<div style="width:200px;float:left;">
-	<img id="pie_image" src="<?php echo U('pie');?>" />
-	<div style="float:left;">
+<style>
+	.pieTabs{
+		line-height:26px;
+	}
+	.pieTabs a {
+		color:#0000FF;
+	}
+</style>
+<div style="width:330px;float:left;">
+	<span class="pieTabs">
+		<a href="#" id="tab_forecast" style="color:red;">预计费用</a> | <a href="#" id="tab_my">我的预算</a> | <a href="#" id="tab_real">实际费用</a>
+	</span>
+	<img style="float:left" id="pie_image" src="<?php echo U('pie');?>" />
+	<div style="float:left;margin-left:10px;line-height:36px;">
 	<span style="color:#ffffff;background:#ff0000;">设计费</span> <span id="scale_design"></span>% <br>
 	<span style="color:#ffffff;background:#00ff00;">人工费</span> <span id="scale_artificial"></span>% <br>
 	<span style="color:#ffffff;background:#0000ff;">材料费</span> <span id="scale_material"></span>% <br>
 	<!--<span style="color:#ffffff;background:#ff00ff;">其他费</span> <span id="scale_other"></span>% <br>-->
 	</div>
 </div>
-<div style="780px;float:left;">
-建筑面积：<input type="text" id="acreage" name="acreage" value="100" />㎡<br>
-设置预算：<input type="text" id="budget" name="budget" />元<br>
-选择档次：<select name="grade" id="grade"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
+<div style="650px;float:left;">
+建筑面积：<input type="text" id="acreage" name="acreage" value="<?php echo ($acreage); ?>" />㎡<br>
+设置预算：<input type="text" onblur="setBudget(this)" id="budget" name="budget" value="<?php echo ($hard_budget["total"]); ?>" />元<br>
+选择档次：<select name="grade" id="grade" onchange="selectGrade(this)"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
 <button type="button" onclick="calculate()">预估费用</button><br><br>
 </div>
 
-<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;">
+<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;margin-top:5px;">
 <form method="post" action="">
 <table>
 	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
-	<tr><td>设计费</td><td><span id="fee_design">0.00</span>元</td><td><input type="text" id="design" name="design" />元</td><td id="grade_design"><span id="grade_design_3">高</span> <span id="grade_design_2">中</span> <span id="grade_design_1">低</span></td><td>0.00元</td></tr>
-	<tr><td>人工费</td><td><span id="fee_artificial">0.00</span>元</td><td><input type="text" id="artificial" name="artificial" />元</td><td id="grade_artificial"><span id="grade_artificial_3">高</span> <span id="grade_artificial_2">中</span> <span id="grade_artificial_1">低</span></td><td>0.00元</td></tr>
-	<tr><td>材料费</td><td><span id="fee_material">0.00</span>元</td><td><input type="text" id="material" name="material" />元</td><td id="grade_material"><span id="grade_material_3">高</span> <span id="grade_material_2">中</span> <span id="grade_material_1">低</span></td><td>0.00元</td></tr>
+	<tr><td>设计费</td><td><span id="fee_design">0.00</span>元</td><td><input type="text" id="design" name="design" value="<?php echo ($hard_budget["design"]); ?>" />元</td><td id="grade_design"><span id="grade_design_3">高</span> <span id="grade_design_2">中</span> <span id="grade_design_1">低</span></td><td><span id="real_design">0.00</span>元</td></tr>
+	<tr><td>人工费</td><td><span id="fee_artificial">0.00</span>元</td><td><input type="text" id="artificial" name="artificial" value="<?php echo ($hard_budget["artificial"]); ?>" />元</td><td id="grade_artificial"><span id="grade_artificial_3">高</span> <span id="grade_artificial_2">中</span> <span id="grade_artificial_1">低</span></td><td><span id="real_artificial">0.00</span>元</td></tr>
+	<tr><td>材料费</td><td><span id="fee_material">0.00</span>元</td><td><input type="text" id="material" name="material" value="<?php echo ($hard_budget["material"]); ?>" />元</td><td id="grade_material"><span id="grade_material_3">高</span> <span id="grade_material_2">中</span> <span id="grade_material_1">低</span></td><td><span id="real_material">0.00</span>元</td></tr>
 	<tr><td colspan="5" style="border-top:1px solid #ccc;"></td></tr>
-	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td></td><td></td><td>0.00元</td></tr>
+	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><td>0.00元</td></tr>
 	<!--<tr><td>其他费</td><td><span id="fee_other">0.00</span>元</td><td><input type="text" id="other" name="other" />元</td><td><span id="grade_other_3">高</span> <span id="grade_other_2">中</span> <span id="grade_other_1">低</span></td><td>0.00元</td></tr>-->
 </table>
+<br>
 <input type="submit" value="保 存" />
 </form>
 </div>
@@ -68,11 +79,13 @@ function calculate(){
 			$("#fee_material").html(data.material);
 			//$("#fee_other").html(data.other);
 			
-			$("#design").val(data.design);
-			$("#artificial").val(data.artificial);
-			$("#material").val(data.material);
-			//$("#other").val(data.other);
-			
+			if ($("#synBudget")[0].checked) {
+				$("#design").val(data.design);
+				$("#artificial").val(data.artificial);
+				$("#material").val(data.material);
+				//$("#other").val(data.other);
+			}
+
 			var oGrade = {"1":"低", "2":"中", "3":"高"};
 			$("#grade_design").html(oGrade[data.grade.design]);
 			$("#grade_artificial").html(oGrade[data.grade.artificial]);
@@ -96,9 +109,68 @@ function calculate(){
 			$("#fee_total").html(total * 100);
 			
 			$("#pie_image").attr("src", "<?php echo U('pie');?>/data/" + data.design + "," + data.artificial + "," + data.material);
+		
+			$(".pieTabs a").css("color", 'blue');
+			$("#tab_forecast").css("color", 'red');
+		} else {
+			alert(json.msg);
 		}
-		alert(json.msg);
 	}, 'json');
+}
+
+function selectGrade(obj) {
+	if (obj.value) {
+		$("#budget").val('');
+		calculate();
+	}
+}
+
+function setBudget(obj) {
+	if (obj.value) {
+		$("#grade").val(0);
+	}
+}
+
+function synCheck(obj) {
+	if (obj.checked) {
+		$("#design").val($("#fee_design").html());
+		$("#artificial").val($("#fee_artificial").html());
+		$("#material").val($("#fee_material").html());
+	}
+}
+
+$(function(){
+	calculate();
+	$(".pieTabs a").click(function(){
+		$(".pieTabs a").css("color", 'blue');
+		$(this).css("color", 'red');
+		
+	});
+	$("#tab_forecast").click(function(){
+		_updatePie({"design":$("#fee_design").html(), "artificial":$("#fee_artificial").html(), "material":$("#fee_material").html()});
+	});
+	$("#tab_my").click(function(){
+		_updatePie({"design":$("#design").val(), "artificial":$("#artificial").val(), "material":$("#material").val()});
+	});
+	$("#tab_real").click(function(){
+		_updatePie({"design":$("#real_design").html(), "artificial":$("#real_artificial").html(), "material":$("#real_material").html()});
+	});
+});
+
+function _updatePie(data) {
+	data.design = parseInt(data.design);
+	data.artificial = parseInt(data.artificial);
+	data.material = parseInt(data.material);
+	
+	$("#pie_image").attr("src", "<?php echo U('pie');?>/data/" + data.design + "," + data.artificial + "," + data.material);
+	var total = (data.design + data.artificial + data.material) / 100;
+	var scale_design = Math.round(data.design/total);
+	var scale_artificial = Math.round(data.artificial/total);
+	var scale_material =  100 - scale_design - scale_artificial;
+	
+	$("#scale_design").html(scale_design);
+	$("#scale_artificial").html(scale_artificial);
+	$("#scale_material").html(scale_material);
 }
 </script>
 

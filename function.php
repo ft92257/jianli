@@ -1116,7 +1116,7 @@ function getFooter() {
                         <img src="newnav/images/jzjljzjl.png" width="125" height="34" alt="家装" />
                         <ul class="name-list clearfix ml-2-5 mt-1">
                             <li><a href="newnav.php?p=5" class="corasd">别墅</a></li>
-                            <li><a href="newnav.php?p=5">公寓</a></li>
+                            <li><a href="newnav.php?p=24">公寓</a></li>
                             <li style="width:80px"><a href="newnav.php?p=23">在线视频监理</a></li>
                         </ul>
                     </div>

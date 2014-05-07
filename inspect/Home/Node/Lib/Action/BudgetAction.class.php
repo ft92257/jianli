@@ -11,18 +11,30 @@ class BudgetAction extends BaseAction {
 		$this->model = D('Budget');
 	}
 	
-	/*
-	 * 预算设置
-	 */
-	public function set() {
-		if ($this->isPost()) {
-			$this->redirect('detail');
-		} else {
-			$this->display();
-		}
-	}
-	
 	public function detail() {
+		if ($this->isPost()) {
+			$hard_budget = array(
+					'design' => (int) getRequest('design'),
+					'artificial' => (int) getRequest('artificial'),
+					'material' => (int) getRequest('material'),
+			);
+			$hard_budget['total'] = $hard_budget['design'] + $hard_budget['artificial'] + $hard_budget['material'];
+		} else {
+			//$hard_budget = $this->oUser->hard_budget;
+			//$hard_budget = json_decode($hard_budget, true);
+		
+			$hard_budget = array(
+				'design' => 11000,
+				'artificial' => 34000,
+				'material' => 115000,
+				'total' => 160000,
+			);
+		}
+		$acreage = 100;
+		
+		$this->assign('acreage', $acreage);
+		$this->assign('hard_budget', $hard_budget);
+		
 		$this->display();
 	}
 	
@@ -102,54 +114,6 @@ class BudgetAction extends BaseAction {
 			),
 		);
 		echo json_encode($arr);
-	}
-	
-	/*
-	 * 添加
-	 */
-	public function add(){
-		if ($this->isPost()) {
-			$dataBase = array(
-
-			);
-
-			$this->_add($dataBase);
-		} else {
-			$this->_display_form();
-		}
-	}
-	
-	//列表
-	public function index(){
-		$params = array(
-				'order' => 'createtime DESC',
-		);
-		
-		$this->_getPageList($params);
-	}
-	
-	/*
-	 * 修改
-	 */
-	public function edit() {
-		$data = $this->model->getById(getRequest('id'));
-
-		if ($this->isPost()) {
-			$dataBase = array();
-
-			$this->_edit($data, $dataBase);
-		} else {
-			$this->_display_form($data, 'add');
-		}
-	}
-	
-	/*
-	 * 删除
-	 */
-	public function delete() {
-		$id = getRequest('id');
-		
-		$this->_delete(array('id' => $id));
 	}
 	
 }
