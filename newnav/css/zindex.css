@@ -98,7 +98,7 @@ body{font-size:12px;height:100%; background-color:#f4f4f4;color:#999;font-family
 
 
 /*右侧跟随滚动菜单*/
-.r-box-move{ width:85px; border:#E4E3E5 1px solid; position:fixed; left:50%; bottom:150px; z-index:111111; margin-left:510px; background-color:#fff}
+.r-box-move{ width:85px; border:#E4E3E5 1px solid; position:fixed; left:50%; bottom:10px; z-index:111111; margin-left:510px; background-color:#fff}
 .r-box-move .r-box-u>li{ position:relative; margin-top:-1px; border-top:#E4E3E5 1px solid}
 .r-box-move .r-box-u>li> a{ display:block; width:85px; height:64px; text-indent:-9999999px; background-position:left top}
 .r-box-move .r-box-u li> a.i1{ background:url(../images/i1.png) no-repeat}
@@ -272,16 +272,26 @@ div.align-r a{ color:#000}
 .t1-serve-charge{ font-family:"微软雅黑"}
 .t1-serve-charge h3{ font-size:30px; font-weight:normal; color:#585858}
 .t1-serve-charge .charge-4d{ font-size:20px; color:#666}
-.t1-serve-charge .charge-4d li{ float:left; width:150px; line-height:35px}
+.t1-serve-charge .charge-4d li{ float:left; width:150px; line-height:45px}
 .t1-serve-charge .charge-intro{ font-size:16px; color:#919191; line-height:25px}
 .t1-serve-charge .t1-serve-charge-imgshow li{ float:left; margin-left:10px; margin-top:10px; display:inline}
 .t1-serve-charge .bg-white{ background-color:#fff}
 .t1-serve-charge .bg-gray{ background-color:#FAFAFA}
-.t1-serve-charge .str-title{ color:#e46919; font-size:20px; font-weight:normal; display:block}
+.t1-serve-charge .str-title-g span,.t1-serve-charge .str-title-b span,.t1-serve-charge .str-title-q span,.t1-serve-charge .str-title-o span{ font-size:30px}
+.t1-serve-charge .c-con-p-tit-g{ color:#4db874; font-size:18px}
+.t1-serve-charge .c-con-p-tit-b{ color:#389cd7; font-size:18px}
+.t1-serve-charge .c-con-p-tit-q{ color:#919d09; font-size:18px}
+.t1-serve-charge .c-con-p-tit-o{ color:#c37938; font-size:18px}
+.t1-serve-charge .str-title-g{ color:#4db874; font-size:20px; font-weight:normal; display:block}
+.t1-serve-charge .str-title-b{ color:#389cd7; font-size:20px; font-weight:normal; display:block}
+.t1-serve-charge .str-title-q{ color:#919d09; font-size:20px; font-weight:normal; display:block}
+.t1-serve-charge .str-title-o{ color:#c37938; font-size:20px; font-weight:normal; display:block}
 .t1-serve-charge .qt-intro{ font-size:14px; color:#919191; line-height:25px}
 .t1-serve-charge h4{ font-size:20px; font-weight:normal; color:#666}
 .t1-serve-charge h4 span,.t1-serve-charge h4 p{ height:21px; line-height:21px;}
-.t1-serve-charge h4 span{ background:url(../images/icosbg.png) center no-repeat; width:20px; font-size:16px; text-align:center}
+.t1-serve-charge h4 span{ width:20px; font-size:16px; color:#fff; text-align:center}
+.t1-serve-charge h4 span.g-bg{ background:url(../images/g-bg.png) center no-repeat;}
+.t1-serve-charge h4 span.b-bg{ background:url(../images/b-bg.png) center no-repeat;}
 .t1-serve-charge .kgbefor li{ clear:both; font-size:14px; color:#919191; line-height:24px}
 .t1-serve-charge .s-title{ font-size:16px; font-weight:normal; color:#666; display:block; margin-top:10px}
 .t1-serve-charge .c-content{ font-size:14px; color:#919191; line-height:24px}
