@@ -20,9 +20,14 @@ $(function(){
 		$(".r-box-u>li").hover(function(){
 				var sbox=$(this).find(".show-box");
 				$(this).children("a").addClass("hmove");
+				if ($(this).index() == 3) {
+					sbox.css({"top":-181});
+				}
+				
 				if($(this).index()==$(".r-box-u>li:last").index()){
 					$(this).children("a").css({"backgroundColor":"#E4E3E5"});
 				};
+				
 				sbox.show();
 			},function(){
 				var sbox=$(this).find(".show-box");
