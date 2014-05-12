@@ -22,6 +22,9 @@ RewriteRule ^estate-(.+)\.html$ estate.php?rg=$1
 
 RewriteRule ^about-(.+)\.html$ about.php?t=$1
 
+RewriteRule ^newnav-(.+)\.html$ newnav.php?p=$1
+RewriteRule ^html-(.+)\.html$ html.php?p=$1
+
 RewriteCond %{HTTP_REFERER} !^$ [NC]
 RewriteCond %{HTTP_REFERER} !127.0.0.1 [NC]
 RewriteCond %{HTTP_REFERER} !yijianli.cn [NC]

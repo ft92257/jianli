@@ -1125,38 +1125,38 @@ function getFooter() {
                     <div class="left" style=" width:108px; height:220px">
                         <img src="newnav/images/gzgzgz.png" width="108" height="34" alt="公装" />
                         <ul class="name-list clearfix ml-2-5 mt-1">
-                            <li><a href="newnav.php?p=9" class="corasd">连锁店</a></li>
-                            <li><a href="newnav.php?p=15" class="corasd">办公室</a></li>
-                            <li><a href="newnav.php?p=8">实验室</a></li>
-                            <li><a href="newnav.php?p=6">酒店会所</a></li>
-                            <li><a href="newnav.php?p=14">厂房</a></li>
-                            <li><a href="newnav.php?p=4">土建</a></li>
-                            <li><a href="newnav.php?p=3">招投标</a></li>
+                            <li><a href="newnav-9.html" class="corasd">连锁店</a></li>
+                            <li><a href="newnav-15.html" class="corasd">办公室</a></li>
+                            <li><a href="newnav-8.html">实验室</a></li>
+                            <li><a href="newnav-6.html">酒店会所</a></li>
+                            <li><a href="newnav-14.html">厂房</a></li>
+                            <li><a href="newnav-4.html">土建</a></li>
+                            <li><a href="newnav-3.html">招投标</a></li>
                         </ul>
                     </div>
                     <div class="left" style="width:125px; height:220px">
                         <img src="newnav/images/jzjljzjl.png" width="125" height="34" alt="家装" />
                         <ul class="name-list clearfix ml-2-5 mt-1">
-                            <li><a href="newnav.php?p=5" class="corasd">别墅</a></li>
-                            <li><a href="newnav.php?p=24">公寓</a></li>
-                            <li style="width:80px"><a href="newnav.php?p=23">在线视频监理</a></li>
+                            <li><a href="newnav-5.html" class="corasd">别墅</a></li>
+                            <li><a href="newnav-24.html">公寓</a></li>
+                            <li style="width:80px"><a href="newnav-23.html">在线视频监理</a></li>
                         </ul>
                     </div>
                     <div class="left" style=" width:99px; height:220px">
                         <img src="newnav/images/ysysys.png" width="99" height="34" alt="预算" />
                         <ul class="name-list clearfix ml-2-5 mt-1">
-                            <li><a href="newnav.php?p=13">在线预算</a></li>
-                            <li><a href="newnav.php?p=11">线下预算</a></li>
+                            <li><a href="newnav-13.html">在线预算</a></li>
+                            <li><a href="newnav-11.html">线下预算</a></li>
                             <li><a href="new/index.php?a=index&m=supervisor&f=4">预算师</a></li>
                         </ul>
                     </div>
                     <div class="left" style="width:104px; height:220px">
                         <img src="newnav/images/yfang360.png" width="104" height="34" alt="验房360" />
                         <ul class="name-list clearfix ml-3-5 mt-1">
-                            <li><a href="newnav.php?p=21" class="corasd">一房一验</a></li>
+                            <li><a href="newnav-21.html" class="corasd">一房一验</a></li>
                             <li><a href="inspect/index.php?s=/Inspect/index">团验</a></li>
                             <li><a href="inspect/index.php?s=/Report/detail/id/1">验房报告</a></li>
-                            <li><a href="newnav.php?p=22">房屋检测</a></li>
+                            <li><a href="newnav-22.html">房屋检测</a></li>
                         </ul>
                     </div>
                     <div class="left" style="width:110px; height:220px">
@@ -1173,20 +1173,20 @@ function getFooter() {
                     <div class="left" style="width:112px; height:220px">
                         <img src="newnav/images/ctctjl.png" width="112" height="34" alt="传统监理" />
                         <ul class="name-list clearfix ml-4 mt-1">
-                            <li><a href="newnav.php?p=2" class="corasd">全程</a></li>
-                            <li><a href="newnav.php?p=12">单次</a></li>
-                            <li><a href="newnav.php?p=10">验收</a></li>
-                            <li><a href="newnav.php?p=1">3+N</a></li>
-                            <li><a href="newnav.php?p=20" class="corasd">监理团购</a></li>
-                            <li><a href="newnav.php?p=20">空气检测</a></li>
+                            <li><a href="newnav-2.html" class="corasd">全程</a></li>
+                            <li><a href="newnav-12.html">单次</a></li>
+                            <li><a href="newnav-10.html">验收</a></li>
+                            <li><a href="newnav-1.html">3+N</a></li>
+                            <li><a href="newnav-20.html" class="corasd">监理团购</a></li>
+                            <li><a href="newnav-20.html">空气检测</a></li>
                         </ul>
                     </div>
                     <div class="left w-147k" style=" height:220px" >
                         <img src="newnav/images/zxspjlbg.png" width="147" height="34" alt="在线视频监理" />
                         <ul class="name-list clearfix ml-4-5 mt-1">
-                            <li class="classw"><a href="newnav.php?p=17" class="corasd">业主DIY</a></li>
-                            <li class="classw"><a href="newnav.php?p=18">在线专家</a></li>
-                            <li class="classw"><a href="newnav.php?p=18">视频+传统监理</a></li>
+                            <li class="classw"><a href="newnav-17.html" class="corasd">业主DIY</a></li>
+                            <li class="classw"><a href="newnav-18.html">在线专家</a></li>
+                            <li class="classw"><a href="newnav-18.html">视频+传统监理</a></li>
                         </ul>
                     </div>
                 </div>
