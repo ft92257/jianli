@@ -47,13 +47,11 @@
 <script>
 
 function calculate(){
-	$.post(URL+'/calculate', {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
+	$.post(URL+'/softCalculate', {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
 		if (json.status == 0) {
 			var data = json.data;
 			var oGrade = {"1":"低", "2":"中", "3":"高"};
-			
 			var total = 0;
-			var strData = '';
 		<foreach name="fields" item="vo" key="field">
 			$("#fee_{$field}").html(data.{$field});
 			if ($("#synBudget")[0].checked) {
@@ -61,27 +59,12 @@ function calculate(){
 			}
 			$("#grade_{$field}").html(oGrade[data.grade.{$field}]);
 
-			strData += data.{$field} + ",";
 			total += parseInt(data.{$field});
 		</foreach> 
-		
-			total = total / 100;
-			
-			var scale_artificial = Math.round(data.artificial/total);
-			//var scale_material = Math.round(data.material/total);
-			var scale_material =  100 - scale_design - scale_artificial;
-		
-		<foreach name="fields" item="vo" key="field">
-			var scale_{$field} = Math.round(data.design/total);
-			$("#scale_{$field}").html(scale_{$field});
-		</foreach> 
-		
-			strData = strData.substr(0, strData.length - 1);
+			$("#fee_total").html(total);
 
-			$("#fee_total").html(total * 100);
-			
-			$("#pie_image").attr("src", "{:U('pie')}/data/" + strData);
-		
+			_updatePie(data);
+
 			$(".pieTabs a").css("color", 'blue');
 			$("#tab_forecast").css("color", 'red');
 		} else {
@@ -105,9 +88,9 @@ function setBudget(obj) {
 
 function synCheck(obj) {
 	if (obj.checked) {
-		$("#design").val($("#fee_design").html());
-		$("#artificial").val($("#fee_artificial").html());
-		$("#material").val($("#fee_material").html());
+		<foreach name="fields" item="vo" key="field">
+		$("#{$field}").val($("#fee_{$field}").html());
+		</foreach> 
 	}
 }
 
@@ -116,33 +99,43 @@ $(function(){
 	$(".pieTabs a").click(function(){
 		$(".pieTabs a").css("color", 'blue');
 		$(this).css("color", 'red');
-		
 	});
 	$("#tab_forecast").click(function(){
-		_updatePie({"design":$("#fee_design").html(), "artificial":$("#fee_artificial").html(), "material":$("#fee_material").html()});
+		_updatePie({"electric":$("#fee_electric").html(), "furniture":$("#fee_furniture").html(), "fabric":$("#fee_fabric").html(), "green":$("#fee_green").html(), "illumination":$("#fee_illumination").html(), "furnishing":$("#fee_furnishing").html()});
 	});
 	$("#tab_my").click(function(){
-		_updatePie({"design":$("#design").val(), "artificial":$("#artificial").val(), "material":$("#material").val()});
+		_updatePie({"electric":$("#electric").val(), "furniture":$("#furniture").val(), "fabric":$("#fabric").val(), "green":$("#green").val(), "illumination":$("#illumination").val(), "furnishing":$("#furnishing").val()});
 	});
 	$("#tab_real").click(function(){
-		_updatePie({"design":$("#real_design").html(), "artificial":$("#real_artificial").html(), "material":$("#real_material").html()});
+		_updatePie({"electric":$("#real_electric").html(), "furniture":$("#real_furniture").html(), "fabric":$("#real_fabric").html(), "green":$("#real_green").html(), "illumination":$("#real_illumination").html(), "furnishing":$("#real_furnishing").html()});
 	});
 });
 
 function _updatePie(data) {
-	data.design = parseInt(data.design);
-	data.artificial = parseInt(data.artificial);
-	data.material = parseInt(data.material);
+	var total = 0;
+	var strData = '';
+<foreach name="fields" item="vo" key="field">
+	strData += data.{$field} + ",";
+	total += parseInt(data.{$field});
+</foreach> 
+
+	total = total / 100;
 	
-	$("#pie_image").attr("src", "{:U('pie')}/data/" + data.design + "," + data.artificial + "," + data.material);
-	var total = (data.design + data.artificial + data.material) / 100;
-	var scale_design = Math.round(data.design/total);
-	var scale_artificial = Math.round(data.artificial/total);
-	var scale_material =  100 - scale_design - scale_artificial;
+	var sum = 0;var last_field = '';
+<foreach name="fields" item="vo" key="field">
+	var scale_{$field} = Math.round(data.{$field}/total);
+	sum += scale_{$field};
+	last_field = '{$field}';
 	
-	$("#scale_design").html(scale_design);
-	$("#scale_artificial").html(scale_artificial);
-	$("#scale_material").html(scale_material);
+	$("#scale_{$field}").html(scale_{$field});
+</foreach> 
+	var last = parseInt($("#scale_" + last_field).html()) + 100 - sum;
+	$("#scale_" + last_field).html(last);
+
+	strData = strData.substr(0, strData.length - 1);
+
+	$("#pie_image").attr("src", "{:U('softpie')}/data/" + strData);
+		
 }
 </script>
 

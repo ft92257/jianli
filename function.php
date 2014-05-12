@@ -663,13 +663,23 @@ function yjl_html_head($c, $css='', $body_id='', $menu_id=0){
 	$(window).scroll(function(){
 	'.$js_scrc.'
 });';
+	
 	$s='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>'.$ptitle.' - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理</title>
-	<meta name="keywords" content="易监理,上海家装监理公司,家装监理公司,上海装修监理公司,家装监理,装潢监理,上海家装监理,上海装潢监理,上海装饰监理,上海装修监理,上海家庭装潢监理,装修监理,上海装修监理,验房,上海验房,家装监理师,装饰监理师,别墅监理,别墅装饰监理,家装工程监理,家庭装修监理,水电监理,家装监理费,家装施工监理,装修第三方监理"/>
-	<meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
+	
+	preg_match("/<head>([\w\W]+)<\/head>/", $c, $matches);
+	if ($matches[1]) {
+		$s .= $matches[1];
+	} else {
+		$s .= '
+	<title>易监理 - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司</title>
+	<meta name="keywords" content="易监理是商业装修和别墅装修监理领域的领导者，装修行业中代表良心的力量，为中国领先的装修监理服务网站，提供业界最先进的线上线下专业监理服务。"/>
+	<meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>';
+	}
+	
+	$s .= '
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="apple-touch-icon" href="images/iphone_logo.png" />
 	<link rel="apple-touch-icon" sizes="72x72" href="images/ipad_logo.png" />
@@ -885,10 +895,19 @@ function yjl_html_gz_head($c, $css='', $body_id='', $menu_id=0){
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>'.$ptitle.' - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理</title>
-	<meta name="keywords" content="易监理,上海家装监理公司,家装监理公司,上海装修监理公司,家装监理,装潢监理,上海家装监理,上海装潢监理,上海装饰监理,上海装修监理,上海家庭装潢监理,装修监理,上海装修监理,验房,上海验房,家装监理师,装饰监理师,别墅监理,别墅装饰监理,家装工程监理,家庭装修监理,水电监理,家装监理费,家装施工监理,装修第三方监理"/>
+	';
+	
+	preg_match("/<head>([\w\W]+)<\/head>/", $c, $matches);
+	if ($matches[1]) {
+		$s .= $matches[1];
+	} else {
+		$s .= '<title>易监理 - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司</title>
+	<meta name="keywords" content="易监理是商业装修和别墅装修监理领域的领导者，装修行业中代表良心的力量，为中国领先的装修监理服务网站，提供业界最先进的线上线下专业监理服务。"/>
 	<meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>
-	<link rel="shortcut icon" href="favicon.ico" />
+	';
+	}
+	
+	$s .= '<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="apple-touch-icon" href="images/iphone_logo.png" />
 	<link rel="apple-touch-icon" sizes="72x72" href="images/ipad_logo.png" />
 	<link rel="apple-touch-icon" sizes="114x114" href="images/iphone_retina_logo.png" />
@@ -1010,6 +1029,9 @@ function yjl_html($c, $css='', $body_id='', $menu_id=0){
 	} else {
 		$s = yjl_html_head($c, $css, $body_id, $menu_id);
 	}
+	
+	$c = preg_replace("/<head>([\w\W]+)<\/head>/", '', $c);
+	
 	$s .= '<!--内容-->
 	<div id="pbody'.($body_id!=''?'_'.$body_id:'').'">'.$c.'</div>
 </div>';

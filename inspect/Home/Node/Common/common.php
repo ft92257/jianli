@@ -46,6 +46,26 @@ function getRequest($name, $default = '') {
 	}
 }
 
+/*
+ * @param mixed fields 例：'name,logo,type',或者数组
+*/
+function getRequestData($fields) {
+	$data = array();
+	if (is_array($fields)) {
+		$arr = $fields;
+	} else {
+		if ($fields !== '') {
+			$arr = explode(',', $fields);
+		} else {
+			$arr = array();
+		}
+	}
+	foreach ($arr as $name) {
+		$data[$name] = getRequest($name);
+	}
+
+	return $data;
+}
 
 /*
  * 过滤逗号分割的数字字符串 如 1,2,3
