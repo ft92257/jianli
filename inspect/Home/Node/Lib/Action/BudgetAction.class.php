@@ -216,14 +216,7 @@ class BudgetAction extends BaseAction {
 	}
 	
 	public function soft() {
-		$fields = array(
-				'electric' => array('家电', '#ff0000'),
-				'furniture' => array('家居', '#ffff00'),
-				'fabric' => array('布艺', '#0000ff'),
-				'green' => array('绿化', '#00ff00'),
-				'illumination' => array('照明', '#ff00ff'),
-				'furnishing' => array('陈设', '#00ffff'),
-			);
+		$fields = $this->getParentConfig('soft');
 
 		if ($this->isPost()) {
 			$hard_budget = getRequestData(array_keys($fields));
@@ -252,5 +245,75 @@ class BudgetAction extends BaseAction {
 		
 		$this->display();
 	}
+	
+	/**************************第二层*******************************/
+	public function getParentConfig($type, $isChild = false) {
+		$configs = array(
+			'soft' => array(
+				'electric' => array('家电', '#ff0000'),
+				'furniture' => array('家居', '#ffff00'),
+				'fabric' => array('布艺', '#0000ff'),
+				'green' => array('绿化', '#00ff00'),
+				'illumination' => array('照明', '#ff00ff'),
+				'furnishing' => array('陈设', '#00ffff'),
+			),
+			'hard' => array(
+				'design' => array('设计', '#ff0000'),
+				'artificial' => array('人工', '#00ff00'),
+				'material' => array('材料', '#0000ff'),
+			),	
+		);
+		
+		if ($isChild) {
+			$configs = array_merge($configs['soft'], $configs['hard']);
+		} 
+
+		return $configs[$type];
+	}
+	
+	public function getChildConfig($type) {
+		$configs = array(
+			'electric' => array(
+				'elec1' => array('家电1', '#ff0000'),
+				'elec2' => array('家电2', '#00ff00'),
+				'elec3' => array('家电3', '#0000ff'),
+			),
+		);
+		
+		return $configs[$type];
+	}
+	
+	public function child() {
+		$type = getRequest('type');
+		$fields = $this->getChildConfig($type);
+		if (empty($fields)) {
+			$this->error('没有该页面！');
+		}
+		
+		if ($this->isPost()) {
+			$budget = getRequestData(array_keys($fields));
+		} else {
+			//$hard_budget = $this->oUser->hard_budget;
+			//$hard_budget = json_decode($hard_budget, true);
+	
+			//todo 初始化
+			$budget = array(
+
+			);
+		}
+	
+		$hard_budget['total'] = 0;
+		foreach ($hard_budget as $value) {
+			$hard_budget['total'] += (int) $value;
+		}
+		$this->assign('budget', $budget);
+		$this->assign('fields', $fields);
+		
+		$parent = $this->getParentConfig($type, true);
+		$this->assign('title', $parent[0] . '费用');
+		
+		$this->display();
+	}
+	
 }
 ?>

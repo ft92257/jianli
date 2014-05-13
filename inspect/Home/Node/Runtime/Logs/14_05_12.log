@@ -466,3 +466,874 @@ ERR: Table 'jianliht.tb_budget' doesn't exist
  [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
 NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
 
+[ 2014-05-12T16:30:29+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000599s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000790s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000583s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000670s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002312s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002805s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001111s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001185s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.012973s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013042s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000658s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000646s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000522s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000712s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002718s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000796s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000889s ]
+
+[ 2014-05-12T16:30:29+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000332s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000471s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000309s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003523s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.007797s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T16:30:30+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000387s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000360s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000485s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003959s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004866s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.002294s ]
+INFO: [ view_template ] --END-- [ RunTime:0.002445s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015220s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015316s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001212s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000523s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000486s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000534s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002908s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000589s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000671s ]
+
+[ 2014-05-12T16:30:30+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000386s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000479s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000186s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000239s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.004429s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.003995s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T16:31:17+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000394s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000550s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000376s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000484s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003872s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004428s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T16:31:18+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000392s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000546s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003797s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004619s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T16:56:47+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001150s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001315s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001394s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.004791s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.003393s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001074s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001138s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.019643s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019717s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000720s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000547s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.001246s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.001084s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003776s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001108s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001182s ]
+
+[ 2014-05-12T16:56:47+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000320s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000238s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000307s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003806s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004302s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T16:56:56+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000389s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000535s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000491s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002001s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002368s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001318s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001382s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015258s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015332s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001238s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000535s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000486s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000535s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002948s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001082s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001151s ]
+
+[ 2014-05-12T16:56:56+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000471s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000660s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000439s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000599s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003849s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.006192s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T16:56:59+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000381s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000535s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003815s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004679s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:07:32+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001186s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001347s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001359s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.001967s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002472s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001064s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001126s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015686s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015777s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001002s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000905s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000951s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000589s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003651s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000801s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000894s ]
+
+[ 2014-05-12T17:07:32+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000308s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000457s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000326s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003523s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.005832s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:08:49+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000882s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000965s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001391s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.001853s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002258s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001716s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001777s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.020366s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020461s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000758s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000537s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000979s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.001049s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003483s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001567s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001674s ]
+
+[ 2014-05-12T17:08:49+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001366s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001486s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001761s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002972s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.003477s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:09:46+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001047s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001145s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001015s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001086s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.001952s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002179s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001737s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001799s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015672s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015744s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000503s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000358s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000978s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.001042s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003031s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001303s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001390s ]
+
+[ 2014-05-12T17:09:47+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.002212s ]
+INFO: [ route_check ] --END-- [ RunTime:0.002404s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.002271s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002456s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002003s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002677s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:14:05+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001097s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001243s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001123s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001264s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002278s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.003154s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001394s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001469s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.016810s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016888s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001175s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000529s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000541s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000542s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002945s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000593s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000664s ]
+
+[ 2014-05-12T17:14:06+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000460s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000287s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002525s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.003358s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:14:18+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000747s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000905s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000378s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000491s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003773s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004611s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:14:42+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001047s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001210s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000390s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003922s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.005812s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001062s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001182s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.014184s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014284s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001107s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000195s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000150s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000210s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001815s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000230s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000333s ]
+
+[ 2014-05-12T17:14:42+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000554s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000539s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000600s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003095s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004137s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:17:47+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/detail
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000561s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000644s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002065s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002406s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001237s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001298s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\d5bea7df03d5baadbbc7153ffcbec79f.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.011632s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011704s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001155s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000537s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000484s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000544s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002870s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000588s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000666s ]
+
+[ 2014-05-12T17:17:48+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/calculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000232s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000330s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000288s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000411s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002552s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004869s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 116 行.
+
+[ 2014-05-12T17:17:50+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/detail
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000559s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000711s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003797s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004714s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001999s ]
+INFO: [ view_template ] --END-- [ RunTime:0.002131s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\d5bea7df03d5baadbbc7153ffcbec79f.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.012956s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013059s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000981s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000189s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000147s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000197s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001661s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000182s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000238s ]
+
+[ 2014-05-12T17:17:50+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/calculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000623s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000744s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000561s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000626s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003023s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.006981s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 116 行.
+
+[ 2014-05-12T17:18:12+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/detail
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000377s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000517s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000346s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003817s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.005659s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001079s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001141s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\d5bea7df03d5baadbbc7153ffcbec79f.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.009934s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010004s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001149s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000524s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000993s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.001028s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003848s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001486s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001587s ]
+
+[ 2014-05-12T17:18:12+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/calculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000284s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000198s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000257s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003895s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.013856s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 116 行.
+
+[ 2014-05-12T17:18:18+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/calculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000383s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000596s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000356s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003609s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004860s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 116 行.
+
+[ 2014-05-12T17:19:02+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000418s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000567s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000378s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003689s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002348s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.000740s ]
+INFO: [ view_template ] --END-- [ RunTime:0.000799s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.012680s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012759s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001002s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000191s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000147s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000202s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001689s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000188s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000244s ]
+
+[ 2014-05-12T17:19:02+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000458s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000594s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000428s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002883s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.006147s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+
+[ 2014-05-12T17:19:07+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000420s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000578s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000505s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000624s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003670s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004665s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:19:22+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000400s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000557s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000500s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003712s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002682s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:19:34+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000419s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000608s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000484s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002850s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002644s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:19:47+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000401s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000553s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000367s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000480s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003828s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004888s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:20:23+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000400s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000557s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000383s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000502s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003912s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.005374s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001889s ]
+INFO: [ view_template ] --END-- [ RunTime:0.002022s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015759s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015857s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001717s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000603s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000499s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000618s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003628s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.000592s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000672s ]
+
+[ 2014-05-12T17:20:23+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000219s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000311s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000279s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002020s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004571s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:20:30+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000425s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000589s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000390s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003698s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004691s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:20:36+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000393s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000546s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000379s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000485s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002140s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.002426s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:20:49+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000397s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000553s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003881s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004042s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:20:57+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000407s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000567s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000456s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000581s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003953s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004859s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+
+[ 2014-05-12T17:21:10+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000392s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000544s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000374s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000482s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003988s ]
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined index:  SN_KEY C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\SessionModel.class.php 第 14 行.
+SQL: SHOW COLUMNS FROM `tb_budget` [ RunTime:0.004506s ]
+ERR: Table 'jianliht.tb_budget' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tb_budget`
+NOTIC: [8] Undefined index:  company C:\AppServ\www\jianli\inspect\Home\Node\Lib\Model\BaseModel.class.php 第 34 行.
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 197 行.
+

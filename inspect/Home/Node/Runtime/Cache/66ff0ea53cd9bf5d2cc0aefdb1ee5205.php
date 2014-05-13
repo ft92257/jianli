@@ -24,7 +24,7 @@
 </script>
 
 <div style="width:980px;margin:auto;">
-<h2>软装费用</h2>
+<h2><?php echo ($title); ?></h2>
 <style>
 	.pieTabs{
 		line-height:26px;

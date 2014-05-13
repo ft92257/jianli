@@ -1213,15 +1213,16 @@ function getFooter() {
 	$ru=$_SERVER['REQUEST_URI'];
 	if(isset($_SERVER['HTTP_X_REWRITE_URL']) && trim($_SERVER['HTTP_X_REWRITE_URL'])!='')$ru=$_SERVER['HTTP_X_REWRITE_URL'];
 	$s.='<input type="hidden" id="fx_url_0" value="'.urlencode('http://'.$_SERVER['HTTP_HOST'].$ru).'"/><input type="hidden" id="fx_title_0" value="'.urlencode($ptitle).'"/><input type="hidden" id="fx_title0_0" value="'.urlencode(@iconv('UTF-8', 'GB2312', $ptitle)).'"/><input type="hidden" id="fx_id" value="0"/><div class="clear"></div></div></div>';
-	
+	/*
 	if($yjl_isdebug==0)$s.='<div style="display: none;"><script type="text/javascript">
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd67b450510aefabf934d8fbd93d7aa94\' type=\'text/javascript\'%3E%3C/script%3E"));
 	</script>
 	<noscript><a href="http://www.51.la/?15211264" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15211264.asp" style="border:none" /></a></noscript></div>';
+	*/
 	$s .= '<script type="text/javascript">
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F1823814145addf5267230aa05878c1b6\' type=\'text/javascript\'%3E%3C/script%3E"));
+	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F79d937b4fc15959f8db0280ebcf808d9\' type=\'text/javascript\'%3E%3C/script%3E"));
 	</script>';
 	$s.='</div></body></html>';
 
