@@ -28,7 +28,16 @@ class PieImage {
 		return (array($x, $y));
 	}
 
-	private function _make($data, $colors) {
+	private function _make($data, $fields) {
+		$colors = array();
+		foreach ($fields as $value) {
+			$colors[] = array(
+					hexdec(substr($value[1], 1, 2)),
+					hexdec(substr($value[1], 3, 2)),
+					hexdec(substr($value[1], 5, 2)),
+			);
+		}
+		
 		// 填充图表的参数
 		$ChartDiameter = 150; //图表直径
 		$ChartFont = 2; //图表字体
@@ -181,33 +190,24 @@ class PieImage {
 		self::output($image);
 	}
 	
-	public function soft($data = array()) {
+	public function soft($data = array(), $fields) {
 		if (empty($data)) {
 			$data = array("1", "1", "1", "1", "1", "1");
 		}
-		$colors = array(
-				array(0xff, 0x00, 0x00),
-				array(0xff, 0xff, 0x00),
-				array(0x00, 0x00, 0xff),
-				array(0x00, 0xFF, 0x00),
-				array(0xff, 0x00, 0xff),
-				array(0x00, 0xff, 0xff),
-		);
 		
-		self::_make($data, $colors);
+		self::_make($data, $fields);
 	}
 	
-	public function make($data = array()) {
+	public function make($data = array(), $fields) {
 		if (empty($data)) {
 			$data = array("1", "1", "1");
 		}
-		$colors = array(
-			array(0xFF, 0x00, 0x00),
-			array(0x00, 0xFF, 0x00),
-			array(0x00, 0x00, 0xff),
-		);
 		
-		self::_make($data, $colors);
+		self::_make($data, $fields);
+	}
+	
+	public function child($data = array(), $fields) {
+		self::_make($data, $fields);
 	}
 	
 	private function output($image) {

@@ -23,8 +23,13 @@
 	var GROUP = '__GROUP__';
 </script>
 
+<script>
+var calculateUrl = 'softCalculate';
+var pieUrl = 'softpie';
+</script>
+
 <div style="width:980px;margin:auto;">
-<h2>软装费用</h2>
+<h2><?php echo ($title); ?></h2>
 <style>
 	.pieTabs{
 		line-height:26px;
@@ -35,16 +40,16 @@
 </style>
 <div style="width:330px;float:left;">
 	<span class="pieTabs">
-		<a href="#" id="tab_forecast" style="color:red;">预计费用</a> | <a href="#" id="tab_my">我的预算</a> | <a href="#" id="tab_real">实际费用</a>
+		<a href="javascript:void(0)" id="tab_forecast" style="color:red;">预计费用</a> | <a href="javascript:void(0)" id="tab_my">我的预算</a> | <a href="javascript:void(0)" id="tab_real">实际费用</a>
 	</span>
-	<img style="float:left" id="pie_image" src="<?php echo U('softpie');?>" />
+	<img style="float:left" id="pie_image" />
 	<div style="float:left;margin-left:10px;line-height:28px;">
 	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><span style="color:#ffffff;background:<?php echo ($vo[1]); ?>;"><?php echo ($vo[0]); ?></span> <span id="scale_<?php echo ($field); ?>"></span>% <br><?php endforeach; endif; ?>
 	</div>
 </div>
 <div style="650px;float:left;">
 建筑面积：<input type="text" id="acreage" name="acreage" value="<?php echo ($acreage); ?>" />㎡<br>
-设置预算：<input type="text" onblur="setBudget(this)" id="budget" name="budget" value="<?php echo ($hard_budget["total"]); ?>" />元<br>
+设置预算：<input type="text" onblur="setBudget(this)" id="budget" name="budget" value="<?php echo ($budget["total"]); ?>" />元<br>
 选择档次：<select name="grade" id="grade" onchange="selectGrade(this)"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
 <button type="button" onclick="calculate()">预估费用</button><br><br>
 </div>
@@ -53,7 +58,7 @@
 <form method="post" action="">
 <table>
 	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
-	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td><?php echo ($vo[0]); ?></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($hard_budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><td><span id="real_<?php echo ($field); ?>">0.00</span>元</td></tr><?php endforeach; endif; ?>
+	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td><?php echo ($vo[0]); ?></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><td><span id="real_<?php echo ($field); ?>">0.00</span>元</td></tr><?php endforeach; endif; ?>
 	<tr><td colspan="5" style="border-top:1px solid #ccc;"></td></tr>
 	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><td>0.00元</td></tr>
 </table>
@@ -64,9 +69,8 @@
 
 </div>
 <script>
-
 function calculate(){
-	$.post(URL+'/softCalculate', {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
+	$.post(URL+'/'+calculateUrl, {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
 		if (json.status == 0) {
 			var data = json.data;
 			var oGrade = {"1":"低", "2":"中", "3":"高"};
@@ -159,11 +163,10 @@ function _updatePie(data) {
 
 	strData = strData.substr(0, strData.length - 1);
 
-	$("#pie_image").attr("src", "<?php echo U('softpie');?>/data/" + strData);
+	$("#pie_image").attr("src", "__URL__/"+pieUrl+"/data/" + strData);
 		
 }
 </script>
-
 
 </body>
 </html>
