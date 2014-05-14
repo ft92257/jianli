@@ -6,6 +6,8 @@
  */
 class UserModel extends BaseModel {
 	
+	public $info;
+	
 	/*
 	 * 验证form字段规则
 	 */

@@ -4,7 +4,7 @@
  * 预算模型
  *
  */
-class BudgetModel extends BaseModel {
+class User_budgetModel extends BaseModel {
 	
 	/*
 	 * 验证form字段规则
@@ -21,6 +21,20 @@ class BudgetModel extends BaseModel {
 			//$value['createtime'] = date('Y-m-d H:i:s', $value['createtime']);
 			//$value['avatar'] = getFileUrl($value['avatar']);
 		}
+	}
+	
+	public function getParent($type) {
+		$ret = $this->where(array('uid' => $this->oUser->id , 'name' => $type))->find();
+		
+		if (empty($ret)) {
+			$data = array(
+				'uid' => $this->oUser->id,
+				'name' => $type,
+				'estimate' => (int) $this->oUser->info->budget / 2,
+			);
+		}
+				
+		return $ret;
 	}
 	
 }

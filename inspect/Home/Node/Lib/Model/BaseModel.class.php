@@ -4,7 +4,7 @@
 class BaseModel extends Model {
 	
 	public $oApp;
-	public $oCom;//公司信息
+	public $oUser;//公司信息
 	//搜索配置
 	protected $searchConfig = array();
 	//选项配置数组
@@ -31,7 +31,6 @@ class BaseModel extends Model {
 		parent::__construct();
 		
 		$this->oApp = $_SESSION['app'];
-		$this->oCom = $_SESSION['company'];
 	}
 	
 	//删除方法

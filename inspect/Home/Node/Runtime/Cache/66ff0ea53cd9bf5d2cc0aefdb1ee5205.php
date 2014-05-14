@@ -13,6 +13,9 @@
 <style>
  .topnav li{ float:left; cursor:pointer}
  .topnav li a{ display:block; cursor:pointer}
+ body{
+ 	margin:0px;
+ }
 </style>
 <![endif]–>
 </head>
@@ -52,7 +55,7 @@
 <form method="post" action="">
 <table>
 	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
-	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td><?php echo ($vo[0]); ?></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><td><span id="real_<?php echo ($field); ?>">0.00</span>元</td></tr><?php endforeach; endif; ?>
+	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td> <a href="__GROUP__/Real/index/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><td><span id="real_<?php echo ($field); ?>">0.00</span>元</td></tr><?php endforeach; endif; ?>
 	<tr><td colspan="5" style="border-top:1px solid #ccc;"></td></tr>
 	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><td>0.00元</td></tr>
 </table>

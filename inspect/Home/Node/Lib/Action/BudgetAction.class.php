@@ -8,7 +8,8 @@ class BudgetAction extends BaseAction {
 	public function __construct() {
 		parent::__construct();
 	
-		$this->model = D('Budget');
+		$this->model = D('User_budget');
+		$this->model->oUser = $this->oUser;
 	}
 	
 	/*

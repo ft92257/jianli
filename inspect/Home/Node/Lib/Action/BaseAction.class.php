@@ -31,6 +31,9 @@ class BaseAction extends Action {
 			}
 			//session有效，赋值oUser
 			$this->oUser = $oUser;
+			
+			$info = D('User_info')->getObjectById($uid, 'uid');
+			$this->oUser->info = $info;
 		}
 
 		//对免验证模块，不进行登录验证。
