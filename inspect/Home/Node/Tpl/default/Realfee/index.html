@@ -1,0 +1,16 @@
+<include file="Public:header" />
+
+<div style="width:980px;margin:auto;">
+<h2>{$title}实际费用</h2>
+<table width="80%">
+	<tr><td>编号</td><td>单价</td><td>数量</td><td>总费用</td><td width="300">描述</td><td>操作</td></tr>
+	<tr><td>1</td><td>10.00 元</td><td>10</td><td>100.00 元</td><td>描述</td><td><a href="#">编辑</a> <a href="#">删除</a></td></tr>
+	<tr><td colspan="6" style="border-top:1px dashed #ccc;line-height:36px;">
+	单价：<input type="text" name="price" style="width:60px;" /> 元 
+	数量：<input type="text" name="count" value="1" style="width:30px;" /> 
+	描述：<input type="text" name="info"  style="width:300px;" /> 
+	<button>添加</button></td></tr>
+</table>
+</div>
+
+<include file="Public:bottom" />

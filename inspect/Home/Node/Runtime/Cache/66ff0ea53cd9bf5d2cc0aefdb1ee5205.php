@@ -30,7 +30,7 @@
 <h2><?php echo ($title); ?></h2>
 <style>
 	.pieTabs{
-		line-height:26px;
+		line-height:26px;width:330px;float:left;
 	}
 	.pieTabs a {
 		color:#0000FF;
@@ -38,7 +38,7 @@
 </style>
 <div style="width:330px;float:left;">
 	<span class="pieTabs">
-		<a href="#" id="tab_forecast" style="color:red;">预计费用</a> | <a href="#" id="tab_my">我的预算</a> | <a href="#" id="tab_real">实际费用</a>
+		<a href="#" id="tab_forecast" style="color:red;">预计费用</a> | <a href="#" id="tab_my">我的预算</a> <!--| <a href="#" id="tab_real">实际费用</a>-->
 	</span>
 	<img style="float:left" id="pie_image" src="__URL__/childpie/type/<?php echo ($type); ?>" />
 	<div style="float:left;margin-left:10px;line-height:28px;">
@@ -46,6 +46,7 @@
 	</div>
 </div>
 <div style="650px;float:left;">
+实际费用：<?php echo ($_GET['realfee']); ?> 元<br>
 设置预算：<input type="text" onblur="setBudget(this)" id="budget" name="budget" value="<?php echo ($budget["total"]); ?>" />元<br>
 选择档次：<select name="grade" id="grade" onchange="selectGrade(this)"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
 <button type="button" onclick="calculate()">预估费用</button><br><br>
@@ -54,10 +55,10 @@
 <div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;margin-top:5px;">
 <form method="post" action="">
 <table>
-	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际已花费</td></tr>
-	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td> <a href="__GROUP__/Real/index/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><td><span id="real_<?php echo ($field); ?>">0.00</span>元</td></tr><?php endforeach; endif; ?>
-	<tr><td colspan="5" style="border-top:1px solid #ccc;"></td></tr>
-	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><td>0.00元</td></tr>
+	<tr><td width="150">名称</td><td width="150">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><!--<td width="100">实际已花费</td>--></tr>
+	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr><td> <!--<a href="__GROUP__/Realfee/index/type/<?php echo ($field); ?>"></a>--><?php echo ($vo[0]); ?></td><td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" />元</td><td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td><!--<td><span id="real_<?php echo ($field); ?>">0.00</span>元</td>--></tr><?php endforeach; endif; ?>
+	<tr><td colspan="4" style="border-top:1px solid #ccc;"></td></tr>
+	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><!--<td>0.00元</td>--></tr>
 </table>
 <br>
 <input type="submit" value="保 存" />

@@ -463,3 +463,15 @@ ul.toll-touchstone li{ line-height:35px; padding-left:30px; background:url(../im
 .w1000-m dl dt{ margin-right:55px}
 .w1000-m dl dd p{ width:700px; margin-top:20px; font-family:"宋体"; font-size:14px; color:#737373; line-height:25px; text-indent:2em}
 .w1000-m dl dd p span{ color:#ef833b; background-color:#f6f3f1; display:inline-block; padding:1px 3px; text-indent:0em}
+/*别墅服务内容及收费修改*/
+.str-t{ font-size:25px; font-weight:normal; color:#585858; display:block}
+.str-table{ border-collapse:collapse; background-color:#fff}
+.str-table td,.str-table th{ border:#040404 2px solid}
+.str-table th{ background-color:#e46c0b; font-size:20px; color:#fff}
+.str-table td{ font-family:"微软雅黑"; letter-spacing:1px; font-size:16px; color:#040404}
+.str-table td p{ line-height:25px}
+.FFFFCC{ background-color:#FFFFCC}
+.wx-ts{ background:url(../images/wxts.png) left center no-repeat; width:940px; height:136px; padding:20px 10px 0 15px}
+.wx-ts1{ background:url(../images/wxts1.png) left center no-repeat; width:940px; height:213px; padding:20px 10px 0 15px}
+.text-title{ font-size:16px; font-family:"微软雅黑"; color:#FF6600}
+.wx-ts p,.wx-ts1 p{ font-size:16px; color:#585858; line-height:25px}

@@ -23,20 +23,57 @@ class User_budgetModel extends BaseModel {
 		}
 	}
 	
-	public function getParent($type) {
+	public function getParent($type, $estimate = null) {
 		$ret = $this->where(array('uid' => $this->oUser->id , 'name' => $type))->find();
 		
 		if (empty($ret)) {
+			if ($estimate === null) {
+				$estimate = (int) $this->oUser->info->budget / 2;
+			}
 			$data = array(
 				'uid' => $this->oUser->id,
 				'name' => $type,
-				'estimate' => (int) $this->oUser->info->budget / 2,
+				'estimate' => $estimate,
 			);
+			
+			$id = $this->addData($data);
+			
+			$ret = $this->getById($id);
 		}
 				
 		return $ret;
 	}
 	
+	public function getChildren($pid) {
+		$ret = $this->where(array('uid' => $this->oUser->id , 'pid' => $pid))->select();
+	
+		return $ret;
+	}
+	
+	public function updateChild($key, $value, $parent) {
+		$where = array(
+				'name' => $key,
+				'uid' => $this->oUser->id,
+				'pid' => $parent['id'],
+			);
+		
+		$ret = $this->where($where)->find();
+		if (empty($ret)) {
+			$data = array(
+					'uid' => $this->oUser->id,
+					'pid' => $parent['id'],
+					'estimate' => (int) $value,
+					'name' => $key,
+				);
+			$this->addData($data);
+		} else {
+			$this->where($where)->data(array('estimate' => (int) $value))->save();
+		}
+	}
+	
+	public function getRealfee($pid) {
+		return $this->where(array('pid' => $pid, 'uid' => $this->oUser->id))->select();
+	}
 }
 
 
