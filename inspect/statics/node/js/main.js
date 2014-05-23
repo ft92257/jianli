@@ -1,192 +1,64 @@
 // JavaScript Document
 $(function(){
-	//首页banner start
-	var ulLength=$(".img_list_box li").length;
-	var viewport=$(".img_list_box").width();
-	var imgUlWidth=viewport*ulLength;
-	var index=0;
-	for(var i=0; i<ulLength; i++){
-		$(".subscript").append("<a href='#'></a>");
-	}
-	var sptWidth=$(".subscript").width();
-	$(".subscript").css({marginLeft:-sptWidth/2});
-	function dong(index){
-		 var nowleft=-index*viewport;
-		 $(".img_list_box ul").stop(true,false).animate({"left":nowleft},900);
-		 $(".subscript a").removeClass("subMR").eq(index).addClass("subMR");
-	};
-	$(".subscript a").mouseover(function(){
-		 var index=$(this).index();
-		 $(this).addClass("subMR").siblings(".subscript a").removeClass("subMR");
-		 dong(index);
-		 page=$(this).index()+1;
-	}).eq(0).trigger("mouseover");
-	$("#banner").hover(function(){
-		 clearInterval(clear);
-		},function(){
-			 clear=setInterval(function(){
-				  if(index==ulLength){
-						index=0;
-					  }else{
-						   dong(index);
-						   index++;
-						  }
-				 },3500);
-	}).trigger("mouseout");
-	//首页banner stop
-	
-	//倒计时
-	function lxfEndtime(){
-		$(".down").each(function(){
-			var endtime = new Date($(this).find(".downtime").attr("data-time")).getTime();
-			var nowtime = new Date().getTime();
-			var youtime = endtime-nowtime;
-			var youstime= parseInt(youtime);
-			if(youstime<=0){youstime=0;};
-			var seconds = youstime/1000;
-			var minutes = Math.floor(seconds/60);
-			var hours = Math.floor(minutes/60);
-			var days = Math.floor(hours/24);
-			var CDay= days ;
-			var CHour= hours % 24;
-			var CMinute= minutes % 60;
-			var CSecond= Math.floor(seconds%60);
-			$(this).find(".day").html(CDay);
-			$(this).find(".hour").html(CHour);
-			$(this).find(".minute").html(CMinute);
-			$(this).find(".second").html(CSecond);
-		});
-	};
-	$(function(){
-		  lxfEndtime();
-		  setInterval(lxfEndtime,1000);
+	/*登录*/
+	$(".logIn").on("click",function(){
+		layerIfram(".log-in-show");
 	});
-	//倒计时结束
-
-	//团验详情 时间列表 start
-	var num=5;
-	var movedis= $(".listBox").width()-1;
-	var leng=$(".time_list_ul li").length;
-	var liwidth=$(".time_list_ul li").width();
-	var pagination=Math.ceil(leng/num);
-	var pgm=1;
-	$(".time_list_ul").css("width",liwidth*leng);
-	$(".next").click(function(){
-		 if(!$(".time_list_ul").is(":animated")){
-			  if(pgm==pagination){
-				   $(".time_list_ul").stop(true,true).animate({left:"0"},800);
-				   pgm=1;
-				  }
-				  else{
-					   $(".time_list_ul").stop(true,true).animate({left:"-="+movedis},800);
-					   pgm++;
-					  }
-			 }
+	/*登录切换到注册*/
+	$(".register-to").on("click",function(){
+		$(this).parents(".xubox_page").siblings("a").click();
+		layerIfram(".register-show");
 	});
-	$(".prev").click(function(){
-		 if(!$(".time_list_ul").is(":animated")){
-			  if(pgm==1){
-				   $(".time_list_ul").stop(true,true).animate({left:"-="+movedis*(pagination-1)},800);
-				   pgm=pagination;
-				  }
-				  else{
-					   $(".time_list_ul").stop(true,true).animate({left:"+="+movedis},800);
-					   pgm--;
-					  }
-			 }
+	/*注册切换到登录*/
+	$(".log-in-to").on("click",function(){
+		$(this).parents(".xubox_page").siblings("a").click();
+		layerIfram(".log-in-show");
 	});
-	//团验详情 时间列表 stop
-	
-	//团验详情 tab
-	$(".howTy li").click(function(){
-		 var howtyLiIndex=$(this).index();
-		 $(this).addClass("bortop").siblings("li").removeClass("bortop");
-		 $(".list_box .show").eq(howtyLiIndex).show().siblings(".show").hide();
-		});
-	//团验详情 tab stop
-	
-	//验房卡
-	var cardLength=$(".viewport-box img").length;
-	var ind=0;
-	for(var i=0; i<cardLength; i++){
-		$(".mouseUl").append("<li></li>");
-	}
-	$(".mouseUl li:first").addClass("add");
-	function moTo(ind){
-		 $(".mouseUl li").eq(ind).addClass("add").siblings("li").removeClass("add");
-		 $(".viewport-box a").eq(ind).stop(true,false).animate({"opacity":1,"z-index":12},1500).siblings("a").stop(true,false).animate({"opacity":0,"z-index":11},1500);
-	}
-	$(".mouseUl li").click(function(){
-		ind=$(this).index();
-		moTo(ind);
-		});
-	$("#card_banner").hover(function(){
-		 clearInterval(clear);
-		},function(){
-			 clear=setInterval(function(){
-				  if(ind==cardLength){
-					   ind=0;
-					  }else{
-						   moTo(ind);
-						   ind++;
-						  }
-				 },3000);
-			}).trigger("mouseout");
-			
-	//验房卡详情	
-	var idCardlength=$("#cardBuy .left img").length;
-	var xindex=0;
-	for(var i=0; i<idCardlength; i++){
-		$("#cardBuy .left ul").append("<li></li>");
-	}
-	$("#cardBuy .left ul li:first").addClass("add");
-	function fromTo(xindex){
-		 $("#cardBuy .left ul li").eq(xindex).addClass("add").siblings("li").removeClass("add");
-		 $("#cardBuy .left .imgBox img").eq(xindex).stop(true,false).animate({"opacity":1,"z-index":12},1500).siblings("img").stop(true,false).animate({"opacity":0,"z-index":11},1500);
-	}
-	$("#cardBuy .left ul li").click(function(){
-		xindex=$(this).index();
-		fromTo(xindex);
-		});
-	$("#cardBuy .left").hover(function(){
-		 clearInterval(clear);
-		},function(){
-			 clear=setInterval(function(){
-				  if(xindex==idCardlength){
-					   xindex=0;
-					  }else{
-						   fromTo(xindex);
-						   xindex++;
-						  }
-				 },3000);
-			}).trigger("mouseout");
-	
-	//验房报告
-	var smallImgNum=$(".sImgBox li").length;
-	var pageNum=Math.ceil(smallImgNum/6);
-	var liWidth=$(".sImgBox li").outerWidth(true);
-	var pNum=1;
-	$(".allPage").html(smallImgNum);
-	$(".sImgBox ul").width(smallImgNum*liWidth);
-	$(".prveSimg,.nextSimg").click(function(){
-		 if(!$(".sImgBox ul").is(":animated")){
-			  if(pNum==pageNum){
-				   $(".sImgBox ul").stop(true,true).animate({left:"0"},800);
-				   pNum=1;
-				  }
-				  else{
-					   $(".sImgBox ul").stop(true,true).animate({left:"-="+6*liWidth},800);
-					   pNum++;
-					  }
-			 }
+	/*费用-软装，硬装切换*/
+	$(".show1-box").on("click",function(){
+		$(".show-box1").show().siblings(".show-box2").hide();;
+	});	
+	$(".show2-box").on("click",function(){
+		$(".show-box2").show().siblings(".show-box1").hide();;
 	});
-	$(".sImgBox ul li").click(function(){
-		$(this).addClass("debor").siblings("li").removeClass("debor");
-		var nowPage=$(this).index()+1;
-		var bigUrl=$(this).find("img").attr("data-bigimg");
-		var content=$(this).find("img").attr("alt");
-		$(".nowPage").html(nowPage);
-		$(".bigImg img").attr("src",bigUrl);
-		$(".bigImg p").html(content);
+	/*预算切换*/
+	$(".show-boxto-2").on("click",function(){
+		$(".show2").show().siblings(".show1").hide();
 	});
+	$(".show-boxto-1").on("click",function(){
+		$(".show1").show().siblings(".show2").hide();
+	});
+	/*验证码倒计时*/
+	if($("#btn").length>0){
+	var wait=60;
+	document.getElementById("btn").disabled = false;   
+	function time(o) {
+			if (wait == 0) {
+				o.removeAttribute("disabled");           
+				o.value="获取验证码";
+				wait = 5;
+			} else {
+				o.setAttribute("disabled", true);
+				o.value="重新发送(" + wait + ")";
+				wait--;
+				setTimeout(function() {
+					time(o)
+				},
+				1000)
+			}
+		}
+	document.getElementById("btn").onclick=function(){time(this);}
+	}
 });
+/*弹层调用*/
+function layerIfram(obj){
+	$.layer({
+    type : 1,
+	zIndex: 19891014,
+    shade : [0.62,'#000',true],
+    area : ['auto', 'auto'],
+    title : false,
+    border : [0],
+    page : {dom : obj}
+});
+}

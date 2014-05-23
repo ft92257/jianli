@@ -1,68 +1,213 @@
 <include file="Public:header" />
 
-<div style="width:980px;margin:auto;">
-<h2>{$title}</h2>
-<style>
-	.pieTabs{
-		line-height:26px;width:330px;float:left;
-	}
-	.pieTabs a {
-		color:#0000FF;
-	}
-</style>
-<div style="width:330px;float:left;">
-	<span class="pieTabs">
-		<a href="javascript:void(0)" id="tab_hard" style="color:red;">硬装费用</a> | <a href="javascript:void(0)" id="tab_soft">软装费用</a>
-	</span>
+    <section class="w-96 mgl-a mgr-a content clearfix">
+    	<div class="left w737 clearfix mt-5">
+        	<ul class="tab-cut">
+            	<li><a href="index.html">进&nbsp;&nbsp;&nbsp;度</a></li>
+                <li><a href="__URL__/fee" class="mr-ck">费&nbsp;&nbsp;&nbsp;用</a></li>
+            </ul>
+        	<div class="w-53 ml-15">
+            	<div class="clearfix show-box1" style="display:none">
+                	<div class="left">
+                    	<ul class="pie-chart">
+                    		<foreach name="soft_fields" item="vo" key="field">
+                        	<li><div class="icon" style="background:{$vo[1]};">&nbsp;</div> {$vo[0]} <span id="scale_{$field}"></span>%</li>
+							</foreach>
+                        </ul>
+                    </div>
+                    <div class="left ml-3-5">
+                    	<p class="clearfix cl-p ml-1">
+                        	<a id="tab_soft" href="#" class="left show1-box addbg">软装</a>
+                            <a id="tab_hard" href="#" class="left show2-box">硬装</a>
+                        </p>
+                        <p class="mt-2-5">
+                        	<img id="soft_pie_image" src="__STATICS__/images/aad1.jpg" width="135" height="135" />
+                        </p>
+                    </div>
+                    <div class="right">
+                    	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
+                        	<p class="left"><span style="font-size:18px">桑小姐</span>的家</p>
+                            <a href="#__URL__/soft_edit" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                        </div>
+                        <div class="bg-color-h">
+                        	<ul>
+                            	<li>面积：{$info.acreage}㎡</li>
+                                <li>户型：{$info.apartment}</li>
+                                <li>软装预算：{$sb_total}&nbsp;<a href="__URL__/soft">预算计算器</a></li>
+                                <li>实际花费：{$soft_total}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix show-box2" >
+                	<div class="left">
+                    	<ul class="pie-chart">
+                    		<foreach name="hard_fields" item="vo" key="field">
+                        	<li><div class="icon" style="background:{$vo[1]};">&nbsp;</div> {$vo[0]} <span id="scale_{$field}"></span>%</li>
+							</foreach>
+                        </ul>
+                    </div>
+                    <div class="left ml-3-5">
+                    	<p class="clearfix cl-p ml-1">
+                        	<a href="#" class="left show1-box">软装</a>
+                            <a href="#" class="left show2-box addbg">硬装</a>
+                        </p>
+                        <p class="mt-2-5">
+                        	<img id="hard_pie_image" src="__STATICS__/images/aad2.jpg" width="135" height="135" />
+                        </p>
+                    </div>
+                    <div class="right">
+                    	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
+                        	<p class="left"><span style="font-size:18px">{$user.nickname}</span>的家</p>
+                            <a href="#__URL__/hard_edit" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                        </div>
+                        <div class="bg-color-h">
+                        	<ul>
+                            	<li>面积：{$info.acreage}㎡</li>
+                                <li>户型：{$info.apartment}</li>
+                                <li>硬装预算：{$hb_total}&nbsp;<a href="__URL__/hard">预算计算器</a></li>
+                                <li>实际花费：{$hard_total}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bo-t">
+                	<span>费用拆分</span>
+                </div>
+                <table width="530px" class="tables mt-1">
+                	<thead>
+                    	<tr>
+                        	<th width="70">类别</th>
+                            <th>收费项目</th>
+                            <th>预估费用</th>
+                            <th>支出费用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+						<foreach name="hard_fields" item="vo" key="field">
+                        <tr>
+                        	<td class="f-weight" style="border-left:0">硬装</td>
+                            <td><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td>
+                            <td>￥<span id="fee_{$field}">{$hard_budget[$field]}</span></td>
+                            <td style="border-right:0">￥<span id="{$field}">{$hard_realfee[$field]}</span></td>
+                        </tr>
+						</foreach>
+                        
+                        <tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+						<foreach name="soft_fields" item="vo" key="field">
+                        <tr>
+                        	<td class="f-weight" style="border-left:0">软装</td>
+                            <td><a href="__URL__/child/type/{$field}/realfee/{$soft_realfee[$field]}">{$vo[0]}</a></td>
+                            <td>￥<span id="fee_{$field}">{$soft_budget[$field]}</span></td>
+                            <td style="border-right:0">￥<span id="{$field}">{$soft_realfee[$field]}</span></td>
+                        </tr>
+                        </foreach>
+                        <tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+                        <tr>
+                        	<td class="f-weight" style="border-left:0">总计</td>
+                            <td></td>
+                            <td>￥{$info.budget}</td>
+                            <td style="border-right:0">￥{$total}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="right w223">
+        	<ul class="r-nav ml-3 mt-4-5">
+            	<li><a href="#" class="ico1">通讯录</a></li>
+                <li><a href="#" class="ico2">专家在线</a></li>
+                <li><a href="#" class="ico3">设计在线</a></li>
+                <li><a href="#" class="ico4">监理在线</a></li>
+                <li><a href="#" class="ico5">商城</a></li>
+            </ul>
+        </div>
+    </section> 
 	
-	<div id="hard_div">
-	<img style="float:left" id="hard_pie_image" />
-	<div style="float:left;margin-left:10px;line-height:28px;">
-	<foreach name="hard_fields" item="vo" key="field">
-	<span style="color:#ffffff;background:{$vo[1]};">{$vo[0]}</span> <span id="scale_{$field}"></span>% <br>
-	</foreach>
-	</div>
-	</div>
+	<div class="hard-cost cost-compile-pop w-52-5" style="display:none;">
+    	<div class="w-44-5 center-box">
+        	<h1 class="stamp">{$user.nickname}的家<span>&nbsp;软装费用</span></h1>
+            <form action="__URL__/hard_edit" method="post">
+		    <table width="100%">
+            	<thead>
+                	<tr>
+                    	<th>收费项目</th>
+                        <th>预估费用</th>
+                        <th>支出费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<foreach name="hard_fields" item="vo" key="field">
+					<tr>
+						<th style="border-left:0 none; border-top:0 none">{$vo[0]}</th>
+						<td style=" border-top:0 none">￥{$hard_budget[$field]}</td>
+						<td style="border-right:0 none; border-top:0 none">￥<input type="text" name="{$field}" value="{$hard_realfee[$field]}" /></td>
+					</tr>
+					</foreach>
+                </tbody>
+            </table>
+            <div style="width:58px; margin:30px auto 20px auto">
+            	<input type="image" src="__STATICS__/images/bc-sub.jpg" />
+            </div>
+			</form>
+        </div>
+    </div> 
 	
-	<div id="soft_div" style="display:none;">
-	<img style="float:left" id="soft_pie_image" />
-	<div style="float:left;margin-left:10px;line-height:28px;">
-	<foreach name="soft_fields" item="vo" key="field">
-	<span style="color:#ffffff;background:{$vo[1]};">{$vo[0]}</span> <span id="scale_{$field}"></span>% <br>
-	</foreach>
-	</div>
-	</div>
-</div>
-<div style="650px;float:left;line-height:26px;">
-建筑面积：{$info.acreage}㎡<br>
-总预算：{$info.budget}元 <br>
-<a href="__URL__/hard" target="_blank">硬装预算</a> <a href="__URL__/soft" target="_blank">软装预算</a><br>
-实际费用：{$total}元
-</div>
+	<div class="soft-cost cost-compile-pop w-52-5" style="display:none;">
+    	<div class="w-44-5 center-box">
+        	<h1 class="stamp">{$user.nickname}的家<span>&nbsp;软装费用</span></h1>
+            <form action="__URL__/soft_edit" method="post">
+		    <table width="100%">
+            	<thead>
+                	<tr>
+                    	<th>收费项目</th>
+                        <th>预估费用</th>
+                        <th>支出费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<foreach name="soft_fields" item="vo" key="field">
+					<tr>
+						<th style="border-left:0 none; border-top:0 none">{$vo[0]}</th>
+						<td style=" border-top:0 none">￥{$soft_budget[$field]}</td>
+						<td style="border-right:0 none; border-top:0 none">￥<input type="text" name="{$field}" value="{$soft_realfee[$field]}" /></td>
+					</tr>
+					</foreach>
+                </tbody>
+            </table>
+            <div style="width:58px; margin:30px auto 20px auto">
+            	<input type="image" src="__STATICS__/images/bc-sub.jpg" />
+            </div>
+			</form>
+        </div>
+    </div> 
+	
+	
+<script type="text/javascript" src="__STATICS__/layer/layer.min.js"></script>
+<script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
-<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;margin-top:5px;">
-<form method="post" action="">
-<table>
-	<tr><td width="200">名称</td><td width="200">预计费用</td><td width="300">实际费用</td></tr>
-	<foreach name="hard_fields" item="vo" key="field">
-	<tr><td><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td><td><span id="fee_{$field}">{$hard_budget[$field]}</span>元</td><td><input type="text" id="{$field}" name="{$field}" value="{$hard_realfee[$field]}" />元</td></tr>
-	</foreach>
-	<tr><td colspan="3" style="border-top:1px solid #ccc;"></td></tr>
-	<foreach name="soft_fields" item="vo" key="field">
-	<tr><td><a href="__URL__/child/type/{$field}/realfee/{$soft_realfee[$field]}">{$vo[0]}</a></td><td><span id="fee_{$field}">{$soft_budget[$field]}</span>元</td><td><input type="text" id="{$field}" name="{$field}" value="{$soft_realfee[$field]}" />元</td></tr>
-	</foreach>
-</table>
-<br>
-<input type="submit" value="保 存" />
-</form>
-</div>
 
-</div>
 <script>
 	
 $(function(){
-	_updatePie('hard', getValData('hard'));
-	_updatePie('soft', getValData('soft'));
+	_updatePie('hard', getHtmlData('hard'));
+	_updatePie('soft', getHtmlData('soft'));
 	
 	$("#tab_hard").click(function(){
 		$("#hard_div").show();
@@ -73,17 +218,23 @@ $(function(){
 		$("#hard_div").hide();
 		$("#soft_div").show();
 	});
+	
+	$(".f-weight").each(function(){
+		if ($(this).parent().prev().attr("istitle") != "1") {
+			$(this).html('');
+		}
+	});
 });
 
-function getValData(type) {
+function getHtmlData(type) {
 	var data = {};
 	if (type == 'hard') {
 		<foreach name="hard_fields" item="vo" key="field">
-			data.{$field} = $("#{$field}").val();
+			data.{$field} = $("#{$field}").html();
 		</foreach>
 	} else {
 		<foreach name="soft_fields" item="vo" key="field">
-			data.{$field} = $("#{$field}").val();
+			data.{$field} = $("#{$field}").html();
 		</foreach>
 	}
 	

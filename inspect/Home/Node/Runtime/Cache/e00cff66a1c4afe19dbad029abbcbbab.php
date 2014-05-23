@@ -1,30 +1,71 @@
 <?php if (!defined('THINK_PATH')) exit();?>﻿<!doctype html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+<title>费用</title>
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/screen.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/layer/skin/layer.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
 <script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="__STATICS__/js/common.js"></script>
-
-<title><?php echo ($Title); ?> | 易监理 - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理</title>
-<meta name="keywords" content="易监理,上海家装监理公司,家装监理公司,上海装修监理公司,家装监理,装潢监理,上海家装监理,上海装潢监理,上海装饰监理,上海装修监理,上海家庭装潢监理,装修监理,上海装修监理,验房,上海验房,家装监理师,装饰监理师,别墅监理,别墅装饰监理,家装工程监理,家庭装修监理,水电监理,家装监理费,家装施工监理,装修第三方监理"/>
-<meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>
-<meta charset="utf-8">
-<!–[if IE7 and IE10]>
-<style>
- .topnav li{ float:left; cursor:pointer}
- .topnav li a{ display:block; cursor:pointer}
- body{
- 	margin:0px;
- }
-</style>
-<![endif]–>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="__STATICS__/js/html5shiv.js"></script>
+<![endif]-->
 </head>
 <body>
-<iframe src="__HOST__/yjlnew.php" width="100%" height="135" frameborder=0 scrolling="no" target="_top" ></iframe>
 <script>
 	var URL = '__URL__';
 	var GROUP = '__GROUP__';
 </script>
+
+<div class="log-in w-41 log-in-show">
+    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">登录</span><span class="left mt-1-5 ml-2">没有账号？<a href="#" class="register-to">请注册</a></span></p>
+        <div class="from-box ml-5 mb-3-5">
+        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
+            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
+            <div class="clearfix mt-1">
+            	<label class="l-bg-yz left"><input type="text" value="验证码" /></label>
+                <img class="left ml-1" src="__STATICS__/images/yz-img.jpg" width="68" height="34" />
+                <a href="#" class="left ml-1 mt-0-5"><img src="__STATICS__/images/hyzimg.jpg" width="108" height="27" /></a>
+            </div>
+            <input type="submit" class="sub-mit" value="登&nbsp;&nbsp;录" />
+        </div>
+    </div>
+    <div class="log-in w-41 register-show">
+    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">注册</span><span class="left mt-1-5 ml-2">已注册？<a href="#" class="log-in-to">请登录</a></span></p>
+        <div class="from-box ml-5 mb-3-5">
+        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
+            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
+            <label class="l-bg mt-1"><input type="text" value="确认密码" /></label>
+            <div class="clearfix mt-1">
+            	<label class="l-bg-yz-zc left"><input type="text" value="验证码" /></label>
+                <!--<a href="#" class="left ml-1 mt-0-5"><img src="images/hq-yz.jpg" width="87" height="27" /></a>-->
+                <input type="button" id="btn" value="获取验证码" style="border:#E4E4E3 1px solid; background-color:#EFEFEF; height:25px; line-height:25px; width:90px; color:#434446; margin-top:5px; margin-left:15px" />
+            </div>
+            <input type="submit" class="sub-mit" value="注&nbsp;&nbsp;册" />
+        </div>
+    </div>
+	<header>
+    	<nav class="w-96 mga">
+        	<ul class="clearfix ml-7-5">
+            	<li>
+                	<a href="#" class="bg-col-sty"><span class="nav-ico ico1"></span><span>档案</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico2"></span><span>知识库</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico3"></span><span>帮助</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico4"></span><span>备忘录</span></a>
+                </li>
+                <li>
+                	<a href="javascript:;" class="logIn"><span class="nav-ico ico5"></span><span>登录</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 <title>操作失败</title>
 </head><body>
 

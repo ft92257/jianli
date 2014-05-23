@@ -15,18 +15,20 @@ echo yjl_html_gz_head($s, 'index');
 <div id="mt" class="mt-0-5" >
     	<div class="mga b-box" style="height:300px;">
         	<ul class="big-imgbox" style="z-index:0;">
-            	<li><a href="newnav.php?p=8"><img src="newnav/images/1ban.jpg" width="2560" height="300" /></a></li>
-                <li><a href="newnav.php?p=15"><img src="newnav/images/2ban.jpg" width="2560" height="300" /></a></li>
-                <li><a href="html.php?p=choose"><img src="newnav/images/3ban.png" width="2560" height="300" /></a></li>
-                <li><a href="newnav.php?p=9"><img src="newnav/images/4ban.jpg" width="2560" height="300" /></a></li>
+            	<li><a href="newnav-8.html"><img src="newnav/images/1ban.jpg" width="2560" height="300" /></a></li>
+                <li><a href="newnav-15.html"><img src="newnav/images/2ban.jpg" width="2560" height="300" /></a></li>
+                <li><a href="html-choose.html"><img src="newnav/images/3ban.png" width="2560" height="300" /></a></li>
+                <li><a href="newnav-9.html"><img src="newnav/images/4ban.jpg" width="2560" height="300" /></a></li>
+                <li><a href="html-company.html"><img src="newnav/images/5ban.jpg" width="2560" height="300" /></a></li>
             </ul>
             <div style="width:980px;margin-left:auto;margin-right:auto">
-			<div style="float:right;width:176px;">
+			<div style="float:right;width:200px;">
 			<ul class="rb-ul" style="position:relative;z-index:2;margin-top:280px;margin-left:60px;">
             	<li class="mli">1</li>
                 <li>2</li>
                 <li>3</li>
                 <li>4</li>
+                <li>5</li>
             </ul>
 			</div>
 			</div>

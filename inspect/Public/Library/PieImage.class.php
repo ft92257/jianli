@@ -39,7 +39,7 @@ class PieImage {
 		}
 		
 		// 填充图表的参数
-		$ChartDiameter = 150; //图表直径
+		$ChartDiameter = 135; //图表直径
 		$ChartFont = 2; //图表字体
 		$ChartFontHeight = imagefontheight($ChartFont);//图表字体的大小
 		//用于生成图表的数据，可通过数据库来取得来确定
@@ -47,8 +47,8 @@ class PieImage {
 		//$ChartLabel = array("ssss", "ffff", "eee"); //数据对应的名称
 		
 		//确定图形的大小
-		$ChartWidth = $ChartDiameter + 20;
-		$ChartHeight = $ChartDiameter + 20 ;
+		$ChartWidth = $ChartDiameter;
+		$ChartHeight = $ChartDiameter;
 		//(($ChartFontHeight + 2) * count($ChartData));
 		
 		//确定统计的总数
@@ -57,16 +57,16 @@ class PieImage {
 		$ChartTotal += $ChartData[$index];
 		}
 		
-		$ChartCenterX = $ChartDiameter/2 + 10;
-		$ChartCenterY = $ChartDiameter/2 + 10;
+		$ChartCenterX = $ChartDiameter/2;
+		$ChartCenterY = $ChartDiameter/2;
 		
 		
 		//生成空白图形
 		$image = imagecreate($ChartWidth, $ChartHeight);
 		
 		//分配颜色
-		$colorBody = imagecolorallocate($image, 0xeF, 0xeF, 0xeF);
-		$colorBorder = imagecolorallocate($image, 0x00, 0x99, 0x00);
+		$colorBody = imagecolorallocate($image, 0xfF, 0xfF, 0xfF);
+		$colorBorder = imagecolorallocate($image, 0xff, 0xff, 0xff);
 		$colorText = imagecolorallocate($image, 0x00, 0x00, 0x00);
 		
 		
@@ -78,37 +78,37 @@ class PieImage {
 		//填充背境
 		imagefill($image, 0, 0, $colorBody);
 		
-		
 		/*
 		** 画每一个扇形
 		*/
+		
 		$Degrees = 0;
 		for($index = 0; $index < count($ChartData); $index++)
 		{
-		$StartDegrees = round($Degrees);
-		$Degrees += (($ChartData[$index]/$ChartTotal)*360);
-		$EndDegrees = round($Degrees);
+			$StartDegrees = round($Degrees);
+			$Degrees += (($ChartData[$index]/$ChartTotal)*360);
+			$EndDegrees = round($Degrees);
+			
+			$CurrentColor = $colorSlice[$index%(count($colorSlice))];
+			
+			imagefilledarc($image, $ChartCenterX, $ChartCenterY, 135, 135, $StartDegrees, $EndDegrees, $CurrentColor, IMG_ARC_PIE);
+			
+			/*
+			//画图F
+			imagearc($image,$ChartCenterX,$ChartCenterY,$ChartDiameter,	$ChartDiameter,$StartDegrees,$EndDegrees, $CurrentColor);
+			
+			//画直线
+			list($ArcX, $ArcY) = self::circle_point($StartDegrees, $ChartDiameter);
+			imageline($image,$ChartCenterX,$ChartCenterY,floor($ChartCenterX + $ArcX),floor($ChartCenterY + $ArcY),$CurrentColor);
+			//画直线
+			list($ArcX, $ArcY) = self::circle_point($EndDegrees, $ChartDiameter);
+			imageline($image,$ChartCenterX,$ChartCenterY,ceil($ChartCenterX + $ArcX),ceil($ChartCenterY + $ArcY),$CurrentColor);
 		
-		$CurrentColor = $colorSlice[$index%(count($colorSlice))];
-		
-		//画图F
-		imagearc($image,$ChartCenterX,$ChartCenterY,$ChartDiameter,
-		$ChartDiameter,$StartDegrees,$EndDegrees, $CurrentColor);
-		
-		//画直线
-		list($ArcX, $ArcY) = self::circle_point($StartDegrees, $ChartDiameter);
-		imageline($image,$ChartCenterX,$ChartCenterY,floor($ChartCenterX + $ArcX),
-		floor($ChartCenterY + $ArcY),$CurrentColor);
-		//画直线
-		list($ArcX, $ArcY) = self::circle_point($EndDegrees, $ChartDiameter);
-		imageline($image,$ChartCenterX,$ChartCenterY,ceil($ChartCenterX + $ArcX),
-		ceil($ChartCenterY + $ArcY),$CurrentColor);
-		
-		//填充扇形
-		$MidPoint = round((($EndDegrees - $StartDegrees)/2) + $StartDegrees);
-		list($ArcX, $ArcY) = self::circle_point($MidPoint, $ChartDiameter/2);
-		imagefilltoborder($image,floor($ChartCenterX + $ArcX),floor($ChartCenterY + $ArcY),
-		$CurrentColor,$CurrentColor);
+			//填充扇形
+			$MidPoint = round((($EndDegrees - $StartDegrees)/2) + $StartDegrees);
+			list($ArcX, $ArcY) = self::circle_point($MidPoint, $ChartDiameter/2);
+			imagefilltoborder($image,floor($ChartCenterX + $ArcX),floor($ChartCenterY + $ArcY),	$CurrentColor,$CurrentColor);
+			*/
 		}
 		/*
 		//画边框
@@ -129,8 +129,8 @@ class PieImage {
 				180,
 				360,
 				$colorBorder);
-		
-		
+		*/
+				/*
 		imagearc($image,
 				$ChartCenterX,
 				$ChartCenterY,

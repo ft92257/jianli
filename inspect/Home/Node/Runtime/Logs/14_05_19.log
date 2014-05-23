@@ -723,3 +723,192 @@ SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND (
 SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.001719s ]
 NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 253 行.
 
+[ 2014-05-19T10:38:31+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/hard
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.001477s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001644s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001055s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001195s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002299s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = 'f7e40c8944d6111d01fa2bab2725ad6a' ) LIMIT 1   [ RunTime:0.000355s ]
+SQL: UPDATE `tb_session` SET `expire`=1400474311 WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) [ RunTime:0.000447s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.004232s ]
+SQL: SELECT * FROM `tb_user` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) LIMIT 1   [ RunTime:0.000920s ]
+SQL: SHOW COLUMNS FROM `tb_user_info` [ RunTime:0.003331s ]
+SQL: SELECT * FROM `tb_user_info` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000277s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.004916s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `name` = 'hard' ) LIMIT 1   [ RunTime:0.000327s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `pid` = 1 )  [ RunTime:0.000220s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001245s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001322s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\a0e7d728121bf0d584a91b635b746109.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.015136s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015208s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001244s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000514s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000461s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000968s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003345s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001215s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001298s ]
+
+[ 2014-05-19T10:38:31+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/calculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000738s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000907s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000417s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002768s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '4719921bf57f7dafedff69c1554db328' ) LIMIT 1   [ RunTime:0.000595s ]
+SQL: UPDATE `tb_session` SET `expire`=1400474311 WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) [ RunTime:0.000268s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.003496s ]
+SQL: SELECT * FROM `tb_user` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) LIMIT 1   [ RunTime:0.001628s ]
+SQL: SHOW COLUMNS FROM `tb_user_info` [ RunTime:0.001934s ]
+SQL: SELECT * FROM `tb_user_info` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000580s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.002134s ]
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 253 行.
+
+[ 2014-05-19T10:38:43+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/soft
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000738s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000901s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000365s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002100s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '18b1d6109f9c0d3c32f111944afbb254' ) LIMIT 1   [ RunTime:0.001152s ]
+SQL: UPDATE `tb_session` SET `expire`=1400474323 WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) [ RunTime:0.000159s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.003824s ]
+SQL: SELECT * FROM `tb_user` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) LIMIT 1   [ RunTime:0.001327s ]
+SQL: SHOW COLUMNS FROM `tb_user_info` [ RunTime:0.002674s ]
+SQL: SELECT * FROM `tb_user_info` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) LIMIT 1   [ RunTime:0.001122s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.002377s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `name` = 'soft' ) LIMIT 1   [ RunTime:0.001432s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `pid` = 2 )  [ RunTime:0.000435s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001087s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001214s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\4b716ac687b1835a880c4989d2c535ee.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.019445s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019538s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.001051s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000187s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000310s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000984s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002694s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001145s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001233s ]
+
+[ 2014-05-19T10:38:43+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/softCalculate
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000213s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000314s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000173s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000224s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002694s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '18b1d6109f9c0d3c32f111944afbb254' ) LIMIT 1   [ RunTime:0.002091s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.003551s ]
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 253 行.
+
+[ 2014-05-19T10:38:57+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/child/type/electric/realfee/50000
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000759s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000928s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000394s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000534s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.003850s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '62eff956567eef40d763b16b1e9251b4' ) LIMIT 1   [ RunTime:0.001814s ]
+SQL: UPDATE `tb_session` SET `expire`=1400474337 WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) [ RunTime:0.000192s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.002532s ]
+SQL: SELECT * FROM `tb_user` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) LIMIT 1   [ RunTime:0.000288s ]
+SQL: SHOW COLUMNS FROM `tb_user_info` [ RunTime:0.002066s ]
+SQL: SELECT * FROM `tb_user_info` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000518s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.001883s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `name` = 'electric' ) LIMIT 1   [ RunTime:0.000470s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `pid` = 7 )  [ RunTime:0.000228s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.000889s ]
+INFO: [ view_template ] --END-- [ RunTime:0.000955s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\66ff0ea53cd9bf5d2cc0aefdb1ee5205.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.012301s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012370s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000908s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000180s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000303s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000961s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002499s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001455s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001559s ]
+
+[ 2014-05-19T10:38:57+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/childCalculate/type/electric
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000893s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001045s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.001695s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001956s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002412s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '62eff956567eef40d763b16b1e9251b4' ) LIMIT 1   [ RunTime:0.001251s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.002775s ]
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 253 行.
+
+[ 2014-05-19T13:09:45+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/child/type/electric/realfee/50000
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000732s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000844s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000667s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000758s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.002456s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '019a9af6a21285c142c6ab90c300d177' ) LIMIT 1   [ RunTime:0.000432s ]
+SQL: UPDATE `tb_session` SET `expire`=1400483385 WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) [ RunTime:0.000184s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.003115s ]
+SQL: SELECT * FROM `tb_user` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `id` = 1 ) LIMIT 1   [ RunTime:0.000408s ]
+SQL: SHOW COLUMNS FROM `tb_user_info` [ RunTime:0.002980s ]
+SQL: SELECT * FROM `tb_user_info` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000365s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.002153s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `name` = 'electric' ) LIMIT 1   [ RunTime:0.000289s ]
+SQL: SELECT * FROM `tb_user_budget` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `uid` = 1 ) AND ( `pid` = 7 )  [ RunTime:0.000176s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.001025s ]
+INFO: [ view_template ] --END-- [ RunTime:0.001091s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: Title C:\AppServ\www\jianli\inspect\Home\Node\Runtime\Cache\66ff0ea53cd9bf5d2cc0aefdb1ee5205.php 第 8 行.
+INFO: Run ParseTemplate Behavior [ RunTime:0.018270s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018338s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.000610s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.000952s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.000905s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.000958s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003574s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.001057s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001136s ]
+
+[ 2014-05-19T13:09:45+08:00 ] 127.0.0.1 /jianli/inspect/node.php?s=/Budget/childCalculate/type/electric
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.000274s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000392s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000227s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000302s ]
+SQL: SHOW COLUMNS FROM `tb_session` [ RunTime:0.004584s ]
+SQL: SELECT * FROM `tb_session` WHERE ( `appid` = 1 ) AND ( `status` = 0 ) AND ( `key` = '019a9af6a21285c142c6ab90c300d177' ) LIMIT 1   [ RunTime:0.002591s ]
+SQL: SHOW COLUMNS FROM `tb_user_budget` [ RunTime:0.001910s ]
+NOTIC: [8] Undefined variable: msg C:\AppServ\www\jianli\inspect\Home\Node\Lib\Action\BudgetAction.class.php 第 253 行.
+

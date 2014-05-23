@@ -1,47 +1,106 @@
-<div style="width:980px;margin:auto;">
-<h2>{$title}</h2>
-<style>
-	.pieTabs{
-		line-height:26px;
-	}
-	.pieTabs a {
-		color:#0000FF;
-	}
-</style>
-<div style="width:330px;float:left;">
-	<span class="pieTabs">
-		<a href="javascript:void(0)" id="tab_forecast" style="color:red;">预计费用</a> | <a href="javascript:void(0)" id="tab_my">我的预算</a> | <a href="javascript:void(0)" id="tab_real">实际费用</a>
-	</span>
-	<img style="float:left" id="pie_image" />
-	<div style="float:left;margin-left:10px;line-height:28px;">
-	<foreach name="fields" item="vo" key="field">
-	<span style="color:#ffffff;background:{$vo[1]};">{$vo[0]}</span> <span id="scale_{$field}"></span>% <br>
-	</foreach>
-	</div>
-</div>
-<div style="650px;float:left;">
-建筑面积：<input type="text" id="acreage" name="acreage" value="{$acreage}" />㎡<br>
-设置预算：<input type="text" onblur="setBudget(this)" id="budget" name="budget" value="{$budget.total}" />元<br>
-选择档次：<select name="grade" id="grade" onchange="selectGrade(this)"><option value="0">请选择档次</option><option value="3">高档</option><option value="2">中档</option><option value="1">低档</option></select><br>
-<button type="button" onclick="calculate()">预估费用</button><br><br>
-</div>
+    <section class="w-96 mgl-a mgr-a content clearfix">
+    	<div class="left w737 clearfix mt-5">
+        	<ul class="tab-cut">
+            	<li><a href="index.html">进&nbsp;&nbsp;&nbsp;度</a></li>
+                <li><a href="__URL__/fee" class="mr-ck">费&nbsp;&nbsp;&nbsp;用</a></li>
+            </ul>
+        	<div class="w-53 ml-15">
+            	<div class="show1">
+                    <div class="clearfix">
+                        <div class="left">
+                            <div class="tab-show-in">
+                                <a href="__URL__/hard" class="mr-sty" id="tab_hard">硬装预算</a>
+                                <a href="__URL__/soft" class=" show-boxto-2" id="tab_soft">软装预算</a>
+                            </div>
+                            <div class="pieTabs g-ys-tit mt-1">
+                                <a href="#" id="tab_forecast">预计费用</a>
+                                <a href="#" id="tab_my">我的费用</a>
+                                <a href="#" id="tab_real">实际费用</a>
+                            </div>
+                            <div class="clearfix mt-1-5">
+                                <div class="left">
+                                    <ul class="pie-chart">
+                                    	<foreach name="fields" item="vo" key="field">
+										<li><div class="icon" style="background:{$vo[1]};">&nbsp;</div> {$vo[0]} <span id="scale_{$field}"></span>%</li>
+										</foreach>
+                                    </ul>
+                                </div>
+                                <div class="left" style="margin-left:20px">
+                                    <p>
+                                        <img id="pie_image" src="__STATICS__/images/aad2.jpg" width="135" height="135" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+						<div class="right calculate h-19-5">
+		                    <div class="from-div ml-1-5 w-19-5 mt-1-5">
+		                        <div class="clearfix"><label>建筑面积：</label><input type="text" id="acreage" name="acreage" value="{$acreage}" /></div>
+		                        <div class="clearfix mt-0-5"><label>设置预算：</label><input type="text" onblur="setBudget(this)" id="budget" name="budget" value="{$budget.total}" /></div>
+		                        <div class="clearfix mt-0-5">
+		                            <label>设置预算：</label>
+		                            <select name="grade" id="grade" onchange="selectGrade(this)">
+		                                <option value="0">请选择档次</option>
+										<option value="3">高档</option>
+										<option value="2">中档</option>
+										<option value="1">低档</option>
+		                            </select>
+		                        </div>
+		                        <div class="mt-1"><input type="submit" onclick="calculate()" value="预估费用" style="cursor:pointer" /></div>
+		                    </div>
+		                </div>
+                    </div>
+					<form method="post" action="">
+                    <table class="ys-tab-b mt-6">
+                        <thead>
+                            <tr>
+                                <th width="65px">名称</th>
+                                <th width="110px">预计费用</th>
+                                <th width="195px">我的预算</th>
+                                <th width="52px">档次</th>
+                                <th width="120px">实际费用</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<foreach name="fields" item="vo" key="field">
+							<tr>
+								<th style="border-left:0"><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td>
+								<td><span id="fee_{$field}">0.00</span>元</td>
+								<td><input type="text" id="{$field}" name="{$field}" value="{$budget[$field]}" /> 元</td>
+								<td id="grade_{$field}"><span id="grade_{$field}_3">高</span> <span id="grade_{$field}_2">中</span> <span id="grade_{$field}_1">低</span></td>
+								<td style="border-right:0"><span id="real_{$field}">{$realfee[$field]}</span>元</td>
+							</tr>
+							</foreach>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>总费用</th>
+                                <td><span id="fee_total">0.00</span>元</td>
+                                <td><input id="synBudget" onclick="synCheck(this)" type="checkbox" />同步我的预算</td>
+                                <td></td>
+                                <td>{$total_realfee}元</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="sub-btn mt-5"><input type="submit" value="保&nbsp;&nbsp;&nbsp;存" style="cursor:pointer" /></div>
+                	</form>
+				</div>
 
-<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;margin-top:5px;">
-<form method="post" action="">
-<table>
-	<tr><td width="100">名称</td><td width="100">预计费用</td><td width="200">我的预算</td><td width="100">档次</td><td width="100">实际费用</td></tr>
-	<foreach name="fields" item="vo" key="field">
-	<tr><td><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td><td><span id="fee_{$field}">0.00</span>元</td><td><input type="text" id="{$field}" name="{$field}" value="{$budget[$field]}" />元</td><td id="grade_{$field}"><span id="grade_{$field}_3">高</span> <span id="grade_{$field}_2">中</span> <span id="grade_{$field}_1">低</span></td><td><span id="real_{$field}">{$realfee[$field]}</span>元</td></tr>
-	</foreach>
-	<tr><td colspan="5" style="border-top:1px solid #ccc;"></td></tr>
-	<tr><td>总费用</td><td><span id="fee_total">0.00</span>元</td><td><input type="checkbox" id="synBudget" onclick="synCheck(this)" />同步我的预算</td><td></td><td>{$total_realfee}元</td></tr>
-</table>
-<br>
-<input type="submit" value="保 存" />
-</form>
-</div>
+        		
+			</div>
+        </div>
+        <div class="right w223">
+        	<ul class="r-nav ml-3 mt-4-5">
+            	<li><a href="#" class="ico1">通讯录</a></li>
+                <li><a href="#" class="ico2">专家在线</a></li>
+                <li><a href="#" class="ico3">设计在线</a></li>
+                <li><a href="#" class="ico4">监理在线</a></li>
+                <li><a href="#" class="ico5">商城</a></li>
+            </ul>
+        </div>
+    </section> 
+<script type="text/javascript" src="__STATICS__/layer/layer.min.js"></script>
+<script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
-</div>
 <script>
 function calculate(){
 	$.post(URL+'/'+calculateUrl, {acreage:$('#acreage').val(), budget:$('#budget').val(), grade:$('#grade').val()}, function(json){

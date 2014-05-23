@@ -27,6 +27,7 @@ RewriteRule ^html-(.+)\.html$ html.php?p=$1
 
 RewriteCond %{HTTP_REFERER} !^$ [NC]
 RewriteCond %{HTTP_REFERER} !127.0.0.1 [NC]
+RewriteCond %{HTTP_REFERER} !192.168.2.101 [NC]
 RewriteCond %{HTTP_REFERER} !yijianli.cn [NC]
 RewriteCond %{HTTP_REFERER} !yijianli.com [NC]
 RewriteCond %{HTTP_REFERER} !localhost [NC]

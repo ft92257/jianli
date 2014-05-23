@@ -1,86 +1,268 @@
 <?php if (!defined('THINK_PATH')) exit();?>﻿<!doctype html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+<title>费用</title>
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/screen.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/layer/skin/layer.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
 <script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="__STATICS__/js/common.js"></script>
-
-<title><?php echo ($Title); ?> | 易监理 - 装修行业中代表良心的力量，家装监理，连锁店装修监理，别墅装修监理，别墅监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理</title>
-<meta name="keywords" content="易监理,上海家装监理公司,家装监理公司,上海装修监理公司,家装监理,装潢监理,上海家装监理,上海装潢监理,上海装饰监理,上海装修监理,上海家庭装潢监理,装修监理,上海装修监理,验房,上海验房,家装监理师,装饰监理师,别墅监理,别墅装饰监理,家装工程监理,家庭装修监理,水电监理,家装监理费,家装施工监理,装修第三方监理"/>
-<meta name="description" content="易监理，上海家装监理公司，家装监理公司，上海装修监理公司，家装监理，装潢监理，上海家装监理，上海装潢监理，上海装饰监理，上海装修监理，上海家庭装潢监理，装修监理，上海装修监理，验房，上海验房，家装监理师，装饰监理师，别墅监理，别墅装饰监理，家装工程监理，家庭装修监理，水电监理，家装监理费，家装施工监理，装修第三方监理"/>
-<meta charset="utf-8">
-<!–[if IE7 and IE10]>
-<style>
- .topnav li{ float:left; cursor:pointer}
- .topnav li a{ display:block; cursor:pointer}
- body{
- 	margin:0px;
- }
-</style>
-<![endif]–>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="__STATICS__/js/html5shiv.js"></script>
+<![endif]-->
 </head>
 <body>
-<iframe src="__HOST__/yjlnew.php" width="100%" height="135" frameborder=0 scrolling="no" target="_top" ></iframe>
 <script>
 	var URL = '__URL__';
 	var GROUP = '__GROUP__';
 </script>
 
-<div style="width:980px;margin:auto;">
-<h2><?php echo ($title); ?></h2>
-<style>
-	.pieTabs{
-		line-height:26px;width:330px;float:left;
-	}
-	.pieTabs a {
-		color:#0000FF;
-	}
-</style>
-<div style="width:330px;float:left;">
-	<span class="pieTabs">
-		<a href="javascript:void(0)" id="tab_hard" style="color:red;">硬装费用</a> | <a href="javascript:void(0)" id="tab_soft">软装费用</a>
-	</span>
-	
-	<div id="hard_div">
-	<img style="float:left" id="hard_pie_image" />
-	<div style="float:left;margin-left:10px;line-height:28px;">
-	<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><span style="color:#ffffff;background:<?php echo ($vo[1]); ?>;"><?php echo ($vo[0]); ?></span> <span id="scale_<?php echo ($field); ?>"></span>% <br><?php endforeach; endif; ?>
-	</div>
-	</div>
-	
-	<div id="soft_div" style="display:none;">
-	<img style="float:left" id="soft_pie_image" />
-	<div style="float:left;margin-left:10px;line-height:28px;">
-	<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><span style="color:#ffffff;background:<?php echo ($vo[1]); ?>;"><?php echo ($vo[0]); ?></span> <span id="scale_<?php echo ($field); ?>"></span>% <br><?php endforeach; endif; ?>
-	</div>
-	</div>
-</div>
-<div style="650px;float:left;line-height:26px;">
-建筑面积：<?php echo ($info["acreage"]); ?>㎡<br>
-总预算：<?php echo ($info["budget"]); ?>元 <br>
-<a href="__URL__/hard" target="_blank">硬装预算</a> <a href="__URL__/soft" target="_blank">软装预算</a><br>
-实际费用：<?php echo ($total); ?>元
-</div>
+<div class="log-in w-41 log-in-show">
+    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">登录</span><span class="left mt-1-5 ml-2">没有账号？<a href="#" class="register-to">请注册</a></span></p>
+        <div class="from-box ml-5 mb-3-5">
+        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
+            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
+            <div class="clearfix mt-1">
+            	<label class="l-bg-yz left"><input type="text" value="验证码" /></label>
+                <img class="left ml-1" src="__STATICS__/images/yz-img.jpg" width="68" height="34" />
+                <a href="#" class="left ml-1 mt-0-5"><img src="__STATICS__/images/hyzimg.jpg" width="108" height="27" /></a>
+            </div>
+            <input type="submit" class="sub-mit" value="登&nbsp;&nbsp;录" />
+        </div>
+    </div>
+    <div class="log-in w-41 register-show">
+    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">注册</span><span class="left mt-1-5 ml-2">已注册？<a href="#" class="log-in-to">请登录</a></span></p>
+        <div class="from-box ml-5 mb-3-5">
+        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
+            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
+            <label class="l-bg mt-1"><input type="text" value="确认密码" /></label>
+            <div class="clearfix mt-1">
+            	<label class="l-bg-yz-zc left"><input type="text" value="验证码" /></label>
+                <!--<a href="#" class="left ml-1 mt-0-5"><img src="images/hq-yz.jpg" width="87" height="27" /></a>-->
+                <input type="button" id="btn" value="获取验证码" style="border:#E4E4E3 1px solid; background-color:#EFEFEF; height:25px; line-height:25px; width:90px; color:#434446; margin-top:5px; margin-left:15px" />
+            </div>
+            <input type="submit" class="sub-mit" value="注&nbsp;&nbsp;册" />
+        </div>
+    </div>
+	<header>
+    	<nav class="w-96 mga">
+        	<ul class="clearfix ml-7-5">
+            	<li>
+                	<a href="#" class="bg-col-sty"><span class="nav-ico ico1"></span><span>档案</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico2"></span><span>知识库</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico3"></span><span>帮助</span></a>
+                </li>
+                <li>
+                	<a href="#"><span class="nav-ico ico4"></span><span>备忘录</span></a>
+                </li>
+                <li>
+                	<a href="javascript:;" class="logIn"><span class="nav-ico ico5"></span><span>登录</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-<div style="float:left;width:980px;border-top:1px dashed #999;padding-top:10px;margin-top:5px;">
-<form method="post" action="">
-<table>
-	<tr><td width="200">名称</td><td width="200">预计费用</td><td width="300">实际费用</td></tr>
-	<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><tr><td><a href="__URL__/child/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td><td><span id="fee_<?php echo ($field); ?>"><?php echo ($hard_budget[$field]); ?></span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($hard_realfee[$field]); ?>" />元</td></tr><?php endforeach; endif; ?>
-	<tr><td colspan="3" style="border-top:1px solid #ccc;"></td></tr>
-	<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><tr><td><a href="__URL__/child/type/<?php echo ($field); ?>/realfee/<?php echo ($soft_realfee[$field]); ?>"><?php echo ($vo[0]); ?></a></td><td><span id="fee_<?php echo ($field); ?>"><?php echo ($soft_budget[$field]); ?></span>元</td><td><input type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($soft_realfee[$field]); ?>" />元</td></tr><?php endforeach; endif; ?>
-</table>
-<br>
-<input type="submit" value="保 存" />
-</form>
-</div>
+    <section class="w-96 mgl-a mgr-a content clearfix">
+    	<div class="left w737 clearfix mt-5">
+        	<ul class="tab-cut">
+            	<li><a href="index.html">进&nbsp;&nbsp;&nbsp;度</a></li>
+                <li><a href="__URL__/fee" class="mr-ck">费&nbsp;&nbsp;&nbsp;用</a></li>
+            </ul>
+        	<div class="w-53 ml-15">
+            	<div class="clearfix show-box1" style="display:none">
+                	<div class="left">
+                    	<ul class="pie-chart">
+                    		<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><li><div class="icon" style="background:<?php echo ($vo[1]); ?>;">&nbsp;</div> <?php echo ($vo[0]); ?> <span id="scale_<?php echo ($field); ?>"></span>%</li><?php endforeach; endif; ?>
+                        </ul>
+                    </div>
+                    <div class="left ml-3-5">
+                    	<p class="clearfix cl-p ml-1">
+                        	<a id="tab_soft" href="#" class="left show1-box addbg">软装</a>
+                            <a id="tab_hard" href="#" class="left show2-box">硬装</a>
+                        </p>
+                        <p class="mt-2-5">
+                        	<img id="soft_pie_image" src="__STATICS__/images/aad1.jpg" width="135" height="135" />
+                        </p>
+                    </div>
+                    <div class="right">
+                    	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
+                        	<p class="left"><span style="font-size:18px">桑小姐</span>的家</p>
+                            <a href="#__URL__/soft_edit" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                        </div>
+                        <div class="bg-color-h">
+                        	<ul>
+                            	<li>面积：<?php echo ($info["acreage"]); ?>㎡</li>
+                                <li>户型：<?php echo ($info["apartment"]); ?></li>
+                                <li>软装预算：<?php echo ($sb_total); ?>&nbsp;<a href="__URL__/soft">预算计算器</a></li>
+                                <li>实际花费：<?php echo ($soft_total); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix show-box2" >
+                	<div class="left">
+                    	<ul class="pie-chart">
+                    		<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><li><div class="icon" style="background:<?php echo ($vo[1]); ?>;">&nbsp;</div> <?php echo ($vo[0]); ?> <span id="scale_<?php echo ($field); ?>"></span>%</li><?php endforeach; endif; ?>
+                        </ul>
+                    </div>
+                    <div class="left ml-3-5">
+                    	<p class="clearfix cl-p ml-1">
+                        	<a href="#" class="left show1-box">软装</a>
+                            <a href="#" class="left show2-box addbg">硬装</a>
+                        </p>
+                        <p class="mt-2-5">
+                        	<img id="hard_pie_image" src="__STATICS__/images/aad2.jpg" width="135" height="135" />
+                        </p>
+                    </div>
+                    <div class="right">
+                    	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
+                        	<p class="left"><span style="font-size:18px"><?php echo ($user["nickname"]); ?></span>的家</p>
+                            <a href="#__URL__/hard_edit" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                        </div>
+                        <div class="bg-color-h">
+                        	<ul>
+                            	<li>面积：<?php echo ($info["acreage"]); ?>㎡</li>
+                                <li>户型：<?php echo ($info["apartment"]); ?></li>
+                                <li>硬装预算：<?php echo ($hb_total); ?>&nbsp;<a href="__URL__/hard">预算计算器</a></li>
+                                <li>实际花费：<?php echo ($hard_total); ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bo-t">
+                	<span>费用拆分</span>
+                </div>
+                <table width="530px" class="tables mt-1">
+                	<thead>
+                    	<tr>
+                        	<th width="70">类别</th>
+                            <th>收费项目</th>
+                            <th>预估费用</th>
+                            <th>支出费用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+						<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><tr>
+                        	<td class="f-weight" style="border-left:0">硬装</td>
+                            <td><a href="__URL__/child/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td>
+                            <td>￥<span id="fee_<?php echo ($field); ?>"><?php echo ($hard_budget[$field]); ?></span></td>
+                            <td style="border-right:0">￥<span id="<?php echo ($field); ?>"><?php echo ($hard_realfee[$field]); ?></span></td>
+                        </tr><?php endforeach; endif; ?>
+                        
+                        <tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+						<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><tr>
+                        	<td class="f-weight" style="border-left:0">软装</td>
+                            <td><a href="__URL__/child/type/<?php echo ($field); ?>/realfee/<?php echo ($soft_realfee[$field]); ?>"><?php echo ($vo[0]); ?></a></td>
+                            <td>￥<span id="fee_<?php echo ($field); ?>"><?php echo ($soft_budget[$field]); ?></span></td>
+                            <td style="border-right:0">￥<span id="<?php echo ($field); ?>"><?php echo ($soft_realfee[$field]); ?></span></td>
+                        </tr><?php endforeach; endif; ?>
+                        <tr istitle="1">
+                        	<td style="border-left:0"></td>
+                            <td></td>
+                            <td></td>
+                            <td style="border-right:0"></td>
+                        </tr>
+                        <tr>
+                        	<td class="f-weight" style="border-left:0">总计</td>
+                            <td></td>
+                            <td>￥<?php echo ($info["budget"]); ?></td>
+                            <td style="border-right:0">￥<?php echo ($total); ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="right w223">
+        	<ul class="r-nav ml-3 mt-4-5">
+            	<li><a href="#" class="ico1">通讯录</a></li>
+                <li><a href="#" class="ico2">专家在线</a></li>
+                <li><a href="#" class="ico3">设计在线</a></li>
+                <li><a href="#" class="ico4">监理在线</a></li>
+                <li><a href="#" class="ico5">商城</a></li>
+            </ul>
+        </div>
+    </section> 
+	
+	<div class="hard-cost cost-compile-pop w-52-5" style="display:none;">
+    	<div class="w-44-5 center-box">
+        	<h1 class="stamp"><?php echo ($user["nickname"]); ?>的家<span>&nbsp;软装费用</span></h1>
+            <form action="__URL__/hard_edit" method="post">
+		    <table width="100%">
+            	<thead>
+                	<tr>
+                    	<th>收费项目</th>
+                        <th>预估费用</th>
+                        <th>支出费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><tr>
+						<th style="border-left:0 none; border-top:0 none"><?php echo ($vo[0]); ?></th>
+						<td style=" border-top:0 none">￥<?php echo ($hard_budget[$field]); ?></td>
+						<td style="border-right:0 none; border-top:0 none">￥<input type="text" name="<?php echo ($field); ?>" value="<?php echo ($hard_realfee[$field]); ?>" /></td>
+					</tr><?php endforeach; endif; ?>
+                </tbody>
+            </table>
+            <div style="width:58px; margin:30px auto 20px auto">
+            	<input type="image" src="__STATICS__/images/bc-sub.jpg" />
+            </div>
+			</form>
+        </div>
+    </div> 
+	
+	<div class="soft-cost cost-compile-pop w-52-5" style="display:none;">
+    	<div class="w-44-5 center-box">
+        	<h1 class="stamp"><?php echo ($user["nickname"]); ?>的家<span>&nbsp;软装费用</span></h1>
+            <form action="__URL__/soft_edit" method="post">
+		    <table width="100%">
+            	<thead>
+                	<tr>
+                    	<th>收费项目</th>
+                        <th>预估费用</th>
+                        <th>支出费用</th>
+                    </tr>
+                </thead>
+                <tbody>
+					<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><tr>
+						<th style="border-left:0 none; border-top:0 none"><?php echo ($vo[0]); ?></th>
+						<td style=" border-top:0 none">￥<?php echo ($soft_budget[$field]); ?></td>
+						<td style="border-right:0 none; border-top:0 none">￥<input type="text" name="<?php echo ($field); ?>" value="<?php echo ($soft_realfee[$field]); ?>" /></td>
+					</tr><?php endforeach; endif; ?>
+                </tbody>
+            </table>
+            <div style="width:58px; margin:30px auto 20px auto">
+            	<input type="image" src="__STATICS__/images/bc-sub.jpg" />
+            </div>
+			</form>
+        </div>
+    </div> 
+	
+	
+<script type="text/javascript" src="__STATICS__/layer/layer.min.js"></script>
+<script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
-</div>
+
 <script>
 	
 $(function(){
-	_updatePie('hard', getValData('hard'));
-	_updatePie('soft', getValData('soft'));
+	_updatePie('hard', getHtmlData('hard'));
+	_updatePie('soft', getHtmlData('soft'));
 	
 	$("#tab_hard").click(function(){
 		$("#hard_div").show();
@@ -91,14 +273,20 @@ $(function(){
 		$("#hard_div").hide();
 		$("#soft_div").show();
 	});
+	
+	$(".f-weight").each(function(){
+		if ($(this).parent().prev().attr("istitle") != "1") {
+			$(this).html('');
+		}
+	});
 });
 
-function getValData(type) {
+function getHtmlData(type) {
 	var data = {};
 	if (type == 'hard') {
-		<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#<?php echo ($field); ?>").val();<?php endforeach; endif; ?>
+		<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#<?php echo ($field); ?>").html();<?php endforeach; endif; ?>
 	} else {
-		<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#<?php echo ($field); ?>").val();<?php endforeach; endif; ?>
+		<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#<?php echo ($field); ?>").html();<?php endforeach; endif; ?>
 	}
 	
 	return data;
