@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<!-- JQ ui类库 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<!-- JQ formVerification类库 -->
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/template.css" type="text/css"/>
+<script src="__STATICS__/jquery-form/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATICS__/jquery-form/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+<body>
+<form action="" method="post">
+  <fieldset>
+    <legend>备忘录</legend>
+    <textarea rows="4" name="content" style="width:400px" class="validate[required]">编辑内容</textarea><br/><br/>
+    提醒时间：<input type="text" name="reminder_time" id="datepicker_reminder_time" size="30" class="validate[required]" value=""/><br/><br/>
+   </fieldset>
+   <br/>
+  <input type="submit" value="提交"/><input type="reset" value="重置"/>
+</form>
+<script>
+$(function(){
+	$( "[id^=datepicker]" ).datepicker({ dateFormat: "yy-mm-dd" , showSecond: true, timeFormat: 'hh:mm:ss', showButtonPanel: true });
+	$("form").validationEngine('attach', {
+		onValidationComplete: function(form, status){
+			if (status){
+				form.submit();
+			}
+		}  
+	});
+});
+</script>
+</body>
+</html>

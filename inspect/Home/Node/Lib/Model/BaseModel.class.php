@@ -272,5 +272,10 @@ class BaseModel extends Model {
 		return $search;
 	}
 	
+	protected function _after_select(&$resultSet,$options) {
+		foreach ($resultSet as &$value) {
+			$this->_after_find($value,$options);
+		}
+	}
 }
 ?>

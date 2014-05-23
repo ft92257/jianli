@@ -1,0 +1,164 @@
+<include file="Public:header" />
+<script language="javascript" type="text/javascript" src="__STATICS__/My97DatePicker/WdatePicker.js"></script>
+<!-- JQ formVerification类库 -->
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/template.css" type="text/css"/>
+<script src="__STATICS__/jquery-form/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATICS__/jquery-form/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+    <section class="w-96 mgl-a mgr-a content clearfix">
+    	<form action="" method="post">
+    	<div class="left w737 clearfix mt-5">
+        	<div class="ml-10">
+            	<h1 class="inform-t ml-1-5">业主</h1>
+                <div class="fromdiv">
+                	<div class="clearfix mt-1-5">
+                    	<label>真实姓名：</label>
+                        <input type="text" class="text-bg1 validate[required]" name="realname" />
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>手机号：</label>
+                        <input type="text" class="text-bg1 validate[required]" name="mobile" />
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>小区名称：</label>
+                        <input type="text" class="text-bg1 validate[required]" name="community" />
+                    </div>
+                    <div class="clearfix mt-1-5" >
+                    	<label>地址：</label>
+                       <div id="div_city"></div>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label></label>
+                        <input type="text" class="text-bg1 validate[required]" value="输入详细地址"  name="address"/>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>房屋类型：</label>
+                        <div id="div_house_type"></div>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>装修风格：</label>
+                        <select class="select2 validate[required]" name="style">
+                        	<option value="">请选择</option>
+                        	<foreach name="style" key="i" item="vo">
+					    	<option value="{$i}">{$vo}</option>
+					    	</foreach>
+                        </select>
+                    </div>
+                </div>
+                <h1 class="inform-t mt-4 ml-1-5">施工</h1>
+                <div class="fromdiv">
+                	<div class="clearfix mt-1-5">
+                    	<label>预算：</label>
+                        <select name="budget" class="select1 validate[required]">
+                        	<option value="">请选择</option>
+					    	<foreach name="budget" key="i" item="vo">
+					    	<option value="{$i}">{$vo}</option>
+					    	</foreach>
+                        </select>
+                        <input type="text" name="budget_amount" class="text-bg2 validate[required]" value=""/>
+                    </div>
+                	<div class="clearfix mt-1-5">
+                    	<label>施工面积：</label>
+                        <input type="text" name="area" class="text-bg1 validate[required]" value=""/>平方米
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>预计开工时间：</label>
+                        <input id="begin_date" class="text-bg1 validate[required]" name="begin_date" type="text" onClick="WdatePicker()">
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>工期：</label>
+                        <input type="text" name="cycle" class="text-bg1 validate[required]" value="" />天
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>施工队长：</label>
+                       <input type="text" name="contractor" class="text-bg1 validate[required]" value=""/>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>项目经理：</label>
+                        <input type="text" name="PM" class="text-bg1 validate[required]" value=""/>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>房屋状态：</label>
+                        <select name="house_status" class="select2 validate[required]">
+                        	<option value="">请选择</option>
+					    	<foreach name="house_status" key="i" item="vo">
+					    	<option value="{$i}">{$vo}</option>
+					    	</foreach>
+                        </select>
+                    </div>
+                    <div class="clearfix mt-1-5">
+                    	<label>装修种类：</label>
+                        <select name="renovation_type" class="select2 validate[required]">
+                        	<option value="">请选择</option>
+					    	<foreach name="renovation_type" key="i" item="vo">
+					    	<option value="{$i}">{$vo}</option>
+					    	</foreach>
+                        </select>
+                    </div>
+                    <ul class="jd-list w-28 mt-4 ml-3 clearfix">
+				    <foreach name="node" key="i" item="vo">
+				    	<li><input type="checkbox" checked="checked" name="node[]" value="{$i}"/><span>{$vo}</span></li>
+				    </foreach>
+				    </ul>
+                    <div class="ml-2 mt-2 pb-2">
+                    	<input type="submit" class="btn-tj" value="提&nbsp;&nbsp;&nbsp;交" />
+                        <input type="reset" class="btn-tj" value="重&nbsp;&nbsp;&nbsp;置" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+<include file="Public:right" />
+
+<script>
+$(function(){
+/*
+	$("form").validationEngine('attach', {
+		onValidationComplete: function(form, status){
+			if (status){
+				form.submit();
+			}
+		}  
+	});*/
+	cityAjax('city');
+	house_typeAjax('house_type');
+});
+/*省市区列表联动*/
+function cityAjax(act,json){
+	$.ajax({
+		type:'post',
+		url:'__GROUP__/City/citySelect',
+		async:false,
+		data:{'data':json,'act':act},
+		success:function(r){
+			$("#div_"+act).append(r);
+		}
+	});
+}
+function cityRemove(obj){
+	if(obj.attr('id') == 'province'){
+		$("#city").remove();
+		$("#county").remove();
+	}else if(obj.attr('id') == 'city'){
+		$("#county").remove();	
+	}
+}
+/*房型户型列表联动*/
+function house_typeAjax(act,json){
+	$.ajax({
+		type:'post',
+		url:'__GROUP__/House_type/house_typeSelect',
+		async:false,
+		data:{'data':json,'act':act},
+		success:function(r){
+			$("#div_"+act).append(r);
+		}
+	});
+}
+function house_typeRemove(obj){
+	if(obj.attr('id') == 'room'){
+		$("#apartment").remove();
+	}
+}
+
+</script>

@@ -28,7 +28,7 @@ class User_budgetModel extends BaseModel {
 		
 		if (empty($ret)) {
 			if ($estimate === null) {
-				$estimate = (int) $this->oUser->info->budget / 2;
+				$estimate = (int) $this->oUser->info->budget_amount / 2;
 			}
 			$data = array(
 				'uid' => $this->oUser->id,

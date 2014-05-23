@@ -8,6 +8,7 @@
 <link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
 <script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="__STATICS__/js/common.js"></script>
+<script src="__STATICS__/layer/layer.min.js"></script>
 <!--[if lt ie 9]>
 <script type="text/javascript" src="__STATICS__/js/html5shiv.js"></script>
 <![endif]-->
@@ -168,7 +169,7 @@ var pieUrl = 'pie';
             </ul>
         </div>
     </section> 
-<script type="text/javascript" src="__STATICS__/layer/layer.min.js"></script>
+
 <script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
 <script>

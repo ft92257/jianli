@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+	<tr>
+		<td></td>
+		<td>项目</td>
+		<td>要求</td>
+		<td>量具</td>
+		<td>测量方法</td>
+		<td>验收</td>
+	</tr>
+	<foreach name="acceptance" item="vo">
+	<tr>
+		<td>{$vo['acceptance']['name']}</td>
+		<td>{$vo['acceptance']['norms']}</td>
+		<td>{$vo['acceptance']['tool']}</td>
+		<td>{$vo['acceptance']['method']}</td>
+		<td>
+		<if condition="$vo[result] eq 1">
+		<select id="sel_acceptance">
+		<option value="1">未验收</option>
+		<option value="2">合格</option>
+		<option value="3">不合格</option>
+		</select>
+		<else/>
+			<if condition="$vo[result] eq 2">
+			合格
+			<else/>
+			<a href="javascript:;">不合格</a>
+			</if>
+		</if>
+		</td>
+	</tr>
+	</foreach>
+</table>
+<div id="form_nopass">
+
+</div>
+<script>
+var GROUP = '__GROUP__';
+$(function(){
+	$("#sel_acceptance").bind('change',function(){
+		if ($(this).val() == 1){
+			$.ajax({
+				'type':'post',
+				'url': GROUP+"/Acceptance/pass/no/"+no+"/step/"+$(this).attr('data-id')
+			});
+		} else {
+			
+		}
+		
+	});
+	
+});
+</script>
+</body>
+</html>

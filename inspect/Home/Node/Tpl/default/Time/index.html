@@ -1,0 +1,325 @@
+<include file="Public:header" />
+<include file="Public:left" />
+<div class="clearfix mr-2 pb-2"><span class="right">当前状态：施工中<input id="btn_shutdown" type="button" class="stop" value="停&nbsp&nbsp&nbsp;工" /></span></div>
+            <div class="clearfix">
+<!--  <a href="__GROUP__/Memo/memoAdd">添加备忘录</a>-->
+        	<div class="left ml-12">
+        	<notempty name="user_step[2]">
+            	<div class="w-24 h-20 bor-top-2 mt-10 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="2"><span class="font-style">{$user_step[2][begin_time]}&nbsp;--&nbsp;{$user_step[2][end_time]}</span>&nbsp;<span class="font-size">土建</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix right mr-1-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="2">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[2][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="2">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[2][aceptance_no_c]+$user_step[2][aceptance_pass_c]+$user_step[2][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-right">
+                    	<div class="h-9">
+                        	<span class="bg-left1 s-style1" style="top:27%">{$user_step[2][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+          <else/>
+          		<div class="w-24 h-20 bor-top-2 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                            <span class="font-size">土建</span>
+                        </p>
+                    </div>
+                </div>
+          </notempty>
+                
+          <notempty name="user_step[4]">
+            	<div class="w-24 h-20 bor-top-4 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="4"><span class="font-style">{$user_step[4][begin_time]}&nbsp;--&nbsp;{$user_step[4][end_time]}</span>&nbsp;<span class="font-size">泥木</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix right mr-1-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="4">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[4][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="4">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[4][aceptance_no_c]+$user_step[4][aceptance_pass_c]+$user_step[4][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-right">
+                    	<div class="h-9">
+                        	<span class="bg-left2 s-style2" style="top:27%">{$user_step[4][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+          <else/>
+          		<div class="w-24 h-20 bor-top-4 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                            <span class="font-size">泥木</span>
+                        </p>
+                    </div>
+                </div>
+          </notempty>      
+                
+         <notempty name="user_step[6]">
+            	<div class="w-24 h-20 bor-top-6 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                           <a href="javascript:;" class="step_info" data-id="6"><span class="font-style">{$user_step[6][begin_time]}&nbsp;--&nbsp;{$user_step[6][end_time]}</span>&nbsp;<span class="font-size">安装</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix right mr-1-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="6">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[6][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="6">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[6][aceptance_no_c]+$user_step[6][aceptance_pass_c]+$user_step[6][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-right">
+                    	<div class="h-9">
+                        	<span class="bg-left3 s-style3" style="top:27%">{$user_step[6][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+          <else/>
+          		<div class="w-24 h-20 bor-top-6 mr--1 boxhover">
+                	<div class="clearfix mr-1-5 mt-1">
+                        <p class="right xg-mouse">
+                            <span class="font-size">安装</span>
+                        </p>
+                    </div>
+                </div>
+          </notempty>      
+                
+            </div>
+            
+            <div class="left"><img src="__STATICS__/images/zhouxian.png" width="44" height="767" /></div>
+            
+            <div class="left" style="margin-top:2px">
+            
+           <notempty name="user_step[1]">
+            	<div class="w-24 h-20 bor-top-1 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="1"><span class="font-size">准备</span>&nbsp;<span class="font-style">{$user_step[1][begin_time]}&nbsp;--&nbsp;{$user_step[1][end_time]}</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix left ml-2-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="1">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[1][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="1">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[1][aceptance_no_c]+$user_step[1][aceptance_pass_c]+$user_step[1][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-left">
+                    	<div class="h-9">
+                        	<span class="bg-left1 s-style1" style="top:27%">{$user_step[1][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+            <else/>
+            	<div class="w-24 h-20 bor-top-1 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <span class="font-size">准备</span>
+                        </p>
+                    </div>
+                </div>
+            </notempty>
+           <notempty name="user_step[3]">
+            	<div class="w-24 h-20 bor-top-3 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="3"><span class="font-size">水电</span>&nbsp;<span class="font-style">{$user_step[3][begin_time]}&nbsp;--&nbsp;{$user_step[3][end_time]}</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix left ml-2-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="3">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[3][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="3">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[3][aceptance_no_c]+$user_step[3][aceptance_pass_c]+$user_step[3][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-left">
+                    	<div class="h-9">
+                        	<span class="bg-left2 s-style2" style="top:27%">{$user_step[3][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+            <else/>
+            	<div class="w-24 h-20 bor-top-3 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <span class="font-size">水电</span>
+                        </p>
+                    </div>
+                </div>
+            </notempty>
+            <notempty name="user_step[5]">
+            	<div class="w-24 h-20 bor-top-5 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="5"><span class="font-size">涂料</span>&nbsp;<span class="font-style">{$user_step[5][begin_time]}&nbsp;--&nbsp;{$user_step[5][end_time]}</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix left ml-2-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="5">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[5][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="5">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[5][aceptance_no_c]+$user_step[5][aceptance_pass_c]+$user_step[5][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-left">
+                    	<div class="h-9">
+                        	<span class="bg-left3 s-style3" style="top:27%">{$user_step[5][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+            <else/>
+            	<div class="w-24 h-20 bor-top-5 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <span class="font-size">涂料</span>
+                        </p>
+                    </div>
+                </div>
+            </notempty>
+               <notempty name="user_step[7]">
+            	<div class="w-24 h-20 bor-top-7 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <a href="javascript:;" class="step_info" data-id="7"><span class="font-size">软装</span>&nbsp;<span class="font-style">{$user_step[7][begin_time]}&nbsp;--&nbsp;{$user_step[7][end_time]}</span></a>
+                        </p>
+                    </div>
+                    <ul class="point-accept clearfix left ml-2-5 mt-1">
+                    	<li class="mr-1-5">
+                            <a href="javascript:;" class="clearfix btn_question" data-id="7">
+                                <span class="span-ico ico1 mr-0-5"></span>
+                                <span class="mt-0-5">知识点&nbsp;{$user_step[7][question_c]}</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_acceptance" data-id="7">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">验收点&nbsp;{$user_step[7][aceptance_no_c]+$user_step[7][aceptance_pass_c]+$user_step[7][aceptance_nopass_c]}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="h-9 plan-left">
+                    	<div class="h-9">
+                        	<span class="bg-left4 s-style4" style="top:33%">{$user_step[7][schedule]}%</span>
+                        </div>
+                    </div>
+                </div>
+            <else/>
+            	<div class="w-24 h-20 bor-top-7 ml--1 boxhover">
+                	<div class="clearfix ml-1-5 mt-1">
+                        <p class="left xg-mouse">
+                            <span class="font-size">软装</span>
+                        </p>
+                    </div>
+                </div>
+            </notempty>
+            </div>
+            </div>
+        </div>
+ <include file="Public:right" />
+ <input type="hidden" value="{$user_info[no]}" id="hid_no"/>
+ <script>
+ var GROUP = '__GROUP__';
+ $(function(){
+	 $(".step_info").bind('click', function(){
+		 $.layer({
+			    type: 2,
+			    maxmin: true,
+			    shadeClose: true,
+			    title: false,
+			    shade: [0.1,'#fff'],
+			    offset: ['20px',''],
+			    area: ['565px', ($(window).height() - 50) +'px'],
+			    iframe: {src: GROUP+"/Step/index/no/"+$("#hid_no").val()+"/step/"+$(this).attr('data-id')}
+			}); 
+	 });
+	 $("#btn_shutdown").bind('click', function(){
+		 $.layer({
+			    type: 2,
+			    maxmin: true,
+			    title: '停工',
+			    offset: [($(window).height()/2-200)+'px',''],
+			    area: ['350px', '240px'],
+			    iframe: {src: GROUP+"/Form/shutdownForm/no/"+$("#hid_no").val()}
+			});
+	 });
+	 $(".btn_question").bind('click', function(){
+		 parent.$.layer({
+			    type: 2,
+			    maxmin: true,
+			    shadeClose: true,
+			    title: false,
+			    shade: [0.1,'#fff'],
+			    offset: ['20px',''],
+			    area: ['565px', '702px'],
+			    iframe: {src: GROUP+'/Step/indexQuestion/step/'+$(this).attr('data-id')}
+			}); 
+		});
+	
+	$(".btn_acceptance").bind('click', function(){
+		parent.$.layer({
+		    type: 2,
+		    maxmin: true,
+		    shadeClose: true,
+		    title: false,
+		    shade: [0.1,'#fff'],
+		    offset: ['20px',''],
+		    area: ['565px', '702px'],
+		    iframe: {src: GROUP+'/Step/indexAcceptance/no/'+$("#hid_no").val()+'/step/'+$(this).attr('data-id')}
+		}); 
+	});
+ });
+ </script>
+ 

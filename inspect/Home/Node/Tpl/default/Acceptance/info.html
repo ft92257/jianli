@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>验收记录</title>
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/screen.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/layer/skin/layer.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
+<script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
+<link type="text/css" rel="stylesheet" href="__STATICS__/layer/skin/layer.css" />
+<script src="__STATICS__/layer/layer.min.js"></script>
+
+<!-- JQ formVerification类库 -->
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/template.css" type="text/css"/>
+<script src="__STATICS__/jquery-form/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATICS__/jquery-form/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body style="background-color:#FDFFF6;">
+	<div class="ys-record">
+    	<h1 class="mt-2-5">给水管道分项竣工验收记录</h1>
+        <div class="clearfix bg-box">
+        	<ul class="left classify">
+            	<li><a href="#" class="a-bg-c">全&nbsp;&nbsp;&nbsp;部</a></li>
+                <li><a href="#">未合格</a></li>
+                <li><a href="#">合&nbsp;&nbsp;&nbsp;格</a></li>
+                <li><a href="#">未验收</a></li>
+            </ul>
+            <div style="background-color:#fff">
+                <table class="list-table left">
+                    <thead>
+                        <tr>
+                            <th width="97px">项目</th>
+                            <th width="149px">要求</th>
+                            <th colspan="2">
+                            	<div class="bg-bgcolor">验收</div>
+                                <span class="left w96">量具</span><span class="left w96">测量方法</span>
+                            </th>
+                            <th width="125px">监理验收</th>
+                        </tr>
+                        <tbody>
+                        <foreach name="report" item="vo">
+                        	<tr>
+                            	<td style="border-top:0">{$vo['acceptance']['name']}</td>
+                            	<td style="border-top:0"><p style=" width:130px">{$vo['acceptance']['norms']}</p></td>
+                            	<td style="border-top:0"><p style=" width:80px">{$vo['acceptance']['tool']}</p></td>
+                            	<td style="border-top:0"><p style=" width:80px">{$vo['acceptance']['method']}</p></td>
+                            	<td style="border-top:0">
+                                	<div class="pore">
+                                	<if condition="($vo[result] eq 1)">
+                                        <div class="state-box"><img src="__STATICS__/images/warn-bg.jpg" width="29" height="29" /></div>
+                                        <div class="compile-b">
+                                        	<div class="pore-t">
+                                                <img class="a_edit" data-id="$vo[id]" src="__STATICS__/images/compile-bg.jpg" width="18" height="18" />
+                                                <div class="show-btn w-9" style="display:none">
+                                                    <a href="#" data-id="{$vo[id]}" class="left w-4-5 qualified a_edit_pass">合格</a>
+                                                    <a href="#" class="left w-4-5 disqualification a_edit_nopass">不合格</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     <elseif condition="($vo[result] eq 2)"/>
+                                     <div class="state-box"><img src="__STATICS__/images/right-bg.jpg" width="29" height="29" /></div>
+                                     <elseif condition="($vo[result] eq 3)"/>
+                                     <div class="state-box"><img src="__STATICS__/images/wrong-bg.jpg" width="29" height="29" /></div>
+                                        <div class="compile-b">
+                                        	<div class="pore-t">
+                                                <img id="a_edit_repass" src="__STATICS__/images/compile-bg.jpg" width="18" height="18" />
+                                            </div>
+                                        </div>
+                                     </if>
+                                    </div>
+                                </td>
+                            </tr>
+						</foreach>
+						
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="layer_notice"></div>
+</body>
+<script>
+var GROUP = "__GROUP__";
+var STATICS = "__STATICS__";
+$(function(){
+	$(".a_edit").bind('click', function(event){
+		event.stopPropagation();
+		$(this).next('div').css({'display':'block'});
+	});
+	$(window).click(function(){ $(".show-btn").css({'display':'none'}); });
+	
+	$(".a_edit_pass").bind("click", function(){
+		$.ajax({
+			'type' : 'post',
+			'url' : GROUP+'/Acceptance/edit',
+			'data': 'id='+$(this).attr('data-id')+'&act=pass',
+			'success': function(r){
+				window.location.reload();
+			}
+		});
+	});
+	$(".a_edit_nopass").bind("click", function(){
+		$html = [];
+		$html.push('<div class="w-31 pl-1-5 pr-1-5 pt-2 pb-2">');
+		$html.push('<form id="form_nopass"'+$(this).attr("data-id")+' action="" method="post">');
+		$html.push('<textarea rows="4" style="width:310px; resize:none" name="description"></textarea>');
+		$html.push('<input type="hidden" value="nopass" name="act"/>');
+		$html.push('<input type="hidden" value="'+$(this).attr("data-id")+'" name="id"/>');
+		$html.push('<div class="clearfix mt-1-5"><input type="submit" class="right btn-s" value=""/></div>');
+		$html.push('</form>');
+		$html.push('</div>');
+		$("#form_nopass").validationEngine('attach', {
+			onValidationComplete: function(form, status){
+				if (status){
+					$.ajax({
+						'type' : 'post',
+						'url' : GROUP+'/Acceptance/edit',
+						'data': form.serialize(),
+						'success': function(r){
+							alert(r);
+						}
+					});
+				}
+			}  
+		});
+		$(".layer_notice").html($html.join(""));
+		$.layer({
+		    type : 1,
+		    area : ['auto', 'auto'],
+		    title : "请填写不合格说明",
+		    page : {dom : '.layer_notice'}
+		});
+	});
+	$("#a_edit_repass").bind("click", function(){
+		$html = [];
+		$html.push('<div class="w-31 pl-1-5 pr-1-5 pt-2 pb-2">');
+		$html.push('<form id="form_repass"'+$(this).attr("data-id")+' action="" method="post">');
+		$html.push('<textarea rows="4" style="width:310px; resize:none" name="description"></textarea>');
+		$html.push('<input type="hidden" value="repass" name="act"/>');
+		$html.push('<input type="hidden" value="'+$(this).attr("data-id")+'" name="id"/>');
+		$html.push('<div class="clearfix mt-1-5"><input type="submit" class="right btn-s" value=""/></div>');
+		$html.push('</form>');
+		$html.push('</div>');
+		$("#form_repass").validationEngine('attach', {
+			onValidationComplete: function(form, status){
+				if (status){
+					$.ajax({
+						'type' : 'post',
+						'url' : GROUP+'/Acceptance/edit',
+						'data': form.serialize(),
+						'success': function(r){
+							alert(r);
+						}
+					});
+				}
+			}  
+		});
+		$(".layer_notice").html($html.join(""));
+		$.layer({
+		    type : 1,
+		    area : ['auto', 'auto'],
+		    title : "请填写合格说明",
+		    page : {dom : '.layer_notice'}
+		});
+	});
+	
+});
+</script>
+</html>

@@ -146,3 +146,17 @@ function radioTarget(field, index) {
 		obj.hide();
 	}
 }
+
+function layerIframe(src, area){
+	area = area === undefined ? ['1000px','600px'] : area;
+	$.layer({
+		border : [0,0,'',false],
+		title : false,
+	    type : 2,
+	    offset : ['100px', ''],
+	    iframe : {
+	        src : src,
+	    },	
+	    area : area
+	})
+}

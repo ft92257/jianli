@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="__STATICS__/My97DatePicker/WdatePicker.js"></script>
+<!-- JQ formVerification类库 -->
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" href="__STATICS__/jquery-form/css/template.css" type="text/css"/>
+<script src="__STATICS__/jquery-form/js/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATICS__/jquery-form/js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+<title>updatetime</title>
+
+<style type="text/css">
+td{ text-align:right}
+</style>
+
+</head>
+<body>
+<div style="height:100px"></div>
+<form action="__GROUP__/Step/edit" method="post">
+<table>
+	<tr>
+		<td>开始时间：</td>
+		<td><input class="Wdate validate[required]" name="begin_date" type="text" onClick="WdatePicker()"></td>
+	</tr>
+	<tr>
+		<td colspan = "2">
+		<input type="hidden" value="updatetime" name="act"/>
+		<input type="hidden" value="{$step}" name="step"/>
+		<input type="hidden" value="{$no}" name="no"/>
+		<input type="submit" value="确定"/>
+		</td>
+	</tr>
+</table>
+</form>
+
+<script>
+$("form").validationEngine('attach', {
+	onValidationComplete: function(form, status){
+		if (status){
+			form.submit();
+		}
+	}  
+});
+</script>
+</body>
+</html>

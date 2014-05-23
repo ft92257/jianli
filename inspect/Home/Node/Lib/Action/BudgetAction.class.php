@@ -205,7 +205,7 @@ class BudgetAction extends BaseAction {
 		
 		$this->assign('budget', $budget);
 		$this->assign('fields', $fields);
-		$acreage = $this->oUser->info->acreage;
+		$acreage = $this->oUser->info->area;
 		$this->assign('acreage', $acreage);
 		$this->assign('title', $title);
 	
