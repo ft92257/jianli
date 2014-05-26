@@ -178,7 +178,7 @@ class BudgetAction extends BaseAction {
 		
 			//保存总预算
 			$total_budget = $this->model->field('sum(estimate) as total')->where(array('uid' => $this->oUser->id, 'pid' => 0))->find();
-			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('budget' => $total_budget['total']))->save();
+			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('budget_amount' => $total_budget['total']))->save();
 		} else {
 			$list = $this->model->getChildren($parent['id']);
 				

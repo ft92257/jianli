@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?>﻿<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -182,7 +182,7 @@
                         <tr>
                         	<td class="f-weight" style="border-left:0">总计</td>
                             <td></td>
-                            <td>￥<?php echo ($info["budget"]); ?></td>
+                            <td>￥<?php echo ($info["budget_amount"]); ?></td>
                             <td style="border-right:0">￥<?php echo ($total); ?></td>
                         </tr>
                     </tbody>
