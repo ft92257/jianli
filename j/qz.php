@@ -36,7 +36,7 @@ if($user_id>0 && $uadb[$user_id]['qx']==0 && isset($_GET['c']) && trim($_GET['c'
 	
 	$JishiGouAPI=new JishiGouAPI($yjl_url.$yjl_tpath.'api.php', $app_k, $app_s, $udb['nickname'], md5($udb['nickname'].$udb['password']));
 	$jsg_result=$JishiGouAPI->AddTopic('向'.$jln.'提问：'.$_GET['c']);
-var_dump( $jsg_result);//debug
+//var_dump( $jsg_result);//debug
 	if(!isset($jsg_result['error']) && isset($jsg_result['result']['tid'])){
 		$tid=$jsg_result['result']['tid'];
 		if(isset($_GET['imgid']) && trim($_GET['imgid'])!=''){
