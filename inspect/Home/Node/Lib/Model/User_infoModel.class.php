@@ -23,6 +23,11 @@ class User_infoModel extends BaseModel {
 		}
 	}*/
 	
+	protected function _after_find(&$result,$options) {
+		$ret = D('House_type')->where(array('id' => $result['apartment']))->find();
+		$result['apartment'] = $ret['name'];
+	}
+	
 }
 
 

@@ -34,7 +34,6 @@ class BaseAction extends Action {
 			
 			$info = D('User_info')->getObjectById($uid, 'uid');
 			$this->oUser->info = $info;
-			$this->oUser->info->apartment = '3房2厅';//TODO
 		}
 
 		//对免验证模块，不进行登录验证。
