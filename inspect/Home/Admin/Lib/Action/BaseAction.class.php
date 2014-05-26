@@ -11,6 +11,8 @@ class BaseAction extends Action {
 	protected $model;
 	protected $retFunc = array();//例：array('success' => 'uploadSuccess','error' => 'uploadError');
 	
+	protected $aOptions = array();
+	
 	public function __construct() {
 		parent::__construct();
 		//加载项目信息

@@ -552,6 +552,7 @@ class BaseModel extends Model {
 					<input type="hidden" name="' . $field . '" value="'.$val.'" />';
 				break;
 			default:
+				_replaceValue($aValue[1], $data);
 				$html .= $aValue[1];
 				break;
 		}

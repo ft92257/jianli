@@ -1,0 +1,72 @@
+<include file="Public:header" />
+<script charset="utf-8" src="__STATICS__/js/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__STATICS__/js/kindeditor/lang/zh_CN.js"></script>
+<include file="Public:left" />
+<div class="right">
+	<h2>添加</h2>
+	<div class="b frame">
+		<h3>填写基本信息</h3>
+
+<form method="post" action="" enctype="multipart/form-data">
+	<table width="100%">
+	<tr><td width="120"></td><td></td></tr>
+	{$formHtml}
+	</table>
+</form>
+
+	</div>
+	
+</div>
+
+<script>
+	function ajaxSelect(act, json){
+		$.ajax({
+			type:'post',
+			url:'__GROUP__/Tree/select',
+			async:false,
+			data:{'data':json,'act':act},
+			success:function(r){
+				$("#div_"+act).append(r);
+				}
+			});
+	}
+	function remove(act, obj){
+		if(obj.attr('id') == 'type_L1'){
+			$("#type_L2").remove();
+			$("#type_L3").remove();
+		}else if(obj.attr('id') == 'type_L2'){
+			$("#type_L3").remove();	
+		}
+	}
+	
+	function updateHide(act){
+		var str = "";
+		$("select[id^='"+act+"']").each(function(x, y){
+			var val = $(this).find("option:selected").val();
+			if(val != -1){
+				str += '['+val+']';
+			}	
+		});
+		$("#hide_"+act).val(str);
+	}
+	$(function(){
+		var sel_type = eval('{$sel_type}');
+		if(typeof(sel_type) == 'object'){
+			if(sel_type[0] > 0){
+				ajaxSelect('type',{ 'level':1,'pid':0,'default':sel_type[0] });
+			}
+			if(sel_type[1] > 0){
+				ajaxSelect('type',{ 'level':2,'pid':sel_type[0],'default':sel_type[1] });
+			}
+			if(sel_type[2] > 0){
+				ajaxSelect('type',{ 'level':3,'pid':sel_type[1],'default':sel_type[2] });
+			}
+		} else {
+			ajaxSelect('type');
+		}
+	});
+</script>
+
+</body>
+</html>
+

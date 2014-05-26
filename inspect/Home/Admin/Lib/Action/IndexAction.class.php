@@ -11,7 +11,7 @@ class IndexAction extends BaseAction {
 	}
 
 	public function index() {
-		$this->redirect('/Inspect/index');
+		$this->redirect('/Question/index');
 	}
 	
 	
