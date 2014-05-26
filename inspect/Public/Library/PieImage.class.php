@@ -91,8 +91,9 @@ class PieImage {
 			
 			$CurrentColor = $colorSlice[$index%(count($colorSlice))];
 			
-			imagefilledarc($image, $ChartCenterX, $ChartCenterY, 135, 135, $StartDegrees, $EndDegrees, $CurrentColor, IMG_ARC_PIE);
-			
+			if ($EndDegrees > $StartDegrees) {
+				imagefilledarc($image, $ChartCenterX, $ChartCenterY, 135, 135, $StartDegrees, $EndDegrees, $CurrentColor, IMG_ARC_PIE);
+			}
 			/*
 			//画图F
 			imagearc($image,$ChartCenterX,$ChartCenterY,$ChartDiameter,	$ChartDiameter,$StartDegrees,$EndDegrees, $CurrentColor);
