@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 
 /**
  * 基础类
@@ -14,15 +14,15 @@ class BaseAction extends Action {
 		parent::__construct();
 		
 		//加载项目信息
-		if (empty($_SESSION['app'])) {
+		if (1 || empty($_SESSION['app'])) {
 			$_SESSION['app'] = (object) C('APP_INFO');
-			$this->oApp = $data;
+			$this->oApp = $_SESSION['app'];
 		} else {
 			$this->oApp = $_SESSION['app'];
 		}
-		
+
 		//加载用户数据
-		$uid = D('Session')->check();
+		$uid = D('Session')->check();$uid = 1;
 		if ($uid) {
 			$oUser = D('User')->getObjectById($uid);
 			

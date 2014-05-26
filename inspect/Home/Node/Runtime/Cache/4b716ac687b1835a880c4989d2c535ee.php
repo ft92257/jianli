@@ -8,6 +8,7 @@
 <link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
 <script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="__STATICS__/js/common.js"></script>
+<script src="__STATICS__/layer/layer.min.js"></script>
 <!--[if lt ie 9]>
 <script type="text/javascript" src="__STATICS__/js/html5shiv.js"></script>
 <![endif]-->
@@ -75,7 +76,7 @@ var pieUrl = 'softpie';
     <section class="w-96 mgl-a mgr-a content clearfix">
     	<div class="left w737 clearfix mt-5">
         	<ul class="tab-cut">
-            	<li><a href="index.html">进&nbsp;&nbsp;&nbsp;度</a></li>
+            	<li><a href="__GROUP__/Time/index">进&nbsp;&nbsp;&nbsp;度</a></li>
                 <li><a href="__URL__/fee" class="mr-ck">费&nbsp;&nbsp;&nbsp;用</a></li>
             </ul>
         	<div class="w-53 ml-15">
@@ -168,7 +169,7 @@ var pieUrl = 'softpie';
             </ul>
         </div>
     </section> 
-<script type="text/javascript" src="__STATICS__/layer/layer.min.js"></script>
+
 <script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
 <script>

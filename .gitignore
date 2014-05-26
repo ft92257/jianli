@@ -3,6 +3,7 @@ face
 t/images/face
 t/images/topic
 t/setting/settings.php
+t/data/cache
 config.php
 new/config.inc.php
 new/data/uploads
@@ -17,5 +18,6 @@ house/pay/tenpay_config.php
 .htaccess
 inspect/Home/Index/Runtime
 inspect/Home/Admin/Runtime
+inspect/Home/Node/Runtime
 inspect/config.inc.php
 inspect/data
