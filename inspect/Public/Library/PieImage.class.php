@@ -28,6 +28,10 @@ class PieImage {
 		return (array($x, $y));
 	}
 
+	/*
+	 * @param array $data 数据数组
+	 * @param array $fields 字段配置，包含颜色代码
+	 */
 	private function _make($data, $fields) {
 		$colors = array();
 		foreach ($fields as $value) {
