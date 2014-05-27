@@ -193,4 +193,13 @@ span.w96{ width:96px; height:22px}
 .btn-tj{ border:0 none; background:url(../images/ygfy-bg.jpg) no-repeat; width:74px; height:21px; color:#5d2300; margin-left:10px; cursor:pointer}
 
 
-
+/*信息录入select下拉模拟*/
+.fromdiv .sel-mn1{ background:url(../images/select-bg-mn1.jpg) no-repeat; position:relative; width:96px; cursor:default; color:#9c9c9c}
+.fromdiv .sel-mn2{ background:url(../images/select-bg-mn.jpg) no-repeat; position:relative; width:178px; cursor:default; color:#9c9c9c}
+.fromdiv .sel-mn2 p,.fromdiv .sel-mn1 p{ height:24px; padding-left:5px; line-height:23px; -moz-user-select:none/*火狐禁止选中文字*/; -webkit-user-select:none/*谷歌禁止选中文字*/}
+.option-list{ position:absolute; left:0; top:22px; display:none; border:#D6D6D6 1px solid; border-top:0 none; background-color:#fff}
+.w-wid176{ width:176px}
+.w-wid96{ width:94px}
+.option-list a{ display:block; color:#9c9c9c; line-height:23px; padding-left:5px}
+.option-list a:hover{ background-color:#F2F2F2}
+.option-list a.selected{ background-color:#E5E5E5}

@@ -17,6 +17,7 @@
 <script>
 	var URL = '__URL__';
 	var GROUP = '__GROUP__';
+	var STATICS='__STATICS__';
 </script>
 
 <div class="log-in w-41 log-in-show">

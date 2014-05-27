@@ -24,7 +24,12 @@ define('THINK_VERSION', '3.1.2');
 //   系统信息
 if(version_compare(PHP_VERSION,'5.4.0','<')) {
     ini_set('magic_quotes_runtime',0);
-    define('MAGIC_QUOTES_GPC',get_magic_quotes_gpc()?True:False);
+   // if (function_exists('get_magic_quotes_gpc'))
+    define('MAGIC_QUOTES_GPC',false);
+   // else
+    //	define('MAGIC_QUOTES_GPC',False);
+   
+   
 }else{
     define('MAGIC_QUOTES_GPC',false);
 }

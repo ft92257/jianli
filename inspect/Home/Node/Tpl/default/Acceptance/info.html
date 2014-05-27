@@ -57,7 +57,7 @@
                                                 <img class="a_edit" data-id="$vo[id]" src="__STATICS__/images/compile-bg.jpg" width="18" height="18" />
                                                 <div class="show-btn w-9" style="display:none">
                                                     <a href="#" data-id="{$vo[id]}" class="left w-4-5 qualified a_edit_pass">合格</a>
-                                                    <a href="#" class="left w-4-5 disqualification a_edit_nopass">不合格</a>
+                                                    <a href="#" data-id="{$vo[id]}" class="left w-4-5 disqualification a_edit_nopass">不合格</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@
                                      <div class="state-box"><img src="__STATICS__/images/wrong-bg.jpg" width="29" height="29" /></div>
                                         <div class="compile-b">
                                         	<div class="pore-t">
-                                                <img id="a_edit_repass" src="__STATICS__/images/compile-bg.jpg" width="18" height="18" />
+                                                <img id="a_edit_repass" data-id="{$vo[id]}"  src="__STATICS__/images/compile-bg.jpg" width="18" height="18" />
                                             </div>
                                         </div>
                                      </if>
@@ -106,61 +106,49 @@ $(function(){
 		});
 	});
 	$(".a_edit_nopass").bind("click", function(){
+		
 		$html = [];
 		$html.push('<div class="w-31 pl-1-5 pr-1-5 pt-2 pb-2">');
-		$html.push('<form id="form_nopass"'+$(this).attr("data-id")+' action="" method="post">');
+		$html.push('<form id="form_nopass" action="" method="post">');
 		$html.push('<textarea rows="4" style="width:310px; resize:none" name="description"></textarea>');
 		$html.push('<input type="hidden" value="nopass" name="act"/>');
 		$html.push('<input type="hidden" value="'+$(this).attr("data-id")+'" name="id"/>');
 		$html.push('<div class="clearfix mt-1-5"><input type="submit" class="right btn-s" value=""/></div>');
 		$html.push('</form>');
 		$html.push('</div>');
-		$("#form_nopass").validationEngine('attach', {
-			onValidationComplete: function(form, status){
-				if (status){
-					$.ajax({
-						'type' : 'post',
-						'url' : GROUP+'/Acceptance/edit',
-						'data': form.serialize(),
-						'success': function(r){
-							alert(r);
-						}
-					});
-				}
-			}  
-		});
 		$(".layer_notice").html($html.join(""));
+
 		$.layer({
 		    type : 1,
 		    area : ['auto', 'auto'],
 		    title : "请填写不合格说明",
 		    page : {dom : '.layer_notice'}
 		});
+		$("#form_nopass").validationEngine('attach', {
+			onValidationComplete: function(form, status){
+				if (status){
+					$.ajax({
+						'type' : 'post',
+						'url' : GROUP+'/Acceptance/edit',
+						'data': $("#form_nopass").serialize(),
+						'success': function(r){
+							window.location.reload();
+						}
+					});
+				}
+			}  
+		});	
 	});
 	$("#a_edit_repass").bind("click", function(){
 		$html = [];
 		$html.push('<div class="w-31 pl-1-5 pr-1-5 pt-2 pb-2">');
-		$html.push('<form id="form_repass"'+$(this).attr("data-id")+' action="" method="post">');
+		$html.push('<form id="form_repass" action="" method="post">');
 		$html.push('<textarea rows="4" style="width:310px; resize:none" name="description"></textarea>');
 		$html.push('<input type="hidden" value="repass" name="act"/>');
 		$html.push('<input type="hidden" value="'+$(this).attr("data-id")+'" name="id"/>');
 		$html.push('<div class="clearfix mt-1-5"><input type="submit" class="right btn-s" value=""/></div>');
 		$html.push('</form>');
 		$html.push('</div>');
-		$("#form_repass").validationEngine('attach', {
-			onValidationComplete: function(form, status){
-				if (status){
-					$.ajax({
-						'type' : 'post',
-						'url' : GROUP+'/Acceptance/edit',
-						'data': form.serialize(),
-						'success': function(r){
-							alert(r);
-						}
-					});
-				}
-			}  
-		});
 		$(".layer_notice").html($html.join(""));
 		$.layer({
 		    type : 1,
@@ -168,8 +156,21 @@ $(function(){
 		    title : "请填写合格说明",
 		    page : {dom : '.layer_notice'}
 		});
+		$("#form_repass").validationEngine('attach', {
+			onValidationComplete: function(form, status){
+				if (status){
+					$.ajax({
+						'type' : 'post',
+						'url' : GROUP+'/Acceptance/edit',
+						'data': $("#form_repass").serialize(),
+						'success': function(r){
+							window.location.reload();
+						}
+					});
+				}
+			}  
+		});
 	});
-	
 });
 </script>
 </html>

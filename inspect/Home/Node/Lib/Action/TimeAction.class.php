@@ -58,6 +58,8 @@ class TimeAction extends BaseAction {
 					'stage' => 1,
 					'no' => time().mt_rand(1000, 9999)
 					);
+			
+			
 			$this->model->addData($data);
 			$this->user_info = $this->model->where(array('id' => $this->model->getLastInsID()))->find();
 			//根据用户新建档案推算每阶段工期。
@@ -145,7 +147,6 @@ class TimeAction extends BaseAction {
 	
 	#进度表主页面
 	public function index(){
-		
 		$this->model = D("User_step");
 		$days = ceil(($this->user_info['end_date'] - $this->user_info['begin_date'])/86400);
 		$this->user_step = $this->model->where(array('uid' => $this->oUser->id, 'no' => $this->user_info['no']))->select();
@@ -153,8 +154,7 @@ class TimeAction extends BaseAction {
 			$arr[$v['step']] = $v;
 		}
 		$this->user_step = $arr;
-		//print_r('<pre>');
-		//print_r($this->user_step);
+		
 		$this->assign('user_step', $this->user_step);
 		$this->assign('user_info', $this->user_info);
 		if($this->user_info['stage'] == 1){
