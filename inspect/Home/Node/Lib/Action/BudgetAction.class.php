@@ -308,7 +308,7 @@ class BudgetAction extends BaseAction {
 	
 		$rate = array();$sum = 0;$last_field = '';
 		foreach ($fields as $field => $value) {
-			$rate[$field] = round($total * $value[2][$grade] / 1000) * 1000;
+			$rate[$field] = round($total * $value[2][$grade] / 100) * 100;
 			$arr['data'][$field] = $rate[$field];
 			$arr['data']['grade'][$field] = $grade;
 			$sum += $rate[$field];
@@ -344,7 +344,7 @@ class BudgetAction extends BaseAction {
 		$arr = array();
 		$rate = array();$sum = 0;$last_field = '';
 		foreach ($fields as $field => $value) {
-			$rate[$field] = round($total * $value[2][$grade] / 1000) * 1000;
+			$rate[$field] = round($total * $value[2][$grade] / 100) * 100;
 			$arr[$field] = $rate[$field];
 			//$arr['grade'][$field] = $grade;
 			$sum += $rate[$field];
@@ -379,12 +379,12 @@ class BudgetAction extends BaseAction {
 	public function getParentConfig($type, $isChild = false) {
 		$configs = array(
 			'soft' => array(
-				'electric' => array('家电', '#0ba4aa', array('1' => 0.5, '2' => 0.3, '3' => 0.2), 'soft'),
-				'furniture' => array('家具', '#b01692', array('1' => 0.2, '2' => 0.21, '3' => 0.16), 'soft'),
-				'fabric' => array('布艺', '#bd7777', array('1' => 0.125, '2' => 0.14, '3' => 0.08), 'soft'),
-				'green' => array('绿化', '#14b01f', array('1' => 0.025, '2' => 0.07, '3' => 0.08), 'soft'),
-				'illumination' => array('照明', '#bf6c10', array('1' => 0.1, '2' => 0.14, '3' => 0.08), 'soft'),
-				'furnishing' => array('陈设', '#ae9552', array('1' => 0.05, '2' => 0.14, '3' => 0.4), 'soft'),
+				'electric' => array('家电', '#db832a', array('1' => 0.5, '2' => 0.3, '3' => 0.2), 'soft'),
+				'furniture' => array('家具', '#6e77ba', array('1' => 0.2, '2' => 0.21, '3' => 0.16), 'soft'),
+				'fabric' => array('布艺', '#c5497d', array('1' => 0.125, '2' => 0.14, '3' => 0.08), 'soft'),
+				'green' => array('绿化', '#a7b64f', array('1' => 0.025, '2' => 0.07, '3' => 0.08), 'soft'),
+				'illumination' => array('照明', '#4cb5b8', array('1' => 0.1, '2' => 0.14, '3' => 0.08), 'soft'),
+				'furnishing' => array('陈设', '#708b18', array('1' => 0.05, '2' => 0.14, '3' => 0.4), 'soft'),
 			),
 			'hard' => array(
 				'design' => array('设计', '#ff6160', array('1' => 0.5/11, '2' => 1/14, '3' => 1.5/25), 'hard'),

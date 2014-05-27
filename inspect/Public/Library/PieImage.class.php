@@ -28,6 +28,10 @@ class PieImage {
 		return (array($x, $y));
 	}
 
+	/*
+	 * @param array $data 数据数组
+	 * @param array $fields 字段配置，包含颜色代码
+	 */
 	private function _make($data, $fields) {
 		$colors = array();
 		foreach ($fields as $value) {
@@ -91,8 +95,9 @@ class PieImage {
 			
 			$CurrentColor = $colorSlice[$index%(count($colorSlice))];
 			
-			imagefilledarc($image, $ChartCenterX, $ChartCenterY, 135, 135, $StartDegrees, $EndDegrees, $CurrentColor, IMG_ARC_PIE);
-			
+			if ($EndDegrees > $StartDegrees) {
+				imagefilledarc($image, $ChartCenterX, $ChartCenterY, 135, 135, $StartDegrees, $EndDegrees, $CurrentColor, IMG_ARC_PIE);
+			}
 			/*
 			//画图F
 			imagearc($image,$ChartCenterX,$ChartCenterY,$ChartDiameter,	$ChartDiameter,$StartDegrees,$EndDegrees, $CurrentColor);
