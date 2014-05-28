@@ -19,67 +19,19 @@
 	var GROUP = '__GROUP__';
 </script>
 
-<div class="log-in w-41 log-in-show">
-    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">登录</span><span class="left mt-1-5 ml-2">没有账号？<a href="#" class="register-to">请注册</a></span></p>
-        <div class="from-box ml-5 mb-3-5">
-        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
-            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
-            <div class="clearfix mt-1">
-            	<label class="l-bg-yz left"><input type="text" value="验证码" /></label>
-                <img class="left ml-1" src="__STATICS__/images/yz-img.jpg" width="68" height="34" />
-                <a href="#" class="left ml-1 mt-0-5"><img src="__STATICS__/images/hyzimg.jpg" width="108" height="27" /></a>
-            </div>
-            <input type="submit" class="sub-mit" value="登&nbsp;&nbsp;录" />
-        </div>
-    </div>
-    <div class="log-in w-41 register-show">
-    	<p class="ts-tit clearfix ml-5 mr-6-5 mt-2"><span class="left f-s">注册</span><span class="left mt-1-5 ml-2">已注册？<a href="#" class="log-in-to">请登录</a></span></p>
-        <div class="from-box ml-5 mb-3-5">
-        	<label class="l-bg mt-2"><input type="text" value="用户名" /></label>
-            <label class="l-bg mt-1"><input type="text" value="密码" /></label>
-            <label class="l-bg mt-1"><input type="text" value="确认密码" /></label>
-            <div class="clearfix mt-1">
-            	<label class="l-bg-yz-zc left"><input type="text" value="验证码" /></label>
-                <!--<a href="#" class="left ml-1 mt-0-5"><img src="images/hq-yz.jpg" width="87" height="27" /></a>-->
-                <input type="button" id="btn" value="获取验证码" style="border:#E4E4E3 1px solid; background-color:#EFEFEF; height:25px; line-height:25px; width:90px; color:#434446; margin-top:5px; margin-left:15px" />
-            </div>
-            <input type="submit" class="sub-mit" value="注&nbsp;&nbsp;册" />
-        </div>
-    </div>
-	<header>
-    	<nav class="w-96 mga">
-        	<ul class="clearfix ml-7-5">
-            	<li>
-                	<a href="#" class="bg-col-sty"><span class="nav-ico ico1"></span><span>档案</span></a>
-                </li>
-                <li>
-                	<a href="#"><span class="nav-ico ico2"></span><span>知识库</span></a>
-                </li>
-                <li>
-                	<a href="#"><span class="nav-ico ico3"></span><span>帮助</span></a>
-                </li>
-                <li>
-                	<a href="#"><span class="nav-ico ico4"></span><span>备忘录</span></a>
-                </li>
-                <li>
-                	<a href="javascript:;" class="logIn"><span class="nav-ico ico5"></span><span>登录</span></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
 
 <script>
 var calculateUrl = 'softCalculate';
 var pieUrl = 'softpie';
 </script>
 
-    <section class="w-96 mgl-a mgr-a content clearfix">
-    	<div class="left w737 clearfix mt-5">
-        	<ul class="tab-cut">
+    <section style="width:520px;padding:30px;">
+    	<div>
+        	<!--<ul class="tab-cut">
             	<li><a href="__GROUP__/Time/index">进&nbsp;&nbsp;&nbsp;度</a></li>
                 <li><a href="__URL__/fee" class="mr-ck">费&nbsp;&nbsp;&nbsp;用</a></li>
-            </ul>
-        	<div class="w-53 ml-15">
+            </ul>-->
+        	<div>
             	<div class="show1">
                     <div class="clearfix">
                         <div class="left">
@@ -159,6 +111,7 @@ var pieUrl = 'softpie';
         		
 			</div>
         </div>
+		<!--
         <div class="right w223">
         	<ul class="r-nav ml-3 mt-4-5">
             	<li><a href="#" class="ico1">通讯录</a></li>
@@ -167,7 +120,7 @@ var pieUrl = 'softpie';
                 <li><a href="#" class="ico4">监理在线</a></li>
                 <li><a href="#" class="ico5">商城</a></li>
             </ul>
-        </div>
+        </div>-->
     </section> 
 
 <script type="text/javascript" src="__STATICS__/js/main.js"></script>

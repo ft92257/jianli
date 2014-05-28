@@ -12,6 +12,9 @@ class BudgetAction extends BaseAction {
 		$this->model->oUser = $this->oUser;
 	}
 	
+	/*
+	 * 硬装实际费用保存
+	 */
 	public function hard_edit() {
 		$hard_fields = $this->getParentConfig('hard');
 		
@@ -28,7 +31,9 @@ class BudgetAction extends BaseAction {
 			$hard_realfee = getRequestData(array_keys($hard_fields));
 			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('hard_realfee' => json_encode($hard_realfee)))->save();
 			$this->success('修改成功！', U('fee'));exit;
-		} else {
+		}
+/*
+		 else {
 			if (empty($this->oUser->info->hard_realfee)) {
 				$hard_realfee = $hard_budget;
 				D('User_info')->where(array('uid' => $this->oUser->id))->data(array('hard_realfee' => json_encode($hard_realfee)))->save();
@@ -41,9 +46,12 @@ class BudgetAction extends BaseAction {
 		$this->assign('hard_budget', $hard_budget);
 		$this->assign('hard_realfee', $hard_realfee);
 		
-		$this->display();
+		$this->display();*/
 	}
 	
+	/*
+	 * 软装实际费用保存
+	 */
 	public function soft_edit() {
 		$soft_fields = $this->getParentConfig('soft');
 		
@@ -60,7 +68,9 @@ class BudgetAction extends BaseAction {
 			$soft_realfee = getRequestData(array_keys($soft_fields));
 			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('soft_realfee' => json_encode($soft_realfee)))->save();
 			$this->success('修改成功！', U('fee'));exit;
-		} else {
+		} 
+		/*
+		else {
 			if (empty($this->oUser->info->soft_realfee)) {
 				$soft_realfee = $soft_budget;
 				D('User_info')->where(array('uid' => $this->oUser->id))->data(array('soft_realfee' => json_encode($soft_realfee)))->save();
@@ -72,16 +82,18 @@ class BudgetAction extends BaseAction {
 		$this->assign('soft_fields', $soft_fields);
 		$this->assign('soft_budget', $soft_budget);
 		$this->assign('soft_realfee', $soft_realfee);
-		$this->display();
+		$this->display();*/
 	}
 	
 	/*
 	 * 费用主页
 	 */
 	public function fee() {
+		//第一层配置
 		$hard_fields = $this->getParentConfig('hard');
 		$soft_fields = $this->getParentConfig('soft');
 		
+		//硬装预算信息
 		$parent = $this->model->getParent('hard');
 		$list = $this->model->getChildren($parent['id']);
 		$hard_budget = array();
@@ -90,6 +102,7 @@ class BudgetAction extends BaseAction {
 			$hard_budget[$value['name']] = $value['estimate'];
 			$hb_total += $value['estimate'];
 		}
+		//软装预算信息
 		$parent = $this->model->getParent('soft');
 		$list = $this->model->getChildren($parent['id']);
 		$soft_budget = array();
@@ -98,52 +111,65 @@ class BudgetAction extends BaseAction {
 			$soft_budget[$value['name']] = $value['estimate'];
 			$sb_total += $value['estimate'];
 		}
-		
+		/*
 		if ($this->isPost()) {
 			$hard_realfee = getRequestData(array_keys($hard_fields));
 			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('hard_realfee' => json_encode($hard_realfee)))->save();
 			
 			$soft_realfee = getRequestData(array_keys($soft_fields));
 			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('soft_realfee' => json_encode($soft_realfee)))->save();
-		} else {	
+		} else {	*/
+			//硬装实际费用
 			if (empty($this->oUser->info->hard_realfee)) {
 				$hard_realfee = $hard_budget;
 				D('User_info')->where(array('uid' => $this->oUser->id))->data(array('hard_realfee' => json_encode($hard_realfee)))->save();
 			} else {
 				$hard_realfee = json_decode($this->oUser->info->hard_realfee, true);
 			}
+			//软装实际费用
 			if (empty($this->oUser->info->soft_realfee)) {
 				$soft_realfee = $soft_budget;
 				D('User_info')->where(array('uid' => $this->oUser->id))->data(array('soft_realfee' => json_encode($soft_realfee)))->save();
 			} else {
 				$soft_realfee = json_decode($this->oUser->info->soft_realfee, true);
 			}
-		}
+		//}
 		
+		//硬装实际总费用
 		$total = 0;$hard_total = 0;
 		foreach ($hard_realfee as $key => $value) {
 			$total += (int) $value;
 			$hard_total += (int) $value;;
 		}
+		//软装实际总费用
 		$soft_total = 0;
 		foreach ($soft_realfee as $key => $value) {
 			$total += (int) $value;
 			$soft_total += (int) $value;
 		}
 		
+		//总实际费用
 		$this->assign('total', $total);
+		//硬装预算总计
 		$this->assign('hb_total', ($hb_total/10000) . '万');
+		//软装预算总计
 		$this->assign('sb_total', ($sb_total/10000) . '万');
+		//硬装实际费用总和
 		$this->assign('hard_total', ($hard_total/10000) . '万');
+		//软装实际费用总和
 		$this->assign('soft_total', ($soft_total/10000) . '万');
 		
+		//分类配置信息
 		$this->assign('hard_fields', $hard_fields);
 		$this->assign('soft_fields', $soft_fields);
 		
+		//预算明细信息
 		$this->assign('hard_budget', $hard_budget);
 		$this->assign('soft_budget', $soft_budget);
+		//实际费用明细信息
 		$this->assign('hard_realfee', $hard_realfee);
 		$this->assign('soft_realfee', $soft_realfee);
+		//用户信息
 		$this->assign('info',  (array) $this->oUser->info);
 		$this->assign('user', (array) $this->oUser);
 		//$aGrade = array('1' => '低档', '2' => '中档', '3' => '高档');
@@ -154,12 +180,15 @@ class BudgetAction extends BaseAction {
 	
 	
 	/*
-	 * 硬装显示页面
+	 * 硬装预算工具
 	 */
 	public function hard() {
 		$this->_parent('hard', '硬装预算');
 	}
 	
+	/*
+	 * 预算工具
+	 */
 	public function _parent($type, $title) {
 		$fields = $this->getParentConfig($type);
 		$parent = $this->model->getParent($type);
@@ -171,15 +200,18 @@ class BudgetAction extends BaseAction {
 			foreach ($budget as $key => $value) {
 				$total += (int) $value;
 	
+				//更新子类预算
 				$this->model->updateChild($key, $value, $parent);
 			}
 			
+			//更新父级预算
 			$this->model->where(array('id' => $parent['id']))->data(array('estimate' => $total))->save();
 		
 			//保存总预算
 			$total_budget = $this->model->field('sum(estimate) as total')->where(array('uid' => $this->oUser->id, 'pid' => 0))->find();
 			D('User_info')->where(array('uid' => $this->oUser->id))->data(array('budget_amount' => $total_budget['total']))->save();
 		} else {
+			//获取子类预算明细
 			$list = $this->model->getChildren($parent['id']);
 				
 			$budget = array();$total = 0;
@@ -190,6 +222,7 @@ class BudgetAction extends BaseAction {
 		}
 		$budget['total'] = $total;
 		
+		//实际费用信息
 		if ($type == 'hard') {
 			$realfee = json_decode($this->oUser->info->hard_realfee, true);
 		} else {
@@ -263,7 +296,7 @@ class BudgetAction extends BaseAction {
 	}
 	
 	/*
-	 * 软装显示页面
+	 * 软装预算工具
 	 */
 	public function soft() {
 		$this->_parent('soft', '软装预算');
@@ -375,6 +408,9 @@ class BudgetAction extends BaseAction {
 	
 	/*
 	 * 第一层配置
+	 * @param $type 分类键值
+	 * @param $isChild true时读取子分类配置
+	 * 配置：array('名称', '#颜色', array('低档' => 比例, '中档' => 比例, '高档' => 比例), '所属大类')
 	 */
 	public function getParentConfig($type, $isChild = false) {
 		$configs = array(
@@ -402,13 +438,22 @@ class BudgetAction extends BaseAction {
 	
 	/*
 	 * 第二层配置
+	 * @param $type 键值
+	 * 配置：array('名称', '#颜色', array('低档' => 比例, '中档' => 比例, '高档' => 比例), '描述')
 	 */
 	public function getChildConfig($type) {
 		$configs = array(
+			'artificial' => array(
+				'arti1' => array('水电工', '#db832a', array('1' => 0.18, '2' => 0.18, '3' => 0.18), '250元/人/天'),
+				'arti2' => array('泥木工', '#6e77ba', array('1' => 0.24, '2' => 0.24, '3' => 0.24), '300元/人/天'),
+				'arti3' => array('木工', '#c5497d', array('1' => 0.2, '2' => 0.2, '3' => 0.2), '230元/人/天'),
+				'arti4' => array('油漆工', '#a7b64f', array('1' => 0.22, '2' => 0.22, '3' => 0.22), '250元/人/天'),
+				'arti5' => array('管理费', '#4cb5b8', array('1' => 0.16, '2' => 0.16, '3' => 0.16), ''),
+			),
 			'electric' => array(
-				'elec1' => array('家电1', '#ff0000', array('1' => 0.3, '2' => 0.2, '3' => 0.1)),
-				'elec2' => array('家电2', '#00ff00', array('1' => 0.3, '2' => 0.3, '3' => 0.2)),
-				'elec3' => array('家电3', '#0000ff', array('1' => 0.4, '2' => 0.5, '3' => 0.7)),
+				'elec1' => array('家电1', '#db832a', array('1' => 0.3, '2' => 0.2, '3' => 0.1), 'ddddd'),
+				'elec2' => array('家电2', '#6e77ba', array('1' => 0.3, '2' => 0.3, '3' => 0.2), 'hhhhh'),
+				'elec3' => array('家电3', '#c5497d', array('1' => 0.4, '2' => 0.5, '3' => 0.7), 'sssss'),
 			),
 		);
 		
@@ -423,7 +468,7 @@ class BudgetAction extends BaseAction {
 		$fields = $this->getChildConfig($type);
 
 		if (empty($fields)) {
-			$this->error('没有该页面！');
+			die('没有该页面！');
 		}
 		
 		$parent = $this->model->getParent($type, 0);

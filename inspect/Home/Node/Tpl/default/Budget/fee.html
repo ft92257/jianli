@@ -27,13 +27,13 @@
                     <div class="right">
                     	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
                         	<p class="left"><span style="font-size:18px">桑小姐</span>的家</p>
-                            <a href="#__URL__/soft_edit" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                            <a href="#" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
                         </div>
                         <div class="bg-color-h">
                         	<ul>
                             	<li>面积：{$info.area}㎡</li>
                                 <li>户型：{$info.apartment}</li>
-                                <li>软装预算：{$sb_total}&nbsp;<a href="__URL__/soft">预算计算器</a></li>
+                                <li>软装预算：{$sb_total}&nbsp;<a href="#" onclick="layerIfram('.soft-budget');">预算计算器</a></li>
                                 <li>实际花费：{$soft_total}</li>
                             </ul>
                         </div>
@@ -59,13 +59,13 @@
                     <div class="right">
                     	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
                         	<p class="left"><span style="font-size:18px">{$user.nickname}</span>的家</p>
-                            <a href="#__URL__/hard_edit" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                            <a href="#" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
                         </div>
                         <div class="bg-color-h">
                         	<ul>
                             	<li>面积：{$info.area}㎡</li>
                                 <li>户型：{$info.apartment}</li>
-                                <li>硬装预算：{$hb_total}&nbsp;<a href="__URL__/hard">预算计算器</a></li>
+                                <li>硬装预算：{$hb_total}&nbsp;<a href="#" onclick="layerIfram('.hard-budget');">预算计算器</a></li>
                                 <li>实际花费：{$hard_total}</li>
                             </ul>
                         </div>
@@ -93,10 +93,11 @@
 						<foreach name="hard_fields" item="vo" key="field">
                         <tr>
                         	<td class="f-weight" style="border-left:0">硬装</td>
-                            <td><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td>
+                            <td><a onclick="layerIfram('.hard-budget-{$field}');" href="#">{$vo[0]}</a></td>
                             <td>￥<span id="fee_{$field}">{$hard_budget[$field]}</span></td>
                             <td style="border-right:0">￥<span id="{$field}">{$hard_realfee[$field]}</span></td>
                         </tr>
+						<iframe id="iframe-hard-{$field}" onLoad="iFrameHeight('iframe-hard-{$field}')" class="hard-budget-{$field}" src="__URL__/child/type/{$field}/realfee/{$hard_realfee[$field]}" style="display:none;width:600px;background:#fff;"></iframe>
 						</foreach>
                         
                         <tr istitle="1">
@@ -108,10 +109,11 @@
 						<foreach name="soft_fields" item="vo" key="field">
                         <tr>
                         	<td class="f-weight" style="border-left:0">软装</td>
-                            <td><a href="__URL__/child/type/{$field}/realfee/{$soft_realfee[$field]}">{$vo[0]}</a></td>
+                            <td><a onclick="layerIfram('.soft-budget-{$field}');" href="#">{$vo[0]}</a></td>
                             <td>￥<span id="fee_{$field}">{$soft_budget[$field]}</span></td>
                             <td style="border-right:0">￥<span id="{$field}">{$soft_realfee[$field]}</span></td>
                         </tr>
+						<iframe id="iframe-soft-{$field}" onLoad="iFrameHeight('iframe-soft-{$field}')" class="soft-budget-{$field}" src="__URL__/child/type/{$field}/realfee/{$soft_realfee[$field]}" style="display:none;width:600px;background:#fff;"></iframe>
                         </foreach>
                         <tr istitle="1">
                         	<td style="border-left:0"></td>
@@ -197,8 +199,10 @@
 			</form>
         </div>
     </div> 
-	
-	
+
+	<iframe id="iframe-hard" onLoad="iFrameHeight('iframe-hard')" class="hard-budget" src="__URL__/hard" style="display:none;width:600px;background:#fff;"></iframe>
+	<iframe id="iframe-soft" onLoad="iFrameHeight('iframe-soft')" class="soft-budget" src="__URL__/soft" style="display:none;width:600px;background:#fff;"></iframe>
+
 <script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
 

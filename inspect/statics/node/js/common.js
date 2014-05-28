@@ -160,3 +160,11 @@ function layerIframe(src, area){
 	    area : area
 	})
 }
+
+function iFrameHeight(id) { 
+	var ifm= document.getElementById(id); 
+	var subWeb = document.frames ? document.frames[id].document : ifm.contentDocument; 
+	if(ifm != null && subWeb != null) { 
+		ifm.height = subWeb.body.scrollHeight; 
+	} 
+}
