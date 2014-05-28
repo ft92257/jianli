@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit();?>﻿<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -17,6 +17,7 @@
 <script>
 	var URL = '__URL__';
 	var GROUP = '__GROUP__';
+	var STATICS='__STATICS__';
 </script>
 
 <div class="log-in w-41 log-in-show">
@@ -105,9 +106,16 @@
                     </div>
                     <div class="clearfix mt-1-5">
                     	<label>装修风格：</label>
-                        <select class="select2 validate[required]" name="style">
-                        	<option value="">请选择</option>
-                        	<?php if(is_array($style)): foreach($style as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
+                        <div class="left sel-mn1 sel-option">
+                        	<p unselectable="on">请选择</p>
+                            <ul class="option-list option-show w-wid96">
+                                <li><a href="javascript:;" class="selected">请选择</a></li>
+                                <?php if(is_array($style)): foreach($style as $i=>$vo): ?><li><a href="javascript:;"><?php echo ($vo); ?></a></li><?php endforeach; endif; ?>
+                            </ul>
+                        </div>
+                        <select name="style" class="select1" style="display:none">
+                        	<option value="0">请选择</option>
+                            <?php if(is_array($style)): foreach($style as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
                         </select>
                     </div>
                 </div>
@@ -115,9 +123,16 @@
                 <div class="fromdiv">
                 	<div class="clearfix mt-1-5">
                     	<label>预算：</label>
-                        <select name="budget" class="select1 validate[required]">
-                        	<option value="">请选择</option>
-					    	<?php if(is_array($budget)): foreach($budget as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
+					    <div class="left sel-mn1 sel-option">
+                        	<p unselectable="on">请选择</p>
+                            <ul class="option-list option-show w-wid96">
+                                <li><a href="javascript:;" class="selected">请选择</a></li>
+                                <?php if(is_array($budget)): foreach($budget as $i=>$vo): ?><li><a href="javascript:;"><?php echo ($vo); ?></a></li><?php endforeach; endif; ?>
+                            </ul>
+                        </div>
+                        <select name="budget" class="select1" style="display:none">
+                        	<option value="0">请选择</option>
+                            <?php if(is_array($budget)): foreach($budget as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
                         </select>
                         <input type="text" name="budget_amount" class="text-bg2 validate[required]" value=""/>
                     </div>
@@ -143,16 +158,30 @@
                     </div>
                     <div class="clearfix mt-1-5">
                     	<label>房屋状态：</label>
-                        <select name="house_status" class="select2 validate[required]">
-                        	<option value="">请选择</option>
-					    	<?php if(is_array($house_status)): foreach($house_status as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
+                        <div class="left sel-mn1 sel-option">
+                        	<p unselectable="on">请选择</p>
+                            <ul class="option-list option-show w-wid96">
+                                <li><a href="javascript:;" class="selected">请选择</a></li>
+                                <?php if(is_array($house_status)): foreach($house_status as $i=>$vo): ?><li><a href="javascript:;"><?php echo ($vo); ?></a></li><?php endforeach; endif; ?>
+                            </ul>
+                        </div>
+                        <select name="house_status" class="select1" style="display:none">
+                        	<option value="0">请选择</option>
+                            <?php if(is_array($house_status)): foreach($house_status as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
                         </select>
                     </div>
                     <div class="clearfix mt-1-5">
                     	<label>装修种类：</label>
-                        <select name="renovation_type" class="select2 validate[required]">
-                        	<option value="">请选择</option>
-					    	<?php if(is_array($renovation_type)): foreach($renovation_type as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
+                        <div class="left sel-mn1 sel-option">
+                        	<p unselectable="on">请选择</p>
+                            <ul class="option-list option-show w-wid96">
+                                <li><a href="javascript:;" class="selected">请选择</a></li>
+                                <?php if(is_array($renovation_type)): foreach($renovation_type as $i=>$vo): ?><li><a href="javascript:;"><?php echo ($vo); ?></a></li><?php endforeach; endif; ?>
+                            </ul>
+                        </div>
+                        <select name="renovation_type" class="select1" style="display:none">
+                        	<option value="0">请选择</option>
+                            <?php if(is_array($renovation_type)): foreach($renovation_type as $i=>$vo): ?><option value="<?php echo ($i); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>
                         </select>
                     </div>
                     <ul class="jd-list w-28 mt-4 ml-3 clearfix">
@@ -178,56 +207,4 @@
     </section>
 </body>
 </html>
-
-<script>
-$(function(){
-/*
-	$("form").validationEngine('attach', {
-		onValidationComplete: function(form, status){
-			if (status){
-				form.submit();
-			}
-		}  
-	});*/
-	cityAjax('city');
-	house_typeAjax('house_type');
-});
-/*省市区列表联动*/
-function cityAjax(act,json){
-	$.ajax({
-		type:'post',
-		url:'__GROUP__/City/citySelect',
-		async:false,
-		data:{'data':json,'act':act},
-		success:function(r){
-			$("#div_"+act).append(r);
-		}
-	});
-}
-function cityRemove(obj){
-	if(obj.attr('id') == 'province'){
-		$("#city").remove();
-		$("#county").remove();
-	}else if(obj.attr('id') == 'city'){
-		$("#county").remove();	
-	}
-}
-/*房型户型列表联动*/
-function house_typeAjax(act,json){
-	$.ajax({
-		type:'post',
-		url:'__GROUP__/House_type/house_typeSelect',
-		async:false,
-		data:{'data':json,'act':act},
-		success:function(r){
-			$("#div_"+act).append(r);
-		}
-	});
-}
-function house_typeRemove(obj){
-	if(obj.attr('id') == 'room'){
-		$("#apartment").remove();
-	}
-}
-
-</script>
+<script src="__STATICS__/js/setUserInfo.js" type="text/javascript" charset="utf-8"></script>

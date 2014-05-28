@@ -21,15 +21,33 @@ class AcceptanceAction extends BaseAction {
 			echo '1';exit;
 		}
 		if ($_REQUEST['act'] == 'nopass'){
+			
 			$this->model = D("User_report");
 			$this->model->where(array('id' => $_REQUEST['id']))->data(array('result' => 3))->save();
 			$report = $this->model->where(array('id' => $_REQUEST['id']))->find();
 			$this->model = D("User_exception");
 			$data = array(
-					'type' => '验收不合格',
+					'type' => '3',
 					'description' => $_REQUEST['description'],
-					
+					'uid' => $this->oUser->id,
+					'no' => $report['no']
 					);
+			$this->model->addData($data);
+			echo '1'; exit;
+		}
+		if ($_REQUEST['act'] == 'repass'){
+			$this->model = D("User_report");
+			$this->model->where(array('id' => $_REQUEST['id']))->data(array('result' => 2))->save();
+			$report = $this->model->where(array('id' => $_REQUEST['id']))->find();
+			$this->model = D("User_exception");
+			$data = array(
+					'type' => '4',
+					'description' => $_REQUEST['description'],
+					'uid' => $this->oUser->id,
+					'no' => $report['no']
+			);
+			$this->model->addData($data);
+			echo '1'; exit;
 		}
 	}
 	
