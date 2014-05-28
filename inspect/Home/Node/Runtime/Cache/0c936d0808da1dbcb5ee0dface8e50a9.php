@@ -93,13 +93,13 @@
                     <div class="right">
                     	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
                         	<p class="left"><span style="font-size:18px">桑小姐</span>的家</p>
-                            <a href="#__URL__/soft_edit" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                            <a href="#" onclick="layerIfram('.soft-cost');" class="right mr-1-5 mt-0-5">编辑</a>
                         </div>
                         <div class="bg-color-h">
                         	<ul>
                             	<li>面积：<?php echo ($info["area"]); ?>㎡</li>
                                 <li>户型：<?php echo ($info["apartment"]); ?></li>
-                                <li>软装预算：<?php echo ($sb_total); ?>&nbsp;<a href="__URL__/soft">预算计算器</a></li>
+                                <li>软装预算：<?php echo ($sb_total); ?>&nbsp;<a href="#" onclick="layerIfram('.soft-budget');">预算计算器</a></li>
                                 <li>实际花费：<?php echo ($soft_total); ?></li>
                             </ul>
                         </div>
@@ -123,13 +123,13 @@
                     <div class="right">
                     	<div class="n-compile clearfix pt-0-5 pl-2 pb-0-5">
                         	<p class="left"><span style="font-size:18px"><?php echo ($user["nickname"]); ?></span>的家</p>
-                            <a href="#__URL__/hard_edit" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
+                            <a href="#" onclick="layerIfram('.hard-cost');" class="right mr-1-5 mt-0-5">编辑</a>
                         </div>
                         <div class="bg-color-h">
                         	<ul>
                             	<li>面积：<?php echo ($info["area"]); ?>㎡</li>
                                 <li>户型：<?php echo ($info["apartment"]); ?></li>
-                                <li>硬装预算：<?php echo ($hb_total); ?>&nbsp;<a href="__URL__/hard">预算计算器</a></li>
+                                <li>硬装预算：<?php echo ($hb_total); ?>&nbsp;<a href="#" onclick="layerIfram('.hard-budget');">预算计算器</a></li>
                                 <li>实际花费：<?php echo ($hard_total); ?></li>
                             </ul>
                         </div>
@@ -156,10 +156,11 @@
                         </tr>
 						<?php if(is_array($hard_fields)): foreach($hard_fields as $field=>$vo): ?><tr>
                         	<td class="f-weight" style="border-left:0">硬装</td>
-                            <td><a href="__URL__/child/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td>
+                            <td><a onclick="layerIfram('.hard-budget-<?php echo ($field); ?>');" href="#"><?php echo ($vo[0]); ?></a></td>
                             <td>￥<span id="fee_<?php echo ($field); ?>"><?php echo ($hard_budget[$field]); ?></span></td>
                             <td style="border-right:0">￥<span id="<?php echo ($field); ?>"><?php echo ($hard_realfee[$field]); ?></span></td>
-                        </tr><?php endforeach; endif; ?>
+                        </tr>
+						<iframe id="iframe-hard-<?php echo ($field); ?>" onLoad="iFrameHeight('iframe-hard-<?php echo ($field); ?>')" class="hard-budget-<?php echo ($field); ?>" src="__URL__/child/type/<?php echo ($field); ?>/realfee/<?php echo ($hard_realfee[$field]); ?>" style="display:none;width:600px;background:#fff;"></iframe><?php endforeach; endif; ?>
                         
                         <tr istitle="1">
                         	<td style="border-left:0"></td>
@@ -169,10 +170,11 @@
                         </tr>
 						<?php if(is_array($soft_fields)): foreach($soft_fields as $field=>$vo): ?><tr>
                         	<td class="f-weight" style="border-left:0">软装</td>
-                            <td><a href="__URL__/child/type/<?php echo ($field); ?>/realfee/<?php echo ($soft_realfee[$field]); ?>"><?php echo ($vo[0]); ?></a></td>
+                            <td><a onclick="layerIfram('.soft-budget-<?php echo ($field); ?>');" href="#"><?php echo ($vo[0]); ?></a></td>
                             <td>￥<span id="fee_<?php echo ($field); ?>"><?php echo ($soft_budget[$field]); ?></span></td>
                             <td style="border-right:0">￥<span id="<?php echo ($field); ?>"><?php echo ($soft_realfee[$field]); ?></span></td>
-                        </tr><?php endforeach; endif; ?>
+                        </tr>
+						<iframe id="iframe-soft-<?php echo ($field); ?>" onLoad="iFrameHeight('iframe-soft-<?php echo ($field); ?>')" class="soft-budget-<?php echo ($field); ?>" src="__URL__/child/type/<?php echo ($field); ?>/realfee/<?php echo ($soft_realfee[$field]); ?>" style="display:none;width:600px;background:#fff;"></iframe><?php endforeach; endif; ?>
                         <tr istitle="1">
                         	<td style="border-left:0"></td>
                             <td></td>
@@ -253,8 +255,10 @@
 			</form>
         </div>
     </div> 
-	
-	
+
+	<iframe id="iframe-hard" onLoad="iFrameHeight('iframe-hard')" class="hard-budget" src="__URL__/hard" style="display:none;width:600px;background:#fff;"></iframe>
+	<iframe id="iframe-soft" onLoad="iFrameHeight('iframe-soft')" class="soft-budget" src="__URL__/soft" style="display:none;width:600px;background:#fff;"></iframe>
+
 <script type="text/javascript" src="__STATICS__/js/main.js"></script>
 
 

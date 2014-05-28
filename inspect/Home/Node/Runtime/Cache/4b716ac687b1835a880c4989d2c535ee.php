@@ -21,8 +21,8 @@
 
 
 <script>
-var calculateUrl = 'calculate';
-var pieUrl = 'pie';
+var calculateUrl = 'softCalculate';
+var pieUrl = 'softpie';
 </script>
 
     <section style="width:520px;padding:30px;">
@@ -228,7 +228,7 @@ function _updatePie(data) {
 <script>
 	$("#tab_hard").removeClass("mr-sty");
 	$("#tab_soft").removeClass("mr-sty");
-	$("#tab_hard").addClass("mr-sty");
+	$("#tab_soft").addClass("mr-sty");
 </script>
 
 </body>

@@ -1,7 +1,27 @@
-<include file="Public:header_blank" />
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>费用</title>
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/screen.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/layer/skin/layer.css" />
+<link type="text/css" rel="stylesheet" href="__STATICS__/css/main.css" />
+<script type="text/javascript" src="__STATICS__/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="__STATICS__/js/common.js"></script>
+<script src="__STATICS__/layer/layer.min.js"></script>
+<!--[if lt ie 9]>
+<script type="text/javascript" src="__STATICS__/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+<script>
+	var URL = '__URL__';
+	var GROUP = '__GROUP__';
+</script>
+
 
 <section style="width:560px;padding:10px 20px;">
-<h2>{$title}</h2>
+<h2><?php echo ($title); ?></h2>
     <div class="show1">
         <div class="clearfix">
             <div class="left">
@@ -13,14 +33,12 @@
                 <div class="clearfix mt-1-5">
                     <div class="left">
                         <ul class="pie-chart">
-                        	<foreach name="fields" item="vo" key="field">
-							<li><div class="icon" style="background:{$vo[1]};">&nbsp;</div> {$vo[0]} <span id="scale_{$field}"></span>%</li>
-							</foreach>
+                        	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><li><div class="icon" style="background:<?php echo ($vo[1]); ?>;">&nbsp;</div> <?php echo ($vo[0]); ?> <span id="scale_<?php echo ($field); ?>"></span>%</li><?php endforeach; endif; ?>
                         </ul>
                     </div>
                     <div class="left" style="margin-left:20px">
                         <p>
-                            <img id="pie_image" src="__URL__/childpie/type/{$type}" width="135" height="135" />
+                            <img id="pie_image" src="__URL__/childpie/type/<?php echo ($type); ?>" width="135" height="135" />
                         </p>
                     </div>
                 </div>
@@ -28,7 +46,7 @@
 			<div class="right calculate h-19-5">
                 <div class="from-div ml-1-5 w-19-5 mt-1-5">
                     <div class="clearfix"></div>
-                    <div class="clearfix mt-0-5"><label>设置预算：</label><input type="text" onblur="setBudget(this)" id="budget" name="budget" value="{$budget.total}" /></div>
+                    <div class="clearfix mt-0-5"><label>设置预算：</label><input type="text" onblur="setBudget(this)" id="budget" name="budget" value="<?php echo ($budget["total"]); ?>" /></div>
                     <div class="clearfix mt-0-5">
                         <label>设置预算：</label>
                         <select name="grade" id="grade" onchange="selectGrade(this)">
@@ -54,15 +72,13 @@
                 </tr>
             </thead>
             <tbody>
-            	<foreach name="fields" item="vo" key="field">
-				<tr>
-					<th style="border-left:0"><a href="__URL__/child/type/{$field}">{$vo[0]}</a></td>
-					<td><span id="fee_{$field}">0.00</span>元</td>
-					<td><input style="width:80px;" type="text" id="{$field}" name="{$field}" value="{$budget[$field]}" /> 元</td>
-					<td id="grade_{$field}"><span id="grade_{$field}_3">高</span> <span id="grade_{$field}_2">中</span> <span id="grade_{$field}_1">低</span></td>
-					<td style="border-right:0">{$vo[3]}</td>
-				</tr>
-				</foreach>
+            	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?><tr>
+					<th style="border-left:0"><a href="__URL__/child/type/<?php echo ($field); ?>"><?php echo ($vo[0]); ?></a></td>
+					<td><span id="fee_<?php echo ($field); ?>">0.00</span>元</td>
+					<td><input style="width:80px;" type="text" id="<?php echo ($field); ?>" name="<?php echo ($field); ?>" value="<?php echo ($budget[$field]); ?>" /> 元</td>
+					<td id="grade_<?php echo ($field); ?>"><span id="grade_<?php echo ($field); ?>_3">高</span> <span id="grade_<?php echo ($field); ?>_2">中</span> <span id="grade_<?php echo ($field); ?>_1">低</span></td>
+					<td style="border-right:0"><?php echo ($vo[3]); ?></td>
+				</tr><?php endforeach; endif; ?>
             </tbody>
             <tfoot>
                 <tr>
@@ -70,7 +86,7 @@
                     <td><span id="fee_total">0.00</span>元</td>
                     <td><input id="synBudget" onclick="synCheck(this)" type="checkbox" />同步我的预算</td>
                     <td></td>
-                    <td>实际费用：{$_GET['realfee']} 元</td>
+                    <td>实际费用：<?php echo ($_GET['realfee']); ?> 元</td>
                 </tr>
             </tfoot>
         </table>
@@ -83,20 +99,18 @@
 <script>
 
 function calculate(){
-	$.post(URL+'/childCalculate/type/{$type}', {budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
+	$.post(URL+'/childCalculate/type/<?php echo ($type); ?>', {budget:$('#budget').val(), grade:$('#grade').val()}, function(json){
 		if (json.status == 0) {
 			var data = json.data;
 			var oGrade = {"1":"低", "2":"中", "3":"高"};
 			var total = 0;
-		<foreach name="fields" item="vo" key="field">
-			$("#fee_{$field}").html(data.{$field});
+		<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>$("#fee_<?php echo ($field); ?>").html(data.<?php echo ($field); ?>);
 			if ($("#synBudget")[0].checked) {
-				$("#{$field}").val(data.{$field});
+				$("#<?php echo ($field); ?>").val(data.<?php echo ($field); ?>);
 			}
-			$("#grade_{$field}").html(oGrade[data.grade.{$field}]);
+			$("#grade_<?php echo ($field); ?>").html(oGrade[data.grade.<?php echo ($field); ?>]);
 
-			total += parseInt(data.{$field});
-		</foreach> 
+			total += parseInt(data.<?php echo ($field); ?>);<?php endforeach; endif; ?> 
 			$("#fee_total").html(total);
 
 			_updatePie(data);
@@ -124,9 +138,7 @@ function setBudget(obj) {
 
 function synCheck(obj) {
 	if (obj.checked) {
-		<foreach name="fields" item="vo" key="field">
-		$("#{$field}").val($("#fee_{$field}").html());
-		</foreach> 
+		<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>$("#<?php echo ($field); ?>").val($("#fee_<?php echo ($field); ?>").html());<?php endforeach; endif; ?> 
 	}
 }
 
@@ -149,18 +161,14 @@ $(function(){
 
 function getHtmlData(pre) {
 	var data = {};
-	<foreach name="fields" item="vo" key="field">
-		data.{$field} = $("#"+pre+"{$field}").html();
-	</foreach>
+	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#"+pre+"<?php echo ($field); ?>").html();<?php endforeach; endif; ?>
 	
 	return data;
 }
 
 function getValData(pre) {
 	var data = {};
-	<foreach name="fields" item="vo" key="field">
-		data.{$field} = $("#"+pre+"{$field}").val();
-	</foreach>
+	<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>data.<?php echo ($field); ?> = $("#"+pre+"<?php echo ($field); ?>").val();<?php endforeach; endif; ?>
 	
 	return data;
 }
@@ -168,30 +176,27 @@ function getValData(pre) {
 function _updatePie(data) {
 	var total = 0;
 	var strData = '';
-<foreach name="fields" item="vo" key="field">
-	strData += data.{$field} + ",";
-	total += parseInt(data.{$field});
-</foreach> 
+<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>strData += data.<?php echo ($field); ?> + ",";
+	total += parseInt(data.<?php echo ($field); ?>);<?php endforeach; endif; ?> 
 
 	total = total / 100;
 	
 	var sum = 0;var last_field = '';
-<foreach name="fields" item="vo" key="field">
-	var scale_{$field} = Math.round(data.{$field}/total);
-	sum += scale_{$field};
-	last_field = '{$field}';
+<?php if(is_array($fields)): foreach($fields as $field=>$vo): ?>var scale_<?php echo ($field); ?> = Math.round(data.<?php echo ($field); ?>/total);
+	sum += scale_<?php echo ($field); ?>;
+	last_field = '<?php echo ($field); ?>';
 	
-	$("#scale_{$field}").html(scale_{$field});
-</foreach> 
+	$("#scale_<?php echo ($field); ?>").html(scale_<?php echo ($field); ?>);<?php endforeach; endif; ?> 
 	var last = parseInt($("#scale_" + last_field).html()) + 100 - sum;
 	$("#scale_" + last_field).html(last);
 
 	strData = strData.substr(0, strData.length - 1);
 
-	$("#pie_image").attr("src", "{:U('childpie')}/type/{$type}/data/" + strData);
+	$("#pie_image").attr("src", "<?php echo U('childpie');?>/type/<?php echo ($type); ?>/data/" + strData);
 		
 }
 </script>
 
 
-<include file="Public:bottom" />
+</body>
+</html>
