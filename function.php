@@ -1224,6 +1224,7 @@ function getFooter() {
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 	document.write(unescape("%3Cscript src=\'" + _bdhmProtocol + "hm.baidu.com/h.js%3F79d937b4fc15959f8db0280ebcf808d9\' type=\'text/javascript\'%3E%3C/script%3E"));
 	</script>';
+	$s .= "<script src='http://stat.e.tf.360.cn/search/c.js?u=956204243' language='JavaScript' ></script><script src='http://pw.cnzz.com/tongji_360.php?id=1201288462&pid=e360&l=2' language='JavaScript' charset='gb2312'></script>";
 	$s.='</div></body></html>';
 
 	return $s;
