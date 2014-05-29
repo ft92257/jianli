@@ -423,9 +423,9 @@ class BudgetAction extends BaseAction {
 				'furnishing' => array('陈设', '#708b18', array('1' => 0.05, '2' => 0.14, '3' => 0.4), 'soft'),
 			),
 			'hard' => array(
-				'design' => array('设计', '#ff6160', array('1' => 0.5/11, '2' => 1/14, '3' => 1.5/25), 'hard'),
-				'artificial' => array('人工', '#ffc31b', array('1' => 3/11, '2' => 3/14, '3' => 3.5/25), 'hard'),
-				'material' => array('材料', '#a8cf24', array('1' => 7.5/11, '2' => 10/14, '3' => 20/25), 'hard'),
+				'design' => array('设计', '#6e77ba', array('1' => 0.5/11, '2' => 1/14, '3' => 1.5/25), 'hard'),
+				'artificial' => array('人工', '#c5497d', array('1' => 3/11, '2' => 3/14, '3' => 3.5/25), 'hard'),
+				'material' => array('材料', '#4cb5b8', array('1' => 7.5/11, '2' => 10/14, '3' => 20/25), 'hard'),
 			),	
 		);
 		
