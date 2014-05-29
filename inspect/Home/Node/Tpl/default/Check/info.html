@@ -21,7 +21,7 @@
 </head>
 <body style="background-color:#FDFFF6;">
 	<div class="ys-record">
-    	<h1 class="mt-2-5">{$report[0][acceptance_case][name]}</h1>
+    	<h1 class="mt-2-5">{$check[0][check_case][name]}</h1>
         <div class="clearfix bg-box">
         	<ul class="left classify">
             	<li><a href="#" class="a-bg-c">全&nbsp;&nbsp;&nbsp;部</a></li>
@@ -42,12 +42,12 @@
                             <th width="125px">监理验收</th>
                         </tr>
                         <tbody>
-                        <foreach name="report" item="vo">
+                        <foreach name="check" item="vo">
                         	<tr>
-                            	<td style="border-top:0">{$vo['acceptance']['name']}</td>
-                            	<td style="border-top:0"><p style=" width:130px">{$vo['acceptance']['norms']}</p></td>
-                            	<td style="border-top:0"><p style=" width:80px">{$vo['acceptance']['tool']}</p></td>
-                            	<td style="border-top:0"><p style=" width:80px">{$vo['acceptance']['method']}</p></td>
+                            	<td style="border-top:0">{$vo['check']['name']}</td>
+                            	<td style="border-top:0"><p style=" width:130px">{$vo['check']['norms']}</p></td>
+                            	<td style="border-top:0"><p style=" width:80px">{$vo['check']['tool']}</p></td>
+                            	<td style="border-top:0"><p style=" width:80px">{$vo['check']['method']}</p></td>
                             	<td style="border-top:0">
                                 	<div class="pore">
                                 	<if condition="($vo[result] eq 1)">

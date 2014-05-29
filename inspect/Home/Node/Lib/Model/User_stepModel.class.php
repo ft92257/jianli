@@ -12,6 +12,10 @@ class User_stepModel extends BaseModel {
 		$resultSet['aceptance_pass_c'] = D('User_report')->where(array('step' => $resultSet['step'], 'uid' => $this->oUser->id, 'result' => 2))->count();
 		$resultSet['aceptance_nopass_c'] = D('User_report')->where(array('step' => $resultSet['step'], 'uid' => $this->oUser->id, 'result' => 3))->count();
 		
+		$resultSet['check_no_c'] = D('User_check')->where(array('step' => $resultSet['step'], 'uid' => $this->oUser->id, 'result' => 1))->count();
+		$resultSet['check_pass_c'] = D('User_check')->where(array('step' => $resultSet['step'], 'uid' => $this->oUser->id, 'result' => 2))->count();
+		$resultSet['check_nopass_c'] = D('User_check')->where(array('step' => $resultSet['step'], 'uid' => $this->oUser->id, 'result' => 3))->count();
+		
 		$resultSet['cycle'] = round(($resultSet['end_date'] - $resultSet['begin_date'])/86400);
 	}
 }

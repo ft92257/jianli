@@ -15,11 +15,24 @@ class TimeAction extends BaseAction {
 	//查询每个阶段下的全部验收点
 	private function getAcceptance($node){
 		$id = array();
-		foreach($node as $v){
-			$acceptance = D("Acceptance")->where(array('step' => array('like', "%[{$v}]%")))->select();
+		foreach($node as $vo){
+			$acceptance = D("Acceptance")->where(array('step' =>$vo))->select();
 			if ($acceptance) {
 				foreach($acceptance as $k => $v){
-					$id[$v['id']] =  array('id'=>$v['id'], 'step'=>$v['step']);
+					$id[$v['id']] =  array('id'=>$v['id'], 'step'=>$v['step'], 'case'=>$v['case']);
+				}
+			}
+		}
+		return $id;
+	}
+	
+	private function getCheck($node){
+		$id = array();
+		foreach($node as $vo){
+			$Check = D("Check")->where(array('step' =>$vo))->select();
+			if ($Check) {
+				foreach($Check as $k => $v){
+					$id[$v['id']] =  array('id'=>$v['id'], 'step'=>$v['step'], 'case'=>$v['case']);
 				}
 			}
 		}
@@ -96,6 +109,20 @@ class TimeAction extends BaseAction {
 					'aid' => $v['id'],
 					'step' => $v['step'],
 					'case' => $v['case']
+				);
+				$this->model->addData($data);
+			}
+			
+			//初始化巡查报告
+			$aid = $this->getCheck($_REQUEST['node']);
+			$this->model = D('User_check');
+			foreach($aid as $k => $v){
+				$data = array(
+						'uid' => $this->oUser->id,
+						'result' => 1, //未验收
+						'aid' => $v['id'],
+						'step' => $v['step'],
+						'case' => $v['case']
 				);
 				$this->model->addData($data);
 			}

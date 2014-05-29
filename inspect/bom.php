@@ -1,8 +1,8 @@
 <?php
-die('hhh');
+//die('hhh');
 $auto = 1;
 
-checkdir('C:\AppServ\www\jianli\inspect');
+checkdir('C:\wamp\www\jianli\inspect');
 
 function checkdir($basedir){
 

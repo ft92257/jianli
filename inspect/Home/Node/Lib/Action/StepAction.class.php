@@ -47,6 +47,14 @@ class StepAction extends BaseAction {
 		$this->display();
 	}
 	
+	public function indexCheck(){
+		$this->model = D("Check_case");
+		$check = $this->model->where(array('step'=>$_REQUEST['step']))->select();
+		$this->assign('check', $check);
+		$this->assign('node', $this->node);
+		$this->display();
+	}
+	
 	public function questionInfo(){
 		$this->model = D("Question");
 		$question = $this->model->where(array('id'=>$_REQUEST['id']))->find();
@@ -64,7 +72,6 @@ class StepAction extends BaseAction {
 		$this->assign('user_step', $this->user_step);
 		$this->assign('user_info', $this->user_info);
 		$this->assign('node', $this->node);
-
 		$this->display();
 	}
 	

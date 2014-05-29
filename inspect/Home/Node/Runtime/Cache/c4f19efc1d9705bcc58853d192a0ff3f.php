@@ -97,6 +97,12 @@
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[2][aceptance_no_c]+$user_step[2][aceptance_pass_c]+$user_step[2][aceptance_nopass_c]); ?></span>
                             </a>
                         </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="2">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[2][check_no_c]+$user_step[2][check_pass_c]+$user_step[2][check_nopass_c]); ?></span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="h-9 plan-right">
                     	<div class="h-9">
@@ -132,6 +138,12 @@
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[4][aceptance_no_c]+$user_step[4][aceptance_pass_c]+$user_step[4][aceptance_nopass_c]); ?></span>
                             </a>
                         </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="4">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[4][check_no_c]+$user_step[4][check_pass_c]+$user_step[4][check_nopass_c]); ?></span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="h-9 plan-right">
                     	<div class="h-9">
@@ -165,6 +177,12 @@
                         	<a href="javascript:;" class="clearfix btn_acceptance" data-id="6">
                                 <span class="span-ico ico2 mr-0-5"></span>
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[6][aceptance_no_c]+$user_step[6][aceptance_pass_c]+$user_step[6][aceptance_nopass_c]); ?></span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="6">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[6][check_no_c]+$user_step[6][check_pass_c]+$user_step[6][check_nopass_c]); ?></span>
                             </a>
                         </li>
                     </ul>
@@ -208,6 +226,12 @@
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[1][aceptance_no_c]+$user_step[1][aceptance_pass_c]+$user_step[1][aceptance_nopass_c]); ?></span>
                             </a>
                         </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="1">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[1][check_no_c]+$user_step[1][check_pass_c]+$user_step[1][check_nopass_c]); ?></span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="h-9 plan-left">
                     	<div class="h-9">
@@ -240,6 +264,12 @@
                         	<a href="javascript:;" class="clearfix btn_acceptance" data-id="3">
                                 <span class="span-ico ico2 mr-0-5"></span>
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[3][aceptance_no_c]+$user_step[3][aceptance_pass_c]+$user_step[3][aceptance_nopass_c]); ?></span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="3">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[3][check_no_c]+$user_step[3][check_pass_c]+$user_step[3][check_nopass_c]); ?></span>
                             </a>
                         </li>
                     </ul>
@@ -276,6 +306,12 @@
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[5][aceptance_no_c]+$user_step[5][aceptance_pass_c]+$user_step[5][aceptance_nopass_c]); ?></span>
                             </a>
                         </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="5">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[5][check_no_c]+$user_step[5][check_pass_c]+$user_step[5][check_nopass_c]); ?></span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="h-9 plan-left">
                     	<div class="h-9">
@@ -308,6 +344,12 @@
                         	<a href="javascript:;" class="clearfix btn_acceptance" data-id="7">
                                 <span class="span-ico ico2 mr-0-5"></span>
                                 <span class="mt-0-5">验收点&nbsp;<?php echo ($user_step[7][aceptance_no_c]+$user_step[7][aceptance_pass_c]+$user_step[7][aceptance_nopass_c]); ?></span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="javascript:;" class="clearfix btn_check" data-id="7">
+                                <span class="span-ico ico2 mr-0-5"></span>
+                                <span class="mt-0-5">巡查点&nbsp;<?php echo ($user_step[7][check_no_c]+$user_step[7][check_pass_c]+$user_step[7][check_nopass_c]); ?></span>
                             </a>
                         </li>
                     </ul>
@@ -389,6 +431,19 @@
 		    offset: ['20px',''],
 		    area: ['565px', '702px'],
 		    iframe: {src: GROUP+'/Step/indexAcceptance/no/'+$("#hid_no").val()+'/step/'+$(this).attr('data-id')}
+		}); 
+	});
+	
+	$(".btn_check").bind('click', function(){
+		parent.$.layer({
+		    type: 2,
+		    maxmin: true,
+		    shadeClose: true,
+		    title: false,
+		    shade: [0.1,'#fff'],
+		    offset: ['20px',''],
+		    area: ['565px', '702px'],
+		    iframe: {src: GROUP+'/Step/indexCheck/no/'+$("#hid_no").val()+'/step/'+$(this).attr('data-id')}
 		}); 
 	});
  });
