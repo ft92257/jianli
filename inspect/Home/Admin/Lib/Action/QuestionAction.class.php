@@ -36,7 +36,6 @@ class QuestionAction extends BaseAction {
 			$this->_edit($data);
 		} else {
 			//$data['focus'] = getFileUrl($data['focus'], '80-80');
-			$this->assign('sel_type', json_encode($this->model->strFormat($data['type'])));
 			$this->_display_form($data, 'add');
 		}
 	}
