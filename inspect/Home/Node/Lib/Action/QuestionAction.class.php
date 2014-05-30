@@ -23,5 +23,9 @@ class QuestionAction extends BaseAction {
 		$where = array('type' => array('like', "%[{$step}]%"));
 		return $this->model->where($where)->count();
 	}
+	
+	public function index(){
+		$this->display();
+	}
 }
 ?>

@@ -37,6 +37,7 @@ header nav ul a.bg-col-sty .ico5{ background-position:-20px -162px}
 .content .bor-top-5{ border-top:#6EA5A3 1px dashed}
 .content .bor-top-6{ border-top:#70A46F 1px dashed}
 .content .bor-top-7{ border-top:#9CA270 1px dashed}
+.xg-mouse{ height:32px; line-height:31px}
 .content .font-style{ font-family:"Arial"; font-size:14px}
 .content .font-size{ font-size:20px; color:#000}
 .content .boxhover:hover .font-size{ font-size:22px}
@@ -203,3 +204,27 @@ span.w96{ width:96px; height:22px}
 .option-list a{ display:block; color:#9c9c9c; line-height:23px; padding-left:5px}
 .option-list a:hover{ background-color:#F2F2F2}
 .option-list a.selected{ background-color:#E5E5E5}
+
+/*知识点*/
+.sm-title{ font-size:18px; color:#94be2c; font-weight:normal; padding-left:30px; line-height:25px}
+.sm-title.ico1{ background:url(../images/sm-title-ico.png) left 1px no-repeat}
+.sm-title.ico2{ background:url(../images/sm-title-ico.png) left -43px no-repeat}
+.sm-tit-h2{ font-size:16px; font-weight:normal; color:#000}
+.sm-list-box a{ font-family:"宋体"; font-size:12px; color:#7f7f7f; line-height:23px}
+.seek-box{ background:url(../images/select-kbg.png) left top no-repeat; width:396px; height:41px}
+.seek-box input[type=text]{ border:0 none; background:none; vertical-align:middle; height:33px; line-height:33px; width:337px; margin-top:3px; margin-left:15px; color:#b7b7b7}
+.seek-box input[type=submit]{ border:0 none; background:none; vertical-align:middle; height:40px; line-height:40px; width:43px}
+.seek-box input:focus{ outline:none}
+.hot-word{ font-family:"宋体"; background:url(../images/borderbg.jpg) left bottom repeat-x}
+.hot-word strong{ color:#94be2c}
+.hot-word a{ color:#555; margin-right:8px}
+.tu-li{ margin-right:-40px; padding-top:10px}
+.tu-li li{ float:left; margin-right:29px; margin-top:10px; position:relative}
+.tu-li li a{ display:block; position:relative}
+.mouse-s-box{ width:100%; height:100%; position:absolute; left:0; top:0;filter:Alpha(opacity=65); background-color:#000; background-color:rgba(0,0,0,.65); color:#fff; display:none}
+.mouse-s-box p{ position:absolute; bottom:10px; left:0}
+.tu-li li a:hover .mouse-s-box{ display:block}
+.hot-word-list{ padding:15px}
+.hot-word-list li{ border-bottom:#A0A0A0 1px dashed; font-family:"宋体"; line-height:40px; height:40px}
+.hot-word-list li a{ float:left; color:#555}
+.hot-word-list li span{ float:right; color:#989898}
