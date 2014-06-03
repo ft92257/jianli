@@ -152,6 +152,7 @@ header nav ul a.bg-col-sty .ico5{ background-position:-20px -162px}
 
 /*阶段简介*/
 .page-bg{ background:url(../images/page-bg.jpg) left top no-repeat; width:565px; height:702px}
+.page-bg2{ background:url(../images/page-bg2.jpg) left top no-repeat; width:565px; background-color:#F2EFE0}
 .h-title-s{ font-size:30px; color:#3b3b3f}
 .gq-time{ font-size:16px; font-weight:normal; color:#000; display:block; margin-top:25px}
 .gq-time input[type='text']{ width:90px; background-color:none; color:#000; font-family:"微软雅黑"; font-size:16px}

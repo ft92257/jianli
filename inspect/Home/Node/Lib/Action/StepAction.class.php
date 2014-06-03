@@ -60,6 +60,7 @@ class StepAction extends BaseAction {
 		$question = $this->model->where(array('id'=>$_REQUEST['id']))->find();
 		$this->assign('question', $question);
 		$this->assign('node', $this->node);
+		//print_r('<pre>');print_r($this->node);
 		$this->display();
 	}
 	
